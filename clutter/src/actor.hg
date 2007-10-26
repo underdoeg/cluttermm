@@ -16,6 +16,7 @@
  */
 
 #include <glibmm/object.h>
+#include <clutter/clutter-actor.h> /* TODO: Remove this when we have wrapped enough types as C++. */
  
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)
@@ -23,13 +24,13 @@ _PINCLUDE(glibmm/private/object_p.h)
 
 namespace Clutter
 {
-  
+
 class Actor : public Glib::Object //TODO: It actually derives from InitiallyUnowned, which we should probably add to glibmm.
 {
   _CLASS_GOBJECT(Actor, ClutterActor, CLUTTER_ACTOR, Glib::Object, GObject)
 
 protected:
-  _DEFAULT_CTOR()
+  _CTOR_DEFAULT()
 
 public:
   //There is no create() because this is an abstract base class.
@@ -48,8 +49,8 @@ public:
   //TODO: Check that we don't want to wrap this: _WRAP_METHOD(void destroy(), clutter_actor_destroy)
 
   //TODO: If these are output parameters, then they probably need to be hand-coded:
-  _WRAP_METHOD(void request_coords(const Glib::RefPt<ActorBox>& box), clutter_actor_request_coords)
-  _WRAP_METHOD(void query_coords(const Glib::RefPt<ActorBox>& box), clutter_actor_query_coords)
+  //TODO: _WRAP_METHOD(void request_coords(const Glib::RefPtr<ActorBox>& box), clutter_actor_request_coords)
+  //TODO: _WRAP_METHOD(void query_coords(const Glib::RefPtr<ActorBox>& box), clutter_actor_query_coords)
   _WRAP_METHOD(void set_geometry(const ClutterGeometry *geometry), clutter_actor_set_geometry)
   _WRAP_METHOD(void get_geometry(ClutterGeometry *geometry), clutter_actor_get_geometry)
   _WRAP_METHOD(void get_coords(int *x_1, int *y_1, int *x_2, int *y_2) const, clutter_actor_get_coords)
@@ -84,20 +85,20 @@ public:
   _WRAP_METHOD(void set_clip(int xoff, int yoff, int width, int height), clutter_actor_set_clip)
   _WRAP_METHOD(void remove_clip(), clutter_actor_remove_clip)
   _WRAP_METHOD(bool has_clip() const, clutter_actor_has_clip)
-  _WRAP_METHOD(void set_parent(const Glib::RefPt<Actor>& parent), clutter_actor_set_parent)
+  _WRAP_METHOD(void set_parent(const Glib::RefPtr<Actor>& parent), clutter_actor_set_parent)
   _WRAP_METHOD(Glib::RefPtr<Actor> get_parent(), clutter_actor_get_parent, refreturn)
-  _WRAP_METHOD(Glib::RefPtr<Actor> get_parent(), clutter_actor_get_parent, refreturn, constversion)
-  _WRAP_METHOD(void reparent(const Glib::RefPt<Actor>& new_parent), clutter_actor_reparent)
+  _WRAP_METHOD(Glib::RefPtr<const Actor> get_parent() const, clutter_actor_get_parent, refreturn, constversion)
+  _WRAP_METHOD(void reparent(const Glib::RefPtr<Actor>& new_parent), clutter_actor_reparent)
   _WRAP_METHOD(void unparent(), clutter_actor_unparent)
-  _WRAP_METHOD(void raise(const Glib::RefPt<Actor>& below), clutter_actor_raise)
-  _WRAP_METHOD(void lower(const Glib::RefPt<Actor>& above), clutter_actor_lower)
+  _WRAP_METHOD(void raise(const Glib::RefPtr<Actor>& below), clutter_actor_raise)
+  _WRAP_METHOD(void lower(const Glib::RefPtr<Actor>& above), clutter_actor_lower)
   _WRAP_METHOD(void raise_top (), clutter_actor_raise_top)
   _WRAP_METHOD(void lower_bottom(), clutter_actor_lower_bottom)
   _WRAP_METHOD(void set_depth(int depth), clutter_actor_set_depth)
   _WRAP_METHOD(int get_depth() const, clutter_actor_get_depth)
   _WRAP_METHOD(void set_scalex(ClutterFixed scale_x, ClutterFixed scale_y), clutter_actor_set_scalex)
   _WRAP_METHOD(void set_scale(double scale_x, double scale_y), clutter_actor_set_scale)
-  _WRAP_METHOD(void get_scalex(ClutterFixed& scale_x, ClutterFixed& scale_y) const, clutter_actor_get_scalex)
+  //TODO: _WRAP_METHOD(void get_scalex(ClutterFixed& scale_x, ClutterFixed& scale_y) const, clutter_actor_get_scalex)
   _WRAP_METHOD(void get_scale(double& scale_x, double& scale_y) const, clutter_actor_get_scale)
 
   _WRAP_METHOD(void set_scale_with_gravityx(ClutterFixed scale_x, ClutterFixed scale_y, ClutterGravity gravity), clutter_actor_set_scale_with_gravityx)
@@ -108,9 +109,9 @@ public:
   _WRAP_METHOD(void get_size(guint& width, guint& height) const, clutter_actor_get_size)
   _WRAP_METHOD(void move_by(int dx, int dy), clutter_actor_move_by)
 
-  _WRAP_METHOD(void get_vertices(ClutterVertex verts[4]) const, clutter_actor_get_vertices)
+  //TODO: _WRAP_METHOD(void get_vertices(ClutterVertex verts[4]) const, clutter_actor_get_vertices)
 
-  _WRAP_METHOD(void apply_transform_to_point(ClutterVertex& point, ClutterVertex& vertex), clutter_actor_apply_transform_to_point)
+  //TODO: _WRAP_METHOD(void apply_transform_to_point(ClutterVertex& point, ClutterVertex& vertex), clutter_actor_apply_transform_to_point)
 };
 
 } // namespace Clutter

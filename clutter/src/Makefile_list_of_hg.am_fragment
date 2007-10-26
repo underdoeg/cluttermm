@@ -3,4 +3,4 @@
 # so it's like copy-and-pasting this into each of those Makefile.am files.
 
 files_hg = \
-stage.hg 
+actor.hg 
