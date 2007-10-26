@@ -15,43 +15,17 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <iostream>
-
 #include "glibmm_generate_extra_defs/generate_extra_defs.h"
-#include <gdk/gdk.h>
 #include <gtk/gtk.h>
-#include <goocanvas.h>
+#include <clutter.h>
+#include <iostream>
 
 
 int main (int argc, char *argv[])
 {
   gtk_init(&argc, &argv) ;
 
-  std::cout << get_defs(GOO_TYPE_CANVAS) ;
-  std::cout << get_defs(GOO_TYPE_CANVAS_ELLIPSE) ;
-  std::cout << get_defs(GOO_TYPE_CANVAS_ELLIPSE_MODEL) ;
-  std::cout << get_defs(GOO_TYPE_CANVAS_GROUP) ;
-  std::cout << get_defs(GOO_TYPE_CANVAS_GROUP_MODEL) ;
-  std::cout << get_defs(GOO_TYPE_CANVAS_IMAGE) ;
-  std::cout << get_defs(GOO_TYPE_CANVAS_IMAGE_MODEL) ;
-  std::cout << get_defs(GOO_TYPE_CANVAS_ITEM) ;
-  std::cout << get_defs(GOO_TYPE_CANVAS_ITEM_MODEL) ;
-  std::cout << get_defs(GOO_TYPE_CANVAS_ITEM_SIMPLE) ;
-  std::cout << get_defs(GOO_TYPE_CANVAS_ITEM_MODEL_SIMPLE) ;
-  std::cout << get_defs(GOO_TYPE_CANVAS_LINE_DASH) ;      //Causes an error.
-  std::cout << get_defs(GOO_TYPE_CANVAS_PATH) ;
-  std::cout << get_defs(GOO_TYPE_CANVAS_PATH_MODEL) ;
-  std::cout << get_defs(GOO_TYPE_CANVAS_POINTS) ;        //Causes an error.
-  std::cout << get_defs(GOO_TYPE_CANVAS_POLYLINE) ;
-  std::cout << get_defs(GOO_TYPE_CANVAS_POLYLINE_MODEL) ;
-  std::cout << get_defs(GOO_TYPE_CANVAS_RECT) ;
-  std::cout << get_defs(GOO_TYPE_CANVAS_RECT_MODEL) ;
-  std::cout << get_defs(GOO_TYPE_CANVAS_STYLE) ;
-  std::cout << get_defs(GOO_TYPE_CANVAS_TABLE) ;
-  std::cout << get_defs(GOO_TYPE_CANVAS_TABLE_MODEL) ;
-  std::cout << get_defs(GOO_TYPE_CANVAS_TEXT) ;
-  std::cout << get_defs(GOO_TYPE_CANVAS_TEXT_MODEL) ;
-  std::cout << get_defs(GOO_TYPE_CANVAS_WIDGET) ;
+  std::cout << get_defs(CLUTTER_TYPE_STAGE);
 
-    return 0;
+  return 0;
 }

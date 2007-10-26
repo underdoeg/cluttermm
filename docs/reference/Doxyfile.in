@@ -3,8 +3,8 @@
 #---------------------------------------------------------------------------
 # Project related configuration options
 #---------------------------------------------------------------------------
-PROJECT_NAME           = goocanvasmm
-PROJECT_NUMBER         = @LIBGOOCANVASMM_VERSION@
+PROJECT_NAME           = cluttermm
+PROJECT_NUMBER         = @CLUTTERMM_VERSION@
 OUTPUT_DIRECTORY       = 
 CREATE_SUBDIRS         = NO
 OUTPUT_LANGUAGE        = English
@@ -70,7 +70,7 @@ WARN_LOGFILE           =
 #---------------------------------------------------------------------------
 # configuration options related to the input files
 #---------------------------------------------------------------------------
-INPUT                  = @LIBGOOCANVASMM_DOXYGEN_INPUT@
+INPUT                  = @CLUTTERMM_DOXYGEN_INPUT@
 FILE_PATTERNS          = *.h
 RECURSIVE              = NO
 EXCLUDE                = 
