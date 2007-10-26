@@ -1,8 +1,8 @@
-local_goocanvasmm_lib = $(top_builddir)/goocanvas/goocanvasmm/libcluttermm-0.1.la
+local_cluttermm_lib = $(top_builddir)/clutter/cluttermm/libcluttermm-0.1.la
 
-LIBS  = $(CLUTTERMM_LIBS) $(local_goocanvasmm_lib) 
+LIBS  = $(CLUTTERMM_LIBS) $(local_cluttermm_lib) 
 
-all_includes = -I$(top_builddir)/goocanvas -I$(top_srcdir)/goocanvas \
+all_includes = -I$(top_builddir)/clutter -I$(top_srcdir)/clutter \
                $(CLUTTERMM_CFLAGS)
                      
 DEFS = @DEFS@

@@ -145,9 +145,5 @@ AC_OUTPUT([
 
   examples/Makefile
     examples/simple/Makefile
-    examples/moving_shapes/Makefile
-    examples/demo/Makefile
-    examples/coordinates/Makefile
-    examples/text/Makefile
 ])
 :
