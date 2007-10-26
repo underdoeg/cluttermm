@@ -17,7 +17,7 @@
 
 #include "glibmm_generate_extra_defs/generate_extra_defs.h"
 #include <gtk/gtk.h>
-#include <clutter.h>
+#include <clutter/clutter.h>
 #include <iostream>
 
 
@@ -25,7 +25,37 @@ int main (int argc, char *argv[])
 {
   gtk_init(&argc, &argv) ;
 
-  std::cout << get_defs(CLUTTER_TYPE_STAGE);
+  std::cout 
+    << get_defs(CLUTTER_TYPE_ACTOR)
+    << get_defs(CLUTTER_TYPE_ALPHA)
+    << get_defs(CLUTTER_TYPE_BACKEND)
+    << get_defs(CLUTTER_TYPE_BEHAVIOUR_BSPLINE)
+    << get_defs(CLUTTER_TYPE_BEHAVIOUR_DEPTH)
+    << get_defs(CLUTTER_TYPE_BEHAVIOUR_ELLIPSE)
+    << get_defs(CLUTTER_TYPE_BEHAVIOUR)
+    << get_defs(CLUTTER_TYPE_BEHAVIOUR_OPACITY)
+    << get_defs(CLUTTER_TYPE_BEHAVIOUR_PATH)
+    << get_defs(CLUTTER_TYPE_BEHAVIOUR_ROTATE)
+    << get_defs(CLUTTER_TYPE_BEHAVIOUR_SCALE)
+    << get_defs(CLUTTER_TYPE_BOX)
+    << get_defs(CLUTTER_TYPE_CLONE_TEXTURE)
+    << get_defs(CLUTTER_TYPE_COLOR)
+    << get_defs(CLUTTER_TYPE_CONTAINER)
+    << get_defs(CLUTTER_TYPE_EFFECT_TEMPLATE)
+    << get_defs(CLUTTER_TYPE_ENTRY)
+    << get_defs(CLUTTER_TYPE_EVENT)
+    << get_defs(CLUTTER_TYPE_GROUP)
+    << get_defs(CLUTTER_TYPE_HBOX)
+    << get_defs(CLUTTER_TYPE_LABEL)
+    << get_defs(CLUTTER_TYPE_LAYOUT)
+    << get_defs(CLUTTER_TYPE_MEDIA)
+    << get_defs(CLUTTER_TYPE_RECTANGLE)
+    << get_defs(CLUTTER_TYPE_SCORE)
+    << get_defs(CLUTTER_TYPE_SCRIPT)
+    << get_defs(CLUTTER_TYPE_STAGE)
+    << get_defs(CLUTTER_TYPE_TEXTURE)
+    << get_defs(CLUTTER_TYPE_TIMELINE)
+    << get_defs(CLUTTER_TYPE_VBOX);
 
   return 0;
 }

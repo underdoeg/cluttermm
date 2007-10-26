@@ -15,12 +15,6 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <cluttermm/item.h>
-#include <cluttermm/itemmodel.h>
-#include <cluttermm/itemsimple.h>
-#include <cluttermm/style.h>
-#include <cluttermm/widget.h>
-
 #include <gtkmm/adjustment.h>
 #include <gtkmm/container.h>
 #include <gdkmm/cursor.h>
