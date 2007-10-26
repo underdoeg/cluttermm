@@ -3,9 +3,9 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
 
-Name: goocanvasmm
-Description: C++ wrapper for libgoocanvas
-Requires: gtkmm-2.4 goocanvas
+Name: cluttermm
+Description: C++ wrapper for libclutter
+Requires: gtkmm-2.4 clutter
 Version: @VERSION@
-Libs: -L${libdir} -lgoocanvasmm-0.1
-Cflags: -I${includedir}/goocanvasmm-0.1
+Libs: -L${libdir} -lcluttermm-0.1
+Cflags: -I${includedir}/cluttermm-0.1

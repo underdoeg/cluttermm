@@ -15,8 +15,8 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <goocanvas.h>
-#include <goocanvasmm/bounds.h>
+#include <clutter.h>
+#include <cluttermm/bounds.h>
 
 namespace Goocanvas
 {

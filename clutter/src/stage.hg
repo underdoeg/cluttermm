@@ -15,11 +15,11 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <goocanvasmm/item.h>
-#include <goocanvasmm/itemmodel.h>
-#include <goocanvasmm/itemsimple.h>
-#include <goocanvasmm/style.h>
-#include <goocanvasmm/widget.h>
+#include <cluttermm/item.h>
+#include <cluttermm/itemmodel.h>
+#include <cluttermm/itemsimple.h>
+#include <cluttermm/style.h>
+#include <cluttermm/widget.h>
 
 #include <gtkmm/adjustment.h>
 #include <gtkmm/container.h>
@@ -29,7 +29,7 @@
 
 
 
-_DEFS(goocanvasmm,libgoocanvas)
+_DEFS(cluttermm,libclutter)
 _PINCLUDE(gtkmm/private/container_p.h)
 
 namespace Goocanvas

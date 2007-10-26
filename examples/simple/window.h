@@ -1,6 +1,6 @@
 
 #include <gtkmm.h>
-#include <goocanvasmm.h>
+#include <cluttermm.h>
 
 class SimpleWindow : public Gtk::Window
 {

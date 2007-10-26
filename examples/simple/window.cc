@@ -1,4 +1,4 @@
-/* example Copyright (C) 2007 goocanvasmm development team
+/* example Copyright (C) 2007 cluttermm development team
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2
@@ -20,7 +20,7 @@
 
 SimpleWindow::SimpleWindow()
 {
-  set_title("goocanvasmm - Simple Example") ;
+  set_title("cluttermm - Simple Example") ;
 
   _canvas = Gtk::manage(new Goocanvas::Canvas()) ;
   _canvas->set_size_request(640, 480) ;

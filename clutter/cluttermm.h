@@ -1,5 +1,5 @@
-/* $Id: goocanvasmm.h,v 1.4 2005/08/23 15:43:32 murrayc Exp $ */
-/* goocanvasmm - a C++ wrapper for libgoocanvas
+/* $Id: cluttermm.h,v 1.4 2005/08/23 15:43:32 murrayc Exp $ */
+/* cluttermm - a C++ wrapper for clutter
  *
  * Copyright 1999-2001 Free Software Foundation
  *
@@ -25,38 +25,13 @@
 //#include <gtk/gtk.h>
 //}
 
-/* goocanvasmm version.  */
-extern const int goocanvasmm_major_version;
-extern const int goocanvasmm_minor_version;
-extern const int goocanvasmm_micro_version;
+/* cluttermm version.  */
+extern const int cluttermm_major_version;
+extern const int cluttermm_minor_version;
+extern const int cluttermm_micro_version;
 
 #include <glibmm.h>
 
-#include <goocanvasmm/bounds.h>
-#include <goocanvasmm/canvas.h>
-#include <goocanvasmm/ellipse.h>
-#include <goocanvasmm/ellipsemodel.h>
-#include <goocanvasmm/group.h>
-#include <goocanvasmm/groupmodel.h>
-#include <goocanvasmm/image.h>
-#include <goocanvasmm/imagemodel.h>
-#include <goocanvasmm/init.h>
-#include <goocanvasmm/item.h>
-#include <goocanvasmm/itemmodel.h>
-#include <goocanvasmm/itemmodelsimple.h>
-#include <goocanvasmm/itemsimple.h>
-#include <goocanvasmm/linedash.h>
-#include <goocanvasmm/path.h>
-#include <goocanvasmm/pathmodel.h>
-#include <goocanvasmm/points.h>
-#include <goocanvasmm/polyline.h>
-#include <goocanvasmm/polylinemodel.h>
-#include <goocanvasmm/rect.h>
-#include <goocanvasmm/rectmodel.h>
-#include <goocanvasmm/style.h>
-#include <goocanvasmm/text.h>
-#include <goocanvasmm/textmodel.h>
-#include <goocanvasmm/types.h>
-#include <goocanvasmm/widget.h>
+#include <cluttermm/stage.h>
 
 #endif /* #ifndef LIBGOOCANVASMM_H */
