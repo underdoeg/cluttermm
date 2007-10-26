@@ -1,2039 +1,4639 @@
 ;; -*- scheme -*-
 ; object definitions ...
-(define-object Canvas
-  (in-module "Goo")
-  (parent "GtkContainer")
-  (c-name "GooCanvas")
-  (gtype-id "GOO_TYPE_CANVAS")
+(define-object Actor
+  (in-module "Clutter")
+  (parent "GInitiallyUnowned")
+  (c-name "ClutterActor")
+  (gtype-id "CLUTTER_TYPE_ACTOR")
 )
 
-(define-object CanvasItem
-  (in-module "Goo")
-  (c-name "GooCanvasItem")
-  (gtype-id "GOO_TYPE_CANVAS_ITEM")
+(define-object Alpha
+  (in-module "Clutter")
+  (parent "GInitiallyUnowned")
+  (c-name "ClutterAlpha")
+  (gtype-id "CLUTTER_TYPE_ALPHA")
 )
 
-(define-object CanvasItemModel
-  (in-module "Goo")
-  (c-name "GooCanvasItemModel")
-  (gtype-id "GOO_TYPE_CANVAS_ITEM_MODEL")
-)
-
-(define-object CanvasItemModelSimple
-  (in-module "Goo")
+(define-object Backend
+  (in-module "Clutter")
   (parent "GObject")
-  (c-name "GooCanvasItemModelSimple")
-  (gtype-id "GOO_TYPE_CANVAS_ITEM_MODEL_SIMPLE")
+  (c-name "ClutterBackend")
+  (gtype-id "CLUTTER_TYPE_BACKEND")
 )
 
-(define-object CanvasImageModel
-  (in-module "Goo")
-  (parent "GooCanvasItemModelSimple")
-  (c-name "GooCanvasImageModel")
-  (gtype-id "GOO_TYPE_CANVAS_IMAGE_MODEL")
-)
-
-(define-object CanvasGroupModel
-  (in-module "Goo")
-  (parent "GooCanvasItemModelSimple")
-  (c-name "GooCanvasGroupModel")
-  (gtype-id "GOO_TYPE_CANVAS_GROUP_MODEL")
-)
-
-(define-object CanvasEllipseModel
-  (in-module "Goo")
-  (parent "GooCanvasItemModelSimple")
-  (c-name "GooCanvasEllipseModel")
-  (gtype-id "GOO_TYPE_CANVAS_ELLIPSE_MODEL")
-)
-
-(define-object CanvasItemSimple
-  (in-module "Goo")
+(define-object Behaviour
+  (in-module "Clutter")
   (parent "GObject")
-  (c-name "GooCanvasItemSimple")
-  (gtype-id "GOO_TYPE_CANVAS_ITEM_SIMPLE")
+  (c-name "ClutterBehaviour")
+  (gtype-id "CLUTTER_TYPE_BEHAVIOUR")
 )
 
-(define-object CanvasImage
-  (in-module "Goo")
-  (parent "GooCanvasItemSimple")
-  (c-name "GooCanvasImage")
-  (gtype-id "GOO_TYPE_CANVAS_IMAGE")
+(define-object BehaviourBspline
+  (in-module "Clutter")
+  (parent "ClutterBehaviour")
+  (c-name "ClutterBehaviourBspline")
+  (gtype-id "CLUTTER_TYPE_BEHAVIOUR_BSPLINE")
 )
 
-(define-object CanvasGroup
-  (in-module "Goo")
-  (parent "GooCanvasItemSimple")
-  (c-name "GooCanvasGroup")
-  (gtype-id "GOO_TYPE_CANVAS_GROUP")
+(define-object BehaviourDepth
+  (in-module "Clutter")
+  (parent "ClutterBehaviour")
+  (c-name "ClutterBehaviourDepth")
+  (gtype-id "CLUTTER_TYPE_BEHAVIOUR_DEPTH")
 )
 
-(define-object CanvasEllipse
-  (in-module "Goo")
-  (parent "GooCanvasItemSimple")
-  (c-name "GooCanvasEllipse")
-  (gtype-id "GOO_TYPE_CANVAS_ELLIPSE")
+(define-object BehaviourEllipse
+  (in-module "Clutter")
+  (parent "ClutterBehaviour")
+  (c-name "ClutterBehaviourEllipse")
+  (gtype-id "CLUTTER_TYPE_BEHAVIOUR_ELLIPSE")
 )
 
-(define-object CanvasPath
-  (in-module "Goo")
-  (parent "GooCanvasItemSimple")
-  (c-name "GooCanvasPath")
-  (gtype-id "GOO_TYPE_CANVAS_PATH")
+(define-object BehaviourOpacity
+  (in-module "Clutter")
+  (parent "ClutterBehaviour")
+  (c-name "ClutterBehaviourOpacity")
+  (gtype-id "CLUTTER_TYPE_BEHAVIOUR_OPACITY")
 )
 
-(define-object CanvasPathModel
-  (in-module "Goo")
-  (parent "GooCanvasItemModelSimple")
-  (c-name "GooCanvasPathModel")
-  (gtype-id "GOO_TYPE_CANVAS_PATH_MODEL")
+(define-object BehaviourPath
+  (in-module "Clutter")
+  (parent "ClutterBehaviour")
+  (c-name "ClutterBehaviourPath")
+  (gtype-id "CLUTTER_TYPE_BEHAVIOUR_PATH")
 )
 
-(define-object CanvasPolyline
-  (in-module "Goo")
-  (parent "GooCanvasItemSimple")
-  (c-name "GooCanvasPolyline")
-  (gtype-id "GOO_TYPE_CANVAS_POLYLINE")
+(define-object BehaviourRotate
+  (in-module "Clutter")
+  (parent "ClutterBehaviour")
+  (c-name "ClutterBehaviourRotate")
+  (gtype-id "CLUTTER_TYPE_BEHAVIOUR_ROTATE")
 )
 
-(define-object CanvasPolylineModel
-  (in-module "Goo")
-  (parent "GooCanvasItemModelSimple")
-  (c-name "GooCanvasPolylineModel")
-  (gtype-id "GOO_TYPE_CANVAS_POLYLINE_MODEL")
+(define-object BehaviourScale
+  (in-module "Clutter")
+  (parent "ClutterBehaviour")
+  (c-name "ClutterBehaviourScale")
+  (gtype-id "CLUTTER_TYPE_BEHAVIOUR_SCALE")
 )
 
-(define-object CanvasRect
-  (in-module "Goo")
-  (parent "GooCanvasItemSimple")
-  (c-name "GooCanvasRect")
-  (gtype-id "GOO_TYPE_CANVAS_RECT")
+(define-object Box
+  (in-module "Clutter")
+  (parent "ClutterActor")
+  (c-name "ClutterBox")
+  (gtype-id "CLUTTER_TYPE_BOX")
 )
 
-(define-object CanvasRectModel
-  (in-module "Goo")
-  (parent "GooCanvasItemModelSimple")
-  (c-name "GooCanvasRectModel")
-  (gtype-id "GOO_TYPE_CANVAS_RECT_MODEL")
+(define-object CloneTexture
+  (in-module "Clutter")
+  (parent "ClutterActor")
+  (c-name "ClutterCloneTexture")
+  (gtype-id "CLUTTER_TYPE_CLONE_TEXTURE")
 )
 
-(define-object CanvasStyle
-  (in-module "Goo")
+(define-object Container
+  (in-module "Clutter")
+  (c-name "ClutterContainer")
+  (gtype-id "CLUTTER_TYPE_CONTAINER")
+)
+
+(define-object EffectTemplate
+  (in-module "Clutter")
   (parent "GObject")
-  (c-name "GooCanvasStyle")
-  (gtype-id "GOO_TYPE_CANVAS_STYLE")
+  (c-name "ClutterEffectTemplate")
+  (gtype-id "CLUTTER_TYPE_EFFECT_TEMPLATE")
 )
 
-(define-object CanvasTable
-  (in-module "Goo")
-  (parent "GooCanvasGroup")
-  (c-name "GooCanvasTable")
-  (gtype-id "GOO_TYPE_CANVAS_TABLE")
+(define-object Entry
+  (in-module "Clutter")
+  (parent "ClutterActor")
+  (c-name "ClutterEntry")
+  (gtype-id "CLUTTER_TYPE_ENTRY")
 )
 
-(define-object CanvasTableModel
-  (in-module "Goo")
-  (parent "GooCanvasGroupModel")
-  (c-name "GooCanvasTableModel")
-  (gtype-id "GOO_TYPE_CANVAS_TABLE_MODEL")
+(define-object Group
+  (in-module "Clutter")
+  (parent "ClutterActor")
+  (c-name "ClutterGroup")
+  (gtype-id "CLUTTER_TYPE_GROUP")
 )
 
-(define-object CanvasText
-  (in-module "Goo")
-  (parent "GooCanvasItemSimple")
-  (c-name "GooCanvasText")
-  (gtype-id "GOO_TYPE_CANVAS_TEXT")
+(define-object HBox
+  (in-module "Clutter")
+  (parent "ClutterBox")
+  (c-name "ClutterHBox")
+  (gtype-id "CLUTTER_TYPE_HBOX")
 )
 
-(define-object CanvasTextModel
-  (in-module "Goo")
-  (parent "GooCanvasItemModelSimple")
-  (c-name "GooCanvasTextModel")
-  (gtype-id "GOO_TYPE_CANVAS_TEXT_MODEL")
+(define-object Label
+  (in-module "Clutter")
+  (parent "ClutterActor")
+  (c-name "ClutterLabel")
+  (gtype-id "CLUTTER_TYPE_LABEL")
 )
 
-(define-object CanvasWidget
-  (in-module "Goo")
-  (parent "GooCanvasItemSimple")
-  (c-name "GooCanvasWidget")
-  (gtype-id "GOO_TYPE_CANVAS_WIDGET")
+(define-object Layout
+  (in-module "Clutter")
+  (c-name "ClutterLayout")
+  (gtype-id "CLUTTER_TYPE_LAYOUT")
+)
+
+(define-object Rectangle
+  (in-module "Clutter")
+  (parent "ClutterActor")
+  (c-name "ClutterRectangle")
+  (gtype-id "CLUTTER_TYPE_RECTANGLE")
+)
+
+(define-object Score
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterScore")
+  (gtype-id "CLUTTER_TYPE_SCORE")
+)
+
+(define-object Script
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterScript")
+  (gtype-id "CLUTTER_TYPE_SCRIPT")
+)
+
+(define-object Stage
+  (in-module "Clutter")
+  (parent "ClutterGroup")
+  (c-name "ClutterStage")
+  (gtype-id "CLUTTER_TYPE_STAGE")
+)
+
+(define-object Texture
+  (in-module "Clutter")
+  (parent "ClutterActor")
+  (c-name "ClutterTexture")
+  (gtype-id "CLUTTER_TYPE_TEXTURE")
+)
+
+(define-object Timeline
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterTimeline")
+  (gtype-id "CLUTTER_TYPE_TIMELINE")
+)
+
+(define-object VBox
+  (in-module "Clutter")
+  (parent "ClutterBox")
+  (c-name "ClutterVBox")
+  (gtype-id "CLUTTER_TYPE_VBOX")
 )
 
 ;; Enumerations and flags ...
 
-(define-enum CanvasAnimateType
-  (in-module "Goo")
-  (c-name "GooCanvasAnimateType")
-  (gtype-id "GOO_TYPE_CANVAS_ANIMATE_TYPE")
+(define-flags ActorFlags
+  (in-module "Clutter")
+  (c-name "ClutterActorFlags")
+  (gtype-id "CLUTTER_TYPE_ACTOR_FLAGS")
   (values
-    '("freeze" "GOO_CANVAS_ANIMATE_FREEZE")
-    '("reset" "GOO_CANVAS_ANIMATE_RESET")
-    '("restart" "GOO_CANVAS_ANIMATE_RESTART")
-    '("bounce" "GOO_CANVAS_ANIMATE_BOUNCE")
+    '("mapped" "CLUTTER_ACTOR_MAPPED")
+    '("realized" "CLUTTER_ACTOR_REALIZED")
+    '("reactive" "CLUTTER_ACTOR_REACTIVE")
   )
 )
 
-(define-flags CanvasPointerEvents
-  (in-module "Goo")
-  (c-name "GooCanvasPointerEvents")
-  (gtype-id "GOO_TYPE_CANVAS_POINTER_EVENTS")
+(define-enum PackType
+  (in-module "Clutter")
+  (c-name "ClutterPackType")
+  (gtype-id "CLUTTER_TYPE_PACK_TYPE")
   (values
-    '("visible-mask" "GOO_CANVAS_EVENTS_VISIBLE_MASK")
-    '("painted-mask" "GOO_CANVAS_EVENTS_PAINTED_MASK")
-    '("fill-mask" "GOO_CANVAS_EVENTS_FILL_MASK")
-    '("stroke-mask" "GOO_CANVAS_EVENTS_STROKE_MASK")
-    '("none" "GOO_CANVAS_EVENTS_NONE")
-    '("visible-painted" "GOO_CANVAS_EVENTS_VISIBLE_PAINTED")
-    '("visible-fill" "GOO_CANVAS_EVENTS_VISIBLE_FILL")
-    '("visible-stroke" "GOO_CANVAS_EVENTS_VISIBLE_STROKE")
-    '("visible" "GOO_CANVAS_EVENTS_VISIBLE")
-    '("painted" "GOO_CANVAS_EVENTS_PAINTED")
-    '("fill" "GOO_CANVAS_EVENTS_FILL")
-    '("stroke" "GOO_CANVAS_EVENTS_STROKE")
-    '("all" "GOO_CANVAS_EVENTS_ALL")
+    '("start" "CLUTTER_PACK_START")
+    '("end" "CLUTTER_PACK_END")
   )
 )
 
-(define-enum CanvasItemVisibility
-  (in-module "Goo")
-  (c-name "GooCanvasItemVisibility")
-  (gtype-id "GOO_TYPE_CANVAS_ITEM_VISIBILITY")
+(define-flags DebugFlag
+  (in-module "Clutter")
+  (c-name "ClutterDebugFlag")
+  (gtype-id "CLUTTER_TYPE_DEBUG_FLAG")
   (values
-    '("hidden" "GOO_CANVAS_ITEM_HIDDEN")
-    '("invisible" "GOO_CANVAS_ITEM_INVISIBLE")
-    '("visible" "GOO_CANVAS_ITEM_VISIBLE")
-    '("visible-above-threshold" "GOO_CANVAS_ITEM_VISIBLE_ABOVE_THRESHOLD")
+    '("misc" "CLUTTER_DEBUG_MISC")
+    '("actor" "CLUTTER_DEBUG_ACTOR")
+    '("texture" "CLUTTER_DEBUG_TEXTURE")
+    '("event" "CLUTTER_DEBUG_EVENT")
+    '("paint" "CLUTTER_DEBUG_PAINT")
+    '("gl" "CLUTTER_DEBUG_GL")
+    '("alpha" "CLUTTER_DEBUG_ALPHA")
+    '("behaviour" "CLUTTER_DEBUG_BEHAVIOUR")
+    '("pango" "CLUTTER_DEBUG_PANGO")
+    '("backend" "CLUTTER_DEBUG_BACKEND")
+    '("scheduler" "CLUTTER_DEBUG_SCHEDULER")
+    '("script" "CLUTTER_DEBUG_SCRIPT")
   )
 )
 
-(define-enum CanvasPathCommandType
-  (in-module "Goo")
-  (c-name "GooCanvasPathCommandType")
-  (gtype-id "GOO_TYPE_CANVAS_PATH_COMMAND_TYPE")
+(define-flags ModifierType
+  (in-module "Clutter")
+  (c-name "ClutterModifierType")
+  (gtype-id "CLUTTER_TYPE_MODIFIER_TYPE")
   (values
-    '("move-to" "GOO_CANVAS_PATH_MOVE_TO")
-    '("close-path" "GOO_CANVAS_PATH_CLOSE_PATH")
-    '("line-to" "GOO_CANVAS_PATH_LINE_TO")
-    '("horizontal-line-to" "GOO_CANVAS_PATH_HORIZONTAL_LINE_TO")
-    '("vertical-line-to" "GOO_CANVAS_PATH_VERTICAL_LINE_TO")
-    '("curve-to" "GOO_CANVAS_PATH_CURVE_TO")
-    '("smooth-curve-to" "GOO_CANVAS_PATH_SMOOTH_CURVE_TO")
-    '("quadratic-curve-to" "GOO_CANVAS_PATH_QUADRATIC_CURVE_TO")
-    '("smooth-quadratic-curve-to" "GOO_CANVAS_PATH_SMOOTH_QUADRATIC_CURVE_TO")
-    '("elliptical-arc" "GOO_CANVAS_PATH_ELLIPTICAL_ARC")
+    '("shift-mask" "CLUTTER_SHIFT_MASK")
+    '("lock-mask" "CLUTTER_LOCK_MASK")
+    '("control-mask" "CLUTTER_CONTROL_MASK")
+    '("mod1-mask" "CLUTTER_MOD1_MASK")
+    '("mod2-mask" "CLUTTER_MOD2_MASK")
+    '("mod3-mask" "CLUTTER_MOD3_MASK")
+    '("mod4-mask" "CLUTTER_MOD4_MASK")
+    '("mod5-mask" "CLUTTER_MOD5_MASK")
+    '("button1-mask" "CLUTTER_BUTTON1_MASK")
+    '("button2-mask" "CLUTTER_BUTTON2_MASK")
+    '("button3-mask" "CLUTTER_BUTTON3_MASK")
+    '("button4-mask" "CLUTTER_BUTTON4_MASK")
+    '("button5-mask" "CLUTTER_BUTTON5_MASK")
+  )
+)
+
+(define-flags EventFlags
+  (in-module "Clutter")
+  (c-name "ClutterEventFlags")
+  (gtype-id "CLUTTER_TYPE_EVENT_FLAGS")
+  (values
+    '("c" "CLUTTER_EVENT_FLAG_SYNTHETIC")
+  )
+)
+
+(define-enum EventType
+  (in-module "Clutter")
+  (c-name "ClutterEventType")
+  (gtype-id "CLUTTER_TYPE_EVENT_TYPE")
+  (values
+    '("nothing" "CLUTTER_NOTHING")
+    '("key-press" "CLUTTER_KEY_PRESS")
+    '("key-release" "CLUTTER_KEY_RELEASE")
+    '("motion" "CLUTTER_MOTION")
+    '("enter" "CLUTTER_ENTER")
+    '("leave" "CLUTTER_LEAVE")
+    '("button-press" "CLUTTER_BUTTON_PRESS")
+    '("button-release" "CLUTTER_BUTTON_RELEASE")
+    '("scroll" "CLUTTER_SCROLL")
+    '("stage-state" "CLUTTER_STAGE_STATE")
+    '("destroy-notify" "CLUTTER_DESTROY_NOTIFY")
+    '("client-message" "CLUTTER_CLIENT_MESSAGE")
+    '("delete" "CLUTTER_DELETE")
+  )
+)
+
+(define-enum ScrollDirection
+  (in-module "Clutter")
+  (c-name "ClutterScrollDirection")
+  (gtype-id "CLUTTER_TYPE_SCROLL_DIRECTION")
+  (values
+    '("up" "CLUTTER_SCROLL_UP")
+    '("down" "CLUTTER_SCROLL_DOWN")
+    '("left" "CLUTTER_SCROLL_LEFT")
+    '("right" "CLUTTER_SCROLL_RIGHT")
+  )
+)
+
+(define-flags StageState
+  (in-module "Clutter")
+  (c-name "ClutterStageState")
+  (gtype-id "CLUTTER_TYPE_STAGE_STATE")
+  (values
+    '("fullscreen" "CLUTTER_STAGE_STATE_FULLSCREEN")
+    '("offscreen" "CLUTTER_STAGE_STATE_OFFSCREEN")
+    '("activated" "CLUTTER_STAGE_STATE_ACTIVATED")
+  )
+)
+
+(define-flags FeatureFlags
+  (in-module "Clutter")
+  (c-name "ClutterFeatureFlags")
+  (gtype-id "CLUTTER_TYPE_FEATURE_FLAGS")
+  (values
+    '("texture-rectangle" "CLUTTER_FEATURE_TEXTURE_RECTANGLE")
+    '("sync-to-vblank" "CLUTTER_FEATURE_SYNC_TO_VBLANK")
+    '("texture-yuv" "CLUTTER_FEATURE_TEXTURE_YUV")
+    '("texture-read-pixels" "CLUTTER_FEATURE_TEXTURE_READ_PIXELS")
+    '("stage-static" "CLUTTER_FEATURE_STAGE_STATIC")
+    '("stage-user-resize" "CLUTTER_FEATURE_STAGE_USER_RESIZE")
+    '("stage-cursor" "CLUTTER_FEATURE_STAGE_CURSOR")
+  )
+)
+
+(define-flags LayoutFlags
+  (in-module "Clutter")
+  (c-name "ClutterLayoutFlags")
+  (gtype-id "CLUTTER_TYPE_LAYOUT_FLAGS")
+  (values
+    '("none" "CLUTTER_LAYOUT_NONE")
+    '("width-for-height" "CLUTTER_LAYOUT_WIDTH_FOR_HEIGHT")
+    '("height-for-width" "CLUTTER_LAYOUT_HEIGHT_FOR_WIDTH")
+    '("natural" "CLUTTER_LAYOUT_NATURAL")
+    '("tunable" "CLUTTER_LAYOUT_TUNABLE")
+  )
+)
+
+(define-enum InitError
+  (in-module "Clutter")
+  (c-name "ClutterInitError")
+  (gtype-id "CLUTTER_TYPE_INIT_ERROR")
+  (values
+    '("success" "CLUTTER_INIT_SUCCESS")
+    '("error-unknown" "CLUTTER_INIT_ERROR_UNKNOWN")
+    '("error-threads" "CLUTTER_INIT_ERROR_THREADS")
+    '("error-backend" "CLUTTER_INIT_ERROR_BACKEND")
+    '("error-internal" "CLUTTER_INIT_ERROR_INTERNAL")
+  )
+)
+
+(define-flags PrivateFlags
+  (in-module "Clutter")
+  (c-name "ClutterPrivateFlags")
+  (gtype-id "CLUTTER_TYPE_PRIVATE_FLAGS")
+  (values
+    '("unused-flag" "CLUTTER_ACTOR_UNUSED_FLAG")
+    '("in-destruction" "CLUTTER_ACTOR_IN_DESTRUCTION")
+    '("is-toplevel" "CLUTTER_ACTOR_IS_TOPLEVEL")
+    '("in-reparent" "CLUTTER_ACTOR_IN_REPARENT")
+    '("sync-matrices" "CLUTTER_ACTOR_SYNC_MATRICES")
+  )
+)
+
+(define-enum PickMode
+  (in-module "Clutter")
+  (c-name "ClutterPickMode")
+  (gtype-id "CLUTTER_TYPE_PICK_MODE")
+  (values
+    '("none" "CLUTTER_PICK_NONE")
+    '("reactive" "CLUTTER_PICK_REACTIVE")
+    '("all" "CLUTTER_PICK_ALL")
+  )
+)
+
+(define-enum ScriptError
+  (in-module "Clutter")
+  (c-name "ClutterScriptError")
+  (gtype-id "CLUTTER_TYPE_SCRIPT_ERROR")
+  (values
+    '("type-function" "CLUTTER_SCRIPT_ERROR_INVALID_TYPE_FUNCTION")
+    '("property" "CLUTTER_SCRIPT_ERROR_INVALID_PROPERTY")
+    '("value" "CLUTTER_SCRIPT_ERROR_INVALID_VALUE")
+  )
+)
+
+(define-enum TextureError
+  (in-module "Clutter")
+  (c-name "ClutterTextureError")
+  (gtype-id "CLUTTER_TYPE_TEXTURE_ERROR")
+  (values
+    '("out-of-memory" "CLUTTER_TEXTURE_ERROR_OUT_OF_MEMORY")
+    '("no-yuv" "CLUTTER_TEXTURE_ERROR_NO_YUV")
+  )
+)
+
+(define-flags TextureFlags
+  (in-module "Clutter")
+  (c-name "ClutterTextureFlags")
+  (gtype-id "CLUTTER_TYPE_TEXTURE_FLAGS")
+  (values
+    '("rgb-flag-bgr" "CLUTTER_TEXTURE_RGB_FLAG_BGR")
+    '("rgb-flag-premult" "CLUTTER_TEXTURE_RGB_FLAG_PREMULT")
+    '("yuv-flag-yuv2" "CLUTTER_TEXTURE_YUV_FLAG_YUV2")
+  )
+)
+
+(define-enum Gravity
+  (in-module "Clutter")
+  (c-name "ClutterGravity")
+  (gtype-id "CLUTTER_TYPE_GRAVITY")
+  (values
+    '("none" "CLUTTER_GRAVITY_NONE")
+    '("north" "CLUTTER_GRAVITY_NORTH")
+    '("north-east" "CLUTTER_GRAVITY_NORTH_EAST")
+    '("east" "CLUTTER_GRAVITY_EAST")
+    '("south-east" "CLUTTER_GRAVITY_SOUTH_EAST")
+    '("south" "CLUTTER_GRAVITY_SOUTH")
+    '("south-west" "CLUTTER_GRAVITY_SOUTH_WEST")
+    '("west" "CLUTTER_GRAVITY_WEST")
+    '("north-west" "CLUTTER_GRAVITY_NORTH_WEST")
+    '("center" "CLUTTER_GRAVITY_CENTER")
+  )
+)
+
+(define-enum RotateAxis
+  (in-module "Clutter")
+  (c-name "ClutterRotateAxis")
+  (gtype-id "CLUTTER_TYPE_ROTATE_AXIS")
+  (values
+    '("x-axis" "CLUTTER_X_AXIS")
+    '("y-axis" "CLUTTER_Y_AXIS")
+    '("z-axis" "CLUTTER_Z_AXIS")
+  )
+)
+
+(define-enum RotateDirection
+  (in-module "Clutter")
+  (c-name "ClutterRotateDirection")
+  (gtype-id "CLUTTER_TYPE_ROTATE_DIRECTION")
+  (values
+    '("w" "CLUTTER_ROTATE_CW")
+    '("cw" "CLUTTER_ROTATE_CCW")
   )
 )
 
 
-;; From goocanvasatk.h
+;; From clutter-actor.h
 
-(define-function goo_canvas_accessible_factory_get_type
-  (c-name "goo_canvas_accessible_factory_get_type")
+(define-function clutter_actor_box_get_type
+  (c-name "clutter_actor_box_get_type")
   (return-type "GType")
 )
 
-(define-function goo_canvas_item_accessible_factory_get_type
-  (c-name "goo_canvas_item_accessible_factory_get_type")
+(define-function clutter_actor_get_type
+  (c-name "clutter_actor_get_type")
   (return-type "GType")
 )
 
-(define-function goo_canvas_widget_accessible_factory_get_type
-  (c-name "goo_canvas_widget_accessible_factory_get_type")
-  (return-type "GType")
+(define-method show
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_show")
+  (return-type "none")
 )
 
-
-
-;; From goocanvasellipse.h
-
-(define-function goo_canvas_ellipse_get_type
-  (c-name "goo_canvas_ellipse_get_type")
-  (return-type "GType")
+(define-method show_all
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_show_all")
+  (return-type "none")
 )
 
-(define-function goo_canvas_ellipse_new
-  (c-name "goo_canvas_ellipse_new")
-  (is-constructor-of "GooCanvasEllipse")
-  (return-type "GooCanvasItem*")
-  (parameters
-    '("GooCanvasItem*" "parent")
-    '("gdouble" "center_x")
-    '("gdouble" "center_y")
-    '("gdouble" "radius_x")
-    '("gdouble" "radius_y")
-  )
-  (varargs #t)
+(define-method hide
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_hide")
+  (return-type "none")
 )
 
-(define-function goo_canvas_ellipse_model_get_type
-  (c-name "goo_canvas_ellipse_model_get_type")
-  (return-type "GType")
+(define-method hide_all
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_hide_all")
+  (return-type "none")
 )
 
-(define-function goo_canvas_ellipse_model_new
-  (c-name "goo_canvas_ellipse_model_new")
-  (is-constructor-of "GooCanvasEllipseModel")
-  (return-type "GooCanvasItemModel*")
-  (parameters
-    '("GooCanvasItemModel*" "parent")
-    '("gdouble" "center_x")
-    '("gdouble" "center_y")
-    '("gdouble" "radius_x")
-    '("gdouble" "radius_y")
-  )
-  (varargs #t)
+(define-method realize
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_realize")
+  (return-type "none")
 )
 
-
-
-;; From goocanvasenumtypes.h
-
-(define-function goo_canvas_animate_type_get_type
-  (c-name "goo_canvas_animate_type_get_type")
-  (return-type "GType")
+(define-method unrealize
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_unrealize")
+  (return-type "none")
 )
 
-(define-function goo_canvas_pointer_events_get_type
-  (c-name "goo_canvas_pointer_events_get_type")
-  (return-type "GType")
+(define-method paint
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_paint")
+  (return-type "none")
 )
 
-(define-function goo_canvas_item_visibility_get_type
-  (c-name "goo_canvas_item_visibility_get_type")
-  (return-type "GType")
-)
-
-(define-function goo_canvas_path_command_type_get_type
-  (c-name "goo_canvas_path_command_type_get_type")
-  (return-type "GType")
-)
-
-
-
-;; From goocanvasgroup.h
-
-(define-function goo_canvas_group_get_type
-  (c-name "goo_canvas_group_get_type")
-  (return-type "GType")
-)
-
-(define-function goo_canvas_group_new
-  (c-name "goo_canvas_group_new")
-  (is-constructor-of "GooCanvasGroup")
-  (return-type "GooCanvasItem*")
-  (parameters
-    '("GooCanvasItem*" "parent")
-  )
-  (varargs #t)
-)
-
-(define-function goo_canvas_group_model_get_type
-  (c-name "goo_canvas_group_model_get_type")
-  (return-type "GType")
-)
-
-(define-function goo_canvas_group_model_new
-  (c-name "goo_canvas_group_model_new")
-  (is-constructor-of "GooCanvasGroupModel")
-  (return-type "GooCanvasItemModel*")
-  (parameters
-    '("GooCanvasItemModel*" "parent")
-  )
-  (varargs #t)
-)
-
-
-
-;; From goocanvas.h
-
-(define-function goo_canvas_get_type
-  (c-name "goo_canvas_get_type")
-  (return-type "GType")
-)
-
-(define-function goo_canvas_new
-  (c-name "goo_canvas_new")
-  (is-constructor-of "GooCanvas")
-  (return-type "GtkWidget*")
-)
-
-(define-method get_root_item
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_get_root_item")
-  (return-type "GooCanvasItem*")
-)
-
-(define-method set_root_item
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_set_root_item")
+(define-method pick
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_pick")
   (return-type "none")
   (parameters
-    '("GooCanvasItem*" "item")
+    '("const-ClutterColor*" "color")
   )
 )
 
-(define-method get_root_item_model
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_get_root_item_model")
-  (return-type "GooCanvasItemModel*")
+(define-method queue_redraw
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_queue_redraw")
+  (return-type "none")
 )
 
-(define-method set_root_item_model
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_set_root_item_model")
+(define-method destroy
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_destroy")
+  (return-type "none")
+)
+
+(define-method request_coords
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_request_coords")
   (return-type "none")
   (parameters
-    '("GooCanvasItemModel*" "model")
+    '("ClutterActorBox*" "box")
   )
 )
 
-(define-method get_item
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_get_item")
-  (return-type "GooCanvasItem*")
+(define-method query_coords
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_query_coords")
+  (return-type "none")
   (parameters
-    '("GooCanvasItemModel*" "model")
+    '("ClutterActorBox*" "box")
   )
 )
 
-(define-method get_item_at
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_get_item_at")
-  (return-type "GooCanvasItem*")
+(define-method set_geometry
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_geometry")
+  (return-type "none")
   (parameters
-    '("gdouble" "x")
-    '("gdouble" "y")
-    '("gboolean" "is_pointer_event")
+    '("const-ClutterGeometry*" "geometry")
   )
 )
 
-(define-method get_items_at
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_get_items_at")
-  (return-type "GList*")
+(define-method get_geometry
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_geometry")
+  (return-type "none")
   (parameters
-    '("gdouble" "x")
-    '("gdouble" "y")
-    '("gboolean" "is_pointer_event")
+    '("ClutterGeometry*" "geometry")
   )
 )
 
-(define-method get_items_in_area
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_get_items_in_area")
-  (return-type "GList*")
+(define-method get_coords
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_coords")
+  (return-type "none")
   (parameters
-    '("const-GooCanvasBounds*" "area")
-    '("gboolean" "inside_area")
-    '("gboolean" "allow_overlaps")
-    '("gboolean" "include_containers")
+    '("gint*" "x_1")
+    '("gint*" "y_1")
+    '("gint*" "x_2")
+    '("gint*" "y_2")
+  )
+)
+
+(define-method set_size
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_size")
+  (return-type "none")
+  (parameters
+    '("gint" "width")
+    '("gint" "height")
+  )
+)
+
+(define-method set_position
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_position")
+  (return-type "none")
+  (parameters
+    '("gint" "x")
+    '("gint" "y")
+  )
+)
+
+(define-method get_abs_position
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_abs_position")
+  (return-type "none")
+  (parameters
+    '("gint*" "x")
+    '("gint*" "y")
+  )
+)
+
+(define-method get_width
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_width")
+  (return-type "guint")
+)
+
+(define-method get_height
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_height")
+  (return-type "guint")
+)
+
+(define-method set_width
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_width")
+  (return-type "none")
+  (parameters
+    '("guint" "width")
+  )
+)
+
+(define-method set_height
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_height")
+  (return-type "none")
+  (parameters
+    '("guint" "height")
+  )
+)
+
+(define-method get_x
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_x")
+  (return-type "gint")
+)
+
+(define-method get_y
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_y")
+  (return-type "gint")
+)
+
+(define-method rotate_x
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_rotate_x")
+  (return-type "none")
+  (parameters
+    '("gfloat" "angle")
+    '("gint" "y")
+    '("gint" "z")
+  )
+)
+
+(define-method rotate_y
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_rotate_y")
+  (return-type "none")
+  (parameters
+    '("gfloat" "angle")
+    '("gint" "x")
+    '("gint" "z")
+  )
+)
+
+(define-method rotate_z
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_rotate_z")
+  (return-type "none")
+  (parameters
+    '("gfloat" "angle")
+    '("gint" "x")
+    '("gint" "y")
+  )
+)
+
+(define-method rotate_xx
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_rotate_xx")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "angle")
+    '("gint" "y")
+    '("gint" "z")
+  )
+)
+
+(define-method rotate_yx
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_rotate_yx")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "angle")
+    '("gint" "x")
+    '("gint" "z")
+  )
+)
+
+(define-method rotate_zx
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_rotate_zx")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "angle")
+    '("gint" "x")
+    '("gint" "y")
+  )
+)
+
+(define-method get_rxang
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_rxang")
+  (return-type "gdouble")
+)
+
+(define-method get_ryang
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_ryang")
+  (return-type "gdouble")
+)
+
+(define-method get_rzang
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_rzang")
+  (return-type "gdouble")
+)
+
+(define-method get_rxangx
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_rxangx")
+  (return-type "ClutterFixed")
+)
+
+(define-method get_ryangx
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_ryangx")
+  (return-type "ClutterFixed")
+)
+
+(define-method get_rzangx
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_rzangx")
+  (return-type "ClutterFixed")
+)
+
+(define-method set_opacity
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_opacity")
+  (return-type "none")
+  (parameters
+    '("guint8" "opacity")
+  )
+)
+
+(define-method get_opacity
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_opacity")
+  (return-type "guint8")
+)
+
+(define-method set_name
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_name")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "name")
+  )
+)
+
+(define-method get_name
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_name")
+  (return-type "const-gchar*")
+)
+
+(define-method get_id
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_id")
+  (return-type "guint32")
+)
+
+(define-method set_clip
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_clip")
+  (return-type "none")
+  (parameters
+    '("gint" "xoff")
+    '("gint" "yoff")
+    '("gint" "width")
+    '("gint" "height")
+  )
+)
+
+(define-method remove_clip
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_remove_clip")
+  (return-type "none")
+)
+
+(define-method has_clip
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_has_clip")
+  (return-type "gboolean")
+)
+
+(define-method set_parent
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_parent")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "parent")
+  )
+)
+
+(define-method get_parent
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_parent")
+  (return-type "ClutterActor*")
+)
+
+(define-method reparent
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_reparent")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "new_parent")
+  )
+)
+
+(define-method unparent
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_unparent")
+  (return-type "none")
+)
+
+(define-method raise
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_raise")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "below")
+  )
+)
+
+(define-method lower
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_lower")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "above")
+  )
+)
+
+(define-method raise_top
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_raise_top")
+  (return-type "none")
+)
+
+(define-method lower_bottom
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_lower_bottom")
+  (return-type "none")
+)
+
+(define-method set_depth
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_depth")
+  (return-type "none")
+  (parameters
+    '("gint" "depth")
+  )
+)
+
+(define-method get_depth
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_depth")
+  (return-type "gint")
+)
+
+(define-method set_scalex
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_scalex")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "scale_x")
+    '("ClutterFixed" "scale_y")
+  )
+)
+
+(define-method set_scale
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_scale")
+  (return-type "none")
+  (parameters
+    '("gdouble" "scale_x")
+    '("gdouble" "scale_y")
+  )
+)
+
+(define-method get_scalex
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_scalex")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed*" "scale_x")
+    '("ClutterFixed*" "scale_y")
   )
 )
 
 (define-method get_scale
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_get_scale")
-  (return-type "gdouble")
-)
-
-(define-method set_scale
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_set_scale")
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_scale")
   (return-type "none")
   (parameters
-    '("gdouble" "scale")
+    '("gdouble*" "scale_x")
+    '("gdouble*" "scale_y")
   )
 )
 
-(define-method get_bounds
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_get_bounds")
+(define-method set_scale_with_gravityx
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_scale_with_gravityx")
   (return-type "none")
   (parameters
-    '("gdouble*" "left")
-    '("gdouble*" "top")
-    '("gdouble*" "right")
-    '("gdouble*" "bottom")
+    '("ClutterFixed" "scale_x")
+    '("ClutterFixed" "scale_y")
+    '("ClutterGravity" "gravity")
   )
 )
 
-(define-method set_bounds
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_set_bounds")
+(define-method set_scale_with_gravity
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_scale_with_gravity")
   (return-type "none")
   (parameters
-    '("gdouble" "left")
-    '("gdouble" "top")
-    '("gdouble" "right")
-    '("gdouble" "bottom")
+    '("gfloat" "scale_x")
+    '("gfloat" "scale_y")
+    '("ClutterGravity" "gravity")
   )
 )
 
-(define-method scroll_to
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_scroll_to")
+(define-method get_abs_size
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_abs_size")
   (return-type "none")
   (parameters
-    '("gdouble" "left")
-    '("gdouble" "top")
+    '("guint*" "width")
+    '("guint*" "height")
   )
 )
 
-(define-method grab_focus
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_grab_focus")
+(define-method get_size
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_size")
   (return-type "none")
   (parameters
-    '("GooCanvasItem*" "item")
+    '("guint*" "width")
+    '("guint*" "height")
   )
 )
 
-(define-method render
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_render")
+(define-method move_by
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_move_by")
   (return-type "none")
   (parameters
-    '("cairo_t*" "cr")
-    '("const-GooCanvasBounds*" "bounds")
-    '("gdouble" "scale")
+    '("gint" "dx")
+    '("gint" "dy")
   )
 )
 
-(define-method convert_to_pixels
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_convert_to_pixels")
+(define-method get_vertices
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_vertices")
   (return-type "none")
   (parameters
-    '("gdouble*" "x")
-    '("gdouble*" "y")
+    '("ClutterVertex" "verts[4]")
   )
 )
 
-(define-method convert_from_pixels
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_convert_from_pixels")
+(define-method apply_transform_to_point
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_apply_transform_to_point")
   (return-type "none")
   (parameters
-    '("gdouble*" "x")
-    '("gdouble*" "y")
+    '("ClutterVertex*" "point")
+    '("ClutterVertex*" "vertex")
   )
 )
 
-(define-method convert_to_item_space
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_convert_to_item_space")
-  (return-type "none")
-  (parameters
-    '("GooCanvasItem*" "item")
-    '("gdouble*" "x")
-    '("gdouble*" "y")
-  )
-)
-
-(define-method convert_from_item_space
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_convert_from_item_space")
-  (return-type "none")
-  (parameters
-    '("GooCanvasItem*" "item")
-    '("gdouble*" "x")
-    '("gdouble*" "y")
-  )
-)
-
-(define-method pointer_grab
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_pointer_grab")
-  (return-type "GdkGrabStatus")
-  (parameters
-    '("GooCanvasItem*" "item")
-    '("GdkEventMask" "event_mask")
-    '("GdkCursor*" "cursor")
-    '("guint32" "time")
-  )
-)
-
-(define-method pointer_ungrab
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_pointer_ungrab")
-  (return-type "none")
-  (parameters
-    '("GooCanvasItem*" "item")
-    '("guint32" "time")
-  )
-)
-
-(define-method keyboard_grab
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_keyboard_grab")
-  (return-type "GdkGrabStatus")
-  (parameters
-    '("GooCanvasItem*" "item")
-    '("gboolean" "owner_events")
-    '("guint32" "time")
-  )
-)
-
-(define-method keyboard_ungrab
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_keyboard_ungrab")
-  (return-type "none")
-  (parameters
-    '("GooCanvasItem*" "item")
-    '("guint32" "time")
-  )
-)
-
-(define-method create_cairo_context
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_create_cairo_context")
-  (return-type "cairo_t*")
-)
-
-(define-method create_item
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_create_item")
-  (return-type "GooCanvasItem*")
-  (parameters
-    '("GooCanvasItemModel*" "model")
-  )
-)
-
-(define-method unregister_item
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_unregister_item")
-  (return-type "none")
-  (parameters
-    '("GooCanvasItemModel*" "model")
-  )
-)
-
-(define-method update
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_update")
-  (return-type "none")
-)
-
-(define-method request_update
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_request_update")
-  (return-type "none")
-)
-
-(define-method request_redraw
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_request_redraw")
-  (return-type "none")
-  (parameters
-    '("const-GooCanvasBounds*" "bounds")
-  )
-)
-
-(define-method get_default_line_width
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_get_default_line_width")
-  (return-type "gdouble")
-)
-
-(define-method register_widget_item
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_register_widget_item")
-  (return-type "none")
-  (parameters
-    '("GooCanvasWidget*" "witem")
-  )
-)
-
-(define-method unregister_widget_item
-  (of-object "GooCanvas")
-  (c-name "goo_canvas_unregister_widget_item")
-  (return-type "none")
-  (parameters
-    '("GooCanvasWidget*" "witem")
-  )
-)
-
-
-
-;; From goocanvasimage.h
-
-(define-function goo_canvas_image_get_type
-  (c-name "goo_canvas_image_get_type")
-  (return-type "GType")
-)
-
-(define-function goo_canvas_image_new
-  (c-name "goo_canvas_image_new")
-  (is-constructor-of "GooCanvasImage")
-  (return-type "GooCanvasItem*")
-  (parameters
-    '("GooCanvasItem*" "parent")
-    '("GdkPixbuf*" "pixbuf")
-    '("gdouble" "x")
-    '("gdouble" "y")
-  )
-  (varargs #t)
-)
-
-(define-function goo_canvas_image_model_get_type
-  (c-name "goo_canvas_image_model_get_type")
-  (return-type "GType")
-)
-
-(define-function goo_canvas_image_model_new
-  (c-name "goo_canvas_image_model_new")
-  (is-constructor-of "GooCanvasImageModel")
-  (return-type "GooCanvasItemModel*")
-  (parameters
-    '("GooCanvasItemModel*" "parent")
-    '("GdkPixbuf*" "pixbuf")
-    '("gdouble" "x")
-    '("gdouble" "y")
-  )
-  (varargs #t)
-)
-
-
-
-;; From goocanvasitem.h
-
-(define-function goo_canvas_item_get_type
-  (c-name "goo_canvas_item_get_type")
-  (return-type "GType")
-)
-
-(define-method get_n_children
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_get_n_children")
-  (return-type "gint")
-)
-
-(define-method get_child
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_get_child")
-  (return-type "GooCanvasItem*")
-  (parameters
-    '("gint" "child_num")
-  )
-)
-
-(define-method find_child
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_find_child")
-  (return-type "gint")
-  (parameters
-    '("GooCanvasItem*" "child")
-  )
-)
-
-(define-method add_child
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_add_child")
-  (return-type "none")
-  (parameters
-    '("GooCanvasItem*" "child")
-    '("gint" "position")
-  )
-)
-
-(define-method move_child
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_move_child")
-  (return-type "none")
-  (parameters
-    '("gint" "old_position")
-    '("gint" "new_position")
-  )
-)
-
-(define-method remove_child
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_remove_child")
-  (return-type "none")
-  (parameters
-    '("gint" "child_num")
-  )
-)
-
-(define-method get_child_properties
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_get_child_properties")
-  (return-type "none")
-  (parameters
-    '("GooCanvasItem*" "child")
-  )
-  (varargs #t)
-)
-
-(define-method set_child_properties
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_set_child_properties")
-  (return-type "none")
-  (parameters
-    '("GooCanvasItem*" "child")
-  )
-  (varargs #t)
-)
-
-(define-method get_child_properties_valist
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_get_child_properties_valist")
-  (return-type "none")
-  (parameters
-    '("GooCanvasItem*" "child")
-    '("va_list" "var_args")
-  )
-)
-
-(define-method set_child_properties_valist
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_set_child_properties_valist")
-  (return-type "none")
-  (parameters
-    '("GooCanvasItem*" "child")
-    '("va_list" "var_args")
-  )
-)
-
-(define-method get_transform_for_child
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_get_transform_for_child")
+(define-method event
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_event")
   (return-type "gboolean")
   (parameters
-    '("GooCanvasItem*" "child")
-    '("cairo_matrix_t*" "transform")
+    '("ClutterEvent*" "event")
+    '("gboolean" "capture")
   )
 )
 
-(define-method get_canvas
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_get_canvas")
-  (return-type "GooCanvas*")
-)
-
-(define-method set_canvas
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_set_canvas")
-  (return-type "none")
-  (parameters
-    '("GooCanvas*" "canvas")
-  )
-)
-
-(define-method get_parent
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_get_parent")
-  (return-type "GooCanvasItem*")
-)
-
-(define-method set_parent
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_set_parent")
-  (return-type "none")
-  (parameters
-    '("GooCanvasItem*" "parent")
-  )
-)
-
-(define-method remove
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_remove")
+(define-method set_reactive
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_reactive")
   (return-type "none")
 )
 
-(define-method is_container
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_is_container")
+(define-method unset_reactive
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_unset_reactive")
+  (return-type "none")
+)
+
+(define-method is_reactive
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_is_reactive")
   (return-type "gboolean")
 )
 
-(define-method raise
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_raise")
-  (return-type "none")
+(define-function clutter_get_actor_by_id
+  (c-name "clutter_get_actor_by_id")
+  (return-type "ClutterActor*")
   (parameters
-    '("GooCanvasItem*" "above")
-  )
-)
-
-(define-method lower
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_lower")
-  (return-type "none")
-  (parameters
-    '("GooCanvasItem*" "below")
-  )
-)
-
-(define-method get_transform
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_get_transform")
-  (return-type "gboolean")
-  (parameters
-    '("cairo_matrix_t*" "transform")
-  )
-)
-
-(define-method set_transform
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_set_transform")
-  (return-type "none")
-  (parameters
-    '("const-cairo_matrix_t*" "transform")
-  )
-)
-
-(define-method set_simple_transform
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_set_simple_transform")
-  (return-type "none")
-  (parameters
-    '("gdouble" "x")
-    '("gdouble" "y")
-    '("gdouble" "scale")
-    '("gdouble" "rotation")
-  )
-)
-
-(define-method translate
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_translate")
-  (return-type "none")
-  (parameters
-    '("gdouble" "tx")
-    '("gdouble" "ty")
-  )
-)
-
-(define-method scale
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_scale")
-  (return-type "none")
-  (parameters
-    '("gdouble" "sx")
-    '("gdouble" "sy")
-  )
-)
-
-(define-method rotate
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_rotate")
-  (return-type "none")
-  (parameters
-    '("gdouble" "degrees")
-    '("gdouble" "cx")
-    '("gdouble" "cy")
-  )
-)
-
-(define-method skew_x
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_skew_x")
-  (return-type "none")
-  (parameters
-    '("gdouble" "degrees")
-    '("gdouble" "cx")
-    '("gdouble" "cy")
-  )
-)
-
-(define-method skew_y
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_skew_y")
-  (return-type "none")
-  (parameters
-    '("gdouble" "degrees")
-    '("gdouble" "cx")
-    '("gdouble" "cy")
-  )
-)
-
-(define-method get_style
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_get_style")
-  (return-type "GooCanvasStyle*")
-)
-
-(define-method set_style
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_set_style")
-  (return-type "none")
-  (parameters
-    '("GooCanvasStyle*" "style")
-  )
-)
-
-(define-method animate
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_animate")
-  (return-type "none")
-  (parameters
-    '("gdouble" "x")
-    '("gdouble" "y")
-    '("gdouble" "scale")
-    '("gdouble" "degrees")
-    '("gboolean" "absolute")
-    '("gint" "duration")
-    '("gint" "step_time")
-    '("GooCanvasAnimateType" "type")
-  )
-)
-
-(define-method stop_animation
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_stop_animation")
-  (return-type "none")
-)
-
-(define-method get_bounds
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_get_bounds")
-  (return-type "none")
-  (parameters
-    '("GooCanvasBounds*" "bounds")
-  )
-)
-
-(define-method get_items_at
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_get_items_at")
-  (return-type "GList*")
-  (parameters
-    '("gdouble" "x")
-    '("gdouble" "y")
-    '("cairo_t*" "cr")
-    '("gboolean" "is_pointer_event")
-    '("gboolean" "parent_is_visible")
-    '("GList*" "found_items")
-  )
-)
-
-(define-method is_visible
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_is_visible")
-  (return-type "gboolean")
-)
-
-(define-method get_model
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_get_model")
-  (return-type "GooCanvasItemModel*")
-)
-
-(define-method set_model
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_set_model")
-  (return-type "none")
-  (parameters
-    '("GooCanvasItemModel*" "model")
-  )
-)
-
-(define-method request_update
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_request_update")
-  (return-type "none")
-)
-
-(define-method ensure_updated
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_ensure_updated")
-  (return-type "none")
-)
-
-(define-method update
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_update")
-  (return-type "none")
-  (parameters
-    '("gboolean" "entire_tree")
-    '("cairo_t*" "cr")
-    '("GooCanvasBounds*" "bounds")
-  )
-)
-
-(define-method paint
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_paint")
-  (return-type "none")
-  (parameters
-    '("cairo_t*" "cr")
-    '("const-GooCanvasBounds*" "bounds")
-    '("gdouble" "scale")
-  )
-)
-
-(define-method get_requested_area
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_get_requested_area")
-  (return-type "gboolean")
-  (parameters
-    '("cairo_t*" "cr")
-    '("GooCanvasBounds*" "requested_area")
-  )
-)
-
-(define-method get_requested_height
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_get_requested_height")
-  (return-type "gdouble")
-  (parameters
-    '("cairo_t*" "cr")
-    '("gdouble" "width")
-  )
-)
-
-(define-method allocate_area
-  (of-object "GooCanvasItem")
-  (c-name "goo_canvas_item_allocate_area")
-  (return-type "none")
-  (parameters
-    '("cairo_t*" "cr")
-    '("const-GooCanvasBounds*" "requested_area")
-    '("const-GooCanvasBounds*" "allocated_area")
-    '("gdouble" "x_offset")
-    '("gdouble" "y_offset")
-  )
-)
-
-(define-function goo_canvas_item_class_install_child_property
-  (c-name "goo_canvas_item_class_install_child_property")
-  (return-type "none")
-  (parameters
-    '("GObjectClass*" "iclass")
-    '("guint" "property_id")
-    '("GParamSpec*" "pspec")
-  )
-)
-
-(define-function goo_canvas_item_class_find_child_property
-  (c-name "goo_canvas_item_class_find_child_property")
-  (return-type "GParamSpec*")
-  (parameters
-    '("GObjectClass*" "iclass")
-    '("const-gchar*" "property_name")
-  )
-)
-
-(define-function goo_canvas_item_class_list_child_properties
-  (c-name "goo_canvas_item_class_list_child_properties")
-  (return-type "GParamSpec**")
-  (parameters
-    '("GObjectClass*" "iclass")
-    '("guint*" "n_properties")
+    '("guint32" "id")
   )
 )
 
 
 
-;; From goocanvasitemmodel.h
+;; From clutter-alpha.h
 
-(define-function goo_canvas_item_model_get_type
-  (c-name "goo_canvas_item_model_get_type")
+(define-function clutter_alpha_get_type
+  (c-name "clutter_alpha_get_type")
   (return-type "GType")
 )
 
-(define-method get_n_children
-  (of-object "GooCanvasItemModel")
-  (c-name "goo_canvas_item_model_get_n_children")
-  (return-type "gint")
+(define-function clutter_alpha_new
+  (c-name "clutter_alpha_new")
+  (is-constructor-of "ClutterAlpha")
+  (return-type "ClutterAlpha*")
 )
 
-(define-method get_child
-  (of-object "GooCanvasItemModel")
-  (c-name "goo_canvas_item_model_get_child")
-  (return-type "GooCanvasItemModel*")
+(define-function clutter_alpha_new_full
+  (c-name "clutter_alpha_new_full")
+  (return-type "ClutterAlpha*")
   (parameters
-    '("gint" "child_num")
-  )
-)
-
-(define-method add_child
-  (of-object "GooCanvasItemModel")
-  (c-name "goo_canvas_item_model_add_child")
-  (return-type "none")
-  (parameters
-    '("GooCanvasItemModel*" "child")
-    '("gint" "position")
-  )
-)
-
-(define-method move_child
-  (of-object "GooCanvasItemModel")
-  (c-name "goo_canvas_item_model_move_child")
-  (return-type "none")
-  (parameters
-    '("gint" "old_position")
-    '("gint" "new_position")
-  )
-)
-
-(define-method remove_child
-  (of-object "GooCanvasItemModel")
-  (c-name "goo_canvas_item_model_remove_child")
-  (return-type "none")
-  (parameters
-    '("gint" "child_num")
-  )
-)
-
-(define-method find_child
-  (of-object "GooCanvasItemModel")
-  (c-name "goo_canvas_item_model_find_child")
-  (return-type "gint")
-  (parameters
-    '("GooCanvasItemModel*" "child")
-  )
-)
-
-(define-method get_child_properties
-  (of-object "GooCanvasItemModel")
-  (c-name "goo_canvas_item_model_get_child_properties")
-  (return-type "none")
-  (parameters
-    '("GooCanvasItemModel*" "child")
-  )
-  (varargs #t)
-)
-
-(define-method set_child_properties
-  (of-object "GooCanvasItemModel")
-  (c-name "goo_canvas_item_model_set_child_properties")
-  (return-type "none")
-  (parameters
-    '("GooCanvasItemModel*" "child")
-  )
-  (varargs #t)
-)
-
-(define-method get_child_properties_valist
-  (of-object "GooCanvasItemModel")
-  (c-name "goo_canvas_item_model_get_child_properties_valist")
-  (return-type "none")
-  (parameters
-    '("GooCanvasItemModel*" "child")
-    '("va_list" "var_args")
-  )
-)
-
-(define-method set_child_properties_valist
-  (of-object "GooCanvasItemModel")
-  (c-name "goo_canvas_item_model_set_child_properties_valist")
-  (return-type "none")
-  (parameters
-    '("GooCanvasItemModel*" "child")
-    '("va_list" "var_args")
-  )
-)
-
-(define-method get_parent
-  (of-object "GooCanvasItemModel")
-  (c-name "goo_canvas_item_model_get_parent")
-  (return-type "GooCanvasItemModel*")
-)
-
-(define-method set_parent
-  (of-object "GooCanvasItemModel")
-  (c-name "goo_canvas_item_model_set_parent")
-  (return-type "none")
-  (parameters
-    '("GooCanvasItemModel*" "parent")
-  )
-)
-
-(define-method remove
-  (of-object "GooCanvasItemModel")
-  (c-name "goo_canvas_item_model_remove")
-  (return-type "none")
-)
-
-(define-method is_container
-  (of-object "GooCanvasItemModel")
-  (c-name "goo_canvas_item_model_is_container")
-  (return-type "gboolean")
-)
-
-(define-method raise
-  (of-object "GooCanvasItemModel")
-  (c-name "goo_canvas_item_model_raise")
-  (return-type "none")
-  (parameters
-    '("GooCanvasItemModel*" "above")
-  )
-)
-
-(define-method lower
-  (of-object "GooCanvasItemModel")
-  (c-name "goo_canvas_item_model_lower")
-  (return-type "none")
-  (parameters
-    '("GooCanvasItemModel*" "below")
-  )
-)
-
-(define-method get_transform
-  (of-object "GooCanvasItemModel")
-  (c-name "goo_canvas_item_model_get_transform")
-  (return-type "gboolean")
-  (parameters
-    '("cairo_matrix_t*" "transform")
-  )
-)
-
-(define-method set_transform
-  (of-object "GooCanvasItemModel")
-  (c-name "goo_canvas_item_model_set_transform")
-  (return-type "none")
-  (parameters
-    '("const-cairo_matrix_t*" "transform")
-  )
-)
-
-(define-method set_simple_transform
-  (of-object "GooCanvasItemModel")
-  (c-name "goo_canvas_item_model_set_simple_transform")
-  (return-type "none")
-  (parameters
-    '("gdouble" "x")
-    '("gdouble" "y")
-    '("gdouble" "scale")
-    '("gdouble" "rotation")
-  )
-)
-
-(define-method translate
-  (of-object "GooCanvasItemModel")
-  (c-name "goo_canvas_item_model_translate")
-  (return-type "none")
-  (parameters
-    '("gdouble" "tx")
-    '("gdouble" "ty")
-  )
-)
-
-(define-method scale
-  (of-object "GooCanvasItemModel")
-  (c-name "goo_canvas_item_model_scale")
-  (return-type "none")
-  (parameters
-    '("gdouble" "sx")
-    '("gdouble" "sy")
-  )
-)
-
-(define-method rotate
-  (of-object "GooCanvasItemModel")
-  (c-name "goo_canvas_item_model_rotate")
-  (return-type "none")
-  (parameters
-    '("gdouble" "degrees")
-    '("gdouble" "cx")
-    '("gdouble" "cy")
-  )
-)
-
-(define-method skew_x
-  (of-object "GooCanvasItemModel")
-  (c-name "goo_canvas_item_model_skew_x")
-  (return-type "none")
-  (parameters
-    '("gdouble" "degrees")
-    '("gdouble" "cx")
-    '("gdouble" "cy")
-  )
-)
-
-(define-method skew_y
-  (of-object "GooCanvasItemModel")
-  (c-name "goo_canvas_item_model_skew_y")
-  (return-type "none")
-  (parameters
-    '("gdouble" "degrees")
-    '("gdouble" "cx")
-    '("gdouble" "cy")
-  )
-)
-
-(define-method get_style
-  (of-object "GooCanvasItemModel")
-  (c-name "goo_canvas_item_model_get_style")
-  (return-type "GooCanvasStyle*")
-)
-
-(define-method set_style
-  (of-object "GooCanvasItemModel")
-  (c-name "goo_canvas_item_model_set_style")
-  (return-type "none")
-  (parameters
-    '("GooCanvasStyle*" "style")
-  )
-)
-
-(define-method animate
-  (of-object "GooCanvasItemModel")
-  (c-name "goo_canvas_item_model_animate")
-  (return-type "none")
-  (parameters
-    '("gdouble" "x")
-    '("gdouble" "y")
-    '("gdouble" "scale")
-    '("gdouble" "degrees")
-    '("gboolean" "absolute")
-    '("gint" "duration")
-    '("gint" "step_time")
-    '("GooCanvasAnimateType" "type")
-  )
-)
-
-(define-method stop_animation
-  (of-object "GooCanvasItemModel")
-  (c-name "goo_canvas_item_model_stop_animation")
-  (return-type "none")
-)
-
-(define-function goo_canvas_item_model_class_install_child_property
-  (c-name "goo_canvas_item_model_class_install_child_property")
-  (return-type "none")
-  (parameters
-    '("GObjectClass*" "mclass")
-    '("guint" "property_id")
-    '("GParamSpec*" "pspec")
-  )
-)
-
-(define-function goo_canvas_item_model_class_find_child_property
-  (c-name "goo_canvas_item_model_class_find_child_property")
-  (return-type "GParamSpec*")
-  (parameters
-    '("GObjectClass*" "mclass")
-    '("const-gchar*" "property_name")
-  )
-)
-
-(define-function goo_canvas_item_model_class_list_child_properties
-  (c-name "goo_canvas_item_model_class_list_child_properties")
-  (return-type "GParamSpec**")
-  (parameters
-    '("GObjectClass*" "mclass")
-    '("guint*" "n_properties")
-  )
-)
-
-
-
-;; From goocanvasitemsimple.h
-
-(define-function goo_canvas_item_simple_get_type
-  (c-name "goo_canvas_item_simple_get_type")
-  (return-type "GType")
-)
-
-(define-method get_path_bounds
-  (of-object "GooCanvasItemSimple")
-  (c-name "goo_canvas_item_simple_get_path_bounds")
-  (return-type "none")
-  (parameters
-    '("cairo_t*" "cr")
-    '("GooCanvasBounds*" "bounds")
-  )
-)
-
-(define-method user_bounds_to_device
-  (of-object "GooCanvasItemSimple")
-  (c-name "goo_canvas_item_simple_user_bounds_to_device")
-  (return-type "none")
-  (parameters
-    '("cairo_t*" "cr")
-    '("GooCanvasBounds*" "bounds")
-  )
-)
-
-(define-method user_bounds_to_parent
-  (of-object "GooCanvasItemSimple")
-  (c-name "goo_canvas_item_simple_user_bounds_to_parent")
-  (return-type "none")
-  (parameters
-    '("cairo_t*" "cr")
-    '("GooCanvasBounds*" "bounds")
-  )
-)
-
-(define-method check_in_path
-  (of-object "GooCanvasItemSimple")
-  (c-name "goo_canvas_item_simple_check_in_path")
-  (return-type "gboolean")
-  (parameters
-    '("gdouble" "x")
-    '("gdouble" "y")
-    '("cairo_t*" "cr")
-    '("GooCanvasPointerEvents" "pointer_events")
-  )
-)
-
-(define-method paint_path
-  (of-object "GooCanvasItemSimple")
-  (c-name "goo_canvas_item_simple_paint_path")
-  (return-type "none")
-  (parameters
-    '("cairo_t*" "cr")
-  )
-)
-
-(define-method changed
-  (of-object "GooCanvasItemSimple")
-  (c-name "goo_canvas_item_simple_changed")
-  (return-type "none")
-  (parameters
-    '("gboolean" "recompute_bounds")
-  )
-)
-
-(define-method check_style
-  (of-object "GooCanvasItemSimple")
-  (c-name "goo_canvas_item_simple_check_style")
-  (return-type "none")
-)
-
-(define-method set_model
-  (of-object "GooCanvasItemSimple")
-  (c-name "goo_canvas_item_simple_set_model")
-  (return-type "none")
-  (parameters
-    '("GooCanvasItemModel*" "model")
-  )
-)
-
-(define-function goo_canvas_item_model_simple_get_type
-  (c-name "goo_canvas_item_model_simple_get_type")
-  (return-type "GType")
-)
-
-
-
-;; From goocanvasmarshal.h
-
-
-
-;; From goocanvaspath.h
-
-(define-function goo_canvas_path_get_type
-  (c-name "goo_canvas_path_get_type")
-  (return-type "GType")
-)
-
-(define-function goo_canvas_path_new
-  (c-name "goo_canvas_path_new")
-  (is-constructor-of "GooCanvasPath")
-  (return-type "GooCanvasItem*")
-  (parameters
-    '("GooCanvasItem*" "parent")
-    '("const-gchar*" "path_data")
-  )
-  (varargs #t)
-)
-
-(define-function goo_canvas_path_model_get_type
-  (c-name "goo_canvas_path_model_get_type")
-  (return-type "GType")
-)
-
-(define-function goo_canvas_path_model_new
-  (c-name "goo_canvas_path_model_new")
-  (is-constructor-of "GooCanvasPathModel")
-  (return-type "GooCanvasItemModel*")
-  (parameters
-    '("GooCanvasItemModel*" "parent")
-    '("const-gchar*" "path_data")
-  )
-  (varargs #t)
-)
-
-
-
-;; From goocanvaspolyline.h
-
-(define-function goo_canvas_points_get_type
-  (c-name "goo_canvas_points_get_type")
-  (return-type "GType")
-)
-
-(define-function goo_canvas_points_new
-  (c-name "goo_canvas_points_new")
-  (is-constructor-of "GooCanvasPoints")
-  (return-type "GooCanvasPoints*")
-  (parameters
-    '("int" "num_points")
-  )
-)
-
-(define-method ref
-  (of-object "GooCanvasPoints")
-  (c-name "goo_canvas_points_ref")
-  (return-type "GooCanvasPoints*")
-)
-
-(define-method unref
-  (of-object "GooCanvasPoints")
-  (c-name "goo_canvas_points_unref")
-  (return-type "none")
-)
-
-(define-function goo_canvas_polyline_get_type
-  (c-name "goo_canvas_polyline_get_type")
-  (return-type "GType")
-)
-
-(define-function goo_canvas_polyline_new
-  (c-name "goo_canvas_polyline_new")
-  (is-constructor-of "GooCanvasPolyline")
-  (return-type "GooCanvasItem*")
-  (parameters
-    '("GooCanvasItem*" "parent")
-    '("gboolean" "close_path")
-    '("gint" "num_points")
-  )
-  (varargs #t)
-)
-
-(define-function goo_canvas_polyline_new_line
-  (c-name "goo_canvas_polyline_new_line")
-  (return-type "GooCanvasItem*")
-  (parameters
-    '("GooCanvasItem*" "parent")
-    '("gdouble" "x1")
-    '("gdouble" "y1")
-    '("gdouble" "x2")
-    '("gdouble" "y2")
-  )
-  (varargs #t)
-)
-
-(define-function goo_canvas_polyline_model_get_type
-  (c-name "goo_canvas_polyline_model_get_type")
-  (return-type "GType")
-)
-
-(define-function goo_canvas_polyline_model_new
-  (c-name "goo_canvas_polyline_model_new")
-  (is-constructor-of "GooCanvasPolylineModel")
-  (return-type "GooCanvasItemModel*")
-  (parameters
-    '("GooCanvasItemModel*" "parent")
-    '("gboolean" "close_path")
-    '("gint" "num_points")
-  )
-  (varargs #t)
-)
-
-(define-function goo_canvas_polyline_model_new_line
-  (c-name "goo_canvas_polyline_model_new_line")
-  (return-type "GooCanvasItemModel*")
-  (parameters
-    '("GooCanvasItemModel*" "parent")
-    '("gdouble" "x1")
-    '("gdouble" "y1")
-    '("gdouble" "x2")
-    '("gdouble" "y2")
-  )
-  (varargs #t)
-)
-
-
-
-;; From goocanvasprivate.h
-
-(define-function goo_canvas_util_ptr_array_insert
-  (c-name "goo_canvas_util_ptr_array_insert")
-  (return-type "none")
-  (parameters
-    '("GPtrArray*" "ptr_array")
+    '("ClutterTimeline*" "timeline")
+    '("ClutterAlphaFunc" "func")
     '("gpointer" "data")
-    '("gint" "index")
+    '("GDestroyNotify" "destroy")
   )
 )
 
-(define-function goo_canvas_util_ptr_array_move
-  (c-name "goo_canvas_util_ptr_array_move")
+(define-method get_alpha
+  (of-object "ClutterAlpha")
+  (c-name "clutter_alpha_get_alpha")
+  (return-type "guint32")
+)
+
+(define-method set_func
+  (of-object "ClutterAlpha")
+  (c-name "clutter_alpha_set_func")
   (return-type "none")
   (parameters
-    '("GPtrArray*" "ptr_array")
-    '("gint" "old_index")
-    '("gint" "new_index")
-  )
-)
-
-(define-function goo_canvas_util_ptr_array_find_index
-  (c-name "goo_canvas_util_ptr_array_find_index")
-  (return-type "gint")
-  (parameters
-    '("GPtrArray*" "ptr_array")
+    '("ClutterAlphaFunc" "func")
     '("gpointer" "data")
+    '("GDestroyNotify" "destroy")
   )
 )
 
-(define-function goo_canvas_cairo_pattern_from_pixbuf
-  (c-name "goo_canvas_cairo_pattern_from_pixbuf")
-  (return-type "cairo_pattern_t*")
+(define-method set_timeline
+  (of-object "ClutterAlpha")
+  (c-name "clutter_alpha_set_timeline")
+  (return-type "none")
   (parameters
-    '("GdkPixbuf*" "pixbuf")
+    '("ClutterTimeline*" "timeline")
   )
 )
 
-(define-function goo_canvas_cairo_surface_from_pixbuf
-  (c-name "goo_canvas_cairo_surface_from_pixbuf")
-  (return-type "cairo_surface_t*")
+(define-method get_timeline
+  (of-object "ClutterAlpha")
+  (c-name "clutter_alpha_get_timeline")
+  (return-type "ClutterTimeline*")
+)
+
+(define-function clutter_ramp_inc_func
+  (c-name "clutter_ramp_inc_func")
+  (return-type "guint32")
   (parameters
-    '("GdkPixbuf*" "pixbuf")
+    '("ClutterAlpha*" "alpha")
+    '("gpointer" "dummy")
   )
 )
 
-(define-function goo_canvas_boolean_handled_accumulator
-  (c-name "goo_canvas_boolean_handled_accumulator")
-  (return-type "gboolean")
+(define-function clutter_ramp_dec_func
+  (c-name "clutter_ramp_dec_func")
+  (return-type "guint32")
   (parameters
-    '("GSignalInvocationHint*" "ihint")
-    '("GValue*" "return_accu")
-    '("const-GValue*" "handler_return")
+    '("ClutterAlpha*" "alpha")
+    '("gpointer" "dummy")
+  )
+)
+
+(define-function clutter_ramp_func
+  (c-name "clutter_ramp_func")
+  (return-type "guint32")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("gpointer" "dummy")
+  )
+)
+
+(define-function clutter_sine_func
+  (c-name "clutter_sine_func")
+  (return-type "guint32")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("gpointer" "dummy")
+  )
+)
+
+(define-function clutter_sine_inc_func
+  (c-name "clutter_sine_inc_func")
+  (return-type "guint32")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("gpointer" "dummy")
+  )
+)
+
+(define-function clutter_sine_dec_func
+  (c-name "clutter_sine_dec_func")
+  (return-type "guint32")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("gpointer" "dummy")
+  )
+)
+
+(define-function clutter_sine_half_func
+  (c-name "clutter_sine_half_func")
+  (return-type "guint32")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("gpointer" "dummy")
+  )
+)
+
+(define-function clutter_square_func
+  (c-name "clutter_square_func")
+  (return-type "guint32")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("gpointer" "dummy")
+  )
+)
+
+(define-function clutter_smoothstep_inc_func
+  (c-name "clutter_smoothstep_inc_func")
+  (return-type "guint32")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("gpointer" "dummy")
+  )
+)
+
+(define-function clutter_smoothstep_dec_func
+  (c-name "clutter_smoothstep_dec_func")
+  (return-type "guint32")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("gpointer" "dummy")
+  )
+)
+
+(define-function clutter_exp_inc_func
+  (c-name "clutter_exp_inc_func")
+  (return-type "guint32")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("gpointer" "dummy")
+  )
+)
+
+(define-function clutter_exp_dec_func
+  (c-name "clutter_exp_dec_func")
+  (return-type "guint32")
+  (parameters
+    '("ClutterAlpha*" "alpha")
     '("gpointer" "dummy")
   )
 )
 
 
 
-;; From goocanvasrect.h
+;; From clutter-backend.h
 
-(define-function goo_canvas_rect_get_type
-  (c-name "goo_canvas_rect_get_type")
+(define-function clutter_backend_get_type
+  (c-name "clutter_backend_get_type")
   (return-type "GType")
 )
 
-(define-function goo_canvas_rect_new
-  (c-name "goo_canvas_rect_new")
-  (is-constructor-of "GooCanvasRect")
-  (return-type "GooCanvasItem*")
+(define-function clutter_get_default_backend
+  (c-name "clutter_get_default_backend")
+  (return-type "ClutterBackend*")
+)
+
+(define-method set_resolution
+  (of-object "ClutterBackend")
+  (c-name "clutter_backend_set_resolution")
+  (return-type "none")
   (parameters
-    '("GooCanvasItem*" "parent")
-    '("gdouble" "x")
-    '("gdouble" "y")
-    '("gdouble" "width")
-    '("gdouble" "height")
+    '("gdouble" "dpi")
+  )
+)
+
+(define-method get_resolution
+  (of-object "ClutterBackend")
+  (c-name "clutter_backend_get_resolution")
+  (return-type "gdouble")
+)
+
+(define-method set_double_click_time
+  (of-object "ClutterBackend")
+  (c-name "clutter_backend_set_double_click_time")
+  (return-type "none")
+  (parameters
+    '("guint" "msec")
+  )
+)
+
+(define-method get_double_click_time
+  (of-object "ClutterBackend")
+  (c-name "clutter_backend_get_double_click_time")
+  (return-type "guint")
+)
+
+(define-method set_double_click_distance
+  (of-object "ClutterBackend")
+  (c-name "clutter_backend_set_double_click_distance")
+  (return-type "none")
+  (parameters
+    '("guint" "distance")
+  )
+)
+
+(define-method get_double_click_distance
+  (of-object "ClutterBackend")
+  (c-name "clutter_backend_get_double_click_distance")
+  (return-type "guint")
+)
+
+
+
+;; From clutter-behaviour-bspline.h
+
+(define-function clutter_behaviour_bspline_get_type
+  (c-name "clutter_behaviour_bspline_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_behaviour_bspline_new
+  (c-name "clutter_behaviour_bspline_new")
+  (is-constructor-of "ClutterBehaviourBspline")
+  (return-type "ClutterBehaviour*")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("const-ClutterKnot*" "knots")
+    '("guint" "n_knots")
+  )
+)
+
+(define-method append_knot
+  (of-object "ClutterBehaviourBspline")
+  (c-name "clutter_behaviour_bspline_append_knot")
+  (return-type "none")
+  (parameters
+    '("const-ClutterKnot*" "knot")
+  )
+)
+
+(define-method append
+  (of-object "ClutterBehaviourBspline")
+  (c-name "clutter_behaviour_bspline_append")
+  (return-type "none")
+  (parameters
+    '("const-ClutterKnot*" "first_knot")
   )
   (varargs #t)
 )
 
-(define-function goo_canvas_rect_model_get_type
-  (c-name "goo_canvas_rect_model_get_type")
+(define-method truncate
+  (of-object "ClutterBehaviourBspline")
+  (c-name "clutter_behaviour_bspline_truncate")
+  (return-type "none")
+  (parameters
+    '("guint" "offset")
+  )
+)
+
+(define-method join
+  (of-object "ClutterBehaviourBspline")
+  (c-name "clutter_behaviour_bspline_join")
+  (return-type "none")
+  (parameters
+    '("ClutterBehaviourBspline*" "bs2")
+  )
+)
+
+(define-method split
+  (of-object "ClutterBehaviourBspline")
+  (c-name "clutter_behaviour_bspline_split")
+  (return-type "ClutterBehaviour*")
+  (parameters
+    '("guint" "offset")
+  )
+)
+
+(define-method clear
+  (of-object "ClutterBehaviourBspline")
+  (c-name "clutter_behaviour_bspline_clear")
+  (return-type "none")
+)
+
+(define-method adjust
+  (of-object "ClutterBehaviourBspline")
+  (c-name "clutter_behaviour_bspline_adjust")
+  (return-type "none")
+  (parameters
+    '("guint" "offset")
+    '("ClutterKnot*" "knot")
+  )
+)
+
+(define-method set_origin
+  (of-object "ClutterBehaviourBspline")
+  (c-name "clutter_behaviour_bspline_set_origin")
+  (return-type "none")
+  (parameters
+    '("ClutterKnot*" "knot")
+  )
+)
+
+(define-method get_origin
+  (of-object "ClutterBehaviourBspline")
+  (c-name "clutter_behaviour_bspline_get_origin")
+  (return-type "none")
+  (parameters
+    '("ClutterKnot*" "knot")
+  )
+)
+
+
+
+;; From clutter-behaviour-depth.h
+
+(define-function clutter_behaviour_depth_get_type
+  (c-name "clutter_behaviour_depth_get_type")
   (return-type "GType")
 )
 
-(define-function goo_canvas_rect_model_new
-  (c-name "goo_canvas_rect_model_new")
-  (is-constructor-of "GooCanvasRectModel")
-  (return-type "GooCanvasItemModel*")
+(define-function clutter_behaviour_depth_new
+  (c-name "clutter_behaviour_depth_new")
+  (is-constructor-of "ClutterBehaviourDepth")
+  (return-type "ClutterBehaviour*")
   (parameters
-    '("GooCanvasItemModel*" "parent")
-    '("gdouble" "x")
-    '("gdouble" "y")
-    '("gdouble" "width")
-    '("gdouble" "height")
+    '("ClutterAlpha*" "alpha")
+    '("gint" "start_depth")
+    '("gint" "end_depth")
+  )
+)
+
+
+
+;; From clutter-behaviour-ellipse.h
+
+(define-function clutter_behaviour_ellipse_get_type
+  (c-name "clutter_behaviour_ellipse_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_behaviour_ellipse_new
+  (c-name "clutter_behaviour_ellipse_new")
+  (is-constructor-of "ClutterBehaviourEllipse")
+  (return-type "ClutterBehaviour*")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("gint" "x")
+    '("gint" "y")
+    '("gint" "width")
+    '("gint" "height")
+    '("ClutterRotateDirection" "direction")
+    '("gdouble" "begin")
+    '("gdouble" "end")
+  )
+)
+
+(define-function clutter_behaviour_ellipse_newx
+  (c-name "clutter_behaviour_ellipse_newx")
+  (return-type "ClutterBehaviour*")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("gint" "x")
+    '("gint" "y")
+    '("gint" "width")
+    '("gint" "height")
+    '("ClutterRotateDirection" "direction")
+    '("ClutterFixed" "begin")
+    '("ClutterFixed" "end")
+  )
+)
+
+(define-method set_center
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_set_center")
+  (return-type "none")
+  (parameters
+    '("gint" "x")
+    '("gint" "y")
+  )
+)
+
+(define-method get_center
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_get_center")
+  (return-type "none")
+  (parameters
+    '("gint*" "x")
+    '("gint*" "y")
+  )
+)
+
+(define-method set_width
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_set_width")
+  (return-type "none")
+  (parameters
+    '("gint" "width")
+  )
+)
+
+(define-method get_width
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_get_width")
+  (return-type "gint")
+)
+
+(define-method set_height
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_set_height")
+  (return-type "none")
+  (parameters
+    '("gint" "height")
+  )
+)
+
+(define-method get_height
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_get_height")
+  (return-type "gint")
+)
+
+(define-method set_angle_begin
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_set_angle_begin")
+  (return-type "none")
+  (parameters
+    '("gdouble" "angle_begin")
+  )
+)
+
+(define-method set_angle_beginx
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_set_angle_beginx")
+  (return-type "none")
+  (parameters
+    '("ClutterAngle" "angle_begin")
+  )
+)
+
+(define-method get_angle_beginx
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_get_angle_beginx")
+  (return-type "ClutterAngle")
+)
+
+(define-method get_angle_begin
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_get_angle_begin")
+  (return-type "gdouble")
+)
+
+(define-method set_angle_endx
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_set_angle_endx")
+  (return-type "none")
+  (parameters
+    '("ClutterAngle" "angle_end")
+  )
+)
+
+(define-method set_angle_end
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_set_angle_end")
+  (return-type "none")
+  (parameters
+    '("gdouble" "angle_end")
+  )
+)
+
+(define-method get_angle_endx
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_get_angle_endx")
+  (return-type "ClutterAngle")
+)
+
+(define-method get_angle_end
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_get_angle_end")
+  (return-type "gdouble")
+)
+
+(define-method set_angle_tiltx
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_set_angle_tiltx")
+  (return-type "none")
+  (parameters
+    '("ClutterRotateAxis" "axis")
+    '("ClutterAngle" "angle_tilt")
+  )
+)
+
+(define-method set_angle_tilt
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_set_angle_tilt")
+  (return-type "none")
+  (parameters
+    '("ClutterRotateAxis" "axis")
+    '("gdouble" "angle_tilt")
+  )
+)
+
+(define-method get_angle_tiltx
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_get_angle_tiltx")
+  (return-type "ClutterAngle")
+  (parameters
+    '("ClutterRotateAxis" "axis")
+  )
+)
+
+(define-method get_angle_tilt
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_get_angle_tilt")
+  (return-type "gdouble")
+  (parameters
+    '("ClutterRotateAxis" "axis")
+  )
+)
+
+(define-method set_tilt
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_set_tilt")
+  (return-type "none")
+  (parameters
+    '("gdouble" "angle_tilt_x")
+    '("gdouble" "angle_tilt_y")
+    '("gdouble" "angle_tilt_z")
+  )
+)
+
+(define-method set_tiltx
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_set_tiltx")
+  (return-type "none")
+  (parameters
+    '("ClutterAngle" "angle_tilt_x")
+    '("ClutterAngle" "angle_tilt_y")
+    '("ClutterAngle" "angle_tilt_z")
+  )
+)
+
+(define-method get_tilt
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_get_tilt")
+  (return-type "none")
+  (parameters
+    '("gdouble*" "angle_tilt_x")
+    '("gdouble*" "angle_tilt_y")
+    '("gdouble*" "angle_tilt_z")
+  )
+)
+
+(define-method get_tiltx
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_get_tiltx")
+  (return-type "none")
+  (parameters
+    '("ClutterAngle*" "angle_tilt_x")
+    '("ClutterAngle*" "angle_tilt_y")
+    '("ClutterAngle*" "angle_tilt_z")
+  )
+)
+
+(define-method get_direction
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_get_direction")
+  (return-type "ClutterRotateDirection")
+)
+
+(define-method set_direction
+  (of-object "ClutterBehaviourEllipse")
+  (c-name "clutter_behaviour_ellipse_set_direction")
+  (return-type "none")
+  (parameters
+    '("ClutterRotateDirection" "direction")
+  )
+)
+
+
+
+;; From clutter-behaviour.h
+
+(define-function clutter_behaviour_get_type
+  (c-name "clutter_behaviour_get_type")
+  (return-type "GType")
+)
+
+(define-method apply
+  (of-object "ClutterBehaviour")
+  (c-name "clutter_behaviour_apply")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "actor")
+  )
+)
+
+(define-method remove
+  (of-object "ClutterBehaviour")
+  (c-name "clutter_behaviour_remove")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "actor")
+  )
+)
+
+(define-method remove_all
+  (of-object "ClutterBehaviour")
+  (c-name "clutter_behaviour_remove_all")
+  (return-type "none")
+)
+
+(define-method actors_foreach
+  (of-object "ClutterBehaviour")
+  (c-name "clutter_behaviour_actors_foreach")
+  (return-type "none")
+  (parameters
+    '("ClutterBehaviourForeachFunc" "func")
+    '("gpointer" "data")
+  )
+)
+
+(define-method get_n_actors
+  (of-object "ClutterBehaviour")
+  (c-name "clutter_behaviour_get_n_actors")
+  (return-type "gint")
+)
+
+(define-method get_nth_actor
+  (of-object "ClutterBehaviour")
+  (c-name "clutter_behaviour_get_nth_actor")
+  (return-type "ClutterActor*")
+  (parameters
+    '("gint" "index_")
+  )
+)
+
+(define-method get_actors
+  (of-object "ClutterBehaviour")
+  (c-name "clutter_behaviour_get_actors")
+  (return-type "GSList*")
+)
+
+(define-method get_alpha
+  (of-object "ClutterBehaviour")
+  (c-name "clutter_behaviour_get_alpha")
+  (return-type "ClutterAlpha*")
+)
+
+(define-method set_alpha
+  (of-object "ClutterBehaviour")
+  (c-name "clutter_behaviour_set_alpha")
+  (return-type "none")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+  )
+)
+
+(define-method is_applied
+  (of-object "ClutterBehaviour")
+  (c-name "clutter_behaviour_is_applied")
+  (return-type "gboolean")
+  (parameters
+    '("ClutterActor*" "actor")
+  )
+)
+
+
+
+;; From clutter-behaviour-opacity.h
+
+(define-function clutter_behaviour_opacity_get_type
+  (c-name "clutter_behaviour_opacity_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_behaviour_opacity_new
+  (c-name "clutter_behaviour_opacity_new")
+  (is-constructor-of "ClutterBehaviourOpacity")
+  (return-type "ClutterBehaviour*")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("guint8" "opacity_start")
+    '("guint8" "opacity_end")
+  )
+)
+
+
+
+;; From clutter-behaviour-path.h
+
+(define-function clutter_behaviour_path_get_type
+  (c-name "clutter_behaviour_path_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_behaviour_path_new
+  (c-name "clutter_behaviour_path_new")
+  (is-constructor-of "ClutterBehaviourPath")
+  (return-type "ClutterBehaviour*")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("const-ClutterKnot*" "knots")
+    '("guint" "n_knots")
+  )
+)
+
+(define-method get_knots
+  (of-object "ClutterBehaviourPath")
+  (c-name "clutter_behaviour_path_get_knots")
+  (return-type "GSList*")
+)
+
+(define-method append_knot
+  (of-object "ClutterBehaviourPath")
+  (c-name "clutter_behaviour_path_append_knot")
+  (return-type "none")
+  (parameters
+    '("const-ClutterKnot*" "knot")
+  )
+)
+
+(define-method append_knots
+  (of-object "ClutterBehaviourPath")
+  (c-name "clutter_behaviour_path_append_knots")
+  (return-type "none")
+  (parameters
+    '("const-ClutterKnot*" "first_knot")
   )
   (varargs #t)
 )
 
+(define-method insert_knot
+  (of-object "ClutterBehaviourPath")
+  (c-name "clutter_behaviour_path_insert_knot")
+  (return-type "none")
+  (parameters
+    '("guint" "offset")
+    '("const-ClutterKnot*" "knot")
+  )
+)
+
+(define-method remove_knot
+  (of-object "ClutterBehaviourPath")
+  (c-name "clutter_behaviour_path_remove_knot")
+  (return-type "none")
+  (parameters
+    '("guint" "offset")
+  )
+)
+
+(define-method clear
+  (of-object "ClutterBehaviourPath")
+  (c-name "clutter_behaviour_path_clear")
+  (return-type "none")
+)
 
 
-;; From goocanvasstyle.h
 
-(define-function goo_canvas_style_get_type
-  (c-name "goo_canvas_style_get_type")
+;; From clutter-behaviour-rotate.h
+
+(define-function clutter_behaviour_rotate_get_type
+  (c-name "clutter_behaviour_rotate_get_type")
   (return-type "GType")
 )
 
-(define-function goo_canvas_style_new
-  (c-name "goo_canvas_style_new")
-  (is-constructor-of "GooCanvasStyle")
-  (return-type "GooCanvasStyle*")
+(define-function clutter_behaviour_rotate_new
+  (c-name "clutter_behaviour_rotate_new")
+  (is-constructor-of "ClutterBehaviourRotate")
+  (return-type "ClutterBehaviour*")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("ClutterRotateAxis" "axis")
+    '("ClutterRotateDirection" "direction")
+    '("gdouble" "angle_begin")
+    '("gdouble" "angle_end")
+  )
+)
+
+(define-function clutter_behaviour_rotate_newx
+  (c-name "clutter_behaviour_rotate_newx")
+  (return-type "ClutterBehaviour*")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("ClutterRotateAxis" "axis")
+    '("ClutterRotateDirection" "direction")
+    '("ClutterFixed" "angle_begin")
+    '("ClutterFixed" "angle_end")
+  )
+)
+
+(define-method get_center
+  (of-object "ClutterBehaviourRotate")
+  (c-name "clutter_behaviour_rotate_get_center")
+  (return-type "none")
+  (parameters
+    '("gint*" "x")
+    '("gint*" "y")
+    '("gint*" "z")
+  )
+)
+
+(define-method set_center
+  (of-object "ClutterBehaviourRotate")
+  (c-name "clutter_behaviour_rotate_set_center")
+  (return-type "none")
+  (parameters
+    '("gint" "x")
+    '("gint" "y")
+    '("gint" "z")
+  )
+)
+
+(define-method get_axis
+  (of-object "ClutterBehaviourRotate")
+  (c-name "clutter_behaviour_rotate_get_axis")
+  (return-type "ClutterRotateAxis")
+)
+
+(define-method set_axis
+  (of-object "ClutterBehaviourRotate")
+  (c-name "clutter_behaviour_rotate_set_axis")
+  (return-type "none")
+  (parameters
+    '("ClutterRotateAxis" "axis")
+  )
+)
+
+(define-method get_direction
+  (of-object "ClutterBehaviourRotate")
+  (c-name "clutter_behaviour_rotate_get_direction")
+  (return-type "ClutterRotateDirection")
+)
+
+(define-method set_direction
+  (of-object "ClutterBehaviourRotate")
+  (c-name "clutter_behaviour_rotate_set_direction")
+  (return-type "none")
+  (parameters
+    '("ClutterRotateDirection" "direction")
+  )
+)
+
+(define-method get_bounds
+  (of-object "ClutterBehaviourRotate")
+  (c-name "clutter_behaviour_rotate_get_bounds")
+  (return-type "none")
+  (parameters
+    '("gdouble*" "angle_begin")
+    '("gdouble*" "angle_end")
+  )
+)
+
+(define-method set_bounds
+  (of-object "ClutterBehaviourRotate")
+  (c-name "clutter_behaviour_rotate_set_bounds")
+  (return-type "none")
+  (parameters
+    '("gdouble" "angle_begin")
+    '("gdouble" "angle_end")
+  )
+)
+
+(define-method get_boundsx
+  (of-object "ClutterBehaviourRotate")
+  (c-name "clutter_behaviour_rotate_get_boundsx")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed*" "angle_begin")
+    '("ClutterFixed*" "angle_end")
+  )
+)
+
+(define-method set_boundsx
+  (of-object "ClutterBehaviourRotate")
+  (c-name "clutter_behaviour_rotate_set_boundsx")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "angle_begin")
+    '("ClutterFixed" "angle_end")
+  )
+)
+
+
+
+;; From clutter-behaviour-scale.h
+
+(define-function clutter_behaviour_scale_get_type
+  (c-name "clutter_behaviour_scale_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_behaviour_scale_new
+  (c-name "clutter_behaviour_scale_new")
+  (is-constructor-of "ClutterBehaviourScale")
+  (return-type "ClutterBehaviour*")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("gdouble" "scale_begin")
+    '("gdouble" "scale_end")
+    '("ClutterGravity" "gravity")
+  )
+)
+
+(define-function clutter_behaviour_scale_newx
+  (c-name "clutter_behaviour_scale_newx")
+  (return-type "ClutterBehaviour*")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("ClutterFixed" "scale_begin")
+    '("ClutterFixed" "scale_end")
+    '("ClutterGravity" "gravity")
+  )
+)
+
+(define-method get_bounds
+  (of-object "ClutterBehaviourScale")
+  (c-name "clutter_behaviour_scale_get_bounds")
+  (return-type "none")
+  (parameters
+    '("gdouble*" "scale_begin")
+    '("gdouble*" "scale_end")
+  )
+)
+
+(define-method get_boundsx
+  (of-object "ClutterBehaviourScale")
+  (c-name "clutter_behaviour_scale_get_boundsx")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed*" "scale_begin")
+    '("ClutterFixed*" "scale_end")
+  )
+)
+
+(define-method get_gravity
+  (of-object "ClutterBehaviourScale")
+  (c-name "clutter_behaviour_scale_get_gravity")
+  (return-type "ClutterGravity")
+)
+
+
+
+;; From clutter-box.h
+
+(define-function clutter_box_get_type
+  (c-name "clutter_box_get_type")
+  (return-type "GType")
+)
+
+(define-method set_color
+  (of-object "ClutterBox")
+  (c-name "clutter_box_set_color")
+  (return-type "none")
+  (parameters
+    '("const-ClutterColor*" "color")
+  )
+)
+
+(define-method get_color
+  (of-object "ClutterBox")
+  (c-name "clutter_box_get_color")
+  (return-type "none")
+  (parameters
+    '("ClutterColor*" "color")
+  )
+)
+
+(define-method set_margin
+  (of-object "ClutterBox")
+  (c-name "clutter_box_set_margin")
+  (return-type "none")
+  (parameters
+    '("const-ClutterMargin*" "margin")
+  )
+)
+
+(define-method get_margin
+  (of-object "ClutterBox")
+  (c-name "clutter_box_get_margin")
+  (return-type "none")
+  (parameters
+    '("ClutterMargin*" "margin")
+  )
+)
+
+(define-method set_default_padding
+  (of-object "ClutterBox")
+  (c-name "clutter_box_set_default_padding")
+  (return-type "none")
+  (parameters
+    '("gint" "padding_top")
+    '("gint" "padding_right")
+    '("gint" "padding_bottom")
+    '("gint" "padding_left")
+  )
+)
+
+(define-method get_default_padding
+  (of-object "ClutterBox")
+  (c-name "clutter_box_get_default_padding")
+  (return-type "none")
+  (parameters
+    '("gint*" "padding_top")
+    '("gint*" "padding_right")
+    '("gint*" "padding_bottom")
+    '("gint*" "padding_left")
+  )
+)
+
+(define-method pack
+  (of-object "ClutterBox")
+  (c-name "clutter_box_pack")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "actor")
+    '("ClutterPackType" "pack_type")
+    '("const-ClutterPadding*" "padding")
+  )
+)
+
+(define-method pack_defaults
+  (of-object "ClutterBox")
+  (c-name "clutter_box_pack_defaults")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "actor")
+  )
+)
+
+(define-method remove_all
+  (of-object "ClutterBox")
+  (c-name "clutter_box_remove_all")
+  (return-type "none")
+)
+
+(define-method query_child
+  (of-object "ClutterBox")
+  (c-name "clutter_box_query_child")
+  (return-type "gboolean")
+  (parameters
+    '("ClutterActor*" "actor")
+    '("ClutterBoxChild*" "child")
+  )
+)
+
+(define-method query_nth_child
+  (of-object "ClutterBox")
+  (c-name "clutter_box_query_nth_child")
+  (return-type "gboolean")
+  (parameters
+    '("gint" "index_")
+    '("ClutterBoxChild*" "child")
+  )
+)
+
+
+
+;; From clutter-clone-texture.h
+
+(define-function clutter_clone_texture_get_type
+  (c-name "clutter_clone_texture_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_clone_texture_new
+  (c-name "clutter_clone_texture_new")
+  (is-constructor-of "ClutterCloneTexture")
+  (return-type "ClutterActor*")
+  (parameters
+    '("ClutterTexture*" "texture")
+  )
+)
+
+(define-method get_parent_texture
+  (of-object "ClutterCloneTexture")
+  (c-name "clutter_clone_texture_get_parent_texture")
+  (return-type "ClutterTexture*")
+)
+
+(define-method set_parent_texture
+  (of-object "ClutterCloneTexture")
+  (c-name "clutter_clone_texture_set_parent_texture")
+  (return-type "none")
+  (parameters
+    '("ClutterTexture*" "texture")
+  )
+)
+
+
+
+;; From clutter-color.h
+
+(define-method copy
+  (of-object "ClutterColor")
+  (c-name "clutter_color_copy")
+  (return-type "ClutterColor*")
+)
+
+(define-method free
+  (of-object "ClutterColor")
+  (c-name "clutter_color_free")
+  (return-type "none")
+)
+
+(define-function clutter_color_parse
+  (c-name "clutter_color_parse")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "color")
+    '("ClutterColor*" "dest")
+  )
+)
+
+(define-method equal
+  (of-object "ClutterColor")
+  (c-name "clutter_color_equal")
+  (return-type "gboolean")
+  (parameters
+    '("const-ClutterColor*" "b")
+  )
+)
+
+(define-method to_string
+  (of-object "ClutterColor")
+  (c-name "clutter_color_to_string")
+  (return-type "gchar*")
+)
+
+(define-function clutter_color_get_type
+  (c-name "clutter_color_get_type")
+  (return-type "GType")
+)
+
+(define-method add
+  (of-object "ClutterColor")
+  (c-name "clutter_color_add")
+  (return-type "none")
+  (parameters
+    '("const-ClutterColor*" "src2")
+    '("ClutterColor*" "dest")
+  )
+)
+
+(define-method subtract
+  (of-object "ClutterColor")
+  (c-name "clutter_color_subtract")
+  (return-type "none")
+  (parameters
+    '("const-ClutterColor*" "src2")
+    '("ClutterColor*" "dest")
+  )
+)
+
+(define-method lighten
+  (of-object "ClutterColor")
+  (c-name "clutter_color_lighten")
+  (return-type "none")
+  (parameters
+    '("ClutterColor*" "dest")
+  )
+)
+
+(define-method darken
+  (of-object "ClutterColor")
+  (c-name "clutter_color_darken")
+  (return-type "none")
+  (parameters
+    '("ClutterColor*" "dest")
+  )
+)
+
+(define-method shade
+  (of-object "ClutterColor")
+  (c-name "clutter_color_shade")
+  (return-type "none")
+  (parameters
+    '("ClutterColor*" "dest")
+    '("gdouble" "shade")
+  )
+)
+
+(define-method shadex
+  (of-object "ClutterColor")
+  (c-name "clutter_color_shadex")
+  (return-type "none")
+  (parameters
+    '("ClutterColor*" "dest")
+    '("ClutterFixed" "shade")
+  )
+)
+
+(define-method to_hlsx
+  (of-object "ClutterColor")
+  (c-name "clutter_color_to_hlsx")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed*" "hue")
+    '("ClutterFixed*" "luminance")
+    '("ClutterFixed*" "saturation")
+  )
+)
+
+(define-method from_hlsx
+  (of-object "ClutterColor")
+  (c-name "clutter_color_from_hlsx")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "hue")
+    '("ClutterFixed" "luminance")
+    '("ClutterFixed" "saturation")
+  )
+)
+
+(define-method to_hls
+  (of-object "ClutterColor")
+  (c-name "clutter_color_to_hls")
+  (return-type "none")
+  (parameters
+    '("guint8*" "hue")
+    '("guint8*" "luminance")
+    '("guint8*" "saturation")
+  )
+)
+
+(define-method from_hls
+  (of-object "ClutterColor")
+  (c-name "clutter_color_from_hls")
+  (return-type "none")
+  (parameters
+    '("guint8" "hue")
+    '("guint8" "luminance")
+    '("guint8" "saturation")
+  )
+)
+
+(define-method to_pixel
+  (of-object "ClutterColor")
+  (c-name "clutter_color_to_pixel")
+  (return-type "guint32")
+)
+
+(define-method from_pixel
+  (of-object "ClutterColor")
+  (c-name "clutter_color_from_pixel")
+  (return-type "none")
+  (parameters
+    '("guint32" "pixel")
+  )
+)
+
+
+
+;; From clutter-container.h
+
+(define-function clutter_container_get_type
+  (c-name "clutter_container_get_type")
+  (return-type "GType")
+)
+
+(define-method add
+  (of-object "ClutterContainer")
+  (c-name "clutter_container_add")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "first_actor")
+  )
+  (varargs #t)
+)
+
+(define-method add_actor
+  (of-object "ClutterContainer")
+  (c-name "clutter_container_add_actor")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "actor")
+  )
+)
+
+(define-method add_valist
+  (of-object "ClutterContainer")
+  (c-name "clutter_container_add_valist")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "first_actor")
+    '("va_list" "var_args")
+  )
+)
+
+(define-method remove
+  (of-object "ClutterContainer")
+  (c-name "clutter_container_remove")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "first_actor")
+  )
+  (varargs #t)
+)
+
+(define-method remove_actor
+  (of-object "ClutterContainer")
+  (c-name "clutter_container_remove_actor")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "actor")
+  )
+)
+
+(define-method remove_valist
+  (of-object "ClutterContainer")
+  (c-name "clutter_container_remove_valist")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "first_actor")
+    '("va_list" "var_args")
+  )
+)
+
+(define-method get_children
+  (of-object "ClutterContainer")
+  (c-name "clutter_container_get_children")
+  (return-type "GList*")
+)
+
+(define-method foreach
+  (of-object "ClutterContainer")
+  (c-name "clutter_container_foreach")
+  (return-type "none")
+  (parameters
+    '("ClutterCallback" "callback")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-method find_child_by_id
+  (of-object "ClutterContainer")
+  (c-name "clutter_container_find_child_by_id")
+  (return-type "ClutterActor*")
+  (parameters
+    '("guint" "child_id")
+  )
+)
+
+(define-method find_child_by_name
+  (of-object "ClutterContainer")
+  (c-name "clutter_container_find_child_by_name")
+  (return-type "ClutterActor*")
+  (parameters
+    '("const-gchar*" "child_name")
+  )
+)
+
+(define-method raise_child
+  (of-object "ClutterContainer")
+  (c-name "clutter_container_raise_child")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "actor")
+    '("ClutterActor*" "sibling")
+  )
+)
+
+(define-method lower_child
+  (of-object "ClutterContainer")
+  (c-name "clutter_container_lower_child")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "actor")
+    '("ClutterActor*" "sibling")
+  )
+)
+
+(define-method sort_depth_order
+  (of-object "ClutterContainer")
+  (c-name "clutter_container_sort_depth_order")
+  (return-type "none")
+)
+
+
+
+;; From clutter-debug.h
+
+
+
+;; From clutter-effect.h
+
+(define-function clutter_effect_template_get_type
+  (c-name "clutter_effect_template_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_effect_template_new
+  (c-name "clutter_effect_template_new")
+  (is-constructor-of "ClutterEffectTemplate")
+  (return-type "ClutterEffectTemplate*")
+  (parameters
+    '("ClutterTimeline*" "timeline")
+    '("ClutterAlphaFunc" "alpha_func")
+  )
+)
+
+(define-function clutter_effect_template_new_full
+  (c-name "clutter_effect_template_new_full")
+  (return-type "ClutterEffectTemplate*")
+  (parameters
+    '("ClutterTimeline*" "timeline")
+    '("ClutterAlphaFunc" "alpha_func")
+    '("gpointer" "user_data")
+    '("GDestroyNotify" "notify")
+  )
+)
+
+(define-method set_timeline_clone
+  (of-object "ClutterEffectTemplate")
+  (c-name "clutter_effect_template_set_timeline_clone")
+  (return-type "none")
+  (parameters
+    '("gboolean" "setting")
+  )
+)
+
+(define-method get_timeline_clone
+  (of-object "ClutterEffectTemplate")
+  (c-name "clutter_effect_template_get_timeline_clone")
+  (return-type "gboolean")
+)
+
+(define-function clutter_effect_fade
+  (c-name "clutter_effect_fade")
+  (return-type "ClutterTimeline*")
+  (parameters
+    '("ClutterEffectTemplate*" "template_")
+    '("ClutterActor*" "actor")
+    '("guint8" "start_opacity")
+    '("guint8" "end_opacity")
+    '("ClutterEffectCompleteFunc" "completed_func")
+    '("gpointer" "completed_data")
+  )
+)
+
+(define-function clutter_effect_depth
+  (c-name "clutter_effect_depth")
+  (return-type "ClutterTimeline*")
+  (parameters
+    '("ClutterEffectTemplate*" "template_")
+    '("ClutterActor*" "actor")
+    '("gint" "start_depth")
+    '("gint" "end_depth")
+    '("ClutterEffectCompleteFunc" "completed_func")
+    '("gpointer" "completed_data")
+  )
+)
+
+(define-function clutter_effect_move
+  (c-name "clutter_effect_move")
+  (return-type "ClutterTimeline*")
+  (parameters
+    '("ClutterEffectTemplate*" "template_")
+    '("ClutterActor*" "actor")
+    '("const-ClutterKnot*" "knots")
+    '("guint" "n_knots")
+    '("ClutterEffectCompleteFunc" "completed_func")
+    '("gpointer" "completed_data")
+  )
+)
+
+(define-function clutter_effect_scale
+  (c-name "clutter_effect_scale")
+  (return-type "ClutterTimeline*")
+  (parameters
+    '("ClutterEffectTemplate*" "template_")
+    '("ClutterActor*" "actor")
+    '("gdouble" "scale_begin")
+    '("gdouble" "scale_end")
+    '("ClutterGravity" "gravity")
+    '("ClutterEffectCompleteFunc" "completed_func")
+    '("gpointer" "completed_data")
+  )
+)
+
+(define-function clutter_effect_rotate_x
+  (c-name "clutter_effect_rotate_x")
+  (return-type "ClutterTimeline*")
+  (parameters
+    '("ClutterEffectTemplate*" "template_")
+    '("ClutterActor*" "actor")
+    '("gdouble" "angle_begin")
+    '("gdouble" "angle_end")
+    '("gint" "center_y")
+    '("gint" "center_z")
+    '("ClutterRotateDirection" "direction")
+    '("ClutterEffectCompleteFunc" "completed_func")
+    '("gpointer" "completed_data")
+  )
+)
+
+(define-function clutter_effect_rotate_y
+  (c-name "clutter_effect_rotate_y")
+  (return-type "ClutterTimeline*")
+  (parameters
+    '("ClutterEffectTemplate*" "template_")
+    '("ClutterActor*" "actor")
+    '("gdouble" "angle_begin")
+    '("gdouble" "angle_end")
+    '("gint" "center_x")
+    '("gint" "center_z")
+    '("ClutterRotateDirection" "direction")
+    '("ClutterEffectCompleteFunc" "completed_func")
+    '("gpointer" "completed_data")
+  )
+)
+
+(define-function clutter_effect_rotate_z
+  (c-name "clutter_effect_rotate_z")
+  (return-type "ClutterTimeline*")
+  (parameters
+    '("ClutterEffectTemplate*" "template_")
+    '("ClutterActor*" "actor")
+    '("gdouble" "angle_begin")
+    '("gdouble" "angle_end")
+    '("gint" "center_x")
+    '("gint" "center_y")
+    '("ClutterRotateDirection" "direction")
+    '("ClutterEffectCompleteFunc" "completed_func")
+    '("gpointer" "completed_data")
+  )
+)
+
+
+
+;; From clutter-entry.h
+
+(define-function clutter_entry_get_type
+  (c-name "clutter_entry_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_entry_new
+  (c-name "clutter_entry_new")
+  (is-constructor-of "ClutterEntry")
+  (return-type "ClutterActor*")
+)
+
+(define-function clutter_entry_new_full
+  (c-name "clutter_entry_new_full")
+  (return-type "ClutterActor*")
+  (parameters
+    '("const-gchar*" "font_name")
+    '("const-gchar*" "text")
+    '("const-ClutterColor*" "color")
+  )
+)
+
+(define-function clutter_entry_new_with_text
+  (c-name "clutter_entry_new_with_text")
+  (return-type "ClutterActor*")
+  (parameters
+    '("const-gchar*" "font_name")
+    '("const-gchar*" "text")
+  )
+)
+
+(define-method set_text
+  (of-object "ClutterEntry")
+  (c-name "clutter_entry_set_text")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "text")
+  )
+)
+
+(define-method get_text
+  (of-object "ClutterEntry")
+  (c-name "clutter_entry_get_text")
+  (return-type "const-gchar*")
+)
+
+(define-method set_font_name
+  (of-object "ClutterEntry")
+  (c-name "clutter_entry_set_font_name")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "font_name")
+  )
+)
+
+(define-method get_font_name
+  (of-object "ClutterEntry")
+  (c-name "clutter_entry_get_font_name")
+  (return-type "const-gchar*")
+)
+
+(define-method set_color
+  (of-object "ClutterEntry")
+  (c-name "clutter_entry_set_color")
+  (return-type "none")
+  (parameters
+    '("const-ClutterColor*" "color")
+  )
+)
+
+(define-method get_color
+  (of-object "ClutterEntry")
+  (c-name "clutter_entry_get_color")
+  (return-type "none")
+  (parameters
+    '("ClutterColor*" "color")
+  )
+)
+
+(define-method get_layout
+  (of-object "ClutterEntry")
+  (c-name "clutter_entry_get_layout")
+  (return-type "PangoLayout*")
+)
+
+(define-method set_alignment
+  (of-object "ClutterEntry")
+  (c-name "clutter_entry_set_alignment")
+  (return-type "none")
+  (parameters
+    '("PangoAlignment" "alignment")
+  )
+)
+
+(define-method get_alignment
+  (of-object "ClutterEntry")
+  (c-name "clutter_entry_get_alignment")
+  (return-type "PangoAlignment")
+)
+
+(define-method set_position
+  (of-object "ClutterEntry")
+  (c-name "clutter_entry_set_position")
+  (return-type "none")
+  (parameters
+    '("gint" "position")
+  )
+)
+
+(define-method get_position
+  (of-object "ClutterEntry")
+  (c-name "clutter_entry_get_position")
+  (return-type "gint")
+)
+
+(define-method handle_key_event
+  (of-object "ClutterEntry")
+  (c-name "clutter_entry_handle_key_event")
+  (return-type "none")
+  (parameters
+    '("ClutterKeyEvent*" "kev")
+  )
+)
+
+(define-method insert_unichar
+  (of-object "ClutterEntry")
+  (c-name "clutter_entry_insert_unichar")
+  (return-type "none")
+  (parameters
+    '("gunichar" "wc")
+  )
+)
+
+(define-method delete_chars
+  (of-object "ClutterEntry")
+  (c-name "clutter_entry_delete_chars")
+  (return-type "none")
+  (parameters
+    '("guint" "len")
+  )
+)
+
+(define-method insert_text
+  (of-object "ClutterEntry")
+  (c-name "clutter_entry_insert_text")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "text")
+    '("gssize" "position")
+  )
+)
+
+(define-method delete_text
+  (of-object "ClutterEntry")
+  (c-name "clutter_entry_delete_text")
+  (return-type "none")
+  (parameters
+    '("gssize" "start_pos")
+    '("gssize" "end_pos")
+  )
+)
+
+(define-method set_visible_cursor
+  (of-object "ClutterEntry")
+  (c-name "clutter_entry_set_visible_cursor")
+  (return-type "none")
+  (parameters
+    '("gboolean" "visible")
+  )
+)
+
+(define-method get_visible_cursor
+  (of-object "ClutterEntry")
+  (c-name "clutter_entry_get_visible_cursor")
+  (return-type "gboolean")
+)
+
+(define-method set_visibility
+  (of-object "ClutterEntry")
+  (c-name "clutter_entry_set_visibility")
+  (return-type "none")
+  (parameters
+    '("gboolean" "visible")
+  )
+)
+
+(define-method get_visibility
+  (of-object "ClutterEntry")
+  (c-name "clutter_entry_get_visibility")
+  (return-type "gboolean")
+)
+
+(define-method set_invisible_char
+  (of-object "ClutterEntry")
+  (c-name "clutter_entry_set_invisible_char")
+  (return-type "none")
+  (parameters
+    '("gunichar" "wc")
+  )
+)
+
+(define-method get_invisible_char
+  (of-object "ClutterEntry")
+  (c-name "clutter_entry_get_invisible_char")
+  (return-type "gunichar")
+)
+
+(define-method set_max_length
+  (of-object "ClutterEntry")
+  (c-name "clutter_entry_set_max_length")
+  (return-type "none")
+  (parameters
+    '("gint" "max")
+  )
+)
+
+(define-method get_max_length
+  (of-object "ClutterEntry")
+  (c-name "clutter_entry_get_max_length")
+  (return-type "gint")
+)
+
+
+
+;; From clutter-enum-types.h
+
+(define-function clutter_actor_flags_get_type
+  (c-name "clutter_actor_flags_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_pack_type_get_type
+  (c-name "clutter_pack_type_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_modifier_type_get_type
+  (c-name "clutter_modifier_type_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_event_flags_get_type
+  (c-name "clutter_event_flags_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_event_type_get_type
+  (c-name "clutter_event_type_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_scroll_direction_get_type
+  (c-name "clutter_scroll_direction_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_stage_state_get_type
+  (c-name "clutter_stage_state_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_feature_flags_get_type
+  (c-name "clutter_feature_flags_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_layout_flags_get_type
+  (c-name "clutter_layout_flags_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_init_error_get_type
+  (c-name "clutter_init_error_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_script_error_get_type
+  (c-name "clutter_script_error_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_texture_error_get_type
+  (c-name "clutter_texture_error_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_texture_flags_get_type
+  (c-name "clutter_texture_flags_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_gravity_get_type
+  (c-name "clutter_gravity_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_rotate_axis_get_type
+  (c-name "clutter_rotate_axis_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_rotate_direction_get_type
+  (c-name "clutter_rotate_direction_get_type")
+  (return-type "GType")
+)
+
+
+
+;; From clutter-event.h
+
+(define-function clutter_event_get_type
+  (c-name "clutter_event_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_events_pending
+  (c-name "clutter_events_pending")
+  (return-type "gboolean")
+)
+
+(define-function clutter_event_get
+  (c-name "clutter_event_get")
+  (return-type "ClutterEvent*")
+)
+
+(define-function clutter_event_peek
+  (c-name "clutter_event_peek")
+  (return-type "ClutterEvent*")
+)
+
+(define-method put
+  (of-object "ClutterEvent")
+  (c-name "clutter_event_put")
+  (return-type "none")
+)
+
+(define-function clutter_event_new
+  (c-name "clutter_event_new")
+  (is-constructor-of "ClutterEvent")
+  (return-type "ClutterEvent*")
+  (parameters
+    '("ClutterEventType" "type")
+  )
 )
 
 (define-method copy
-  (of-object "GooCanvasStyle")
-  (c-name "goo_canvas_style_copy")
-  (return-type "GooCanvasStyle*")
+  (of-object "ClutterEvent")
+  (c-name "clutter_event_copy")
+  (return-type "ClutterEvent*")
 )
 
-(define-method get_parent
-  (of-object "GooCanvasStyle")
-  (c-name "goo_canvas_style_get_parent")
-  (return-type "GooCanvasStyle*")
+(define-method free
+  (of-object "ClutterEvent")
+  (c-name "clutter_event_free")
+  (return-type "none")
 )
 
-(define-method set_parent
-  (of-object "GooCanvasStyle")
-  (c-name "goo_canvas_style_set_parent")
+(define-method type
+  (of-object "ClutterEvent")
+  (c-name "clutter_event_type")
+  (return-type "ClutterEventType")
+)
+
+(define-method get_time
+  (of-object "ClutterEvent")
+  (c-name "clutter_event_get_time")
+  (return-type "guint32")
+)
+
+(define-method get_state
+  (of-object "ClutterEvent")
+  (c-name "clutter_event_get_state")
+  (return-type "ClutterModifierType")
+)
+
+(define-method get_coords
+  (of-object "ClutterEvent")
+  (c-name "clutter_event_get_coords")
   (return-type "none")
   (parameters
-    '("GooCanvasStyle*" "parent")
+    '("gint*" "x")
+    '("gint*" "y")
   )
 )
 
-(define-method get_property
-  (of-object "GooCanvasStyle")
-  (c-name "goo_canvas_style_get_property")
-  (return-type "GValue*")
+(define-method symbol
+  (of-object "ClutterKeyEvent")
+  (c-name "clutter_key_event_symbol")
+  (return-type "guint")
+)
+
+(define-method code
+  (of-object "ClutterKeyEvent")
+  (c-name "clutter_key_event_code")
+  (return-type "guint16")
+)
+
+(define-method unicode
+  (of-object "ClutterKeyEvent")
+  (c-name "clutter_key_event_unicode")
+  (return-type "guint32")
+)
+
+(define-method button
+  (of-object "ClutterButtonEvent")
+  (c-name "clutter_button_event_button")
+  (return-type "guint32")
+)
+
+(define-function clutter_keysym_to_unicode
+  (c-name "clutter_keysym_to_unicode")
+  (return-type "guint32")
   (parameters
-    '("GQuark" "property_id")
+    '("guint" "keyval")
   )
 )
 
-(define-method set_property
-  (of-object "GooCanvasStyle")
-  (c-name "goo_canvas_style_set_property")
-  (return-type "none")
-  (parameters
-    '("GQuark" "property_id")
-    '("const-GValue*" "value")
-  )
+(define-method get_source
+  (of-object "ClutterEvent")
+  (c-name "clutter_event_get_source")
+  (return-type "ClutterActor*")
 )
 
-(define-method set_stroke_options
-  (of-object "GooCanvasStyle")
-  (c-name "goo_canvas_style_set_stroke_options")
+
+
+;; From clutter-feature.h
+
+(define-function clutter_feature_available
+  (c-name "clutter_feature_available")
   (return-type "gboolean")
   (parameters
-    '("cairo_t*" "cr")
+    '("ClutterFeatureFlags" "feature")
   )
 )
 
-(define-method set_fill_options
-  (of-object "GooCanvasStyle")
-  (c-name "goo_canvas_style_set_fill_options")
+(define-function clutter_feature_get_all
+  (c-name "clutter_feature_get_all")
+  (return-type "ClutterFeatureFlags")
+)
+
+
+
+;; From clutter-fixed.h
+
+(define-function clutter_sinx
+  (c-name "clutter_sinx")
+  (return-type "ClutterFixed")
+  (parameters
+    '("ClutterFixed" "angle")
+  )
+)
+
+(define-function clutter_sini
+  (c-name "clutter_sini")
+  (return-type "ClutterFixed")
+  (parameters
+    '("ClutterAngle" "angle")
+  )
+)
+
+(define-function clutter_tani
+  (c-name "clutter_tani")
+  (return-type "ClutterFixed")
+  (parameters
+    '("ClutterAngle" "angle")
+  )
+)
+
+(define-function clutter_sqrtx
+  (c-name "clutter_sqrtx")
+  (return-type "ClutterFixed")
+  (parameters
+    '("ClutterFixed" "x")
+  )
+)
+
+(define-function clutter_sqrti
+  (c-name "clutter_sqrti")
+  (return-type "gint")
+  (parameters
+    '("gint" "x")
+  )
+)
+
+(define-function clutter_log2x
+  (c-name "clutter_log2x")
+  (return-type "ClutterFixed")
+  (parameters
+    '("guint" "x")
+  )
+)
+
+(define-function clutter_pow2x
+  (c-name "clutter_pow2x")
+  (return-type "guint")
+  (parameters
+    '("ClutterFixed" "x")
+  )
+)
+
+(define-function clutter_powx
+  (c-name "clutter_powx")
+  (return-type "guint")
+  (parameters
+    '("guint" "x")
+    '("ClutterFixed" "y")
+  )
+)
+
+
+
+;; From clutter-group.h
+
+(define-function clutter_group_get_type
+  (c-name "clutter_group_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_group_new
+  (c-name "clutter_group_new")
+  (is-constructor-of "ClutterGroup")
+  (return-type "ClutterActor*")
+)
+
+(define-method get_nth_child
+  (of-object "ClutterGroup")
+  (c-name "clutter_group_get_nth_child")
+  (return-type "ClutterActor*")
+  (parameters
+    '("gint" "index_")
+  )
+)
+
+(define-method get_n_children
+  (of-object "ClutterGroup")
+  (c-name "clutter_group_get_n_children")
+  (return-type "gint")
+)
+
+(define-method remove_all
+  (of-object "ClutterGroup")
+  (c-name "clutter_group_remove_all")
+  (return-type "none")
+)
+
+(define-method add
+  (of-object "ClutterGroup")
+  (c-name "clutter_group_add")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "actor")
+  )
+)
+
+(define-method add_many
+  (of-object "ClutterGroup")
+  (c-name "clutter_group_add_many")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "first_actor")
+  )
+  (varargs #t)
+)
+
+(define-method add_many_valist
+  (of-object "ClutterGroup")
+  (c-name "clutter_group_add_many_valist")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "first_actor")
+    '("va_list" "var_args")
+  )
+)
+
+(define-method remove
+  (of-object "ClutterGroup")
+  (c-name "clutter_group_remove")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "actor")
+  )
+)
+
+(define-method find_child_by_id
+  (of-object "ClutterGroup")
+  (c-name "clutter_group_find_child_by_id")
+  (return-type "ClutterActor*")
+  (parameters
+    '("guint" "id")
+  )
+)
+
+(define-method raise
+  (of-object "ClutterGroup")
+  (c-name "clutter_group_raise")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "actor")
+    '("ClutterActor*" "sibling")
+  )
+)
+
+(define-method lower
+  (of-object "ClutterGroup")
+  (c-name "clutter_group_lower")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "actor")
+    '("ClutterActor*" "sibling")
+  )
+)
+
+(define-method sort_depth_order
+  (of-object "ClutterGroup")
+  (c-name "clutter_group_sort_depth_order")
+  (return-type "none")
+)
+
+
+
+;; From clutter.h
+
+
+
+;; From clutter-hbox.h
+
+(define-function clutter_hbox_get_type
+  (c-name "clutter_hbox_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_hbox_new
+  (c-name "clutter_hbox_new")
+  (is-constructor-of "ClutterHbox")
+  (return-type "ClutterActor*")
+)
+
+
+
+;; From clutter-keysyms.h
+
+
+
+;; From clutter-keysyms-table.h
+
+
+
+;; From clutter-label.h
+
+(define-function clutter_label_get_type
+  (c-name "clutter_label_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_label_new
+  (c-name "clutter_label_new")
+  (is-constructor-of "ClutterLabel")
+  (return-type "ClutterActor*")
+)
+
+(define-function clutter_label_new_full
+  (c-name "clutter_label_new_full")
+  (return-type "ClutterActor*")
+  (parameters
+    '("const-gchar*" "font_name")
+    '("const-gchar*" "text")
+    '("ClutterColor*" "color")
+  )
+)
+
+(define-function clutter_label_new_with_text
+  (c-name "clutter_label_new_with_text")
+  (return-type "ClutterActor*")
+  (parameters
+    '("const-gchar*" "font_name")
+    '("const-gchar*" "text")
+  )
+)
+
+(define-method set_text
+  (of-object "ClutterLabel")
+  (c-name "clutter_label_set_text")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "text")
+  )
+)
+
+(define-method get_text
+  (of-object "ClutterLabel")
+  (c-name "clutter_label_get_text")
+  (return-type "const-gchar*")
+)
+
+(define-method set_font_name
+  (of-object "ClutterLabel")
+  (c-name "clutter_label_set_font_name")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "font_name")
+  )
+)
+
+(define-method get_font_name
+  (of-object "ClutterLabel")
+  (c-name "clutter_label_get_font_name")
+  (return-type "const-gchar*")
+)
+
+(define-method set_color
+  (of-object "ClutterLabel")
+  (c-name "clutter_label_set_color")
+  (return-type "none")
+  (parameters
+    '("const-ClutterColor*" "color")
+  )
+)
+
+(define-method get_color
+  (of-object "ClutterLabel")
+  (c-name "clutter_label_get_color")
+  (return-type "none")
+  (parameters
+    '("ClutterColor*" "color")
+  )
+)
+
+(define-method set_ellipsize
+  (of-object "ClutterLabel")
+  (c-name "clutter_label_set_ellipsize")
+  (return-type "none")
+  (parameters
+    '("PangoEllipsizeMode" "mode")
+  )
+)
+
+(define-method get_ellipsize
+  (of-object "ClutterLabel")
+  (c-name "clutter_label_get_ellipsize")
+  (return-type "PangoEllipsizeMode")
+)
+
+(define-method set_line_wrap
+  (of-object "ClutterLabel")
+  (c-name "clutter_label_set_line_wrap")
+  (return-type "none")
+  (parameters
+    '("gboolean" "wrap")
+  )
+)
+
+(define-method get_line_wrap
+  (of-object "ClutterLabel")
+  (c-name "clutter_label_get_line_wrap")
+  (return-type "gboolean")
+)
+
+(define-method set_line_wrap_mode
+  (of-object "ClutterLabel")
+  (c-name "clutter_label_set_line_wrap_mode")
+  (return-type "none")
+  (parameters
+    '("PangoWrapMode" "wrap_mode")
+  )
+)
+
+(define-method get_line_wrap_mode
+  (of-object "ClutterLabel")
+  (c-name "clutter_label_get_line_wrap_mode")
+  (return-type "PangoWrapMode")
+)
+
+(define-method get_layout
+  (of-object "ClutterLabel")
+  (c-name "clutter_label_get_layout")
+  (return-type "PangoLayout*")
+)
+
+(define-method set_attributes
+  (of-object "ClutterLabel")
+  (c-name "clutter_label_set_attributes")
+  (return-type "none")
+  (parameters
+    '("PangoAttrList*" "attrs")
+  )
+)
+
+(define-method get_attributes
+  (of-object "ClutterLabel")
+  (c-name "clutter_label_get_attributes")
+  (return-type "PangoAttrList*")
+)
+
+(define-method set_use_markup
+  (of-object "ClutterLabel")
+  (c-name "clutter_label_set_use_markup")
+  (return-type "none")
+  (parameters
+    '("gboolean" "setting")
+  )
+)
+
+(define-method get_use_markup
+  (of-object "ClutterLabel")
+  (c-name "clutter_label_get_use_markup")
+  (return-type "gboolean")
+)
+
+(define-method set_alignment
+  (of-object "ClutterLabel")
+  (c-name "clutter_label_set_alignment")
+  (return-type "none")
+  (parameters
+    '("PangoAlignment" "alignment")
+  )
+)
+
+(define-method get_alignment
+  (of-object "ClutterLabel")
+  (c-name "clutter_label_get_alignment")
+  (return-type "PangoAlignment")
+)
+
+
+
+;; From clutter-layout.h
+
+(define-function clutter_layout_get_type
+  (c-name "clutter_layout_get_type")
+  (return-type "GType")
+)
+
+(define-method get_layout_flags
+  (of-object "ClutterLayout")
+  (c-name "clutter_layout_get_layout_flags")
+  (return-type "ClutterLayoutFlags")
+)
+
+(define-method width_for_height
+  (of-object "ClutterLayout")
+  (c-name "clutter_layout_width_for_height")
+  (return-type "none")
+  (parameters
+    '("gint*" "width")
+    '("gint" "height")
+  )
+)
+
+(define-method height_for_width
+  (of-object "ClutterLayout")
+  (c-name "clutter_layout_height_for_width")
+  (return-type "none")
+  (parameters
+    '("gint" "width")
+    '("gint*" "height")
+  )
+)
+
+(define-method natural_request
+  (of-object "ClutterLayout")
+  (c-name "clutter_layout_natural_request")
+  (return-type "none")
+  (parameters
+    '("gint*" "width")
+    '("gint*" "height")
+  )
+)
+
+(define-method tune_request
+  (of-object "ClutterLayout")
+  (c-name "clutter_layout_tune_request")
+  (return-type "none")
+  (parameters
+    '("gint" "given_width")
+    '("gint" "given_height")
+    '("gint*" "width")
+    '("gint*" "height")
+  )
+)
+
+
+
+;; From clutter-main.h
+
+(define-function clutter_init_error_quark
+  (c-name "clutter_init_error_quark")
+  (return-type "GQuark")
+)
+
+(define-function clutter_base_init
+  (c-name "clutter_base_init")
+  (return-type "none")
+)
+
+(define-function clutter_init
+  (c-name "clutter_init")
+  (return-type "ClutterInitError")
+  (parameters
+    '("int*" "argc")
+    '("char***" "argv")
+  )
+)
+
+(define-function clutter_init_with_args
+  (c-name "clutter_init_with_args")
+  (return-type "ClutterInitError")
+  (parameters
+    '("int*" "argc")
+    '("char***" "argv")
+    '("char*" "parameter_string")
+    '("GOptionEntry*" "entries")
+    '("char*" "translation_domain")
+    '("GError**" "error")
+  )
+)
+
+(define-function clutter_get_option_group
+  (c-name "clutter_get_option_group")
+  (return-type "GOptionGroup*")
+)
+
+(define-function clutter_main
+  (c-name "clutter_main")
+  (return-type "none")
+)
+
+(define-function clutter_main_quit
+  (c-name "clutter_main_quit")
+  (return-type "none")
+)
+
+(define-function clutter_main_level
+  (c-name "clutter_main_level")
+  (return-type "gint")
+)
+
+(define-function clutter_redraw
+  (c-name "clutter_redraw")
+  (return-type "none")
+)
+
+(define-function clutter_get_debug_enabled
+  (c-name "clutter_get_debug_enabled")
+  (return-type "gboolean")
+)
+
+(define-function clutter_get_show_fps
+  (c-name "clutter_get_show_fps")
+  (return-type "gboolean")
+)
+
+(define-function clutter_get_timestamp
+  (c-name "clutter_get_timestamp")
+  (return-type "gulong")
+)
+
+(define-function clutter_threads_init
+  (c-name "clutter_threads_init")
+  (return-type "none")
+)
+
+(define-function clutter_threads_enter
+  (c-name "clutter_threads_enter")
+  (return-type "none")
+)
+
+(define-function clutter_threads_leave
+  (c-name "clutter_threads_leave")
+  (return-type "none")
+)
+
+(define-function clutter_threads_set_lock_functions
+  (c-name "clutter_threads_set_lock_functions")
+  (return-type "none")
+  (parameters
+    '("GCallback" "enter_fn")
+    '("GCallback" "leave_fn")
+  )
+)
+
+(define-function clutter_threads_add_idle
+  (c-name "clutter_threads_add_idle")
+  (return-type "guint")
+  (parameters
+    '("GSourceFunc" "func")
+    '("gpointer" "data")
+  )
+)
+
+(define-function clutter_threads_add_idle_full
+  (c-name "clutter_threads_add_idle_full")
+  (return-type "guint")
+  (parameters
+    '("gint" "priority")
+    '("GSourceFunc" "func")
+    '("gpointer" "data")
+    '("GDestroyNotify" "notify")
+  )
+)
+
+(define-function clutter_threads_add_timeout
+  (c-name "clutter_threads_add_timeout")
+  (return-type "guint")
+  (parameters
+    '("guint" "interval")
+    '("GSourceFunc" "func")
+    '("gpointer" "data")
+  )
+)
+
+(define-function clutter_threads_add_timeout_full
+  (c-name "clutter_threads_add_timeout_full")
+  (return-type "guint")
+  (parameters
+    '("gint" "priority")
+    '("guint" "interval")
+    '("GSourceFunc" "func")
+    '("gpointer" "data")
+    '("GDestroyNotify" "notify")
+  )
+)
+
+(define-function clutter_enable_motion_events
+  (c-name "clutter_enable_motion_events")
+  (return-type "none")
+  (parameters
+    '("gboolean" "enable")
+  )
+)
+
+(define-function clutter_get_motion_events_enabled
+  (c-name "clutter_get_motion_events_enabled")
+  (return-type "gboolean")
+)
+
+(define-function clutter_get_default_frame_rate
+  (c-name "clutter_get_default_frame_rate")
+  (return-type "guint")
+)
+
+(define-function clutter_set_default_frame_rate
+  (c-name "clutter_set_default_frame_rate")
+  (return-type "none")
+  (parameters
+    '("guint" "frames_per_sec")
+  )
+)
+
+
+
+;; From clutter-marshal.h
+
+
+
+;; From clutter-media.h
+
+(define-function clutter_media_get_type
+  (c-name "clutter_media_get_type")
+  (return-type "GType")
+)
+
+(define-method set_uri
+  (of-object "ClutterMedia")
+  (c-name "clutter_media_set_uri")
+  (return-type "none")
+  (parameters
+    '("const-char*" "uri")
+  )
+)
+
+(define-method get_uri
+  (of-object "ClutterMedia")
+  (c-name "clutter_media_get_uri")
+  (return-type "const-char*")
+)
+
+(define-method set_playing
+  (of-object "ClutterMedia")
+  (c-name "clutter_media_set_playing")
+  (return-type "none")
+  (parameters
+    '("gboolean" "playing")
+  )
+)
+
+(define-method get_playing
+  (of-object "ClutterMedia")
+  (c-name "clutter_media_get_playing")
+  (return-type "gboolean")
+)
+
+(define-method set_position
+  (of-object "ClutterMedia")
+  (c-name "clutter_media_set_position")
+  (return-type "none")
+  (parameters
+    '("int" "position")
+  )
+)
+
+(define-method get_position
+  (of-object "ClutterMedia")
+  (c-name "clutter_media_get_position")
+  (return-type "int")
+)
+
+(define-method set_volume
+  (of-object "ClutterMedia")
+  (c-name "clutter_media_set_volume")
+  (return-type "none")
+  (parameters
+    '("double" "volume")
+  )
+)
+
+(define-method get_volume
+  (of-object "ClutterMedia")
+  (c-name "clutter_media_get_volume")
+  (return-type "double")
+)
+
+(define-method get_can_seek
+  (of-object "ClutterMedia")
+  (c-name "clutter_media_get_can_seek")
+  (return-type "gboolean")
+)
+
+(define-method get_buffer_percent
+  (of-object "ClutterMedia")
+  (c-name "clutter_media_get_buffer_percent")
+  (return-type "int")
+)
+
+(define-method get_duration
+  (of-object "ClutterMedia")
+  (c-name "clutter_media_get_duration")
+  (return-type "int")
+)
+
+(define-method set_filename
+  (of-object "ClutterMedia")
+  (c-name "clutter_media_set_filename")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "filename")
+  )
+)
+
+
+
+;; From clutter-private.h
+
+(define-function clutter_context_get_default
+  (c-name "clutter_context_get_default")
+  (return-type "ClutterMainContext*")
+)
+
+(define-function clutter_do_event
+  (c-name "clutter_do_event")
+  (return-type "none")
+  (parameters
+    '("ClutterEvent*" "event")
+  )
+)
+
+
+
+;; From clutter-rectangle.h
+
+(define-function clutter_rectangle_get_type
+  (c-name "clutter_rectangle_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_rectangle_new
+  (c-name "clutter_rectangle_new")
+  (is-constructor-of "ClutterRectangle")
+  (return-type "ClutterActor*")
+)
+
+(define-function clutter_rectangle_new_with_color
+  (c-name "clutter_rectangle_new_with_color")
+  (return-type "ClutterActor*")
+  (parameters
+    '("const-ClutterColor*" "color")
+  )
+)
+
+(define-method get_color
+  (of-object "ClutterRectangle")
+  (c-name "clutter_rectangle_get_color")
+  (return-type "none")
+  (parameters
+    '("ClutterColor*" "color")
+  )
+)
+
+(define-method set_color
+  (of-object "ClutterRectangle")
+  (c-name "clutter_rectangle_set_color")
+  (return-type "none")
+  (parameters
+    '("const-ClutterColor*" "color")
+  )
+)
+
+(define-method get_border_width
+  (of-object "ClutterRectangle")
+  (c-name "clutter_rectangle_get_border_width")
+  (return-type "guint")
+)
+
+(define-method set_border_width
+  (of-object "ClutterRectangle")
+  (c-name "clutter_rectangle_set_border_width")
+  (return-type "none")
+  (parameters
+    '("guint" "width")
+  )
+)
+
+(define-method get_border_color
+  (of-object "ClutterRectangle")
+  (c-name "clutter_rectangle_get_border_color")
+  (return-type "none")
+  (parameters
+    '("ClutterColor*" "color")
+  )
+)
+
+(define-method set_border_color
+  (of-object "ClutterRectangle")
+  (c-name "clutter_rectangle_set_border_color")
+  (return-type "none")
+  (parameters
+    '("const-ClutterColor*" "color")
+  )
+)
+
+
+
+;; From clutter-score.h
+
+(define-function clutter_score_get_type
+  (c-name "clutter_score_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_score_new
+  (c-name "clutter_score_new")
+  (is-constructor-of "ClutterScore")
+  (return-type "ClutterScore*")
+)
+
+(define-method set_loop
+  (of-object "ClutterScore")
+  (c-name "clutter_score_set_loop")
+  (return-type "none")
+  (parameters
+    '("gboolean" "loop")
+  )
+)
+
+(define-method get_loop
+  (of-object "ClutterScore")
+  (c-name "clutter_score_get_loop")
+  (return-type "gboolean")
+)
+
+(define-method rewind
+  (of-object "ClutterScore")
+  (c-name "clutter_score_rewind")
+  (return-type "none")
+)
+
+(define-method is_playing
+  (of-object "ClutterScore")
+  (c-name "clutter_score_is_playing")
+  (return-type "gboolean")
+)
+
+(define-method start
+  (of-object "ClutterScore")
+  (c-name "clutter_score_start")
+  (return-type "none")
+)
+
+(define-method stop
+  (of-object "ClutterScore")
+  (c-name "clutter_score_stop")
+  (return-type "none")
+)
+
+(define-method pause
+  (of-object "ClutterScore")
+  (c-name "clutter_score_pause")
+  (return-type "none")
+)
+
+(define-method append
+  (of-object "ClutterScore")
+  (c-name "clutter_score_append")
+  (return-type "none")
+  (parameters
+    '("ClutterTimeline*" "timeline_existing")
+    '("ClutterTimeline*" "timeline_new")
+  )
+)
+
+(define-method add
+  (of-object "ClutterScore")
+  (c-name "clutter_score_add")
+  (return-type "none")
+  (parameters
+    '("ClutterTimeline*" "timeline")
+  )
+)
+
+(define-method remove
+  (of-object "ClutterScore")
+  (c-name "clutter_score_remove")
+  (return-type "none")
+  (parameters
+    '("ClutterTimeline*" "timeline_parent")
+    '("ClutterTimeline*" "timeline")
+  )
+)
+
+(define-method remove_all
+  (of-object "ClutterScore")
+  (c-name "clutter_score_remove_all")
+  (return-type "none")
+)
+
+
+
+;; From clutter-script.h
+
+(define-function clutter_script_error_quark
+  (c-name "clutter_script_error_quark")
+  (return-type "GQuark")
+)
+
+(define-function clutter_script_get_type
+  (c-name "clutter_script_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_script_new
+  (c-name "clutter_script_new")
+  (is-constructor-of "ClutterScript")
+  (return-type "ClutterScript*")
+)
+
+(define-method load_from_file
+  (of-object "ClutterScript")
+  (c-name "clutter_script_load_from_file")
+  (return-type "guint")
+  (parameters
+    '("const-gchar*" "filename")
+    '("GError**" "error")
+  )
+)
+
+(define-method load_from_data
+  (of-object "ClutterScript")
+  (c-name "clutter_script_load_from_data")
+  (return-type "guint")
+  (parameters
+    '("const-gchar*" "data")
+    '("gsize" "length")
+    '("GError**" "error")
+  )
+)
+
+(define-method get_object
+  (of-object "ClutterScript")
+  (c-name "clutter_script_get_object")
+  (return-type "GObject*")
+  (parameters
+    '("const-gchar*" "name")
+  )
+)
+
+(define-method get_objects
+  (of-object "ClutterScript")
+  (c-name "clutter_script_get_objects")
+  (return-type "GList*")
+  (parameters
+    '("const-gchar*" "first_name")
+  )
+  (varargs #t)
+)
+
+(define-method unmerge_objects
+  (of-object "ClutterScript")
+  (c-name "clutter_script_unmerge_objects")
+  (return-type "none")
+  (parameters
+    '("guint" "merge_id")
+  )
+)
+
+(define-method ensure_objects
+  (of-object "ClutterScript")
+  (c-name "clutter_script_ensure_objects")
+  (return-type "none")
+)
+
+
+
+;; From clutter-script-private.h
+
+(define-method construct_object
+  (of-object "ClutterScript")
+  (c-name "clutter_script_construct_object")
+  (return-type "GObject*")
+  (parameters
+    '("ObjectInfo*" "info")
+  )
+)
+
+(define-function clutter_script_enum_from_string
+  (c-name "clutter_script_enum_from_string")
   (return-type "gboolean")
   (parameters
-    '("cairo_t*" "cr")
+    '("GType" "gtype")
+    '("const-gchar*" "string")
+    '("gint*" "enum_value")
+  )
+)
+
+(define-function clutter_script_flags_from_string
+  (c-name "clutter_script_flags_from_string")
+  (return-type "gboolean")
+  (parameters
+    '("GType" "gtype")
+    '("const-gchar*" "string")
+    '("gint*" "flags_value")
   )
 )
 
 
 
-;; From goocanvastable.h
+;; From clutter-stage.h
 
-(define-function goo_canvas_table_get_type
-  (c-name "goo_canvas_table_get_type")
+(define-function clutter_perspective_get_type
+  (c-name "clutter_perspective_get_type")
   (return-type "GType")
 )
 
-(define-function goo_canvas_table_new
-  (c-name "goo_canvas_table_new")
-  (is-constructor-of "GooCanvasTable")
-  (return-type "GooCanvasItem*")
-  (parameters
-    '("GooCanvasItem*" "parent")
-  )
-  (varargs #t)
+(define-method copy
+  (of-object "ClutterPerspective")
+  (c-name "clutter_perspective_copy")
+  (return-type "ClutterPerspective*")
 )
 
-(define-function goo_canvas_table_model_get_type
-  (c-name "goo_canvas_table_model_get_type")
-  (return-type "GType")
-)
-
-(define-function goo_canvas_table_model_new
-  (c-name "goo_canvas_table_model_new")
-  (is-constructor-of "GooCanvasTableModel")
-  (return-type "GooCanvasItemModel*")
-  (parameters
-    '("GooCanvasItemModel*" "parent")
-  )
-  (varargs #t)
-)
-
-
-
-;; From goocanvastext.h
-
-(define-function goo_canvas_text_get_type
-  (c-name "goo_canvas_text_get_type")
-  (return-type "GType")
-)
-
-(define-function goo_canvas_text_new
-  (c-name "goo_canvas_text_new")
-  (is-constructor-of "GooCanvasText")
-  (return-type "GooCanvasItem*")
-  (parameters
-    '("GooCanvasItem*" "parent")
-    '("const-char*" "string")
-    '("gdouble" "x")
-    '("gdouble" "y")
-    '("gdouble" "width")
-    '("GtkAnchorType" "anchor")
-  )
-  (varargs #t)
-)
-
-(define-function goo_canvas_text_model_get_type
-  (c-name "goo_canvas_text_model_get_type")
-  (return-type "GType")
-)
-
-(define-function goo_canvas_text_model_new
-  (c-name "goo_canvas_text_model_new")
-  (is-constructor-of "GooCanvasTextModel")
-  (return-type "GooCanvasItemModel*")
-  (parameters
-    '("GooCanvasItemModel*" "parent")
-    '("const-char*" "string")
-    '("gdouble" "x")
-    '("gdouble" "y")
-    '("gdouble" "width")
-    '("GtkAnchorType" "anchor")
-  )
-  (varargs #t)
-)
-
-
-
-;; From goocanvasutils.h
-
-(define-function goo_canvas_parse_path_data
-  (c-name "goo_canvas_parse_path_data")
-  (return-type "GArray*")
-  (parameters
-    '("const-gchar*" "path_data")
-  )
-)
-
-(define-function goo_canvas_create_path
-  (c-name "goo_canvas_create_path")
-  (return-type "none")
-  (parameters
-    '("GArray*" "commands")
-    '("cairo_t*" "cr")
-  )
-)
-
-(define-function goo_canvas_line_dash_get_type
-  (c-name "goo_canvas_line_dash_get_type")
-  (return-type "GType")
-)
-
-(define-function goo_canvas_line_dash_new
-  (c-name "goo_canvas_line_dash_new")
-  (is-constructor-of "GooCanvasLineDash")
-  (return-type "GooCanvasLineDash*")
-  (parameters
-    '("gint" "num_dashes")
-  )
-  (varargs #t)
-)
-
-(define-function goo_canvas_line_dash_newv
-  (c-name "goo_canvas_line_dash_newv")
-  (return-type "GooCanvasLineDash*")
-  (parameters
-    '("gint" "num_dashes")
-    '("double*" "dashes")
-  )
-)
-
-(define-method ref
-  (of-object "GooCanvasLineDash")
-  (c-name "goo_canvas_line_dash_ref")
-  (return-type "GooCanvasLineDash*")
-)
-
-(define-method unref
-  (of-object "GooCanvasLineDash")
-  (c-name "goo_canvas_line_dash_unref")
+(define-method free
+  (of-object "ClutterPerspective")
+  (c-name "clutter_perspective_free")
   (return-type "none")
 )
 
-(define-function goo_cairo_matrix_get_type
-  (c-name "goo_cairo_matrix_get_type")
+(define-function clutter_stage_get_type
+  (c-name "clutter_stage_get_type")
   (return-type "GType")
 )
 
-(define-function goo_cairo_matrix_copy
-  (c-name "goo_cairo_matrix_copy")
-  (return-type "cairo_matrix_t*")
-  (parameters
-    '("const-cairo_matrix_t*" "matrix")
-  )
+(define-function clutter_stage_get_default
+  (c-name "clutter_stage_get_default")
+  (return-type "ClutterActor*")
 )
 
-(define-function goo_cairo_matrix_free
-  (c-name "goo_cairo_matrix_free")
+(define-method set_color
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_set_color")
   (return-type "none")
   (parameters
-    '("cairo_matrix_t*" "matrix")
+    '("const-ClutterColor*" "color")
   )
 )
 
-(define-function goo_cairo_pattern_get_type
-  (c-name "goo_cairo_pattern_get_type")
-  (return-type "GType")
-)
-
-(define-function goo_cairo_fill_rule_get_type
-  (c-name "goo_cairo_fill_rule_get_type")
-  (return-type "GType")
-)
-
-(define-function goo_cairo_operator_get_type
-  (c-name "goo_cairo_operator_get_type")
-  (return-type "GType")
-)
-
-(define-function goo_cairo_antialias_get_type
-  (c-name "goo_cairo_antialias_get_type")
-  (return-type "GType")
-)
-
-(define-function goo_cairo_line_cap_get_type
-  (c-name "goo_cairo_line_cap_get_type")
-  (return-type "GType")
-)
-
-(define-function goo_cairo_line_join_get_type
-  (c-name "goo_cairo_line_join_get_type")
-  (return-type "GType")
-)
-
-(define-function goo_cairo_hint_metrics_get_type
-  (c-name "goo_cairo_hint_metrics_get_type")
-  (return-type "GType")
-)
-
-
-
-;; From goocanvaswidget.h
-
-(define-function goo_canvas_widget_get_type
-  (c-name "goo_canvas_widget_get_type")
-  (return-type "GType")
-)
-
-(define-function goo_canvas_widget_new
-  (c-name "goo_canvas_widget_new")
-  (is-constructor-of "GooCanvasWidget")
-  (return-type "GooCanvasItem*")
+(define-method get_color
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_get_color")
+  (return-type "none")
   (parameters
-    '("GooCanvasItem*" "parent")
-    '("GtkWidget*" "widget")
-    '("gdouble" "x")
-    '("gdouble" "y")
-    '("gdouble" "width")
-    '("gdouble" "height")
+    '("ClutterColor*" "color")
   )
-  (varargs #t)
+)
+
+(define-method set_perspectivex
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_set_perspectivex")
+  (return-type "none")
+  (parameters
+    '("ClutterPerspective*" "perspective")
+  )
+)
+
+(define-method get_perspectivex
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_get_perspectivex")
+  (return-type "none")
+  (parameters
+    '("ClutterPerspective*" "perspective")
+  )
+)
+
+(define-method set_perspective
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_set_perspective")
+  (return-type "none")
+  (parameters
+    '("gfloat" "fovy")
+    '("gfloat" "aspect")
+    '("gfloat" "z_near")
+    '("gfloat" "z_far")
+  )
+)
+
+(define-method get_perspective
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_get_perspective")
+  (return-type "none")
+  (parameters
+    '("gfloat*" "fovy")
+    '("gfloat*" "aspect")
+    '("gfloat*" "z_near")
+    '("gfloat*" "z_far")
+  )
+)
+
+(define-method fullscreen
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_fullscreen")
+  (return-type "none")
+)
+
+(define-method unfullscreen
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_unfullscreen")
+  (return-type "none")
+)
+
+(define-method show_cursor
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_show_cursor")
+  (return-type "none")
+)
+
+(define-method hide_cursor
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_hide_cursor")
+  (return-type "none")
+)
+
+(define-method get_actor_at_pos
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_get_actor_at_pos")
+  (return-type "ClutterActor*")
+  (parameters
+    '("gint" "x")
+    '("gint" "y")
+  )
+)
+
+(define-method snapshot
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_snapshot")
+  (return-type "GdkPixbuf*")
+  (parameters
+    '("gint" "x")
+    '("gint" "y")
+    '("gint" "width")
+    '("gint" "height")
+  )
+)
+
+(define-method event
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_event")
+  (return-type "gboolean")
+  (parameters
+    '("ClutterEvent*" "event")
+  )
+)
+
+(define-method set_title
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_set_title")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "title")
+  )
+)
+
+(define-method get_title
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_get_title")
+  (return-type "const-gchar*")
+)
+
+(define-method set_user_resizable
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_set_user_resizable")
+  (return-type "none")
+  (parameters
+    '("gboolean" "resizable")
+  )
+)
+
+(define-method get_user_resizable
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_get_user_resizable")
+  (return-type "gboolean")
+)
+
+(define-method set_key_focus
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_set_key_focus")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "actor")
+  )
+)
+
+(define-method get_key_focus
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_get_key_focus")
+  (return-type "ClutterActor*")
 )
 
 
 
-;; From stamp-goocanvasenumtypes.h
+;; From clutter-texture.h
+
+(define-function clutter_texture_error_quark
+  (c-name "clutter_texture_error_quark")
+  (return-type "GQuark")
+)
+
+(define-function clutter_texture_get_type
+  (c-name "clutter_texture_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_texture_new
+  (c-name "clutter_texture_new")
+  (is-constructor-of "ClutterTexture")
+  (return-type "ClutterActor*")
+)
+
+(define-function clutter_texture_new_from_pixbuf
+  (c-name "clutter_texture_new_from_pixbuf")
+  (return-type "ClutterActor*")
+  (parameters
+    '("GdkPixbuf*" "pixbuf")
+  )
+)
+
+(define-method set_from_rgb_data
+  (of-object "ClutterTexture")
+  (c-name "clutter_texture_set_from_rgb_data")
+  (return-type "gboolean")
+  (parameters
+    '("const-guchar*" "data")
+    '("gboolean" "has_alpha")
+    '("gint" "width")
+    '("gint" "height")
+    '("gint" "rowstride")
+    '("gint" "bpp")
+    '("ClutterTextureFlags" "flags")
+    '("GError**" "error")
+  )
+)
+
+(define-method set_from_yuv_data
+  (of-object "ClutterTexture")
+  (c-name "clutter_texture_set_from_yuv_data")
+  (return-type "gboolean")
+  (parameters
+    '("const-guchar*" "data")
+    '("gint" "width")
+    '("gint" "height")
+    '("ClutterTextureFlags" "flags")
+    '("GError**" "error")
+  )
+)
+
+(define-method set_pixbuf
+  (of-object "ClutterTexture")
+  (c-name "clutter_texture_set_pixbuf")
+  (return-type "gboolean")
+  (parameters
+    '("GdkPixbuf*" "pixbuf")
+    '("GError**" "error")
+  )
+)
+
+(define-method get_pixbuf
+  (of-object "ClutterTexture")
+  (c-name "clutter_texture_get_pixbuf")
+  (return-type "GdkPixbuf*")
+)
+
+(define-method get_base_size
+  (of-object "ClutterTexture")
+  (c-name "clutter_texture_get_base_size")
+  (return-type "none")
+  (parameters
+    '("gint*" "width")
+    '("gint*" "height")
+  )
+)
+
+(define-method bind_tile
+  (of-object "ClutterTexture")
+  (c-name "clutter_texture_bind_tile")
+  (return-type "none")
+  (parameters
+    '("gint" "index_")
+  )
+)
+
+(define-method get_n_tiles
+  (of-object "ClutterTexture")
+  (c-name "clutter_texture_get_n_tiles")
+  (return-type "none")
+  (parameters
+    '("gint*" "n_x_tiles")
+    '("gint*" "n_y_tiles")
+  )
+)
+
+(define-method get_x_tile_detail
+  (of-object "ClutterTexture")
+  (c-name "clutter_texture_get_x_tile_detail")
+  (return-type "none")
+  (parameters
+    '("gint" "x_index")
+    '("gint*" "pos")
+    '("gint*" "size")
+    '("gint*" "waste")
+  )
+)
+
+(define-method get_y_tile_detail
+  (of-object "ClutterTexture")
+  (c-name "clutter_texture_get_y_tile_detail")
+  (return-type "none")
+  (parameters
+    '("gint" "y_index")
+    '("gint*" "pos")
+    '("gint*" "size")
+    '("gint*" "waste")
+  )
+)
+
+(define-method has_generated_tiles
+  (of-object "ClutterTexture")
+  (c-name "clutter_texture_has_generated_tiles")
+  (return-type "gboolean")
+)
+
+(define-method is_tiled
+  (of-object "ClutterTexture")
+  (c-name "clutter_texture_is_tiled")
+  (return-type "gboolean")
+)
 
 
 
-;; From stamp-goocanvasmarshal.h
+;; From clutter-timeline.h
+
+(define-function clutter_timeline_get_type
+  (c-name "clutter_timeline_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_timeline_new
+  (c-name "clutter_timeline_new")
+  (is-constructor-of "ClutterTimeline")
+  (return-type "ClutterTimeline*")
+  (parameters
+    '("guint" "n_frames")
+    '("guint" "fps")
+  )
+)
+
+(define-function clutter_timeline_new_for_duration
+  (c-name "clutter_timeline_new_for_duration")
+  (return-type "ClutterTimeline*")
+  (parameters
+    '("guint" "msecs")
+  )
+)
+
+(define-method clone
+  (of-object "ClutterTimeline")
+  (c-name "clutter_timeline_clone")
+  (return-type "ClutterTimeline*")
+)
+
+(define-method get_duration
+  (of-object "ClutterTimeline")
+  (c-name "clutter_timeline_get_duration")
+  (return-type "guint")
+)
+
+(define-method set_duration
+  (of-object "ClutterTimeline")
+  (c-name "clutter_timeline_set_duration")
+  (return-type "none")
+  (parameters
+    '("guint" "msecs")
+  )
+)
+
+(define-method get_speed
+  (of-object "ClutterTimeline")
+  (c-name "clutter_timeline_get_speed")
+  (return-type "guint")
+)
+
+(define-method set_speed
+  (of-object "ClutterTimeline")
+  (c-name "clutter_timeline_set_speed")
+  (return-type "none")
+  (parameters
+    '("guint" "fps")
+  )
+)
+
+(define-method start
+  (of-object "ClutterTimeline")
+  (c-name "clutter_timeline_start")
+  (return-type "none")
+)
+
+(define-method pause
+  (of-object "ClutterTimeline")
+  (c-name "clutter_timeline_pause")
+  (return-type "none")
+)
+
+(define-method stop
+  (of-object "ClutterTimeline")
+  (c-name "clutter_timeline_stop")
+  (return-type "none")
+)
+
+(define-method set_loop
+  (of-object "ClutterTimeline")
+  (c-name "clutter_timeline_set_loop")
+  (return-type "none")
+  (parameters
+    '("gboolean" "loop")
+  )
+)
+
+(define-method get_loop
+  (of-object "ClutterTimeline")
+  (c-name "clutter_timeline_get_loop")
+  (return-type "gboolean")
+)
+
+(define-method rewind
+  (of-object "ClutterTimeline")
+  (c-name "clutter_timeline_rewind")
+  (return-type "none")
+)
+
+(define-method skip
+  (of-object "ClutterTimeline")
+  (c-name "clutter_timeline_skip")
+  (return-type "none")
+  (parameters
+    '("guint" "n_frames")
+  )
+)
+
+(define-method advance
+  (of-object "ClutterTimeline")
+  (c-name "clutter_timeline_advance")
+  (return-type "none")
+  (parameters
+    '("guint" "frame_num")
+  )
+)
+
+(define-method get_current_frame
+  (of-object "ClutterTimeline")
+  (c-name "clutter_timeline_get_current_frame")
+  (return-type "gint")
+)
+
+(define-method get_progress
+  (of-object "ClutterTimeline")
+  (c-name "clutter_timeline_get_progress")
+  (return-type "gdouble")
+)
+
+(define-method get_progressx
+  (of-object "ClutterTimeline")
+  (c-name "clutter_timeline_get_progressx")
+  (return-type "ClutterFixed")
+)
+
+(define-method set_n_frames
+  (of-object "ClutterTimeline")
+  (c-name "clutter_timeline_set_n_frames")
+  (return-type "none")
+  (parameters
+    '("guint" "n_frames")
+  )
+)
+
+(define-method get_n_frames
+  (of-object "ClutterTimeline")
+  (c-name "clutter_timeline_get_n_frames")
+  (return-type "guint")
+)
+
+(define-method is_playing
+  (of-object "ClutterTimeline")
+  (c-name "clutter_timeline_is_playing")
+  (return-type "gboolean")
+)
+
+(define-method set_delay
+  (of-object "ClutterTimeline")
+  (c-name "clutter_timeline_set_delay")
+  (return-type "none")
+  (parameters
+    '("guint" "msecs")
+  )
+)
+
+(define-method get_delay
+  (of-object "ClutterTimeline")
+  (c-name "clutter_timeline_get_delay")
+  (return-type "guint")
+)
+
+
+
+;; From clutter-timeout-pool.h
+
+(define-function clutter_timeout_pool_new
+  (c-name "clutter_timeout_pool_new")
+  (is-constructor-of "ClutterTimeoutPool")
+  (return-type "ClutterTimeoutPool*")
+  (parameters
+    '("gint" "priority")
+  )
+)
+
+(define-method add
+  (of-object "ClutterTimeoutPool")
+  (c-name "clutter_timeout_pool_add")
+  (return-type "guint")
+  (parameters
+    '("guint" "interval")
+    '("GSourceFunc" "func")
+    '("gpointer" "data")
+    '("GDestroyNotify" "notify")
+  )
+)
+
+(define-method remove
+  (of-object "ClutterTimeoutPool")
+  (c-name "clutter_timeout_pool_remove")
+  (return-type "none")
+  (parameters
+    '("guint" "id")
+  )
+)
+
+
+
+;; From clutter-types.h
+
+(define-function clutter_geometry_get_type
+  (c-name "clutter_geometry_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_vertex_get_type
+  (c-name "clutter_vertex_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_knot_get_type
+  (c-name "clutter_knot_get_type")
+  (return-type "GType")
+)
+
+(define-method copy
+  (of-object "ClutterKnot")
+  (c-name "clutter_knot_copy")
+  (return-type "ClutterKnot*")
+)
+
+(define-method free
+  (of-object "ClutterKnot")
+  (c-name "clutter_knot_free")
+  (return-type "none")
+)
+
+(define-method equal
+  (of-object "ClutterKnot")
+  (c-name "clutter_knot_equal")
+  (return-type "gboolean")
+  (parameters
+    '("const-ClutterKnot*" "knot_b")
+  )
+)
+
+(define-function clutter_margin_get_type
+  (c-name "clutter_margin_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_padding_get_type
+  (c-name "clutter_padding_get_type")
+  (return-type "GType")
+)
+
+
+
+;; From clutter-units.h
+
+
+
+;; From clutter-util.h
+
+(define-function clutter_util_next_p2
+  (c-name "clutter_util_next_p2")
+  (return-type "int")
+  (parameters
+    '("int" "a")
+  )
+)
+
+
+
+;; From clutter-vbox.h
+
+(define-function clutter_vbox_get_type
+  (c-name "clutter_vbox_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_vbox_new
+  (c-name "clutter_vbox_new")
+  (is-constructor-of "ClutterVbox")
+  (return-type "ClutterActor*")
+)
+
+
+
+;; From clutter-version.h
+
+
+
+;; From stamp-clutter-enum-types.h
+
+
+
+;; From stamp-clutter-marshal.h
 
 
