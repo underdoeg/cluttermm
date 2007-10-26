@@ -1,10 +1,10 @@
 ## Copyright (c) 2001
-## The goocanvasmm development team.
+## The cluttermm development team.
 
 include $(srcdir)/../../src/Makefile_list_of_hg.am_fragment
 files_built_h		= $(files_hg:.hg=_p.h)
 
-private_includedir	= $(includedir)/goocanvasmm-0.1/goocanvasmm/private
+private_includedir	= $(includedir)/cluttermm-0.1/cluttermm/private
 private_include_HEADERS	= $(files_built_h)
 
 maintainer-clean-local:

@@ -1,15 +1,15 @@
-SUBDIRS		= src goocanvasmm
+SUBDIRS		= src cluttermm
 
 EXTRA_DIST	= README					\
-		  goocanvasmmconfig.h.in goocanvasmm.h	\
-		  goocanvasmm-1.0.pc.in
+		  cluttermmconfig.h.in cluttermm.h	\
+		  cluttermm-1.0.pc.in
 
-goocanvasmm_includedir		= $(includedir)/goocanvasmm-0.1
-goocanvasmm_include_HEADERS	= goocanvasmm.h
+cluttermm_includedir		= $(includedir)/cluttermm-0.1
+cluttermm_include_HEADERS	= cluttermm.h
 
-goocanvasmm_configdir		= $(libdir)/goocanvasmm-0.1/include
-goocanvasmm_config_DATA	= goocanvasmmconfig.h
+cluttermm_configdir		= $(libdir)/cluttermm-0.1/include
+cluttermm_config_DATA	= cluttermmconfig.h
 
 pkgconfigdir		= $(libdir)/pkgconfig
-pkgconfig_DATA		= goocanvasmm-1.0.pc
+pkgconfig_DATA		= cluttermm-1.0.pc
 

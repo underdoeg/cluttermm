@@ -10,14 +10,14 @@
 #  Copyright 1999 gtkmm Development Team
 #  Copyright 1998 Stephan Kulow
 #
-AC_INIT(goocanvas/goocanvasmmconfig.h.in)
+AC_INIT(clutter/cluttermmconfig.h.in)
 
 #########################################################################
 #  Version and initialization
 #########################################################################
-LIBGOOCANVASMM_MAJOR_VERSION=0
-LIBGOOCANVASMM_MINOR_VERSION=3
-LIBGOOCANVASMM_MICRO_VERSION=0
+CLUTTERMM_MAJOR_VERSION=0
+CLUTTERMM_MINOR_VERSION=3
+CLUTTERMM_MICRO_VERSION=0
 
 #
 # +1 : ? : +1  == new interface that does not break old one
@@ -26,29 +26,29 @@ LIBGOOCANVASMM_MICRO_VERSION=0
 #  ? :+1 : ?   == just some internal changes, nothing breaks but might work
 #                 better
 # CURRENT : REVISION : AGE
-LIBGOOCANVASMM_SO_VERSION=1:0:0
+CLUTTERMM_SO_VERSION=1:0:0
 
-LIBGOOCANVASMM_VERSION=$LIBGOOCANVASMM_MAJOR_VERSION.$LIBGOOCANVASMM_MINOR_VERSION.$LIBGOOCANVASMM_MICRO_VERSION
-LIBGOOCANVASMM_RELEASE=$LIBGOOCANVASMM_MAJOR_VERSION.$LIBGOOCANVASMM_MINOR_VERSION
-AC_DEFINE_UNQUOTED(LIBGOOCANVASMM_MAJOR_VERSION, $LIBGOOCANVASMM_MAJOR_VERSION)
-AC_DEFINE_UNQUOTED(LIBGOOCANVASMM_MINOR_VERSION, $LIBGOOCANVASMM_MINOR_VERSION)
-AC_DEFINE_UNQUOTED(LIBGOOCANVASMM_MICRO_VERSION, $LIBGOOCANVASMM_MICRO_VERSION)
-AC_DEFINE_UNQUOTED(LIBGOOCANVASMM_VERSION, "$LIBGOOCANVASMM_VERSION")
-AC_SUBST(LIBGOOCANVASMM_VERSION)
-AC_SUBST(LIBGOOCANVASMM_RELEASE)
-AC_SUBST(LIBGOOCANVASMM_SO_VERSION)
+CLUTTERMM_VERSION=$CLUTTERMM_MAJOR_VERSION.$CLUTTERMM_MINOR_VERSION.$CLUTTERMM_MICRO_VERSION
+CLUTTERMM_RELEASE=$CLUTTERMM_MAJOR_VERSION.$CLUTTERMM_MINOR_VERSION
+AC_DEFINE_UNQUOTED(CLUTTERMM_MAJOR_VERSION, $CLUTTERMM_MAJOR_VERSION)
+AC_DEFINE_UNQUOTED(CLUTTERMM_MINOR_VERSION, $CLUTTERMM_MINOR_VERSION)
+AC_DEFINE_UNQUOTED(CLUTTERMM_MICRO_VERSION, $CLUTTERMM_MICRO_VERSION)
+AC_DEFINE_UNQUOTED(CLUTTERMM_VERSION, "$CLUTTERMM_VERSION")
+AC_SUBST(CLUTTERMM_VERSION)
+AC_SUBST(CLUTTERMM_RELEASE)
+AC_SUBST(CLUTTERMM_SO_VERSION)
 
 AC_CONFIG_AUX_DIR(scripts)
 
 dnl For automake.
-VERSION=$LIBGOOCANVASMM_VERSION
-PACKAGE=goocanvasmm
+VERSION=$CLUTTERMM_VERSION
+PACKAGE=cluttermm
 
 dnl Initialize automake stuff
 AM_INIT_AUTOMAKE($PACKAGE, $VERSION)
 
 dnl Specify a configuration file (no autoheader)
-AM_CONFIG_HEADER(goocanvas/goocanvasmmconfig.h)
+AM_CONFIG_HEADER(clutter/cluttermmconfig.h)
 AM_MAINTAINER_MODE
 AL_ACLOCAL_INCLUDE(scripts)
 
@@ -82,9 +82,9 @@ AC_CHECK_PROGS(PERL, perl5 perl)
 #########################################################################
 #  Dependancy checks
 #########################################################################
-PKG_CHECK_MODULES(LIBGOOCANVASMM, gtkmm-2.4 >= 2.10.9 cairomm-1.0 >= 1.2.2 glibmm-2.4 >= 2.10.0 goocanvas >= 0.8 )
-AC_SUBST(LIBGOOCANVASMM_CFLAGS)
-AC_SUBST(LIBGOOCANVASMM_LIBS)
+PKG_CHECK_MODULES(CLUTTERMM, gtkmm-2.4 >= 2.10.9 clutter-0.5 )
+AC_SUBST(CLUTTERMM_CFLAGS)
+AC_SUBST(CLUTTERMM_LIBS)
 
 GLIBMM_PREFIX=`pkg-config --variable=libdir glibmm-2.4`
 GMM_PROCDIR=$GLIBMM_PREFIX/glibmm-2.4/proc
@@ -102,22 +102,22 @@ AC_LANG_CPLUSPLUS
 # Create a list of input directories for Doxygen.  We have to check wether
 # we are building in the source directory, because Doxygen doesn't like
 # duplicated directories in the input list.
-LIBGOOCANVASMM_DOXYGEN_INPUT=''
+CLUTTERMM_DOXYGEN_INPUT=''
 gtkmm_srcdir=`cd "$srcdir" && pwd`
 gtkmm_builddir=`pwd`
-for sublib in goocanvas
+for sublib in clutter
 do
-  LIBGOOCANVASMM_DOXYGEN_INPUT="$LIBGOOCANVASMM_DOXYGEN_INPUT $gtkmm_builddir/$sublib/$sublib""mm/"
+  CLUTTERMM_DOXYGEN_INPUT="$CLUTTERMM_DOXYGEN_INPUT $gtkmm_builddir/$sublib/$sublib""mm/"
   test "x$gtkmm_builddir" = "x$gtkmm_srcdir" || \
-    LIBGOOCANVASMM_DOXYGEN_INPUT="$LIBGOOCANVASMM_DOXYGEN_INPUT $gtkmm_srcdir/$sublib/$sublib""mm/"
+    CLUTTERMM_DOXYGEN_INPUT="$CLUTTERMM_DOXYGEN_INPUT $gtkmm_srcdir/$sublib/$sublib""mm/"
 done
-AC_SUBST(LIBGOOCANVASMM_DOXYGEN_INPUT)
+AC_SUBST(CLUTTERMM_DOXYGEN_INPUT)
 
 
 
 # Dummy conditional just to make automake-1.4 happy.
 # We need an always-false condition in docs/Makefile.am.
-AM_CONDITIONAL(LIBGOOCANVASMM_FALSE,[false])
+AM_CONDITIONAL(CLUTTERMM_FALSE,[false])
 
 # HACK:  Assign a dummy in order to prevent execution of autoheader by the
 # maintainer-mode rules.  That would fail since we aren't using autoheader.
@@ -127,11 +127,11 @@ AUTOHEADER=':'
 AC_OUTPUT([
   Makefile
 
-  goocanvas/Makefile
-  goocanvas/goocanvasmm-1.0.pc
-  goocanvas/src/Makefile
-  goocanvas/goocanvasmm/Makefile
-  goocanvas/goocanvasmm/private/Makefile
+  clutter/Makefile
+  clutter/cluttermm-1.0.pc
+  clutter/src/Makefile
+  clutter/cluttermm/Makefile
+  clutter/cluttermm/private/Makefile
 
   tools/Makefile
     tools/extra_defs_gen/Makefile
