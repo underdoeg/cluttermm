@@ -22,8 +22,8 @@
 
 #include <glibmm/init.h>
 #include <glibmm/ustring.h>
-#include <goocanvasmmconfig.h> //For LIBGOOCANVASMM_VERSION
-#include <goocanvasmm/wrap_init.h>
+#include <cluttermmconfig.h> //For LIBGOOCANVASMM_VERSION
+#include <cluttermm/wrap_init.h>
 
 namespace Goocanvas
 {
