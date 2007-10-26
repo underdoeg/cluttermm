@@ -4,9 +4,9 @@
 sublib_name	= cluttermm
 sublib_namespace = Clutter
 sublib_parentdir = cluttermm
-files_defs	= libclutter.defs libclutter_methods.defs libclutter_signals.defs \
-                  libclutter_enums.defs libclutter_vfuncs.defs libclutter_others.defs libclutter_docs.xml \
-                  libclutter_docs_override.xml
+files_defs	= clutter.defs clutter_methods.defs clutter_signals.defs \
+                  clutter_enums.defs clutter_vfuncs.defs clutter_others.defs clutter_docs.xml \
+                  clutter_docs_override.xml
 
 include $(top_srcdir)/build_shared/Makefile_gensrc.am_fragment
 

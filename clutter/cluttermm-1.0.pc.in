@@ -4,7 +4,7 @@ libdir=@libdir@
 includedir=@includedir@
 
 Name: cluttermm
-Description: C++ wrapper for libclutter
+Description: C++ wrapper for clutter
 Requires: gtkmm-2.4 clutter
 Version: @VERSION@
 Libs: -L${libdir} -lcluttermm-0.1

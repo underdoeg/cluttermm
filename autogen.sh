@@ -15,7 +15,7 @@ echo Found GNU Make at $MAKE ... good.
 srcdir=`dirname $0`
 test -z "$srcdir" && srcdir=.
 
-PKG_NAME="libcluttermm"
+PKG_NAME="cluttermm"
 
 (test -f $srcdir/configure.in \
   && test -d $srcdir/clutter/src \

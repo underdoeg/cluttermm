@@ -1,4 +1,4 @@
-/* Copyright (C) 1998-2006 The gtkmm Development Team
+/* Copyright (C) 2007 The cluttermm Development Team
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -15,126 +15,103 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <gtkmm/adjustment.h>
-#include <gtkmm/container.h>
-#include <gdkmm/cursor.h>
-#include <cairomm/context.h>
-#include <gtkmm/papersize.h> //For Gtk::Unit
+#include <glibmm/object.h>
+ 
+_DEFS(cluttermm,clutter)
+_PINCLUDE(glibmm/private/object_p.h)
 
 
-
-_DEFS(cluttermm,libclutter)
-_PINCLUDE(gtkmm/private/container_p.h)
-
-namespace Goocanvas
+namespace Clutter
 {
-
-class Canvas :
-  public Gtk::Container
+  
+class Actor : public Glib::Object //TODO: It actually derives from InitiallyUnowned, which we should probably add to glibmm.
 {
-  _CLASS_GTKOBJECT(Canvas, GooCanvas, GOO_CANVAS, Gtk::Container, GtkContainer)
-
-public:
-  _CTOR_DEFAULT
-
-  _WRAP_METHOD(Glib::RefPtr<Item> get_root_item(), goo_canvas_get_root_item, refreturn)
-  _WRAP_METHOD(Glib::RefPtr<const Item> get_root_item() const, goo_canvas_get_root_item, constversion)
-  _WRAP_METHOD(void set_root_item(const Glib::RefPtr<Item>& item), goo_canvas_set_root_item)
-
-  _WRAP_METHOD(Glib::RefPtr<ItemModel> get_root_item_model(), goo_canvas_get_root_item_model, refreturn)
-  _WRAP_METHOD(Glib::RefPtr<const ItemModel> get_root_item_model() const, goo_canvas_get_root_item_model, constversion)
-  _WRAP_METHOD(void set_root_item_model(const Glib::RefPtr<ItemModel>& model), goo_canvas_set_root_item_model)
-
-  _WRAP_METHOD(Glib::RefPtr<Item> get_item(const Glib::RefPtr<ItemModel>& model), goo_canvas_get_item, refreturn)
-  _WRAP_METHOD(Glib::RefPtr<const Item> get_item(const Glib::RefPtr<ItemModel>& model) const, goo_canvas_get_item, constversion)
-
-  _WRAP_METHOD(Glib::RefPtr<Item> get_item_at(double x, double y, bool is_pointer_event), goo_canvas_get_item_at, refreturn)
-  _WRAP_METHOD(Glib::RefPtr<const Item> get_item_at(double x, double y, bool is_pointer_event) const, goo_canvas_get_item_at, constversion)
-
-  //TODO: Ref the items?
-  //TODO: Add const versions
-
-#define(`__FL2H_SHALLOW',`$`'2($`'3, Glib::OWNERSHIP_SHALLOW)')
-#_CONVERSION(`GList*',`Glib::ListHandle< Glib::RefPtr<Item> >', __FL2H_SHALLOW)
-
-  _WRAP_METHOD(Glib::ListHandle< Glib::RefPtr<Item> > get_items_at(double x, double y, bool is_pointer_event), goo_canvas_get_items_at)
-  _WRAP_METHOD(Glib::ListHandle< Glib::RefPtr<Item> > get_items_in_area(const Bounds& area, bool inside_area, bool allow_overlaps, bool include_containers) const, goo_canvas_get_items_in_area)
-
-  _WRAP_METHOD(double get_scale() const, goo_canvas_get_scale)
-  _WRAP_METHOD(void set_scale(double scale), goo_canvas_set_scale)
-
-
-  _WRAP_METHOD(void get_bounds(double& left, double& top, double& right, double& bottom) const, goo_canvas_get_bounds)
-  void get_bounds(Bounds& bounds) const;
-
-  _WRAP_METHOD(void set_bounds(double left, double top, double right, double bottom), goo_canvas_set_bounds)
-  void set_bounds(const Bounds& bounds);
-
-  _WRAP_METHOD(void scroll_to(double left, double top), goo_canvas_scroll_to)
-
-  _WRAP_METHOD(void grab_focus(const Glib::RefPtr<Item>& item), goo_canvas_grab_focus)
-
-  _WRAP_METHOD(void render(const Cairo::RefPtr<Cairo::Context>& context, const Bounds& bounds, double scale = 0.0), goo_canvas_render)
-  void render(const Cairo::RefPtr<Cairo::Context>& context, double scale = 0.0);
-
-  _WRAP_METHOD(void convert_to_pixels(double& x, double& y) const, goo_canvas_convert_to_pixels)
-  _WRAP_METHOD(void convert_from_pixels(double& x, double& y) const, goo_canvas_convert_from_pixels)
-  _WRAP_METHOD(void convert_to_item_space(const Glib::RefPtr<Item>& item, double& x, double& y) const, goo_canvas_convert_to_item_space)
-  _WRAP_METHOD(void convert_from_item_space(const Glib::RefPtr<Item>& item, double& x, double& y) const, goo_canvas_convert_from_item_space)
-
-  //TODO: Use C++ types?
-#m4 _CONVERSION(`const Gdk::Cursor&',`GdkCursor*',__FCR2P)
-  _WRAP_METHOD(Gdk::GrabStatus pointer_grab(const Glib::RefPtr<Item>& item, Gdk::EventMask mask, const Gdk::Cursor& cursor, guint32 time), goo_canvas_pointer_grab)
-  Gdk::GrabStatus pointer_grab(const Glib::RefPtr<Item>& item, Gdk::EventMask mask, guint32 time);
-
-  _WRAP_METHOD(void pointer_ungrab(const Glib::RefPtr<Item>& item, guint32 time), goo_canvas_pointer_ungrab)
-  _WRAP_METHOD(GdkGrabStatus keyboard_grab(const Glib::RefPtr<Item>& item, bool owner_events, guint32 time), goo_canvas_keyboard_grab)
-  _WRAP_METHOD(void keyboard_ungrab(const Glib::RefPtr<Item>& item, guint32 time), goo_canvas_keyboard_ungrab)
-
-#m4 _CONVERSION(`Gtk::Adjustment*',`GtkAdjustment*',__FP2P)
-#m4 _CONVERSION(`GtkAdjustment*',`Gtk::Adjustment*',__RP2P)
-
-  _WRAP_SIGNAL(void set_scroll_adjustments(Gtk::Adjustment* hadjustment, Gtk::Adjustment* vadjustment), "set_scroll_adjustments")
-
-#m4 _CONVERSION(`GooCanvasItem*',`const Glib::RefPtr<Item>&',`Glib::wrap($3, true)')
-#m4 _CONVERSION(`GooCanvasItemModel*',`const Glib::RefPtr<ItemModel>&',`Glib::wrap($3, true)')
-  _WRAP_SIGNAL(void item_created(const Glib::RefPtr<Item>& item, const Glib::RefPtr<ItemModel>& model), "item_created")
+  _CLASS_GOBJECT(Actor, ClutterActor, CLUTTER_ACTOR, Glib::Object, GObject)
 
 protected:
+  _DEFAULT_CTOR()
 
-  _WRAP_METHOD(Cairo::RefPtr<Cairo::Context> create_cairo_context(), goo_canvas_create_cairo_context)
+public:
+  //There is no create() because this is an abstract base class.
+  //_WRAP_CREATE()
+  
+  _WRAP_METHOD(void show(), clutter_actor_show)
+  _WRAP_METHOD(void show_all(), clutter_actor_show_all)
+  _WRAP_METHOD(void hide(), clutter_actor_hide)
+  _WRAP_METHOD(void hide_all(), clutter_actor_hide_all)
+  _WRAP_METHOD(void realize(), clutter_actor_realize)
+  _WRAP_METHOD(void unrealize(), clutter_actor_unrealize)
+  _WRAP_METHOD(void paint(), clutter_actor_paint)
+  _WRAP_METHOD(void pick(const ClutterColor    *color), clutter_actor_pick)
+  _WRAP_METHOD(void queue_redraw(), clutter_actor_queue_redraw)
 
-  _WRAP_METHOD(Glib::RefPtr<Item> create_item(const Glib::RefPtr<ItemModel>& model), goo_canvas_create_item)
-  _WRAP_METHOD(void unregister_item(const Glib::RefPtr<ItemModel>& model), goo_canvas_unregister_item)
+  //TODO: Check that we don't want to wrap this: _WRAP_METHOD(void destroy(), clutter_actor_destroy)
 
-  _WRAP_METHOD(void update(), goo_canvas_update)
-  _WRAP_METHOD(void request_update(), goo_canvas_request_update)
-  _WRAP_METHOD(void request_redraw(const Bounds& bounds), goo_canvas_request_redraw)
-  _WRAP_METHOD(double get_default_line_width() const, goo_canvas_get_default_line_width)
+  //TODO: If these are output parameters, then they probably need to be hand-coded:
+  _WRAP_METHOD(void request_coords(const Glib::RefPt<ActorBox>& box), clutter_actor_request_coords)
+  _WRAP_METHOD(void query_coords(const Glib::RefPt<ActorBox>& box), clutter_actor_query_coords)
+  _WRAP_METHOD(void set_geometry(const ClutterGeometry *geometry), clutter_actor_set_geometry)
+  _WRAP_METHOD(void get_geometry(ClutterGeometry *geometry), clutter_actor_get_geometry)
+  _WRAP_METHOD(void get_coords(int *x_1, int *y_1, int *x_2, int *y_2) const, clutter_actor_get_coords)
+  _WRAP_METHOD(void set_size(int width, int height), clutter_actor_set_size)
+  _WRAP_METHOD(void set_position(int x, int y), clutter_actor_set_position)
+  _WRAP_METHOD(void get_abs_position(int& x, int& y) const, clutter_actor_get_abs_position)
+  _WRAP_METHOD(guint get_width() const, clutter_actor_get_width)
+  _WRAP_METHOD(guint get_height() const, clutter_actor_get_height)
+  _WRAP_METHOD(void set_width(guint width), clutter_actor_set_width)
+  _WRAP_METHOD(void set_height(guint height), clutter_actor_set_height)
 
-  _WRAP_METHOD(void register_widget_item(const Glib::RefPtr<Goocanvas::Widget>& widget), goo_canvas_register_widget_item)
-  _WRAP_METHOD(void unregister_widget_item(const Glib::RefPtr<Goocanvas::Widget>& widget), goo_canvas_unregister_widget_item)
 
+  _WRAP_METHOD(int get_x() const, clutter_actor_get_x)
+  _WRAP_METHOD(int get_y() const, clutter_actor_get_y)
+  _WRAP_METHOD(void rotate_x(float angle, int y, int z), clutter_actor_rotate_x)
+  _WRAP_METHOD(void rotate_y(float angle, int x, int z), clutter_actor_rotate_y)
+  _WRAP_METHOD(void rotate_z(float angle, int x, int y), clutter_actor_rotate_z)
+  _WRAP_METHOD(void rotate_xx(ClutterFixed angle, int y, int z), clutter_actor_rotate_xx)
+  _WRAP_METHOD(void rotate_yx(ClutterFixed angle, int x, int z), clutter_actor_rotate_yx)
+  _WRAP_METHOD(void rotate_zx(ClutterFixed angle, int x, int y), clutter_actor_rotate_zx)
+  _WRAP_METHOD(double get_rxang() const, clutter_actor_get_rxang)
+  _WRAP_METHOD(double get_ryang() const, clutter_actor_get_ryang)
+  _WRAP_METHOD(double get_rzang() const, clutter_actor_get_rzang)
+  _WRAP_METHOD(ClutterFixed get_rxangx() const, clutter_actor_get_rxangx)
+  _WRAP_METHOD(ClutterFixed get_ryangx() const, clutter_actor_get_ryangx)
+  _WRAP_METHOD(ClutterFixed get_rzangx() const, clutter_actor_get_rzangx)
+  _WRAP_METHOD(void set_opacity (guint8 opacity), clutter_actor_set_opacity)
+  _WRAP_METHOD(guint8 get_opacity() const, clutter_actor_get_opacity)
+  _WRAP_METHOD(void set_name(const gchar           *name), clutter_actor_set_name)
+  _WRAP_METHOD(Glib::ustring get_name() const, clutter_actor_get_name)
+  _WRAP_METHOD(guint32 get_id() const, clutter_actor_get_id)
+  _WRAP_METHOD(void set_clip(int xoff, int yoff, int width, int height), clutter_actor_set_clip)
+  _WRAP_METHOD(void remove_clip(), clutter_actor_remove_clip)
+  _WRAP_METHOD(bool has_clip() const, clutter_actor_has_clip)
+  _WRAP_METHOD(void set_parent(const Glib::RefPt<Actor>& parent), clutter_actor_set_parent)
+  _WRAP_METHOD(Glib::RefPtr<Actor> get_parent(), clutter_actor_get_parent, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<Actor> get_parent(), clutter_actor_get_parent, refreturn, constversion)
+  _WRAP_METHOD(void reparent(const Glib::RefPt<Actor>& new_parent), clutter_actor_reparent)
+  _WRAP_METHOD(void unparent(), clutter_actor_unparent)
+  _WRAP_METHOD(void raise(const Glib::RefPt<Actor>& below), clutter_actor_raise)
+  _WRAP_METHOD(void lower(const Glib::RefPt<Actor>& above), clutter_actor_lower)
+  _WRAP_METHOD(void raise_top (), clutter_actor_raise_top)
+  _WRAP_METHOD(void lower_bottom(), clutter_actor_lower_bottom)
+  _WRAP_METHOD(void set_depth(int depth), clutter_actor_set_depth)
+  _WRAP_METHOD(int get_depth() const, clutter_actor_get_depth)
+  _WRAP_METHOD(void set_scalex(ClutterFixed scale_x, ClutterFixed scale_y), clutter_actor_set_scalex)
+  _WRAP_METHOD(void set_scale(double scale_x, double scale_y), clutter_actor_set_scale)
+  _WRAP_METHOD(void get_scalex(ClutterFixed& scale_x, ClutterFixed& scale_y) const, clutter_actor_get_scalex)
+  _WRAP_METHOD(void get_scale(double& scale_x, double& scale_y) const, clutter_actor_get_scale)
 
-  _WRAP_PROPERTY("scale", double)
-  _WRAP_PROPERTY("scale-x", double)
-  _WRAP_PROPERTY("scale-y", double)
-  _WRAP_PROPERTY("anchor", Gtk::AnchorType)
-  _WRAP_PROPERTY("x1", double)
-  _WRAP_PROPERTY("y1", double)
-  _WRAP_PROPERTY("x2", double)
-  _WRAP_PROPERTY("y2", double)
-  _WRAP_PROPERTY("automatic-bounds", bool)
-  _WRAP_PROPERTY("bounds-from-origin", bool)
-  _WRAP_PROPERTY("bounds-padding", double)
-  _WRAP_PROPERTY("units", Gtk::Unit)
-  _WRAP_PROPERTY("resolution-x", double)
-  _WRAP_PROPERTY("resolution-y", double)
-  _WRAP_PROPERTY("background-color", Glib::ustring)
-  _WRAP_PROPERTY("background-color-rgb", guint)
-  _WRAP_PROPERTY("integer-layout", bool)
+  _WRAP_METHOD(void set_scale_with_gravityx(ClutterFixed scale_x, ClutterFixed scale_y, ClutterGravity gravity), clutter_actor_set_scale_with_gravityx)
 
+  _WRAP_METHOD(void set_scale_with_gravity(float scale_x, float scale_y, ClutterGravity gravity), clutter_actor_set_scale_with_gravity)
+
+  _WRAP_METHOD(void get_abs_size(guint& width, guint& height) const, clutter_actor_get_abs_size)
+  _WRAP_METHOD(void get_size(guint& width, guint& height) const, clutter_actor_get_size)
+  _WRAP_METHOD(void move_by(int dx, int dy), clutter_actor_move_by)
+
+  _WRAP_METHOD(void get_vertices(ClutterVertex verts[4]) const, clutter_actor_get_vertices)
+
+  _WRAP_METHOD(void apply_transform_to_point(ClutterVertex& point, ClutterVertex& vertex), clutter_actor_apply_transform_to_point)
 };
 
-} //namespace Goocanvas
+} // namespace Clutter
 
