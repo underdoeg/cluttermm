@@ -1,5 +1,9 @@
 2007-10-27  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* add svn:ignore properties so `svn status` is useful again
+
+2007-10-27  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/Makefile_list_of_hg.am_fragment:
 	* clutter/src/container.ccg:
 	* clutter/src/container.hg:
