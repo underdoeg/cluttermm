@@ -1,0 +1,72 @@
+/* Copyright (C) 2007 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <cluttermm/actor.h>
+#include <glibmm/interface.h>
+#include <glibmm/ustring.h>
+#include <clutter/clutter-container.h> /* TODO: Remove this when we have wrapped enough types as C++. */
+ 
+_DEFS(cluttermm,clutter)
+_PINCLUDE(glibmm/private/interface_p.h)
+
+
+namespace Clutter
+{
+
+class Container : public Glib::Interface
+{
+  _CLASS_INTERFACE(Container, ClutterContainer, CLUTTER_CONTAINER, ClutterContainerIface)
+
+  _WRAP_METHOD(void add_actor(const Glib::RefPtr<Actor>& actor), clutter_container_add_actor)
+  _WRAP_METHOD(void remove_actor(const Glib::RefPtr<Actor>& actor), clutter_container_remove_actor)
+
+  _WRAP_METHOD(void lower_child(const Glib::RefPtr<Actor>& actor, const Glib::RefPtr<Actor>& sibling), clutter_container_lower_child)
+  _WRAP_METHOD(void raise_child(const Glib::RefPtr<Actor>& actor, const Glib::RefPtr<Actor>& sibling), clutter_container_raise_child)
+  _WRAP_METHOD(Glib::RefPtr<Actor> find_child (guint child_id) const, clutter_container_find_child_by_id)
+  _WRAP_METHOD(Glib::RefPtr<Actor> find_child (const Glib::ustring& child_name) const, clutter_container_find_child_by_name)
+
+  // TODO: check if this should be wrapped -- docs say this shouldn't normally
+  // be used by applications
+  _IGNORE(clutter_container_sort_depth_order)
+
+  // TODO: we should probably make this use a sigc::slot of some sort instead of
+  // a plain C callback
+  //clutter_container_foreach
+
+  // not sure the valist stuff is good to wrap in C++
+  //clutter_container_add_valist
+  //clutter_container_remove_valist
+  //clutter_container_add
+  //clutter_container_remove
+
+  // clutter_container_get_children
+
+  // signals
+  _WRAP_SIGNAL(void actor_added(const Glib::RefPtr<Actor>& actor), "actor_added")
+  _WRAP_SIGNAL(void actor_removed(const Glib::RefPtr<Actor>& actor), "actor_removed")
+
+protected:
+  _WRAP_VFUNC(void add(const Glib::RefPtr<Actor>& actor), add)
+  _WRAP_VFUNC(void remove(const Glib::RefPtr<Actor>& actor), remove)
+
+  // TODO: when foreach() is implemented above
+  //_WRAP_VFUNC(void foreach(), foreach)
+
+};
+
+} // namespace Clutter
+//vim: ts=2,sw=2

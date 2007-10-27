@@ -1,0 +1,8 @@
+2007-10-27  Jonathon Jongsma  <jjongsma@gnome.org>
+
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* clutter/src/container.ccg:
+	* clutter/src/container.hg:
+	* tools/m4/convert_cluttermm.m4: added initial wrapping of the
+	ClutterContainer interface.
+
