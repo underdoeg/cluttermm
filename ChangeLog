@@ -1,5 +1,13 @@
 2007-10-27  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* clutter/src/box.ccg:
+	* clutter/src/box.hg:
+	* clutter/src/clutter_vfuncs.defs:
+	* tools/m4/convert_cluttermm.m4: add initial wrapper for ClutterBox
+
+2007-10-27  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/container.hg:
 	* clutter/src/layout.hg: make member functions public, accidentally left
 	them at the default private visibility

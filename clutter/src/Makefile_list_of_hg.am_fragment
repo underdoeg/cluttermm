@@ -5,4 +5,5 @@
 files_hg = \
 actor.hg  \
 container.hg \
-layout.hg
+layout.hg \
+box.hg

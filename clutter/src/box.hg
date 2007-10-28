@@ -1,0 +1,78 @@
+/* Copyright (C) 2007 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <glibmm/object.h>
+#include <clutter/clutter-box.h> /* TODO: Remove this when we have wrapped enough types as C++. */
+#include <cluttermm/actor.h>
+#include <cluttermm/container.h>
+ 
+_DEFS(cluttermm,clutter)
+_PINCLUDE(glibmm/private/object_p.h)
+_PINCLUDE(cluttermm/private/actor_p.h)
+
+
+namespace Clutter
+{
+
+_WRAP_ENUM(PackType, ClutterPackType, NO_GTYPE)
+
+typedef ClutterPadding Padding;
+
+class Box :
+  public Actor,
+  public Container
+{
+  _CLASS_GOBJECT(Box, ClutterBox, CLUTTER_BOX, Actor, ClutterActor)
+  _IMPLEMENTS_INTERFACE(Container)
+
+protected:
+  _CTOR_DEFAULT()
+
+public:
+  typedef ClutterBoxChild Child;
+
+  //There is no create() because this is an abstract base class.
+  //_WRAP_CREATE()
+
+  _WRAP_METHOD(void set_color(const ClutterColor* color), clutter_box_set_color)
+  // TODO: should this return by value instead of by reference?
+  _WRAP_METHOD(void get_color(ClutterColor* color) const, clutter_box_get_color)
+
+  _WRAP_METHOD(void set_margin(const ClutterMargin* margin), clutter_box_set_margin)
+  // TODO: should this return by value instead of by reference?
+  _WRAP_METHOD(void get_margin(ClutterMargin* margin) const, clutter_box_get_margin)
+
+  _WRAP_METHOD(void set_default_padding(int padding_top, int padding_right, int padding_bottom, int padding_left), clutter_box_set_default_padding)
+  _WRAP_METHOD(void get_default_padding(int& padding_top, int& padding_right, int& padding_bottom, int& padding_left) const, clutter_box_get_default_padding)
+
+  _WRAP_METHOD(void pack(const Glib::RefPtr<Actor>& actor, PackType pack_type, const Padding& padding) const, clutter_box_pack)
+  _WRAP_METHOD(void pack(const Glib::RefPtr<Actor>& actor) const, clutter_box_pack_defaults)
+
+  _WRAP_METHOD(void remove_all(), clutter_box_remove_all)
+  // TODO: return by value instead of by reference?
+#m4 _CONVERSION(`Child&',`ClutterBoxChild*',`&($3)')
+  _WRAP_METHOD(bool query_child(const Glib::RefPtr<Actor>& actor, Child& child), clutter_box_query_child)
+  _WRAP_METHOD(bool query_nth_child(int index, Child& child), clutter_box_query_nth_child)
+
+protected:
+  _WRAP_VFUNC(void pack_child(ClutterBoxChild* child), pack_child)
+  _WRAP_VFUNC(void unpack_child(ClutterBoxChild* child), unpack_child)
+};
+
+} // namespace Clutter
+
+//vim: ts=2,sw=2

@@ -43,6 +43,24 @@
 	)
 )
 
+; ClutterBox
+
+(define-vfunc unpack_child
+	(of-object "ClutterBox")
+	(return-type "void")
+	(parameters
+		'("ClutterBoxChild*" "child")
+	)
+)
+
+(define-vfunc pack_child
+	(of-object "ClutterBox")
+	(return-type "void")
+	(parameters
+		'("ClutterBoxChild*" "child")
+	)
+)
+
 ; GooCanvasModel
 
 (define-vfunc get_root_item
