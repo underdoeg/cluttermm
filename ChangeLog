@@ -1,3 +1,11 @@
+2007-10-28  Jonathon Jongsma  <jjongsma@gnome.org>
+
+	* clutter/src/color.ccg:
+	* clutter/src/color.hg: implemented operator+ and operator- for the Color
+	class and re-implemented .add() and .subtract() with these new operators.
+	Also made add() and subtract() const since they don't modify the object,
+	they return a new object.
+
 2007-10-28  Murray Cumming  <murrayc@murrayc.com>
 
 	* clutter/src/Makefile_list_of_hg.am_fragment:

@@ -35,11 +35,11 @@ public:
 
   _WRAP_METHOD(Glib::ustring to_string() const, clutter_color_to_string)
 
-  Color add(const Color& color);
+  Color add(const Color& color) const;
   _IGNORE(clutter_color_add)
 
-  Color subtract(const Color& color);
-  _IGNORE(clutter_color_add)
+  Color subtract(const Color& color) const;
+  _IGNORE(clutter_color_subtract)
 
   //TODO: Wrap the other methods and constructors (the _from_ methods are constructors).
 
@@ -47,6 +47,9 @@ public:
   _WRAP_EQUAL(clutter_color_equal)
 #m4end
 };
+
+Color operator+(const Color& color1, const Color& color2);
+Color operator-(const Color& color1, const Color& color2);
 
 } // namespace Gdk
 

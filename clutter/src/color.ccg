@@ -36,20 +36,30 @@ Color::Color(const Glib::ustring& color)
   clutter_color_parse(color.c_str(), gobject_);
 }
 
-Color Color::add(const Color& color)
+Color Color::add(const Color& color) const
 {
-  Color result;
-  clutter_color_add(gobj(), color.gobj(), result.gobj());
-  return result;
+  return *this + color;
 }
 
 Color Color::subtract(const Color& color)
 {
+  return *this - color;
+}
+
+
+Color operator+(const Color& color1, const Color& color2)
+{
   Color result;
-  clutter_color_subtract(gobj(), color.gobj(), result.gobj());
+  clutter_color_add(color1.gobj(), color2.gobj(), result.gobj());
   return result;
 }
 
+Color operator-(const Color& color1, const Color& color2)
+{
+  Color result;
+  clutter_color_subtract(color1.gobj(), color2.gobj(), result.gobj());
+  return result;
+}
 
 } //namespace Clutter
 
