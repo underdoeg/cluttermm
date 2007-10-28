@@ -1,0 +1,50 @@
+/* Copyright (C) 2007 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <glibmm/interface.h>
+#include <clutter/clutter-layout.h> /* TODO: Remove this when we have wrapped enough types as C++. */
+ 
+_DEFS(cluttermm,clutter)
+_PINCLUDE(glibmm/private/interface_p.h)
+
+
+namespace Clutter
+{
+
+_WRAP_ENUM(LayoutFlags, ClutterLayoutFlags, NO_GTYPE)
+
+class Layout : public Glib::Interface
+{
+  _CLASS_INTERFACE(Layout, ClutterLayout, CLUTTER_LAYOUT, ClutterLayoutIface)
+
+  _WRAP_METHOD(LayoutFlags get_layout_flags() const, clutter_layout_get_layout_flags)
+  _WRAP_METHOD(void width_for_height(int& width, int height) const, clutter_layout_width_for_height)
+  _WRAP_METHOD(void height_for_width(int width, int& height) const, clutter_layout_height_for_width)
+  _WRAP_METHOD(void natural_request(int& width, int& height) const, clutter_layout_natural_request)
+  _WRAP_METHOD(void tune_request(int given_width, int given_height, int& width, int& height) const, clutter_layout_tune_request)
+
+protected:
+  _WRAP_VFUNC(LayoutFlags get_layout_flags() const, add)
+  // TODO: switch to typedefed ClutterUnit
+  _WRAP_VFUNC(void width_for_height(ClutterUnit& width, ClutterUnit height) const, width_for_height)
+  _WRAP_VFUNC(void height_for_width(ClutterUnit width, ClutterUnit& height) const, height_for_width)
+  _WRAP_VFUNC(void natural_request(ClutterUnit& width, ClutterUnit&height) const, natural_request)
+  _WRAP_VFUNC(bool tune_request(ClutterUnit given_width, ClutterUnit given_height, ClutterUnit& width, ClutterUnit& height) const, tune_request)
+};
+
+} // namespace Clutter
+//vim: ts=2,sw=2

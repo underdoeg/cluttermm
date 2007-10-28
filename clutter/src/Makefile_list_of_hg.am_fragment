@@ -4,4 +4,5 @@
 
 files_hg = \
 actor.hg  \
-container.hg
+container.hg \
+layout.hg

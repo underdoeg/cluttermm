@@ -5,4 +5,7 @@ _CONVERSION(`ClutterActor*',`Glib::RefPtr<Actor>',`Glib::wrap($3)')
 _CONVERSION(`ClutterActor*',`const Glib::RefPtr<Actor>&',`Glib::wrap($3)')
 _CONVERSION(`ClutterActor*',`Glib::RefPtr<const Actor>',`Glib::wrap($3)')
 
+_CONVERSION(`ClutterUnit&',`ClutterUnit*',`&($3)')
+_CONVERSION(`ClutterUnit*',`ClutterUnit&',`*($3)')
 
+_CONV_ENUM(Clutter,LayoutFlags)

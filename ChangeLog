@@ -1,5 +1,14 @@
 2007-10-27  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* clutter/src/clutter_vfuncs.defs:
+	* clutter/src/layout.ccg:
+	* clutter/src/layout.hg:
+	* tools/m4/convert_cluttermm.m4: added initial wrapper for ClutterLayout
+	Interface
+
+2007-10-27  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* add svn:ignore properties so `svn status` is useful again
 
 2007-10-27  Jonathon Jongsma  <jjongsma@gnome.org>

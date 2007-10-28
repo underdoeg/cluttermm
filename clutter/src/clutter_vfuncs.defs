@@ -1,3 +1,47 @@
+; ClutterLayout
+
+(define-vfunc get_layout_flags
+	(of-object "ClutterLayout")
+	(return-type "ClutterLayoutFlags")
+)
+
+(define-vfunc width_for_height
+	(of-object "ClutterLayout")
+	(return-type "void")
+	(parameters
+		'("ClutterUnit*" "width")
+		'("ClutterUnit" "height")
+	)
+)
+
+(define-vfunc height_for_width
+	(of-object "ClutterLayout")
+	(return-type "void")
+	(parameters
+		'("ClutterUnit" "width")
+		'("ClutterUnit*" "height")
+	)
+)
+
+(define-vfunc natural_request
+	(of-object "ClutterLayout")
+	(return-type "void")
+	(parameters
+		'("ClutterUnit*" "width")
+		'("ClutterUnit*" "height")
+	)
+)
+
+(define-vfunc tune_request
+	(of-object "ClutterLayout")
+	(return-type "gboolean")
+	(parameters
+		'("ClutterUnit" "given_width")
+		'("ClutterUnit" "given_height")
+		'("ClutterUnit*" "width")
+		'("ClutterUnit*" "height")
+	)
+)
 
 ; GooCanvasModel
 
