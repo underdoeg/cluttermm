@@ -1,4 +1,5 @@
 /* Copyright (C) 2007 The cluttermm Development Team
+
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -33,7 +34,33 @@ Color::Color(const Glib::ustring& color)
 {
   ClutterColor tmp = { 0, 0, 0, 0, };
   gobject_ = clutter_color_copy(&tmp);
-  clutter_color_parse(color.c_str(), gobject_);
+  set_from_string(color);
+}
+
+Color::Color(guint8 hue, guint8 luminance, guint8 saturation)
+{
+  ClutterColor tmp = { 0, 0, 0, 0, };
+  gobject_ = clutter_color_copy(&tmp);
+  set_from_hls(hue, luminance, saturation);
+}
+
+Color::Color(ClutterFixed hue, ClutterFixed luminance, ClutterFixed saturation)
+{
+  ClutterColor tmp = { 0, 0, 0, 0, };
+  gobject_ = clutter_color_copy(&tmp);
+  set_from_hlsx(hue, luminance, saturation);
+}
+
+Color::Color(guint32 pixel)
+{
+  ClutterColor tmp = { 0, 0, 0, 0, };
+  gobject_ = clutter_color_copy(&tmp);
+  set_from_pixel(pixel);
+}
+
+void Color::set_from_string(const Glib::ustring& color)
+{
+  clutter_color_parse(color.c_str(), this->gobj());
 }
 
 Color Color::add(const Color& color) const
@@ -41,11 +68,30 @@ Color Color::add(const Color& color) const
   return *this + color;
 }
 
-Color Color::subtract(const Color& color)
+Color Color::subtract(const Color& color) const
 {
   return *this - color;
 }
 
+void Color::darken()
+{
+    clutter_color_darken(this->gobj(), this->gobj());
+}
+
+void Color::shade(double shade)
+{
+    clutter_color_shade(this->gobj(), this->gobj(), shade);
+}
+
+void Color::shadex(ClutterFixed shade)
+{
+    clutter_color_shadex(this->gobj(), this->gobj(), shade);
+}
+
+void Color::lighten()
+{
+    clutter_color_lighten(this->gobj(), this->gobj());
+}
 
 Color operator+(const Color& color1, const Color& color2)
 {

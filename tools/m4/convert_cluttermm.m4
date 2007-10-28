@@ -13,5 +13,10 @@ _CONVERSION(`Padding&',`ClutterPadding*',`&($3)')
 _CONVERSION(`const Padding&',`const ClutterPadding*',`&($3)')
 _CONVERSION(`ClutterPadding*',`Padding&',`*($3)')
 
+_CONVERSION(`guint8&',`guint8*',`&($3)')
+_CONVERSION(`guint8*',`guint8&',`*($3)')
+_CONVERSION(`ClutterFixed&',`ClutterFixed*',`&($3)')
+_CONVERSION(`ClutterFixed*',`ClutterFixed&',`*($3)')
+
 _CONV_ENUM(Clutter,LayoutFlags)
 _CONV_ENUM(Clutter,PackType)

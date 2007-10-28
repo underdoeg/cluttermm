@@ -26,14 +26,35 @@ namespace Clutter
 class Color
 {
   _CLASS_BOXEDTYPE(Color, ClutterColor, NONE, clutter_color_copy, clutter_color_free)
+  _IGNORE(clutter_color_copy)
+  _IGNORE(clutter_color_free)
 public:
 
   _CUSTOM_DEFAULT_CTOR
   Color();
 
+  /** Create a new Color object by specifying its value in HLS
+   */
+  Color(guint8 hue, guint8 luminance, guint8 saturation);
+
+  /** Create a new Color object by specifying its value in fixed-point HLS
+   */
+  Color(ClutterFixed hue, ClutterFixed luminance, ClutterFixed saturation);
+
+  /** Create a new Color object by specifying its pixel value
+   */
+  explicit Color(guint32 pixel);
+
   explicit Color(const Glib::ustring& color);
 
+  void set_from_string(const Glib::ustring& color);
   _WRAP_METHOD(Glib::ustring to_string() const, clutter_color_to_string)
+  _WRAP_METHOD(void set_from_hls(guint8 hue, guint8 luminance, guint8 saturation), clutter_color_from_hls)
+  _WRAP_METHOD(void set_from_hlsx(ClutterFixed hue, ClutterFixed luminance, ClutterFixed saturation), clutter_color_from_hlsx)
+  _WRAP_METHOD(void to_hls(guint8& hue, guint8& luminance, guint8& saturation) const, clutter_color_to_hls)
+  _WRAP_METHOD(void to_hlsx(ClutterFixed& hue, ClutterFixed& luminance, ClutterFixed& saturation) const, clutter_color_to_hlsx)
+  _WRAP_METHOD(void set_from_pixel(guint32 pixel), clutter_color_from_pixel)
+  _WRAP_METHOD(guint32 to_pixel() const, clutter_color_to_pixel)
 
   Color add(const Color& color) const;
   _IGNORE(clutter_color_add)
@@ -41,14 +62,40 @@ public:
   Color subtract(const Color& color) const;
   _IGNORE(clutter_color_subtract)
 
-  //TODO: Wrap the other methods and constructors (the _from_ methods are constructors).
+  // the 'darken', 'lighten', and 'shade' functions modify the source color and
+  // store the result in the color object given by the 'dest' argument.  Usually
+  // we wrap functions with a 'dest' argument to return a copy by value.
+  // However, this means that we could never apply 'darken' directly to this
+  // object (as we could in C by doing something like clutter_color_darken(&foo,
+  // &foo)).  So I think it makes more sense in the C++ wrappers to darken
+  // 'this' by default and if the user wants to darken a different color, they
+  // can aways create the copy first and then call darken on it
+  // (e.g. Color c2 = c1; c1.darken();).  I think this is more flexible than the
+  // alternative.
+  void darken();
+  _IGNORE(clutter_color_darken)
+  void lighten();
+  _IGNORE(clutter_color_lighten)
+
+  void shade(double shade);
+  _IGNORE(clutter_color_shade)
+  void shadex(ClutterFixed shade);
+  _IGNORE(clutter_color_shadex)
 
 #m4begin
   _WRAP_EQUAL(clutter_color_equal)
 #m4end
+  _IGNORE(clutter_color_equal)
 };
 
+/** @relates Clutter::Color
+ * @return the sum of color1 and color2
+ */
 Color operator+(const Color& color1, const Color& color2);
+
+/** @relates Clutter::Color
+ * @return the color resulting from subtracting color2 from color1
+ */
 Color operator-(const Color& color1, const Color& color2);
 
 } // namespace Gdk

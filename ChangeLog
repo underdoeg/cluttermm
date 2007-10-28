@@ -1,6 +1,29 @@
 2007-10-28  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* clutter/src/color.ccg:
+	* clutter/src/color.hg:
+	* tools/m4/convert_cluttermm.m4: Finish wrapping the Color class.  There are
+	a couple of utility functions that have a signature like:
+	void darken(ClutterColor* src, ClutterColor*dest);
+	These I wrapped to act on the 'this' object (e.g. darken(this, this))
+	instead of returning a modified copy of the Color.  I did this because
+	otherwise you wouldn't have any way to darken the current object directly,
+	you'd have to do something like:
+	Color foo;
+	Color darkened_foo = foo.darken();
+	// now use the darkened color you wanted and throw away foo
+
+	This means, of course, that if you *do* want to create a darkened copy, you
+	have to create the copy manually, e.g.:
+	Color foo;
+	Color darkened_foo = foo;
+	darkened_foo.darken();
+	There are drawbacks to both approaches, but I think the second is more
+	flexible and feels better to me.
+
+2007-10-28  Jonathon Jongsma  <jjongsma@gnome.org>
+
+	* clutter/src/color.ccg:
 	* clutter/src/color.hg: implemented operator+ and operator- for the Color
 	class and re-implemented .add() and .subtract() with these new operators.
 	Also made add() and subtract() const since they don't modify the object,
