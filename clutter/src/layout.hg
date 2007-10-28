@@ -31,6 +31,7 @@ class Layout : public Glib::Interface
 {
   _CLASS_INTERFACE(Layout, ClutterLayout, CLUTTER_LAYOUT, ClutterLayoutIface)
 
+public:
   _WRAP_METHOD(LayoutFlags get_layout_flags() const, clutter_layout_get_layout_flags)
   _WRAP_METHOD(void width_for_height(int& width, int height) const, clutter_layout_width_for_height)
   _WRAP_METHOD(void height_for_width(int width, int& height) const, clutter_layout_height_for_width)

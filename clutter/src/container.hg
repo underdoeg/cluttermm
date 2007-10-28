@@ -31,6 +31,7 @@ class Container : public Glib::Interface
 {
   _CLASS_INTERFACE(Container, ClutterContainer, CLUTTER_CONTAINER, ClutterContainerIface)
 
+public:
   _WRAP_METHOD(void add_actor(const Glib::RefPtr<Actor>& actor), clutter_container_add_actor)
   _WRAP_METHOD(void remove_actor(const Glib::RefPtr<Actor>& actor), clutter_container_remove_actor)
 

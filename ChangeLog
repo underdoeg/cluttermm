@@ -1,5 +1,11 @@
 2007-10-27  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/container.hg:
+	* clutter/src/layout.hg: make member functions public, accidentally left
+	them at the default private visibility
+
+2007-10-27  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/Makefile_list_of_hg.am_fragment:
 	* clutter/src/clutter_vfuncs.defs:
 	* clutter/src/layout.ccg:
