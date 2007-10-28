@@ -15,18 +15,20 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
+#include <glibmm/object.h>
+#include <clutter/clutter-layout.h> /* TODO: Remove this when we have wrapped enough types as C++. */
+ 
+_DEFS(cluttermm,clutter)
+
 namespace Clutter
 {
 
-void Container::raise_child(const Glib::RefPtr<Actor>& actor)
+class Margin
 {
-  clutter_container_raise_child(gobj(), Glib::unwrap(actor), NULL); 
-}
+  _CLASS_BOXEDTYPE(Margin, ClutterMargin, NONE, cluttermm_margin_copy, cluttermm_margin_free)
+public:
 
-void Container::lower_child(const Glib::RefPtr<Actor>& actor)
-{
-  clutter_container_lower_child(gobj(), Glib::unwrap(actor), NULL); 
-}
+};
 
-} //namespace Clutter
+} // namespace Gdk
 

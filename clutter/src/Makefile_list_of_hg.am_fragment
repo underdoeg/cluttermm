@@ -6,4 +6,7 @@ files_hg = \
 actor.hg  \
 container.hg \
 layout.hg \
-box.hg
+box.hg \
+color.hg \
+margin.hg
+

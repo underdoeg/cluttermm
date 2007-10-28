@@ -15,18 +15,38 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
+#include <glibmm/object.h>
+#include <clutter/clutter-layout.h> /* TODO: Remove this when we have wrapped enough types as C++. */
+ 
+_DEFS(cluttermm,clutter)
+
 namespace Clutter
 {
 
-void Container::raise_child(const Glib::RefPtr<Actor>& actor)
+class Color
 {
-  clutter_container_raise_child(gobj(), Glib::unwrap(actor), NULL); 
-}
+  _CLASS_BOXEDTYPE(Color, ClutterColor, NONE, clutter_color_copy, clutter_color_free)
+public:
 
-void Container::lower_child(const Glib::RefPtr<Actor>& actor)
-{
-  clutter_container_lower_child(gobj(), Glib::unwrap(actor), NULL); 
-}
+  _CUSTOM_DEFAULT_CTOR
+  Color();
 
-} //namespace Clutter
+  explicit Color(const Glib::ustring& color);
+
+  _WRAP_METHOD(Glib::ustring to_string() const, clutter_color_to_string)
+
+  Color add(const Color& color);
+  _IGNORE(clutter_color_add)
+
+  Color subtract(const Color& color);
+  _IGNORE(clutter_color_add)
+
+  //TODO: Wrap the other methods and constructors (the _from_ methods are constructors).
+
+#m4begin
+  _WRAP_EQUAL(clutter_color_equal)
+#m4end
+};
+
+} // namespace Gdk
 

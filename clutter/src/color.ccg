@@ -15,18 +15,41 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
+#include <glibmm/object.h>
+#include <clutter/clutter-layout.h> /* TODO: Remove this when we have wrapped enough types as C++. */
+ 
+_DEFS(cluttermm,clutter)
+
 namespace Clutter
 {
 
-void Container::raise_child(const Glib::RefPtr<Actor>& actor)
+Color::Color()
 {
-  clutter_container_raise_child(gobj(), Glib::unwrap(actor), NULL); 
+  ClutterColor tmp = { 0, 0, 0, 0, };
+  gobject_ = clutter_color_copy(&tmp);
 }
 
-void Container::lower_child(const Glib::RefPtr<Actor>& actor)
+Color::Color(const Glib::ustring& color)
 {
-  clutter_container_lower_child(gobj(), Glib::unwrap(actor), NULL); 
+  ClutterColor tmp = { 0, 0, 0, 0, };
+  gobject_ = clutter_color_copy(&tmp);
+  clutter_color_parse(color.c_str(), gobject_);
 }
+
+Color Color::add(const Color& color)
+{
+  Color result;
+  clutter_color_add(gobj(), color.gobj(), result.gobj());
+  return result;
+}
+
+Color Color::subtract(const Color& color)
+{
+  Color result;
+  clutter_color_subtract(gobj(), color.gobj(), result.gobj());
+  return result;
+}
+
 
 } //namespace Clutter
 

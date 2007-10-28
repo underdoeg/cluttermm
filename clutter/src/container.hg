@@ -36,9 +36,16 @@ public:
   _WRAP_METHOD(void remove_actor(const Glib::RefPtr<Actor>& actor), clutter_container_remove_actor)
 
   _WRAP_METHOD(void lower_child(const Glib::RefPtr<Actor>& actor, const Glib::RefPtr<Actor>& sibling), clutter_container_lower_child)
+  void lower_child(const Glib::RefPtr<Actor>& actor);
   _WRAP_METHOD(void raise_child(const Glib::RefPtr<Actor>& actor, const Glib::RefPtr<Actor>& sibling), clutter_container_raise_child)
-  _WRAP_METHOD(Glib::RefPtr<Actor> find_child (guint child_id) const, clutter_container_find_child_by_id)
-  _WRAP_METHOD(Glib::RefPtr<Actor> find_child (const Glib::ustring& child_name) const, clutter_container_find_child_by_name)
+  void raise_child(const Glib::RefPtr<Actor>& actor);
+
+  _WRAP_METHOD(Glib::RefPtr<Actor> find_child (guint child_id), clutter_container_find_child_by_id)
+  _WRAP_METHOD(Glib::RefPtr<const Actor> find_child (guint child_id) const, clutter_container_find_child_by_id, constversion)
+
+  _WRAP_METHOD(Glib::RefPtr<Actor> find_child (const Glib::ustring& child_name), clutter_container_find_child_by_name)
+  _WRAP_METHOD(Glib::RefPtr<const Actor> find_child (const Glib::ustring& child_name) const, clutter_container_find_child_by_name)
+
 
   // TODO: check if this should be wrapped -- docs say this shouldn't normally
   // be used by applications
@@ -56,7 +63,7 @@ public:
 
   // clutter_container_get_children
 
-  // signals
+#m4 _CONVERSION(`ClutterActor*',`const Glib::RefPtr<Actor>&',`Glib::wrap($3, true)')
   _WRAP_SIGNAL(void actor_added(const Glib::RefPtr<Actor>& actor), "actor_added")
   _WRAP_SIGNAL(void actor_removed(const Glib::RefPtr<Actor>& actor), "actor_removed")
 

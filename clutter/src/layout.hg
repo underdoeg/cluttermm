@@ -33,8 +33,11 @@ class Layout : public Glib::Interface
 
 public:
   _WRAP_METHOD(LayoutFlags get_layout_flags() const, clutter_layout_get_layout_flags)
+
+  //TODO: Use return values instead of output parameters, and rename these to get_*().
   _WRAP_METHOD(void width_for_height(int& width, int height) const, clutter_layout_width_for_height)
   _WRAP_METHOD(void height_for_width(int width, int& height) const, clutter_layout_height_for_width)
+
   _WRAP_METHOD(void natural_request(int& width, int& height) const, clutter_layout_natural_request)
   _WRAP_METHOD(void tune_request(int given_width, int given_height, int& width, int& height) const, clutter_layout_tune_request)
 

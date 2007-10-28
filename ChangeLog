@@ -1,3 +1,21 @@
+2007-10-28  Murray Cumming  <murrayc@murrayc.com>
+
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* tools/m4/convert_cluttermm.m4:
+	* clutter/src/box.ccg:
+	* clutter/src/box.hg:
+	* clutter/src/color.ccg:
+	* clutter/src/color.hg:
+	* clutter/src/margin.ccg:
+	* clutter/src/margin.hg: Added wrappers for these 
+	two boxed types.
+	* clutter/src/container.ccg:
+	* clutter/src/container.hg: Use the Color and Margin
+	classes.
+	* clutter/src/layout.hg: Moved the conversion for the 
+	signal to here, and fixed the reference-counting for it.
+	Some other minor const fixes.
+
 2007-10-27  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* clutter/src/Makefile_list_of_hg.am_fragment:
