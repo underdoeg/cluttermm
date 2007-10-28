@@ -36,6 +36,45 @@ _DEFS(cluttermm,clutter)
 namespace Clutter
 {
 
+  ClutterUnit Margin::get_top() const
+  {
+      return gobj()->top;
+  }
+
+  ClutterUnit Margin::get_right() const
+  {
+      return gobj()->right;
+  }
+
+  ClutterUnit Margin::get_bottom() const
+  {
+      return gobj()->bottom;
+  }
+
+  ClutterUnit Margin::get_left() const
+  {
+      return gobj()->left;
+  }
+
+  void Margin::get_top(const ClutterUnit& top)
+  {
+      gobj()->top = top;
+  }
+
+  void Margin::get_right(const ClutterUnit& right)
+  {
+      gobj()->right = right;
+  }
+
+  void Margin::get_bottom(const ClutterUnit& bottom)
+  {
+      gobj()->bottom = bottom;
+  }
+
+  void Margin::get_left(const ClutterUnit& left)
+  {
+      gobj()->left = left;
+  }
 
 } //namespace Clutter
 

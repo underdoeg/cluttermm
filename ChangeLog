@@ -1,5 +1,11 @@
 2007-10-28  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/margin.ccg:
+	* clutter/src/margin.hg: added getters and setters for the various margin
+	values (top, right, bottom, left)
+
+2007-10-28  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/color.ccg:
 	* clutter/src/color.hg:
 	* tools/m4/convert_cluttermm.m4: Finish wrapping the Color class.  There are

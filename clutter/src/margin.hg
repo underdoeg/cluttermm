@@ -27,8 +27,20 @@ class Margin
 {
   _CLASS_BOXEDTYPE(Margin, ClutterMargin, NONE, cluttermm_margin_copy, cluttermm_margin_free)
 public:
+  // TODO: add a constructor that accepts 4 arguments and initializes all margin
+  // values ?
+
+  ClutterUnit get_top() const;
+  ClutterUnit get_right() const;
+  ClutterUnit get_bottom() const;
+  ClutterUnit get_left() const;
+  void get_top(const ClutterUnit& top);
+  void get_right(const ClutterUnit& right);
+  void get_bottom(const ClutterUnit& bottom);
+  void get_left(const ClutterUnit& left);
 
 };
 
 } // namespace Gdk
 
+//vim: ts=2,sw=2
