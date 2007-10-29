@@ -1,0 +1,53 @@
+/* Copyright (C) 2007 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <clutter/clutter-group.h> /* TODO: Remove this when we have wrapped enough types as C++. */
+#include <cluttermm/actor.h>
+#include <cluttermm/container.h>
+ 
+_DEFS(cluttermm,clutter)
+_PINCLUDE(cluttermm/private/actor_p.h)
+_PINCLUDE(cluttermm/private/container_p.h)
+
+
+namespace Clutter
+{
+
+class Group :
+    public Actor,
+    public Container
+{
+  _CLASS_GOBJECT(Group, ClutterGroup, CLUTTER_GROUP, Actor, ClutterActor)
+  _IMPLEMENTS_INTERFACE(Container)
+
+protected:
+  _CTOR_DEFAULT()
+
+public:
+  _WRAP_CREATE()
+
+  _WRAP_METHOD(void add(const Glib::RefPtr<Actor>& actor), clutter_group_add)
+  _WRAP_METHOD(void remove(const Glib::RefPtr<Actor>& actor), clutter_group_remove)
+  _WRAP_METHOD(int get_n_children() const, clutter_group_get_n_children)
+  _WRAP_METHOD(Glib::RefPtr<Actor> get_nth_child(int index) const, clutter_group_get_nth_child)
+  _WRAP_METHOD(Glib::RefPtr<Actor> find_child_by_id(guint id) const, clutter_group_find_child_by_id)
+  _WRAP_METHOD(void raise(const Glib::RefPtr<Actor>& actor, const Glib::RefPtr<Actor>& sibling), clutter_group_raise)
+
+};
+
+} // namespace Clutter
+

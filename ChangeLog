@@ -1,5 +1,11 @@
 2007-10-28  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* clutter/src/group.ccg:
+	* clutter/src/group.hg: add initial wrapper for ClutterGroup
+
+2007-10-28  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/cluttermm.h: cleaned up the one-include-to-rule-them-all so that
 	it includes all of the header files created so far and so that it has proper
 	copyright information.  Also removed some commented-out cruft

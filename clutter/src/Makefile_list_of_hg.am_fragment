@@ -9,5 +9,6 @@ layout.hg \
 box.hg \
 color.hg \
 margin.hg \
-media.hg
+media.hg \
+group.hg
 
