@@ -1,7 +1,6 @@
-/* $Id: cluttermm.h,v 1.4 2005/08/23 15:43:32 murrayc Exp $ */
 /* cluttermm - a C++ wrapper for clutter
  *
- * Copyright 1999-2001 Free Software Foundation
+ * Copyright 2007 The cluttermm Development Team
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -21,10 +20,6 @@
 #ifndef LIBCLUTTERMM_H
 #define LIBCLUTTERMM_H
 
-//extern "C" {
-//#include <gtk/gtk.h>
-//}
-
 /* cluttermm version.  */
 extern const int cluttermm_major_version;
 extern const int cluttermm_minor_version;
@@ -32,6 +27,12 @@ extern const int cluttermm_micro_version;
 
 #include <glibmm.h>
 
-#include <cluttermm/stage.h>
+#include <cluttermm/actor.h>
+#include <cluttermm/box.h>
+#include <cluttermm/color.h>
+#include <cluttermm/container.h>
+#include <cluttermm/layout.h>
+#include <cluttermm/margin.h>
+#include <cluttermm/media.h>
 
 #endif /* #ifndef LIBCLUTTERMM_H */
