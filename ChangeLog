@@ -1,5 +1,10 @@
 2007-10-28  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/README: clean up a copy/paste error
+	* added some more files to ignore
+
+2007-10-28  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/Makefile_list_of_hg.am_fragment:
 	* clutter/src/group.ccg:
 	* clutter/src/group.hg: add initial wrapper for ClutterGroup

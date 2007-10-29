@@ -2,5 +2,5 @@ Base directory for cluttermm - the widget set.
 
 Here is the layout
 
-  src - actual sources used to build
-  gtkmm - built sources (do not edit)
+  src - actual sources used to build, processed with gmmproc
+  cluttermm - built sources (do not edit)
