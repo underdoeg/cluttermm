@@ -1,5 +1,12 @@
 2007-10-28  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/cluttermm.h: changed the #include guard from LIBGOOCANVASMM_H to
+	LIBCLUTTERMM_H
+	* clutter/src/clutter_vfuncs.defs: removed a whole bunch of goocanvasmm
+	references
+
+2007-10-28  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* examples/Makefile.am:
 	* examples/README.txt:
 	* examples/simple/Makefile.am:

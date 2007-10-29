@@ -18,8 +18,8 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#ifndef LIBGOOCANVASMM_H
-#define LIBGOOCANVASMM_H
+#ifndef LIBCLUTTERMM_H
+#define LIBCLUTTERMM_H
 
 //extern "C" {
 //#include <gtk/gtk.h>
@@ -34,4 +34,4 @@ extern const int cluttermm_micro_version;
 
 #include <cluttermm/stage.h>
 
-#endif /* #ifndef LIBGOOCANVASMM_H */
+#endif /* #ifndef LIBCLUTTERMM_H */
