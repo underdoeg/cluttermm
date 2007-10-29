@@ -1,5 +1,15 @@
 2007-10-28  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* examples/Makefile.am:
+	* examples/README.txt:
+	* examples/simple/Makefile.am:
+	* examples/simple/simple.cc:
+	* examples/simple/window.cc:
+	* examples/simple/window.h: removed the leftover goocanvas example so that
+	the build doesn't break on the examples every time
+
+2007-10-28  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/Makefile_list_of_hg.am_fragment:
 	* clutter/src/clutter_vfuncs.defs:
 	* clutter/src/media.ccg:
