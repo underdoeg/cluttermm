@@ -61,6 +61,76 @@
 	)
 )
 
+; ClutterMedia
+
+(define-vfunc set_uri
+  (of-object "ClutterMedia")
+  (return-type "void")
+  (parameters
+    '("const-char*" "uri")
+  )
+)
+
+(define-vfunc get_uri
+  (of-object "ClutterMedia")
+  (return-type "const-char*")
+)
+
+(define-vfunc set_playing
+  (of-object "ClutterMedia")
+  (return-type "void")
+  (parameters
+    '("gboolean" "playing")
+  )
+)
+
+(define-vfunc get_playing
+  (of-object "ClutterMedia")
+  (return-type "gboolean")
+)
+
+(define-vfunc set_position
+  (of-object "ClutterMedia")
+  (return-type "void")
+  (parameters
+    '("int" "position")
+  )
+)
+
+(define-vfunc get_position
+  (of-object "ClutterMedia")
+  (return-type "int")
+)
+
+(define-vfunc set_volume
+  (of-object "ClutterMedia")
+  (return-type "void")
+  (parameters
+    '("double" "volume")
+  )
+)
+
+(define-vfunc get_volume
+  (of-object "ClutterMedia")
+  (return-type "double")
+)
+
+(define-vfunc can_seek
+  (of-object "ClutterMedia")
+  (return-type "gboolean")
+)
+
+(define-vfunc get_buffer_percent
+  (of-object "ClutterMedia")
+  (return-type "int")
+)
+
+(define-vfunc get_duration
+  (of-object "ClutterMedia")
+  (return-type "int")
+)
+
+
 ; GooCanvasModel
 
 (define-vfunc get_root_item

@@ -1,5 +1,12 @@
 2007-10-28  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* clutter/src/clutter_vfuncs.defs:
+	* clutter/src/media.ccg:
+	* clutter/src/media.hg: Add initial wrapper for ClutterMedia Interface
+
+2007-10-28  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/margin.ccg:
 	* clutter/src/margin.hg: added getters and setters for the various margin
 	values (top, right, bottom, left)

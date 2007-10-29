@@ -1,0 +1,72 @@
+/* Copyright (C) 2007 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <glibmm/interface.h>
+#include <glibmm/ustring.h>
+#include <clutter/clutter-media.h> /* TODO: Remove this when we have wrapped enough types as C++. */
+ 
+_DEFS(cluttermm,clutter)
+_PINCLUDE(glibmm/private/interface_p.h)
+
+
+namespace Clutter
+{
+
+class Media : public Glib::Interface
+{
+  _CLASS_INTERFACE(Media, ClutterMedia, CLUTTER_MEDIA, ClutterMediaInterface)
+
+public:
+
+  _WRAP_METHOD(void set_uri(const Glib::ustring& uri), clutter_media_set_uri)
+  _WRAP_METHOD(Glib::ustring get_uri() const, clutter_media_get_uri)
+  _WRAP_METHOD(void set_playing(bool playing=true), clutter_media_set_playing)
+  _WRAP_METHOD(bool get_playing() const, clutter_media_get_playing)
+  _WRAP_METHOD(void set_position(int position), clutter_media_set_position)
+  _WRAP_METHOD(int get_position() const, clutter_media_get_position)
+  _WRAP_METHOD(void set_volume(double volume), clutter_media_set_volume)
+  _WRAP_METHOD(double get_volume() const, clutter_media_get_volume)
+  _WRAP_METHOD(int get_buffer_percent() const, clutter_media_get_buffer_percent)
+  _WRAP_METHOD(void set_filename(const Glib::ustring& filename), clutter_media_set_filename)
+  _WRAP_METHOD(bool get_can_seek() const, clutter_media_get_can_seek)
+  _WRAP_METHOD(int get_duration() const, clutter_media_get_duration)
+
+
+  // TODO: these aren't in the signals.defs file yet
+  //_WRAP_SIGNAL(void eos(), "eos")
+  // TODO: figure out what to do with this GError parameter
+  //_WRAP_SIGNAL(void error(GError* error), "error")
+
+protected:
+  _WRAP_VFUNC(void set_uri(const Glib::ustring& uri), set_uri)
+  // TODO: error "No conversion from Glib::ustring to const char* defined", even
+  // though it works above in get_uri
+  //_WRAP_VFUNC(Glib::ustring get_uri() const, get_uri)
+  _WRAP_VFUNC(void set_playing(bool playing), set_playing)
+  _WRAP_VFUNC(bool get_playing() const, get_playing)
+  _WRAP_VFUNC(void set_position(int position), set_position)
+  _WRAP_VFUNC(int get_position() const, get_position)
+  _WRAP_VFUNC(void set_volume(double volume), set_volume)
+  _WRAP_VFUNC(double get_volume() const, get_volume)
+  _WRAP_VFUNC(bool can_seek() const, can_seek)
+  _WRAP_VFUNC(int get_buffer_percent() const, get_buffer_percent)
+  _WRAP_VFUNC(int get_duration() const, get_duration)
+
+};
+
+} // namespace Clutter
+//vim: ts=2,sw=2
