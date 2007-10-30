@@ -1,3 +1,10 @@
+2007-10-29  Jonathon Jongsma  <jjongsma@gnome.org>
+
+	* clutter/src/box.hg: added HBox and VBox classes.  I decided against
+	creating separate headers for each of these classes like the base clutter
+	library does since they're so small, and I just put them all in box.h like
+	we do in gtkmm.
+
 2007-10-28  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* clutter/README: clean up a copy/paste error

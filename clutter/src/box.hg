@@ -17,6 +17,8 @@
 
 #include <glibmm/object.h>
 #include <clutter/clutter-box.h> /* TODO: Remove this when we have wrapped enough types as C++. */
+#include <clutter/clutter-hbox.h> /* TODO: Remove this when we have wrapped enough types as C++. */
+#include <clutter/clutter-vbox.h> /* TODO: Remove this when we have wrapped enough types as C++. */
 #include <cluttermm/actor.h>
 #include <cluttermm/color.h>
 #include <cluttermm/container.h>
@@ -78,6 +80,22 @@ public:
 protected:
   _WRAP_VFUNC(void pack_child(ClutterBoxChild* child), pack_child)
   _WRAP_VFUNC(void unpack_child(ClutterBoxChild* child), unpack_child)
+};
+
+class HBox :
+  public Box
+{
+  _CLASS_GOBJECT(HBox, ClutterHBox, CLUTTER_HBOX, Box, ClutterBox)
+  public:
+  _CTOR_DEFAULT
+};
+
+class VBox :
+  public Box
+{
+  _CLASS_GOBJECT(VBox, ClutterVBox, CLUTTER_VBOX, Box, ClutterBox)
+  public:
+  _CTOR_DEFAULT
 };
 
 } // namespace Clutter
