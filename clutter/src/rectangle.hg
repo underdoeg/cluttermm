@@ -1,0 +1,59 @@
+/* Copyright (C) 2007 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <clutter/clutter-rectangle.h> /* TODO: Remove this when we have wrapped enough types as C++. */
+#include <cluttermm/actor.h>
+#include <cluttermm/color.h>
+ 
+_DEFS(cluttermm,clutter)
+_PINCLUDE(cluttermm/private/actor_p.h)
+
+
+namespace Clutter
+{
+
+class Rectangle :
+  public Actor
+{
+  _CLASS_GOBJECT(Rectangle, ClutterRectangle, CLUTTER_RECTANGLE, Actor, ClutterActor)
+
+protected:
+  _CTOR_DEFAULT()
+  Rectangle(const Color& color);
+
+public:
+  _WRAP_CREATE()
+  _WRAP_CREATE(const Color& color);
+
+#m4 _CONVERSION(`ClutterActor*',`Glib::RefPtr<Rectangle>',`Glib::wrap((ClutterRectangle*)$3)')
+
+  Color get_color() const;
+  _IGNORE(clutter_rectangle_get_color)
+  _WRAP_METHOD(void set_color(const Color& color), clutter_rectangle_set_color)
+
+  Color get_border_color() const;
+  _IGNORE(clutter_rectangle_get_border_color)
+  _WRAP_METHOD(void set_border_color(const Color& color), clutter_rectangle_set_border_color)
+
+  _WRAP_METHOD(guint get_border_width() const, clutter_rectangle_get_border_width)
+  _WRAP_METHOD(void set_border_width(guint width), clutter_rectangle_set_border_width)
+
+};
+
+} // namespace Clutter
+
+//vim: ts=2,sw=2

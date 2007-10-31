@@ -1,5 +1,11 @@
 2007-10-31  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* clutter/src/rectangle.ccg:
+	* clutter/src/rectangle.hg: Wrap the Rectangle class
+
+2007-10-31  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/stage.hg: add conversion so that Stage::get_default() returns
 	a RefPtr<Stage> type
 
