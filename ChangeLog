@@ -1,3 +1,8 @@
+2007-10-31  Jonathon Jongsma  <jjongsma@gnome.org>
+
+	* clutter/src/stage.hg: add conversion so that Stage::get_default() returns
+	a RefPtr<Stage> type
+
 2007-10-30  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* clutter/src/Makefile_list_of_hg.am_fragment:

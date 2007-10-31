@@ -36,9 +36,8 @@ protected:
   _CTOR_DEFAULT()
 
 public:
-  // TODO: this should return a Stage RefPtr, not an Actor, but I haven't worked
-  // out how to do it properly yet
-  _WRAP_METHOD(static Glib::RefPtr<Actor> get_default(), clutter_stage_get_default, refreturn)
+#m4 _CONVERSION(`ClutterActor*',`Glib::RefPtr<Stage>',`Glib::wrap((ClutterStage*)$3)')
+  _WRAP_METHOD(static Glib::RefPtr<Stage> get_default(), clutter_stage_get_default, refreturn)
   _WRAP_METHOD(void set_color(const Color& color), clutter_stage_set_color)
   Color get_color() const;
   _IGNORE(clutter_stage_get_color)
