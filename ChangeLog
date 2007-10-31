@@ -1,3 +1,13 @@
+2007-10-30  Jonathon Jongsma  <jjongsma@gnome.org>
+
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* clutter/src/clutter_vfuncs.defs:
+	* clutter/src/stage.ccg:
+	* clutter/src/stage.hg: added an initial wrapper for the Stage class.
+	The get_default() function returns a RefPtr<Actor> instead of a
+	RefPtr<Stage> since I'm not sure of the proper way to do the conversion, but
+	otherwise, it should be mostly complete.
+
 2007-10-29  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* clutter/src/box.hg: added HBox and VBox classes.  I decided against

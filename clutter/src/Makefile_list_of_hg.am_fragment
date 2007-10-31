@@ -10,5 +10,5 @@ box.hg \
 color.hg \
 margin.hg \
 media.hg \
-group.hg
-
+group.hg \
+stage.hg
