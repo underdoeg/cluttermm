@@ -17,6 +17,7 @@
 
 #include <glibmm/object.h>
 #include <clutter/clutter-actor.h> /* TODO: Remove this when we have wrapped enough types as C++. */
+#include <cluttermm/color.h>
  
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)
@@ -43,7 +44,7 @@ public:
   _WRAP_METHOD(void realize(), clutter_actor_realize)
   _WRAP_METHOD(void unrealize(), clutter_actor_unrealize)
   _WRAP_METHOD(void paint(), clutter_actor_paint)
-  _WRAP_METHOD(void pick(const ClutterColor    *color), clutter_actor_pick)
+  _WRAP_METHOD(void pick(const Color& color), clutter_actor_pick)
   _WRAP_METHOD(void queue_redraw(), clutter_actor_queue_redraw)
 
   //TODO: Check that we don't want to wrap this: _WRAP_METHOD(void destroy(), clutter_actor_destroy)

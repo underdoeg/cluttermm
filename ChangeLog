@@ -1,5 +1,9 @@
 2007-10-31  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/actor.hg: use wrapped Color class in the pick() method
+
+2007-10-31  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/cluttermm/init.cc:
 	* clutter/cluttermm/init.h:
 	* clutter/cluttermm/wrap_init.h:
