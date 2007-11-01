@@ -1,5 +1,13 @@
 2007-10-31  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/cluttermm/init.cc:
+	* clutter/cluttermm/init.h:
+	* clutter/cluttermm/wrap_init.h:
+	* clutter/cluttermmconfig.h.in: removed a bunch more leftover namespaces and
+	such from goocanvasmm and gdamm
+
+2007-10-31  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/Makefile_list_of_hg.am_fragment:
 	* clutter/src/rectangle.ccg:
 	* clutter/src/rectangle.hg: Wrap the Rectangle class

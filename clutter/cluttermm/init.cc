@@ -1,6 +1,4 @@
 // -*- c++ -*-
-/* $Id: init.cc,v 1.4 2004/03/29 17:59:17 murrayc Exp $ */
-
 /* init.cc
  *
  * Copyright 2001      Free Software Foundation
@@ -22,16 +20,16 @@
 
 #include <glibmm/init.h>
 #include <glibmm/ustring.h>
-#include <cluttermmconfig.h> //For LIBGOOCANVASMM_VERSION
+#include <cluttermmconfig.h> //For LIBCLUTTERMM_VERSION
 #include <cluttermm/wrap_init.h>
 
-namespace Goocanvas
+namespace Clutter
 {
 
 void init(const Glib::ustring& app_id, const Glib::ustring& version, int nargs, gchar *args[])
 {
   Glib::init(); //Sets up the g type system and the Glib::wrap() table.
-  wrap_init(); //Tells the Glib::wrap() table about the libgnomecanvasmm classes.
+  wrap_init(); //Tells the Glib::wrap() table about the libcluttermm classes.
 }
 
-} //namespace Goocanvas
+} //namespace Clutter

@@ -1,6 +1,6 @@
 // -*- c++ -*-
-#ifndef _LIBGOOCANVASMM_INIT_H
-#define _LIBGOOCANVASMM_INIT_H
+#ifndef _LIBCLUTTERMM_INIT_H
+#define _LIBCLUTTERMM_INIT_H
 /* $Id: init.h,v 1.4 2003/10/12 09:50:13 murrayc Exp $ */
 
 /* init.h
@@ -24,12 +24,12 @@
 
 #include <glibmm.h>
 
-namespace Goocanvas
+namespace Clutter
 {
 
 void init(const Glib::ustring& app_id, const Glib::ustring& version, int nargs, gchar *args[]);
 
-} //namespace Goocanvas
+} //namespace Clutter
 
-#endif //_LIBGOOCANVASMM_INIT_H
+#endif //_LIBCLUTTERMM_INIT_H
 
