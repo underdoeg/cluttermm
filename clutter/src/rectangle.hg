@@ -41,10 +41,12 @@ public:
 
 #m4 _CONVERSION(`ClutterActor*',`Glib::RefPtr<Rectangle>',`Glib::wrap((ClutterRectangle*)$3)')
 
+  _WRAP_METHOD_DOCS_ONLY(clutter_rectangle_get_color)
   Color get_color() const;
   _IGNORE(clutter_rectangle_get_color)
   _WRAP_METHOD(void set_color(const Color& color), clutter_rectangle_set_color)
 
+  _WRAP_METHOD_DOCS_ONLY(clutter_rectangle_get_border_color)
   Color get_border_color() const;
   _IGNORE(clutter_rectangle_get_border_color)
   _WRAP_METHOD(void set_border_color(const Color& color), clutter_rectangle_set_border_color)

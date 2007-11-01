@@ -1,5 +1,15 @@
 2007-10-31  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/box.hg:
+	* clutter/src/color.hg:
+	* clutter/src/rectangle.hg:
+	* clutter/src/stage.hg: added _WRAP_METHOD_DOCS_ONLY calls to methods that
+	were customized and not wrapped automatically so that the relevant generated
+	documentation gets included
+	* clutter/src/clutter_docs.xml: re-generate the clutter docs
+
+2007-10-31  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/actor.hg: use wrapped Color class in the pick() method
 
 2007-10-31  Jonathon Jongsma  <jjongsma@gnome.org>
