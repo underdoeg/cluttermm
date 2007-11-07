@@ -40,13 +40,20 @@ protected:
 public:
   _WRAP_CREATE()
 
-  _WRAP_METHOD(void add(const Glib::RefPtr<Actor>& actor), clutter_group_add)
-  _WRAP_METHOD(void remove(const Glib::RefPtr<Actor>& actor), clutter_group_remove)
+  _WRAP_METHOD(void remove_all(), clutter_group_remove_all)
   _WRAP_METHOD(int get_n_children() const, clutter_group_get_n_children)
-  _WRAP_METHOD(Glib::RefPtr<Actor> get_nth_child(int index) const, clutter_group_get_nth_child)
-  _WRAP_METHOD(Glib::RefPtr<Actor> find_child_by_id(guint id) const, clutter_group_find_child_by_id)
-  _WRAP_METHOD(void raise(const Glib::RefPtr<Actor>& actor, const Glib::RefPtr<Actor>& sibling), clutter_group_raise)
+  _WRAP_METHOD(Glib::RefPtr<Actor> get_nth_child(int index), clutter_group_get_nth_child)
+  _WRAP_METHOD(Glib::RefPtr<const Actor> get_nth_child(int index) const, clutter_group_get_nth_child, constversion)
 
+  // these functions were deprecated in favor of their Container counterparts
+  _IGNORE(clutter_group_add)
+  _IGNORE(clutter_group_add_many)
+  _IGNORE(clutter_group_add_many_valist)
+  _IGNORE(clutter_group_remove)
+  _IGNORE(clutter_group_find_child_by_id)
+  _IGNORE(clutter_group_raise)
+  _IGNORE(clutter_group_lower)
+  _IGNORE(clutter_group_sort_depth_order)
 };
 
 } // namespace Clutter

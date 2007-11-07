@@ -1,5 +1,10 @@
 2007-11-06  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/group.hg: removed a bunch of deprecated functions and added a
+	constversion of one function
+
+2007-11-06  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/container.hg: removed a function from Container that was
 	removed from the C library
 
