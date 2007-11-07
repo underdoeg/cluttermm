@@ -1,5 +1,9 @@
 2007-11-06  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/stage.hg: wrapped some more functions of Stage
+
+2007-11-06  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/Makefile_list_of_hg.am_fragment:
 	* clutter/src/texture.ccg:
 	* clutter/src/texture.hg:

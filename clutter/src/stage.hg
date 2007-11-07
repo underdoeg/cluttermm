@@ -54,6 +54,18 @@ public:
   _WRAP_METHOD(void unfullscreen(), clutter_stage_unfullscreen)
   _WRAP_METHOD(void show_cursor(), clutter_stage_show_cursor)
   _WRAP_METHOD(void hide_cursor(), clutter_stage_hide_cursor)
+  _WRAP_METHOD(Glib::ustring get_title() const, clutter_stage_get_title)
+  _WRAP_METHOD(void set_title(const Glib::ustring& title), clutter_stage_set_title)
+  _WRAP_METHOD(void set_user_resizable(bool value), clutter_stage_set_user_resizable)
+  _WRAP_METHOD(bool get_user_resizable() const, clutter_stage_get_user_resizable)
+  _WRAP_METHOD(Glib::RefPtr<Actor> get_actor_at_pos(int x, int y), clutter_stage_get_actor_at_pos)
+  _WRAP_METHOD(Glib::RefPtr<const Actor> get_actor_at_pos(int x, int y) const, clutter_stage_get_actor_at_pos, constversion)
+  _WRAP_METHOD(Glib::RefPtr<Actor> get_key_focus(), clutter_stage_get_key_focus)
+  _WRAP_METHOD(Glib::RefPtr<const Actor> get_key_focus() const, clutter_stage_get_key_focus, constversion)
+  _WRAP_METHOD(void set_key_focus(const Glib::RefPtr<Actor>& actor), clutter_stage_set_key_focus)
+  _WRAP_METHOD(Glib::RefPtr<Gdk::Pixbuf> snapshot(int x, int y, int width, int height) const, clutter_stage_snapshot)
+  //TODO: should we wrap this?
+  //clutter_stage_event
 
   _WRAP_SIGNAL(void fullscreen(), "fullscreen")
   _WRAP_SIGNAL(void unfullscreen(), "unfullscreen")
