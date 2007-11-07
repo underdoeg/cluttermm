@@ -33,7 +33,7 @@ class Rectangle :
 
 protected:
   _CTOR_DEFAULT()
-  Rectangle(const Color& color);
+  _WRAP_CTOR(Rectangle(const Color& color), clutter_rectangle_new_with_color)
 
 public:
   _WRAP_CREATE()

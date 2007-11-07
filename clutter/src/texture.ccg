@@ -18,9 +18,5 @@
 namespace Clutter
 {
 
-Texture::Texture(const Glib::RefPtr<Gdk::Pixbuf>& pixbuf) :
-    _CONSTRUCT("pixbuf", pixbuf->gobj())
-{}
-
 } //namespace Clutter
 

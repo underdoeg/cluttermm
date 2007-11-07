@@ -1,5 +1,13 @@
 2007-11-07  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/rectangle.ccg:
+	* clutter/src/rectangle.hg:
+	* clutter/src/texture.ccg:
+	* clutter/src/texture.hg: use _WRAP_CTOR instead of doing hand-coded
+	constructors for Rectangle and Texture.
+
+2007-11-07  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/label.hg: re-enabled pango-related functions.  Fixed a typo
 	where get_* was mis-spelled set_*
 
