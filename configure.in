@@ -16,7 +16,7 @@ AC_INIT(clutter/cluttermmconfig.h.in)
 #  Version and initialization
 #########################################################################
 CLUTTERMM_MAJOR_VERSION=0
-CLUTTERMM_MINOR_VERSION=3
+CLUTTERMM_MINOR_VERSION=5
 CLUTTERMM_MICRO_VERSION=0
 
 #
