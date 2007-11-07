@@ -13,4 +13,5 @@ media.hg \
 group.hg \
 stage.hg \
 rectangle.hg \
-texture.hg
+texture.hg \
+label.hg

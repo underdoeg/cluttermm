@@ -1,5 +1,13 @@
 2007-11-07  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* clutter/src/label.ccg:
+	* clutter/src/label.hg:
+	* tools/m4/convert_cluttermm.m4: add Label class.  Commented out Pango-using
+	functions until I get conversions to work correctly
+
+2007-11-07  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/clutter_methods.defs: re-generate methods defs
 
 2007-11-06  Jonathon Jongsma  <jjongsma@gnome.org>
