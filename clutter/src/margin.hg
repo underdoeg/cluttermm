@@ -17,12 +17,14 @@
 
 #include <glibmm/object.h>
 #include <clutter/clutter-layout.h> /* TODO: Remove this when we have wrapped enough types as C++. */
- 
+#include <cluttermm/types.h>
+
 _DEFS(cluttermm,clutter)
 
 namespace Clutter
 {
 
+//TODO: Maybe inherit directly from the struct. There is a gmmproc macro for that. murrayc.
 class Margin
 {
   _CLASS_BOXEDTYPE(Margin, ClutterMargin, NONE, cluttermm_margin_copy, cluttermm_margin_free)
@@ -30,15 +32,15 @@ public:
   // TODO: add a constructor that accepts 4 arguments and initializes all margin
   // values ?
 
-  ClutterUnit get_top() const;
-  ClutterUnit get_right() const;
-  ClutterUnit get_bottom() const;
-  ClutterUnit get_left() const;
-  void get_top(const ClutterUnit& top);
-  void get_right(const ClutterUnit& right);
-  void get_bottom(const ClutterUnit& bottom);
-  void get_left(const ClutterUnit& left);
+  _MEMBER_GET(top, top, Unit, ClutterUnit)
+  _MEMBER_GET(right, right, Unit, ClutterUnit)
+  _MEMBER_GET(bottom, bottom, Unit, ClutterUnit)
+  _MEMBER_GET(left, left, Unit, ClutterUnit)
 
+  _MEMBER_SET(top, top, Unit, ClutterUnit)
+  _MEMBER_SET(right, right, Unit, ClutterUnit)
+  _MEMBER_SET(bottom, bottom, Unit, ClutterUnit)
+  _MEMBER_SET(left, left, Unit, ClutterUnit)
 };
 
 } // namespace Gdk

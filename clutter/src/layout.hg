@@ -15,6 +15,7 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
+#include <cluttermm/types.h>
 #include <glibmm/interface.h>
 #include <clutter/clutter-layout.h> /* TODO: Remove this when we have wrapped enough types as C++. */
  
@@ -43,11 +44,12 @@ public:
 
 protected:
   _WRAP_VFUNC(LayoutFlags get_layout_flags() const, add)
-  // TODO: switch to typedefed ClutterUnit
-  _WRAP_VFUNC(void width_for_height(ClutterUnit& width, ClutterUnit height) const, width_for_height)
-  _WRAP_VFUNC(void height_for_width(ClutterUnit width, ClutterUnit& height) const, height_for_width)
-  _WRAP_VFUNC(void natural_request(ClutterUnit& width, ClutterUnit&height) const, natural_request)
-  _WRAP_VFUNC(bool tune_request(ClutterUnit given_width, ClutterUnit given_height, ClutterUnit& width, ClutterUnit& height) const, tune_request)
+
+#m4 _CONVERSION(`ClutterUnit*',`Unit&',`*($3)')
+  _WRAP_VFUNC(void width_for_height(Unit& width, Unit height) const, width_for_height)
+  _WRAP_VFUNC(void height_for_width(Unit width, Unit& height) const, height_for_width)
+  _WRAP_VFUNC(void natural_request(Unit& width, Unit& height) const, natural_request)
+  _WRAP_VFUNC(bool tune_request(Unit given_width, Unit given_height, Unit& width, Unit& height) const, tune_request)
 };
 
 } // namespace Clutter

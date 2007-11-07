@@ -18,8 +18,13 @@ _CONVERSION(`guint8*',`guint8&',`*($3)')
 _CONVERSION(`ClutterFixed&',`ClutterFixed*',`&($3)')
 _CONVERSION(`ClutterFixed*',`ClutterFixed&',`*($3)')
 
+_EQUAL(ClutterUnit,Unit)
+_CONVERSION(`Unit&',`ClutterUnit*',`&($3)')
+
 _CONV_ENUM(Clutter,LayoutFlags)
 _CONV_ENUM(Clutter,PackType)
 _CONV_ENUM(Clutter,TextureFlags)
 _CONV_ENUM(Pango,EllipsizeMode)
 _CONV_ENUM(Pango,WrapMode)
+
+

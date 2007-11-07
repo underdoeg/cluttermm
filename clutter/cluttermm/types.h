@@ -15,27 +15,14 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <glibmm/object.h>
-#include <clutter/clutter-layout.h> /* TODO: Remove this when we have wrapped enough types as C++. */
- 
-//We implement the copy and free functions 
-//because clutter does not offer convenience functions for these:
-static void cluttermm_margin_free (ClutterMargin *margin)
-{
-  g_boxed_free(CLUTTER_TYPE_MARGIN, margin);
-}
+#ifndef _CLUTTERMM_TYPES_H
+#define _CLUTTERMM_TYPES_H
 
-static ClutterMargin* cluttermm_margin_copy (const ClutterMargin *margin)
-{
-  return (ClutterMargin*)g_boxed_copy(CLUTTER_TYPE_MARGIN, margin);
-}
+#include <clutter/clutter-units.h>
 
+//TODO: Maybe redefine this, to avoid including a C header in our C++ header:
+typedef ClutterUnit Unit;
 
-_DEFS(cluttermm,clutter)
+#endif //_CLUTTERMM_TYPES_H
 
-namespace Clutter
-{
-
-
-} //namespace Clutter
 

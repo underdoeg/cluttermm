@@ -44,7 +44,8 @@ public:
   _WRAP_METHOD(Glib::RefPtr<const Actor> find_child (const Glib::ustring& child_name) const, clutter_container_find_child_by_name, constversion)
 
   // TODO: check if this should be wrapped -- docs say this shouldn't normally
-  // be used by applications
+  // be used by applications.
+  // But maybe this is useful as a protected method for derived implementations.
   _IGNORE(clutter_container_sort_depth_order)
 
   // TODO: we should probably make this use a sigc::slot of some sort instead of

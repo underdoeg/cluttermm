@@ -1,3 +1,17 @@
+2007-11-07  Murray Cumming  <murrayc@murrayc.com>
+
+	* clutter/cluttermm/Makefile.am:
+	* clutter/cluttermm/types.h: Added this file. 
+	So far it just contains the Unit typedef.
+	* clutter/src/container.hg:
+	* clutter/src/layout.hg:
+	* clutter/src/texture.hg:
+	* tools/m4/convert_cluttermm.m4: Use Unit instead 
+	of ClutterUnit in our API.
+	* clutter/src/margin.ccg:
+	* clutter/src/margin.hg: Use _MEMBER_GET() and 
+	_MEMBER_SET() instead of hand-coding these.
+
 2007-11-07  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* clutter/src/Makefile_list_of_hg.am_fragment:

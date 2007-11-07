@@ -17,6 +17,7 @@
 
 #include <clutter/clutter-texture.h> /* TODO: Remove this when we have wrapped enough types as C++. */
 #include <cluttermm/actor.h>
+#include <cluttermm/types.h>
 #include <gdkmm/pixbuf.h>
  
 _DEFS(cluttermm,clutter)
