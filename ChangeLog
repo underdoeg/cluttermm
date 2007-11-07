@@ -1,5 +1,10 @@
 2007-11-07  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/label.hg: re-enabled pango-related functions.  Fixed a typo
+	where get_* was mis-spelled set_*
+
+2007-11-07  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/Makefile_list_of_hg.am_fragment:
 	* clutter/src/label.ccg:
 	* clutter/src/label.hg:
