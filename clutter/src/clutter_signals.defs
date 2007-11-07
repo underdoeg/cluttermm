@@ -41,7 +41,7 @@
   (return-type "gboolean")
   (when "last")
   (parameters
-    '("ClutterEvent*" "p0")
+    '("ClutterButtonEvent*" "p0")
   )
 )
 
@@ -50,7 +50,7 @@
   (return-type "gboolean")
   (when "last")
   (parameters
-    '("ClutterEvent*" "p0")
+    '("ClutterButtonEvent*" "p0")
   )
 )
 
@@ -59,7 +59,7 @@
   (return-type "gboolean")
   (when "last")
   (parameters
-    '("ClutterEvent*" "p0")
+    '("ClutterScrollEvent*" "p0")
   )
 )
 
@@ -68,7 +68,7 @@
   (return-type "gboolean")
   (when "last")
   (parameters
-    '("ClutterEvent*" "p0")
+    '("ClutterKeyEvent*" "p0")
   )
 )
 
@@ -77,7 +77,7 @@
   (return-type "gboolean")
   (when "last")
   (parameters
-    '("ClutterEvent*" "p0")
+    '("ClutterKeyEvent*" "p0")
   )
 )
 
@@ -86,7 +86,7 @@
   (return-type "gboolean")
   (when "last")
   (parameters
-    '("ClutterEvent*" "p0")
+    '("ClutterMotionEvent*" "p0")
   )
 )
 
@@ -116,7 +116,7 @@
   (return-type "gboolean")
   (when "last")
   (parameters
-    '("ClutterEvent*" "p0")
+    '("ClutterCrossingEvent*" "p0")
   )
 )
 

@@ -113,6 +113,24 @@ public:
   //TODO: _WRAP_METHOD(void get_vertices(ClutterVertex verts[4]) const, clutter_actor_get_vertices)
 
   //TODO: _WRAP_METHOD(void apply_transform_to_point(ClutterVertex& point, ClutterVertex& vertex), clutter_actor_apply_transform_to_point)
+
+// signals
+  _WRAP_SIGNAL(bool button_press_event(ClutterButtonEvent* event), "button_press_event")
+  _WRAP_SIGNAL(bool button_release_event(ClutterButtonEvent* event), "button_release_event")
+  _WRAP_SIGNAL(bool motion_event(ClutterMotionEvent* event), "motion_event")
+  //_WRAP_SIGNAL(bool leave_event(ClutterCrossingEvent* event), "leave_event")
+  _WRAP_SIGNAL(void show(), "show")
+  _WRAP_SIGNAL(void hide(), "hide")
+  _WRAP_SIGNAL(void destroy(), "destroy")
+  _WRAP_SIGNAL(bool key_release_event(ClutterKeyEvent* event), "key_release_event")
+  //_WRAP_SIGNAL(bool enter_event(ClutterCrossingEvent* event), "enter_event")
+  _WRAP_SIGNAL(bool event(ClutterEvent* event), "event")
+  _WRAP_SIGNAL(void focus_out(), "focus_out")
+  _WRAP_SIGNAL(void focus_in(), "focus_in")
+  //_WRAP_SIGNAL(void parent_set(const Glib::RefPtr<Actor>& old_parent), "parent_set")
+  _WRAP_SIGNAL(bool scroll_event(ClutterScrollEvent* event), "scroll_event")
+  _WRAP_SIGNAL(bool key_press_event(ClutterKeyEvent* event), "key_press_event")
+  //_WRAP_SIGNAL(bool captured_event(ClutterEvent* event), "captured_event")
 };
 
 } // namespace Clutter

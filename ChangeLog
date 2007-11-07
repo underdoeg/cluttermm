@@ -1,5 +1,10 @@
 2007-11-06  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/actor.hg:
+	* clutter/src/clutter_signals.defs: added some signals to the Actor class
+
+2007-11-06  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/group.hg: removed a bunch of deprecated functions and added a
 	constversion of one function
 
