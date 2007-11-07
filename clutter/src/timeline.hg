@@ -1,0 +1,71 @@
+/* Copyright (C) 2007 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <glibmm/object.h>
+#include <clutter/clutter-timeline.h> /* TODO: Remove this when we have wrapped enough types as C++. */
+ 
+_DEFS(cluttermm,clutter)
+_PINCLUDE(glibmm/private/object_p.h)
+
+
+namespace Clutter
+{
+
+class Timeline : public Glib::Object
+{
+  _CLASS_GOBJECT(Timeline, ClutterTimeline, CLUTTER_TIMELINE, Glib::Object, GObject)
+
+public:
+  _CTOR_DEFAULT()
+  _WRAP_CTOR(Timeline(guint msecs), clutter_timeline_new_for_duration)
+  // TODO: copy constructor for clutter_timeline_clone()?
+
+  _WRAP_METHOD(void set_duration(guint msecs), clutter_timeline_set_duration)
+  _WRAP_METHOD(guint get_duration() const, clutter_timeline_get_duration)
+  _WRAP_METHOD(void set_speed(guint fps), clutter_timeline_set_speed)
+  _WRAP_METHOD(guint get_speed() const, clutter_timeline_get_speed)
+  _WRAP_METHOD(void start(), clutter_timeline_start)
+  _WRAP_METHOD(void pause(), clutter_timeline_pause)
+  _WRAP_METHOD(void stop(), clutter_timeline_stop)
+  _WRAP_METHOD(void rewind(), clutter_timeline_rewind)
+  _WRAP_METHOD(void set_loop(bool loop), clutter_timeline_set_loop)
+  _WRAP_METHOD(bool get_loop() const, clutter_timeline_get_loop)
+  _WRAP_METHOD(void skip(guint n_frames), clutter_timeline_skip)
+  _WRAP_METHOD(void advance(guint frame_num), clutter_timeline_advance)
+  _WRAP_METHOD(gint get_current_frame() const, clutter_timeline_get_current_frame)
+  _WRAP_METHOD(void set_n_frames(guint n_frames), clutter_timeline_set_n_frames)
+  _WRAP_METHOD(guint get_n_frames() const, clutter_timeline_get_n_frames)
+  _WRAP_METHOD(bool is_playing() const, clutter_timeline_is_playing)
+  _WRAP_METHOD(void set_delay(guint msecs), clutter_timeline_set_delay)
+  _WRAP_METHOD(guint get_delay() const, clutter_timeline_get_delay)
+  _WRAP_METHOD(double get_progress() const, clutter_timeline_get_progress)
+  _WRAP_METHOD(ClutterFixed get_progressx() const, clutter_timeline_get_progressx)
+
+  _WRAP_PROPERTY("delay", guint)
+  _WRAP_PROPERTY("fps", guint)
+  _WRAP_PROPERTY("loop", bool)
+  _WRAP_PROPERTY("num-frames", guint)
+
+  _WRAP_SIGNAL(void completed(), "completed")
+  _WRAP_SIGNAL(void new_frame(gint fram_num), "new-frame")
+  _WRAP_SIGNAL(void paused(), "paused")
+  _WRAP_SIGNAL(void started(), "started")
+
+};
+
+} // namespace Clutter
+

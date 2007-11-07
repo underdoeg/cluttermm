@@ -1,3 +1,9 @@
+2007-11-07  Jonathon Jongsma  <jjongsma@gnome.org>
+
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* clutter/src/timeline.ccg:
+	* clutter/src/timeline.hg: Added initial wrapper for Timeline
+
 2007-11-07  Murray Cumming  <murrayc@murrayc.com>
 
 	* clutter/cluttermm/Makefile.am:

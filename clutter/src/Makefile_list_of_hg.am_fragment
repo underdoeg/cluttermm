@@ -15,4 +15,5 @@ stage.hg \
 rectangle.hg \
 texture.hg \
 label.hg \
-entry.hg
+entry.hg \
+timeline.hg
