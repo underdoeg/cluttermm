@@ -1,3 +1,10 @@
+2007-11-06  Jonathon Jongsma  <jjongsma@gnome.org>
+
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* clutter/src/texture.ccg:
+	* clutter/src/texture.hg:
+	* tools/m4/convert_cluttermm.m4: Initial wrapper for Texture class
+
 2007-10-31  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* clutter/src/box.hg:

@@ -1,0 +1,73 @@
+/* Copyright (C) 2007 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <clutter/clutter-texture.h> /* TODO: Remove this when we have wrapped enough types as C++. */
+#include <cluttermm/actor.h>
+#include <gdkmm/pixbuf.h>
+ 
+_DEFS(cluttermm,clutter)
+_PINCLUDE(cluttermm/private/actor_p.h)
+
+
+namespace Clutter
+{
+
+_WRAP_ENUM(TextureFlags, ClutterTextureFlags, NO_GTYPE)
+// TODO: should this be exposed?  or use exceptions instead?
+_WRAP_ENUM(TextureError, ClutterTextureError, NO_GTYPE)
+
+class Texture :
+  public Actor
+{
+  _CLASS_GOBJECT(Texture, ClutterTexture, CLUTTER_TEXTURE, Actor, ClutterActor)
+
+protected:
+  _CTOR_DEFAULT()
+  Texture(const Glib::RefPtr<Gdk::Pixbuf>& pixbuf);
+
+public:
+#m4 _CONVERSION(`ClutterActor*',`Glib::RefPtr<Texture>',`Glib::wrap((ClutterTexture*)$3)')
+
+  _WRAP_CREATE()
+  _WRAP_CREATE(const Glib::RefPtr<Gdk::Pixbuf>& pixbuf);
+
+  // TODO: GError
+  _WRAP_METHOD(bool set_pixbuf(const Glib::RefPtr<Gdk::Pixbuf>& pixbuf, GError** error), clutter_texture_set_pixbuf)
+  _WRAP_METHOD(Glib::RefPtr<Gdk::Pixbuf> get_pixbuf() const, clutter_texture_get_pixbuf)
+  _WRAP_METHOD(void get_base_size(gint& width, gint& height) const, clutter_texture_get_base_size)
+  // TODO: GError
+  _WRAP_METHOD(bool set_from_rgb_data(const guchar* data, bool has_alpha, int width, int height, int rowstride, int bpp, TextureFlags flags, GError** error), clutter_texture_set_from_rgb_data)
+  // TODO: GError
+  _WRAP_METHOD(bool set_from_yuv_data(const guchar* data, int width, int height, TextureFlags flags, GError** error), clutter_texture_set_from_yuv_data)
+
+  _WRAP_SIGNAL(void size_change(gint width, gint height), "size_change")
+  _WRAP_SIGNAL(void pixbuf_change(), "pixbuf_change")
+
+protected:
+  _WRAP_METHOD(bool is_tiled() const, clutter_texture_is_tiled)
+  _WRAP_METHOD(void get_n_tiles(gint& n_x_tiles, gint& n_y_tiles), clutter_texture_get_n_tiles)
+  _WRAP_METHOD(void get_y_tile_detail(int y_index, int& pos, int& size, int& waste) const, clutter_texture_get_y_tile_detail)
+  _WRAP_METHOD(void get_x_tile_detail(int x_index, int& pos, int& size, int& waste) const, clutter_texture_get_x_tile_detail)
+  _WRAP_METHOD(bool has_generated_tiles() const, clutter_texture_has_generated_tiles)
+  _WRAP_METHOD(void bind_tile(int index), clutter_texture_bind_tile)
+
+
+};
+
+} // namespace Clutter
+
+//vim: ts=2,sw=2

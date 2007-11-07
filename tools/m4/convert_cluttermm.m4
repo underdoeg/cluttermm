@@ -20,3 +20,4 @@ _CONVERSION(`ClutterFixed*',`ClutterFixed&',`*($3)')
 
 _CONV_ENUM(Clutter,LayoutFlags)
 _CONV_ENUM(Clutter,PackType)
+_CONV_ENUM(Clutter,TextureFlags)

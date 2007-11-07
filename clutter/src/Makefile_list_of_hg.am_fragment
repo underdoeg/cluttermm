@@ -12,4 +12,5 @@ margin.hg \
 media.hg \
 group.hg \
 stage.hg \
-rectangle.hg
+rectangle.hg \
+texture.hg
