@@ -159,6 +159,12 @@
   (gtype-id "CLUTTER_TYPE_SCRIPT")
 )
 
+(define-object Scriptable
+  (in-module "Clutter")
+  (c-name "ClutterScriptable")
+  (gtype-id "CLUTTER_TYPE_SCRIPTABLE")
+)
+
 (define-object Stage
   (in-module "Clutter")
   (parent "ClutterGroup")
@@ -207,26 +213,6 @@
   (values
     '("start" "CLUTTER_PACK_START")
     '("end" "CLUTTER_PACK_END")
-  )
-)
-
-(define-flags DebugFlag
-  (in-module "Clutter")
-  (c-name "ClutterDebugFlag")
-  (gtype-id "CLUTTER_TYPE_DEBUG_FLAG")
-  (values
-    '("misc" "CLUTTER_DEBUG_MISC")
-    '("actor" "CLUTTER_DEBUG_ACTOR")
-    '("texture" "CLUTTER_DEBUG_TEXTURE")
-    '("event" "CLUTTER_DEBUG_EVENT")
-    '("paint" "CLUTTER_DEBUG_PAINT")
-    '("gl" "CLUTTER_DEBUG_GL")
-    '("alpha" "CLUTTER_DEBUG_ALPHA")
-    '("behaviour" "CLUTTER_DEBUG_BEHAVIOUR")
-    '("pango" "CLUTTER_DEBUG_PANGO")
-    '("backend" "CLUTTER_DEBUG_BACKEND")
-    '("scheduler" "CLUTTER_DEBUG_SCHEDULER")
-    '("script" "CLUTTER_DEBUG_SCRIPT")
   )
 )
 
@@ -319,6 +305,17 @@
   )
 )
 
+(define-enum GLXFilterReturn
+  (in-module "Clutter")
+  (c-name "ClutterGLXFilterReturn")
+  (gtype-id "CLUTTER_TYPE_GLX_FILTER_RETURN")
+  (values
+    '("continue" "CLUTTER_GLX_FILTER_CONTINUE")
+    '("translate" "CLUTTER_GLX_FILTER_TRANSLATE")
+    '("remove" "CLUTTER_GLX_FILTER_REMOVE")
+  )
+)
+
 (define-flags LayoutFlags
   (in-module "Clutter")
   (c-name "ClutterLayoutFlags")
@@ -342,30 +339,6 @@
     '("error-threads" "CLUTTER_INIT_ERROR_THREADS")
     '("error-backend" "CLUTTER_INIT_ERROR_BACKEND")
     '("error-internal" "CLUTTER_INIT_ERROR_INTERNAL")
-  )
-)
-
-(define-flags PrivateFlags
-  (in-module "Clutter")
-  (c-name "ClutterPrivateFlags")
-  (gtype-id "CLUTTER_TYPE_PRIVATE_FLAGS")
-  (values
-    '("unused-flag" "CLUTTER_ACTOR_UNUSED_FLAG")
-    '("in-destruction" "CLUTTER_ACTOR_IN_DESTRUCTION")
-    '("is-toplevel" "CLUTTER_ACTOR_IS_TOPLEVEL")
-    '("in-reparent" "CLUTTER_ACTOR_IN_REPARENT")
-    '("sync-matrices" "CLUTTER_ACTOR_SYNC_MATRICES")
-  )
-)
-
-(define-enum PickMode
-  (in-module "Clutter")
-  (c-name "ClutterPickMode")
-  (gtype-id "CLUTTER_TYPE_PICK_MODE")
-  (values
-    '("none" "CLUTTER_PICK_NONE")
-    '("reactive" "CLUTTER_PICK_REACTIVE")
-    '("all" "CLUTTER_PICK_ALL")
   )
 )
 
@@ -982,6 +955,16 @@
     '("ClutterVertex*" "point")
     '("ClutterVertex*" "vertex")
   )
+)
+
+(define-function clutter_actor_push_transform_child
+  (c-name "clutter_actor_push_transform_child")
+  (return-type "none")
+)
+
+(define-function clutter_actor_pop_transform_child
+  (c-name "clutter_actor_pop_transform_child")
+  (return-type "none")
 )
 
 (define-method event
@@ -2367,15 +2350,6 @@
   )
 )
 
-(define-method find_child_by_id
-  (of-object "ClutterContainer")
-  (c-name "clutter_container_find_child_by_id")
-  (return-type "ClutterActor*")
-  (parameters
-    '("guint" "child_id")
-  )
-)
-
 (define-method find_child_by_name
   (of-object "ClutterContainer")
   (c-name "clutter_container_find_child_by_name")
@@ -2410,10 +2384,6 @@
   (c-name "clutter_container_sort_depth_order")
   (return-type "none")
 )
-
-
-
-;; From clutter-debug.h
 
 
 
@@ -3075,6 +3045,78 @@
 
 
 
+;; From clutter-glx.h
+
+(define-function clutter_glx_trap_x_errors
+  (c-name "clutter_glx_trap_x_errors")
+  (return-type "none")
+)
+
+(define-function clutter_glx_untrap_x_errors
+  (c-name "clutter_glx_untrap_x_errors")
+  (return-type "gint")
+)
+
+(define-function clutter_glx_get_default_display
+  (c-name "clutter_glx_get_default_display")
+  (return-type "Display*")
+)
+
+(define-function clutter_glx_get_default_screen
+  (c-name "clutter_glx_get_default_screen")
+  (return-type "int")
+)
+
+(define-function clutter_glx_get_root_window
+  (c-name "clutter_glx_get_root_window")
+  (return-type "Window")
+)
+
+(define-function clutter_glx_get_stage_window
+  (c-name "clutter_glx_get_stage_window")
+  (return-type "Window")
+  (parameters
+    '("ClutterStage*" "stage")
+  )
+)
+
+(define-function clutter_glx_get_stage_visual
+  (c-name "clutter_glx_get_stage_visual")
+  (return-type "XVisualInfo*")
+  (parameters
+    '("ClutterStage*" "stage")
+  )
+)
+
+(define-function clutter_glx_set_stage_foreign
+  (c-name "clutter_glx_set_stage_foreign")
+  (return-type "gboolean")
+  (parameters
+    '("ClutterStage*" "stage")
+    '("Window" "xwindow")
+  )
+)
+
+(define-function clutter_glx_add_filter
+  (c-name "clutter_glx_add_filter")
+  (return-type "none")
+  (parameters
+    '("ClutterGLXFilterFunc" "func")
+    '("gpointer" "data")
+  )
+)
+
+(define-function clutter_glx_remove_filter
+  (c-name "clutter_glx_remove_filter")
+  (return-type "none")
+  (parameters
+    '("ClutterGLXFilterFunc" "func")
+    '("gpointer" "data")
+  )
+)
+
+
+
 ;; From clutter-group.h
 
 (define-function clutter_group_get_type
@@ -3203,11 +3245,11 @@
 
 
 
+;; From clutter-json.h
+
+
+
 ;; From clutter-keysyms.h
-
-
-
-;; From clutter-keysyms-table.h
 
 
 
@@ -3230,7 +3272,7 @@
   (parameters
     '("const-gchar*" "font_name")
     '("const-gchar*" "text")
-    '("ClutterColor*" "color")
+    '("const-ClutterColor*" "color")
   )
 )
 
@@ -3614,10 +3656,6 @@
 
 
 
-;; From clutter-marshal.h
-
-
-
 ;; From clutter-media.h
 
 (define-function clutter_media_get_type
@@ -3709,23 +3747,6 @@
   (return-type "none")
   (parameters
     '("const-gchar*" "filename")
-  )
-)
-
-
-
-;; From clutter-private.h
-
-(define-function clutter_context_get_default
-  (c-name "clutter_context_get_default")
-  (return-type "ClutterMainContext*")
-)
-
-(define-function clutter_do_event
-  (c-name "clutter_do_event")
-  (return-type "none")
-  (parameters
-    '("ClutterEvent*" "event")
   )
 )
 
@@ -3900,6 +3921,53 @@
 
 
 
+;; From clutter-scriptable.h
+
+(define-function clutter_scriptable_get_type
+  (c-name "clutter_scriptable_get_type")
+  (return-type "GType")
+)
+
+(define-method set_name
+  (of-object "ClutterScriptable")
+  (c-name "clutter_scriptable_set_name")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "name")
+  )
+)
+
+(define-method get_name
+  (of-object "ClutterScriptable")
+  (c-name "clutter_scriptable_get_name")
+  (return-type "const-gchar*")
+)
+
+(define-method parse_custom_node
+  (of-object "ClutterScriptable")
+  (c-name "clutter_scriptable_parse_custom_node")
+  (return-type "gboolean")
+  (parameters
+    '("ClutterScript*" "script")
+    '("GValue*" "value")
+    '("const-gchar*" "name")
+    '("JsonNode*" "node")
+  )
+)
+
+(define-method set_custom_property
+  (of-object "ClutterScriptable")
+  (c-name "clutter_scriptable_set_custom_property")
+  (return-type "none")
+  (parameters
+    '("ClutterScript*" "script")
+    '("const-gchar*" "name")
+    '("const-GValue*" "value")
+  )
+)
+
+
+
 ;; From clutter-script.h
 
 (define-function clutter_script_error_quark
@@ -3951,7 +4019,7 @@
 (define-method get_objects
   (of-object "ClutterScript")
   (c-name "clutter_script_get_objects")
-  (return-type "GList*")
+  (return-type "gint")
   (parameters
     '("const-gchar*" "first_name")
   )
@@ -3973,36 +4041,12 @@
   (return-type "none")
 )
 
-
-
-;; From clutter-script-private.h
-
-(define-method construct_object
+(define-method get_type_from_name
   (of-object "ClutterScript")
-  (c-name "clutter_script_construct_object")
-  (return-type "GObject*")
+  (c-name "clutter_script_get_type_from_name")
+  (return-type "GType")
   (parameters
-    '("ObjectInfo*" "info")
-  )
-)
-
-(define-function clutter_script_enum_from_string
-  (c-name "clutter_script_enum_from_string")
-  (return-type "gboolean")
-  (parameters
-    '("GType" "gtype")
-    '("const-gchar*" "string")
-    '("gint*" "enum_value")
-  )
-)
-
-(define-function clutter_script_flags_from_string
-  (c-name "clutter_script_flags_from_string")
-  (return-type "gboolean")
-  (parameters
-    '("GType" "gtype")
-    '("const-gchar*" "string")
-    '("gint*" "flags_value")
+    '("const-gchar*" "type_name")
   )
 )
 
@@ -4630,10 +4674,426 @@
 
 
 
-;; From stamp-clutter-enum-types.h
+;; From cogl-defines.h
 
 
 
-;; From stamp-clutter-marshal.h
+;; From cogl.h
+
+(define-function cogl_get_proc_address
+  (c-name "cogl_get_proc_address")
+  (return-type "CoglFuncPtr")
+  (parameters
+    '("const-gchar*" "name")
+  )
+)
+
+(define-function cogl_check_extension
+  (c-name "cogl_check_extension")
+  (return-type "gboolean")
+  (parameters
+    '("const-gchar*" "name")
+    '("const-gchar*" "ext")
+  )
+)
+
+(define-function cogl_perspective
+  (c-name "cogl_perspective")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "fovy")
+    '("ClutterFixed" "aspect")
+    '("ClutterFixed" "zNear")
+    '("ClutterFixed" "zFar")
+  )
+)
+
+(define-function cogl_setup_viewport
+  (c-name "cogl_setup_viewport")
+  (return-type "none")
+  (parameters
+    '("guint" "width")
+    '("guint" "height")
+    '("ClutterFixed" "fovy")
+    '("ClutterFixed" "aspect")
+    '("ClutterFixed" "z_near")
+    '("ClutterFixed" "z_far")
+  )
+)
+
+(define-function cogl_paint_init
+  (c-name "cogl_paint_init")
+  (return-type "none")
+  (parameters
+    '("const-ClutterColor*" "color")
+  )
+)
+
+(define-function cogl_push_matrix
+  (c-name "cogl_push_matrix")
+  (return-type "none")
+)
+
+(define-function cogl_pop_matrix
+  (c-name "cogl_pop_matrix")
+  (return-type "none")
+)
+
+(define-function cogl_scale
+  (c-name "cogl_scale")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "x")
+    '("ClutterFixed" "z")
+  )
+)
+
+(define-function cogl_translatex
+  (c-name "cogl_translatex")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "x")
+    '("ClutterFixed" "y")
+    '("ClutterFixed" "z")
+  )
+)
+
+(define-function cogl_translate
+  (c-name "cogl_translate")
+  (return-type "none")
+  (parameters
+    '("gint" "x")
+    '("gint" "y")
+    '("gint" "z")
+  )
+)
+
+(define-function cogl_rotatex
+  (c-name "cogl_rotatex")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "angle")
+    '("gint" "x")
+    '("gint" "y")
+    '("gint" "z")
+  )
+)
+
+(define-function cogl_rotate
+  (c-name "cogl_rotate")
+  (return-type "none")
+  (parameters
+    '("gint" "angle")
+    '("gint" "x")
+    '("gint" "y")
+    '("gint" "z")
+  )
+)
+
+(define-function cogl_color
+  (c-name "cogl_color")
+  (return-type "none")
+  (parameters
+    '("const-ClutterColor*" "color")
+  )
+)
+
+(define-function cogl_clip_set
+  (c-name "cogl_clip_set")
+  (return-type "none")
+  (parameters
+    '("const-ClutterGeometry*" "clip")
+  )
+)
+
+(define-function cogl_clip_unset
+  (c-name "cogl_clip_unset")
+  (return-type "none")
+)
+
+(define-function cogl_enable
+  (c-name "cogl_enable")
+  (return-type "none")
+  (parameters
+    '("gulong" "flags")
+  )
+)
+
+(define-function cogl_texture_can_size
+  (c-name "cogl_texture_can_size")
+  (return-type "gboolean")
+  (parameters
+    '("COGLenum" "target")
+    '("COGLenum" "pixel_format")
+    '("COGLenum" "pixel_type")
+    '("int" "width")
+    '("int" "height")
+  )
+)
+
+(define-function cogl_texture_quad
+  (c-name "cogl_texture_quad")
+  (return-type "none")
+  (parameters
+    '("gint" "x1")
+    '("gint" "x2")
+    '("gint" "y1")
+    '("gint" "y2")
+    '("ClutterFixed" "tx1")
+    '("ClutterFixed" "ty1")
+    '("ClutterFixed" "tx2")
+    '("ClutterFixed" "ty2")
+  )
+)
+
+(define-function cogl_textures_create
+  (c-name "cogl_textures_create")
+  (return-type "none")
+  (parameters
+    '("guint" "num")
+    '("COGLuint*" "textures")
+  )
+)
+
+(define-function cogl_textures_destroy
+  (c-name "cogl_textures_destroy")
+  (return-type "none")
+  (parameters
+    '("guint" "num")
+    '("const-COGLuint*" "textures")
+  )
+)
+
+(define-function cogl_texture_bind
+  (c-name "cogl_texture_bind")
+  (return-type "none")
+  (parameters
+    '("COGLenum" "target")
+    '("COGLuint" "texture")
+  )
+)
+
+(define-function cogl_texture_set_alignment
+  (c-name "cogl_texture_set_alignment")
+  (return-type "none")
+  (parameters
+    '("COGLenum" "target")
+    '("guint" "alignment")
+    '("guint" "row_length")
+  )
+)
+
+(define-function cogl_texture_set_filters
+  (c-name "cogl_texture_set_filters")
+  (return-type "none")
+  (parameters
+    '("COGLenum" "target")
+    '("COGLenum" "min_filter")
+    '("COGLenum" "max_filter")
+  )
+)
+
+(define-function cogl_texture_set_wrap
+  (c-name "cogl_texture_set_wrap")
+  (return-type "none")
+  (parameters
+    '("COGLenum" "target")
+    '("COGLenum" "wrap_s")
+    '("COGLenum" "wrap_t")
+  )
+)
+
+(define-function cogl_texture_image_2d
+  (c-name "cogl_texture_image_2d")
+  (return-type "none")
+  (parameters
+    '("COGLenum" "target")
+    '("COGLint" "internal_format")
+    '("gint" "width")
+    '("gint" "height")
+    '("COGLenum" "format")
+    '("COGLenum" "type")
+    '("const-guchar*" "pixels")
+  )
+)
+
+(define-function cogl_texture_sub_image_2d
+  (c-name "cogl_texture_sub_image_2d")
+  (return-type "none")
+  (parameters
+    '("COGLenum" "target")
+    '("gint" "xoff")
+    '("gint" "yoff")
+    '("gint" "width")
+    '("gint" "height")
+    '("COGLenum" "format")
+    '("COGLenum" "type")
+    '("const-guchar*" "pixels")
+  )
+)
+
+(define-function cogl_rectangle
+  (c-name "cogl_rectangle")
+  (return-type "none")
+  (parameters
+    '("gint" "x")
+    '("gint" "y")
+    '("guint" "width")
+    '("guint" "height")
+  )
+)
+
+(define-function cogl_trapezoid
+  (c-name "cogl_trapezoid")
+  (return-type "none")
+  (parameters
+    '("gint" "y1")
+    '("gint" "x11")
+    '("gint" "x21")
+    '("gint" "y2")
+    '("gint" "x12")
+    '("gint" "x22")
+  )
+)
+
+(define-function cogl_alpha_func
+  (c-name "cogl_alpha_func")
+  (return-type "none")
+  (parameters
+    '("COGLenum" "func")
+    '("ClutterFixed" "ref")
+  )
+)
+
+(define-function cogl_get_features
+  (c-name "cogl_get_features")
+  (return-type "ClutterFeatureFlags")
+  (parameters
+  )
+)
+
+(define-function cogl_get_modelview_matrix
+  (c-name "cogl_get_modelview_matrix")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "m[16]")
+  )
+)
+
+(define-function cogl_get_projection_matrix
+  (c-name "cogl_get_projection_matrix")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "m[16]")
+  )
+)
+
+(define-function cogl_get_viewport
+  (c-name "cogl_get_viewport")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "v[4]")
+  )
+)
+
+(define-function cogl_get_bitmasks
+  (c-name "cogl_get_bitmasks")
+  (return-type "none")
+  (parameters
+    '("gint*" "red")
+    '("gint*" "green")
+    '("gint*" "blue")
+    '("gint*" "alpha")
+  )
+)
+
+
+
+;; From pangoclutter.h
+
+(define-function pango_clutter_font_map_get_type
+  (c-name "pango_clutter_font_map_get_type")
+  (return-type "GType")
+)
+
+(define-function pango_clutter_font_map_new
+  (c-name "pango_clutter_font_map_new")
+  (is-constructor-of "PangoClutterFontMap")
+  (return-type "PangoFontMap*")
+)
+
+(define-method set_default_substitute
+  (of-object "PangoClutterFontMap")
+  (c-name "pango_clutter_font_map_set_default_substitute")
+  (return-type "none")
+  (parameters
+    '("PangoClutterSubstituteFunc" "func")
+    '("gpointer" "data")
+    '("GDestroyNotify" "notify")
+  )
+)
+
+(define-method set_resolution
+  (of-object "PangoClutterFontMap")
+  (c-name "pango_clutter_font_map_set_resolution")
+  (return-type "none")
+  (parameters
+    '("double" "dpi")
+  )
+)
+
+(define-method substitute_changed
+  (of-object "PangoClutterFontMap")
+  (c-name "pango_clutter_font_map_substitute_changed")
+  (return-type "none")
+)
+
+(define-method create_context
+  (of-object "PangoClutterFontMap")
+  (c-name "pango_clutter_font_map_create_context")
+  (return-type "PangoContext*")
+)
+
+(define-function pango_clutter_render_layout_subpixel
+  (c-name "pango_clutter_render_layout_subpixel")
+  (return-type "none")
+  (parameters
+    '("PangoLayout*" "layout")
+    '("int" "x")
+    '("int" "y")
+    '("ClutterColor*" "color")
+    '("int" "flags")
+  )
+)
+
+(define-function pango_clutter_render_layout
+  (c-name "pango_clutter_render_layout")
+  (return-type "none")
+  (parameters
+    '("PangoLayout*" "layout")
+    '("int" "x")
+    '("int" "y")
+    '("ClutterColor*" "color")
+    '("int" "flags")
+  )
+)
+
+(define-function pango_clutter_render_layout_line
+  (c-name "pango_clutter_render_layout_line")
+  (return-type "none")
+  (parameters
+    '("PangoLayoutLine*" "line")
+    '("int" "x")
+    '("int" "y")
+    '("ClutterColor*" "color")
+  )
+)
+
+(define-function pango_clutter_render_clear_caches
+  (c-name "pango_clutter_render_clear_caches")
+  (return-type "none")
+  (parameters
+  )
+)
 
 
