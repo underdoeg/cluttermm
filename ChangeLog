@@ -1,5 +1,12 @@
 2007-11-07  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* clutter/src/clutter_vfuncs.defs:
+	* clutter/src/entry.ccg:
+	* clutter/src/entry.hg: Add wrapper for Entry class
+
+2007-11-07  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/rectangle.ccg:
 	* clutter/src/rectangle.hg:
 	* clutter/src/texture.ccg:

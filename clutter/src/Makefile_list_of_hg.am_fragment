@@ -14,4 +14,5 @@ group.hg \
 stage.hg \
 rectangle.hg \
 texture.hg \
-label.hg
+label.hg \
+entry.hg

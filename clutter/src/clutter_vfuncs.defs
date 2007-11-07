@@ -183,3 +183,10 @@
   )
 )
 
+; ClutterEntry
+
+(define-vfunc paint_cursor
+  (of-object "ClutterEntry")
+  (return-type "void")
+)
+
