@@ -17,7 +17,6 @@
  */
 
 #include <glibmm/object.h>
-#include <clutter/clutter-layout.h> /* TODO: Remove this when we have wrapped enough types as C++. */
  
 _DEFS(cluttermm,clutter)
 
@@ -26,34 +25,32 @@ namespace Clutter
 
 Color::Color()
 {
-  ClutterColor tmp = { 0, 0, 0, 0, };
+  // the set_from_*() functions don't modify the alpha value of the color, so
+  // default to max alpha since that's probably the most common case
+  ClutterColor tmp = { 0, 0, 0, 255 };
   gobject_ = clutter_color_copy(&tmp);
 }
 
 Color::Color(const Glib::ustring& color)
 {
-  ClutterColor tmp = { 0, 0, 0, 0, };
+  // the set_from_*() functions don't modify the alpha value of the color, so
+  // default to max alpha since that's probably the most common case
+  ClutterColor tmp = { 0, 0, 0, 255 };
   gobject_ = clutter_color_copy(&tmp);
   set_from_string(color);
 }
 
-Color::Color(guint8 hue, guint8 luminance, guint8 saturation)
+Color::Color(guint8 red, guint8 green, guint8 blue, guint8 alpha)
 {
-  ClutterColor tmp = { 0, 0, 0, 0, };
+  ClutterColor tmp = { red, green, blue, alpha };
   gobject_ = clutter_color_copy(&tmp);
-  set_from_hls(hue, luminance, saturation);
-}
-
-Color::Color(ClutterFixed hue, ClutterFixed luminance, ClutterFixed saturation)
-{
-  ClutterColor tmp = { 0, 0, 0, 0, };
-  gobject_ = clutter_color_copy(&tmp);
-  set_from_hlsx(hue, luminance, saturation);
 }
 
 Color::Color(guint32 pixel)
 {
-  ClutterColor tmp = { 0, 0, 0, 0, };
+  // the set_from_*() functions don't modify the alpha value of the color, so
+  // default to max alpha since that's probably the most common case
+  ClutterColor tmp = { 0, 0, 0, 255 };
   gobject_ = clutter_color_copy(&tmp);
   set_from_pixel(pixel);
 }
@@ -62,6 +59,15 @@ void Color::set_from_string(const Glib::ustring& color)
 {
   clutter_color_parse(color.c_str(), this->gobj());
 }
+
+void Color::set_from_rgb(guint8 red, guint8 blue, guint8 green)
+{
+    gobj()->red = red;
+    gobj()->green = green;
+    gobj()->blue = blue;
+}
+
+void set_from_rgb(guint8 red, guint8 blue, guint8 green);
 
 Color Color::add(const Color& color) const
 {

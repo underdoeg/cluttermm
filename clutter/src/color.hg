@@ -30,23 +30,26 @@ class Color
   _IGNORE(clutter_color_free)
 public:
 
+
+  // TODO: it'd be nice if these constructors allowed you to specify the alpha
+  // value, but the underlying set_from_*() functions don't accept an alpha
+  // value so it would have to set the struct member directly.  The struct
+  // member is a guint8 type, so the Fixed-point version would need conversions
+  // or have an odd signature that takes a guint8 as the last parameter
   _CUSTOM_DEFAULT_CTOR
   Color();
-
-  /** Create a new Color object by specifying its value in HLS
+  /** Create a new Color object by specifying its value in RGB(A)
    */
-  Color(guint8 hue, guint8 luminance, guint8 saturation);
-
-  /** Create a new Color object by specifying its value in fixed-point HLS
-   */
-  Color(ClutterFixed hue, ClutterFixed luminance, ClutterFixed saturation);
+  Color(guint8 red, guint8 green, guint8 blue, guint8 alpha=255);
 
   /** Create a new Color object by specifying its pixel value
    */
   explicit Color(guint32 pixel);
 
+  // TODO: this could fail, just return a 'default' color or throw an exception?
   explicit Color(const Glib::ustring& color);
 
+  void set_from_rgb(guint8 red, guint8 blue, guint8 green);
   void set_from_string(const Glib::ustring& color);
   _WRAP_METHOD(Glib::ustring to_string() const, clutter_color_to_string)
   _WRAP_METHOD(void set_from_hls(guint8 hue, guint8 luminance, guint8 saturation), clutter_color_from_hls)
@@ -87,6 +90,18 @@ public:
   _WRAP_METHOD_DOCS_ONLY(clutter_color_shadex)
   void shadex(ClutterFixed shade);
   _IGNORE(clutter_color_shadex)
+
+
+  // provide accessors/mutators to modify the individual members like you could
+  // do in C by directly modifying the struct members
+  _MEMBER_GET(red, red, guint8, guint8)
+  _MEMBER_SET(red, red, guint8, guint8)
+  _MEMBER_GET(green, green, guint8, guint8)
+  _MEMBER_SET(green, green, guint8, guint8)
+  _MEMBER_GET(blue, blue, guint8, guint8)
+  _MEMBER_SET(blue, blue, guint8, guint8)
+  _MEMBER_GET(alpha, alpha, guint8, guint8)
+  _MEMBER_SET(alpha, alpha, guint8, guint8)
 
 #m4begin
   _WRAP_EQUAL(clutter_color_equal)

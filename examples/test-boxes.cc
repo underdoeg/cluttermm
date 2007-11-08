@@ -44,7 +44,7 @@ main (int argc, char *argv[])
     Glib::RefPtr<Clutter::Stage> stage;
     Glib::RefPtr<Clutter::VBox> vbox;
     Clutter::Color stage_color (0x00, 0x00, 0x00);
-    Clutter::Color label_color (0xff, 0xff, 0xff);
+    Clutter::Color label_color (0xff, 0xff, 0xff, 0x99);
     gint i, j;
 
     Clutter::init (&argc, &argv);

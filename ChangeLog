@@ -1,3 +1,17 @@
+2007-11-08  Jonathon Jongsma  <jjongsma@gnome.org>
+
+	* clutter/src/color.ccg:
+	* clutter/src/color.hg: I had forgotten to add an rgb constructor, which is
+	the most common case and corresponds to the C use:
+	ClutterColor color = { 0, 0, 0, 255};
+	This means that we can't have a constructor for hls, because they would be
+	the same signature.  So I removed the hls and hlsx constructors.  If you
+	want to set a color via hls, you'll need to construct it and then call
+	Color::set_from_hls() instead.  I also added getters/setters for all of the
+	individual red/green/blue/alpha values and one setter for all of them at
+	once. This API might still need a bit more thought to make it more natural
+	* examples/test-boxes.cc: updated for the new color API
+
 2007-11-08  Murray Cumming  <murrayc@murrayc.com>
 
 	* clutter/src/actor.hg: Use the new _DERIVES_INITIALLY_UNOWNED 
