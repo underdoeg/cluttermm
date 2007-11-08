@@ -67,9 +67,6 @@ main (int argc, char *argv[])
     for (i = 0; i < 3; i++)
     {
         Glib::RefPtr<Clutter::HBox> hbox = Clutter::HBox::create ();
-        // if we don't reference the hbox here, it will be destroyed when we
-        // exit the scope of the for loop
-        hbox->reference();
 
         for (j = 0; j < 3; j++)
         {
@@ -77,9 +74,6 @@ main (int argc, char *argv[])
             Clutter::Padding rect_padding;
 
             rect = Clutter::Rectangle::create (label_color);
-            // if we don't reference the rect here, it will be destroyed when we
-            // exit the scope of the for loop
-            rect->reference();
             rect->set_size (100, 100);
 
             rect_padding.top = rect_padding.bottom = 0;

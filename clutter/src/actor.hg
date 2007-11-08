@@ -26,9 +26,10 @@ _PINCLUDE(glibmm/private/object_p.h)
 namespace Clutter
 {
 
-class Actor : public Glib::Object //TODO: It actually derives from InitiallyUnowned, which we should probably add to glibmm.
+class Actor : public Glib::Object
 {
   _CLASS_GOBJECT(Actor, ClutterActor, CLUTTER_ACTOR, Glib::Object, GObject)
+  _DERIVES_INITIALLY_UNOWNED()
 
 protected:
   _CTOR_DEFAULT()

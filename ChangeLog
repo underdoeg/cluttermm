@@ -1,3 +1,10 @@
+2007-11-08  Murray Cumming  <murrayc@murrayc.com>
+
+	* clutter/src/actor.hg: Use the new _DERIVES_INITIALLY_UNOWNED 
+	gmmproc macro from the latest glibmm from svn.
+	* examples/test-boxes.cc: Remove the extra reference() calls. These 
+	should no longer be necessary.
+
 2007-11-07  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* clutter/cluttermm/init.cc:
