@@ -1,5 +1,12 @@
 2007-11-07  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/cluttermm.h: Add the rest of the headers created so far to the m
+	ain cluttermm.h include file
+	* configure.in: removed an example makefile from AC_OUTPUT since it no
+	longer exists
+
+2007-11-07  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/box.hg: I think the HBox and VBox classes should be used by
 	RefPtr, so I added create() functions and made their constructors private
 

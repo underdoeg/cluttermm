@@ -31,8 +31,16 @@ extern const int cluttermm_micro_version;
 #include <cluttermm/box.h>
 #include <cluttermm/color.h>
 #include <cluttermm/container.h>
+#include <cluttermm/entry.h>
+#include <cluttermm/group.h>
+#include <cluttermm/label.h>
 #include <cluttermm/layout.h>
 #include <cluttermm/margin.h>
 #include <cluttermm/media.h>
+#include <cluttermm/rectangle.h>
+#include <cluttermm/stage.h>
+#include <cluttermm/texture.h>
+#include <cluttermm/timeline.h>
+#include <cluttermm/types.h>
 
 #endif /* #ifndef LIBCLUTTERMM_H */
