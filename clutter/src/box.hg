@@ -88,16 +88,20 @@ class HBox :
   public Box
 {
   _CLASS_GOBJECT(HBox, ClutterHBox, CLUTTER_HBOX, Box, ClutterBox)
-  public:
+  protected:
   _CTOR_DEFAULT
+  public:
+  _WRAP_CREATE()
 };
 
 class VBox :
   public Box
 {
   _CLASS_GOBJECT(VBox, ClutterVBox, CLUTTER_VBOX, Box, ClutterBox)
-  public:
+  protected:
   _CTOR_DEFAULT
+  public:
+  _WRAP_CREATE()
 };
 
 } // namespace Clutter
