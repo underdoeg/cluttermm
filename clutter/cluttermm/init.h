@@ -27,7 +27,7 @@
 namespace Clutter
 {
 
-void init(const Glib::ustring& app_id, const Glib::ustring& version, int nargs, gchar *args[]);
+void init(int* nargs, gchar** args[]);
 
 } //namespace Clutter
 

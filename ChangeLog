@@ -1,5 +1,15 @@
 2007-11-07  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/cluttermm/init.cc:
+	* clutter/cluttermm/init.h: just modifiying the init() function enough so
+	that I can get the example to run
+	* examples/Makefile.am:
+	* examples/test-boxes.cc: added a simple example which is a translation of
+	the test-boxes.c program from clutter.  It doesn't work completely yet, but
+	a window shows up and it's the right size.
+
+2007-11-07  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/cluttermm.h: Add the rest of the headers created so far to the m
 	ain cluttermm.h include file
 	* configure.in: removed an example makefile from AC_OUTPUT since it no
