@@ -2,41 +2,34 @@
 #include <cluttermm/init.h>
 #include <clutter/clutter.h>
 
-/*
-static void
-on_button_press_cb (ClutterStage *stage,
-                    ClutterEvent *event,
-                    gpointer      data)
+static bool
+on_button_press_cb (ClutterButtonEvent *event, const Glib::RefPtr<Clutter::Stage>& stage)
 {
-  ClutterActor *rect;
   gint x, y;
 
-  clutter_event_get_coords (event, &x, &y);
-  rect = clutter_stage_get_actor_at_pos (stage, x, y);
+  clutter_event_get_coords (reinterpret_cast<ClutterEvent*>(event), &x, &y);
+  Glib::RefPtr<Clutter::Actor> rect = stage->get_actor_at_pos (x, y);
   if (!rect)
-    return;
+    return false;
 
-  if (!CLUTTER_IS_RECTANGLE (rect))
+  if (!Glib::RefPtr<Clutter::Rectangle>::cast_dynamic(rect))
     {
       g_print ("[!] No rectangle selected (%s selected instead)\n",
-               g_type_name (G_OBJECT_TYPE (rect)));
-      return;
+               g_type_name (G_OBJECT_TYPE (rect->gobj())));
+      return false;
     }
 
   g_print ("[*] Picked rectangle at (%d, %d)\n", x, y);
+  return false;
 }
 
-static void
-on_key_press_cb (ClutterStage *stage,
-                 ClutterEvent *event,
-                 gpointer      data)
+static bool
+on_key_press_cb (ClutterKeyEvent *event)
 {
-  ClutterKeyEvent *key_event = (ClutterKeyEvent *) event;
-
-  if (clutter_key_event_symbol (key_event) == CLUTTER_Escape)
+  if (clutter_key_event_symbol (event) == CLUTTER_Escape)
     clutter_main_quit ();
+  return true;
 }
-*/
 
 int
 main (int argc, char *argv[])
@@ -52,10 +45,10 @@ main (int argc, char *argv[])
     stage = Clutter::Stage::get_default ();
     stage->set_size (800, 600);
     stage->set_color (stage_color);
-    /*
-    stage->signal_button_press_event ().connect (sigc::ptr_fun(&on_button_press_cb));
+
+    stage->signal_button_press_event ().connect (
+            sigc::bind(sigc::ptr_fun(&on_button_press_cb), stage));
     stage->signal_key_press_event ().connect (sigc::ptr_fun(&on_key_press_cb));
-    */
 
     vbox = Clutter::VBox::create ();
 

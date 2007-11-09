@@ -1,5 +1,14 @@
 2007-11-08  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/container.hg: added refreturn to some functions
+	* clutter/src/group.hg: added refreturn to some functions
+	* clutter/src/stage.hg: added refreturn to some functions
+	* examples/test-boxes.cc: connected the signal handlers, so the full
+	functionality of the C demo is now working (although there are some things
+	in the example which aren't wrapped yet).
+
+2007-11-08  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/color.ccg:
 	* clutter/src/color.hg: I had forgotten to add an rgb constructor, which is
 	the most common case and corresponds to the C use:

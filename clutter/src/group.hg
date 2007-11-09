@@ -42,7 +42,7 @@ public:
 
   _WRAP_METHOD(void remove_all(), clutter_group_remove_all)
   _WRAP_METHOD(int get_n_children() const, clutter_group_get_n_children)
-  _WRAP_METHOD(Glib::RefPtr<Actor> get_nth_child(int index), clutter_group_get_nth_child)
+  _WRAP_METHOD(Glib::RefPtr<Actor> get_nth_child(int index), clutter_group_get_nth_child, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const Actor> get_nth_child(int index) const, clutter_group_get_nth_child, constversion)
 
   // these functions were deprecated in favor of their Container counterparts
