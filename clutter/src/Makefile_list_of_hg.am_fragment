@@ -17,4 +17,5 @@ texture.hg \
 label.hg \
 entry.hg \
 timeline.hg \
-alpha.hg
+alpha.hg \
+behaviour.hg

@@ -1,5 +1,14 @@
 2007-11-09  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/alpha.hg: added missing get_alpha() function
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* clutter/src/behaviour.ccg:
+	* clutter/src/behaviour.hg:
+	* clutter/src/clutter_vfuncs.defs:
+	* tools/m4/convert_cluttermm.m4: added initial wrapper for Behavior
+
+2007-11-09  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/Makefile_list_of_hg.am_fragment:
 	* clutter/src/alpha.ccg:
 	* clutter/src/alpha.hg: added initial wrapper for ClutterAlpha

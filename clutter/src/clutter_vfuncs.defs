@@ -190,3 +190,14 @@
   (return-type "void")
 )
 
+
+; ClutterBehaviour
+
+(define-vfunc alpha_notify
+  (of-object "ClutterBehaviour")
+  (return-type "void")
+  (parameters
+    '("guint32" "alpha_value")
+  )
+)
+

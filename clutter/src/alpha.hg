@@ -43,6 +43,7 @@ public:
 
   _WRAP_METHOD(void set_timeline(const Glib::RefPtr<Timeline>& timeline), clutter_alpha_set_timeline)
   _WRAP_METHOD(Glib::RefPtr<Timeline> get_timeline() const, clutter_alpha_get_timeline)
+  _WRAP_METHOD(guint32 get_alpha() const, clutter_alpha_get_alpha)
 
   void set_func(const SlotAlphaFunc& slot);
 
