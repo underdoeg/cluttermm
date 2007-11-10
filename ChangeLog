@@ -1,3 +1,10 @@
+2007-11-09  Jonathon Jongsma  <jjongsma@gnome.org>
+
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* clutter/src/alpha.ccg:
+	* clutter/src/alpha.hg: added initial wrapper for ClutterAlpha
+	* clutter/src/timeline.hg: made Timeline only accessible via RefPtr
+
 2007-11-08  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* clutter/src/container.hg: added refreturn to some functions

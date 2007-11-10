@@ -29,9 +29,12 @@ class Timeline : public Glib::Object
 {
   _CLASS_GOBJECT(Timeline, ClutterTimeline, CLUTTER_TIMELINE, Glib::Object, GObject)
 
-public:
+protected:
   _CTOR_DEFAULT()
   _WRAP_CTOR(Timeline(guint msecs), clutter_timeline_new_for_duration)
+public:
+  _WRAP_CREATE()
+  _WRAP_CREATE(guint msecs)
   // TODO: copy constructor for clutter_timeline_clone()?
 
   _WRAP_METHOD(void set_duration(guint msecs), clutter_timeline_set_duration)
