@@ -1,0 +1,47 @@
+/* Copyright (C) 2007 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <glibmm/object.h>
+#include <clutter/clutter-behaviour-depth.h> /* TODO: Remove this when we have wrapped enough types as C++. */
+#include <cluttermm/behaviour.h>
+#include <cluttermm/alpha.h>
+ 
+_DEFS(cluttermm,clutter)
+_PINCLUDE(cluttermm/private/behaviour_p.h)
+
+
+namespace Clutter
+{
+
+class BehaviourDepth : public Behaviour
+{
+  _CLASS_GOBJECT(BehaviourDepth, ClutterBehaviourDepth, CLUTTER_BEHAVIOUR_DEPTH, Behaviour, ClutterBehaviour)
+
+protected:
+  // TODO: pass the knots as a C++ container
+  _WRAP_CTOR(BehaviourDepth(const Glib::RefPtr<Alpha>& alpha, int start_depth, int end_depth), clutter_behaviour_depth_new)
+
+public:
+  // TODO: pass the knots as a C++ container
+  _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, int start_depth, int end_depth)
+
+  _WRAP_SIGNAL(void knot_reached(const Knot& knot), "knot_reached")
+
+};
+
+} // namespace Clutter
+// vim:ts=2,sw=2

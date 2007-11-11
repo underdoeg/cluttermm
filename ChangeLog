@@ -1,3 +1,10 @@
+2007-11-11  Jonathon Jongsma  <jjongsma@gnome.org>
+
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* clutter/src/behaviour-depth.ccg:
+	* clutter/src/behaviour-depth.hg: initial implementation of the
+	BehaviourDepth class
+
 2007-11-10  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* clutter/src/clutter_signals.defs: re-generate signals and manually change
