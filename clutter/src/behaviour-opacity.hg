@@ -16,7 +16,7 @@
  */
 
 #include <glibmm/object.h>
-#include <clutter/clutter-behaviour-depth.h> /* TODO: Remove this when we have wrapped enough types as C++. */
+#include <clutter/clutter-behaviour-opacity.h> /* TODO: Remove this when we have wrapped enough types as C++. */
 #include <cluttermm/behaviour.h>
 #include <cluttermm/alpha.h>
  
@@ -27,15 +27,15 @@ _PINCLUDE(cluttermm/private/behaviour_p.h)
 namespace Clutter
 {
 
-class BehaviourDepth : public Behaviour
+class BehaviourOpacity : public Behaviour
 {
-  _CLASS_GOBJECT(BehaviourDepth, ClutterBehaviourDepth, CLUTTER_BEHAVIOUR_DEPTH, Behaviour, ClutterBehaviour)
+  _CLASS_GOBJECT(BehaviourOpacity, ClutterBehaviourOpacity, CLUTTER_BEHAVIOUR_OPACITY, Behaviour, ClutterBehaviour)
 
 protected:
-  _WRAP_CTOR(BehaviourDepth(const Glib::RefPtr<Alpha>& alpha, int start_depth, int end_depth), clutter_behaviour_depth_new)
+  _WRAP_CTOR(BehaviourOpacity(const Glib::RefPtr<Alpha>& alpha, guint8 opacity_start, guint8 opacity_end), clutter_behaviour_opacity_new)
 
 public:
-  _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, int start_depth, int end_depth)
+  _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, guint8 opacity_start, guint8 opacity_end)
 
 };
 

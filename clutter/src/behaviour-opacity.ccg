@@ -15,29 +15,8 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <glibmm/object.h>
-#include <clutter/clutter-behaviour-depth.h> /* TODO: Remove this when we have wrapped enough types as C++. */
-#include <cluttermm/behaviour.h>
-#include <cluttermm/alpha.h>
- 
-_DEFS(cluttermm,clutter)
-_PINCLUDE(cluttermm/private/behaviour_p.h)
-
-
 namespace Clutter
 {
 
-class BehaviourDepth : public Behaviour
-{
-  _CLASS_GOBJECT(BehaviourDepth, ClutterBehaviourDepth, CLUTTER_BEHAVIOUR_DEPTH, Behaviour, ClutterBehaviour)
+} //namespace Clutter
 
-protected:
-  _WRAP_CTOR(BehaviourDepth(const Glib::RefPtr<Alpha>& alpha, int start_depth, int end_depth), clutter_behaviour_depth_new)
-
-public:
-  _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, int start_depth, int end_depth)
-
-};
-
-} // namespace Clutter
-// vim:ts=2,sw=2

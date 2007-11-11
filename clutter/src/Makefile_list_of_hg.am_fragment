@@ -20,4 +20,5 @@ timeline.hg \
 alpha.hg \
 behaviour.hg \
 behaviour-bspline.hg \
-behaviour-depth.hg
+behaviour-depth.hg \
+behaviour-opacity.hg

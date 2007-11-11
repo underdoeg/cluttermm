@@ -1,5 +1,14 @@
 2007-11-11  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/behaviour-depth.hg: removed incorrect comment (copy/paste
+	error)
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* clutter/src/behaviour-opacity.ccg:
+	* clutter/src/behaviour-opacity.hg: initial implementation of the
+	BehaviourOpacity class
+
+2007-11-11  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/Makefile_list_of_hg.am_fragment:
 	* clutter/src/behaviour-depth.ccg:
 	* clutter/src/behaviour-depth.hg: initial implementation of the
