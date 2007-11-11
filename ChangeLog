@@ -1,5 +1,10 @@
 2007-11-11  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* configure.in:
+	* docs/Makefile.am: build the API documentation by default
+
+2007-11-11  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/Makefile_list_of_hg.am_fragment:
 	* clutter/src/behaviour-path.ccg:
 	* clutter/src/behaviour-path.hg: Initial implementation of the BehaviourPath

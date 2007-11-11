@@ -113,12 +113,6 @@ do
 done
 AC_SUBST(CLUTTERMM_DOXYGEN_INPUT)
 
-
-
-# Dummy conditional just to make automake-1.4 happy.
-# We need an always-false condition in docs/Makefile.am.
-AM_CONDITIONAL(CLUTTERMM_FALSE,[false])
-
 # HACK:  Assign a dummy in order to prevent execution of autoheader by the
 # maintainer-mode rules.  That would fail since we aren't using autoheader.
 AUTOHEADER=':'
