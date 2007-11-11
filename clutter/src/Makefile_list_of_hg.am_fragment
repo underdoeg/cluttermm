@@ -18,4 +18,5 @@ label.hg \
 entry.hg \
 timeline.hg \
 alpha.hg \
-behaviour.hg
+behaviour.hg \
+behaviour-bspline.hg

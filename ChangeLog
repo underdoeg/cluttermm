@@ -1,3 +1,15 @@
+2007-11-10  Jonathon Jongsma  <jjongsma@gnome.org>
+
+	* clutter/src/clutter_signals.defs: re-generate signals and manually change
+	one parameter (in "knot_reached") to const since it didn't get detected
+	properly.  I'm not sure if this is the right way to do that or not
+	* clutter/cluttermm/types.h: add Knot type
+	* tools/m4/convert_cluttermm.m4:
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* clutter/src/behaviour-bspline.ccg:
+	* clutter/src/behaviour-bspline.hg: add initial implementation of the
+	BehaviourBspline class
+
 2007-11-09  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* clutter/src/alpha.hg: added missing get_alpha() function

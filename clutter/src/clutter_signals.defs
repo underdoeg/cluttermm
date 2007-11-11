@@ -275,7 +275,7 @@
   (return-type "void")
   (when "last")
   (parameters
-    '("ClutterKnot*" "p0")
+    '("const-ClutterKnot*" "p0")
   )
 )
 
@@ -1145,6 +1145,15 @@
   (construct-only #f)
 )
 
+(define-property x-align
+  (of-object "ClutterEntry")
+  (prop-type "GParamDouble")
+  (docs "The horizontal alignment to be used for the text")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 ;; From ClutterEvent
 
 ;; From ClutterGroup
@@ -1828,6 +1837,24 @@
 )
 
 ;; From ClutterScript
+
+(define-property filename-set
+  (of-object "ClutterScript")
+  (prop-type "GParamBoolean")
+  (docs "Whether the :filename property is set")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property filename
+  (of-object "ClutterScript")
+  (prop-type "GParamString")
+  (docs "The path of the currently parsed file")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
 
 ;; From ClutterStage
 

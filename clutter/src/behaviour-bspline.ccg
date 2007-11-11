@@ -15,16 +15,14 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#ifndef _CLUTTERMM_TYPES_H
-#define _CLUTTERMM_TYPES_H
+namespace Clutter
+{
+    ClutterKnot BehaviourBspline::get_origin() const
+    {
+        ClutterKnot knot;
+        clutter_behaviour_bspline_get_origin(const_cast<ClutterBehaviourBspline*>(gobj()), &knot);
+        return knot;
+    }
 
-#include <clutter/clutter-types.h>
-#include <clutter/clutter-units.h>
-
-//TODO: Maybe redefine this, to avoid including a C header in our C++ header:
-typedef ClutterUnit Unit;
-typedef ClutterKnot Knot;
-
-#endif //_CLUTTERMM_TYPES_H
-
+} //namespace Clutter
 
