@@ -1,5 +1,14 @@
 2007-11-11  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* clutter/src/behaviour-path.ccg:
+	* clutter/src/behaviour-path.hg: Initial implementation of the BehaviourPath
+	class
+	* clutter/src/clutter_signals.defs: modified signal signature by hand to
+	change the knot_reached argument to const.
+
+2007-11-11  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/behaviour-depth.hg: removed incorrect comment (copy/paste
 	error)
 	* clutter/src/Makefile_list_of_hg.am_fragment:
