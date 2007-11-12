@@ -2,7 +2,6 @@ _CONVERSION(`const Glib::RefPtr<Actor>&',`ClutterActor*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`const Glib::RefPtr<ActorBox>&',`ClutterActorBox*',__CONVERT_REFPTR_TO_P)
 
 _CONVERSION(`ClutterActor*',`Glib::RefPtr<Actor>',`Glib::wrap($3)')
-_CONVERSION(`ClutterActor*',`const Glib::RefPtr<Actor>&',`Glib::wrap($3)')
 _CONVERSION(`ClutterActor*',`Glib::RefPtr<const Actor>',`Glib::wrap($3)')
 
 _CONVERSION(`const Glib::RefPtr<Timeline>&',`ClutterTimeline*',__CONVERT_REFPTR_TO_P)
@@ -12,7 +11,7 @@ _CONVERSION(`ClutterTimeline*',`Glib::RefPtr<const Timeline>',`Glib::wrap($3)')
 _CONVERSION(`const Glib::RefPtr<Alpha>&',`ClutterAlpha*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`ClutterAlpha*',`Glib::RefPtr<Alpha>',`Glib::wrap($3)')
 _CONVERSION(`ClutterAlpha*',`Glib::RefPtr<const Alpha>',`Glib::wrap($3)')
-_CONVERSION(`ClutterBehaviourBspline*',`const Glib::RefPtr<const BehaviourBspline>&',`Glib::wrap($3)')
+#_CONVERSION(`ClutterBehaviourBspline*',`const Glib::RefPtr<const BehaviourBspline>&',`Glib::wrap($3)')
 _CONVERSION(`const Glib::RefPtr<const BehaviourBspline>&',`ClutterBehaviourBspline*',const_cast<ClutterBehaviourBspline*>(__CONVERT_REFPTR_TO_P))
 
 _CONVERSION(`const Color&',`const ClutterColor*',`($3).gobj()')

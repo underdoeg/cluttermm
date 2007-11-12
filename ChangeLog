@@ -1,5 +1,12 @@
 2007-11-12  Murray Cumming  <murrayc@murrayc.com>
 
+	* clutter/src/actor.hg: Wrapped get_scalex().
+	* clutter/src/behaviour.hg: Wrapped get_actors().
+	* tools/m4/convert_cluttermm.m4: Moved the signal conversion into the .hg file, 
+	to avoid it being used anywhere else.
+
+2007-11-12  Murray Cumming  <murrayc@murrayc.com>
+
 	* clutter/src/texture.ccg:
 	* clutter/src/texture.hg: Use _WRAP_GERROR() to wrap the 
 	GError, and use the errthrow parameter with _WRAP_METHOD.

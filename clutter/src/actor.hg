@@ -107,7 +107,7 @@ public:
   _WRAP_METHOD(int get_depth() const, clutter_actor_get_depth)
   _WRAP_METHOD(void set_scalex(Fixed scale_x, Fixed scale_y), clutter_actor_set_scalex)
   _WRAP_METHOD(void set_scale(double scale_x, double scale_y), clutter_actor_set_scale)
-  //TODO: _WRAP_METHOD(void get_scalex(Fixed& scale_x, Fixed& scale_y) const, clutter_actor_get_scalex)
+  _WRAP_METHOD(void get_scalex(Fixed& scale_x, Fixed& scale_y) const, clutter_actor_get_scalex)
   _WRAP_METHOD(void get_scale(double& scale_x, double& scale_y) const, clutter_actor_get_scale)
 
   _WRAP_METHOD(void set_scale_with_gravityx(Fixed scale_x, Fixed scale_y, ClutterGravity gravity), clutter_actor_set_scale_with_gravityx)
