@@ -1,5 +1,11 @@
 2007-11-12  Murray Cumming  <murrayc@murrayc.com>
 
+	* clutter/src/texture.ccg:
+	* clutter/src/texture.hg: Use _WRAP_GERROR() to wrap the 
+	GError, and use the errthrow parameter with _WRAP_METHOD.
+
+2007-11-12  Murray Cumming  <murrayc@murrayc.com>
+
 	* clutter/cluttermm/types.h: Added Fixed and *Event typedefs.
 	* tools/m4/convert_cluttermm.m4: Added conversions.
 	* clutter/src/actor.ccg:

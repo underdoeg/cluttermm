@@ -27,8 +27,10 @@ namespace Clutter
 {
 
 _WRAP_ENUM(TextureFlags, ClutterTextureFlags, NO_GTYPE)
-// TODO: should this be exposed?  or use exceptions instead?
-_WRAP_ENUM(TextureError, ClutterTextureError, NO_GTYPE)
+
+/** Exception class for Clutter::Texture errors.
+ */
+_WRAP_GERROR(TextureError, ClutterTextureError, CLUTTER_TEXTURE_ERROR)
 
 class Texture :
   public Actor
@@ -45,14 +47,11 @@ public:
   _WRAP_CREATE()
   _WRAP_CREATE(const Glib::RefPtr<Gdk::Pixbuf>& pixbuf);
 
-  // TODO: GError
-  _WRAP_METHOD(bool set_pixbuf(const Glib::RefPtr<Gdk::Pixbuf>& pixbuf, GError** error), clutter_texture_set_pixbuf)
+  _WRAP_METHOD(bool set_pixbuf(const Glib::RefPtr<Gdk::Pixbuf>& pixbuf), clutter_texture_set_pixbuf, errthrow)
   _WRAP_METHOD(Glib::RefPtr<Gdk::Pixbuf> get_pixbuf() const, clutter_texture_get_pixbuf)
   _WRAP_METHOD(void get_base_size(gint& width, gint& height) const, clutter_texture_get_base_size)
-  // TODO: GError
-  _WRAP_METHOD(bool set_from_rgb_data(const guchar* data, bool has_alpha, int width, int height, int rowstride, int bpp, TextureFlags flags, GError** error), clutter_texture_set_from_rgb_data)
-  // TODO: GError
-  _WRAP_METHOD(bool set_from_yuv_data(const guchar* data, int width, int height, TextureFlags flags, GError** error), clutter_texture_set_from_yuv_data)
+  _WRAP_METHOD(bool set_from_rgb_data(const guchar* data, bool has_alpha, int width, int height, int rowstride, int bpp, TextureFlags flags), clutter_texture_set_from_rgb_data, errthrow)
+  _WRAP_METHOD(bool set_from_yuv_data(const guchar* data, int width, int height, TextureFlags flags), clutter_texture_set_from_yuv_data, errthrow)
 
   _WRAP_SIGNAL(void size_change(gint width, gint height), "size_change")
   _WRAP_SIGNAL(void pixbuf_change(), "pixbuf_change")
