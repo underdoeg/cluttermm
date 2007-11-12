@@ -18,7 +18,7 @@
 #include <cluttermm/actor.h>
 #include <glibmm/interface.h>
 #include <glibmm/ustring.h>
-#include <clutter/clutter-container.h> /* TODO: Remove this when we have wrapped enough types as C++. */
+#include <clutter/clutter-container.h>
  
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/interface_p.h)

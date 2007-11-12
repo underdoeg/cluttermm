@@ -16,8 +16,8 @@
  */
 
 #include <glibmm/object.h>
-#include <clutter/clutter-timeline.h> /* TODO: Remove this when we have wrapped enough types as C++. */
- 
+#include <cluttermm/types.h>
+
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)
 
@@ -56,7 +56,7 @@ public:
   _WRAP_METHOD(void set_delay(guint msecs), clutter_timeline_set_delay)
   _WRAP_METHOD(guint get_delay() const, clutter_timeline_get_delay)
   _WRAP_METHOD(double get_progress() const, clutter_timeline_get_progress)
-  _WRAP_METHOD(ClutterFixed get_progressx() const, clutter_timeline_get_progressx)
+  _WRAP_METHOD(Fixed get_progressx() const, clutter_timeline_get_progressx)
 
   _WRAP_PROPERTY("delay", guint)
   _WRAP_PROPERTY("fps", guint)

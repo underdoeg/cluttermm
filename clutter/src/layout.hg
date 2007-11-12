@@ -17,7 +17,7 @@
 
 #include <cluttermm/types.h>
 #include <glibmm/interface.h>
-#include <clutter/clutter-layout.h> /* TODO: Remove this when we have wrapped enough types as C++. */
+#include <clutter/clutter-layout.h>
  
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/interface_p.h)

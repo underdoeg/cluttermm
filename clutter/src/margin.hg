@@ -16,7 +16,6 @@
  */
 
 #include <glibmm/object.h>
-#include <clutter/clutter-layout.h> /* TODO: Remove this when we have wrapped enough types as C++. */
 #include <cluttermm/types.h>
 
 _DEFS(cluttermm,clutter)

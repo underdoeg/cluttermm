@@ -20,10 +20,13 @@
 
 #include <clutter/clutter-types.h>
 #include <clutter/clutter-units.h>
+#include <clutter/clutter-color.h>
 
-//TODO: Maybe redefine this, to avoid including a C header in our C++ header:
+//TODO: Maybe redefine these, to avoid including a C header in our C++ header:
 typedef ClutterUnit Unit;
 typedef ClutterKnot Knot;
+typedef ClutterFixed Fixed;
+
 
 #endif //_CLUTTERMM_TYPES_H
 

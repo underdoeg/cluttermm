@@ -16,7 +16,7 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <glibmm/object.h>
+#include <clutter/clutter-layout.h>
  
 _DEFS(cluttermm,clutter)
 
@@ -89,7 +89,7 @@ void Color::shade(double shade)
     clutter_color_shade(this->gobj(), this->gobj(), shade);
 }
 
-void Color::shadex(ClutterFixed shade)
+void Color::shadex(Fixed shade)
 {
     clutter_color_shadex(this->gobj(), this->gobj(), shade);
 }

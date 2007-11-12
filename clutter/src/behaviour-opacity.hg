@@ -16,7 +16,6 @@
  */
 
 #include <glibmm/object.h>
-#include <clutter/clutter-behaviour-opacity.h> /* TODO: Remove this when we have wrapped enough types as C++. */
 #include <cluttermm/behaviour.h>
 #include <cluttermm/alpha.h>
  

@@ -16,7 +16,6 @@
  */
 
 #include <glibmm/object.h>
-#include <clutter/clutter-alpha.h> /* TODO: Remove this when we have wrapped enough types as C++. */
 #include <cluttermm/timeline.h>
  
 _DEFS(cluttermm,clutter)

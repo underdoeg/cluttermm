@@ -1,3 +1,48 @@
+2007-11-12  Murray Cumming  <murrayc@murrayc.com>
+
+	* clutter/cluttermm/types.h: Added Fixed and *Event typedefs.
+	* tools/m4/convert_cluttermm.m4: Added conversions.
+	* clutter/src/actor.ccg:
+	* clutter/src/actor.hg: Used *Event typedefs.
+	* clutter/src/alpha.ccg:
+	* clutter/src/alpha.hg:
+	* clutter/src/behaviour-bspline.ccg:
+	* clutter/src/behaviour-bspline.hg:
+	* clutter/src/behaviour-depth.ccg:
+	* clutter/src/behaviour-depth.hg:
+	* clutter/src/behaviour-opacity.ccg:
+	* clutter/src/behaviour-opacity.hg:
+	* clutter/src/behaviour-path.ccg:
+	* clutter/src/behaviour-path.hg:
+	* clutter/src/behaviour.ccg:
+	* clutter/src/behaviour.hg:
+	* clutter/src/box.ccg:
+	* clutter/src/box.hg:
+	* clutter/src/color.ccg:
+	* clutter/src/color.hg:
+	* clutter/src/container.ccg:
+	* clutter/src/container.hg:
+	* clutter/src/entry.ccg:
+	* clutter/src/entry.hg:
+	* clutter/src/group.ccg:
+	* clutter/src/group.hg:
+	* clutter/src/label.ccg:
+	* clutter/src/label.hg:
+	* clutter/src/layout.hg:
+	* clutter/src/margin.ccg:
+	* clutter/src/margin.hg:
+	* clutter/src/media.hg:
+	* clutter/src/rectangle.ccg:
+	* clutter/src/rectangle.hg:
+	* clutter/src/stage.ccg:
+	* clutter/src/stage.hg:
+	* clutter/src/texture.ccg:
+	* clutter/src/texture.hg:
+	* clutter/src/timeline.ccg:
+	* clutter/src/timeline.hg: Use Fixed typedefs.
+	Removed unnecessary includes of C headers in our .hg headers - 
+	adding them to our .ccg files where necessary.
+
 2007-11-11  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* configure.in:

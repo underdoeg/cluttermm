@@ -15,7 +15,6 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <clutter/clutter-texture.h> /* TODO: Remove this when we have wrapped enough types as C++. */
 #include <cluttermm/actor.h>
 #include <cluttermm/types.h>
 #include <gdkmm/pixbuf.h>

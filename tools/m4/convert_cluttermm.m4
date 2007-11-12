@@ -38,6 +38,16 @@ _CONVERSION(`ClutterFixed*',`ClutterFixed&',`*($3)')
 _EQUAL(ClutterUnit,Unit)
 _CONVERSION(`Unit&',`ClutterUnit*',`&($3)')
 
+_EQUAL(ClutterFixed,Fixed)
+_CONVERSION(`Fixed&',`ClutterFixed*',`&($3)')
+
+_EQUAL(ClutterEvent*,Event*)
+_EQUAL(ClutterButtonEvent*,ButtonEvent*)
+_EQUAL(ClutterMotionEvent*,MotionEvent*)
+_EQUAL(ClutterKeyEvent*,KeyEvent*)
+_EQUAL(ClutterScrollEvent*,ScrollEvent*)
+_EQUAL(ClutterCrossingEvent*,CrossingEvent*)
+
 _CONV_ENUM(Clutter,LayoutFlags)
 _CONV_ENUM(Clutter,PackType)
 _CONV_ENUM(Clutter,TextureFlags)

@@ -16,8 +16,8 @@
  */
 
 #include <glibmm/object.h>
-#include <clutter/clutter-actor.h> /* TODO: Remove this when we have wrapped enough types as C++. */
 #include <cluttermm/color.h>
+#include <clutter/clutter-event.h> //For Clutter*Event
  
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)
@@ -25,6 +25,13 @@ _PINCLUDE(glibmm/private/object_p.h)
 
 namespace Clutter
 {
+
+typedef ClutterEvent Event;
+typedef ClutterButtonEvent ButtonEvent;
+typedef ClutterKeyEvent KeyEvent;
+typedef ClutterMotionEvent MotionEvent;
+typedef ClutterScrollEvent ScrollEvent;
+typedef ClutterCrossingEvent CrossingEvent;
 
 class Actor : public Glib::Object
 {
@@ -70,15 +77,15 @@ public:
   _WRAP_METHOD(void rotate_x(float angle, int y, int z), clutter_actor_rotate_x)
   _WRAP_METHOD(void rotate_y(float angle, int x, int z), clutter_actor_rotate_y)
   _WRAP_METHOD(void rotate_z(float angle, int x, int y), clutter_actor_rotate_z)
-  _WRAP_METHOD(void rotate_xx(ClutterFixed angle, int y, int z), clutter_actor_rotate_xx)
-  _WRAP_METHOD(void rotate_yx(ClutterFixed angle, int x, int z), clutter_actor_rotate_yx)
-  _WRAP_METHOD(void rotate_zx(ClutterFixed angle, int x, int y), clutter_actor_rotate_zx)
+  _WRAP_METHOD(void rotate_xx(Fixed angle, int y, int z), clutter_actor_rotate_xx)
+  _WRAP_METHOD(void rotate_yx(Fixed angle, int x, int z), clutter_actor_rotate_yx)
+  _WRAP_METHOD(void rotate_zx(Fixed angle, int x, int y), clutter_actor_rotate_zx)
   _WRAP_METHOD(double get_rxang() const, clutter_actor_get_rxang)
   _WRAP_METHOD(double get_ryang() const, clutter_actor_get_ryang)
   _WRAP_METHOD(double get_rzang() const, clutter_actor_get_rzang)
-  _WRAP_METHOD(ClutterFixed get_rxangx() const, clutter_actor_get_rxangx)
-  _WRAP_METHOD(ClutterFixed get_ryangx() const, clutter_actor_get_ryangx)
-  _WRAP_METHOD(ClutterFixed get_rzangx() const, clutter_actor_get_rzangx)
+  _WRAP_METHOD(Fixed get_rxangx() const, clutter_actor_get_rxangx)
+  _WRAP_METHOD(Fixed get_ryangx() const, clutter_actor_get_ryangx)
+  _WRAP_METHOD(Fixed get_rzangx() const, clutter_actor_get_rzangx)
   _WRAP_METHOD(void set_opacity (guint8 opacity), clutter_actor_set_opacity)
   _WRAP_METHOD(guint8 get_opacity() const, clutter_actor_get_opacity)
   _WRAP_METHOD(void set_name(const gchar           *name), clutter_actor_set_name)
@@ -98,12 +105,12 @@ public:
   _WRAP_METHOD(void lower_bottom(), clutter_actor_lower_bottom)
   _WRAP_METHOD(void set_depth(int depth), clutter_actor_set_depth)
   _WRAP_METHOD(int get_depth() const, clutter_actor_get_depth)
-  _WRAP_METHOD(void set_scalex(ClutterFixed scale_x, ClutterFixed scale_y), clutter_actor_set_scalex)
+  _WRAP_METHOD(void set_scalex(Fixed scale_x, Fixed scale_y), clutter_actor_set_scalex)
   _WRAP_METHOD(void set_scale(double scale_x, double scale_y), clutter_actor_set_scale)
-  //TODO: _WRAP_METHOD(void get_scalex(ClutterFixed& scale_x, ClutterFixed& scale_y) const, clutter_actor_get_scalex)
+  //TODO: _WRAP_METHOD(void get_scalex(Fixed& scale_x, Fixed& scale_y) const, clutter_actor_get_scalex)
   _WRAP_METHOD(void get_scale(double& scale_x, double& scale_y) const, clutter_actor_get_scale)
 
-  _WRAP_METHOD(void set_scale_with_gravityx(ClutterFixed scale_x, ClutterFixed scale_y, ClutterGravity gravity), clutter_actor_set_scale_with_gravityx)
+  _WRAP_METHOD(void set_scale_with_gravityx(Fixed scale_x, Fixed scale_y, ClutterGravity gravity), clutter_actor_set_scale_with_gravityx)
 
   _WRAP_METHOD(void set_scale_with_gravity(float scale_x, float scale_y, ClutterGravity gravity), clutter_actor_set_scale_with_gravity)
 
@@ -116,22 +123,22 @@ public:
   //TODO: _WRAP_METHOD(void apply_transform_to_point(ClutterVertex& point, ClutterVertex& vertex), clutter_actor_apply_transform_to_point)
 
 // signals
-  _WRAP_SIGNAL(bool button_press_event(ClutterButtonEvent* event), "button_press_event")
-  _WRAP_SIGNAL(bool button_release_event(ClutterButtonEvent* event), "button_release_event")
-  _WRAP_SIGNAL(bool motion_event(ClutterMotionEvent* event), "motion_event")
-  //_WRAP_SIGNAL(bool leave_event(ClutterCrossingEvent* event), "leave_event")
+  _WRAP_SIGNAL(bool button_press_event(ButtonEvent* event), "button_press_event")
+  _WRAP_SIGNAL(bool button_release_event(ButtonEvent* event), "button_release_event")
+  _WRAP_SIGNAL(bool motion_event(MotionEvent* event), "motion_event")
+  //_WRAP_SIGNAL(bool leave_event(CrossingEvent* event), "leave_event")
   _WRAP_SIGNAL(void show(), "show")
   _WRAP_SIGNAL(void hide(), "hide")
   _WRAP_SIGNAL(void destroy(), "destroy")
-  _WRAP_SIGNAL(bool key_release_event(ClutterKeyEvent* event), "key_release_event")
-  //_WRAP_SIGNAL(bool enter_event(ClutterCrossingEvent* event), "enter_event")
-  _WRAP_SIGNAL(bool event(ClutterEvent* event), "event")
+  _WRAP_SIGNAL(bool key_release_event(KeyEvent* event), "key_release_event")
+  //_WRAP_SIGNAL(bool enter_event(CrossingEvent* event), "enter_event")
+  _WRAP_SIGNAL(bool event(Event* event), "event")
   _WRAP_SIGNAL(void focus_out(), "focus_out")
   _WRAP_SIGNAL(void focus_in(), "focus_in")
   //_WRAP_SIGNAL(void parent_set(const Glib::RefPtr<Actor>& old_parent), "parent_set")
-  _WRAP_SIGNAL(bool scroll_event(ClutterScrollEvent* event), "scroll_event")
-  _WRAP_SIGNAL(bool key_press_event(ClutterKeyEvent* event), "key_press_event")
-  //_WRAP_SIGNAL(bool captured_event(ClutterEvent* event), "captured_event")
+  _WRAP_SIGNAL(bool scroll_event(ScrollEvent* event), "scroll_event")
+  _WRAP_SIGNAL(bool key_press_event(KeyEvent* event), "key_press_event")
+  //_WRAP_SIGNAL(bool captured_event(Event* event), "captured_event")
 };
 
 } // namespace Clutter

@@ -15,6 +15,10 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
+#include <clutter/clutter-box.h>
+#include <clutter/clutter-hbox.h>
+#include <clutter/clutter-vbox.h>
+
 namespace Clutter
 {
 

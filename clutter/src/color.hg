@@ -15,8 +15,8 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <glibmm/object.h>
-#include <clutter/clutter-layout.h> /* TODO: Remove this when we have wrapped enough types as C++. */
+#include <glibmm/ustring.h>
+#include <cluttermm/types.h>
  
 _DEFS(cluttermm,clutter)
 
@@ -53,9 +53,9 @@ public:
   void set_from_string(const Glib::ustring& color);
   _WRAP_METHOD(Glib::ustring to_string() const, clutter_color_to_string)
   _WRAP_METHOD(void set_from_hls(guint8 hue, guint8 luminance, guint8 saturation), clutter_color_from_hls)
-  _WRAP_METHOD(void set_from_hlsx(ClutterFixed hue, ClutterFixed luminance, ClutterFixed saturation), clutter_color_from_hlsx)
+  _WRAP_METHOD(void set_from_hlsx(Fixed hue, Fixed luminance, Fixed saturation), clutter_color_from_hlsx)
   _WRAP_METHOD(void to_hls(guint8& hue, guint8& luminance, guint8& saturation) const, clutter_color_to_hls)
-  _WRAP_METHOD(void to_hlsx(ClutterFixed& hue, ClutterFixed& luminance, ClutterFixed& saturation) const, clutter_color_to_hlsx)
+  _WRAP_METHOD(void to_hlsx(Fixed& hue, Fixed& luminance, Fixed& saturation) const, clutter_color_to_hlsx)
   _WRAP_METHOD(void set_from_pixel(guint32 pixel), clutter_color_from_pixel)
   _WRAP_METHOD(guint32 to_pixel() const, clutter_color_to_pixel)
 
@@ -88,7 +88,7 @@ public:
   void shade(double shade);
   _IGNORE(clutter_color_shade)
   _WRAP_METHOD_DOCS_ONLY(clutter_color_shadex)
-  void shadex(ClutterFixed shade);
+  void shadex(Fixed shade);
   _IGNORE(clutter_color_shadex)
 
 

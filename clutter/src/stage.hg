@@ -15,10 +15,10 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <clutter/clutter-stage.h> /* TODO: Remove this when we have wrapped enough types as C++. */
 #include <cluttermm/group.h>
 #include <cluttermm/color.h>
 #include <gdkmm/pixbuf.h>
+#include <clutter/clutter-stage.h> // TODO: Remove this when we have a wrapper for ClutterPerspective.
  
 _DEFS(cluttermm,clutter)
 _PINCLUDE(cluttermm/private/group_p.h)

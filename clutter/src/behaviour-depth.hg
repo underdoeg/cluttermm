@@ -15,8 +15,6 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <glibmm/object.h>
-#include <clutter/clutter-behaviour-depth.h> /* TODO: Remove this when we have wrapped enough types as C++. */
 #include <cluttermm/behaviour.h>
 #include <cluttermm/alpha.h>
  

@@ -15,14 +15,11 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <glibmm/object.h>
-#include <clutter/clutter-box.h> /* TODO: Remove this when we have wrapped enough types as C++. */
-#include <clutter/clutter-hbox.h> /* TODO: Remove this when we have wrapped enough types as C++. */
-#include <clutter/clutter-vbox.h> /* TODO: Remove this when we have wrapped enough types as C++. */
 #include <cluttermm/actor.h>
 #include <cluttermm/color.h>
 #include <cluttermm/container.h>
 #include <cluttermm/margin.h>
+#include <clutter/clutter-box.h> //For ClutterBoxChild. TODO: Can we hide this header?
  
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)
