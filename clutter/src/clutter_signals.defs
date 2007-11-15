@@ -107,7 +107,7 @@
   (return-type "gboolean")
   (when "last")
   (parameters
-    '("ClutterEvent*" "p0")
+    '("ClutterCrossingEvent*" "p0")
   )
 )
 

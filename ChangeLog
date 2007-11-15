@@ -1,3 +1,18 @@
+2007-11-15  Murray Cumming  <murrayc@murrayc.com>
+
+	* clutter/src/clutter_signals.defs: Corrected the 
+	Actor::enter-event signal definition.
+	* clutter/src/actor.hg: Added some event signals that were 
+	commented out.
+	* clutter/src/alpha.ccg:
+	* clutter/src/alpha.hg: Added a constructor (and create) 
+	which takes a timeline and alpha callback.
+	* clutter/src/container.ccg:
+	* clutter/src/container.hg: Added foreach() and 
+	sort_depth_order(), and the foreach() vfunc.
+	* clutter/src/stage.hg: Added stage_event().
+	* clutter/src/timeline.hg: Added clone().
+
 2007-11-12  Murray Cumming  <murrayc@murrayc.com>
 
 	* clutter/src/actor.hg: Wrapped get_scalex().

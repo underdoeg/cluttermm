@@ -32,13 +32,26 @@ class Alpha : public Glib::Object
 
 protected:
   _CTOR_DEFAULT()
-  // TODO: add _full constructor
 
 public:
-  _WRAP_CREATE();
-  // TODO: add create func for _full constructor
 
-  typedef sigc::slot<guint32, Glib::RefPtr<Alpha> > SlotAlphaFunc;
+  /** For instance,
+   * guint32 on_alpha(const Glib::RefPtr<Alpha>& alpha);
+   */
+  typedef sigc::slot<guint32, const Glib::RefPtr<Alpha>& > SlotAlphaFunc;
+
+protected:
+  /** Creates a new Alpha instance and sets the timeline and the alpha function.
+   * @param timeline Timeline.
+   * @param slot Alpha function.
+   */
+  Alpha(const Glib::RefPtr<Timeline>& timeline, const SlotAlphaFunc& slot);
+
+public:
+  _WRAP_CREATE()
+  _WRAP_CREATE(const Glib::RefPtr<Timeline>& timeline, const SlotAlphaFunc& slot)
+
+
 
   _WRAP_METHOD(void set_timeline(const Glib::RefPtr<Timeline>& timeline), clutter_alpha_set_timeline)
   _WRAP_METHOD(Glib::RefPtr<Timeline> get_timeline() const, clutter_alpha_get_timeline)

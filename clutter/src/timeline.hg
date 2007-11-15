@@ -35,7 +35,10 @@ protected:
 public:
   _WRAP_CREATE()
   _WRAP_CREATE(guint msecs)
-  // TODO: copy constructor for clutter_timeline_clone()?
+  
+  //We don't wrap this as a copy constructor because there is 
+  //no way to use copy constructors with RefPtr:
+  _WRAP_METHOD(Glib::RefPtr<Timeline> clone() const, clutter_timeline_clone)
 
   _WRAP_METHOD(void set_duration(guint msecs), clutter_timeline_set_duration)
   _WRAP_METHOD(guint get_duration() const, clutter_timeline_get_duration)

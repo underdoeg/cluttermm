@@ -46,6 +46,14 @@ static void SignalProxy_Alpha_callback_destroy(void* data)
 namespace Clutter
 {
 
+Alpha::Alpha(const Glib::RefPtr<Timeline>& timeline, const SlotAlphaFunc& slot)
+:
+  _CONSTRUCT()
+{
+  set_timeline(timeline);
+  set_func(slot);
+}
+
 void Alpha::set_func(const SlotAlphaFunc& slot)
 {
   //Create a copy of the slot. A pointer to this will be passed through the callback's data parameter.

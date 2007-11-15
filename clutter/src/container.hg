@@ -43,14 +43,13 @@ public:
   _WRAP_METHOD(Glib::RefPtr<Actor> find_child (const Glib::ustring& child_name), clutter_container_find_child_by_name, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const Actor> find_child (const Glib::ustring& child_name) const, clutter_container_find_child_by_name, constversion)
 
-  // TODO: check if this should be wrapped -- docs say this shouldn't normally
-  // be used by applications.
-  // But maybe this is useful as a protected method for derived implementations.
-  _IGNORE(clutter_container_sort_depth_order)
+  /** For instance, 
+   * void on_foreach(const Glib::RefPtr<Actor>& actor)
+   */
+  typedef sigc::slot<void, const Glib::RefPtr<Actor>&> SlotForEach;
 
-  // TODO: we should probably make this use a sigc::slot of some sort instead of
-  // a plain C callback
-  //clutter_container_foreach
+  void foreach(const SlotForEach& slot);
+  _IGNORE(clutter_container_foreach)
 
   // not sure the valist stuff is good to wrap in C++
   //clutter_container_add_valist
@@ -65,12 +64,14 @@ public:
   _WRAP_SIGNAL(void actor_removed(const Glib::RefPtr<Actor>& actor), "actor_removed")
 
 protected:
+
+  // Only useful as a protected method for derived implementations.
+  _WRAP_METHOD(sort_depth_order(), clutter_container_sort_depth_order)
+
   _WRAP_VFUNC(void add(const Glib::RefPtr<Actor>& actor), add)
   _WRAP_VFUNC(void remove(const Glib::RefPtr<Actor>& actor), remove)
 
-  // TODO: when foreach() is implemented above
-  //_WRAP_VFUNC(void foreach(), foreach)
-
+  _WRAP_VFUNC(void foreach(), foreach)
 };
 
 } // namespace Clutter

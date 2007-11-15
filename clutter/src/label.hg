@@ -69,7 +69,9 @@ public:
   _WRAP_METHOD(Glib::RefPtr<const Pango::Layout> get_layout() const, clutter_label_get_layout, constversion)
 
   _WRAP_METHOD(Pango::AttrList get_attributes() const, clutter_label_get_attributes)
+
   // TODO: check if AttrList param should be const
+  // Probably not. It is reference counted. murrayc.
   _WRAP_METHOD(void set_attributes(Pango::AttrList& attrs), clutter_label_set_attributes)
 
   _WRAP_METHOD(Pango::Alignment get_alignment() const, clutter_label_get_alignment)
