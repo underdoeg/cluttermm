@@ -3,6 +3,7 @@
 # so it's like copy-and-pasting this into each of those Makefile.am files.
 
 files_hg = \
+types.hg \
 actor.hg  \
 container.hg \
 layout.hg \
@@ -22,4 +23,5 @@ behaviour.hg \
 behaviour-bspline.hg \
 behaviour-depth.hg \
 behaviour-opacity.hg \
-behaviour-path.hg
+behaviour-path.hg \
+behaviour-ellipse.hg

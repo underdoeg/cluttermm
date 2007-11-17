@@ -1,5 +1,16 @@
 2007-11-17  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/types.ccg/hg:
+	* clutter/cluttermm/types.h: move this to types.hg so that we can wrap some
+	enums here with gmmproc
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* clutter/src/behaviour-ellipse.ccg:
+	* clutter/src/behaviour-ellipse.hg: add initial implementation of
+	BehaviorEllipse class
+	* tools/m4/convert_cluttermm.m4: add enum conversions
+
+2007-11-17  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* docs/reference/Doxyfile.in: update to new config file format
 
 2007-11-15  Murray Cumming  <murrayc@murrayc.com>

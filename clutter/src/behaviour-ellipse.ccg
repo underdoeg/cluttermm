@@ -15,19 +15,10 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#ifndef _CLUTTERMM_TYPES_H
-#define _CLUTTERMM_TYPES_H
+#include <clutter/clutter-behaviour-path.h>
 
-#include <clutter/clutter-types.h>
-#include <clutter/clutter-units.h>
-#include <clutter/clutter-color.h>
+namespace Clutter
+{
 
-//TODO: Maybe redefine these, to avoid including a C header in our C++ header:
-typedef ClutterUnit Unit;
-typedef ClutterKnot Knot;
-typedef ClutterFixed Fixed;
-
-
-#endif //_CLUTTERMM_TYPES_H
-
+} //namespace Clutter
 

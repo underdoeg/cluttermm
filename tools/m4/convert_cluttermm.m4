@@ -39,6 +39,8 @@ _CONVERSION(`Unit&',`ClutterUnit*',`&($3)')
 
 _EQUAL(ClutterFixed,Fixed)
 _CONVERSION(`Fixed&',`ClutterFixed*',`&($3)')
+_EQUAL(ClutterAngle,Angle)
+_CONVERSION(`Angle&',`ClutterAngle*',`&($3)')
 
 _EQUAL(ClutterEvent*,Event*)
 _EQUAL(ClutterButtonEvent*,ButtonEvent*)
@@ -50,6 +52,8 @@ _EQUAL(ClutterCrossingEvent*,CrossingEvent*)
 _CONV_ENUM(Clutter,LayoutFlags)
 _CONV_ENUM(Clutter,PackType)
 _CONV_ENUM(Clutter,TextureFlags)
+_CONV_ENUM(Clutter,RotateDirection)
+_CONV_ENUM(Clutter,RotateAxis)
 _CONV_ENUM(Pango,EllipsizeMode)
 _CONV_ENUM(Pango,WrapMode)
 
