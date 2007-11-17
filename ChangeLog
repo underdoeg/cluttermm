@@ -1,5 +1,14 @@
 2007-11-17  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* clutter/src/behaviour-ellipse.ccg:
+	* clutter/src/behaviour-ellipse.hg:
+	* clutter/src/behaviour-rotate.ccg:
+	* clutter/src/behaviour-rotate.hg: added initial implementation of
+	BehaviourRotate class
+
+2007-11-17  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/types.ccg/hg:
 	* clutter/cluttermm/types.h: move this to types.hg so that we can wrap some
 	enums here with gmmproc

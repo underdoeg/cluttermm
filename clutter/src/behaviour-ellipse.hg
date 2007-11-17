@@ -35,8 +35,6 @@ protected:
   _WRAP_CTOR(BehaviourEllipse(const Glib::RefPtr<Alpha>& alpha, int x, int y, int width, int height, RotateDirection direction, Fixed begin, Fixed end), clutter_behaviour_ellipse_newx)
 
 public:
-  // TODO: pass the knots as a C++ container
-  _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, const ClutterKnot* knots, guint n_knots)
   _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, int x, int y, int width, int height, RotateDirection direction, double begin, double end)
   _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, int x, int y, int width, int height, RotateDirection direction, Fixed begin, Fixed end)
 

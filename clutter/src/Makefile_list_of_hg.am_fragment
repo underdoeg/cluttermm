@@ -24,4 +24,5 @@ behaviour-bspline.hg \
 behaviour-depth.hg \
 behaviour-opacity.hg \
 behaviour-path.hg \
-behaviour-ellipse.hg
+behaviour-ellipse.hg \
+behaviour-rotate.hg
