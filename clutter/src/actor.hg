@@ -90,7 +90,7 @@ public:
   _WRAP_METHOD(guint8 get_opacity() const, clutter_actor_get_opacity)
   _WRAP_METHOD(void set_name(const gchar           *name), clutter_actor_set_name)
   _WRAP_METHOD(Glib::ustring get_name() const, clutter_actor_get_name)
-  _WRAP_METHOD(guint32 get_id() const, clutter_actor_get_id)
+  _WRAP_METHOD(guint32 get_gid() const, clutter_actor_get_gid)
   _WRAP_METHOD(void set_clip(int xoff, int yoff, int width, int height), clutter_actor_set_clip)
   _WRAP_METHOD(void remove_clip(), clutter_actor_remove_clip)
   _WRAP_METHOD(bool has_clip() const, clutter_actor_has_clip)

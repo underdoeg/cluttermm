@@ -46,8 +46,8 @@ public:
   _WRAP_METHOD(void set_width(int width), clutter_behaviour_ellipse_set_width)
   _WRAP_METHOD(int get_width() const, clutter_behaviour_ellipse_get_width)
 
-  _WRAP_METHOD(void set_angle_begin(double angle_begin), clutter_behaviour_ellipse_set_angle_begin)
-  _WRAP_METHOD(double get_angle_begin() const, clutter_behaviour_ellipse_get_angle_begin)
+  _WRAP_METHOD(void set_angle_start(double angle_start), clutter_behaviour_ellipse_set_angle_start)
+  _WRAP_METHOD(double get_angle_start() const, clutter_behaviour_ellipse_get_angle_start)
   _WRAP_METHOD(void set_angle_end(double angle_end), clutter_behaviour_ellipse_set_angle_end)
   _WRAP_METHOD(double get_angle_end() const, clutter_behaviour_ellipse_get_angle_end)
   _WRAP_METHOD(void set_angle_tilt(RotateAxis axis, double angle_tilt), clutter_behaviour_ellipse_set_angle_tilt)
@@ -56,8 +56,8 @@ public:
   _WRAP_METHOD(void set_tilt(double angle_tilt_x, double angle_tilt_y, double angle_tilt_z), clutter_behaviour_ellipse_set_tilt)
   _WRAP_METHOD(void get_tilt(double& angle_tilt_x, double& angle_tilt_y, double& angle_tilt_z) const, clutter_behaviour_ellipse_get_tilt)
 
-  _WRAP_METHOD(void set_angle_beginx(Angle angle_begin), clutter_behaviour_ellipse_set_angle_beginx)
-  _WRAP_METHOD(Angle get_angle_beginx() const, clutter_behaviour_ellipse_get_angle_beginx)
+  _WRAP_METHOD(void set_angle_startx(Angle angle_start), clutter_behaviour_ellipse_set_angle_startx)
+  _WRAP_METHOD(Angle get_angle_startx() const, clutter_behaviour_ellipse_get_angle_startx)
   _WRAP_METHOD(void set_angle_endx(Angle angle_end), clutter_behaviour_ellipse_set_angle_endx)
   _WRAP_METHOD(Angle get_angle_endx() const, clutter_behaviour_ellipse_get_angle_endx)
   _WRAP_METHOD(void set_angle_tiltx(RotateAxis axis, Angle angle_tilt), clutter_behaviour_ellipse_set_angle_tiltx)

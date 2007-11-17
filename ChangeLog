@@ -1,5 +1,11 @@
 2007-11-17  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* Update to latest clutter trunk API
+	* clutter/src/actor.hg: renamed get_id() to get_gid()
+	* clutter/src/behaviour-ellipse.hg: renamed *_angle_begin to *_angle_start
+
+2007-11-17  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/Makefile_list_of_hg.am_fragment:
 	* clutter/src/behaviour-ellipse.ccg:
 	* clutter/src/behaviour-ellipse.hg:
