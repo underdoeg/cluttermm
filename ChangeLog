@@ -1,3 +1,7 @@
+2007-11-17  Jonathon Jongsma  <jjongsma@gnome.org>
+
+	* docs/reference/Doxyfile.in: update to new config file format
+
 2007-11-15  Murray Cumming  <murrayc@murrayc.com>
 
 	* clutter/src/clutter_signals.defs: Corrected the 
