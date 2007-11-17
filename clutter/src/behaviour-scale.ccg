@@ -15,23 +15,10 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <clutter/clutter-types.h>
-#include <clutter/clutter-units.h>
-#include <clutter/clutter-color.h>
-
-_DEFS(cluttermm,clutter)
+#include <clutter/clutter-behaviour-scale.h>
 
 namespace Clutter
 {
 
-//TODO: Maybe redefine these, to avoid including a C header in our C++ header:
-typedef ClutterUnit Unit;
-typedef ClutterKnot Knot;
-typedef ClutterFixed Fixed;
-typedef ClutterAngle Angle;
-
-_WRAP_ENUM(RotateDirection, ClutterRotateDirection, NO_GTYPE)
-_WRAP_ENUM(RotateAxis, ClutterRotateAxis, NO_GTYPE)
-_WRAP_ENUM(Gravity, ClutterGravity, NO_GTYPE)
-}
+} //namespace Clutter
 

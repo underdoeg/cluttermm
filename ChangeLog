@@ -1,5 +1,14 @@
 2007-11-17  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* tools/m4/convert_cluttermm.m4:
+	* clutter/src/types.hg: add Gravity enum
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* clutter/src/behaviour-scale.ccg:
+	* clutter/src/behaviour-scale.hg: added initial implementation of
+	BehaviourScale class
+
+2007-11-17  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* Update to latest clutter trunk API
 	* clutter/src/actor.hg: renamed get_id() to get_gid()
 	* clutter/src/behaviour-ellipse.hg: renamed *_angle_begin to *_angle_start

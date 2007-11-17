@@ -25,4 +25,5 @@ behaviour-depth.hg \
 behaviour-opacity.hg \
 behaviour-path.hg \
 behaviour-ellipse.hg \
-behaviour-rotate.hg
+behaviour-rotate.hg \
+behaviour-scale.hg

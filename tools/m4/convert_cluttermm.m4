@@ -54,6 +54,7 @@ _CONV_ENUM(Clutter,PackType)
 _CONV_ENUM(Clutter,TextureFlags)
 _CONV_ENUM(Clutter,RotateDirection)
 _CONV_ENUM(Clutter,RotateAxis)
+_CONV_ENUM(Clutter,Gravity)
 _CONV_ENUM(Pango,EllipsizeMode)
 _CONV_ENUM(Pango,WrapMode)
 
