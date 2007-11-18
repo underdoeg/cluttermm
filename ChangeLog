@@ -1,5 +1,10 @@
 2007-11-17  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/timeline.hg: add proper constructor -- there is no default
+	constructor for Timeline
+
+2007-11-17  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/cluttermm.h: update main super-header to include all of the new
 	headers that we've added recently
 	* clutter/src/Makefile_list_of_hg.am_fragment:

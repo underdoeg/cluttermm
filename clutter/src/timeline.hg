@@ -30,10 +30,10 @@ class Timeline : public Glib::Object
   _CLASS_GOBJECT(Timeline, ClutterTimeline, CLUTTER_TIMELINE, Glib::Object, GObject)
 
 protected:
-  _CTOR_DEFAULT()
+  _WRAP_CTOR(Timeline(guint num_frames, guint fps), clutter_timeline_new)
   _WRAP_CTOR(Timeline(guint msecs), clutter_timeline_new_for_duration)
 public:
-  _WRAP_CREATE()
+  _WRAP_CREATE(guint n_frames, guint fps)
   _WRAP_CREATE(guint msecs)
   
   //We don't wrap this as a copy constructor because there is 
