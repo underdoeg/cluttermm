@@ -28,11 +28,22 @@ extern const int cluttermm_micro_version;
 #include <glibmm.h>
 
 #include <cluttermm/actor.h>
+#include <cluttermm/alpha.h>
+#include <cluttermm/behaviour.h>
+#include <cluttermm/behaviour-bspline.h>
+#include <cluttermm/behaviour-depth.h>
+#include <cluttermm/behaviour-ellipse.h>
+#include <cluttermm/behaviour-opacity.h>
+#include <cluttermm/behaviour-path.h>
+#include <cluttermm/behaviour-rotate.h>
+#include <cluttermm/behaviour-scale.h>
 #include <cluttermm/box.h>
+#include <cluttermm/clone-texture.h>
 #include <cluttermm/color.h>
 #include <cluttermm/container.h>
 #include <cluttermm/entry.h>
 #include <cluttermm/group.h>
+#include <cluttermm/init.h>
 #include <cluttermm/label.h>
 #include <cluttermm/layout.h>
 #include <cluttermm/margin.h>

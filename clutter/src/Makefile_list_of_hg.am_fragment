@@ -15,6 +15,7 @@ group.hg \
 stage.hg \
 rectangle.hg \
 texture.hg \
+clone-texture.hg \
 label.hg \
 entry.hg \
 timeline.hg \

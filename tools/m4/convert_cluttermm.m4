@@ -14,6 +14,9 @@ _CONVERSION(`ClutterAlpha*',`Glib::RefPtr<const Alpha>',`Glib::wrap($3)')
 #_CONVERSION(`ClutterBehaviourBspline*',`const Glib::RefPtr<const BehaviourBspline>&',`Glib::wrap($3)')
 _CONVERSION(`const Glib::RefPtr<const BehaviourBspline>&',`ClutterBehaviourBspline*',const_cast<ClutterBehaviourBspline*>(__CONVERT_REFPTR_TO_P))
 
+_CONVERSION(`const Glib::RefPtr<Texture>&',`ClutterTexture*',__CONVERT_REFPTR_TO_P)
+_CONVERSION(`ClutterTexture*',`Glib::RefPtr<Texture>',`Glib::wrap($3)')
+
 _CONVERSION(`const Color&',`const ClutterColor*',`($3).gobj()')
 _CONVERSION(`const Margin&',`const ClutterMargin*',`($3).gobj()')
 

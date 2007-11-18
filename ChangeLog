@@ -1,5 +1,15 @@
 2007-11-17  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/cluttermm.h: update main super-header to include all of the new
+	headers that we've added recently
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* clutter/src/clone-texture.ccg:
+	* clutter/src/clone-texture.hg:
+	* tools/m4/convert_cluttermm.m4: add initial implementation of CloneTexture
+	class
+
+2007-11-17  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* tools/m4/convert_cluttermm.m4:
 	* clutter/src/types.hg: add Gravity enum
 	* clutter/src/Makefile_list_of_hg.am_fragment:
