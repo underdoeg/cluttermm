@@ -1,5 +1,9 @@
 2007-11-17  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/behaviour-scale.hg: fix the construction param names
+
+2007-11-17  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/clone-texture.hg: fixe CloneTexture so it actually works.
 	Give it the write GType, fix the construct param property name
 

@@ -31,8 +31,8 @@ class BehaviourScale : public Behaviour
   _CLASS_GOBJECT(BehaviourScale, ClutterBehaviourScale, CLUTTER_BEHAVIOUR_SCALE, Behaviour, ClutterBehaviour)
 
 protected:
-  _WRAP_CTOR(BehaviourScale(const Glib::RefPtr<Alpha>& alpha, double scale_start, double scale_end, Gravity gravity), clutter_behaviour_scale_new)
-  _WRAP_CTOR(BehaviourScale(const Glib::RefPtr<Alpha>& alpha, Fixed scale_start, Fixed scale_end, Gravity gravity), clutter_behaviour_scale_newx)
+  _WRAP_CTOR(BehaviourScale(const Glib::RefPtr<Alpha>& alpha, double scale_start, double scale_end, Gravity scale_gravity), clutter_behaviour_scale_new)
+  _WRAP_CTOR(BehaviourScale(const Glib::RefPtr<Alpha>& alpha, Fixed scale_start, Fixed scale_end, Gravity scale_gravity), clutter_behaviour_scale_newx)
 
 public:
   _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, double scale_start, double scale_end, Gravity gravity)
