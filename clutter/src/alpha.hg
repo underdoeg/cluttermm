@@ -63,5 +63,22 @@ public:
 
 };
 
+/// @name Pre-defined Alpha functions
+/// @related Alpha
+/// @{
+extern Alpha::SlotAlphaFunc ALPHA_RAMP_INC;
+extern Alpha::SlotAlphaFunc ALPHA_RAMP_DEC;
+extern Alpha::SlotAlphaFunc ALPHA_RAMP;
+extern Alpha::SlotAlphaFunc ALPHA_SINE;
+extern Alpha::SlotAlphaFunc ALPHA_SINE_INC;
+extern Alpha::SlotAlphaFunc ALPHA_SINE_DEC;
+extern Alpha::SlotAlphaFunc ALPHA_SINE_HALF;
+extern Alpha::SlotAlphaFunc ALPHA_SQUARE;
+extern Alpha::SlotAlphaFunc ALPHA_SMOOTHSTEP_INC;
+extern Alpha::SlotAlphaFunc ALPHA_SMOOTHSTEP_DEC;
+extern Alpha::SlotAlphaFunc ALPHA_EXP_INC;
+extern Alpha::SlotAlphaFunc ALPHA_EXP_DEC;
+/// @}
+
 } // namespace Clutter
 // vim:ts=2,sw=2

@@ -50,6 +50,7 @@ Alpha::Alpha(const Glib::RefPtr<Timeline>& timeline, const SlotAlphaFunc& slot)
 :
   _CONSTRUCT()
 {
+  _INITIALLY_UNOWNED_SINK
   set_timeline(timeline);
   set_func(slot);
 }
@@ -66,6 +67,30 @@ void Alpha::set_func(const SlotAlphaFunc& slot)
       &SignalProxy_Alpha_callback_destroy);
 }
 
+static guint32
+alpha_slot_proxy(const Glib::RefPtr<Alpha>& alpha, ClutterAlphaFunc c_func)
+{
+    return c_func(alpha->gobj (), NULL);
+}
+
+inline static
+Alpha::SlotAlphaFunc generate_alpha_slot_proxy (ClutterAlphaFunc func)
+{
+    return sigc::bind (sigc::ptr_fun(alpha_slot_proxy), func);
+}
+
+Alpha::SlotAlphaFunc ALPHA_RAMP_INC = generate_alpha_slot_proxy(CLUTTER_ALPHA_RAMP_INC);
+Alpha::SlotAlphaFunc ALPHA_RAMP_DEC = generate_alpha_slot_proxy(CLUTTER_ALPHA_RAMP_DEC);
+Alpha::SlotAlphaFunc ALPHA_RAMP = generate_alpha_slot_proxy(CLUTTER_ALPHA_RAMP);
+Alpha::SlotAlphaFunc ALPHA_SINE = generate_alpha_slot_proxy(CLUTTER_ALPHA_SINE);
+Alpha::SlotAlphaFunc ALPHA_SINE_INC = generate_alpha_slot_proxy(CLUTTER_ALPHA_SINE_INC);
+Alpha::SlotAlphaFunc ALPHA_SINE_DEC = generate_alpha_slot_proxy(CLUTTER_ALPHA_SINE_DEC);
+Alpha::SlotAlphaFunc ALPHA_SINE_HALF = generate_alpha_slot_proxy(CLUTTER_ALPHA_SINE_HALF);
+Alpha::SlotAlphaFunc ALPHA_SQUARE = generate_alpha_slot_proxy(CLUTTER_ALPHA_SQUARE);
+Alpha::SlotAlphaFunc ALPHA_SMOOTHSTEP_INC = generate_alpha_slot_proxy(CLUTTER_ALPHA_SMOOTHSTEP_INC);
+Alpha::SlotAlphaFunc ALPHA_SMOOTHSTEP_DEC = generate_alpha_slot_proxy(CLUTTER_ALPHA_SMOOTHSTEP_DEC);
+Alpha::SlotAlphaFunc ALPHA_EXP_INC = generate_alpha_slot_proxy(CLUTTER_ALPHA_EXP_INC);
+Alpha::SlotAlphaFunc ALPHA_EXP_DEC = generate_alpha_slot_proxy(CLUTTER_ALPHA_EXP_DEC);
 
 } //namespace Clutter
 

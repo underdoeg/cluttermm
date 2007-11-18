@@ -1,3 +1,12 @@
+2007-11-18  Jonathon Jongsma  <jjongsma@gnome.org>
+
+	* clutter/src/alpha.hg: add sigc::slot wrappers for all of the pre-defined
+	alpha functions provided by clutter
+	* clutter/src/alpha.ccg: Sink initially unowned ref in custom constructor,
+	also define the pre-defined alpha slots
+	* examples/test-actors.cc: update to use newly wrapped sine alpha func, also
+	make the example generally more c++-ified
+
 2007-11-17  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* clutter/cluttermm/init.cc: also initialize gdkmm so that we can use

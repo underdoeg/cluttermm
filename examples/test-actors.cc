@@ -2,6 +2,7 @@
 #include <cluttermm/init.h>
 // FIXME: remove this when enough stuff is wrapped
 #include <clutter/clutter.h>
+#include <iostream>
 
 #if defined (_MSC_VER) && !defined (_USE_MATH_DEFINES)
 #define _USE_MATH_DEFINES
@@ -14,7 +15,7 @@
 
 #define TRAILS  0
 #define NACTORS  6
-#define RADIUS  ((CLUTTER_STAGE_WIDTH()+CLUTTER_STAGE_HEIGHT())/NACTORS)
+#define RADIUS  ((Clutter::Stage::get_default ()->get_width ()+Clutter::Stage::get_default ()->get_height ())/NACTORS)
 
 typedef struct SuperOH
 {
@@ -39,13 +40,8 @@ static GOptionEntry super_oh_entries[] = {
     static gint
 get_radius (void)
 {
-    return (CLUTTER_STAGE_HEIGHT() + CLUTTER_STAGE_HEIGHT()) / s_num_actors ;
-}
-
-// FIXME: wrap these pre-defined alpha funcs as sigc::slots
-static guint32 my_sine (const Glib::RefPtr<Clutter::Alpha>& alpha)
-{
-    return CLUTTER_ALPHA_SINE (alpha->gobj (), NULL);
+    return (Clutter::Stage::get_default ()->get_width ()
+            + Clutter::Stage::get_default ()->get_height ()) / s_num_actors ;
 }
 
 bool on_button_press (Clutter::ButtonEvent *event, const Glib::RefPtr<Clutter::Stage>& stage)
@@ -76,14 +72,13 @@ bool on_key_release (Clutter::KeyEvent *event)
     return false;
 }
 
-/* Timeline handler */
-    void
-on_new_frame (int frame_num, SuperOH* oh)
+// Timeline handler
+void on_new_frame (int frame_num, SuperOH* oh)
 {
-    /* Rotate everything clockwise about stage center*/
+    // Rotate everything clockwise about stage center
     oh->group->rotate_z (frame_num,
-            CLUTTER_STAGE_WIDTH() / 2,
-            CLUTTER_STAGE_HEIGHT() / 2);
+            Clutter::Stage::get_default ()->get_width () / 2,
+            Clutter::Stage::get_default ()->get_height () / 2);
 
     for (int i = 0; i < s_num_actors; i++)
     {
@@ -140,27 +135,40 @@ main (int argc, char *argv[])
     Glib::RefPtr<Clutter::Stage> stage = Clutter::Stage::get_default ();
     stage->set_size (800, 600);
 
-    Glib::RefPtr<Gdk::Pixbuf> pixbuf =
-        Gdk::Pixbuf::create_from_file ("actor.png");
-
-    if (!pixbuf)
-        g_error("pixbuf load failed");
+    Glib::RefPtr<Gdk::Pixbuf> pixbuf;
+    try
+    {
+        pixbuf = Gdk::Pixbuf::create_from_file ("actor.png");
+    }
+    catch (const Glib::FileError& ex)
+    {
+        std::cerr << ex.what () << std::endl;
+        std::cerr << "You may need to run this example from the 'examples' directory" << std::endl;
+        return 1;
+    }
 
     stage->set_title ("Actors Test");
     stage->set_color (stage_color);
 
     SuperOH *oh = new SuperOH ();
 
-    /* Create a timeline to manage animation */
-    Glib::RefPtr<Clutter::Timeline> timeline = Clutter::Timeline::create (360, 60); /* num frames, fps */
-    timeline->set_loop (true); /* have it loop */
+    // Create a timeline to manage animation
+    Glib::RefPtr<Clutter::Timeline> timeline =
+        Clutter::Timeline::create (360, 60); // num frames, fps
+    timeline->set_loop (true); // have it loop
 
-    /* fire a callback for frame change */
-    timeline->signal_new_frame ().connect (sigc::bind(sigc::ptr_fun(on_new_frame), oh));
+    // fire a callback for frame change
+    timeline->signal_new_frame ().connect
+        (sigc::bind (sigc::ptr_fun(on_new_frame), oh));
 
-    /* Set up some behaviours to handle scaling  */
-    Glib::RefPtr<Clutter::Alpha> alpha = Clutter::Alpha::create (timeline,
-            sigc::ptr_fun(my_sine));
+    // TODO: these next 3 objects are not currently used in the example, but
+    // they cause problems on application exit.  If they are commented out, the
+    // program runs and exits without problems.  There seems to be some sort of
+    // reference-counting issue
+
+    // Set up some behaviours to handle scaling
+    Glib::RefPtr<Clutter::Alpha> alpha =
+        Clutter::Alpha::create (timeline, Clutter::ALPHA_SINE);
 
     Glib::RefPtr<Clutter::BehaviourScale> scaler_1 =
         Clutter::BehaviourScale::create (alpha,
@@ -174,7 +182,7 @@ main (int argc, char *argv[])
                 0.5,
                 Clutter::GRAVITY_CENTER);
 
-    /* create a new group to hold multiple actors in a group */
+    // create a new group to hold multiple actors in a group
     oh->group = Clutter::Group::create ();
 
     oh->hands.reserve (s_num_actors);
@@ -183,30 +191,34 @@ main (int argc, char *argv[])
         gint x, y, w, h;
         gint radius = get_radius ();
 
-        /* Create a texture from pixbuf, then clone in to same resources */
+        // Create a texture from pixbuf, then clone it to save resources
         if (i == 0)
+        {
             oh->hands.push_back (Clutter::Texture::create (pixbuf));
+        }
         else
+        {
             oh->hands.push_back (Clutter::CloneTexture::create
                     (Glib::RefPtr<Clutter::Texture>::cast_dynamic
                      (oh->hands[0])));
+        }
 
-        /* Place around a circle */
+        // Place around a circle
         w = oh->hands[0]->get_width ();
         h = oh->hands[0]->get_height ();
 
-        x = CLUTTER_STAGE_WIDTH () / 2 
+        x = Clutter::Stage::get_default ()->get_width () / 2 
             + radius
             * cos (i * M_PI / (s_num_actors / 2))
             - w / 2;
-        y = CLUTTER_STAGE_HEIGHT () / 2 
+        y = Clutter::Stage::get_default ()->get_height () / 2 
             + radius
             * sin (i * M_PI / (s_num_actors / 2))
             - h / 2;
 
         oh->hands[i]->set_position (x, y);
 
-        /* Add to our group group */
+        // Add to our group group
         oh->group->add_actor (oh->hands[i]);
 
 #if 0 /* FIXME: disabled as causes drift - see comment above */
@@ -219,10 +231,10 @@ main (int argc, char *argv[])
 
     oh->group->show_all ();
 
-    /* Add the group to the stage */
+    // Add the group to the stage
     stage->add_actor (oh->group);
 
-    /* Show everying ( and map window ) */
+    // Show everying ( and map window )
     stage->show_all ();
 
     stage->signal_button_press_event ().connect (sigc::bind (sigc::ptr_fun
@@ -230,7 +242,7 @@ main (int argc, char *argv[])
 
     stage->signal_key_release_event ().connect (sigc::ptr_fun(on_key_release));
 
-    /* and start it */
+    // and start it
     timeline->start ();
 
     clutter_main ();
