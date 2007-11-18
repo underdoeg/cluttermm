@@ -1,5 +1,10 @@
 2007-11-17  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/clone-texture.hg: fixe CloneTexture so it actually works.
+	Give it the write GType, fix the construct param property name
+
+2007-11-17  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/timeline.hg: add proper constructor -- there is no default
 	constructor for Timeline
 
