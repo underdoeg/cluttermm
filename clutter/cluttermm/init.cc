@@ -20,6 +20,7 @@
 
 #include <glibmm/init.h>
 #include <glibmm/ustring.h>
+#include <gdkmm/wrap_init.h>
 #include <cluttermmconfig.h> //For LIBCLUTTERMM_VERSION
 #include <cluttermm/wrap_init.h>
 #include <clutter/clutter.h>
@@ -30,6 +31,7 @@ namespace Clutter
 void init(int* nargs, gchar **args[])
 {
   Glib::init(); //Sets up the g type system and the Glib::wrap() table.
+  Gdk::wrap_init();
   wrap_init(); //Tells the Glib::wrap() table about the libcluttermm classes.
   clutter_init(nargs, args);
 }

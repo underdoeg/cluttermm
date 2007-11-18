@@ -1,5 +1,14 @@
 2007-11-17  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/cluttermm/init.cc: also initialize gdkmm so that we can use
+	Gdk::Pixbuf properly
+	* examples/test-actors.cc: added new test/example -- the one with the
+	spinning openedhand logos.  There are a few things that are not wrapped and
+	a couple of things print warnings on exit (indicating perhaps a reference
+	counting issue or something), but for the most part things work so far.
+
+2007-11-17  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/behaviour-scale.hg: fix the construction param names
 
 2007-11-17  Jonathon Jongsma  <jjongsma@gnome.org>
