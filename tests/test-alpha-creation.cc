@@ -2,23 +2,40 @@
 #include <clutter/clutter.h>
 #include <iostream>
 
+Glib::RefPtr<Clutter::Actor> hand;
+
 int
 main (int argc, char *argv[])
 {
-  // initialize the C++ wrapper types
-  Clutter::init(&argc, &argv);
+    // initialize the C++ wrapper types
+    Clutter::init(&argc, &argv);
 
-  Glib::RefPtr<Clutter::Timeline> timeline =
+    Glib::RefPtr<Clutter::Stage> stage = Clutter::Stage::get_default ();
+
+    // Create a timeline to manage animation
+    Glib::RefPtr<Clutter::Timeline> timeline =
         Clutter::Timeline::create (360, 60); // num frames, fps
-  Glib::RefPtr<Clutter::Alpha> alpha =
-    Clutter::Alpha::create (timeline, Clutter::ALPHA_SINE);
 
-  Glib::RefPtr<Clutter::BehaviourScale> scaler_1 =
-    Clutter::BehaviourScale::create (alpha, 0.5, 1.0, Clutter::GRAVITY_CENTER);
+    // Set up some behaviours to handle scaling
+    //Causes a Gobject (refcount?) warning: Glib::RefPtr<Clutter::Alpha> alpha =
+    //    Clutter::Alpha::create (timeline, Clutter::ALPHA_SINE);
+    Glib::RefPtr<Clutter::Alpha> alpha =
+        Clutter::Alpha::create (timeline, CLUTTER_ALPHA_SINE);
 
-  //The refcount should probably be 2 here (it is):
-  std::cout << "alpha ref_count=" << G_OBJECT(alpha->gobj())->ref_count << std::endl;
-  
-  return 0;
+    Glib::RefPtr<Clutter::BehaviourScale> scaler_1 =
+        Clutter::BehaviourScale::create (alpha,
+                0.5,
+                1.0,
+                Clutter::GRAVITY_CENTER);
+
+    // Show everying ( and map window )
+    stage->show ();
+
+    // and start it
+    timeline->start ();
+
+    clutter_main ();
+
+    return 0;
 }
 

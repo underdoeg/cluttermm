@@ -1,5 +1,15 @@
 2007-11-19  Murray Cumming  <murrayc@murrayc.com>
 
+	* clutter/src/alpha.ccg:
+	* clutter/src/alpha.hg: Added a constructor and create() 
+	that takes a regular ClutterAlphaFunc, because the slot version 
+	seems to have refcount problems. We might want this anyway, so it 
+	is easy for people to use new standard clutter ClutterAlphaFuncs. 
+	* tests/test-alpha-creation.cc: Use the new constructor to show 
+	that this removes the warning.
+
+2007-11-19  Murray Cumming  <murrayc@murrayc.com>
+
 	* Makefile.am:
 	* configure.in:
 	* tests/Makefile.am:

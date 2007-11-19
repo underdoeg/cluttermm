@@ -17,6 +17,7 @@
 
 #include <glibmm/object.h>
 #include <cluttermm/timeline.h>
+#include <clutter/clutter-alpha.h>
  
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)
@@ -47,9 +48,16 @@ protected:
    */
   Alpha(const Glib::RefPtr<Timeline>& timeline, const SlotAlphaFunc& slot);
 
+  /** Creates a new Alpha instance and sets the timeline and the alpha function.
+   * @param timeline Timeline.
+   * @param slot Alpha function.
+   */
+  Alpha(const Glib::RefPtr<Timeline>& timeline, ClutterAlphaFunc callback);
+
 public:
   _WRAP_CREATE()
   _WRAP_CREATE(const Glib::RefPtr<Timeline>& timeline, const SlotAlphaFunc& slot)
+  _WRAP_CREATE(const Glib::RefPtr<Timeline>& timeline, ClutterAlphaFunc callback)
 
 
 
