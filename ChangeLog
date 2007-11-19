@@ -1,5 +1,13 @@
 2007-11-19  Murray Cumming  <murrayc@murrayc.com>
 
+	* Makefile.am:
+	* configure.in:
+	* tests/Makefile.am:
+	* tests/test-alpha-creation.cc: Added a tests directory, with one 
+	simple test, though it doesn't show the problem in the example.
+
+2007-11-19  Murray Cumming  <murrayc@murrayc.com>
+
 	* clutter/src/actor.hg: Commented-out the rotate_*() and get_r*_ang*() 
 	methods which have been removed from clutter in svn.
 	* examples/test-actors.cc: Used the C functions for now, because I am too 

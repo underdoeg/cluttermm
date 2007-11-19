@@ -1,4 +1,4 @@
-SUBDIRS		= tools clutter docs examples
+SUBDIRS		= tools clutter docs examples tests
 DIST_SUBDIRS	= $(SUBDIRS) scripts
 
 EXTRA_DIST	=  \
