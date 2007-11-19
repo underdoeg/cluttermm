@@ -76,9 +76,13 @@ bool on_key_release (Clutter::KeyEvent *event)
 void on_new_frame (int frame_num, SuperOH* oh)
 {
     // Rotate everything clockwise about stage center
-    oh->group->rotate_z (frame_num,
-            Clutter::Stage::get_default ()->get_width () / 2,
-            Clutter::Stage::get_default ()->get_height () / 2);
+    //TODO: Wrap the C++ method:
+    clutter_actor_set_rotation (CLUTTER_ACTOR (oh->group->gobj()),
+                              CLUTTER_Z_AXIS,
+                              frame_num,
+                              CLUTTER_STAGE_WIDTH() / 2,
+                              CLUTTER_STAGE_HEIGHT() / 2,
+                              0);
 
     for (int i = 0; i < s_num_actors; i++)
     {
@@ -92,7 +96,9 @@ void on_new_frame (int frame_num, SuperOH* oh)
          * FIXME: scaling causes drift so disabled for now. Need rotation
          * unit based functions to fix.
          */
-        oh->hands[i]->rotate_z (- 6.0 * frame_num,
+        //TODO: Use the C++ method when it is wrapped:
+        clutter_actor_set_rotation (oh->hands[i]->gobj(), CLUTTER_Z_AXIS,
+                                  - 6.0 * frame_num,
 #if 0
                 (oh->hands[i]->get_width () / 2) * scale_x,
                 (oh->hands[i]->get_height () / 2) * scale_y
@@ -100,7 +106,7 @@ void on_new_frame (int frame_num, SuperOH* oh)
                 (oh->hands[i]->get_width () / 2),
                 (oh->hands[i]->get_height () / 2)
 #endif
-                );
+                , 0);
     }
 }
 

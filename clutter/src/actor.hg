@@ -74,6 +74,8 @@ public:
 
   _WRAP_METHOD(int get_x() const, clutter_actor_get_x)
   _WRAP_METHOD(int get_y() const, clutter_actor_get_y)
+
+/* These were removed from clutter. murrayc.
   _WRAP_METHOD(void rotate_x(float angle, int y, int z), clutter_actor_rotate_x)
   _WRAP_METHOD(void rotate_y(float angle, int x, int z), clutter_actor_rotate_y)
   _WRAP_METHOD(void rotate_z(float angle, int x, int y), clutter_actor_rotate_z)
@@ -86,6 +88,7 @@ public:
   _WRAP_METHOD(Fixed get_rxangx() const, clutter_actor_get_rxangx)
   _WRAP_METHOD(Fixed get_ryangx() const, clutter_actor_get_ryangx)
   _WRAP_METHOD(Fixed get_rzangx() const, clutter_actor_get_rzangx)
+*/
   _WRAP_METHOD(void set_opacity (guint8 opacity), clutter_actor_set_opacity)
   _WRAP_METHOD(guint8 get_opacity() const, clutter_actor_get_opacity)
   _WRAP_METHOD(void set_name(const gchar           *name), clutter_actor_set_name)

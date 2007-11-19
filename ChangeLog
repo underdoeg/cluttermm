@@ -1,3 +1,10 @@
+2007-11-19  Murray Cumming  <murrayc@murrayc.com>
+
+	* clutter/src/actor.hg: Commented-out the rotate_*() and get_r*_ang*() 
+	methods which have been removed from clutter in svn.
+	* examples/test-actors.cc: Used the C functions for now, because I am too 
+	lazy to regenerate the .defs file.
+
 2007-11-18  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* clutter/src/alpha.hg: add sigc::slot wrappers for all of the pre-defined
