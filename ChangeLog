@@ -1,3 +1,7 @@
+2007-11-19  Jonathon Jongsma  <jjongsma@gnome.org>
+
+	* MAINTAINERS: I figure I might as well add myself as a maintainer
+
 2007-11-19  Murray Cumming  <murrayc@murrayc.com>
 
 	* clutter/src/alpha.ccg:
