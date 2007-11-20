@@ -52,7 +52,6 @@ public:
   _WRAP_METHOD(void realize(), clutter_actor_realize)
   _WRAP_METHOD(void unrealize(), clutter_actor_unrealize)
   _WRAP_METHOD(void paint(), clutter_actor_paint)
-  _WRAP_METHOD(void pick(const Color& color), clutter_actor_pick)
   _WRAP_METHOD(void queue_redraw(), clutter_actor_queue_redraw)
 
   //TODO: Check that we don't want to wrap this: _WRAP_METHOD(void destroy(), clutter_actor_destroy)
@@ -64,6 +63,7 @@ public:
   _WRAP_METHOD(void get_geometry(ClutterGeometry *geometry), clutter_actor_get_geometry)
   _WRAP_METHOD(void get_coords(int *x_1, int *y_1, int *x_2, int *y_2) const, clutter_actor_get_coords)
   _WRAP_METHOD(void set_size(int width, int height), clutter_actor_set_size)
+  _WRAP_METHOD(void get_position(int& x, int& y), clutter_actor_get_position)
   _WRAP_METHOD(void set_position(int x, int y), clutter_actor_set_position)
   _WRAP_METHOD(void get_abs_position(int& x, int& y) const, clutter_actor_get_abs_position)
   _WRAP_METHOD(guint get_width() const, clutter_actor_get_width)
@@ -71,24 +71,17 @@ public:
   _WRAP_METHOD(void set_width(guint width), clutter_actor_set_width)
   _WRAP_METHOD(void set_height(guint height), clutter_actor_set_height)
 
-
+  _WRAP_METHOD(void set_x(int x), clutter_actor_set_x)
   _WRAP_METHOD(int get_x() const, clutter_actor_get_x)
+  _WRAP_METHOD(void set_y(int y), clutter_actor_set_y)
   _WRAP_METHOD(int get_y() const, clutter_actor_get_y)
+  _WRAP_METHOD(void set_reactive(bool reactive), clutter_actor_set_reactive)
+  _WRAP_METHOD(bool get_reactive() const, clutter_actor_get_reactive)
 
-/* These were removed from clutter. murrayc.
-  _WRAP_METHOD(void rotate_x(float angle, int y, int z), clutter_actor_rotate_x)
-  _WRAP_METHOD(void rotate_y(float angle, int x, int z), clutter_actor_rotate_y)
-  _WRAP_METHOD(void rotate_z(float angle, int x, int y), clutter_actor_rotate_z)
-  _WRAP_METHOD(void rotate_xx(Fixed angle, int y, int z), clutter_actor_rotate_xx)
-  _WRAP_METHOD(void rotate_yx(Fixed angle, int x, int z), clutter_actor_rotate_yx)
-  _WRAP_METHOD(void rotate_zx(Fixed angle, int x, int y), clutter_actor_rotate_zx)
-  _WRAP_METHOD(double get_rxang() const, clutter_actor_get_rxang)
-  _WRAP_METHOD(double get_ryang() const, clutter_actor_get_ryang)
-  _WRAP_METHOD(double get_rzang() const, clutter_actor_get_rzang)
-  _WRAP_METHOD(Fixed get_rxangx() const, clutter_actor_get_rxangx)
-  _WRAP_METHOD(Fixed get_ryangx() const, clutter_actor_get_ryangx)
-  _WRAP_METHOD(Fixed get_rzangx() const, clutter_actor_get_rzangx)
-*/
+  _WRAP_METHOD(void set_rotation(RotateAxis axis, double angle, int x, int y, int z), clutter_actor_set_rotation)
+  _WRAP_METHOD(void set_rotationx(RotateAxis axis, Fixed angle, int x, int y, int z), clutter_actor_set_rotationx)
+  _WRAP_METHOD(double get_rotation(RotateAxis axis, int& x, int& y, int& z) const, clutter_actor_get_rotation)
+  _WRAP_METHOD(Fixed get_rotationx(RotateAxis axis, int& x, int& y, int& z) const, clutter_actor_get_rotationx)
   _WRAP_METHOD(void set_opacity (guint8 opacity), clutter_actor_set_opacity)
   _WRAP_METHOD(guint8 get_opacity() const, clutter_actor_get_opacity)
   _WRAP_METHOD(void set_name(const gchar           *name), clutter_actor_set_name)
@@ -145,6 +138,12 @@ public:
   _WRAP_SIGNAL(bool scroll_event(ScrollEvent* event), "scroll_event")
   _WRAP_SIGNAL(bool key_press_event(KeyEvent* event), "key_press_event")
   _WRAP_SIGNAL(bool captured_event(Event* event), "captured_event")
+
+  protected:
+  // according to the clutter docs, these functions should never be called
+  // directly and are only for subclasses
+  _WRAP_METHOD(void pick(const Color& color), clutter_actor_pick)
+  _WRAP_METHOD(bool should_pick_paint(), clutter_actor_should_pick_paint)
 };
 
 } // namespace Clutter

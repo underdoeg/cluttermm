@@ -1,5 +1,10 @@
 2007-11-19  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/actor.hg: wrap some more Actor methods
+	* examples/test-actors.cc: use the C++ versions of set_rotation()
+
+2007-11-19  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/alpha.hg:
 	* clutter/src/behaviour-depth.hg:
 	* clutter/src/behaviour-ellipse.hg:
