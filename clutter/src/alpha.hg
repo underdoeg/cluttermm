@@ -66,6 +66,7 @@ public:
   _WRAP_METHOD(guint32 get_alpha() const, clutter_alpha_get_alpha)
 
   void set_func(const SlotAlphaFunc& slot);
+  _IGNORE(clutter_alpha_set_func)
 
   // TODO: wrap pre-made alpha funcs?
 

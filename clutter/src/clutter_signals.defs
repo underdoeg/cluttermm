@@ -299,19 +299,19 @@
   (construct-only #f)
 )
 
-(define-property start-depth
+(define-property depth-start
   (of-object "ClutterBehaviourDepth")
   (prop-type "GParamInt")
-  (docs "Start depth to apply")
+  (docs "Initial depth to apply")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
-(define-property end-depth
+(define-property depth-end
   (of-object "ClutterBehaviourDepth")
   (prop-type "GParamInt")
-  (docs "End depth to apply")
+  (docs "Final depth to apply")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -355,7 +355,7 @@
   (construct-only #f)
 )
 
-(define-property angle-begin
+(define-property angle-start
   (of-object "ClutterBehaviourEllipse")
   (prop-type "GParamDouble")
   (docs "Initial angle")
@@ -507,7 +507,7 @@
   (construct-only #f)
 )
 
-(define-property angle-begin
+(define-property angle-start
   (of-object "ClutterBehaviourRotate")
   (prop-type "GParamDouble")
   (docs "Initial angle")
@@ -581,7 +581,7 @@
   (construct-only #f)
 )
 
-(define-property scale-begin
+(define-property scale-start
   (of-object "ClutterBehaviourScale")
   (prop-type "GParamDouble")
   (docs "Initial scale")
@@ -1615,7 +1615,7 @@
 (define-property alignment
   (of-object "ClutterLabel")
   (prop-type "GParamEnum")
-  (docs "The preferred alignment for the string,")
+  (docs "The preferred alignment for the string")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1634,6 +1634,15 @@
   (of-object "ClutterLabel")
   (prop-type "GParamEnum")
   (docs "If wrap is set, controls how linewrapping is done")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property justify
+  (of-object "ClutterLabel")
+  (prop-type "GParamBoolean")
+  (docs "Whether the contents of the label should be justified")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2338,6 +2347,15 @@
   (of-object "ClutterTimeline")
   (prop-type "GParamUInt")
   (docs "Duration of the timeline in milliseconds")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property direction
+  (of-object "ClutterTimeline")
+  (prop-type "GParamEnum")
+  (docs "Direction of the timeline")
   (readable #t)
   (writable #t)
   (construct-only #f)

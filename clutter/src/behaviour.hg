@@ -56,6 +56,17 @@ public:
 
   _WRAP_METHOD(void set_alpha(const Glib::RefPtr<Alpha>& alpha), clutter_behaviour_set_alpha)
 
+  // TODO: does this need the 'behaviour' argument, or could that be
+  // approximated with an Object-oriented 'this' pointer?
+  /** For instance, 
+   * void on_foreach(const Glib::RefPtr<Behaviour>& behaviour, const Glib::RefPtr<Actor>& actor)
+   */
+  typedef sigc::slot<void, const Glib::RefPtr<Behaviour>&, const Glib::RefPtr<Actor>&> SlotForEach;
+
+  void actors_foreach(const SlotForEach& slot);
+  _IGNORE(clutter_behaviour_actors_foreach)
+
+
 _CONVERSION(`ClutterActor*',`const Glib::RefPtr<Actor>&',`Glib::wrap($3)')
   _WRAP_SIGNAL(void applied(const Glib::RefPtr<Actor>& actor), "applied")
   _WRAP_SIGNAL(void removed(const Glib::RefPtr<Actor>& actor), "removed")

@@ -45,6 +45,8 @@ public:
 
   _WRAP_SIGNAL(void knot_reached(const Knot& knot), "knot_reached")
 
+  _WRAP_PROPERTY("knot", Knot)
+
 };
 
 } // namespace Clutter

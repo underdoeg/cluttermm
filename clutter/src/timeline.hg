@@ -25,6 +25,8 @@ _PINCLUDE(glibmm/private/object_p.h)
 namespace Clutter
 {
 
+_WRAP_ENUM(TimelineDirection, ClutterTimelineDirection, NO_GTYPE)
+
 class Timeline : public Glib::Object
 {
   _CLASS_GOBJECT(Timeline, ClutterTimeline, CLUTTER_TIMELINE, Glib::Object, GObject)
@@ -60,6 +62,8 @@ public:
   _WRAP_METHOD(guint get_delay() const, clutter_timeline_get_delay)
   _WRAP_METHOD(double get_progress() const, clutter_timeline_get_progress)
   _WRAP_METHOD(Fixed get_progressx() const, clutter_timeline_get_progressx)
+  _WRAP_METHOD(void set_direction(TimelineDirection direction), clutter_timeline_set_direction)
+  _WRAP_METHOD(TimelineDirection get_direction() const, clutter_timeline_get_direction)
 
   _WRAP_PROPERTY("delay", guint)
   _WRAP_PROPERTY("fps", guint)

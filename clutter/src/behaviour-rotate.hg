@@ -53,6 +53,13 @@ public:
   _WRAP_METHOD(void set_boundsx(Fixed angle_begin, Fixed angle_end), clutter_behaviour_rotate_set_boundsx)
   _WRAP_METHOD(void get_boundsx(Fixed& angle_begin, Fixed& angle_end) const, clutter_behaviour_rotate_get_boundsx)
 
+  _WRAP_PROPERTY("angle-end", double)
+  _WRAP_PROPERTY("angle-start", double)
+  _WRAP_PROPERTY("axis", RotateAxis)
+  _WRAP_PROPERTY("center-x", int)
+  _WRAP_PROPERTY("center-y", int)
+  _WRAP_PROPERTY("center-z", int)
+  _WRAP_PROPERTY("direction", RotateDirection)
 };
 
 } // namespace Clutter

@@ -42,6 +42,10 @@ public:
   _WRAP_METHOD(void get_boundsx(Fixed& angle_begin, Fixed& angle_end) const, clutter_behaviour_scale_get_boundsx)
   _WRAP_METHOD(Gravity get_gravity() const, clutter_behaviour_scale_get_gravity)
 
+  _WRAP_PROPERTY("scale-end", double)
+  _WRAP_PROPERTY("scale-gravity", Gravity)
+  _WRAP_PROPERTY("scale-start", double)
+
 };
 
 } // namespace Clutter

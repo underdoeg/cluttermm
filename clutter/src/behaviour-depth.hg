@@ -35,6 +35,9 @@ protected:
 public:
   _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, int start_depth, int end_depth)
 
+  _WRAP_PROPERTY("depth-end", int)
+  _WRAP_PROPERTY("depth-start", int)
+
 };
 
 } // namespace Clutter

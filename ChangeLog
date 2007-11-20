@@ -1,5 +1,34 @@
 2007-11-19  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/alpha.hg:
+	* clutter/src/behaviour-depth.hg:
+	* clutter/src/behaviour-ellipse.hg:
+	* clutter/src/behaviour-opacity.hg:
+	* clutter/src/behaviour-path.hg:
+	* clutter/src/behaviour-rotate.hg:
+	* clutter/src/behaviour-scale.hg:
+	* clutter/src/behaviour.ccg:
+	* clutter/src/behaviour.hg:
+	* clutter/src/clutter_enums.defs:
+	* clutter/src/clutter_methods.defs:
+	* clutter/src/clutter_signals.defs:
+	* clutter/src/container.hg:
+	* clutter/src/entry.hg:
+	* clutter/src/group.hg:
+	* clutter/src/label.hg:
+	* clutter/src/timeline.hg:
+	* tools/m4/convert_cluttermm.m4: wrapped a lot of new API introduced by
+	generating new .defs files and cleaned up some of the missing stuff from
+	before, including wrapping a lot of new properties
+
+2007-11-19  Jonathon Jongsma  <jjongsma@gnome.org>
+
+	* clutter/src/clutter_enums.defs:
+	* clutter/src/clutter_methods.defs:
+	* clutter/src/clutter_signals.defs: re-generated defs
+
+2007-11-19  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* MAINTAINERS: I figure I might as well add myself as a maintainer
 
 2007-11-19  Murray Cumming  <murrayc@murrayc.com>

@@ -36,6 +36,8 @@ protected:
 public:
   _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, guint8 opacity_start, guint8 opacity_end)
 
+  _WRAP_PROPERTY("opacity-end", guint)
+  _WRAP_PROPERTY("opacity-start", guint)
 };
 
 } // namespace Clutter

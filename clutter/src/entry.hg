@@ -80,6 +80,8 @@ public:
   _WRAP_METHOD(int get_max_length() const, clutter_entry_get_max_length)
   _WRAP_METHOD(void set_max_length(int max_length), clutter_entry_set_max_length)
 
+  _WRAP_METHOD(void handle_key_event(KeyEvent* kev), clutter_entry_handle_key_event)
+
   _WRAP_SIGNAL(void text_changed(), "text_changed")
   // TODO: wrap Geometry
   _WRAP_SIGNAL(void cursor_event(ClutterGeometry* geometry), "cursor_event")

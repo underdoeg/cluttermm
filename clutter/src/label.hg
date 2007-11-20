@@ -77,6 +77,8 @@ public:
   _WRAP_METHOD(Pango::Alignment get_alignment() const, clutter_label_get_alignment)
   _WRAP_METHOD(void set_alignment(Pango::Alignment wrap_mode), clutter_label_set_alignment)
 
+  _WRAP_METHOD(bool get_justify() const, clutter_label_get_justify)
+  _WRAP_METHOD(void set_justify(bool justify), clutter_label_set_justify)
 };
 
 } // namespace Clutter
