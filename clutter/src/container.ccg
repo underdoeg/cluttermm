@@ -26,7 +26,8 @@ static void SignalProxy_Container_foreach_callback(ClutterActor *actor, gpointer
   try
   {
   #endif //GLIBMM_EXCEPTIONS_ENABLED
-    (*the_slot)(Glib::wrap(actor));
+    Glib::RefPtr<Clutter::Actor> cpp_actor = Glib::wrap(actor, true /* take reference */);
+    (*the_slot)(cpp_actor);
   #ifdef GLIBMM_EXCEPTIONS_ENABLED
   }
   catch(...)

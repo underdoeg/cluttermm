@@ -25,7 +25,9 @@ static void SignalProxy_behaviours_foreach_callback(ClutterBehaviour* behaviour,
   try
   {
   #endif //GLIBMM_EXCEPTIONS_ENABLED
-    (*the_slot)(Glib::wrap(behaviour), Glib::wrap(actor));
+    Glib::RefPtr<Clutter::Behaviour> cpp_behaviour = Glib::wrap(behaviour, true /* take reference */);
+    Glib::RefPtr<Clutter::Actor> cpp_actor = Glib::wrap(actor, true /* take reference */);
+    (*the_slot)(cpp_behaviour, cpp_actor);
   #ifdef GLIBMM_EXCEPTIONS_ENABLED
   }
   catch(...)

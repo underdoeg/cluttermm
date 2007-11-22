@@ -26,7 +26,8 @@ static guint32 SignalProxy_Alpha_callback(ClutterAlpha *alpha, gpointer user_dat
   try
   {
   #endif //GLIBMM_EXCEPTIONS_ENABLED
-    value = (*the_slot)(Glib::wrap(alpha));
+    Glib::RefPtr<Clutter::Alpha> cpp_alpha = Glib::wrap(alpha, true /* take reference */);
+    value = (*the_slot)(cpp_alpha);
   #ifdef GLIBMM_EXCEPTIONS_ENABLED
   }
   catch(...)

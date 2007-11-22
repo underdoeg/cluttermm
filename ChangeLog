@@ -1,3 +1,16 @@
+2007-11-22  Murray Cumming  <murrayc@murrayc.com>
+
+	* clutter/src/alpha.ccg:
+	* clutter/src/behaviour.ccg:
+	* clutter/src/container.ccg: Take a reference with Glib::wrap() 
+	in the slot/callback proxies, because the C callback does not 
+	give us one. Otherwise the RefPtr decreases the refcount in its 
+	destructor.
+	Jonathon, if you copied this code from somewhere, we should check 
+	the code that you copied from too.
+	* clutter/src/timeline.hg: Added =true to set_loop().
+	* tests/Makefile.am: Added a test of the alpha funcs.
+
 2007-11-19  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* clutter/src/actor.hg: wrap some more Actor methods

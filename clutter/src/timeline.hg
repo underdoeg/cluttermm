@@ -50,7 +50,7 @@ public:
   _WRAP_METHOD(void pause(), clutter_timeline_pause)
   _WRAP_METHOD(void stop(), clutter_timeline_stop)
   _WRAP_METHOD(void rewind(), clutter_timeline_rewind)
-  _WRAP_METHOD(void set_loop(bool loop), clutter_timeline_set_loop)
+  _WRAP_METHOD(void set_loop(bool loop = true), clutter_timeline_set_loop)
   _WRAP_METHOD(bool get_loop() const, clutter_timeline_get_loop)
   _WRAP_METHOD(void skip(guint n_frames), clutter_timeline_skip)
   _WRAP_METHOD(void advance(guint frame_num), clutter_timeline_advance)
