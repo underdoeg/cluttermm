@@ -1,3 +1,17 @@
+2007-11-30  Murray Cumming  <murrayc@murrayc.com>
+
+	* clutter/src/actor.hg: Removed deprecated 
+	set_scale_with_gravityx(). Added some new methods.
+
+	* clutter/cluttermm.h:
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* examples/Makefile.am:
+	* tools/extra_defs_gen/generate_defs_clutter.cc:
+	Remove use of Box, Container, HBox, VBox, Layout and Margin 
+	because they have been removed from Clutter. We can move these 
+	to a wrapper for the Clutter higher-level library when that 
+	C library exists. 
+
 2007-11-22  Murray Cumming  <murrayc@murrayc.com>
 
 	* clutter/src/alpha.ccg:

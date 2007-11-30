@@ -4,6 +4,6 @@ SUBDIRS =
 
 include Makefile.am_fragment
 
-noinst_PROGRAMS = boxes actors
+noinst_PROGRAMS = actors
 actors_SOURCES = test-actors.cc
-boxes_SOURCES = test-boxes.cc
+#boxes_SOURCES = test-boxes.cc

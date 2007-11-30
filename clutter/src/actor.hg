@@ -106,9 +106,9 @@ public:
   _WRAP_METHOD(void get_scalex(Fixed& scale_x, Fixed& scale_y) const, clutter_actor_get_scalex)
   _WRAP_METHOD(void get_scale(double& scale_x, double& scale_y) const, clutter_actor_get_scale)
 
-  _WRAP_METHOD(void set_scale_with_gravityx(Fixed scale_x, Fixed scale_y, ClutterGravity gravity), clutter_actor_set_scale_with_gravityx)
+  //TODO:: removed? _WRAP_METHOD(void set_scale_with_gravityx(Fixed scale_x, Fixed scale_y, ClutterGravity gravity), clutter_actor_set_scale_with_gravityx)
 
-  _WRAP_METHOD(void set_scale_with_gravity(float scale_x, float scale_y, ClutterGravity gravity), clutter_actor_set_scale_with_gravity)
+  //TODO:: removed? _WRAP_METHOD(void set_scale_with_gravity(float scale_x, float scale_y, ClutterGravity gravity), clutter_actor_set_scale_with_gravity)
 
   _WRAP_METHOD(void get_abs_size(guint& width, guint& height) const, clutter_actor_get_abs_size)
   _WRAP_METHOD(void get_size(guint& width, guint& height) const, clutter_actor_get_size)
@@ -120,6 +120,17 @@ public:
 #m4 _CONVERSION(`const ClutterVertex&',`ClutterVertex*',`const_cast<ClutterVertex*>(&($3))')
 #m4 _CONVERSION(`ClutterVertex&',`ClutterVertex*',`&($3)')
   _WRAP_METHOD(void apply_transform_to_point(const ClutterVertex& point, ClutterVertex& vertex), clutter_actor_apply_transform_to_point)
+
+
+  _WRAP_METHOD(bool event(ClutterEvent* event, bool capture), clutter_actor_event)
+  //TODO: _WRAP_METHOD(Glib::RefPtr<Actor> clutter_get_actor_by_gid(guint32 id), clutter_get_actor_by_gid)
+  //TODO: _WRAP_METHOD(Glib::RefPtr<const Actor> clutter_get_actor_by_gid(guint32 id) const, clutter_get_actor_by_gid, constversion)
+
+  _WRAP_METHOD(void set_anchor_point(int anchor_x, int anchor_y), clutter_actor_set_anchor_point)
+  _WRAP_METHOD(void get_anchor_point(int& anchor_x, int& anchor_y) const, clutter_actor_get_anchor_point)
+  _WRAP_METHOD(void set_anchor_pointu(ClutterUnit anchor_x, ClutterUnit anchor_y), clutter_actor_set_anchor_pointu)
+  _WRAP_METHOD(void get_anchor_pointu(ClutterUnit& anchor_x, ClutterUnit& anchor_y), clutter_actor_get_anchor_pointu)
+  _WRAP_METHOD(void set_anchor_point_from_gravity(ClutterGravity gravity), clutter_actor_set_anchor_point_from_gravity)
 
 // signals
   _WRAP_SIGNAL(bool button_press_event(ButtonEvent* event), "button_press_event")
@@ -143,7 +154,7 @@ public:
   // according to the clutter docs, these functions should never be called
   // directly and are only for subclasses
   _WRAP_METHOD(void pick(const Color& color), clutter_actor_pick)
-  _WRAP_METHOD(bool should_pick_paint(), clutter_actor_should_pick_paint)
+  _WRAP_METHOD(bool should_pick_paint() const, clutter_actor_should_pick_paint)
 };
 
 } // namespace Clutter

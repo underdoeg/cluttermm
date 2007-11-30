@@ -37,25 +37,26 @@ int main (int argc, char *argv[])
     << get_defs(CLUTTER_TYPE_BEHAVIOUR_PATH)
     << get_defs(CLUTTER_TYPE_BEHAVIOUR_ROTATE)
     << get_defs(CLUTTER_TYPE_BEHAVIOUR_SCALE)
-    << get_defs(CLUTTER_TYPE_BOX)
+//    << get_defs(CLUTTER_TYPE_BOX)
     << get_defs(CLUTTER_TYPE_CLONE_TEXTURE)
     << get_defs(CLUTTER_TYPE_COLOR)
-    << get_defs(CLUTTER_TYPE_CONTAINER)
+//    << get_defs(CLUTTER_TYPE_CONTAINER)
     << get_defs(CLUTTER_TYPE_EFFECT_TEMPLATE)
     << get_defs(CLUTTER_TYPE_ENTRY)
     << get_defs(CLUTTER_TYPE_EVENT)
     << get_defs(CLUTTER_TYPE_GROUP)
-    << get_defs(CLUTTER_TYPE_HBOX)
+//    << get_defs(CLUTTER_TYPE_HBOX)
     << get_defs(CLUTTER_TYPE_LABEL)
-    << get_defs(CLUTTER_TYPE_LAYOUT)
+//    << get_defs(CLUTTER_TYPE_LAYOUT)
     << get_defs(CLUTTER_TYPE_MEDIA)
     << get_defs(CLUTTER_TYPE_RECTANGLE)
     << get_defs(CLUTTER_TYPE_SCORE)
     << get_defs(CLUTTER_TYPE_SCRIPT)
     << get_defs(CLUTTER_TYPE_STAGE)
     << get_defs(CLUTTER_TYPE_TEXTURE)
-    << get_defs(CLUTTER_TYPE_TIMELINE)
-    << get_defs(CLUTTER_TYPE_VBOX);
+    << get_defs(CLUTTER_TYPE_TIMELINE);
+//    << get_defs(CLUTTER_TYPE_VBOX)
+//    << get_defs(CLUTTER_TYPE_MARGIN);
 
   return 0;
 }
