@@ -1,3 +1,9 @@
+2007-12-17  Murray Cumming  <murrayc@murrayc.com>
+
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	Added back container.hg because ClutterContainer was not removed 
+	from clutter.
+
 2007-11-30  Murray Cumming  <murrayc@murrayc.com>
 
 	* clutter/src/actor.hg: Removed deprecated 

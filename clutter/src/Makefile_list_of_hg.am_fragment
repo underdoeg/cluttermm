@@ -12,6 +12,7 @@ stage.hg \
 rectangle.hg \
 texture.hg \
 clone-texture.hg \
+container.hg \
 label.hg \
 entry.hg \
 timeline.hg \
@@ -24,5 +25,4 @@ behaviour-path.hg \
 behaviour-ellipse.hg \
 behaviour-rotate.hg \
 behaviour-scale.hg
-
-# container.hg layout.hg box.hg margin.hg
+#layout.hg box.hg margin.hg
