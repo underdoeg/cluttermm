@@ -16,8 +16,6 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <clutter/clutter-layout.h>
- 
 _DEFS(cluttermm,clutter)
 
 namespace Clutter

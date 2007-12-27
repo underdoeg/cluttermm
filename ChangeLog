@@ -1,3 +1,8 @@
+2007-12-27  Daniel Elstner  <danielk@openismus.com>
+
+	* examples/src/color.ccg: Eliminate leftover inclusion of removed
+	clutter-layout.h header.
+
 2007-12-17  Murray Cumming  <murrayc@murrayc.com>
 
 	* clutter/src/Makefile_list_of_hg.am_fragment:
