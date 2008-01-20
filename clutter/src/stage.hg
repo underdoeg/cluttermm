@@ -23,9 +23,10 @@
 _DEFS(cluttermm,clutter)
 _PINCLUDE(cluttermm/private/group_p.h)
 
-
 namespace Clutter
 {
+
+typedef ClutterFog Fog;
 
 class Stage :
   public Group
@@ -64,6 +65,12 @@ public:
   _WRAP_METHOD(Glib::RefPtr<const Actor> get_key_focus() const, clutter_stage_get_key_focus, constversion)
   _WRAP_METHOD(void set_key_focus(const Glib::RefPtr<Actor>& actor), clutter_stage_set_key_focus)
   _WRAP_METHOD(Glib::RefPtr<Gdk::Pixbuf> snapshot(int x, int y, int width, int height) const, clutter_stage_snapshot)
+  _WRAP_METHOD(bool get_use_fog() const, clutter_stage_get_use_fog)
+  _WRAP_METHOD(void set_use_fog(bool fog), clutter_stage_set_use_fog)
+  _WRAP_METHOD(void set_fog(double density, double z_near, double z_far), clutter_stage_set_fog)
+  _WRAP_METHOD(void get_fog(double& density, double& z_near, double& z_far) const, clutter_stage_get_fog)
+  //_WRAP_METHOD(void set_fogx(const Fog& fog), clutter_stage_set_fogx)
+  //_WRAP_METHOD(void get_fogx(Fog& fog) const, clutter_stage_get_fogx)
   
   _WRAP_METHOD(void stage_event(Event* event), clutter_stage_event);
 
