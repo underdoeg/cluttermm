@@ -129,6 +129,15 @@
   )
 )
 
+(define-property name
+  (of-object "ClutterActor")
+  (prop-type "GParamString")
+  (docs "Name of the actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property x
   (of-object "ClutterActor")
   (prop-type "GParamInt")
@@ -201,19 +210,19 @@
   (construct-only #f)
 )
 
-(define-property name
+(define-property visible
   (of-object "ClutterActor")
-  (prop-type "GParamString")
-  (docs "Name of the actor")
+  (prop-type "GParamBoolean")
+  (docs "Whether the actor is visible or not")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
-(define-property visible
+(define-property reactive
   (of-object "ClutterActor")
   (prop-type "GParamBoolean")
-  (docs "Whether the actor is visible or not")
+  (docs "Whether the actor is reactive to events or not")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -237,10 +246,55 @@
   (construct-only #f)
 )
 
-(define-property reactive
+(define-property rotation-angle-x
   (of-object "ClutterActor")
-  (prop-type "GParamBoolean")
-  (docs "Whether the actor is reactive to events or not")
+  (prop-type "GParamDouble")
+  (docs "The rotation angle on the X axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-angle-y
+  (of-object "ClutterActor")
+  (prop-type "GParamDouble")
+  (docs "The rotation angle on the Y axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-angle-z
+  (of-object "ClutterActor")
+  (prop-type "GParamDouble")
+  (docs "The rotation angle on the Z axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-center-x
+  (of-object "ClutterActor")
+  (prop-type "GParamBoxed")
+  (docs "The rotation center on the X axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-center-y
+  (of-object "ClutterActor")
+  (prop-type "GParamBoxed")
+  (docs "The rotation center on the Y axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-center-z
+  (of-object "ClutterActor")
+  (prop-type "GParamBoxed")
+  (docs "The rotation center on the Z axis")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -275,7 +329,7 @@
   (return-type "void")
   (when "last")
   (parameters
-    '("const-ClutterKnot*" "p0")
+    '("ClutterKnot*" "p0")
   )
 )
 
@@ -474,7 +528,7 @@
   (return-type "void")
   (when "last")
   (parameters
-    '("const-ClutterKnot*" "p0")
+    '("ClutterKnot*" "p0")
   )
 )
 
@@ -581,19 +635,37 @@
   (construct-only #f)
 )
 
-(define-property scale-start
+(define-property x-scale-start
   (of-object "ClutterBehaviourScale")
   (prop-type "GParamDouble")
-  (docs "Initial scale")
+  (docs "Initial scale on the X axis")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
-(define-property scale-end
+(define-property y-scale-start
   (of-object "ClutterBehaviourScale")
   (prop-type "GParamDouble")
-  (docs "Final scale")
+  (docs "Initial scale on the Y axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property x-scale-end
+  (of-object "ClutterBehaviourScale")
+  (prop-type "GParamDouble")
+  (docs "Final scale on the X axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property y-scale-end
+  (of-object "ClutterBehaviourScale")
+  (prop-type "GParamDouble")
+  (docs "Final scale on the Y axis")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -608,145 +680,17 @@
   (construct-only #f)
 )
 
-;; From ClutterBox
-
-(define-property x
-  (of-object "ClutterBox")
-  (prop-type "GParamInt")
-  (docs "X co-ord of actor")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property y
-  (of-object "ClutterBox")
-  (prop-type "GParamInt")
-  (docs "Y co-ord of actor")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property width
-  (of-object "ClutterBox")
-  (prop-type "GParamInt")
-  (docs "Width of actor in pixels")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property height
-  (of-object "ClutterBox")
-  (prop-type "GParamInt")
-  (docs "Height of actor in pixels")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property depth
-  (of-object "ClutterBox")
-  (prop-type "GParamInt")
-  (docs "Depth of actor")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property clip
-  (of-object "ClutterBox")
-  (prop-type "GParamBoxed")
-  (docs "The clip region for the actor")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property has-clip
-  (of-object "ClutterBox")
-  (prop-type "GParamBoolean")
-  (docs "Whether the actor has a clip set or not")
-  (readable #t)
-  (writable #f)
-  (construct-only #f)
-)
-
-(define-property opacity
-  (of-object "ClutterBox")
-  (prop-type "GParamUChar")
-  (docs "Opacity of actor")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property name
-  (of-object "ClutterBox")
-  (prop-type "GParamString")
-  (docs "Name of the actor")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property visible
-  (of-object "ClutterBox")
-  (prop-type "GParamBoolean")
-  (docs "Whether the actor is visible or not")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property scale-x
-  (of-object "ClutterBox")
-  (prop-type "GParamDouble")
-  (docs "Scale X")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property scale-y
-  (of-object "ClutterBox")
-  (prop-type "GParamDouble")
-  (docs "Scale Y")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property reactive
-  (of-object "ClutterBox")
-  (prop-type "GParamBoolean")
-  (docs "Whether the actor is reactive to events or not")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property margin
-  (of-object "ClutterBox")
-  (prop-type "GParamBoxed")
-  (docs "Margin between the inner border of a box and its children")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property color
-  (of-object "ClutterBox")
-  (prop-type "GParamBoxed")
-  (docs "Background color of a box")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 ;; From ClutterCloneTexture
 
+(define-property name
+  (of-object "ClutterCloneTexture")
+  (prop-type "GParamString")
+  (docs "Name of the actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property x
   (of-object "ClutterCloneTexture")
   (prop-type "GParamInt")
@@ -819,19 +763,19 @@
   (construct-only #f)
 )
 
-(define-property name
+(define-property visible
   (of-object "ClutterCloneTexture")
-  (prop-type "GParamString")
-  (docs "Name of the actor")
+  (prop-type "GParamBoolean")
+  (docs "Whether the actor is visible or not")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
-(define-property visible
+(define-property reactive
   (of-object "ClutterCloneTexture")
   (prop-type "GParamBoolean")
-  (docs "Whether the actor is visible or not")
+  (docs "Whether the actor is reactive to events or not")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -855,10 +799,55 @@
   (construct-only #f)
 )
 
-(define-property reactive
+(define-property rotation-angle-x
   (of-object "ClutterCloneTexture")
-  (prop-type "GParamBoolean")
-  (docs "Whether the actor is reactive to events or not")
+  (prop-type "GParamDouble")
+  (docs "The rotation angle on the X axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-angle-y
+  (of-object "ClutterCloneTexture")
+  (prop-type "GParamDouble")
+  (docs "The rotation angle on the Y axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-angle-z
+  (of-object "ClutterCloneTexture")
+  (prop-type "GParamDouble")
+  (docs "The rotation angle on the Z axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-center-x
+  (of-object "ClutterCloneTexture")
+  (prop-type "GParamBoxed")
+  (docs "The rotation center on the X axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-center-y
+  (of-object "ClutterCloneTexture")
+  (prop-type "GParamBoxed")
+  (docs "The rotation center on the Y axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-center-z
+  (of-object "ClutterCloneTexture")
+  (prop-type "GParamBoxed")
+  (docs "The rotation center on the Z axis")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -875,36 +864,7 @@
 
 ;; From ClutterColor
 
-;; From ClutterContainer
-
-(define-signal actor-added
-  (of-object "ClutterContainer")
-  (return-type "void")
-  (when "first")
-  (parameters
-    '("ClutterActor*" "p0")
-  )
-)
-
-(define-signal actor-removed
-  (of-object "ClutterContainer")
-  (return-type "void")
-  (when "first")
-  (parameters
-    '("ClutterActor*" "p0")
-  )
-)
-
 ;; From ClutterEffectTemplate
-
-(define-property alpha-func
-  (of-object "ClutterEffectTemplate")
-  (prop-type "GParamPointer")
-  (docs "Alpha reference Function")
-  (readable #t)
-  (writable #t)
-  (construct-only #t)
-)
 
 (define-property timeline
   (of-object "ClutterEffectTemplate")
@@ -947,6 +907,15 @@
   )
 )
 
+(define-property name
+  (of-object "ClutterEntry")
+  (prop-type "GParamString")
+  (docs "Name of the actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property x
   (of-object "ClutterEntry")
   (prop-type "GParamInt")
@@ -1019,19 +988,19 @@
   (construct-only #f)
 )
 
-(define-property name
+(define-property visible
   (of-object "ClutterEntry")
-  (prop-type "GParamString")
-  (docs "Name of the actor")
+  (prop-type "GParamBoolean")
+  (docs "Whether the actor is visible or not")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
-(define-property visible
+(define-property reactive
   (of-object "ClutterEntry")
   (prop-type "GParamBoolean")
-  (docs "Whether the actor is visible or not")
+  (docs "Whether the actor is reactive to events or not")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1055,10 +1024,55 @@
   (construct-only #f)
 )
 
-(define-property reactive
+(define-property rotation-angle-x
   (of-object "ClutterEntry")
-  (prop-type "GParamBoolean")
-  (docs "Whether the actor is reactive to events or not")
+  (prop-type "GParamDouble")
+  (docs "The rotation angle on the X axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-angle-y
+  (of-object "ClutterEntry")
+  (prop-type "GParamDouble")
+  (docs "The rotation angle on the Y axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-angle-z
+  (of-object "ClutterEntry")
+  (prop-type "GParamDouble")
+  (docs "The rotation angle on the Z axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-center-x
+  (of-object "ClutterEntry")
+  (prop-type "GParamBoxed")
+  (docs "The rotation center on the X axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-center-y
+  (of-object "ClutterEntry")
+  (prop-type "GParamBoxed")
+  (docs "The rotation center on the Y axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-center-z
+  (of-object "ClutterEntry")
+  (prop-type "GParamBoxed")
+  (docs "The rotation center on the Z axis")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1176,6 +1190,15 @@
   )
 )
 
+(define-property name
+  (of-object "ClutterGroup")
+  (prop-type "GParamString")
+  (docs "Name of the actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property x
   (of-object "ClutterGroup")
   (prop-type "GParamInt")
@@ -1248,19 +1271,19 @@
   (construct-only #f)
 )
 
-(define-property name
+(define-property visible
   (of-object "ClutterGroup")
-  (prop-type "GParamString")
-  (docs "Name of the actor")
+  (prop-type "GParamBoolean")
+  (docs "Whether the actor is visible or not")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
-(define-property visible
+(define-property reactive
   (of-object "ClutterGroup")
   (prop-type "GParamBoolean")
-  (docs "Whether the actor is visible or not")
+  (docs "Whether the actor is reactive to events or not")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1284,156 +1307,55 @@
   (construct-only #f)
 )
 
-(define-property reactive
+(define-property rotation-angle-x
   (of-object "ClutterGroup")
-  (prop-type "GParamBoolean")
-  (docs "Whether the actor is reactive to events or not")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-;; From ClutterHBox
-
-(define-property layout-flags
-  (of-object "ClutterHBox")
-  (prop-type "GParamFlags")
-  (docs "Supported layouts")
-  (readable #t)
-  (writable #f)
-  (construct-only #f)
-)
-
-(define-property x
-  (of-object "ClutterHBox")
-  (prop-type "GParamInt")
-  (docs "X co-ord of actor")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property y
-  (of-object "ClutterHBox")
-  (prop-type "GParamInt")
-  (docs "Y co-ord of actor")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property width
-  (of-object "ClutterHBox")
-  (prop-type "GParamInt")
-  (docs "Width of actor in pixels")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property height
-  (of-object "ClutterHBox")
-  (prop-type "GParamInt")
-  (docs "Height of actor in pixels")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property depth
-  (of-object "ClutterHBox")
-  (prop-type "GParamInt")
-  (docs "Depth of actor")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property clip
-  (of-object "ClutterHBox")
-  (prop-type "GParamBoxed")
-  (docs "The clip region for the actor")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property has-clip
-  (of-object "ClutterHBox")
-  (prop-type "GParamBoolean")
-  (docs "Whether the actor has a clip set or not")
-  (readable #t)
-  (writable #f)
-  (construct-only #f)
-)
-
-(define-property opacity
-  (of-object "ClutterHBox")
-  (prop-type "GParamUChar")
-  (docs "Opacity of actor")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property name
-  (of-object "ClutterHBox")
-  (prop-type "GParamString")
-  (docs "Name of the actor")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property visible
-  (of-object "ClutterHBox")
-  (prop-type "GParamBoolean")
-  (docs "Whether the actor is visible or not")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property scale-x
-  (of-object "ClutterHBox")
   (prop-type "GParamDouble")
-  (docs "Scale X")
+  (docs "The rotation angle on the X axis")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
-(define-property scale-y
-  (of-object "ClutterHBox")
+(define-property rotation-angle-y
+  (of-object "ClutterGroup")
   (prop-type "GParamDouble")
-  (docs "Scale Y")
+  (docs "The rotation angle on the Y axis")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
-(define-property reactive
-  (of-object "ClutterHBox")
-  (prop-type "GParamBoolean")
-  (docs "Whether the actor is reactive to events or not")
+(define-property rotation-angle-z
+  (of-object "ClutterGroup")
+  (prop-type "GParamDouble")
+  (docs "The rotation angle on the Z axis")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
-(define-property margin
-  (of-object "ClutterHBox")
+(define-property rotation-center-x
+  (of-object "ClutterGroup")
   (prop-type "GParamBoxed")
-  (docs "Margin between the inner border of a box and its children")
+  (docs "The rotation center on the X axis")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
-(define-property color
-  (of-object "ClutterHBox")
+(define-property rotation-center-y
+  (of-object "ClutterGroup")
   (prop-type "GParamBoxed")
-  (docs "Background color of a box")
+  (docs "The rotation center on the Y axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-center-z
+  (of-object "ClutterGroup")
+  (prop-type "GParamBoxed")
+  (docs "The rotation center on the Z axis")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1441,12 +1363,12 @@
 
 ;; From ClutterLabel
 
-(define-property layout-flags
+(define-property name
   (of-object "ClutterLabel")
-  (prop-type "GParamFlags")
-  (docs "Supported layouts")
+  (prop-type "GParamString")
+  (docs "Name of the actor")
   (readable #t)
-  (writable #f)
+  (writable #t)
   (construct-only #f)
 )
 
@@ -1522,19 +1444,19 @@
   (construct-only #f)
 )
 
-(define-property name
+(define-property visible
   (of-object "ClutterLabel")
-  (prop-type "GParamString")
-  (docs "Name of the actor")
+  (prop-type "GParamBoolean")
+  (docs "Whether the actor is visible or not")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
-(define-property visible
+(define-property reactive
   (of-object "ClutterLabel")
   (prop-type "GParamBoolean")
-  (docs "Whether the actor is visible or not")
+  (docs "Whether the actor is reactive to events or not")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1558,10 +1480,55 @@
   (construct-only #f)
 )
 
-(define-property reactive
+(define-property rotation-angle-x
   (of-object "ClutterLabel")
-  (prop-type "GParamBoolean")
-  (docs "Whether the actor is reactive to events or not")
+  (prop-type "GParamDouble")
+  (docs "The rotation angle on the X axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-angle-y
+  (of-object "ClutterLabel")
+  (prop-type "GParamDouble")
+  (docs "The rotation angle on the Y axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-angle-z
+  (of-object "ClutterLabel")
+  (prop-type "GParamDouble")
+  (docs "The rotation angle on the Z axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-center-x
+  (of-object "ClutterLabel")
+  (prop-type "GParamBoxed")
+  (docs "The rotation center on the X axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-center-y
+  (of-object "ClutterLabel")
+  (prop-type "GParamBoxed")
+  (docs "The rotation center on the Y axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-center-z
+  (of-object "ClutterLabel")
+  (prop-type "GParamBoxed")
+  (docs "The rotation center on the Z axis")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1657,11 +1624,81 @@
   (construct-only #f)
 )
 
-;; From ClutterLayout
-
 ;; From ClutterMedia
 
+(define-property uri
+  (of-object "ClutterMedia")
+  (prop-type "GParamString")
+  (docs "The loaded URI.")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property buffer-percent
+  (of-object "ClutterMedia")
+  (prop-type "GParamInt")
+  (docs "The percentage the current stream buffer is filled.")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property playing
+  (of-object "ClutterMedia")
+  (prop-type "GParamBoolean")
+  (docs "TRUE if playing.")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property volume
+  (of-object "ClutterMedia")
+  (prop-type "GParamDouble")
+  (docs "The audio volume.")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property position
+  (of-object "ClutterMedia")
+  (prop-type "GParamInt")
+  (docs "The position in the current stream in seconds.")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property can-seek
+  (of-object "ClutterMedia")
+  (prop-type "GParamBoolean")
+  (docs "TRUE if the current stream is seekable.")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property duration
+  (of-object "ClutterMedia")
+  (prop-type "GParamInt")
+  (docs "The duration of the current stream in seconds.")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
 ;; From ClutterRectangle
+
+(define-property name
+  (of-object "ClutterRectangle")
+  (prop-type "GParamString")
+  (docs "Name of the actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
 
 (define-property x
   (of-object "ClutterRectangle")
@@ -1735,19 +1772,19 @@
   (construct-only #f)
 )
 
-(define-property name
+(define-property visible
   (of-object "ClutterRectangle")
-  (prop-type "GParamString")
-  (docs "Name of the actor")
+  (prop-type "GParamBoolean")
+  (docs "Whether the actor is visible or not")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
-(define-property visible
+(define-property reactive
   (of-object "ClutterRectangle")
   (prop-type "GParamBoolean")
-  (docs "Whether the actor is visible or not")
+  (docs "Whether the actor is reactive to events or not")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1771,10 +1808,55 @@
   (construct-only #f)
 )
 
-(define-property reactive
+(define-property rotation-angle-x
   (of-object "ClutterRectangle")
-  (prop-type "GParamBoolean")
-  (docs "Whether the actor is reactive to events or not")
+  (prop-type "GParamDouble")
+  (docs "The rotation angle on the X axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-angle-y
+  (of-object "ClutterRectangle")
+  (prop-type "GParamDouble")
+  (docs "The rotation angle on the Y axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-angle-z
+  (of-object "ClutterRectangle")
+  (prop-type "GParamDouble")
+  (docs "The rotation angle on the Z axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-center-x
+  (of-object "ClutterRectangle")
+  (prop-type "GParamBoxed")
+  (docs "The rotation center on the X axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-center-y
+  (of-object "ClutterRectangle")
+  (prop-type "GParamBoxed")
+  (docs "The rotation center on the Y axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-center-z
+  (of-object "ClutterRectangle")
+  (prop-type "GParamBoxed")
+  (docs "The rotation center on the Z axis")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1836,13 +1918,31 @@
   (when "last")
 )
 
-(define-signal new-timeline
+(define-signal timeline-started
   (of-object "ClutterScore")
   (return-type "void")
   (when "last")
   (parameters
     '("ClutterTimeline*" "p0")
   )
+)
+
+(define-signal timeline-completed
+  (of-object "ClutterScore")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("ClutterTimeline*" "p0")
+  )
+)
+
+(define-property loop
+  (of-object "ClutterScore")
+  (prop-type "GParamBoolean")
+  (docs "Whether the score should restart once finished")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
 )
 
 ;; From ClutterScript
@@ -1889,6 +1989,15 @@
   (of-object "ClutterStage")
   (return-type "void")
   (when "last")
+)
+
+(define-property name
+  (of-object "ClutterStage")
+  (prop-type "GParamString")
+  (docs "Name of the actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
 )
 
 (define-property x
@@ -1963,19 +2072,19 @@
   (construct-only #f)
 )
 
-(define-property name
+(define-property visible
   (of-object "ClutterStage")
-  (prop-type "GParamString")
-  (docs "Name of the actor")
+  (prop-type "GParamBoolean")
+  (docs "Whether the actor is visible or not")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
-(define-property visible
+(define-property reactive
   (of-object "ClutterStage")
   (prop-type "GParamBoolean")
-  (docs "Whether the actor is visible or not")
+  (docs "Whether the actor is reactive to events or not")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1999,10 +2108,55 @@
   (construct-only #f)
 )
 
-(define-property reactive
+(define-property rotation-angle-x
   (of-object "ClutterStage")
-  (prop-type "GParamBoolean")
-  (docs "Whether the actor is reactive to events or not")
+  (prop-type "GParamDouble")
+  (docs "The rotation angle on the X axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-angle-y
+  (of-object "ClutterStage")
+  (prop-type "GParamDouble")
+  (docs "The rotation angle on the Y axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-angle-z
+  (of-object "ClutterStage")
+  (prop-type "GParamDouble")
+  (docs "The rotation angle on the Z axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-center-x
+  (of-object "ClutterStage")
+  (prop-type "GParamBoxed")
+  (docs "The rotation center on the X axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-center-y
+  (of-object "ClutterStage")
+  (prop-type "GParamBoxed")
+  (docs "The rotation center on the Y axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-center-z
+  (of-object "ClutterStage")
+  (prop-type "GParamBoxed")
+  (docs "The rotation center on the Z axis")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2062,6 +2216,15 @@
   (construct-only #f)
 )
 
+(define-property use-fog
+  (of-object "ClutterStage")
+  (prop-type "GParamBoolean")
+  (docs "Whether to enable depth cueing")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 ;; From ClutterTexture
 
 (define-signal size-change
@@ -2078,6 +2241,15 @@
   (of-object "ClutterTexture")
   (return-type "void")
   (when "last")
+)
+
+(define-property name
+  (of-object "ClutterTexture")
+  (prop-type "GParamString")
+  (docs "Name of the actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
 )
 
 (define-property x
@@ -2152,19 +2324,19 @@
   (construct-only #f)
 )
 
-(define-property name
+(define-property visible
   (of-object "ClutterTexture")
-  (prop-type "GParamString")
-  (docs "Name of the actor")
+  (prop-type "GParamBoolean")
+  (docs "Whether the actor is visible or not")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
-(define-property visible
+(define-property reactive
   (of-object "ClutterTexture")
   (prop-type "GParamBoolean")
-  (docs "Whether the actor is visible or not")
+  (docs "Whether the actor is reactive to events or not")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2188,10 +2360,55 @@
   (construct-only #f)
 )
 
-(define-property reactive
+(define-property rotation-angle-x
   (of-object "ClutterTexture")
-  (prop-type "GParamBoolean")
-  (docs "Whether the actor is reactive to events or not")
+  (prop-type "GParamDouble")
+  (docs "The rotation angle on the X axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-angle-y
+  (of-object "ClutterTexture")
+  (prop-type "GParamDouble")
+  (docs "The rotation angle on the Y axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-angle-z
+  (of-object "ClutterTexture")
+  (prop-type "GParamDouble")
+  (docs "The rotation angle on the Z axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-center-x
+  (of-object "ClutterTexture")
+  (prop-type "GParamBoxed")
+  (docs "The rotation center on the X axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-center-y
+  (of-object "ClutterTexture")
+  (prop-type "GParamBoxed")
+  (docs "The rotation center on the Y axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-center-z
+  (of-object "ClutterTexture")
+  (prop-type "GParamBoxed")
+  (docs "The rotation center on the Z axis")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2356,152 +2573,6 @@
   (of-object "ClutterTimeline")
   (prop-type "GParamEnum")
   (docs "Direction of the timeline")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-;; From ClutterVBox
-
-(define-property layout-flags
-  (of-object "ClutterVBox")
-  (prop-type "GParamFlags")
-  (docs "Supported layouts")
-  (readable #t)
-  (writable #f)
-  (construct-only #f)
-)
-
-(define-property x
-  (of-object "ClutterVBox")
-  (prop-type "GParamInt")
-  (docs "X co-ord of actor")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property y
-  (of-object "ClutterVBox")
-  (prop-type "GParamInt")
-  (docs "Y co-ord of actor")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property width
-  (of-object "ClutterVBox")
-  (prop-type "GParamInt")
-  (docs "Width of actor in pixels")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property height
-  (of-object "ClutterVBox")
-  (prop-type "GParamInt")
-  (docs "Height of actor in pixels")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property depth
-  (of-object "ClutterVBox")
-  (prop-type "GParamInt")
-  (docs "Depth of actor")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property clip
-  (of-object "ClutterVBox")
-  (prop-type "GParamBoxed")
-  (docs "The clip region for the actor")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property has-clip
-  (of-object "ClutterVBox")
-  (prop-type "GParamBoolean")
-  (docs "Whether the actor has a clip set or not")
-  (readable #t)
-  (writable #f)
-  (construct-only #f)
-)
-
-(define-property opacity
-  (of-object "ClutterVBox")
-  (prop-type "GParamUChar")
-  (docs "Opacity of actor")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property name
-  (of-object "ClutterVBox")
-  (prop-type "GParamString")
-  (docs "Name of the actor")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property visible
-  (of-object "ClutterVBox")
-  (prop-type "GParamBoolean")
-  (docs "Whether the actor is visible or not")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property scale-x
-  (of-object "ClutterVBox")
-  (prop-type "GParamDouble")
-  (docs "Scale X")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property scale-y
-  (of-object "ClutterVBox")
-  (prop-type "GParamDouble")
-  (docs "Scale Y")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property reactive
-  (of-object "ClutterVBox")
-  (prop-type "GParamBoolean")
-  (docs "Whether the actor is reactive to events or not")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property margin
-  (of-object "ClutterVBox")
-  (prop-type "GParamBoxed")
-  (docs "Margin between the inner border of a box and its children")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property color
-  (of-object "ClutterVBox")
-  (prop-type "GParamBoxed")
-  (docs "Background color of a box")
   (readable #t)
   (writable #t)
   (construct-only #f)

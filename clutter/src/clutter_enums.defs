@@ -138,6 +138,18 @@
   )
 )
 
+;; From /opt/gnome2/include/clutter-0.5/clutter/clutter-shader.h
+
+(define-enum-extended ShaderError
+  (in-module "Clutter")
+  (c-name "ClutterShaderError")
+  (values
+    '("no-asm" "CLUTTER_SHADER_ERROR_NO_ASM" "0")
+    '("no-glsl" "CLUTTER_SHADER_ERROR_NO_GLSL" "1")
+    '("compile" "CLUTTER_SHADER_ERROR_COMPILE" "2")
+  )
+)
+
 ;; From /opt/gnome2/include/clutter-0.5/clutter/clutter-texture.h
 
 (define-enum-extended TextureError

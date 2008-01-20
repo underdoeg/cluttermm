@@ -179,6 +179,13 @@
   (gtype-id "CLUTTER_TYPE_SCRIPTABLE")
 )
 
+(define-object Shader
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterShader")
+  (gtype-id "CLUTTER_TYPE_SHADER")
+)
+
 (define-object Stage
   (in-module "Clutter")
   (parent "ClutterGroup")
@@ -316,6 +323,7 @@
     '("stage-static" "CLUTTER_FEATURE_STAGE_STATIC")
     '("stage-user-resize" "CLUTTER_FEATURE_STAGE_USER_RESIZE")
     '("stage-cursor" "CLUTTER_FEATURE_STAGE_CURSOR")
+    '("shaders-glsl" "CLUTTER_FEATURE_SHADERS_GLSL")
   )
 )
 
@@ -353,6 +361,17 @@
     '("type-function" "CLUTTER_SCRIPT_ERROR_INVALID_TYPE_FUNCTION")
     '("property" "CLUTTER_SCRIPT_ERROR_INVALID_PROPERTY")
     '("value" "CLUTTER_SCRIPT_ERROR_INVALID_VALUE")
+  )
+)
+
+(define-enum ShaderError
+  (in-module "Clutter")
+  (c-name "ClutterShaderError")
+  (gtype-id "CLUTTER_TYPE_SHADER_ERROR")
+  (values
+    '("no-asm" "CLUTTER_SHADER_ERROR_NO_ASM")
+    '("no-glsl" "CLUTTER_SHADER_ERROR_NO_GLSL")
+    '("compile" "CLUTTER_SHADER_ERROR_COMPILE")
   )
 )
 
@@ -560,6 +579,46 @@
   )
 )
 
+(define-method set_sizeu
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_sizeu")
+  (return-type "none")
+  (parameters
+    '("ClutterUnit" "width")
+    '("ClutterUnit" "height")
+  )
+)
+
+(define-method get_size
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_size")
+  (return-type "none")
+  (parameters
+    '("guint*" "width")
+    '("guint*" "height")
+  )
+)
+
+(define-method get_sizeu
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_sizeu")
+  (return-type "none")
+  (parameters
+    '("ClutterUnit*" "width")
+    '("ClutterUnit*" "height")
+  )
+)
+
+(define-method get_abs_size
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_abs_size")
+  (return-type "none")
+  (parameters
+    '("guint*" "width")
+    '("guint*" "height")
+  )
+)
+
 (define-method set_position
   (of-object "ClutterActor")
   (c-name "clutter_actor_set_position")
@@ -570,6 +629,16 @@
   )
 )
 
+(define-method set_positionu
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_positionu")
+  (return-type "none")
+  (parameters
+    '("ClutterUnit" "x")
+    '("ClutterUnit" "y")
+  )
+)
+
 (define-method get_position
   (of-object "ClutterActor")
   (c-name "clutter_actor_get_position")
@@ -577,6 +646,16 @@
   (parameters
     '("gint*" "x")
     '("gint*" "y")
+  )
+)
+
+(define-method get_positionu
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_positionu")
+  (return-type "none")
+  (parameters
+    '("ClutterUnit*" "x")
+    '("ClutterUnit*" "y")
   )
 )
 
@@ -596,10 +675,22 @@
   (return-type "guint")
 )
 
+(define-method get_widthu
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_widthu")
+  (return-type "ClutterUnit")
+)
+
 (define-method get_height
   (of-object "ClutterActor")
   (c-name "clutter_actor_get_height")
   (return-type "guint")
+)
+
+(define-method get_heightu
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_heightu")
+  (return-type "ClutterUnit")
 )
 
 (define-method set_width
@@ -608,6 +699,15 @@
   (return-type "none")
   (parameters
     '("guint" "width")
+  )
+)
+
+(define-method set_widthu
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_widthu")
+  (return-type "none")
+  (parameters
+    '("ClutterUnit" "width")
   )
 )
 
@@ -620,16 +720,37 @@
   )
 )
 
+(define-method set_heightu
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_heightu")
+  (return-type "none")
+  (parameters
+    '("ClutterUnit" "height")
+  )
+)
+
 (define-method get_x
   (of-object "ClutterActor")
   (c-name "clutter_actor_get_x")
   (return-type "gint")
 )
 
+(define-method get_xu
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_xu")
+  (return-type "ClutterUnit")
+)
+
 (define-method get_y
   (of-object "ClutterActor")
   (c-name "clutter_actor_get_y")
   (return-type "gint")
+)
+
+(define-method get_yu
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_yu")
+  (return-type "ClutterUnit")
 )
 
 (define-method set_x
@@ -641,12 +762,30 @@
   )
 )
 
+(define-method set_xu
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_xu")
+  (return-type "none")
+  (parameters
+    '("ClutterUnit" "x")
+  )
+)
+
 (define-method set_y
   (of-object "ClutterActor")
   (c-name "clutter_actor_set_y")
   (return-type "none")
   (parameters
     '("gint" "y")
+  )
+)
+
+(define-method set_yu
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_yu")
+  (return-type "none")
+  (parameters
+    '("ClutterUnit" "y")
   )
 )
 
@@ -748,6 +887,18 @@
   )
 )
 
+(define-method set_clipu
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_clipu")
+  (return-type "none")
+  (parameters
+    '("ClutterUnit" "xoff")
+    '("ClutterUnit" "yoff")
+    '("ClutterUnit" "width")
+    '("ClutterUnit" "height")
+  )
+)
+
 (define-method remove_clip
   (of-object "ClutterActor")
   (c-name "clutter_actor_remove_clip")
@@ -769,6 +920,18 @@
     '("gint*" "yoff")
     '("gint*" "width")
     '("gint*" "height")
+  )
+)
+
+(define-method get_clipu
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_clipu")
+  (return-type "none")
+  (parameters
+    '("ClutterUnit*" "xoff")
+    '("ClutterUnit*" "yoff")
+    '("ClutterUnit*" "width")
+    '("ClutterUnit*" "height")
   )
 )
 
@@ -847,6 +1010,21 @@
   (return-type "gint")
 )
 
+(define-method set_depthu
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_depthu")
+  (return-type "none")
+  (parameters
+    '("ClutterUnit" "depth")
+  )
+)
+
+(define-method get_depthu
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_depthu")
+  (return-type "ClutterUnit")
+)
+
 (define-method set_reactive
   (of-object "ClutterActor")
   (c-name "clutter_actor_set_reactive")
@@ -902,48 +1080,6 @@
   )
 )
 
-(define-method set_scale_with_gravityx
-  (of-object "ClutterActor")
-  (c-name "clutter_actor_set_scale_with_gravityx")
-  (return-type "none")
-  (parameters
-    '("ClutterFixed" "scale_x")
-    '("ClutterFixed" "scale_y")
-    '("ClutterGravity" "gravity")
-  )
-)
-
-(define-method set_scale_with_gravity
-  (of-object "ClutterActor")
-  (c-name "clutter_actor_set_scale_with_gravity")
-  (return-type "none")
-  (parameters
-    '("gfloat" "scale_x")
-    '("gfloat" "scale_y")
-    '("ClutterGravity" "gravity")
-  )
-)
-
-(define-method get_abs_size
-  (of-object "ClutterActor")
-  (c-name "clutter_actor_get_abs_size")
-  (return-type "none")
-  (parameters
-    '("guint*" "width")
-    '("guint*" "height")
-  )
-)
-
-(define-method get_size
-  (of-object "ClutterActor")
-  (c-name "clutter_actor_get_size")
-  (return-type "none")
-  (parameters
-    '("guint*" "width")
-    '("guint*" "height")
-  )
-)
-
 (define-method move_by
   (of-object "ClutterActor")
   (c-name "clutter_actor_move_by")
@@ -951,6 +1087,16 @@
   (parameters
     '("gint" "dx")
     '("gint" "dy")
+  )
+)
+
+(define-method move_byu
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_move_byu")
+  (return-type "none")
+  (parameters
+    '("ClutterUnit" "dx")
+    '("ClutterUnit" "dy")
   )
 )
 
@@ -995,6 +1141,86 @@
   (of-object "ClutterActor")
   (c-name "clutter_actor_should_pick_paint")
   (return-type "gboolean")
+)
+
+(define-method apply_shader
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_apply_shader")
+  (return-type "gboolean")
+  (parameters
+    '("ClutterShader*" "shader")
+  )
+)
+
+(define-method set_shader_param
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_shader_param")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "param")
+    '("gfloat" "value")
+  )
+)
+
+(define-method set_anchor_point
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_anchor_point")
+  (return-type "none")
+  (parameters
+    '("gint" "anchor_x")
+    '("gint" "anchor_y")
+  )
+)
+
+(define-method get_anchor_point
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_anchor_point")
+  (return-type "none")
+  (parameters
+    '("gint*" "anchor_x")
+    '("gint*" "anchor_y")
+  )
+)
+
+(define-method set_anchor_pointu
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_anchor_pointu")
+  (return-type "none")
+  (parameters
+    '("ClutterUnit" "anchor_x")
+    '("ClutterUnit" "anchor_y")
+  )
+)
+
+(define-method get_anchor_pointu
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_anchor_pointu")
+  (return-type "none")
+  (parameters
+    '("ClutterUnit*" "anchor_x")
+    '("ClutterUnit*" "anchor_y")
+  )
+)
+
+(define-method set_anchor_point_from_gravity
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_anchor_point_from_gravity")
+  (return-type "none")
+  (parameters
+    '("ClutterGravity" "gravity")
+  )
+)
+
+(define-method transform_stage_point
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_transform_stage_point")
+  (return-type "gboolean")
+  (parameters
+    '("ClutterUnit" "x")
+    '("ClutterUnit" "y")
+    '("ClutterUnit*" "x_out")
+    '("ClutterUnit*" "y_out")
+  )
 )
 
 
@@ -1446,14 +1672,14 @@
   (c-name "clutter_behaviour_ellipse_set_angle_startx")
   (return-type "none")
   (parameters
-    '("ClutterAngle" "angle_start")
+    '("ClutterFixed" "angle_start")
   )
 )
 
 (define-method get_angle_startx
   (of-object "ClutterBehaviourEllipse")
   (c-name "clutter_behaviour_ellipse_get_angle_startx")
-  (return-type "ClutterAngle")
+  (return-type "ClutterFixed")
 )
 
 (define-method get_angle_start
@@ -1467,7 +1693,7 @@
   (c-name "clutter_behaviour_ellipse_set_angle_endx")
   (return-type "none")
   (parameters
-    '("ClutterAngle" "angle_end")
+    '("ClutterFixed" "angle_end")
   )
 )
 
@@ -1483,7 +1709,7 @@
 (define-method get_angle_endx
   (of-object "ClutterBehaviourEllipse")
   (c-name "clutter_behaviour_ellipse_get_angle_endx")
-  (return-type "ClutterAngle")
+  (return-type "ClutterFixed")
 )
 
 (define-method get_angle_end
@@ -1498,7 +1724,7 @@
   (return-type "none")
   (parameters
     '("ClutterRotateAxis" "axis")
-    '("ClutterAngle" "angle_tilt")
+    '("ClutterFixed" "angle_tilt")
   )
 )
 
@@ -1515,7 +1741,7 @@
 (define-method get_angle_tiltx
   (of-object "ClutterBehaviourEllipse")
   (c-name "clutter_behaviour_ellipse_get_angle_tiltx")
-  (return-type "ClutterAngle")
+  (return-type "ClutterFixed")
   (parameters
     '("ClutterRotateAxis" "axis")
   )
@@ -1546,9 +1772,9 @@
   (c-name "clutter_behaviour_ellipse_set_tiltx")
   (return-type "none")
   (parameters
-    '("ClutterAngle" "angle_tilt_x")
-    '("ClutterAngle" "angle_tilt_y")
-    '("ClutterAngle" "angle_tilt_z")
+    '("ClutterFixed" "angle_tilt_x")
+    '("ClutterFixed" "angle_tilt_y")
+    '("ClutterFixed" "angle_tilt_z")
   )
 )
 
@@ -1568,9 +1794,9 @@
   (c-name "clutter_behaviour_ellipse_get_tiltx")
   (return-type "none")
   (parameters
-    '("ClutterAngle*" "angle_tilt_x")
-    '("ClutterAngle*" "angle_tilt_y")
-    '("ClutterAngle*" "angle_tilt_z")
+    '("ClutterFixed*" "angle_tilt_x")
+    '("ClutterFixed*" "angle_tilt_y")
+    '("ClutterFixed*" "angle_tilt_z")
   )
 )
 
@@ -1694,6 +1920,26 @@
     '("ClutterAlpha*" "alpha")
     '("guint8" "opacity_start")
     '("guint8" "opacity_end")
+  )
+)
+
+(define-method set_bounds
+  (of-object "ClutterBehaviourOpacity")
+  (c-name "clutter_behaviour_opacity_set_bounds")
+  (return-type "none")
+  (parameters
+    '("guint8" "opacity_start")
+    '("guint8" "opacity_end")
+  )
+)
+
+(define-method get_bounds
+  (of-object "ClutterBehaviourOpacity")
+  (c-name "clutter_behaviour_opacity_get_bounds")
+  (return-type "none")
+  (parameters
+    '("guint8*" "opacity_start")
+    '("guint8*" "opacity_end")
   )
 )
 
@@ -1908,8 +2154,10 @@
   (return-type "ClutterBehaviour*")
   (parameters
     '("ClutterAlpha*" "alpha")
-    '("gdouble" "scale_start")
-    '("gdouble" "scale_end")
+    '("gdouble" "x_scale_start")
+    '("gdouble" "y_scale_start")
+    '("gdouble" "x_scale_end")
+    '("gdouble" "y_scale_end")
     '("ClutterGravity" "gravity")
   )
 )
@@ -1919,9 +2167,35 @@
   (return-type "ClutterBehaviour*")
   (parameters
     '("ClutterAlpha*" "alpha")
-    '("ClutterFixed" "scale_start")
-    '("ClutterFixed" "scale_end")
+    '("ClutterFixed" "x_scale_start")
+    '("ClutterFixed" "y_scale_start")
+    '("ClutterFixed" "x_scale_end")
+    '("ClutterFixed" "y_scale_end")
     '("ClutterGravity" "gravity")
+  )
+)
+
+(define-method set_bounds
+  (of-object "ClutterBehaviourScale")
+  (c-name "clutter_behaviour_scale_set_bounds")
+  (return-type "none")
+  (parameters
+    '("gdouble" "x_scale_start")
+    '("gdouble" "y_scale_start")
+    '("gdouble" "x_scale_end")
+    '("gdouble" "y_scale_end")
+  )
+)
+
+(define-method set_boundsx
+  (of-object "ClutterBehaviourScale")
+  (c-name "clutter_behaviour_scale_set_boundsx")
+  (return-type "none")
+  (parameters
+    '("ClutterFixed" "x_scale_start")
+    '("ClutterFixed" "y_scale_start")
+    '("ClutterFixed" "x_scale_end")
+    '("ClutterFixed" "y_scale_end")
   )
 )
 
@@ -1930,8 +2204,10 @@
   (c-name "clutter_behaviour_scale_get_bounds")
   (return-type "none")
   (parameters
-    '("gdouble*" "scale_start")
-    '("gdouble*" "scale_end")
+    '("gdouble*" "x_scale_start")
+    '("gdouble*" "y_scale_start")
+    '("gdouble*" "x_scale_end")
+    '("gdouble*" "y_scale_end")
   )
 )
 
@@ -1940,8 +2216,19 @@
   (c-name "clutter_behaviour_scale_get_boundsx")
   (return-type "none")
   (parameters
-    '("ClutterFixed*" "scale_start")
-    '("ClutterFixed*" "scale_end")
+    '("ClutterFixed*" "x_scale_start")
+    '("ClutterFixed*" "y_scale_start")
+    '("ClutterFixed*" "x_scale_end")
+    '("ClutterFixed*" "y_scale_end")
+  )
+)
+
+(define-method set_gravity
+  (of-object "ClutterBehaviourScale")
+  (c-name "clutter_behaviour_scale_set_gravity")
+  (return-type "none")
+  (parameters
+    '("ClutterGravity" "gravity")
   )
 )
 
@@ -2422,6 +2709,18 @@
   )
 )
 
+(define-method construct
+  (of-object "ClutterEffectTemplate")
+  (c-name "clutter_effect_template_construct")
+  (return-type "none")
+  (parameters
+    '("ClutterTimeline*" "timeline")
+    '("ClutterAlphaFunc" "alpha_func")
+    '("gpointer" "user_data")
+    '("GDestroyNotify" "notify")
+  )
+)
+
 (define-method set_timeline_clone
   (of-object "ClutterEffectTemplate")
   (c-name "clutter_effect_template_set_timeline_clone")
@@ -2443,10 +2742,9 @@
   (parameters
     '("ClutterEffectTemplate*" "template_")
     '("ClutterActor*" "actor")
-    '("guint8" "opacity_start")
     '("guint8" "opacity_end")
-    '("ClutterEffectCompleteFunc" "completed_func")
-    '("gpointer" "completed_data")
+    '("ClutterEffectCompleteFunc" "func")
+    '("gpointer" "data")
   )
 )
 
@@ -2456,10 +2754,9 @@
   (parameters
     '("ClutterEffectTemplate*" "template_")
     '("ClutterActor*" "actor")
-    '("gint" "depth_start")
     '("gint" "depth_end")
-    '("ClutterEffectCompleteFunc" "completed_func")
-    '("gpointer" "completed_data")
+    '("ClutterEffectCompleteFunc" "func")
+    '("gpointer" "data")
   )
 )
 
@@ -2469,10 +2766,23 @@
   (parameters
     '("ClutterEffectTemplate*" "template_")
     '("ClutterActor*" "actor")
+    '("gint" "x")
+    '("gint" "y")
+    '("ClutterEffectCompleteFunc" "func")
+    '("gpointer" "data")
+  )
+)
+
+(define-function clutter_effect_path
+  (c-name "clutter_effect_path")
+  (return-type "ClutterTimeline*")
+  (parameters
+    '("ClutterEffectTemplate*" "template_")
+    '("ClutterActor*" "actor")
     '("const-ClutterKnot*" "knots")
     '("guint" "n_knots")
-    '("ClutterEffectCompleteFunc" "completed_func")
-    '("gpointer" "completed_data")
+    '("ClutterEffectCompleteFunc" "func")
+    '("gpointer" "data")
   )
 )
 
@@ -2482,59 +2792,28 @@
   (parameters
     '("ClutterEffectTemplate*" "template_")
     '("ClutterActor*" "actor")
-    '("gdouble" "scale_start")
-    '("gdouble" "scale_end")
+    '("gdouble" "x_scale_end")
+    '("gdouble" "y_scale_end")
     '("ClutterGravity" "gravity")
-    '("ClutterEffectCompleteFunc" "completed_func")
-    '("gpointer" "completed_data")
+    '("ClutterEffectCompleteFunc" "func")
+    '("gpointer" "data")
   )
 )
 
-(define-function clutter_effect_rotate_x
-  (c-name "clutter_effect_rotate_x")
+(define-function clutter_effect_rotate
+  (c-name "clutter_effect_rotate")
   (return-type "ClutterTimeline*")
   (parameters
     '("ClutterEffectTemplate*" "template_")
     '("ClutterActor*" "actor")
-    '("gdouble" "angle_start")
-    '("gdouble" "angle_end")
+    '("ClutterRotateAxis" "axis")
+    '("gdouble" "angle")
+    '("gint" "center_x")
     '("gint" "center_y")
     '("gint" "center_z")
     '("ClutterRotateDirection" "direction")
-    '("ClutterEffectCompleteFunc" "completed_func")
-    '("gpointer" "completed_data")
-  )
-)
-
-(define-function clutter_effect_rotate_y
-  (c-name "clutter_effect_rotate_y")
-  (return-type "ClutterTimeline*")
-  (parameters
-    '("ClutterEffectTemplate*" "template_")
-    '("ClutterActor*" "actor")
-    '("gdouble" "angle_start")
-    '("gdouble" "angle_end")
-    '("gint" "center_x")
-    '("gint" "center_z")
-    '("ClutterRotateDirection" "direction")
-    '("ClutterEffectCompleteFunc" "completed_func")
-    '("gpointer" "completed_data")
-  )
-)
-
-(define-function clutter_effect_rotate_z
-  (c-name "clutter_effect_rotate_z")
-  (return-type "ClutterTimeline*")
-  (parameters
-    '("ClutterEffectTemplate*" "template_")
-    '("ClutterActor*" "actor")
-    '("gdouble" "angle_start")
-    '("gdouble" "angle_end")
-    '("gint" "center_x")
-    '("gint" "center_y")
-    '("ClutterRotateDirection" "direction")
-    '("ClutterEffectCompleteFunc" "completed_func")
-    '("gpointer" "completed_data")
+    '("ClutterEffectCompleteFunc" "func")
+    '("gpointer" "data")
   )
 )
 
@@ -2772,11 +3051,6 @@
   (return-type "GType")
 )
 
-(define-function clutter_pack_type_get_type
-  (c-name "clutter_pack_type_get_type")
-  (return-type "GType")
-)
-
 (define-function clutter_modifier_type_get_type
   (c-name "clutter_modifier_type_get_type")
   (return-type "GType")
@@ -2807,11 +3081,6 @@
   (return-type "GType")
 )
 
-(define-function clutter_layout_flags_get_type
-  (c-name "clutter_layout_flags_get_type")
-  (return-type "GType")
-)
-
 (define-function clutter_init_error_get_type
   (c-name "clutter_init_error_get_type")
   (return-type "GType")
@@ -2819,6 +3088,11 @@
 
 (define-function clutter_script_error_get_type
   (c-name "clutter_script_error_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_shader_error_get_type
+  (c-name "clutter_shader_error_get_type")
   (return-type "GType")
 )
 
@@ -2931,6 +3205,12 @@
   )
 )
 
+(define-method get_source
+  (of-object "ClutterEvent")
+  (c-name "clutter_event_get_source")
+  (return-type "ClutterActor*")
+)
+
 (define-method symbol
   (of-object "ClutterKeyEvent")
   (c-name "clutter_key_event_symbol")
@@ -2961,12 +3241,6 @@
   (parameters
     '("guint" "keyval")
   )
-)
-
-(define-method get_source
-  (of-object "ClutterEvent")
-  (c-name "clutter_event_get_source")
-  (return-type "ClutterActor*")
 )
 
 
@@ -3095,15 +3369,6 @@
   (return-type "none")
 )
 
-(define-method add
-  (of-object "ClutterGroup")
-  (c-name "clutter_group_add")
-  (return-type "none")
-  (parameters
-    '("ClutterActor*" "actor")
-  )
-)
-
 (define-method add_many
   (of-object "ClutterGroup")
   (c-name "clutter_group_add_many")
@@ -3130,15 +3395,6 @@
   (return-type "none")
   (parameters
     '("ClutterActor*" "actor")
-  )
-)
-
-(define-method find_child_by_id
-  (of-object "ClutterGroup")
-  (c-name "clutter_group_find_child_by_id")
-  (return-type "ClutterActor*")
-  (parameters
-    '("guint" "id")
   )
 )
 
@@ -3442,6 +3698,35 @@
     '("gint" "given_height")
     '("gint*" "width")
     '("gint*" "height")
+  )
+)
+
+
+
+;; From clutter-list-model.h
+
+(define-function clutter_list_model_get_type
+  (c-name "clutter_list_model_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_list_model_new
+  (c-name "clutter_list_model_new")
+  (is-constructor-of "ClutterListModel")
+  (return-type "ClutterModel*")
+  (parameters
+    '("guint" "n_columns")
+  )
+  (varargs #t)
+)
+
+(define-function clutter_list_model_newv
+  (c-name "clutter_list_model_newv")
+  (return-type "ClutterModel*")
+  (parameters
+    '("guint" "n_columns")
+    '("GType*" "types")
+    '("const-gchar*-const[]" "names")
   )
 )
 
@@ -3760,16 +4045,21 @@
 
 
 
-;; From clutter-model.h
+;; From clutter-model-default.h
 
-(define-function clutter_model_get_type
-  (c-name "clutter_model_get_type")
+(define-function clutter_model_default_iter_get_type
+  (c-name "clutter_model_default_iter_get_type")
   (return-type "GType")
 )
 
-(define-function clutter_model_new
-  (c-name "clutter_model_new")
-  (is-constructor-of "ClutterModel")
+(define-function clutter_model_default_get_type
+  (c-name "clutter_model_default_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_model_default_new
+  (c-name "clutter_model_default_new")
+  (is-constructor-of "ClutterModelDefault")
   (return-type "ClutterModel*")
   (parameters
     '("guint" "n_columns")
@@ -3777,13 +4067,23 @@
   (varargs #t)
 )
 
-(define-function clutter_model_newv
-  (c-name "clutter_model_newv")
+(define-function clutter_model_default_newv
+  (c-name "clutter_model_default_newv")
   (return-type "ClutterModel*")
   (parameters
     '("guint" "n_columns")
     '("GType*" "types")
+    '("const-gchar*-const[]" "names")
   )
+)
+
+
+
+;; From clutter-model.h
+
+(define-function clutter_model_get_type
+  (c-name "clutter_model_get_type")
+  (return-type "GType")
 )
 
 (define-method set_types
@@ -3796,40 +4096,84 @@
   )
 )
 
+(define-method set_names
+  (of-object "ClutterModel")
+  (c-name "clutter_model_set_names")
+  (return-type "none")
+  (parameters
+    '("guint" "n_columns")
+    '("const-gchar*-const[]" "names")
+  )
+)
+
 (define-method append
   (of-object "ClutterModel")
   (c-name "clutter_model_append")
-  (return-type "gboolean")
+  (return-type "none")
   (parameters
   )
   (varargs #t)
+)
+
+(define-method appendv
+  (of-object "ClutterModel")
+  (c-name "clutter_model_appendv")
+  (return-type "none")
+  (parameters
+    '("guint" "n_columns")
+    '("guint*" "columns")
+    '("GValue*" "values")
+  )
 )
 
 (define-method prepend
   (of-object "ClutterModel")
   (c-name "clutter_model_prepend")
-  (return-type "gboolean")
+  (return-type "none")
   (parameters
   )
   (varargs #t)
+)
+
+(define-method prependv
+  (of-object "ClutterModel")
+  (c-name "clutter_model_prependv")
+  (return-type "none")
+  (parameters
+    '("guint" "n_columns")
+    '("guint*" "columns")
+    '("GValue*" "values")
+  )
 )
 
 (define-method insert
   (of-object "ClutterModel")
   (c-name "clutter_model_insert")
-  (return-type "gboolean")
+  (return-type "none")
   (parameters
-    '("guint" "index_")
+    '("guint" "row")
   )
   (varargs #t)
+)
+
+(define-method insertv
+  (of-object "ClutterModel")
+  (c-name "clutter_model_insertv")
+  (return-type "none")
+  (parameters
+    '("guint" "row")
+    '("guint" "n_columns")
+    '("guint*" "columns")
+    '("GValue*" "values")
+  )
 )
 
 (define-method insert_value
   (of-object "ClutterModel")
   (c-name "clutter_model_insert_value")
-  (return-type "gboolean")
+  (return-type "none")
   (parameters
-    '("guint" "index_")
+    '("guint" "row")
     '("guint" "column")
     '("const-GValue*" "value")
   )
@@ -3840,7 +4184,7 @@
   (c-name "clutter_model_remove")
   (return-type "none")
   (parameters
-    '("guint" "index_")
+    '("guint" "row")
   )
 )
 
@@ -3848,6 +4192,30 @@
   (of-object "ClutterModel")
   (c-name "clutter_model_get_n_rows")
   (return-type "guint")
+)
+
+(define-method get_n_columns
+  (of-object "ClutterModel")
+  (c-name "clutter_model_get_n_columns")
+  (return-type "guint")
+)
+
+(define-method get_column_name
+  (of-object "ClutterModel")
+  (c-name "clutter_model_get_column_name")
+  (return-type "const-gchar*")
+  (parameters
+    '("guint" "column")
+  )
+)
+
+(define-method get_column_type
+  (of-object "ClutterModel")
+  (c-name "clutter_model_get_column_type")
+  (return-type "GType")
+  (parameters
+    '("guint" "column")
+  )
 )
 
 (define-method get_first_iter
@@ -3867,7 +4235,7 @@
   (c-name "clutter_model_get_iter_at_row")
   (return-type "ClutterModelIter*")
   (parameters
-    '("guint" "index_")
+    '("guint" "row")
   )
 )
 
@@ -3876,14 +4244,14 @@
   (c-name "clutter_model_set_sorting_column")
   (return-type "none")
   (parameters
-    '("guint" "column")
+    '("gint" "column")
   )
 )
 
 (define-method get_sorting_column
   (of-object "ClutterModel")
   (c-name "clutter_model_get_sorting_column")
-  (return-type "guint")
+  (return-type "gint")
 )
 
 (define-method foreach
@@ -3916,6 +4284,30 @@
     '("ClutterModelFilterFunc" "func")
     '("gpointer" "user_data")
     '("GDestroyNotify" "notify")
+  )
+)
+
+(define-method resort
+  (of-object "ClutterModel")
+  (c-name "clutter_model_resort")
+  (return-type "none")
+)
+
+(define-method filter_row
+  (of-object "ClutterModel")
+  (c-name "clutter_model_filter_row")
+  (return-type "gboolean")
+  (parameters
+    '("guint" "row")
+  )
+)
+
+(define-method filter_iter
+  (of-object "ClutterModel")
+  (c-name "clutter_model_filter_iter")
+  (return-type "gboolean")
+  (parameters
+    '("ClutterModelIter*" "iter")
   )
 )
 
@@ -4120,16 +4512,44 @@
   (return-type "gboolean")
 )
 
-(define-method rewind
+(define-method append
   (of-object "ClutterScore")
-  (c-name "clutter_score_rewind")
+  (c-name "clutter_score_append")
+  (return-type "guint")
+  (parameters
+    '("ClutterTimeline*" "parent")
+    '("ClutterTimeline*" "timeline")
+  )
+)
+
+(define-method remove
+  (of-object "ClutterScore")
+  (c-name "clutter_score_remove")
+  (return-type "none")
+  (parameters
+    '("guint" "id")
+  )
+)
+
+(define-method remove_all
+  (of-object "ClutterScore")
+  (c-name "clutter_score_remove_all")
   (return-type "none")
 )
 
-(define-method is_playing
+(define-method get_timeline
   (of-object "ClutterScore")
-  (c-name "clutter_score_is_playing")
-  (return-type "gboolean")
+  (c-name "clutter_score_get_timeline")
+  (return-type "ClutterTimeline*")
+  (parameters
+    '("guint" "id")
+  )
+)
+
+(define-method list_timelines
+  (of-object "ClutterScore")
+  (c-name "clutter_score_list_timelines")
+  (return-type "GSList*")
 )
 
 (define-method start
@@ -4150,39 +4570,16 @@
   (return-type "none")
 )
 
-(define-method append
+(define-method rewind
   (of-object "ClutterScore")
-  (c-name "clutter_score_append")
+  (c-name "clutter_score_rewind")
   (return-type "none")
-  (parameters
-    '("ClutterTimeline*" "timeline_existing")
-    '("ClutterTimeline*" "timeline_new")
-  )
 )
 
-(define-method add
+(define-method is_playing
   (of-object "ClutterScore")
-  (c-name "clutter_score_add")
-  (return-type "none")
-  (parameters
-    '("ClutterTimeline*" "timeline")
-  )
-)
-
-(define-method remove
-  (of-object "ClutterScore")
-  (c-name "clutter_score_remove")
-  (return-type "none")
-  (parameters
-    '("ClutterTimeline*" "timeline_parent")
-    '("ClutterTimeline*" "timeline")
-  )
-)
-
-(define-method remove_all
-  (of-object "ClutterScore")
-  (c-name "clutter_score_remove_all")
-  (return-type "none")
+  (c-name "clutter_score_is_playing")
+  (return-type "gboolean")
 )
 
 
@@ -4268,7 +4665,7 @@
   (return-type "guint")
   (parameters
     '("const-gchar*" "data")
-    '("gsize" "length")
+    '("gssize" "length")
     '("GError**" "error")
   )
 )
@@ -4345,6 +4742,109 @@
 
 
 
+;; From clutter-shader.h
+
+(define-function clutter_shader_error_quark
+  (c-name "clutter_shader_error_quark")
+  (return-type "GQuark")
+)
+
+(define-function clutter_shader_get_type
+  (c-name "clutter_shader_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_shader_new
+  (c-name "clutter_shader_new")
+  (is-constructor-of "ClutterShader")
+  (return-type "ClutterShader*")
+)
+
+(define-method set_is_enabled
+  (of-object "ClutterShader")
+  (c-name "clutter_shader_set_is_enabled")
+  (return-type "none")
+  (parameters
+    '("gboolean" "enabled")
+  )
+)
+
+(define-method get_is_enabled
+  (of-object "ClutterShader")
+  (c-name "clutter_shader_get_is_enabled")
+  (return-type "gboolean")
+)
+
+(define-method bind
+  (of-object "ClutterShader")
+  (c-name "clutter_shader_bind")
+  (return-type "gboolean")
+  (parameters
+    '("GError**" "error")
+  )
+)
+
+(define-method release
+  (of-object "ClutterShader")
+  (c-name "clutter_shader_release")
+  (return-type "none")
+)
+
+(define-method is_bound
+  (of-object "ClutterShader")
+  (c-name "clutter_shader_is_bound")
+  (return-type "gboolean")
+)
+
+(define-method set_vertex_source
+  (of-object "ClutterShader")
+  (c-name "clutter_shader_set_vertex_source")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "data")
+    '("gssize" "length")
+  )
+)
+
+(define-method set_fragment_source
+  (of-object "ClutterShader")
+  (c-name "clutter_shader_set_fragment_source")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "data")
+    '("gssize" "length")
+  )
+)
+
+(define-method get_vertex_source
+  (of-object "ClutterShader")
+  (c-name "clutter_shader_get_vertex_source")
+  (return-type "const-gchar*")
+)
+
+(define-method get_fragment_source
+  (of-object "ClutterShader")
+  (c-name "clutter_shader_get_fragment_source")
+  (return-type "const-gchar*")
+)
+
+(define-method set_uniform_1f
+  (of-object "ClutterShader")
+  (c-name "clutter_shader_set_uniform_1f")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "name")
+    '("gfloat" "value")
+  )
+)
+
+(define-function clutter_shader_release_all
+  (c-name "clutter_shader_release_all")
+  (return-type "none")
+)
+
+
+
 ;; From clutter-stage.h
 
 (define-function clutter_perspective_get_type
@@ -4352,16 +4852,9 @@
   (return-type "GType")
 )
 
-(define-method copy
-  (of-object "ClutterPerspective")
-  (c-name "clutter_perspective_copy")
-  (return-type "ClutterPerspective*")
-)
-
-(define-method free
-  (of-object "ClutterPerspective")
-  (c-name "clutter_perspective_free")
-  (return-type "none")
+(define-function clutter_fog_get_type
+  (c-name "clutter_fog_get_type")
+  (return-type "GType")
 )
 
 (define-function clutter_stage_get_type
@@ -4519,6 +5012,73 @@
   (return-type "gboolean")
 )
 
+(define-method set_use_fog
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_set_use_fog")
+  (return-type "none")
+  (parameters
+    '("gboolean" "fog")
+  )
+)
+
+(define-method get_use_fog
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_get_use_fog")
+  (return-type "gboolean")
+)
+
+(define-method set_fog
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_set_fog")
+  (return-type "none")
+  (parameters
+    '("gdouble" "density")
+    '("gdouble" "z_near")
+    '("gdouble" "z_far")
+  )
+)
+
+(define-method get_fog
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_get_fog")
+  (return-type "none")
+  (parameters
+    '("gdouble*" "density")
+    '("gdouble*" "z_near")
+    '("gdouble*" "z_far")
+  )
+)
+
+(define-method set_fogx
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_set_fogx")
+  (return-type "none")
+  (parameters
+    '("ClutterFog*" "fog")
+  )
+)
+
+(define-method get_fogx
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_get_fogx")
+  (return-type "none")
+  (parameters
+    '("ClutterFog*" "fog")
+  )
+)
+
+(define-method get_resolution
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_get_resolution")
+  (return-type "gdouble")
+)
+
+(define-method get_resolutionx
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_get_resolutionx")
+  (return-type "ClutterFixed")
+)
+
 (define-method set_key_focus
   (of-object "ClutterStage")
   (c-name "clutter_stage_set_key_focus")
@@ -4569,6 +5129,24 @@
   (parameters
     '("const-guchar*" "data")
     '("gboolean" "has_alpha")
+    '("gint" "width")
+    '("gint" "height")
+    '("gint" "rowstride")
+    '("gint" "bpp")
+    '("ClutterTextureFlags" "flags")
+    '("GError**" "error")
+  )
+)
+
+(define-method set_area_from_rgb_data
+  (of-object "ClutterTexture")
+  (c-name "clutter_texture_set_area_from_rgb_data")
+  (return-type "gboolean")
+  (parameters
+    '("const-guchar*" "data")
+    '("gboolean" "has_alpha")
+    '("gint" "x")
+    '("gint" "y")
     '("gint" "width")
     '("gint" "height")
     '("gint" "rowstride")
@@ -4861,6 +5439,15 @@
   (return-type "guint")
 )
 
+(define-method get_delta
+  (of-object "ClutterTimeline")
+  (c-name "clutter_timeline_get_delta")
+  (return-type "guint")
+  (parameters
+    '("guint*" "msecs")
+  )
+)
+
 
 
 ;; From clutter-timeout-pool.h
@@ -4933,16 +5520,6 @@
   (parameters
     '("const-ClutterKnot*" "knot_b")
   )
-)
-
-(define-function clutter_margin_get_type
-  (c-name "clutter_margin_get_type")
-  (return-type "GType")
-)
-
-(define-function clutter_padding_get_type
-  (c-name "clutter_padding_get_type")
-  (return-type "GType")
 )
 
 
@@ -5182,7 +5759,10 @@
   (c-name "cogl_clip_set")
   (return-type "none")
   (parameters
-    '("const-ClutterGeometry*" "clip")
+    '("ClutterFixed" "x_offset")
+    '("ClutterFixed" "y_offset")
+    '("ClutterFixed" "width")
+    '("ClutterFixed" "height")
   )
 )
 
@@ -5384,6 +5964,126 @@
     '("gint*" "green")
     '("gint*" "blue")
     '("gint*" "alpha")
+  )
+)
+
+(define-function cogl_fog_set
+  (c-name "cogl_fog_set")
+  (return-type "none")
+  (parameters
+    '("const-ClutterColor*" "fog_color")
+    '("ClutterFixed" "density")
+    '("ClutterFixed" "z_near")
+    '("ClutterFixed" "z_far")
+  )
+)
+
+(define-function cogl_create_shader
+  (c-name "cogl_create_shader")
+  (return-type "COGLhandle")
+  (parameters
+    '("COGLenum" "shaderType")
+  )
+)
+
+(define-function cogl_shader_destroy
+  (c-name "cogl_shader_destroy")
+  (return-type "none")
+  (parameters
+    '("COGLhandle" "handle")
+  )
+)
+
+(define-function cogl_shader_source
+  (c-name "cogl_shader_source")
+  (return-type "none")
+  (parameters
+    '("COGLhandle" "shader")
+    '("const-gchar*" "source")
+  )
+)
+
+(define-function cogl_shader_compile
+  (c-name "cogl_shader_compile")
+  (return-type "none")
+  (parameters
+    '("COGLhandle" "shader_handle")
+  )
+)
+
+(define-function cogl_shader_get_info_log
+  (c-name "cogl_shader_get_info_log")
+  (return-type "none")
+  (parameters
+    '("COGLhandle" "handle")
+    '("guint" "size")
+    '("gchar*" "buffer")
+  )
+)
+
+(define-function cogl_shader_get_parameteriv
+  (c-name "cogl_shader_get_parameteriv")
+  (return-type "none")
+  (parameters
+    '("COGLhandle" "handle")
+    '("COGLenum" "pname")
+    '("COGLint*" "dest")
+  )
+)
+
+(define-function cogl_create_program
+  (c-name "cogl_create_program")
+  (return-type "COGLhandle")
+)
+
+(define-function cogl_program_destroy
+  (c-name "cogl_program_destroy")
+  (return-type "none")
+  (parameters
+    '("COGLhandle" "handle")
+  )
+)
+
+(define-function cogl_program_attach_shader
+  (c-name "cogl_program_attach_shader")
+  (return-type "none")
+  (parameters
+    '("COGLhandle" "program_handle")
+    '("COGLhandle" "shader_handle")
+  )
+)
+
+(define-function cogl_program_link
+  (c-name "cogl_program_link")
+  (return-type "none")
+  (parameters
+    '("COGLhandle" "program_handle")
+  )
+)
+
+(define-function cogl_program_use
+  (c-name "cogl_program_use")
+  (return-type "none")
+  (parameters
+    '("COGLhandle" "program_handle")
+  )
+)
+
+(define-function cogl_program_get_uniform_location
+  (c-name "cogl_program_get_uniform_location")
+  (return-type "COGLint")
+  (parameters
+    '("COGLhandle" "program_int")
+    '("const-gchar*" "uniform_name")
+  )
+)
+
+(define-function cogl_program_uniform_1f
+  (c-name "cogl_program_uniform_1f")
+  (return-type "none")
+  (parameters
+    '("COGLint" "uniform_no")
+    '("gfloat" "value")
   )
 )
 
