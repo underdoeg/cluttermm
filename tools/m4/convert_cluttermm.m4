@@ -46,7 +46,6 @@ _EQUAL(ClutterAngle,Angle)
 _CONVERSION(`Angle&',`ClutterAngle*',`&($3)')
 _EQUAL(ClutterFog,Fog)
 _CONVERSION(`Fog&',`ClutterFog*',`&($3)')
-_CONVERSION(`const Fog&',`ClutterFog*',`&($3)')
 
 _EQUAL(ClutterEvent*,Event*)
 _EQUAL(ClutterButtonEvent*,ButtonEvent*)

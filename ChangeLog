@@ -1,5 +1,12 @@
 2008-01-19  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/clutter_docs.xml: re-generated documentation
+	* clutter/src/stage.hg: wrapped missing functions
+	* clutter/src/timeline.hg: wrapped missing functions
+	* tools/m4/convert_cluttermm.m4: moved a conversion to the source file
+
+2008-01-19  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/behaviour-scale.hg: wrapped new BehaviourScale API and fixed
 	up some API changes (constructor, etc)
 	* clutter/src/stage.hg: wrapped new Stage API

@@ -69,8 +69,11 @@ public:
   _WRAP_METHOD(void set_use_fog(bool fog), clutter_stage_set_use_fog)
   _WRAP_METHOD(void set_fog(double density, double z_near, double z_far), clutter_stage_set_fog)
   _WRAP_METHOD(void get_fog(double& density, double& z_near, double& z_far) const, clutter_stage_get_fog)
-  //_WRAP_METHOD(void set_fogx(const Fog& fog), clutter_stage_set_fogx)
-  //_WRAP_METHOD(void get_fogx(Fog& fog) const, clutter_stage_get_fogx)
+#m4 _CONVERSION(`const Fog&',`ClutterFog*',`const_cast<ClutterFog*>(&($3))')
+  _WRAP_METHOD(void set_fogx(const Fog& fog), clutter_stage_set_fogx)
+  _WRAP_METHOD(void get_fogx(Fog& fog) const, clutter_stage_get_fogx)
+  _WRAP_METHOD(double get_resolution() const, clutter_stage_get_resolution)
+  _WRAP_METHOD(Fixed get_resolutionx() const, clutter_stage_get_resolutionx)
   
   _WRAP_METHOD(void stage_event(Event* event), clutter_stage_event);
 
