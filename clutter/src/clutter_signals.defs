@@ -329,7 +329,7 @@
   (return-type "void")
   (when "last")
   (parameters
-    '("ClutterKnot*" "p0")
+    '("const-ClutterKnot*" "p0")
   )
 )
 
@@ -528,7 +528,7 @@
   (return-type "void")
   (when "last")
   (parameters
-    '("ClutterKnot*" "p0")
+    '("const-ClutterKnot*" "p0")
   )
 )
 

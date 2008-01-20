@@ -1,5 +1,11 @@
 2008-01-19  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/clutter_signals.defs: reverted a couple signal definitions back
+	to take const parameters.  These were hand-changed and overwritten by
+	re-generating the .defs file.
+
+2008-01-19  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/behaviour-ellipse.hg: API change, angle degree arguments were
 	changed from ClutterAngle to ClutterFixed in the C API
 
