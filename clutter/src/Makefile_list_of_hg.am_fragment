@@ -24,5 +24,6 @@ behaviour-opacity.hg \
 behaviour-path.hg \
 behaviour-ellipse.hg \
 behaviour-rotate.hg \
-behaviour-scale.hg
+behaviour-scale.hg \
+score.hg
 #layout.hg box.hg margin.hg

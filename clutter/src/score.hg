@@ -1,0 +1,67 @@
+/* Copyright (C) 2007 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <glibmm/object.h>
+#include <cluttermm/timeline.h>
+#include <clutter/clutter-score.h>
+ 
+_DEFS(cluttermm,clutter)
+_PINCLUDE(glibmm/private/object_p.h)
+
+
+namespace Clutter
+{
+
+class Score : public Glib::Object
+{
+  _CLASS_GOBJECT(Score, ClutterScore, CLUTTER_SCORE, Glib::Object, GObject)
+  _DERIVES_INITIALLY_UNOWNED()
+
+protected:
+  _CTOR_DEFAULT()
+
+public:
+  _WRAP_CREATE()
+
+  _WRAP_METHOD(void set_loop(bool loop), clutter_score_set_loop)
+  _WRAP_METHOD(bool get_loop() const, clutter_score_get_loop)
+
+  _WRAP_METHOD(guint append(const Glib::RefPtr<Timeline>& parent, const Glib::RefPtr<Timeline>& timeline), clutter_score_append)
+  /**
+   * Appends a timeline to another one existing in the score; the new timeline
+   * will be started when start() is called
+   *
+   * @param timeline the Timeline to append
+   * @return the id of the newly added timeline, to be used with get_timeline() and remove().
+   *
+   * @since 0.6 
+   */
+  guint append(const Glib::RefPtr<Timeline>& timeline);
+  _WRAP_METHOD(void remove(guint id), clutter_score_remove)
+  _WRAP_METHOD(void remove_all(), clutter_score_remove_all)
+  _WRAP_METHOD(Glib::RefPtr<Timeline> get_timeline(guint id), clutter_score_get_timeline)
+  _WRAP_METHOD(Glib::RefPtr<const Timeline> get_timeline(guint id) const, clutter_score_get_timeline, CONSTVERSION)
+  _WRAP_METHOD(void start(), clutter_score_start)
+  _WRAP_METHOD(void pause(), clutter_score_pause)
+  _WRAP_METHOD(void stop(), clutter_score_stop)
+  _WRAP_METHOD(void rewind(), clutter_score_rewind)
+  _WRAP_METHOD(bool is_playing() const, clutter_score_is_playing)
+
+};
+
+} // namespace Clutter
+// vim:ts=2,sw=2

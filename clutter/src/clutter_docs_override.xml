@@ -1,2 +1,28 @@
 <root>
+<function name="clutter_score_append">
+<description>
+    Appends a timeline to another one existing in the score; the newly appended
+    timeline will be started when parent is complete.
+</description>
+<parameters>
+<parameter name="score">
+<parameter_description> a #ClutterScore
+</parameter_description>
+</parameter>
+<parameter name="parent">
+<parameter_description> a #ClutterTimeline in the score
+</parameter_description>
+</parameter>
+<parameter name="timeline">
+<parameter_description> a #ClutterTimeline
+</parameter_description>
+</parameter>
+</parameters>
+<return> the id of the newly added timeline, to be used with
+clutter_score_get_timeline() and clutter_score_remove().
+
+Since: 0.6
+</return>
+</function>
+
 </root>
