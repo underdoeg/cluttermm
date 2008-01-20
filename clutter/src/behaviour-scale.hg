@@ -38,8 +38,8 @@ public:
   _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, double scale_start, double scale_end, Gravity gravity)
   _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, Fixed scale_start, Fixed scale_end, Gravity gravity)
 
-  _WRAP_METHOD(void get_bounds(double& angle_begin, double& angle_end) const, clutter_behaviour_scale_get_bounds)
-  _WRAP_METHOD(void get_boundsx(Fixed& angle_begin, Fixed& angle_end) const, clutter_behaviour_scale_get_boundsx)
+  _WRAP_METHOD(void get_bounds(double& x_scale_start, double& y_scale_start, double& x_scale_end, double& y_scale_end) const, clutter_behaviour_scale_get_bounds)
+  _WRAP_METHOD(void get_boundsx(Fixed& x_scale_start, Fixed& y_scale_start, Fixed& x_scale_end, Fixed& y_scale_enend const, clutter_behaviour_scale_get_boundsx)
   _WRAP_METHOD(Gravity get_gravity() const, clutter_behaviour_scale_get_gravity)
 
   _WRAP_PROPERTY("scale-end", double)

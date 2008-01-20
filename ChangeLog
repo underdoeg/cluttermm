@@ -1,5 +1,10 @@
 2008-01-19  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/behaviour-scale.hg: update get_bounds() API that now takes a
+	start and end instead of an angle
+
+2008-01-19  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/clutter_signals.defs: reverted a couple signal definitions back
 	to take const parameters.  These were hand-changed and overwritten by
 	re-generating the .defs file.
