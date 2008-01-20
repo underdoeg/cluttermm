@@ -1,5 +1,10 @@
 2008-01-19  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/behaviour-ellipse.hg: API change, angle degree arguments were
+	changed from ClutterAngle to ClutterFixed in the C API
+
+2008-01-19  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/clutter_enums.defs:
 	* clutter/src/clutter_methods.defs:
 	* clutter/src/clutter_signals.defs: re-generated defs

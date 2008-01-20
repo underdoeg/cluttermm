@@ -56,15 +56,15 @@ public:
   _WRAP_METHOD(void set_tilt(double angle_tilt_x, double angle_tilt_y, double angle_tilt_z), clutter_behaviour_ellipse_set_tilt)
   _WRAP_METHOD(void get_tilt(double& angle_tilt_x, double& angle_tilt_y, double& angle_tilt_z) const, clutter_behaviour_ellipse_get_tilt)
 
-  _WRAP_METHOD(void set_angle_startx(Angle angle_start), clutter_behaviour_ellipse_set_angle_startx)
-  _WRAP_METHOD(Angle get_angle_startx() const, clutter_behaviour_ellipse_get_angle_startx)
-  _WRAP_METHOD(void set_angle_endx(Angle angle_end), clutter_behaviour_ellipse_set_angle_endx)
-  _WRAP_METHOD(Angle get_angle_endx() const, clutter_behaviour_ellipse_get_angle_endx)
-  _WRAP_METHOD(void set_angle_tiltx(RotateAxis axis, Angle angle_tilt), clutter_behaviour_ellipse_set_angle_tiltx)
-  _WRAP_METHOD(Angle get_angle_tiltx(RotateAxis axis) const, clutter_behaviour_ellipse_get_angle_tiltx)
+  _WRAP_METHOD(void set_angle_startx(Fixed angle_start), clutter_behaviour_ellipse_set_angle_startx)
+  _WRAP_METHOD(Fixed get_angle_startx() const, clutter_behaviour_ellipse_get_angle_startx)
+  _WRAP_METHOD(void set_angle_endx(Fixed angle_end), clutter_behaviour_ellipse_set_angle_endx)
+  _WRAP_METHOD(Fixed get_angle_endx() const, clutter_behaviour_ellipse_get_angle_endx)
+  _WRAP_METHOD(void set_angle_tiltx(RotateAxis axis, Fixed angle_tilt), clutter_behaviour_ellipse_set_angle_tiltx)
+  _WRAP_METHOD(Fixed get_angle_tiltx(RotateAxis axis) const, clutter_behaviour_ellipse_get_angle_tiltx)
 
-  _WRAP_METHOD(void set_tiltx(Angle angle_tilt_x, Angle angle_tilt_y, Angle angle_tilt_z), clutter_behaviour_ellipse_set_tiltx)
-  _WRAP_METHOD(void get_tiltx(Angle& angle_tilt_x, Angle& angle_tilt_y, Angle& angle_tilt_z) const, clutter_behaviour_ellipse_get_tiltx)
+  _WRAP_METHOD(void set_tiltx(Fixed angle_tilt_x, Fixed angle_tilt_y, Fixed angle_tilt_z), clutter_behaviour_ellipse_set_tiltx)
+  _WRAP_METHOD(void get_tiltx(Fixed& angle_tilt_x, Fixed& angle_tilt_y, Fixed& angle_tilt_z) const, clutter_behaviour_ellipse_get_tiltx)
 
   _WRAP_METHOD(void set_direction(RotateDirection direction), clutter_behaviour_ellipse_set_direction)
   _WRAP_METHOD(RotateDirection get_direction() const, clutter_behaviour_ellipse_get_direction)
