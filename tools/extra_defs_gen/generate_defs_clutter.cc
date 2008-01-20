@@ -54,7 +54,10 @@ int main (int argc, char *argv[])
     << get_defs(CLUTTER_TYPE_SCRIPT)
     << get_defs(CLUTTER_TYPE_STAGE)
     << get_defs(CLUTTER_TYPE_TEXTURE)
-    << get_defs(CLUTTER_TYPE_TIMELINE);
+    << get_defs(CLUTTER_TYPE_TIMELINE)
+    << get_defs(CLUTTER_TYPE_SCORE)
+    << get_defs(CLUTTER_TYPE_SHADER)
+    ;
 //    << get_defs(CLUTTER_TYPE_VBOX)
 //    << get_defs(CLUTTER_TYPE_MARGIN);
 

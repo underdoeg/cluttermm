@@ -1,0 +1,58 @@
+/* Copyright (C) 2007 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <glibmm/object.h>
+#include <clutter/clutter-shader.h>
+ 
+_DEFS(cluttermm,clutter)
+_PINCLUDE(glibmm/private/object_p.h)
+
+
+namespace Clutter
+{
+
+class Shader : public Glib::Object
+{
+  _CLASS_GOBJECT(Shader, ClutterShader, CLUTTER_SHADER, Glib::Object, GObject)
+  _DERIVES_INITIALLY_UNOWNED()
+
+protected:
+  _CTOR_DEFAULT()
+
+public:
+  _WRAP_CREATE()
+
+  // TODO: For now I've left this as gchar*, the same as the underlying C API.
+  // Another type might be easier in C++
+  _WRAP_METHOD(void set_vertex_source(const gchar* data, gssize length), clutter_shader_set_vertex_source)
+  _WRAP_METHOD(const gchar* get_vertex_source() const, clutter_shader_get_vertex_source)
+  _WRAP_METHOD(void set_fragment_source(const gchar* data, gssize length), clutter_shader_set_fragment_source)
+  _WRAP_METHOD(const gchar* get_fragment_source() const, clutter_shader_get_fragment_source)
+  _WRAP_METHOD(bool bind(), clutter_shader_bind, errthrow)
+  _WRAP_METHOD(void release(), clutter_shader_release)
+  _WRAP_METHOD(bool is_bound() const, clutter_shader_is_bound)
+  _WRAP_METHOD(void set_is_enabled(bool enabled), clutter_shader_set_is_enabled)
+  _WRAP_METHOD(bool get_is_enabled() const, clutter_shader_get_is_enabled)
+
+  _WRAP_PROPERTY("bound", bool)
+  _WRAP_PROPERTY("enabled", bool)
+  _WRAP_PROPERTY("fragment-source", gchar*)
+  _WRAP_PROPERTY("vertex-source", gchar*)
+};
+
+} // namespace Clutter
+// vim:ts=2,sw=2

@@ -1626,37 +1626,10 @@
 
 ;; From ClutterMedia
 
-(define-property uri
-  (of-object "ClutterMedia")
-  (prop-type "GParamString")
-  (docs "The loaded URI.")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property buffer-percent
-  (of-object "ClutterMedia")
-  (prop-type "GParamInt")
-  (docs "The percentage the current stream buffer is filled.")
-  (readable #t)
-  (writable #f)
-  (construct-only #f)
-)
-
 (define-property playing
   (of-object "ClutterMedia")
   (prop-type "GParamBoolean")
   (docs "TRUE if playing.")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property volume
-  (of-object "ClutterMedia")
-  (prop-type "GParamDouble")
-  (docs "The audio volume.")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1668,6 +1641,15 @@
   (docs "The position in the current stream in seconds.")
   (readable #t)
   (writable #t)
+  (construct-only #f)
+)
+
+(define-property buffer-percent
+  (of-object "ClutterMedia")
+  (prop-type "GParamInt")
+  (docs "The percentage the current stream buffer is filled.")
+  (readable #t)
+  (writable #f)
   (construct-only #f)
 )
 
@@ -1686,6 +1668,24 @@
   (docs "The duration of the current stream in seconds.")
   (readable #t)
   (writable #f)
+  (construct-only #f)
+)
+
+(define-property volume
+  (of-object "ClutterMedia")
+  (prop-type "GParamDouble")
+  (docs "The audio volume.")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property uri
+  (of-object "ClutterMedia")
+  (prop-type "GParamString")
+  (docs "The loaded URI.")
+  (readable #t)
+  (writable #t)
   (construct-only #f)
 )
 
@@ -1900,24 +1900,6 @@
 
 ;; From ClutterScore
 
-(define-signal completed
-  (of-object "ClutterScore")
-  (return-type "void")
-  (when "last")
-)
-
-(define-signal started
-  (of-object "ClutterScore")
-  (return-type "void")
-  (when "last")
-)
-
-(define-signal paused
-  (of-object "ClutterScore")
-  (return-type "void")
-  (when "last")
-)
-
 (define-signal timeline-started
   (of-object "ClutterScore")
   (return-type "void")
@@ -1934,6 +1916,24 @@
   (parameters
     '("ClutterTimeline*" "p0")
   )
+)
+
+(define-signal completed
+  (of-object "ClutterScore")
+  (return-type "void")
+  (when "last")
+)
+
+(define-signal started
+  (of-object "ClutterScore")
+  (return-type "void")
+  (when "last")
+)
+
+(define-signal paused
+  (of-object "ClutterScore")
+  (return-type "void")
+  (when "last")
 )
 
 (define-property loop
@@ -2497,15 +2497,6 @@
 
 ;; From ClutterTimeline
 
-(define-signal new-frame
-  (of-object "ClutterTimeline")
-  (return-type "void")
-  (when "last")
-  (parameters
-    '("gint" "p0")
-  )
-)
-
 (define-signal completed
   (of-object "ClutterTimeline")
   (return-type "void")
@@ -2522,6 +2513,15 @@
   (of-object "ClutterTimeline")
   (return-type "void")
   (when "last")
+)
+
+(define-signal new-frame
+  (of-object "ClutterTimeline")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("gint" "p0")
+  )
 )
 
 (define-property fps
@@ -2573,6 +2573,91 @@
   (of-object "ClutterTimeline")
   (prop-type "GParamEnum")
   (docs "Direction of the timeline")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From ClutterScore
+
+(define-signal timeline-started
+  (of-object "ClutterScore")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("ClutterTimeline*" "p0")
+  )
+)
+
+(define-signal timeline-completed
+  (of-object "ClutterScore")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("ClutterTimeline*" "p0")
+  )
+)
+
+(define-signal completed
+  (of-object "ClutterScore")
+  (return-type "void")
+  (when "last")
+)
+
+(define-signal started
+  (of-object "ClutterScore")
+  (return-type "void")
+  (when "last")
+)
+
+(define-signal paused
+  (of-object "ClutterScore")
+  (return-type "void")
+  (when "last")
+)
+
+(define-property loop
+  (of-object "ClutterScore")
+  (prop-type "GParamBoolean")
+  (docs "Whether the score should restart once finished")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From ClutterShader
+
+(define-property vertex-source
+  (of-object "ClutterShader")
+  (prop-type "GParamString")
+  (docs "Source of vertex shader")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fragment-source
+  (of-object "ClutterShader")
+  (prop-type "GParamString")
+  (docs "Source of fragment shader")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property bound
+  (of-object "ClutterShader")
+  (prop-type "GParamBoolean")
+  (docs "Whether the shader is bound")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property enabled
+  (of-object "ClutterShader")
+  (prop-type "GParamBoolean")
+  (docs "Whether the shader is enabled")
   (readable #t)
   (writable #t)
   (construct-only #f)
