@@ -1,5 +1,9 @@
 2008-01-20  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/behaviour-opacity.hg: wrapped a couple missing methods
+
+2008-01-20  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/score.ccg:
 	* clutter/src/score.hg:
 	* clutter/src/Makefile_list_of_hg.am_fragment: add new Score class
