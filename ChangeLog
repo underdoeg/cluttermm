@@ -1,5 +1,10 @@
 2008-01-19  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* examples/test-actors.cc: update example to use new BehaviourScale
+	constructor API
+
+2008-01-19  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/clutter_docs.xml: re-generated documentation
 	* clutter/src/stage.hg: wrapped missing functions
 	* clutter/src/timeline.hg: wrapped missing functions
