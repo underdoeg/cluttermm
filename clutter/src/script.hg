@@ -1,0 +1,57 @@
+/* Copyright (C) 2007 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <glibmm/object.h>
+#include <cluttermm/timeline.h>
+#include <clutter/clutter-script.h>
+ 
+_DEFS(cluttermm,clutter)
+_PINCLUDE(glibmm/private/object_p.h)
+
+
+namespace Clutter
+{
+
+class Script : public Glib::Object
+{
+  _CLASS_GOBJECT(Script, ClutterScript, CLUTTER_SCRIPT, Glib::Object, GObject)
+  _DERIVES_INITIALLY_UNOWNED()
+
+protected:
+  _CTOR_DEFAULT()
+
+public:
+  _WRAP_CREATE()
+
+  //_WRAP_METHOD(guint load_from_data(const std::string& data), clutter_script_load_from_data, errthrow)
+  _WRAP_METHOD(guint load_from_file(const std::string& filename), clutter_script_load_from_file, errthrow)
+  _WRAP_METHOD(Glib::RefPtr<Glib::Object> get_object(const Glib::ustring& name), clutter_script_get_object, refreturn)
+  // TODO: get_objects()
+  _WRAP_METHOD(void unmerge_object(guint merge_id), clutter_script_unmerge_objects)
+  _WRAP_METHOD(void ensure_objects(), clutter_script_ensure_objects)
+  // TODO: connect_signals functions
+  // TODO: do we need get_type_from_name()?
+
+  // TODO: clutter_get_script_id is not really a Script method, how to handle
+  // this?
+
+  _WRAP_PROPERTY("filename", std::string)
+  _WRAP_PROPERTY("filename-set", bool)
+};
+
+} // namespace Clutter
+// vim:ts=2,sw=2

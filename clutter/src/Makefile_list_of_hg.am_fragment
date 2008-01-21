@@ -26,5 +26,6 @@ behaviour-ellipse.hg \
 behaviour-rotate.hg \
 behaviour-scale.hg \
 score.hg \
-shader.hg
+shader.hg \
+script.hg
 #layout.hg box.hg margin.hg

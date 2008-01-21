@@ -653,19 +653,19 @@
   (construct-only #f)
 )
 
-(define-property x-scale-end
+(define-property y-scale-end
   (of-object "ClutterBehaviourScale")
   (prop-type "GParamDouble")
-  (docs "Final scale on the X axis")
+  (docs "Final scale on the Y axis")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
-(define-property y-scale-end
+(define-property x-scale-end
   (of-object "ClutterBehaviourScale")
   (prop-type "GParamDouble")
-  (docs "Final scale on the Y axis")
+  (docs "Final scale on the X axis")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1671,19 +1671,19 @@
   (construct-only #f)
 )
 
-(define-property volume
+(define-property uri
   (of-object "ClutterMedia")
-  (prop-type "GParamDouble")
-  (docs "The audio volume.")
+  (prop-type "GParamString")
+  (docs "The loaded URI.")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
-(define-property uri
+(define-property volume
   (of-object "ClutterMedia")
-  (prop-type "GParamString")
-  (docs "The loaded URI.")
+  (prop-type "GParamDouble")
+  (docs "The audio volume.")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2660,6 +2660,26 @@
   (docs "Whether the shader is enabled")
   (readable #t)
   (writable #t)
+  (construct-only #f)
+)
+
+;; From ClutterScript
+
+(define-property filename-set
+  (of-object "ClutterScript")
+  (prop-type "GParamBoolean")
+  (docs "Whether the :filename property is set")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property filename
+  (of-object "ClutterScript")
+  (prop-type "GParamString")
+  (docs "The path of the currently parsed file")
+  (readable #t)
+  (writable #f)
   (construct-only #f)
 )
 

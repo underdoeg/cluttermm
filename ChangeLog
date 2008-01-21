@@ -1,5 +1,16 @@
 2008-01-20  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/cluttermm.h:
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* clutter/src/clutter_signals.defs:
+	* clutter/src/script.ccg:
+	* clutter/src/script.hg:
+	* tools/extra_defs_gen/generate_defs_clutter.cc:
+	Added Script class.  A lot of it is still marked with TODOs since I haven't
+	thought about how to handle the signal connection stuff in C++.
+
+2008-01-20  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/shader.ccg:
 	* clutter/src/shader.hg:
 	* clutter/src/Makefile_list_of_hg.am_fragment: add new Shader class

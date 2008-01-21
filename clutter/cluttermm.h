@@ -50,6 +50,7 @@ extern const int cluttermm_micro_version;
 #include <cluttermm/timeline.h>
 #include <cluttermm/score.h>
 #include <cluttermm/shader.h>
+#include <cluttermm/script.h>
 #include <cluttermm/types.h>
 
 //#include <cluttermm/box.h>
