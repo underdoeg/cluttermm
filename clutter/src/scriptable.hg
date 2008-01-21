@@ -1,0 +1,51 @@
+/* Copyright (C) 2007 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <cluttermm/actor.h>
+#include <glibmm/interface.h>
+#include <glibmm/ustring.h>
+#include <clutter/clutter-scriptable.h>
+ 
+_DEFS(cluttermm,clutter)
+_PINCLUDE(glibmm/private/interface_p.h)
+
+
+namespace Clutter
+{
+
+class Scriptable : public Glib::Interface
+{
+  _CLASS_INTERFACE(Scriptable, ClutterScriptable, CLUTTER_SCRIPTABLE, ClutterScriptableIface)
+
+public:
+  _WRAP_METHOD(void set_id(const std::string& id), clutter_scriptable_set_id)
+  _WRAP_METHOD(std::string get_id() const, clutter_scriptable_get_id)
+  _WRAP_SIGNAL(void actor_added(const Glib::RefPtr<Actor>& actor), "actor_added")
+  _WRAP_SIGNAL(void actor_removed(const Glib::RefPtr<Actor>& actor), "actor_removed")
+  // TODO: parse_custom_node, set_custom_property
+
+protected:
+
+  _WRAP_VFUNC(void set_id(const std::string& id), set_id)
+  // TODO: 'No conversion from std::string to const gchar* defined' - why does
+  // it work above?
+  //_WRAP_VFUNC(std::string get_id(), get_id)
+  // TODO: parse_custom_node, set_custom_property vfuncs
+};
+
+} // namespace Clutter
+//vim: ts=2,sw=2

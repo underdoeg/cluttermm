@@ -27,5 +27,6 @@ behaviour-rotate.hg \
 behaviour-scale.hg \
 score.hg \
 shader.hg \
-script.hg
+script.hg \
+scriptable.hg
 #layout.hg box.hg margin.hg

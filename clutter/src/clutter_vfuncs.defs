@@ -201,3 +201,39 @@
   )
 )
 
+; ClutterScriptable
+
+(define-vfunc set_id
+  (of-object "ClutterScriptable")
+  (return-type "void")
+  (parameters
+    '("const-gchar*" "name")
+  )
+)
+
+(define-vfunc get_id
+  (of-object "ClutterScriptable")
+  (return-type "const-gchar*")
+)
+
+(define-vfunc parse_custom_node
+  (of-object "ClutterScriptable")
+  (return-type "gboolean")
+  (parameters
+    '("ClutterScript*" "script")
+    '("GValue*" "value")
+    '("const-gchar*" "name")
+    '("JSonNode*" "node")
+  )
+)
+
+(define-vfunc set_custom_property
+  (of-object "ClutterScriptable")
+  (return-type "void")
+  (parameters
+    '("ClutterScript*" "script")
+    '("const-gchar*" "name")
+    '("GValue*" "value")
+  )
+)
+

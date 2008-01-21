@@ -1,5 +1,12 @@
 2008-01-20  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* clutter/src/clutter_vfuncs.defs:
+	* clutter/src/scriptable.ccg:
+	* clutter/src/scriptable.hg: add new Scriptable Interface
+
+2008-01-20  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/cluttermm.h:
 	* clutter/src/Makefile_list_of_hg.am_fragment:
 	* clutter/src/clutter_signals.defs:
