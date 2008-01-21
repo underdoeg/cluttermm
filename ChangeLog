@@ -1,5 +1,12 @@
 2008-01-20  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/src/actor.hg: implement Scriptable interface
+	* clutter/src/behaviour-bspline.hg: implement Scriptable interface
+	* clutter/src/behaviour-path.hg: implement Scriptable interface
+	* clutter/src/scriptable.hg: remove errant actor.h include
+
+2008-01-20  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/Makefile_list_of_hg.am_fragment:
 	* clutter/src/clutter_vfuncs.defs:
 	* clutter/src/scriptable.ccg:

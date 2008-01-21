@@ -16,6 +16,7 @@
  */
 
 #include <cluttermm/behaviour.h>
+#include <cluttermm/scriptable.h>
 #include <cluttermm/alpha.h>
 #include <cluttermm/types.h>
  
@@ -26,9 +27,10 @@ _PINCLUDE(cluttermm/private/behaviour_p.h)
 namespace Clutter
 {
 
-class BehaviourPath : public Behaviour
+class BehaviourPath : public Behaviour, public Scriptable
 {
   _CLASS_GOBJECT(BehaviourPath, ClutterBehaviourPath, CLUTTER_BEHAVIOUR_PATH, Behaviour, ClutterBehaviour)
+  _IMPLEMENTS_INTERFACE(Scriptable)
 
 protected:
   // TODO: pass the knots as a C++ container

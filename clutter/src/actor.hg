@@ -17,6 +17,7 @@
 
 #include <glibmm/object.h>
 #include <cluttermm/color.h>
+#include <cluttermm/scriptable.h>
 #include <clutter/clutter-event.h> //For Clutter*Event
  
 _DEFS(cluttermm,clutter)
@@ -33,10 +34,11 @@ typedef ClutterMotionEvent MotionEvent;
 typedef ClutterScrollEvent ScrollEvent;
 typedef ClutterCrossingEvent CrossingEvent;
 
-class Actor : public Glib::Object
+class Actor : public Glib::Object, public Scriptable
 {
   _CLASS_GOBJECT(Actor, ClutterActor, CLUTTER_ACTOR, Glib::Object, GObject)
   _DERIVES_INITIALLY_UNOWNED()
+  _IMPLEMENTS_INTERFACE(Scriptable)
 
 protected:
   _CTOR_DEFAULT()
