@@ -29,7 +29,6 @@ namespace Clutter
 class Score : public Glib::Object
 {
   _CLASS_GOBJECT(Score, ClutterScore, CLUTTER_SCORE, Glib::Object, GObject)
-  _DERIVES_INITIALLY_UNOWNED()
 
 protected:
   _CTOR_DEFAULT()
@@ -37,24 +36,25 @@ protected:
 public:
   _WRAP_CREATE()
 
-  _WRAP_METHOD(void set_loop(bool loop), clutter_score_set_loop)
+  _WRAP_METHOD(void set_loop(bool loop = true), clutter_score_set_loop)
   _WRAP_METHOD(bool get_loop() const, clutter_score_get_loop)
 
   _WRAP_METHOD(guint append(const Glib::RefPtr<Timeline>& parent, const Glib::RefPtr<Timeline>& timeline), clutter_score_append)
-  /**
-   * Appends a timeline to another one existing in the score; the new timeline
-   * will be started when start() is called
+
+  /** Appends a timeline to another one existing in the score. The new timeline
+   * will be started when start() is called.
    *
    * @param timeline the Timeline to append
    * @return the id of the newly added timeline, to be used with get_timeline() and remove().
-   *
-   * @since 0.6 
    */
   guint append(const Glib::RefPtr<Timeline>& timeline);
+
   _WRAP_METHOD(void remove(guint id), clutter_score_remove)
   _WRAP_METHOD(void remove_all(), clutter_score_remove_all)
-  _WRAP_METHOD(Glib::RefPtr<Timeline> get_timeline(guint id), clutter_score_get_timeline)
-  _WRAP_METHOD(Glib::RefPtr<const Timeline> get_timeline(guint id) const, clutter_score_get_timeline, CONSTVERSION)
+
+  _WRAP_METHOD(Glib::RefPtr<Timeline> get_timeline(guint id), clutter_score_get_timeline, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Timeline> get_timeline(guint id) const, clutter_score_get_timeline, , refreturn, constversion)
+
   _WRAP_METHOD(void start(), clutter_score_start)
   _WRAP_METHOD(void pause(), clutter_score_pause)
   _WRAP_METHOD(void stop(), clutter_score_stop)

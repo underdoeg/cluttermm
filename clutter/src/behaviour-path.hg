@@ -27,7 +27,9 @@ _PINCLUDE(cluttermm/private/behaviour_p.h)
 namespace Clutter
 {
 
-class BehaviourPath : public Behaviour, public Scriptable
+class BehaviourPath 
+: public Behaviour, 
+  public Scriptable
 {
   _CLASS_GOBJECT(BehaviourPath, ClutterBehaviourPath, CLUTTER_BEHAVIOUR_PATH, Behaviour, ClutterBehaviour)
   _IMPLEMENTS_INTERFACE(Scriptable)

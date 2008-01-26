@@ -15,3 +15,18 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
+namespace Clutter
+{
+
+void Shader::set_vertex_source(const std::string& source_code)
+{
+  clutter_shader_set_vertex_source(gobj(), source_code.c_str(), source_code.size()); 
+}
+
+void Shader::set_fragment_source(const std::string& source_code)
+{
+  clutter_shader_set_fragment_source(gobj(), source_code.c_str(), source_code.size()); 
+}
+
+} //namespace Clutter
+

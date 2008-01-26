@@ -36,22 +36,28 @@ protected:
 public:
   _WRAP_CREATE()
 
-  // TODO: For now I've left this as gchar*, the same as the underlying C API.
-  // Another type might be easier in C++
-  _WRAP_METHOD(void set_vertex_source(const gchar* data, gssize length), clutter_shader_set_vertex_source)
-  _WRAP_METHOD(const gchar* get_vertex_source() const, clutter_shader_get_vertex_source)
-  _WRAP_METHOD(void set_fragment_source(const gchar* data, gssize length), clutter_shader_set_fragment_source)
-  _WRAP_METHOD(const gchar* get_fragment_source() const, clutter_shader_get_fragment_source)
+  //TODO: Documentation:
+  void set_vertex_source(const std::string& source_code);
+  _IGNORE(clutter_shader_set_vertex_source)
+
+  _WRAP_METHOD(std::string get_vertex_source() const, clutter_shader_get_vertex_source)
+
+    //TODO: Documentation:
+  void set_fragment_source(const std::string& source_code);
+  _IGNORE(clutter_shader_set_fragment_source)
+
+  _WRAP_METHOD(std::string get_fragment_source() const, clutter_shader_get_fragment_source)
+
   _WRAP_METHOD(bool bind(), clutter_shader_bind, errthrow)
   _WRAP_METHOD(void release(), clutter_shader_release)
   _WRAP_METHOD(bool is_bound() const, clutter_shader_is_bound)
-  _WRAP_METHOD(void set_is_enabled(bool enabled), clutter_shader_set_is_enabled)
+  _WRAP_METHOD(void set_is_enabled(bool enabled = true), clutter_shader_set_is_enabled)
   _WRAP_METHOD(bool get_is_enabled() const, clutter_shader_get_is_enabled)
 
   _WRAP_PROPERTY("bound", bool)
   _WRAP_PROPERTY("enabled", bool)
-  _WRAP_PROPERTY("fragment-source", gchar*)
-  _WRAP_PROPERTY("vertex-source", gchar*)
+  _WRAP_PROPERTY("fragment-source", std::string)
+  _WRAP_PROPERTY("vertex-source", std::string)
 };
 
 } // namespace Clutter

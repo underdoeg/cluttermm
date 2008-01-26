@@ -33,6 +33,7 @@ class Scriptable : public Glib::Interface
 public:
   _WRAP_METHOD(void set_id(const std::string& id), clutter_scriptable_set_id)
   _WRAP_METHOD(std::string get_id() const, clutter_scriptable_get_id)
+
   _WRAP_SIGNAL(void actor_added(const Glib::RefPtr<Actor>& actor), "actor_added")
   _WRAP_SIGNAL(void actor_removed(const Glib::RefPtr<Actor>& actor), "actor_removed")
   // TODO: parse_custom_node, set_custom_property
@@ -40,9 +41,9 @@ public:
 protected:
 
   _WRAP_VFUNC(void set_id(const std::string& id), set_id)
-  // TODO: 'No conversion from std::string to const gchar* defined' - why does
-  // it work above?
-  //_WRAP_VFUNC(std::string get_id(), get_id)
+
+#m4 _CONVERSION(`std::string', `const gchar*', `($3).c_str()')
+  _WRAP_VFUNC(std::string get_id() const, get_id)
   // TODO: parse_custom_node, set_custom_property vfuncs
 };
 

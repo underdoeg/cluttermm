@@ -39,15 +39,22 @@ public:
 
   //_WRAP_METHOD(guint load_from_data(const std::string& data), clutter_script_load_from_data, errthrow)
   _WRAP_METHOD(guint load_from_file(const std::string& filename), clutter_script_load_from_file, errthrow)
+
   _WRAP_METHOD(Glib::RefPtr<Glib::Object> get_object(const Glib::ustring& name), clutter_script_get_object, refreturn)
-  // TODO: get_objects()
+  _WRAP_METHOD(Glib::RefPtr<const Glib::Object> get_object(const Glib::ustring& name) const, clutter_script_get_object, refreturn, constverrsion)
+
+  //clutter_script_get_objects() is a varargs convenience function for C.
+  _IGNORE(clutter_script_get_objects)
+
   _WRAP_METHOD(void unmerge_object(guint merge_id), clutter_script_unmerge_objects)
   _WRAP_METHOD(void ensure_objects(), clutter_script_ensure_objects)
+
   // TODO: connect_signals functions
   // TODO: do we need get_type_from_name()?
+  // clutter_script_connect_signals() and clutter_script_connect_signals_full() seem to be like glade_xml_autoconnect(), 
+  // and I don't see a way to implement them in C++. murrayc.
 
-  // TODO: clutter_get_script_id is not really a Script method, how to handle
-  // this?
+  _WRAP_METHOD(static std::string get_script_id(const Glib::RefPtr<const Glib::Object>& object), clutter_get_script_id)
 
   _WRAP_PROPERTY("filename", std::string)
   _WRAP_PROPERTY("filename-set", bool)

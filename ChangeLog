@@ -1,5 +1,16 @@
 2008-01-26  Murray Cumming  <murrayc@murrayc.com>
 
+	* clutter/src/score.hg: Do not use _DERIVES_INITIALLY_UNOWNED, because I 
+	do not think it does.
+	get_timeline(): Use refreturn. 
+	* clutter/src/script.hg: Wrap clutter_get_script_id() as a static method.
+	* clutter/src/scriptable.hg: Wrap the get_id() vfunc.
+	* clutter/src/shader.ccg:
+	* clutter/src/shader.hg: Use std::string for the source code (data) parameters.
+	* clutter/src/stage.hg: Added default values for set_*(bool) methods.
+
+2008-01-26  Murray Cumming  <murrayc@murrayc.com>
+
 	* clutter/src/media.hg:
 	* clutter/src/stage.hg: Added ustring conversions for signals, to fix the build.
 
