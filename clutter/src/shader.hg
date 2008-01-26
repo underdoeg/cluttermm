@@ -28,7 +28,6 @@ namespace Clutter
 class Shader : public Glib::Object
 {
   _CLASS_GOBJECT(Shader, ClutterShader, CLUTTER_SHADER, Glib::Object, GObject)
-  _DERIVES_INITIALLY_UNOWNED()
 
 protected:
   _CTOR_DEFAULT()

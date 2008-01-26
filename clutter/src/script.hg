@@ -29,7 +29,6 @@ namespace Clutter
 class Script : public Glib::Object
 {
   _CLASS_GOBJECT(Script, ClutterScript, CLUTTER_SCRIPT, Glib::Object, GObject)
-  _DERIVES_INITIALLY_UNOWNED()
 
 protected:
   _CTOR_DEFAULT()

@@ -1,5 +1,11 @@
 2008-01-26  Murray Cumming  <murrayc@murrayc.com>
 
+	* clutter/src/script.hg:
+	* clutter/src/shader.hg: Do not use _DERIVES_INITIALLY_UNOWNED, because I 
+	do not think they do.
+
+2008-01-26  Murray Cumming  <murrayc@murrayc.com>
+
 	* clutter/src/score.hg: Do not use _DERIVES_INITIALLY_UNOWNED, because I 
 	do not think it does.
 	get_timeline(): Use refreturn. 
