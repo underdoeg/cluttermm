@@ -1,3 +1,8 @@
+2008-01-25  Jonathon Jongsma  <jjongsma@gnome.org>
+
+	* tests/test-alpha-creation.cc:
+	* tests/test-alpha-func.cc: update tests for new BehaviourScale constructor API
+
 2008-01-20  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* clutter/src/actor.hg: implement Scriptable interface
