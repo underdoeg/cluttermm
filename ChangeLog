@@ -1,3 +1,8 @@
+2008-01-26  Murray Cumming  <murrayc@murrayc.com>
+
+	* clutter/src/media.hg:
+	* clutter/src/stage.hg: Added ustring conversions for signals, to fix the build.
+
 2008-01-25  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* tests/test-alpha-creation.cc:

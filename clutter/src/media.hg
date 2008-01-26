@@ -52,7 +52,10 @@ public:
   //_WRAP_SIGNAL(void error(GError* error), "error")
 
 protected:
+
+#m4 _CONVERSION(`const char*',`const Glib::ustring&',__GCHARP_TO_USTRING)
   _WRAP_VFUNC(void set_uri(const Glib::ustring& uri), set_uri)
+
   // TODO: error "No conversion from Glib::ustring to const char* defined", even
   // though it works above in get_uri
   //_WRAP_VFUNC(Glib::ustring get_uri() const, get_uri)
