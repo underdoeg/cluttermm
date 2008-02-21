@@ -1,3 +1,5 @@
+0.5.0:
+
 2008-02-21  Murray Cumming  <murrayc@murrayc.com>
 
 	* configure.in: Depend on clutter-0.6 instead of clutter-0.5.
