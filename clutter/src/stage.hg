@@ -90,7 +90,6 @@ public:
 protected:
   _WRAP_VFUNC(void set_fullscreen(bool fullscreen), set_fullscreen)
   _WRAP_VFUNC(void set_cursor_visible(bool visible), set_cursor_visible)
-  _WRAP_VFUNC(void set_offscreen(bool offscreen), set_offscreen)
   _WRAP_VFUNC(Glib::RefPtr<Gdk::Pixbuf> draw_to_pixbuf(int x, int y, int width, int height), draw_to_pixbuf)
 
 #m4 _CONVERSION(`const char*',`const Glib::ustring&',__GCHARP_TO_USTRING)

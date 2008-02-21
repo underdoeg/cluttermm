@@ -148,14 +148,6 @@
   )
 )
 
-(define-vfunc set_offscreen
-  (of-object "ClutterStage")
-  (return-type "void")
-  (parameters
-    '("gboolean" "offscreen")
-  )
-)
-
 (define-vfunc draw_to_pixbuf
   (of-object "ClutterStage")
   (return-type "GdkPixbuf*")

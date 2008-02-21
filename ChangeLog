@@ -1,3 +1,15 @@
+2008-02-21  Murray Cumming  <murrayc@murrayc.com>
+
+	* configure.in: Depend on clutter-0.6 instead of clutter-0.5.
+	* clutter/src/clutter_methods.defs: Regenereated with h2defs.py.
+
+	* clutter/src/clutter_vfuncs.defs:
+	* clutter/src/stage.hg: Remove set_offscreen() vfunc because it was 
+	removed from clutter.
+
+	* clutter/src/entry.hg: Renamed set_position() to set_cursor_position(), 
+	to match the change in clutter.
+
 2008-01-26  Murray Cumming  <murrayc@murrayc.com>
 
 	* clutter/src/script.hg:

@@ -59,8 +59,8 @@ public:
   _WRAP_METHOD(Pango::Alignment get_alignment() const, clutter_entry_get_alignment)
   _WRAP_METHOD(void set_alignment(Pango::Alignment wrap_mode), clutter_entry_set_alignment)
 
-  _WRAP_METHOD(int get_position() const, clutter_entry_get_position)
-  _WRAP_METHOD(void set_position(int position), clutter_entry_set_position)
+  _WRAP_METHOD(int get_cursor_position() const, clutter_entry_get_cursor_position)
+  _WRAP_METHOD(void set_cursor_position(int position), clutter_entry_set_cursor_position)
 
   _WRAP_METHOD(void insert(gunichar wc), clutter_entry_insert_unichar)
   _WRAP_METHOD(void insert(const Glib::ustring& text, gssize position), clutter_entry_insert_text)
