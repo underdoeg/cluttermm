@@ -1,3 +1,18 @@
+2008-04-13  Jonathon Jongsma  <jjongsma@gnome.org>
+
+	* clutter/cluttermm.h:
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* clutter/src/cairo-texture.ccg:
+	* clutter/src/cairo-texture.hg:
+	* clutter/src/clutter_methods.defs:
+	* examples/Makefile.am:
+	* examples/flowers.cc:
+	* examples/simple-cairo.cc:
+	* examples/test-actors.cc: add support for the clutter-cairo library.
+	Currently this is required unconditionally, I'm not sure if we want to wrap
+	this in a separate library (e.g. cluttermm-cairo) since the underlying
+	libraries are separate.
+
 0.5.0:
 
 2008-02-21  Murray Cumming  <murrayc@murrayc.com>

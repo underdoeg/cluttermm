@@ -248,6 +248,7 @@ main (int argc, char *argv[])
     // and start it
     timeline->start ();
 
+    // TODO: wrap clutter_main ?
     clutter_main ();
 
     delete oh;

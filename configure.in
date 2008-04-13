@@ -82,7 +82,11 @@ AC_CHECK_PROGS(PERL, perl5 perl)
 #########################################################################
 #  Dependancy checks
 #########################################################################
-PKG_CHECK_MODULES(CLUTTERMM, gtkmm-2.4 >= 2.10.9 clutter-0.6 )
+PKG_CHECK_MODULES(CLUTTERMM,
+                  gtkmm-2.4 >= 2.10.9
+                  clutter-0.6
+                  clutter-cairo-0.6
+                  cairomm-1.0)
 AC_SUBST(CLUTTERMM_CFLAGS)
 AC_SUBST(CLUTTERMM_LIBS)
 
