@@ -1,5 +1,10 @@
 2008-04-13  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter/cluttermm-1.0.pc.in: require 'clutter-0.6' in the .pc file instead
+	of 'clutter'
+
+2008-04-13  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/cluttermm.h:
 	* clutter/src/Makefile_list_of_hg.am_fragment:
 	* clutter/src/cairo-texture.ccg:
