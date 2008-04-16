@@ -7,5 +7,5 @@ Name: cluttermm
 Description: C++ wrapper for clutter
 Requires: gtkmm-2.4 clutter-0.6
 Version: @VERSION@
-Libs: -L${libdir} -lcluttermm-0.1
-Cflags: -I${includedir}/cluttermm-0.1
+Libs: -L${libdir} -lcluttermm-1.0
+Cflags: -I${includedir}/@CLUTTERMM_API_VER@

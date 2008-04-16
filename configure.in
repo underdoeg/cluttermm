@@ -17,7 +17,7 @@ AC_INIT(clutter/cluttermmconfig.h.in)
 #########################################################################
 CLUTTERMM_MAJOR_VERSION=0
 CLUTTERMM_MINOR_VERSION=5
-CLUTTERMM_MICRO_VERSION=0
+CLUTTERMM_MICRO_VERSION=1
 
 #
 # +1 : ? : +1  == new interface that does not break old one
@@ -95,6 +95,9 @@ GMM_PROCDIR=$GLIBMM_PREFIX/glibmm-2.4/proc
 AC_SUBST(GMM_PROCDIR)
 GMM_PROC=$GMM_PROCDIR/gmmproc
 AC_SUBST(GMM_PROC)
+
+CLUTTERMM_API_VER=[cluttermm-1.0]
+AC_SUBST(CLUTTERMM_API_VER)
 
 #########################################################################
 #  C++ checks

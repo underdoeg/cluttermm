@@ -1,4 +1,4 @@
-local_cluttermm_lib = $(top_builddir)/clutter/cluttermm/libcluttermm-0.1.la
+local_cluttermm_lib = $(top_builddir)/clutter/cluttermm/libcluttermm-1.0.la
 
 LIBS  = $(CLUTTERMM_LIBS) $(local_cluttermm_lib) 
 

@@ -1,5 +1,17 @@
 2008-04-15  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* configure.in: bumped version number to 0.5.1
+	* clutter/Makefile.am:
+	* clutter/cluttermm-1.0.pc.in:
+	* clutter/cluttermm/Makefile.am:
+	* clutter/cluttermm/private/Makefile.am:
+	* examples/Makefile.am_fragment: previously, the library name was a mixture
+	of cluttermm-1.0 and cluttermm-0.1.  The pkg-config file and include
+	directories were 1.0, but the .so files were named -0.1.  Now everything
+	should be named -1.0
+
+2008-04-15  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter/src/actor.hg: add default value of 'true' to Actor::set_reactive()
 
 2008-04-13  Jonathon Jongsma  <jjongsma@gnome.org>
