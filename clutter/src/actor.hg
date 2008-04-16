@@ -88,7 +88,7 @@ public:
   _WRAP_METHOD(void set_yu(Unit y), clutter_actor_set_yu)
   _WRAP_METHOD(int get_y() const, clutter_actor_get_y)
   _WRAP_METHOD(Unit get_yu() const, clutter_actor_get_yu)
-  _WRAP_METHOD(void set_reactive(bool reactive), clutter_actor_set_reactive)
+  _WRAP_METHOD(void set_reactive(bool reactive = true), clutter_actor_set_reactive)
   _WRAP_METHOD(bool get_reactive() const, clutter_actor_get_reactive)
 
   _WRAP_METHOD(void set_rotation(RotateAxis axis, double angle, int x, int y, int z), clutter_actor_set_rotation)
