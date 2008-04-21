@@ -2,22 +2,21 @@
  * Pretty cairo flower hack.
  */
 
-#include <cluttermm.h>
+#include <cluttermm-cairo.h>
 #include <clutter/clutter.h>
-
-using namespace Clutter;
 
 int
 main (int argc, char **argv)
 {
-  Clutter::init (&argc, &argv);
+  Clutter::Cairo::init (&argc, &argv);
 
-  Glib::RefPtr<Stage> stage = Stage::get_default ();
-  Color stage_color (0x0, 0x0, 0x0, 0xff);
+  Glib::RefPtr<Clutter::Stage> stage = Clutter::Stage::get_default ();
+  Clutter::Color stage_color (0x0, 0x0, 0x0, 0xff);
   stage->set_color (stage_color);
 
   guint size = stage->get_height () / 4;
-  Glib::RefPtr<CairoTexture> circle = CairoTexture::create (size, size);
+  Glib::RefPtr<Clutter::Cairo::CairoTexture> circle =
+      Clutter::Cairo::CairoTexture::create (size, size);
   // TODO: These brackets are necessary at the moment to limit the scope of the
   // Cairo::Context object.  Because of the way ClutterCairo is implemented,
   // whatever is drawn to the cairo context is not transferred to the Clutter

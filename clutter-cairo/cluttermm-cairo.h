@@ -1,6 +1,6 @@
-// -*- c++ -*-
-/*
- * Copyright 2008 Jonathon Jongsma
+/* cluttermm-cairo - a C++ wrapper for clutter-cairo
+ *
+ * Copyright 2007 The cluttermm Development Team
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -17,22 +17,16 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <glibmm/init.h>
-#include <glibmm/ustring.h>
-#include <gdkmm/wrap_init.h>
-#include <cluttermmconfig.h> //For LIBCLUTTERMM_VERSION
-#include <cluttermm/wrap_init.h>
-#include <clutter/clutter.h>
+#ifndef LIBCLUTTERMM_CAIRO_H
+#define LIBCLUTTERMM_CAIRO_H
 
-namespace Clutter
-{
+/* cluttermm version.  */
+extern const int cluttermm_major_version;
+extern const int cluttermm_minor_version;
+extern const int cluttermm_micro_version;
 
-void init(int* nargs, gchar **args[])
-{
-  Glib::init(); //Sets up the g type system and the Glib::wrap() table.
-  Gdk::wrap_init();
-  wrap_init(); //Tells the Glib::wrap() table about the libcluttermm classes.
-  clutter_init(nargs, args);
-}
+#include <cluttermm.h>
+#include <cluttermm-cairo/init.h>
+#include <cluttermm-cairo/cairo-texture.h>
 
-} //namespace Clutter
+#endif /* #ifndef LIBCLUTTERMM_CAIRO_H */

@@ -17,22 +17,20 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <glibmm/init.h>
-#include <glibmm/ustring.h>
-#include <gdkmm/wrap_init.h>
-#include <cluttermmconfig.h> //For LIBCLUTTERMM_VERSION
-#include <cluttermm/wrap_init.h>
-#include <clutter/clutter.h>
+#include <cluttermm-cairo-config.h> //For LIBCLUTTERMM_VERSION
+#include <cluttermm-cairo/wrap_init.h>
+#include <cluttermm/init.h>
 
 namespace Clutter
+{
+namespace Cairo
 {
 
 void init(int* nargs, gchar **args[])
 {
-  Glib::init(); //Sets up the g type system and the Glib::wrap() table.
-  Gdk::wrap_init();
-  wrap_init(); //Tells the Glib::wrap() table about the libcluttermm classes.
-  clutter_init(nargs, args);
+  Clutter::init (nargs, args);
+  wrap_init (); //Tells the Glib::wrap() table about the libcluttermm-cairo classes.
 }
 
+} //namespace Cairo
 } //namespace Clutter

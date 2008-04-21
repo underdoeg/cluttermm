@@ -1,0 +1,6 @@
+Base directory for cluttermm-cairo, which integrates cluttermm and cairomm
+
+Here is the layout
+
+  src - actual sources used to build, processed with gmmproc
+  cluttermm-cairo - built sources (do not edit)

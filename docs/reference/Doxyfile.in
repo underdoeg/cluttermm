@@ -75,7 +75,7 @@ WARN_LOGFILE           =
 #---------------------------------------------------------------------------
 # configuration options related to the input files
 #---------------------------------------------------------------------------
-INPUT                  = @CLUTTERMM_DOXYGEN_INPUT@
+INPUT                  = @top_builddir@/clutter/cluttermm @top_builddir@/clutter-cairo/cluttermm-cairo
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          = *.h
 RECURSIVE              = NO

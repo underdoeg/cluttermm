@@ -28,6 +28,5 @@ behaviour-scale.hg \
 score.hg \
 shader.hg \
 script.hg \
-scriptable.hg \
-cairo-texture.hg
+scriptable.hg
 #layout.hg box.hg margin.hg

@@ -39,7 +39,11 @@ gmmproc_args	= -I $(tools_dir_m4) --defs $(srcdir)
 run_gmmproc	= $(gmmproc_path) $(gmmproc_args)
 
 gen_wrap_init_path = $(gmmproc_dir)/generate_wrap_init.pl
-gen_wrap_init_args = --namespace=$(sublib_namespace) --parent_dir=$(sublib_parentdir)
+# nested namespaces should be whitespace-separated.  The following line will
+# then translate them into the correct arguments to pass to
+# generate_wrap_init.pl
+namespaces = $(sublib_namespace:%=--namespace=%)
+gen_wrap_init_args = $(namespaces) --parent_dir=$(sublib_parentdir)
 run_gen_wrap_init  = $(gen_wrap_init_path) $(gen_wrap_init_args)
 
 EXTRA_DIST	= Makefile_list_of_hg.am_fragment \

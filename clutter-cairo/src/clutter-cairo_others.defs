@@ -1,0 +1,272 @@
+;; From ClutterCairo
+
+(define-property name
+  (of-object "ClutterCairo")
+  (prop-type "GParamString")
+  (docs "Name of the actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property x
+  (of-object "ClutterCairo")
+  (prop-type "GParamInt")
+  (docs "X co-ord of actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property y
+  (of-object "ClutterCairo")
+  (prop-type "GParamInt")
+  (docs "Y co-ord of actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width
+  (of-object "ClutterCairo")
+  (prop-type "GParamInt")
+  (docs "Width of actor in pixels")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property height
+  (of-object "ClutterCairo")
+  (prop-type "GParamInt")
+  (docs "Height of actor in pixels")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property depth
+  (of-object "ClutterCairo")
+  (prop-type "GParamInt")
+  (docs "Depth of actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property clip
+  (of-object "ClutterCairo")
+  (prop-type "GParamBoxed")
+  (docs "The clip region for the actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property has-clip
+  (of-object "ClutterCairo")
+  (prop-type "GParamBoolean")
+  (docs "Whether the actor has a clip set or not")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property opacity
+  (of-object "ClutterCairo")
+  (prop-type "GParamUChar")
+  (docs "Opacity of actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visible
+  (of-object "ClutterCairo")
+  (prop-type "GParamBoolean")
+  (docs "Whether the actor is visible or not")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property reactive
+  (of-object "ClutterCairo")
+  (prop-type "GParamBoolean")
+  (docs "Whether the actor is reactive to events or not")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property scale-x
+  (of-object "ClutterCairo")
+  (prop-type "GParamDouble")
+  (docs "Scale factor on the X axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property scale-y
+  (of-object "ClutterCairo")
+  (prop-type "GParamDouble")
+  (docs "Scale factor on the Y axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-angle-x
+  (of-object "ClutterCairo")
+  (prop-type "GParamDouble")
+  (docs "The rotation angle on the X axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-angle-y
+  (of-object "ClutterCairo")
+  (prop-type "GParamDouble")
+  (docs "The rotation angle on the Y axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-angle-z
+  (of-object "ClutterCairo")
+  (prop-type "GParamDouble")
+  (docs "The rotation angle on the Z axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-center-x
+  (of-object "ClutterCairo")
+  (prop-type "GParamBoxed")
+  (docs "The rotation center on the X axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-center-y
+  (of-object "ClutterCairo")
+  (prop-type "GParamBoxed")
+  (docs "The rotation center on the Y axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-center-z
+  (of-object "ClutterCairo")
+  (prop-type "GParamBoxed")
+  (docs "The rotation center on the Z axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property pixbuf
+  (of-object "ClutterCairo")
+  (prop-type "GParamObject")
+  (docs "Pixbuf source for Texture.")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property tiled
+  (of-object "ClutterCairo")
+  (prop-type "GParamBoolean")
+  (docs "Enables the use of tiled GL textures to more efficiently use available texture memory")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property tile-waste
+  (of-object "ClutterCairo")
+  (prop-type "GParamInt")
+  (docs "Max wastage dimension of a texture when using tiled textures. Bigger values use less textures, smaller values less texture memory.")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property pixel-type
+  (of-object "ClutterCairo")
+  (prop-type "GParamInt")
+  (docs "GL texture pixel type used")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property pixel-format
+  (of-object "ClutterCairo")
+  (prop-type "GParamInt")
+  (docs "GL texture pixel format used")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property sync-size
+  (of-object "ClutterCairo")
+  (prop-type "GParamBoolean")
+  (docs "Auto sync size of actor to underlying pixbuf dimensions")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property repeat-y
+  (of-object "ClutterCairo")
+  (prop-type "GParamBoolean")
+  (docs "Reapeat underlying pixbuf rather than scale in y direction. Currently ignored")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property repeat-x
+  (of-object "ClutterCairo")
+  (prop-type "GParamBoolean")
+  (docs "Reapeat underlying pixbuf rather than scale in x direction. Currently ignored")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property filter-quality
+  (of-object "ClutterCairo")
+  (prop-type "GParamInt")
+  (docs "Values 0 and 1 current only supported, with 0 being lower quality but fast, 1 being better quality but slower. ( Currently just maps to GL_NEAREST / GL_LINEAR )")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property surface-width
+  (of-object "ClutterCairo")
+  (prop-type "GParamInt")
+  (docs "Surface Width")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property surface-height
+  (of-object "ClutterCairo")
+  (prop-type "GParamInt")
+  (docs "Surface Height")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+

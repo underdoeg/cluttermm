@@ -1,6 +1,4 @@
-// -*- c++ -*-
-/*
- * Copyright 2008 Jonathon Jongsma
+/* Copyright (C) 1998-2006 The gtkmm Development Team
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -17,22 +15,19 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <glibmm/init.h>
-#include <glibmm/ustring.h>
-#include <gdkmm/wrap_init.h>
-#include <cluttermmconfig.h> //For LIBCLUTTERMM_VERSION
-#include <cluttermm/wrap_init.h>
+#include "glibmm_generate_extra_defs/generate_extra_defs.h"
 #include <clutter/clutter.h>
+#include <clutter-cairo/clutter-cairo.h>
+#include <iostream>
 
-namespace Clutter
-{
 
-void init(int* nargs, gchar **args[])
+int main (int argc, char *argv[])
 {
-  Glib::init(); //Sets up the g type system and the Glib::wrap() table.
-  Gdk::wrap_init();
-  wrap_init(); //Tells the Glib::wrap() table about the libcluttermm classes.
-  clutter_init(nargs, args);
+  clutter_init(&argc, &argv) ;
+
+  std::cout 
+    << get_defs(CLUTTER_TYPE_CAIRO)
+    ;
+
+  return 0;
 }
-
-} //namespace Clutter

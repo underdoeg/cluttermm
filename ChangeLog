@@ -1,3 +1,8 @@
+2008-04-20  Jonathon Jongsma  <jjongsma@gnome.org>
+
+	* clutter-cairo: split cluttermm-cairo library into its own subdirectory to
+	match the way the underlying clutter library is divided
+
 2008-04-15  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* configure.in: bumped version number to 0.5.1

@@ -1,4 +1,6 @@
 // -*- c++ -*-
+#ifndef _LIBCLUTTERMM_CAIRO_INIT_H
+#define _LIBCLUTTERMM_CAIRO_INIT_H
 /*
  * Copyright 2008 Jonathon Jongsma
  *
@@ -17,22 +19,17 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <glibmm/init.h>
-#include <glibmm/ustring.h>
-#include <gdkmm/wrap_init.h>
-#include <cluttermmconfig.h> //For LIBCLUTTERMM_VERSION
-#include <cluttermm/wrap_init.h>
-#include <clutter/clutter.h>
+#include <glibmm.h>
 
 namespace Clutter
 {
-
-void init(int* nargs, gchar **args[])
+namespace Cairo
 {
-  Glib::init(); //Sets up the g type system and the Glib::wrap() table.
-  Gdk::wrap_init();
-  wrap_init(); //Tells the Glib::wrap() table about the libcluttermm classes.
-  clutter_init(nargs, args);
-}
 
+void init(int* nargs, gchar** args[]);
+
+} //namespace Cairo
 } //namespace Clutter
+
+#endif //_LIBCLUTTERMM_CAIRO_INIT_H
+

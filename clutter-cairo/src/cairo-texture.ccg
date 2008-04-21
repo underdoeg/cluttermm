@@ -19,10 +19,13 @@
 
 namespace Clutter
 {
-    void CairoTexture::set_source_color (const Cairo::RefPtr<Cairo::Context>& cr, const Color& color)
+namespace Cairo
+{
+    void CairoTexture::set_source_color (const ::Cairo::RefPtr< ::Cairo::Context >& cr, const Color& color)
     {
         clutter_cairo_set_source_color (cr->cobj (), color.gobj ());
     }
 
+} //namespace Cairo
 } //namespace Clutter
 

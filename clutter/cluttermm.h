@@ -52,7 +52,6 @@ extern const int cluttermm_micro_version;
 #include <cluttermm/shader.h>
 #include <cluttermm/script.h>
 #include <cluttermm/types.h>
-#include <cluttermm/cairo-texture.h>
 
 //#include <cluttermm/box.h>
 //#include <cluttermm/container.h>

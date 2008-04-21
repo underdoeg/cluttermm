@@ -1,10 +1,11 @@
 /* 
  * Pretty cairo flower hack.
+ * This is a very cursory translation from C to C++.  As such, you will notice
+ * that there are a lot of C-isms in this example yet, but it should still give
+ * an idea of how to use cluttermm-cairo
  */
 
-#include <cluttermm/cairo-texture.h>
-#include <cluttermm/stage.h>
-#include <cluttermm/init.h>
+#include <cluttermm-cairo.h>
 #include <clutter/clutter.h>
 
 #include <unistd.h> 		/* for sleep(), used for screenshots */
@@ -15,9 +16,7 @@
 #define PETAL_VAR 40
 #define N_FLOWERS 40 /* reduce if you have a small card */
 
-using namespace Clutter;
-
-struct Flower : public CairoTexture
+struct Flower : public Clutter::Cairo::CairoTexture
 {
     static Glib::RefPtr<Flower> create ()
     {
@@ -138,12 +137,12 @@ tick (Glib::RefPtr<Flower> flowers[])
         flowers[i]->y   += flowers[i]->v;
         flowers[i]->rot += flowers[i]->rv;
 
-        if (flowers[i]->y > (gint) Stage::get_default ()->get_height ())
+        if (flowers[i]->y > (gint) Clutter::Stage::get_default ()->get_height ())
             flowers[i]->y = -flowers[i]->get_height ();
 
         flowers[i]->set_position (flowers[i]->x, flowers[i]->y);
 
-        flowers[i]->set_rotation (Z_AXIS,
+        flowers[i]->set_rotation (Clutter::Z_AXIS,
                 flowers[i]->rot,
                 flowers[i]->get_width ()/2,
                 flowers[i]->get_height ()/2,
@@ -159,15 +158,15 @@ int
 main (int argc, char **argv)
 {
   int              i;
-  Glib::RefPtr<Stage> stage;
-  Color stage_color (0x0, 0x0, 0x0, 0xff);
+  Glib::RefPtr<Clutter::Stage> stage;
+  Clutter::Color stage_color (0x0, 0x0, 0x0, 0xff);
   Glib::RefPtr<Flower> flowers[N_FLOWERS];
 
   srand(time(NULL));
 
-  Clutter::init (&argc, &argv);
+  Clutter::Cairo::init (&argc, &argv);
 
-  stage = Stage::get_default ();
+  stage = Clutter::Stage::get_default ();
 
   stage->set_color (stage_color);
 

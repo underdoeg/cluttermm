@@ -1,11 +1,8 @@
 // -*- c++ -*-
 #ifndef _LIBCLUTTERMM_INIT_H
 #define _LIBCLUTTERMM_INIT_H
-/* $Id: init.h,v 1.4 2003/10/12 09:50:13 murrayc Exp $ */
-
-/* init.h
- *
- * Copyright 2001      Free Software Foundation
+/*
+ * Copyright 2008 Jonathon Jongsma
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public

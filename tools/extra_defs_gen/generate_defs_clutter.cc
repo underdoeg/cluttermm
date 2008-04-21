@@ -18,7 +18,6 @@
 #include "glibmm_generate_extra_defs/generate_extra_defs.h"
 #include <gtk/gtk.h>
 #include <clutter/clutter.h>
-#include <clutter-cairo/clutter-cairo.h>
 #include <iostream>
 
 
@@ -59,7 +58,6 @@ int main (int argc, char *argv[])
     << get_defs(CLUTTER_TYPE_SCORE)
     << get_defs(CLUTTER_TYPE_SHADER)
     << get_defs(CLUTTER_TYPE_SCRIPT)
-    << get_defs(CLUTTER_TYPE_CAIRO)
     ;
 //    << get_defs(CLUTTER_TYPE_VBOX)
 //    << get_defs(CLUTTER_TYPE_MARGIN);

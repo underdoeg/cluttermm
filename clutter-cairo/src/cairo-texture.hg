@@ -18,11 +18,13 @@
 #include <cluttermm/texture.h>
 #include <cairomm/context.h>
  
-_DEFS(cluttermm,clutter)
+_DEFS(cluttermm-cairo,clutter-cairo)
 _PINCLUDE(cluttermm/private/texture_p.h)
 
 
 namespace Clutter
+{
+namespace Cairo
 {
 
 class CairoTexture :
@@ -36,12 +38,13 @@ protected:
 public:
   _WRAP_CREATE(guint width, guint height);
 
-#m4 _CONVERSION(`cairo_t*',`Cairo::RefPtr<Cairo::Context>',`$2(new Cairo::Context ($3, true))')
-  _WRAP_METHOD(Cairo::RefPtr<Cairo::Context> create_cairo_context (), clutter_cairo_create)
+#m4 _CONVERSION(`cairo_t*',`::Cairo::RefPtr< ::Cairo::Context >',`$2(new ::Cairo::Context ($3, true))')
+  _WRAP_METHOD(::Cairo::RefPtr< ::Cairo::Context > create_cairo_context (), clutter_cairo_create)
 
-  static void set_source_color (const Cairo::RefPtr<Cairo::Context>& cr, const Color& color);
+  static void set_source_color (const ::Cairo::RefPtr< ::Cairo::Context >& cr, const Color& color);
 };
 
+} // namespace Cairo
 } // namespace Clutter
 
 //vim: ts=2,sw=2
