@@ -1,3 +1,31 @@
+2008-04-22  Siavash Safi  <siavash.safi@gmail.com>
+
+	* Makefile.am:
+	* clutter-gtk/Makefile.am:
+	* clutter-gtk/README:
+	* clutter-gtk/cluttermm-gtk-config.h.in:
+	* clutter-gtk/cluttermm-gtk.h:
+	* clutter-gtk/cluttermm-gtk.pc.in:
+	* clutter-gtk/cluttermm-gtk/Makefile.am:
+	* clutter-gtk/cluttermm-gtk/init.cc:
+	* clutter-gtk/cluttermm-gtk/init.h:
+	* clutter-gtk/cluttermm-gtk/private/Makefile.am:
+	* clutter-gtk/cluttermm-gtk/wrap_init.h:
+	* clutter-gtk/src/Makefile.am:
+	* clutter-gtk/src/Makefile_list_of_hg.am_fragment:
+	* clutter-gtk/src/clutter-gtk.defs:
+	* clutter-gtk/src/clutter-gtk_enums.defs:
+	* clutter-gtk/src/clutter-gtk_methods.defs:
+	* clutter-gtk/src/clutter-gtk_others.defs:
+	* clutter-gtk/src/clutter-gtk_signals.defs:
+	* clutter-gtk/src/clutter-gtk_vfuncs.defs:
+	* clutter-gtk/src/embed.ccg:
+	* clutter-gtk/src/embed.hg:
+	* configure.in:
+	* examples/Makefile.am:
+	* examples/Makefile.am_fragment:
+	* examples/embed-gtk.cc: Added support for clutter-gtk library.
+
 2008-04-20  Jonathon Jongsma  <jjongsma@gnome.org>
 
 	* clutter-cairo: split cluttermm-cairo library into its own subdirectory to

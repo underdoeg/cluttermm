@@ -38,6 +38,7 @@ AM_INIT_AUTOMAKE($PACKAGE, $VERSION)
 dnl Specify a configuration file (no autoheader)
 AM_CONFIG_HEADER(clutter/cluttermmconfig.h)
 AM_CONFIG_HEADER(clutter-cairo/cluttermm-cairo-config.h)
+AM_CONFIG_HEADER(clutter-gtk/cluttermm-gtk-config.h)
 AM_MAINTAINER_MODE
 AL_ACLOCAL_INCLUDE(scripts)
 
@@ -88,6 +89,13 @@ PKG_CHECK_MODULES(CLUTTERMM_CAIRO,
 CLUTTERMM_CAIRO_API_VER=[cluttermm-cairo-1.0]
 AC_SUBST(CLUTTERMM_CAIRO_API_VER)
 
+PKG_CHECK_MODULES(CLUTTERMM_GTK,
+                  [gtkmm-2.4
+                   clutter-gtk-0.6])
+
+CLUTTERMM_GTK_API_VER=[cluttermm-gtk-1.0]
+AC_SUBST(CLUTTERMM_GTK_API_VER)
+
 GMM_PROCDIR=`pkg-config --variable=gmmprocdir glibmm-2.4`
 AC_SUBST(GMM_PROCDIR)
 GMM_PROC=$GMM_PROCDIR/gmmproc
@@ -119,6 +127,12 @@ AC_OUTPUT([
   clutter-cairo/src/Makefile
   clutter-cairo/cluttermm-cairo/Makefile
   clutter-cairo/cluttermm-cairo/private/Makefile
+
+  clutter-gtk/Makefile
+  clutter-gtk/$CLUTTERMM_GTK_API_VER.pc:clutter-gtk/cluttermm-gtk.pc.in
+  clutter-gtk/src/Makefile
+  clutter-gtk/cluttermm-gtk/Makefile
+  clutter-gtk/cluttermm-gtk/private/Makefile
 
   tools/Makefile
     tools/extra_defs_gen/Makefile

@@ -1,0 +1,5 @@
+(include clutter-gtk_methods.defs)
+(include clutter-gtk_signals.defs)
+(include clutter-gtk_vfuncs.defs)
+(include clutter-gtk_enums.defs)
+(include clutter-gtk_others.defs)

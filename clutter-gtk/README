@@ -1,0 +1,6 @@
+Base directory for cluttermm-gtk, which integrates cluttermm and gtkmm
+
+Here is the layout
+
+  src - actual sources used to build, processed with gmmproc
+  cluttermm-gtk - built sources (do not edit)
