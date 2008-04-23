@@ -1,5 +1,12 @@
 2008-04-22  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter-cairo/cluttermm-cairo/private/Makefile.am:
+	* clutter-gtk/cluttermm-gtk/private/Makefile.am:
+	* tools/m4/Makefile.am: fix up a couple things that were missed from the API
+	version rename
+
+2008-04-22  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* clutter-cairo/Makefile.am:
 	* clutter-cairo/cluttermm-cairo/Makefile.am:
 	* clutter-gtk/Makefile.am:
