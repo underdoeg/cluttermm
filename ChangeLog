@@ -1,3 +1,7 @@
+2008-04-22  Jonathon Jongsma  <jjongsma@gnome.org>
+
+	* autogen.sh: abort if automake fails
+
 2008-04-22  Siavash Safi  <siavash.safi@gmail.com>
 
 	* Makefile.am:

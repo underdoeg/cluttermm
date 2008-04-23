@@ -37,7 +37,7 @@ aclocal -I scripts $ACLOCAL_FLAGS
 #autoheader
 
 echo "Building makefiles."
-automake   --add-missing
+automake   --add-missing || exit 1
 
 echo "Building configure."
 autoconf
