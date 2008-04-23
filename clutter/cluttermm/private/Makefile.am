@@ -4,7 +4,7 @@
 include $(srcdir)/../../src/Makefile_list_of_hg.am_fragment
 files_built_h		= $(files_hg:.hg=_p.h)
 
-private_includedir	= ${includedir}/$(CLUTTERMM_API_VER)/cluttermm/private
+private_includedir	= ${includedir}/cluttermm-$(API_VER)/cluttermm/private
 private_include_HEADERS	= $(files_built_h)
 
 maintainer-clean-local:

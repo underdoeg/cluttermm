@@ -1,13 +1,13 @@
 ## Copyright (c) 2001
 ## The cluttermm development team.
 
-SUBDIRS			= private
+SUBDIRS = private
 
-sublib_name		= cluttermm-cairo
-sublib_libname = cluttermm-cairo-1.0
+sublib_name = cluttermm-cairo
+sublib_libname = cluttermm-cairo-$(API_VER)
 sublib_libversion = $(CLUTTERMM_SO_VERSION)
-sublib_namespace	= Clutter
-sublib_cflags		= $(CLUTTERMM_CAIRO_CFLAGS) -I$(top_srcdir)/clutter
+sublib_namespace = Clutter
+sublib_cflags = $(CLUTTERMM_CAIRO_CFLAGS) -I$(top_srcdir)/clutter
 sublib_topdir = clutter-cairo
 
 
@@ -16,9 +16,9 @@ files_extra_cc	= init.cc
 
 include $(top_srcdir)/build_shared/Makefile_build_gensrc.am_fragment
 
-lib_LTLIBRARIES			= libcluttermm-cairo-1.0.la
-libcluttermm_cairo_1_0_la_SOURCES	= $(files_all_cc)
-libcluttermm_cairo_1_0_la_LDFLAGS	= $(common_ldflags)
-libcluttermm_cairo_1_0_la_LIBADD	= $(CLUTTERMM_CAIRO_LIBS) \
-									  $(top_builddir)/clutter/cluttermm/libcluttermm-1.0.la
+lib_LTLIBRARIES = libcluttermm-cairo-@API_VER@.la
+libcluttermm_cairo_@API_VER@_la_SOURCES = $(files_all_cc)
+libcluttermm_cairo_@API_VER@_la_LDFLAGS = $(common_ldflags)
+libcluttermm_cairo_@API_VER@_la_LIBADD = $(CLUTTERMM_CAIRO_LIBS) \
+	$(top_builddir)/clutter/cluttermm/libcluttermm-$(API_VER).la
 

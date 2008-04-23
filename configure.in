@@ -18,10 +18,10 @@ CLUTTERMM_SO_VERSION=1:0:0
 
 CLUTTERMM_VERSION=$CLUTTERMM_MAJOR_VERSION.$CLUTTERMM_MINOR_VERSION.$CLUTTERMM_MICRO_VERSION
 CLUTTERMM_RELEASE=$CLUTTERMM_MAJOR_VERSION.$CLUTTERMM_MINOR_VERSION
-AC_DEFINE_UNQUOTED(CLUTTERMM_MAJOR_VERSION, $CLUTTERMM_MAJOR_VERSION)
-AC_DEFINE_UNQUOTED(CLUTTERMM_MINOR_VERSION, $CLUTTERMM_MINOR_VERSION)
-AC_DEFINE_UNQUOTED(CLUTTERMM_MICRO_VERSION, $CLUTTERMM_MICRO_VERSION)
-AC_DEFINE_UNQUOTED(CLUTTERMM_VERSION, "$CLUTTERMM_VERSION")
+AC_DEFINE_UNQUOTED([CLUTTERMM_MAJOR_VERSION], $CLUTTERMM_MAJOR_VERSION, major version)
+AC_DEFINE_UNQUOTED([CLUTTERMM_MINOR_VERSION], $CLUTTERMM_MINOR_VERSION, minor version)
+AC_DEFINE_UNQUOTED([CLUTTERMM_MICRO_VERSION], $CLUTTERMM_MICRO_VERSION, micro version)
+AC_DEFINE_UNQUOTED([CLUTTERMM_VERSION], "$CLUTTERMM_VERSION", cluttermm version string)
 AC_SUBST(CLUTTERMM_VERSION)
 AC_SUBST(CLUTTERMM_RELEASE)
 AC_SUBST(CLUTTERMM_SO_VERSION)
@@ -72,29 +72,26 @@ AC_CHECK_PROGS(PERL, perl5 perl)
 #########################################################################
 #  Dependancy checks
 #########################################################################
+
 PKG_CHECK_MODULES(CLUTTERMM,
                   gtkmm-2.4 >= 2.10.9
                   clutter-0.6)
 AC_SUBST(CLUTTERMM_CFLAGS)
 AC_SUBST(CLUTTERMM_LIBS)
 
-CLUTTERMM_API_VER=[cluttermm-1.0]
-AC_SUBST(CLUTTERMM_API_VER)
-
 PKG_CHECK_MODULES(CLUTTERMM_CAIRO,
                   [gtkmm-2.4
                    clutter-cairo-0.6
                    cairomm-1.0])
 
-CLUTTERMM_CAIRO_API_VER=[cluttermm-cairo-1.0]
-AC_SUBST(CLUTTERMM_CAIRO_API_VER)
-
 PKG_CHECK_MODULES(CLUTTERMM_GTK,
                   [gtkmm-2.4
                    clutter-gtk-0.6])
 
-CLUTTERMM_GTK_API_VER=[cluttermm-gtk-1.0]
-AC_SUBST(CLUTTERMM_GTK_API_VER)
+# the API version of the library.  Libraries and pkg-config files will have this
+# value appended to them, e.g. libclutter-0.6.so
+API_VER=[0.6]
+AC_SUBST(API_VER)
 
 GMM_PROCDIR=`pkg-config --variable=gmmprocdir glibmm-2.4`
 AC_SUBST(GMM_PROCDIR)
@@ -117,19 +114,19 @@ AC_OUTPUT([
   Makefile
 
   clutter/Makefile
-  clutter/$CLUTTERMM_API_VER.pc:clutter/cluttermm.pc.in
+  clutter/cluttermm-$API_VER.pc:clutter/cluttermm.pc.in
   clutter/src/Makefile
   clutter/cluttermm/Makefile
   clutter/cluttermm/private/Makefile
 
   clutter-cairo/Makefile
-  clutter-cairo/$CLUTTERMM_CAIRO_API_VER.pc:clutter-cairo/cluttermm-cairo.pc.in
+  clutter-cairo/cluttermm-cairo-$API_VER.pc:clutter-cairo/cluttermm-cairo.pc.in
   clutter-cairo/src/Makefile
   clutter-cairo/cluttermm-cairo/Makefile
   clutter-cairo/cluttermm-cairo/private/Makefile
 
   clutter-gtk/Makefile
-  clutter-gtk/$CLUTTERMM_GTK_API_VER.pc:clutter-gtk/cluttermm-gtk.pc.in
+  clutter-gtk/cluttermm-gtk-$API_VER.pc:clutter-gtk/cluttermm-gtk.pc.in
   clutter-gtk/src/Makefile
   clutter-gtk/cluttermm-gtk/Makefile
   clutter-gtk/cluttermm-gtk/private/Makefile

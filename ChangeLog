@@ -1,5 +1,23 @@
 2008-04-22  Jonathon Jongsma  <jjongsma@gnome.org>
 
+	* clutter-cairo/Makefile.am:
+	* clutter-cairo/cluttermm-cairo/Makefile.am:
+	* clutter-gtk/Makefile.am:
+	* clutter-gtk/cluttermm-gtk/Makefile.am:
+	* clutter/Makefile.am:
+	* clutter/cluttermm.pc.in:
+	* clutter/cluttermm/Makefile.am:
+	* clutter/cluttermm/private/Makefile.am:
+	* clutter/cluttermmconfig.h.in:
+	* configure.in:
+	* examples/Makefile.am_fragment: now change everything over to use the -0.6
+	API version instead of -1.0.  The C Clutter library uses 0.6 for their API
+	version and if cluttermm uses -1.0 now, we might run into trouble when
+	clutterm reaches 1.0.  This should be ok yet since we don't have any real
+	users or complete releases yet.
+
+2008-04-22  Jonathon Jongsma  <jjongsma@gnome.org>
+
 	* autogen.sh: abort if automake fails
 
 2008-04-22  Siavash Safi  <siavash.safi@gmail.com>

@@ -2,14 +2,14 @@ SUBDIRS		= src cluttermm-gtk
 
 EXTRA_DIST	= README					\
 		  cluttermm-gtk-config.h.in cluttermm-gtk.h	\
-		  cluttermm-gtk-1.0.pc.in
+		  cluttermm-gtk.pc.in
 
-cluttermm_includedir		= $(includedir)/$(CLUTTERMM_GTK_API_VER)
+cluttermm_includedir		= $(includedir)/cluttermm-gtk-$(API_VER)
 cluttermm_include_HEADERS	= cluttermm-gtk.h
 
-cluttermm_configdir		= $(libdir)/$(CLUTTERMM_GTK_API_VER)/include
+cluttermm_configdir		= $(libdir)/cluttermm-gtk-$(API_VER)/include
 cluttermm_config_DATA	= cluttermm-gtk-config.h
 
 pkgconfigdir		= $(libdir)/pkgconfig
-pkgconfig_DATA		= cluttermm-gtk-1.0.pc
+pkgconfig_DATA		= cluttermm-gtk-$(API_VER).pc
 
