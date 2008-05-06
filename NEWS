@@ -1,3 +1,18 @@
+0.5.1:
+
+* Added cluttermm-gtk, wrapping clutter-gtk.
+  This provides the Clutter::Gtk::Embed widget.
+  (Siavash Safi)
+* Added cluttermm-cairo, wrapping clutter-cairo.
+  This provides Clutter::Cairo::CairoTexture.
+  (Jonathon Jongsma)
+* Changed the pkg-config files to use 0.6 in their name, so we can target 
+  specific clutter API versions. For instance, cluttermm-0.6, cluttermm-gtk-0.6, 
+  and cluttermm-cairo-0.6.
+  (Jonathon Jongsma)
+* Actor: add default value of 'true' to Actor::set_reactive().
+  (Jonathon Jongsma)
+
 0.5.0:
 
 Initial version.

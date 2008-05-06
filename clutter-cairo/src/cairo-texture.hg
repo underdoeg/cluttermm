@@ -27,6 +27,7 @@ namespace Clutter
 namespace Cairo
 {
 
+//TODO: Documentation.
 class CairoTexture :
   public Texture
 {

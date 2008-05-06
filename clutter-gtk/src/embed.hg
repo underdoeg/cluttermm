@@ -28,6 +28,7 @@ namespace Clutter
 namespace Gtk
 {
 
+//TODO: Documentation.
 class Embed :
   public ::Gtk::Widget
 {
