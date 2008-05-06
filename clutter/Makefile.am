@@ -12,4 +12,5 @@ cluttermm_config_DATA	= cluttermmconfig.h
 
 pkgconfigdir		= $(libdir)/pkgconfig
 pkgconfig_DATA		= cluttermm-$(API_VER).pc
+DISTCLEANFILES = $(pkgconfig_DATA)
 
