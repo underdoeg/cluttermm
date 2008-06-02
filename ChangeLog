@@ -1,8 +1,13 @@
+2008-06-02  Murray Cumming  <murrayc@murrayc.com>
+
+	* examples/Makefile.am: Added actor.png to the dist.
+	Bug #536180 (Denis Leroy).
+
 2008-06-02   Denis Leroy  <denis@poolshark.org>
 
 	* clutter-cairo/cluttermm-cairo.pc.in:
 	* clutter-gtk/cluttermm-gtk.pc.in: Use API_VER so the correct library 
-	names are used.
+	names are used. Bug #536181.
 
 0.5.1:
 
