@@ -33,5 +33,36 @@ typedef ClutterAngle Angle;
 _WRAP_ENUM(RotateDirection, ClutterRotateDirection, NO_GTYPE)
 _WRAP_ENUM(RotateAxis, ClutterRotateAxis, NO_GTYPE)
 _WRAP_ENUM(Gravity, ClutterGravity, NO_GTYPE)
+
+class Vertex
+{
+  _CLASS_BOXEDTYPE_STATIC(Vertex, ClutterVertex)
+public:
+  Vertex(Unit x, Unit y, Unit z);
+
+  _MEMBER_GET(x, x, Unit, ClutterUnit)
+  _MEMBER_SET(x, x, Unit, ClutterUnit)
+  _MEMBER_GET(y, y, Unit, ClutterUnit)
+  _MEMBER_SET(y, y, Unit, ClutterUnit)
+  _MEMBER_GET(z, z, Unit, ClutterUnit)
+  _MEMBER_SET(z, z, Unit, ClutterUnit)
+};
+
+class Geometry
+{
+  _CLASS_BOXEDTYPE_STATIC(Geometry, ClutterGeometry)
+public:
+  Geometry(int x, int y, unsigned int width, unsigned int height);
+
+  _MEMBER_GET(x, x, int, gint)
+  _MEMBER_SET(x, x, int, gint)
+  _MEMBER_GET(y, y, int, gint)
+  _MEMBER_SET(y, y, int, gint)
+  _MEMBER_GET(width, width, unsigned int, guint)
+  _MEMBER_SET(width, width, unsigned int, guint)
+  _MEMBER_GET(height, height, unsigned int, guint)
+  _MEMBER_SET(height, height, unsigned int, guint)
+};
+
 }
 

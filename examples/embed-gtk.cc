@@ -28,11 +28,9 @@ int main(int argc, char** argv)
 
 	pentry = &entry;
 
-	Glib::RefPtr<Gdk::Pixbuf> pixbuf = Gdk::Pixbuf::create_from_file("actor.png");
-
 	Clutter::Gtk::Embed embed;
 
-	Glib::RefPtr<Clutter::Texture> texture = Clutter::Texture::create(pixbuf);
+	Glib::RefPtr<Clutter::Texture> texture = Clutter::Texture::create("actor.png");
 	texture->set_opacity(50);
 
 	label = Clutter::Label::create("Sans 10", "Enter some text in the Entry and click 'Apply' to update this text!");

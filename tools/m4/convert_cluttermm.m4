@@ -4,6 +4,10 @@ _CONVERSION(`const Glib::RefPtr<ActorBox>&',`ClutterActorBox*',__CONVERT_REFPTR_
 _CONVERSION(`ClutterActor*',`Glib::RefPtr<Actor>',`Glib::wrap($3)')
 _CONVERSION(`ClutterActor*',`Glib::RefPtr<const Actor>',`Glib::wrap($3)')
 
+_CONVERSION(`const Glib::RefPtr<Shader>&',`ClutterShader*',__CONVERT_REFPTR_TO_P)
+_CONVERSION(`ClutterShader*',`Glib::RefPtr<Shader>', `Glib::wrap($3)')
+_CONVERSION(`ClutterShader*',`Glib::RefPtr<const Shader>', `Glib::wrap($3)')
+
 _CONVERSION(`const Glib::RefPtr<Timeline>&',`ClutterTimeline*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`ClutterTimeline*',`Glib::RefPtr<Timeline>',`Glib::wrap($3)')
 _CONVERSION(`ClutterTimeline*',`Glib::RefPtr<const Timeline>',`Glib::wrap($3)')

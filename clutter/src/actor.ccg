@@ -20,6 +20,61 @@
 namespace Clutter
 {
 
+ActorBox::ActorBox(Unit x1, Unit y1, Unit x2, Unit y2)
+{
+  gobject_.x1 = x1;
+  gobject_.y1 = y1;
+  gobject_.x2 = x2;
+  gobject_.y2 = y2;
+}
+
+Geometry Actor::get_geometry() const
+{
+  Geometry geom;
+  clutter_actor_get_geometry(const_cast<ClutterActor*>(gobj()), geom.gobj());
+  return geom;
+}
+
+ActorBox Actor::get_paint_area() const
+{
+  ActorBox box;
+  clutter_actor_get_paint_area(const_cast<ClutterActor*>(gobj()), box.gobj());
+  return box;
+}
+
+void Actor::get_abs_allocation_vertices(Vertex vertices[4]) const
+{
+  clutter_actor_get_abs_allocation_vertices(const_cast<ClutterActor*>(gobj()), reinterpret_cast<ClutterVertex*>(vertices));
+}
+
+void Actor::get_allocation_vertices(Vertex vertices[4]) const
+{
+  clutter_actor_get_allocation_vertices(const_cast<ClutterActor*>(gobj()), NULL, reinterpret_cast<ClutterVertex*>(vertices));
+}
+
+void Actor::get_allocation_vertices(const Glib::RefPtr<Actor>& ancestor, Vertex vertices[4]) const
+{
+  clutter_actor_get_allocation_vertices(const_cast<ClutterActor*>(gobj()), Glib::unwrap(ancestor), reinterpret_cast<ClutterVertex*>(vertices));
+}
+
+ActorBox Actor::get_allocation_box() const
+{
+  ActorBox box;
+  clutter_actor_get_allocation_box(const_cast<ClutterActor*>(gobj()), box.gobj());
+  return box;
+}
+
+void Actor::apply_relative_transform_to_point(const Vertex& point, Vertex& vertex) const
+{
+  clutter_actor_apply_relative_transform_to_point(const_cast<ClutterActor*>(gobj()), NULL, const_cast<ClutterVertex*>(point.gobj()), vertex.gobj());
+}
+
+Geometry Actor::get_allocation_geometry() const
+{
+  Geometry geom;
+  clutter_actor_get_allocation_geometry(const_cast<ClutterActor*>(gobj()), geom.gobj());
+  return geom;
+}
 
 } //namespace Clutter
 

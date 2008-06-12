@@ -1,5 +1,27 @@
 2008-06-12  Armin Burgmeier  <armin@openismus.com>
 
+	* clutter/src/types.hg:
+	* clutter/src/types.ccg: Wrapped ClutterVertex, ClutterGeometry.
+
+	* clutter/src/texture.hg: Removed the constructor taking a pixbuf,
+	since it was removed in clutter, instead added constructors taking a
+	filename or an actor, respectively.
+
+	* clutter/src/actor.hg:
+	* clutter/src/actor.ccg: Wrapped new/remaining functions and signals.
+
+	* clutter/src/clutter_signals.defs: Regenerated because the
+	"unrealized" signal of ClutterActor was renamed to "unrealize".
+
+	* tools/m4/convert_cluttermm.m4: Added conversions between
+	ClutterShader* and Clutter::Shader.
+
+	* examples/embed-gtk.cc:
+	* examples/test-actors.cc: Create textures from file instead of from
+	pixbuf, to make them compile again.
+
+2008-06-12  Armin Burgmeier  <armin@openismus.com>
+
 	* clutter/src/clutter_methods.defs:
 	* clutter/src/clutter_enums.defs:
 	* clutter/src/clutter_docs.xml:

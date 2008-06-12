@@ -138,7 +138,7 @@ main (int argc, char *argv[])
     Glib::RefPtr<Clutter::Stage> stage = Clutter::Stage::get_default ();
     stage->set_size (800, 600);
 
-    Glib::RefPtr<Gdk::Pixbuf> pixbuf;
+    /*Glib::RefPtr<Gdk::Pixbuf> pixbuf;
     try
     {
         pixbuf = Gdk::Pixbuf::create_from_file ("actor.png");
@@ -148,7 +148,7 @@ main (int argc, char *argv[])
         std::cerr << ex.what () << std::endl;
         std::cerr << "You may need to run this example from the 'examples' directory" << std::endl;
         return 1;
-    }
+    }*/
 
     stage->set_title ("Actors Test");
     stage->set_color (stage_color);
@@ -197,7 +197,7 @@ main (int argc, char *argv[])
         // Create a texture from pixbuf, then clone it to save resources
         if (i == 0)
         {
-            oh->hands.push_back (Clutter::Texture::create (pixbuf));
+            oh->hands.push_back (Clutter::Texture::create ("actor.png"));
         }
         else
         {
