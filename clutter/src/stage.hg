@@ -69,7 +69,7 @@ public:
   //TODO: actor can be NULL.
   _WRAP_METHOD(void set_key_focus(const Glib::RefPtr<Actor>& actor), clutter_stage_set_key_focus)
 
-  _WRAP_METHOD(Glib::RefPtr<Gdk::Pixbuf> snapshot(int x, int y, int width, int height) const, clutter_stage_snapshot)
+  //_WRAP_METHOD(Glib::RefPtr<Gdk::Pixbuf> snapshot(int x, int y, int width, int height) const, clutter_stage_snapshot)
   _WRAP_METHOD(bool get_use_fog() const, clutter_stage_get_use_fog)
   _WRAP_METHOD(void set_use_fog(bool fog = true), clutter_stage_set_use_fog)
   _WRAP_METHOD(void set_fog(double density, double z_near, double z_far), clutter_stage_set_fog)
@@ -88,13 +88,13 @@ public:
   _WRAP_SIGNAL(void deactivate(), "deactivate")
 
 protected:
-  _WRAP_VFUNC(void set_fullscreen(bool fullscreen), set_fullscreen)
+/*  _WRAP_VFUNC(void set_fullscreen(bool fullscreen), set_fullscreen)
   _WRAP_VFUNC(void set_cursor_visible(bool visible), set_cursor_visible)
   _WRAP_VFUNC(Glib::RefPtr<Gdk::Pixbuf> draw_to_pixbuf(int x, int y, int width, int height), draw_to_pixbuf)
 
 #m4 _CONVERSION(`const char*',`const Glib::ustring&',__GCHARP_TO_USTRING)
   _WRAP_VFUNC(void set_title(const Glib::ustring& title), set_title)
-  _WRAP_VFUNC(void set_user_resize(bool value), set_user_resize)
+  _WRAP_VFUNC(void set_user_resize(bool value), set_user_resize)*/
 };
 
 } // namespace Clutter

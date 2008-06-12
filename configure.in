@@ -4,7 +4,7 @@ AC_INIT(clutter/cluttermmconfig.h.in)
 #  Version and initialization
 #########################################################################
 CLUTTERMM_MAJOR_VERSION=0
-CLUTTERMM_MINOR_VERSION=5
+CLUTTERMM_MINOR_VERSION=7
 CLUTTERMM_MICRO_VERSION=1
 
 #
@@ -75,22 +75,22 @@ AC_CHECK_PROGS(PERL, perl5 perl)
 
 PKG_CHECK_MODULES(CLUTTERMM,
                   gtkmm-2.4 >= 2.10.9
-                  clutter-0.6)
+                  clutter-0.7)
 AC_SUBST(CLUTTERMM_CFLAGS)
 AC_SUBST(CLUTTERMM_LIBS)
 
 PKG_CHECK_MODULES(CLUTTERMM_CAIRO,
                   [gtkmm-2.4
-                   clutter-cairo-0.6
+                   clutter-cairo-0.7
                    cairomm-1.0])
 
 PKG_CHECK_MODULES(CLUTTERMM_GTK,
                   [gtkmm-2.4
-                   clutter-gtk-0.6])
+                   clutter-gtk-0.7])
 
 # the API version of the library.  Libraries and pkg-config files will have this
 # value appended to them, e.g. libclutter-0.6.so
-API_VER=[0.6]
+API_VER=[0.8]
 AC_SUBST(API_VER)
 
 GMM_PROCDIR=`pkg-config --variable=gmmprocdir glibmm-2.4`

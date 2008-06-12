@@ -1,3 +1,21 @@
+2008-06-12  Armin Burgmeier  <armin@openismus.com>
+
+	* clutter/src/clutter_methods.defs:
+	* clutter/src/clutter_enums.defs:
+	* clutter/src/clutter_docs.xml:
+	* clutter/src/clutter_signals.defs:
+	* clutter/src/clutter_vfuncs.defs: Regenerated defs, removed some
+	vfuncs that do no longer exist.
+
+	* clutter/src/texture.hg:
+	* clutter/src/stage.hg:
+	* clutter/src/shader.hg:
+	* clutter/src/actor.hg: Removed some API that does not exist
+	anymore, to make it compile.
+
+	* configure.in: Changed API_VER to 0.8, version to 0.7.0, and require
+	clutter-0.7.
+
 2008-06-02  Murray Cumming  <murrayc@murrayc.com>
 
 	* examples/Makefile.am: Added actor.png to the dist.

@@ -130,51 +130,6 @@
   (return-type "int")
 )
 
-; ClutterStage
-
-(define-vfunc set_fullscreen
-  (of-object "ClutterStage")
-  (return-type "void")
-  (parameters
-    '("gboolean" "fullscreen")
-  )
-)
-
-(define-vfunc set_cursor_visible
-  (of-object "ClutterStage")
-  (return-type "void")
-  (parameters
-    '("gboolean" "visible")
-  )
-)
-
-(define-vfunc draw_to_pixbuf
-  (of-object "ClutterStage")
-  (return-type "GdkPixbuf*")
-  (parameters
-    '("gint" "x")
-    '("gint" "y")
-    '("gint" "width")
-    '("gint" "height")
-  )
-)
-
-(define-vfunc set_title
-  (of-object "ClutterStage")
-  (return-type "void")
-  (parameters
-    '("const-gchar*" "title")
-  )
-)
-
-(define-vfunc set_user_resize
-  (of-object "ClutterStage")
-  (return-type "void")
-  (parameters
-    '("gboolean" "value")
-  )
-)
-
 ; ClutterEntry
 
 (define-vfunc paint_cursor

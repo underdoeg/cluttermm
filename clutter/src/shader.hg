@@ -47,9 +47,9 @@ public:
 
   _WRAP_METHOD(std::string get_fragment_source() const, clutter_shader_get_fragment_source)
 
-  _WRAP_METHOD(bool bind(), clutter_shader_bind, errthrow)
+  //_WRAP_METHOD(bool bind(), clutter_shader_bind, errthrow)
   _WRAP_METHOD(void release(), clutter_shader_release)
-  _WRAP_METHOD(bool is_bound() const, clutter_shader_is_bound)
+  //_WRAP_METHOD(bool is_bound() const, clutter_shader_is_bound)
   _WRAP_METHOD(void set_is_enabled(bool enabled = true), clutter_shader_set_is_enabled)
   _WRAP_METHOD(bool get_is_enabled() const, clutter_shader_get_is_enabled)
 

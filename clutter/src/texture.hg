@@ -47,8 +47,8 @@ public:
   _WRAP_CREATE()
   _WRAP_CREATE(const Glib::RefPtr<Gdk::Pixbuf>& pixbuf);
 
-  _WRAP_METHOD(bool set_pixbuf(const Glib::RefPtr<Gdk::Pixbuf>& pixbuf), clutter_texture_set_pixbuf, errthrow)
-  _WRAP_METHOD(Glib::RefPtr<Gdk::Pixbuf> get_pixbuf() const, clutter_texture_get_pixbuf)
+//  _WRAP_METHOD(bool set_pixbuf(const Glib::RefPtr<Gdk::Pixbuf>& pixbuf), clutter_texture_set_pixbuf, errthrow)
+//  _WRAP_METHOD(Glib::RefPtr<Gdk::Pixbuf> get_pixbuf() const, clutter_texture_get_pixbuf)
   _WRAP_METHOD(void get_base_size(gint& width, gint& height) const, clutter_texture_get_base_size)
   _WRAP_METHOD(bool set_from_rgb_data(const guchar* data, bool has_alpha, int width, int height, int rowstride, int bpp, TextureFlags flags), clutter_texture_set_from_rgb_data, errthrow)
   _WRAP_METHOD(bool set_from_yuv_data(const guchar* data, int width, int height, TextureFlags flags), clutter_texture_set_from_yuv_data, errthrow)
@@ -57,12 +57,12 @@ public:
   _WRAP_SIGNAL(void pixbuf_change(), "pixbuf_change")
 
 protected:
-  _WRAP_METHOD(bool is_tiled() const, clutter_texture_is_tiled)
-  _WRAP_METHOD(void get_n_tiles(gint& n_x_tiles, gint& n_y_tiles), clutter_texture_get_n_tiles)
-  _WRAP_METHOD(void get_y_tile_detail(int y_index, int& pos, int& size, int& waste) const, clutter_texture_get_y_tile_detail)
-  _WRAP_METHOD(void get_x_tile_detail(int x_index, int& pos, int& size, int& waste) const, clutter_texture_get_x_tile_detail)
-  _WRAP_METHOD(bool has_generated_tiles() const, clutter_texture_has_generated_tiles)
-  _WRAP_METHOD(void bind_tile(int index), clutter_texture_bind_tile)
+//  _WRAP_METHOD(bool is_tiled() const, clutter_texture_is_tiled)
+//  _WRAP_METHOD(void get_n_tiles(gint& n_x_tiles, gint& n_y_tiles), clutter_texture_get_n_tiles)
+//  _WRAP_METHOD(void get_y_tile_detail(int y_index, int& pos, int& size, int& waste) const, clutter_texture_get_y_tile_detail)
+//  _WRAP_METHOD(void get_x_tile_detail(int x_index, int& pos, int& size, int& waste) const, clutter_texture_get_x_tile_detail)
+//  _WRAP_METHOD(bool has_generated_tiles() const, clutter_texture_has_generated_tiles)
+//  _WRAP_METHOD(void bind_tile(int index), clutter_texture_bind_tile)
 
 
 };
