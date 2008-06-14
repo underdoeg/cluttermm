@@ -30,7 +30,8 @@ int main(int argc, char** argv)
 
 	Clutter::Gtk::Embed embed;
 
-	Glib::RefPtr<Clutter::Texture> texture = Clutter::Texture::create("actor.png");
+	Glib::RefPtr<Clutter::Texture> texture = Clutter::Texture::create();
+	texture->set_from_file("actor.png");
 	texture->set_opacity(50);
 
 	label = Clutter::Label::create("Sans 10", "Enter some text in the Entry and click 'Apply' to update this text!");

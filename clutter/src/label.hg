@@ -44,7 +44,7 @@ public:
 #m4 _CONVERSION(`ClutterActor*',`Glib::RefPtr<Label>',`Glib::wrap((ClutterLabel*)$3)')
 
   _WRAP_METHOD(void set_text(const Glib::ustring& text), clutter_label_set_text)
-  _WRAP_METHOD(Glib::ustring set_text() const, clutter_label_get_text)
+  _WRAP_METHOD(Glib::ustring get_text() const, clutter_label_get_text)
   _WRAP_METHOD(void set_font_name(const Glib::ustring& font_name), clutter_label_set_font_name)
   _WRAP_METHOD(Glib::ustring get_font_name() const, clutter_label_get_font_name)
 
@@ -79,6 +79,17 @@ public:
 
   _WRAP_METHOD(bool get_justify() const, clutter_label_get_justify)
   _WRAP_METHOD(void set_justify(bool justify), clutter_label_set_justify)
+
+  _WRAP_PROPERTY("alignment", Pango::Alignment)
+  _WRAP_PROPERTY("attributes", Pango::AttrList)
+  _WRAP_PROPERTY("color", Color)
+  _WRAP_PROPERTY("ellipsize", Pango::EllipsizeMode)
+  _WRAP_PROPERTY("font-name", Glib::ustring)
+  _WRAP_PROPERTY("justify", bool)
+  _WRAP_PROPERTY("text", Glib::ustring)
+  _WRAP_PROPERTY("use-markup", bool)
+  _WRAP_PROPERTY("wrap", bool)
+  _WRAP_PROPERTY("wrap-mode", Pango::WrapMode)
 };
 
 } // namespace Clutter

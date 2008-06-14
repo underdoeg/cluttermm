@@ -231,11 +231,69 @@ public:
   _WRAP_SIGNAL(void realize(), "realize")
   _WRAP_SIGNAL(void unrealize(), "unrealize")
 
+  _WRAP_PROPERTY("allocation", ActorBox)
+  _WRAP_PROPERTY("anchor-x", int)
+  _WRAP_PROPERTY("anchor-y", int)
+  _WRAP_PROPERTY("clip", Geometry)
+  _WRAP_PROPERTY("depth", int)
+  _WRAP_PROPERTY("fixed-position-set", bool)
+  _WRAP_PROPERTY("fixed-x", Unit)
+  _WRAP_PROPERTY("fixed-y", Unit)
+  _WRAP_PROPERTY("has-clip", bool)
+  _WRAP_PROPERTY("height", int)
+  _WRAP_PROPERTY("min-height", Unit)
+  _WRAP_PROPERTY("min-height-set", bool)
+  _WRAP_PROPERTY("min-width", Unit)
+  _WRAP_PROPERTY("min-width-set", bool)
+  _WRAP_PROPERTY("opacity", guint8)
+  _WRAP_PROPERTY("reactive", bool)
+  _WRAP_PROPERTY("request-mode", RequestMode)
+  _WRAP_PROPERTY("rotation-angle-x", double)
+  _WRAP_PROPERTY("rotation-angle-y", double)
+  _WRAP_PROPERTY("rotation-angle-z", double)
+  _WRAP_PROPERTY("rotation-center-x", Vertex)
+  _WRAP_PROPERTY("rotation-center-y", Vertex)
+  _WRAP_PROPERTY("rotation-center-z", Vertex)
+  _WRAP_PROPERTY("scale-x", double)
+  _WRAP_PROPERTY("scale-y", double)
+  _WRAP_PROPERTY("show-on-set-parent", bool)
+  _WRAP_PROPERTY("visible", bool)
+  _WRAP_PROPERTY("width", int)
+  _WRAP_PROPERTY("x", int)
+  _WRAP_PROPERTY("y", int)
+
   protected:
   // according to the clutter docs, these functions should never be called
   // directly and are only for subclasses
   _WRAP_METHOD(void pick(const Color& color), clutter_actor_pick)
   _WRAP_METHOD(bool should_pick_paint() const, clutter_actor_should_pick_paint)
+
+  _WRAP_VFUNC(void show_all(), "show_all")
+  _WRAP_VFUNC(void hide_all(), "hide_all")
+
+  #m4 _CONVERSION(`const ClutterColor*', `const Color&', `Color(const_cast<ClutterColor*>($3), true)')
+  // TODO: I think we need to hand-code the vfuncs if we need to handle
+  // the ClutterUnit* being NULL.
+  #m4 _CONVERSION(`ClutterUnit*', `Unit&', `*($3)')
+  #m4 _CONVERSION(`const ClutterActorBox*', `const ActorBox&', `Glib::wrap($3)')
+  _WRAP_VFUNC(void pick(const Color& color), "pick")
+  _WRAP_VFUNC(void get_preferred_width(Unit for_height, Unit& min_width_p, Unit& natural_width_p) const, "get_preferred_width")
+  _WRAP_VFUNC(void get_preferred_height(Unit for_width, Unit& min_height_p, Unit& natural_height_p) const, "get_preferred_height")
+  _WRAP_VFUNC(void allocate(const ActorBox& box, bool absolute_origin_changed), "allocate")
+
+#ifdef GLIBMM_VFUNCS_ENABLED
+  // Hand code, since ActorBox can only copy a ClutterActorBox* but not ref one.
+  virtual void get_paint_area_vfunc(ActorBox& box) const;
+  //_WRAP_VFUNC(void get_paint_area(ActorBox& box), "get_paint_area")
+#endif
+
+#m4begin
+  _PUSH(SECTION_PCC_CLASS_INIT_VFUNCS)
+  klass->get_paint_area = &get_paint_area_vfunc_callback;
+  _SECTION(SECTION_PH_VFUNCS)
+  static void get_paint_area_vfunc_callback(ClutterActor* self, ClutterActorBox* box);
+  _POP()
+#m4end
 };
 
 } // namespace Clutter

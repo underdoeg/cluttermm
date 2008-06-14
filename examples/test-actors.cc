@@ -194,10 +194,12 @@ main (int argc, char *argv[])
         gint x, y, w, h;
         gint radius = get_radius ();
 
-        // Create a texture from pixbuf, then clone it to save resources
+        // Create a texture from file, then clone it to save resources
         if (i == 0)
         {
-            oh->hands.push_back (Clutter::Texture::create ("actor.png"));
+	    Glib::RefPtr<Clutter::Texture> texture(Clutter::Texture::create());
+	    texture->set_from_file("actor.png");
+            oh->hands.push_back (texture);
         }
         else
         {

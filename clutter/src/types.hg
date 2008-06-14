@@ -33,6 +33,7 @@ typedef ClutterAngle Angle;
 _WRAP_ENUM(RotateDirection, ClutterRotateDirection, NO_GTYPE)
 _WRAP_ENUM(RotateAxis, ClutterRotateAxis, NO_GTYPE)
 _WRAP_ENUM(Gravity, ClutterGravity, NO_GTYPE)
+_WRAP_ENUM(RequestMode, ClutterRequestMode, NO_GTYPE)
 
 class Vertex
 {

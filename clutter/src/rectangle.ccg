@@ -22,9 +22,16 @@ namespace Clutter
 
 Color Rectangle::get_color() const
 {
-    Color color;
-    clutter_rectangle_get_color(const_cast<ClutterRectangle*>(gobj()), color.gobj());
-    return color;
+  Color color;
+  clutter_rectangle_get_color(const_cast<ClutterRectangle*>(gobj()), color.gobj());
+  return color;
+}
+
+Color Rectangle::get_border_color() const
+{
+  Color color;
+  clutter_rectangle_get_border_color(const_cast<ClutterRectangle*>(gobj()), color.gobj());
+  return color;
 }
 
 } //namespace Clutter

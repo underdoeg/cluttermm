@@ -1,3 +1,33 @@
+2008-06-14  Armin Burgmeier  <armin@openismus.com>
+
+	* clutter/src/clutter_others.defs: Add ClutterMedia signals.
+	* clutter/src/clutter_vfuncs.defs: Add ClutterActor vfuncs.
+
+	* clutter/src/actor.hg:
+	* clutter/src/actor.ccg: Wrapped properties and vfuncs.
+
+	* clutter/src/media.hg: Wrap the get_uri() func correctly, wrap "eos"
+	signal and properties.
+
+	* clutter/src/rectangle.hg:
+	* clutter/src/rectangle.ccg: Implement get_border_color() (was only
+	declared, but not implemented), and wrap properties.
+
+	* clutter/src/label.hg:
+	* clutter/src/entry.hg: Wrap properties, fix a typo (get_text <->
+	set_text).
+
+	* clutter/src/types.hg:
+	* tools/m4/convert_cluttermm.m4: Wrap ClutterRequestMode enum.
+
+	* clutter/src/texture.hg: Removed the constructor taking a filename
+	since loading of the file could fail, and I want to avoid throwing an
+	error in a constructor. Instead, set_from_file() can be called after
+	construction. Also wrapped other new methods and properties.
+
+	* examples/embed-gtk.cc:
+	* examples/test-actors.cc: Adapt.
+
 2008-06-12  Armin Burgmeier  <armin@openismus.com>
 
 	* clutter/src/types.hg:

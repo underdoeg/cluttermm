@@ -76,5 +76,64 @@ Geometry Actor::get_allocation_geometry() const
   return geom;
 }
 
+// We need to hand-code this vfunc to write the result back into the
+// box variable. The C++ wrapper cannot ref the existing variable, but only
+// make a copy.
+void Actor_Class::get_paint_area_vfunc_callback(ClutterActor* self, ClutterActorBox* box)
+{
+  CppObjectType *const obj = dynamic_cast<CppObjectType*>(
+      Glib::ObjectBase::_get_current_wrapper((GObject*)self));
+
+  // Non-gtkmmproc-generated custom classes implicitly call the default
+  // Glib::ObjectBase constructor, which sets is_derived_. But gtkmmproc-
+  // generated classes can use this optimisation, which avoids the unnecessary
+  // parameter conversions if there is no possibility of the virtual function
+  // being overridden:
+  if(obj && obj->is_derived_())
+  {
+    #ifdef GLIBMM_EXCEPTIONS_ENABLED
+    try // Trap C++ exceptions which would normally be lost because this is a C callback.
+    {
+    #endif //GLIBMM_EXCEPTIONS_ENABLED
+      // Call the virtual member method, which derived classes might override.
+      ActorBox cpp_box;
+      obj->get_paint_area_vfunc(cpp_box);
+      *box = *cpp_box.gobj();
+    #ifdef GLIBMM_EXCEPTIONS_ENABLED
+    }
+    catch(...)
+    {
+      Glib::exception_handlers_invoke();
+    }
+    #endif //GLIBMM_EXCEPTIONS_ENABLED
+  }
+  else
+  {
+    BaseClassType *const base = static_cast<BaseClassType*>(
+        g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
+g_type_interface_peek(G_OBJECT_GET_CLASS(self), CppObjectType::get_type()) // Get the interface.
+)    );
+
+    // Call the original underlying C function:
+    if(base && base->get_paint_area)
+      (*base->get_paint_area)(self, box);
+  }
+}
+
+void Actor::get_paint_area_vfunc(ActorBox& box) const
+{
+  //Call the default C implementation:
+
+  BaseClassType *const base = static_cast<BaseClassType*>(
+    g_type_interface_peek_parent( // Get the parent interface of the interface (The original underlying C interface).
+      g_type_interface_peek(G_OBJECT_GET_CLASS(gobject_), CppObjectType::get_type()) // Get the interface.
+    )
+  );
+
+  if(base && base->get_paint_area)
+    (*base->get_paint_area)(const_cast<ClutterActor*>(gobj()), box.gobj());
+}
+
+
 } //namespace Clutter
 

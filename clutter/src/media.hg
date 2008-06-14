@@ -46,19 +46,32 @@ public:
   _WRAP_METHOD(int get_duration() const, clutter_media_get_duration)
 
 
-  // TODO: these aren't in the signals.defs file yet
-  //_WRAP_SIGNAL(void eos(), "eos")
+  _WRAP_SIGNAL(void eos(), "eos")
   // TODO: figure out what to do with this GError parameter
   //_WRAP_SIGNAL(void error(GError* error), "error")
+
+  _WRAP_PROPERTY("buffer-percent", int)
+  _WRAP_PROPERTY("can-seek", bool)
+  _WRAP_PROPERTY("duration", int)
+  _WRAP_PROPERTY("playing", bool)
+  _WRAP_PROPERTY("position", int)
+  _WRAP_PROPERTY("uri", Glib::ustring)
+  _WRAP_PROPERTY("volume", double)
 
 protected:
 
 #m4 _CONVERSION(`const char*',`const Glib::ustring&',__GCHARP_TO_USTRING)
   _WRAP_VFUNC(void set_uri(const Glib::ustring& uri), set_uri)
 
-  // TODO: error "No conversion from Glib::ustring to const char* defined", even
-  // though it works above in get_uri
-  //_WRAP_VFUNC(Glib::ustring get_uri() const, get_uri)
+  // Note: We cannot return a Glib::ustring here since the C API expects a
+  // const gchar* as return value. const gchar* however means that the returned
+  // value is not supposed to be freed by the caller. If we would want to return
+  // Glib::ustring here, what should we pass to the underlying C API then?
+  // ustring.c_str() doesn't work since the ustring destroys the data upon
+  // destruction (which means, we would effectively return an invalid pointer).
+  // We also can't copy the ustring's content since we would leak that copy
+  // otherwise.
+  _WRAP_VFUNC(const char* get_uri() const, get_uri)
   _WRAP_VFUNC(void set_playing(bool playing), set_playing)
   _WRAP_VFUNC(bool get_playing() const, get_playing)
   _WRAP_VFUNC(void set_position(int position), set_position)

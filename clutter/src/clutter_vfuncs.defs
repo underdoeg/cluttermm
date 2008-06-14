@@ -184,3 +184,59 @@
   )
 )
 
+; ClutterActor
+
+(define-vfunc show_all
+  (of-object "ClutterActor")
+  (return-type "void")
+)
+
+(define-vfunc hide_all
+  (of-object "ClutterActor")
+  (return-type "void")
+)
+
+(define-vfunc pick
+  (of-object "ClutterActor")
+  (return-type "void")
+  (parameters
+    '("const-ClutterColor*" "color")
+  )
+)
+
+(define-vfunc get_preferred_width
+  (of-object "ClutterActor")
+  (return-type "void")
+  (parameters
+    '("ClutterUnit" "for_height")
+    '("ClutterUnit*" "min_width_p")
+    '("ClutterUnit*" "natural_width_p")
+  )
+)
+
+(define-vfunc get_preferred_height
+  (of-object "ClutterActor")
+  (return-type "void")
+  (parameters
+    '("ClutterUnit" "for_width")
+    '("ClutterUnit*" "min_height_p")
+    '("ClutterUnit*" "natural_height_p")
+  )
+)
+
+(define-vfunc allocate
+  (of-object "ClutterActor")
+  (return-type "void")
+  (parameters
+    '("const-ClutterActorBox*" "box")
+    '("gboolean" "absolute_origin_changed")
+  )
+)
+
+(define-vfunc get_paint_area
+  (of-object "ClutterActor")
+  (return-type "void")
+  (parameters
+    '("ClutterActorBox*" "box")
+  )
+)
