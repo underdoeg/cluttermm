@@ -16,3 +16,33 @@
     '("GError*" "error")
   )
 )
+
+; ClutterContainer
+
+(define-signal actor-added
+  (of-object "ClutterContainer")
+  (return-type "void")
+  (when "first")
+  (parameters
+    '("ClutterActor*" "actor")
+  )
+)
+
+(define-signal actor-removed
+  (of-object "ClutterContainer")
+  (return-type "void")
+  (when "first")
+  (parameters
+    '("ClutterActor*" "actor")
+  )
+)
+
+(define-signal child-notify
+  (of-object "ClutterContainer")
+  (return-type "void")
+  (when "first")
+  (parameters
+    '("ClutterActor*" "actor")
+    '("GParamSpec*" "pspec")
+  )
+)

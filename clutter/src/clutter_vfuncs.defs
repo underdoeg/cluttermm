@@ -240,3 +240,76 @@
     '("ClutterActorBox*" "box")
   )
 )
+
+; ClutterContainer
+
+(define-vfunc add
+  (of-object "ClutterContainer")
+  (return-type "void")
+  (parameters
+    '("ClutterActor*" "actor")
+  )
+)
+
+(define-vfunc remove
+  (of-object "ClutterContainer")
+  (return-type "void")
+  (parameters
+    '("ClutterActor*" "actor")
+  )
+)
+
+(define-vfunc foreach
+  (of-object "ClutterContainer")
+  (return-type "void")
+  (parameters
+    '("ClutterCallback" "callback")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-vfunc raise
+  (of-object "ClutterContainer")
+  (return-type "void")
+  (parameters
+    '("ClutterActor*" "actor")
+    '("ClutterActor*" "sibling")
+  )
+)
+
+(define-vfunc lower
+  (of-object "ClutterContainer")
+  (return-type "void")
+  (parameters
+    '("ClutterActor*" "actor")
+    '("ClutterActor*" "sibling")
+  )
+)
+
+(define-vfunc sort_depth_order
+  (of-object "ClutterContainer")
+  (return-type "void")
+)
+
+(define-vfunc create_child_meta
+  (of-object "ClutterContainer")
+  (return-type "void")
+  (parameters
+    '("ClutterActor*" "actor")
+  )
+)
+
+(define-vfunc destroy_child_meta
+  (of-object "ClutterContainer")
+  (return-type "void")
+  (parameters
+    '("ClutterActor*" "actor")
+  )
+)
+(define-vfunc get_child_meta
+  (of-object "ClutterContainer")
+  (return-type "ClutterChildMeta*")
+  (parameters
+    '("ClutterActor*" "actor")
+  )
+)

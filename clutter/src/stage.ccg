@@ -20,11 +20,31 @@
 namespace Clutter
 {
 
+Perspective::Perspective(Fixed fovy, Fixed aspect, Fixed z_near, Fixed z_far)
+{
+  gobject_.fovy = fovy;
+  gobject_.aspect = aspect;
+  gobject_.z_near = z_near;
+  gobject_.z_far = z_far;
+}
+
 Color Stage::get_color() const
 {
   Color color;
   clutter_stage_get_color(const_cast<ClutterStage*>(gobj()), color.gobj());
   return color;
+}
+
+Perspective Stage::get_perspectivex() const
+{
+  Perspective perspective;
+  clutter_stage_get_perspectivex(const_cast<ClutterStage*>(gobj()), perspective.gobj());
+  return perspective;
+}
+
+void Stage::set_key_focus()
+{
+  clutter_stage_set_key_focus(gobj(), NULL);
 }
 
 } //namespace Clutter

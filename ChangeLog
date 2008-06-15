@@ -1,3 +1,22 @@
+2008-06-15  Armin Burgmeier  <armin@openismus.com>
+
+	* clutter/src/clutter_others.defs: Added signals for ClutterContainer.
+	* clutter/src/clutter_vfuncs.defs: Added vfuncs for ClutterContainer.
+
+	* clutter/src/container.hg: Wrapped vfuncs and other missing methods.
+	Did not yet wrap the ChildMeta/Child properties stuff which probably
+	needs some more thought.
+
+	* clutter/src/stage.hg:
+	* clutter/src/stage.ccg: Wrapped new properties and methods, and
+	ClutterPerspective.
+
+	* clutter/src/timeline.hg:
+	* clutter/src/timeline.ccg: Wrapped new signals, properties and methods.
+
+	* clutter/src/clutter_signals.defs: Regenerated after clutter bug #967
+	has been fixed (http://bugzilla.openedhand.com/show_bug.cgi?id=967).
+
 2008-06-14  Armin Burgmeier  <armin@openismus.com>
 
 	* clutter/src/clutter_others.defs: Add ClutterMedia signals.

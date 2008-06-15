@@ -56,6 +56,7 @@ public:
   _WRAP_METHOD(void advance(guint frame_num), clutter_timeline_advance)
   _WRAP_METHOD(int get_current_frame() const, clutter_timeline_get_current_frame)
   _WRAP_METHOD(guint get_delta(guint& msecs) const, clutter_timeline_get_delta)
+  guint get_delta() const;
   _WRAP_METHOD(void set_n_frames(guint n_frames), clutter_timeline_set_n_frames)
   _WRAP_METHOD(guint get_n_frames() const, clutter_timeline_get_n_frames)
   _WRAP_METHOD(bool is_playing() const, clutter_timeline_is_playing)
@@ -66,7 +67,17 @@ public:
   _WRAP_METHOD(void set_direction(TimelineDirection direction), clutter_timeline_set_direction)
   _WRAP_METHOD(TimelineDirection get_direction() const, clutter_timeline_get_direction)
 
+  _WRAP_METHOD_DOCS_ONLY(clutter_timeline_list_markers)
+  Glib::StringArrayHandle list_markers(gint frame_num) const;
+  _WRAP_METHOD(void add_marker_at_time(const Glib::ustring& marker_name, guint msecs), clutter_timeline_add_marker_at_time)
+  _WRAP_METHOD(void add_marker_at_frame(const Glib::ustring& marker_name, guint frame_num), clutter_timeline_add_marker_at_frame)
+  _WRAP_METHOD(bool has_marker(const Glib::ustring& marker_name), clutter_timeline_has_marker)
+  _WRAP_METHOD(void remove_marker(const Glib::ustring& marker_name), clutter_timeline_remove_marker)
+  _WRAP_METHOD(void advance_to_marker(const Glib::ustring& marker_name), clutter_timeline_advance_to_marker)
+
   _WRAP_PROPERTY("delay", guint)
+  _WRAP_PROPERTY("direction", TimelineDirection)
+  _WRAP_PROPERTY("duration", guint)
   _WRAP_PROPERTY("fps", guint)
   _WRAP_PROPERTY("loop", bool)
   _WRAP_PROPERTY("num-frames", guint)
@@ -75,6 +86,11 @@ public:
   _WRAP_SIGNAL(void new_frame(gint fram_num), "new-frame")
   _WRAP_SIGNAL(void paused(), "paused")
   _WRAP_SIGNAL(void started(), "started")
+
+  // TODO: This signal is detailed, though I don't think we can wrap the
+  // detail in Glibmm yet. armin.
+#m4 _CONVERSION(`const char*',`const Glib::ustring&',__GCHARP_TO_USTRING)
+  _WRAP_SIGNAL(void marker_reached(const Glib::ustring& marker_name, int frame_num), "marker-reached")
 
 };
 

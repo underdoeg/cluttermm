@@ -20,6 +20,17 @@
 namespace Clutter
 {
 
+guint Timeline::get_delta() const
+{
+  return clutter_timeline_get_delta(const_cast<ClutterTimeline*>(gobj()), NULL);
+}
+
+Glib::StringArrayHandle Timeline::list_markers(gint frame_num) const
+{
+  gsize n_markers;
+  gchar** markers = clutter_timeline_list_markers(const_cast<ClutterTimeline*>(gobj()), frame_num, &n_markers);
+  return Glib::StringArrayHandle(markers, n_markers, Glib::OWNERSHIP_DEEP);
+}
 
 } //namespace Clutter
 

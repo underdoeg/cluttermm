@@ -3709,7 +3709,7 @@
   (when "last")
   (parameters
     '("const-gchar*" "p0")
-    '("guint" "p1")
+    '("gint" "p1")
   )
 )
 
