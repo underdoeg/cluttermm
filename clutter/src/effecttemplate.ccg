@@ -1,0 +1,119 @@
+/* Copyright (C) 2007 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <clutter/clutter-effect.h>
+
+namespace Clutter
+{
+
+namespace
+{
+
+guint32 c_alpha_callback(ClutterAlpha* alpha, gpointer user_data)
+{
+  EffectTemplate::SlotAlphaFunc* alpha_func = static_cast<EffectTemplate::SlotAlphaFunc*>(user_data);
+  return (*alpha_func)(Glib::wrap(alpha, true));
+}
+
+void c_alpha_destroy_notify(gpointer data)
+{
+  delete static_cast<EffectTemplate::SlotAlphaFunc*>(data);
+}
+
+// We use this helper class instead of the ClutterEffectCompleteFuncs
+// because these don't have a GDestroyNotify.
+struct CompleteCallback: sigc::trackable
+{
+  EffectTemplate::SlotEffectCompleteFunc func;
+
+  static void create(const Glib::RefPtr<Timeline>& timeline, const Glib::RefPtr<Actor>& actor, const EffectTemplate::SlotEffectCompleteFunc& func)
+  {
+    CompleteCallback* cb = new CompleteCallback;
+    cb->func = func;
+    timeline->signal_completed().connect(sigc::bind(sigc::mem_fun(cb, &CompleteCallback::on_callback), actor));
+  }
+
+  void on_callback(const Glib::RefPtr<Actor>& actor)
+  {
+    func(actor);
+    // This causes the signal being disconnected from the timeline:
+    delete this;
+  }
+};
+
+}
+
+EffectTemplate::EffectTemplate(const Glib::RefPtr<Timeline>& timeline, const SlotAlphaFunc& alpha_func)
+:
+  _CONSTRUCT()
+{
+  clutter_effect_template_construct(gobj(), timeline->gobj(), c_alpha_callback, new SlotAlphaFunc(alpha_func), c_alpha_destroy_notify);
+}
+
+EffectTemplate::EffectTemplate(guint msecs, const SlotAlphaFunc& alpha_func)
+:
+  _CONSTRUCT()
+{
+  Glib::RefPtr<Timeline> timeline(Timeline::create(msecs));
+  clutter_effect_template_construct(gobj(), timeline->gobj(), c_alpha_callback, new SlotAlphaFunc(alpha_func), c_alpha_destroy_notify);
+}
+
+Glib::RefPtr<Timeline> EffectTemplate::fade(const Glib::RefPtr<Actor>& actor, guint8 opacity_end, const SlotEffectCompleteFunc& func)
+{
+  Glib::RefPtr<Timeline> timeline(Glib::wrap(clutter_effect_fade(gobj(), actor->gobj(), opacity_end, NULL, NULL), true));
+  CompleteCallback::create(timeline, actor, func);
+  return timeline;
+}
+
+Glib::RefPtr<Timeline> EffectTemplate::depth(const Glib::RefPtr<Actor>& actor, int depth_end, const SlotEffectCompleteFunc& func)
+{
+  Glib::RefPtr<Timeline> timeline(Glib::wrap(clutter_effect_depth(gobj(), actor->gobj(), depth_end, NULL, NULL), true));
+  CompleteCallback::create(timeline, actor, func);
+  return timeline;
+}
+
+Glib::RefPtr<Timeline> EffectTemplate::move(const Glib::RefPtr<Actor>& actor, int x, int y, const SlotEffectCompleteFunc& func)
+{
+  Glib::RefPtr<Timeline> timeline(Glib::wrap(clutter_effect_move(gobj(), actor->gobj(), x, y, NULL, NULL), true));
+  CompleteCallback::create(timeline, actor, func);
+  return timeline;
+}
+
+Glib::RefPtr<Timeline> EffectTemplate::path(const Glib::RefPtr<Actor>& actor, const ClutterKnot* knots, guint n_knots, const SlotEffectCompleteFunc& func)
+{
+  Glib::RefPtr<Timeline> timeline(Glib::wrap(clutter_effect_path(gobj(), actor->gobj(), knots, n_knots, NULL, NULL), true));
+  CompleteCallback::create(timeline, actor, func);
+  return timeline;
+}
+
+Glib::RefPtr<Timeline> EffectTemplate::scale(const Glib::RefPtr<Actor>& actor, double x_scale_end, double y_scale_end, const SlotEffectCompleteFunc& func)
+{
+  Glib::RefPtr<Timeline> timeline(Glib::wrap(clutter_effect_scale(gobj(), actor->gobj(), x_scale_end, y_scale_end, NULL, NULL), true));
+  CompleteCallback::create(timeline, actor, func);
+  return timeline;
+}
+
+Glib::RefPtr<Timeline> EffectTemplate::rotate(const Glib::RefPtr<Actor>& actor, RotateAxis axis, double angle_end, int center_x, int center_y, int center_z, RotateDirection direction, const SlotEffectCompleteFunc& func)
+{
+  Glib::RefPtr<Timeline> timeline(Glib::wrap(clutter_effect_rotate(gobj(), actor->gobj(), static_cast<ClutterRotateAxis>(axis), angle_end, center_x, center_y, center_z, static_cast<ClutterRotateDirection>(direction), NULL, NULL), true));
+  CompleteCallback::create(timeline, actor, func);
+  return timeline;
+}
+
+} // namespace Clutter
+
+//vim: ts=2,sw=2

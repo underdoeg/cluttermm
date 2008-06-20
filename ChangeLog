@@ -1,3 +1,18 @@
+2008-06-20  Armin Burgmeier  <armin@openismus.com>
+
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* clutter/src/effecttemplate.hg:
+	* clutter/src/effecttemplate.ccg: Wrapped ClutterEffectTemplate.
+
+	* clutter/src/alpha.hg: Wrap "alpha" and "timeline" properties.
+	* clutter/src/score.hg: Wrap new methods, properties and signals.
+
+	* clutter/cluttermm.h: Added effecttemplate.h to the includes.
+
+	* examples/Makefile.am:
+	* examples/effect.cc: Added a simple example to show how
+	Clutter::EffectTemplate can be used.
+
 2008-06-15  Armin Burgmeier  <armin@openismus.com>
 
 	* clutter/src/clutter_others.defs: Added signals for ClutterContainer.

@@ -39,6 +39,7 @@ extern const int cluttermm_micro_version;
 #include <cluttermm/behaviour-scale.h>
 #include <cluttermm/clone-texture.h>
 #include <cluttermm/color.h>
+#include <cluttermm/effecttemplate.h>
 #include <cluttermm/entry.h>
 #include <cluttermm/group.h>
 #include <cluttermm/init.h>

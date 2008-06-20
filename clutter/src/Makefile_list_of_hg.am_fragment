@@ -28,5 +28,6 @@ behaviour-scale.hg \
 score.hg \
 shader.hg \
 script.hg \
-scriptable.hg
+scriptable.hg \
+effecttemplate.hg
 #layout.hg box.hg margin.hg
