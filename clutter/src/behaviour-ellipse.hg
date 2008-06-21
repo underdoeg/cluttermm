@@ -69,12 +69,11 @@ public:
   _WRAP_METHOD(void set_direction(RotateDirection direction), clutter_behaviour_ellipse_set_direction)
   _WRAP_METHOD(RotateDirection get_direction() const, clutter_behaviour_ellipse_get_direction)
 
-  _WRAP_SIGNAL(void knot_reached(const Knot& knot), "knot_reached")
-
   _WRAP_PROPERTY("angle-end", double)
   _WRAP_PROPERTY("angle-start", double)
   _WRAP_PROPERTY("angle-tilt-x", double)
   _WRAP_PROPERTY("angle-tilt-y", double)
+  _WRAP_PROPERTY("angle-tilt-z", double)
   _WRAP_PROPERTY("center", Knot)
   _WRAP_PROPERTY("direction", RotateDirection)
   _WRAP_PROPERTY("height", int)
@@ -82,4 +81,3 @@ public:
 };
 
 } // namespace Clutter
-// vim:ts=2,sw=2

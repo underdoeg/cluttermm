@@ -26,7 +26,6 @@ namespace Clutter
 
 //TODO: Maybe redefine these, to avoid including a C header in our C++ header:
 typedef ClutterUnit Unit;
-typedef ClutterKnot Knot;
 typedef ClutterFixed Fixed;
 typedef ClutterAngle Angle;
 
@@ -34,6 +33,20 @@ _WRAP_ENUM(RotateDirection, ClutterRotateDirection, NO_GTYPE)
 _WRAP_ENUM(RotateAxis, ClutterRotateAxis, NO_GTYPE)
 _WRAP_ENUM(Gravity, ClutterGravity, NO_GTYPE)
 _WRAP_ENUM(RequestMode, ClutterRequestMode, NO_GTYPE)
+
+class Knot
+{
+  _CLASS_BOXEDTYPE_STATIC(Knot, ClutterKnot)
+public:
+  Knot(int x, int y);
+
+  _MEMBER_GET(x, x, int, int)
+  _MEMBER_SET(x, x, int, int)
+  _MEMBER_GET(y, y, int, int)
+  _MEMBER_SET(y, y, int, int)
+
+  bool operator==(const Knot& knot) const;
+};
 
 class Vertex
 {

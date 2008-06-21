@@ -31,21 +31,18 @@ class BehaviourScale : public Behaviour
   _CLASS_GOBJECT(BehaviourScale, ClutterBehaviourScale, CLUTTER_BEHAVIOUR_SCALE, Behaviour, ClutterBehaviour)
 
 protected:
-  _WRAP_CTOR(BehaviourScale(const Glib::RefPtr<Alpha>& alpha, double x_scale_start, double x_scale_end, double y_scale_start, double y_scale_end, Gravity scale_gravity), clutter_behaviour_scale_new)
-  _WRAP_CTOR(BehaviourScale(const Glib::RefPtr<Alpha>& alpha, Fixed x_scale_start, Fixed x_scale_end, Fixed y_scale_start, Fixed y_scale_end, Gravity scale_gravity), clutter_behaviour_scale_newx)
+  _WRAP_CTOR(BehaviourScale(const Glib::RefPtr<Alpha>& alpha, double x_scale_start, double x_scale_end, double y_scale_start, double y_scale_end), clutter_behaviour_scale_new)
+  _WRAP_CTOR(BehaviourScale(const Glib::RefPtr<Alpha>& alpha, Fixed x_scale_start, Fixed x_scale_end, Fixed y_scale_start, Fixed y_scale_end), clutter_behaviour_scale_newx)
 
 public:
-  _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, double x_scale_start, double x_scale_end, double y_scale_start, double y_scale_end, Gravity gravity)
-  _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, Fixed x_scale_start, Fixed x_scale_end, Fixed y_scale_start, Fixed y_scale_end, Gravity gravity)
+  _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, double x_scale_start, double x_scale_end, double y_scale_start, double y_scale_end)
+  _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, Fixed x_scale_start, Fixed x_scale_end, Fixed y_scale_start, Fixed y_scale_end)
 
   _WRAP_METHOD(void set_bounds(double x_scale_start, double y_scale_start, double x_scale_end, double y_scale_end), clutter_behaviour_scale_set_bounds)
   _WRAP_METHOD(void get_bounds(double& x_scale_start, double& y_scale_start, double& x_scale_end, double& y_scale_end) const, clutter_behaviour_scale_get_bounds)
   _WRAP_METHOD(void set_boundsx(Fixed x_scale_start, Fixed y_scale_start, Fixed x_scale_end, Fixed y_scale_end), clutter_behaviour_scale_set_boundsx)
   _WRAP_METHOD(void get_boundsx(Fixed& x_scale_start, Fixed& y_scale_start, Fixed& x_scale_end, Fixed& y_scale_end) const, clutter_behaviour_scale_get_boundsx)
-  _WRAP_METHOD(void set_gravity(Gravity gravity), clutter_behaviour_scale_set_gravity)
-  _WRAP_METHOD(Gravity get_gravity() const, clutter_behaviour_scale_get_gravity)
 
-  _WRAP_PROPERTY("scale-gravity", Gravity)
   _WRAP_PROPERTY("x-scale-start", double)
   _WRAP_PROPERTY("x-scale-end", double)
   _WRAP_PROPERTY("y-scale-start", double)
@@ -54,4 +51,3 @@ public:
 };
 
 } // namespace Clutter
-// vim:ts=2,sw=2

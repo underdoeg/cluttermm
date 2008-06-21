@@ -35,10 +35,12 @@ protected:
 public:
   _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, int start_depth, int end_depth)
 
+  _WRAP_METHOD(void set_bounds(int depth_start, int depth_end), clutter_behaviour_depth_set_bounds)
+  _WRAP_METHOD(void get_bounds(int& depth_start, int& depth_end), clutter_behaviour_depth_get_bounds)
+
   _WRAP_PROPERTY("depth-end", int)
   _WRAP_PROPERTY("depth-start", int)
 
 };
 
 } // namespace Clutter
-// vim:ts=2,sw=2

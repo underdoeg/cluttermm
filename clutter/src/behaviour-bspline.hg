@@ -35,12 +35,14 @@ class BehaviourBspline
   _IMPLEMENTS_INTERFACE(Scriptable)
 
 protected:
-  // TODO: pass the knots as a C++ container
-  _WRAP_CTOR(BehaviourBspline(const Glib::RefPtr<Alpha>& alpha, const ClutterKnot* knots, guint n_knots), clutter_behaviour_bspline_new)
+  BehaviourBspline(const Glib::RefPtr<Alpha>& alpha, const Glib::ArrayHandle<Knot>& knots);
+  _IGNORE(clutter_behaviour_bspline_new)
+
+  // We don't wrap the vararg functions:
+  _IGNORE(clutter_behaviour_bspline_append_knots)
 
 public:
-  // TODO: pass the knots as a C++ container
-  _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, const ClutterKnot* knots, guint n_knots)
+  _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, const Glib::ArrayHandle<Knot>& knots)
 
   _WRAP_METHOD(void append_knot(const Knot& knot), clutter_behaviour_bspline_append_knot)
   _WRAP_METHOD(void truncate(guint offset), clutter_behaviour_bspline_truncate)
@@ -59,4 +61,3 @@ public:
 };
 
 } // namespace Clutter
-// vim:ts=2,sw=2

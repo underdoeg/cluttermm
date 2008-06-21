@@ -20,6 +20,17 @@
 namespace Clutter
 {
 
+Knot::Knot(int x, int y)
+{
+  gobject_.x = x;
+  gobject_.y = y;
+}
+
+bool Knot::operator==(const Knot& knot) const
+{
+  return clutter_knot_equal(gobj(), knot.gobj());
+}
+
 Vertex::Vertex(Unit x, Unit y, Unit z)
 {
   gobject_.x = x;

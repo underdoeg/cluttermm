@@ -19,5 +19,79 @@
 
 namespace Clutter
 {
+
+#ifdef GLIBMM_EXCEPTIONS_ENABLED
+guint Script::load_from_data(const Glib::ustring& data)
+#else
+guint Script::load_from_data(const Glib::ustring& data, std::auto_ptr<Glib::Error>& error)
+#endif
+{
+  GError* gerror = 0;
+  guint result = clutter_script_load_from_data(gobj(), data.c_str(), data.bytes(), &gerror);
+#ifdef GLIBMM_EXCEPTIONS_ENABLED
+  if(gerror)
+    ::Glib::Error::throw_exception(gerror);
+#else
+  if(gerror)
+    error = ::Glib::Error::throw_exception(gerror);
+#endif // GLIBMM_EXCEPTIONS_ENABLED
+
+  return result;
+}
+
+#ifdef GLIBMM_VFUNGS_ENABLED
+// Custom coded so that we can custom-code the vfunc in the ClutterScript class.
+// This is marginally better than modifying gtkmmproc to allow this.
+GType Script_Class::get_type_from_name_vfunc_callback(ClutterScript* slef, const char* type_name)
+{
+  CppObjectType *const obj = dynamic_cast<CppObjectType*>(
+      Glib::ObjectBase::_get_current_wrapper((GObject*) self));
+
+  if(obj)
+  {
+    #ifdef GLIBMM_EXCEPTIONS_ENABLED
+    try
+    {
+    #endif //GLIBMM_EXCEPTIONS_ENABLED
+      return obj->get_type_from_name_vfunc(Glib::convert_const_gchar_ptr_to_ustring(type_name));
+    #ifdef GLIBMM_EXCEPTIONS_ENABLED
+    }
+    catch(...)
+    {
+      Glib::exception_handlers_invoke();
+    }
+    #endif //GLIBMM_EXCEPTIONS_ENABLED
+  }
+  else
+  {
+    BaseClassType *const base = static_cast<BaseClassType*>(
+        g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class.
+    );
+
+    if(base && base->lookup_type)
+      return (*base->lookup_type)(self, type_name);
+  }
+
+  return 0;
+}
+#endif
+
+GType Script::get_type_from_name_vfunc(const Glib::ustring& type_name)
+{
+  // See if there is a gtkmm version of the gclass:
+  Glib::ustring classname_prefixed ("gtkmm__"); // gtkmm uses a prefix
+  classname_prefixed += type_name;
+
+  GType gtype = g_type_from_name(classname_prefixed.c_str());
+
+  if(gtype == G_TYPE_INVALID) // if it's not a registered typename
+  {
+    // There's no gtkmm derived type, so just use the normal one.
+    gtype = g_type_from_name(type_name.c_str());
+  }
+
+  return gtype;
+}
+
 } //namespace Clutter
 

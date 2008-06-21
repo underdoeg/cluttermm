@@ -180,7 +180,7 @@
   (parameters
     '("ClutterScript*" "script")
     '("const-gchar*" "name")
-    '("GValue*" "value")
+    '("const-GValue*" "value")
   )
 )
 

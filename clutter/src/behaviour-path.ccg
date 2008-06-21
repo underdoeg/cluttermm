@@ -20,5 +20,20 @@
 namespace Clutter
 {
 
+BehaviourPath::BehaviourPath(const Glib::RefPtr<Alpha>& alpha, const Glib::ArrayHandle<Knot>& knots)
+:
+  _CONSTRUCT("alpha", Glib::unwrap(alpha))
+{
+  for(Glib::ArrayHandle<Knot>::const_iterator iter = knots.begin(); iter != knots.end(); ++ iter)
+  {
+    append_knot(*iter);
+  }
+}
+
+BehaviourPath::ListHandle_Knots BehaviourPath::get_knots() const
+{
+  return ListHandle_Knots(clutter_behaviour_path_get_knots(const_cast<ClutterBehaviourPath*>(gobj())), Glib::OWNERSHIP_SHALLOW);
+}
+
 } //namespace Clutter
 

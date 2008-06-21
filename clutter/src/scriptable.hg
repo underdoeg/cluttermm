@@ -17,6 +17,7 @@
 
 #include <glibmm/interface.h>
 #include <glibmm/ustring.h>
+#include <cluttermm/script.h>
 #include <clutter/clutter-scriptable.h>
  
 _DEFS(cluttermm,clutter)
@@ -34,17 +35,29 @@ public:
   _WRAP_METHOD(void set_id(const std::string& id), clutter_scriptable_set_id)
   _WRAP_METHOD(std::string get_id() const, clutter_scriptable_get_id)
 
-  _WRAP_SIGNAL(void actor_added(const Glib::RefPtr<Actor>& actor), "actor_added")
-  _WRAP_SIGNAL(void actor_removed(const Glib::RefPtr<Actor>& actor), "actor_removed")
-  // TODO: parse_custom_node, set_custom_property
+  // TODO: Wrap glib-json?
+#m4  _CONVERSION(`const Glib::RefPtr<Script>&', `ClutterScript*', `Glib::unwrap($3)')
+  _WRAP_METHOD(bool parse_custom_node(const Glib::RefPtr<Script>& script, Glib::ValueBase& value, const Glib::ustring& name, JsonNode* node), clutter_scriptable_parse_custom_node)
+  _WRAP_METHOD(void set_custom_property(const Glib::RefPtr<Script>& script, const Glib::ustring& name, const Glib::ValueBase& value), clutter_scriptable_set_custom_property)
 
 protected:
 
   _WRAP_VFUNC(void set_id(const std::string& id), set_id)
 
-#m4 _CONVERSION(`std::string', `const gchar*', `($3).c_str()')
-  _WRAP_VFUNC(std::string get_id() const, get_id)
-  // TODO: parse_custom_node, set_custom_property vfuncs
+  // Note: We cannot return a std::string here since the C API expects a
+  // const gchar* as return value. const gchar* however means that the returned
+  // value is not supposed to be freed by the caller. If we would want to return
+  // std::string here, what should we pass to the underlying C API then?
+  // string.c_str() doesn't work since the string destroys the data upon
+  // destruction (which means, we would effectively return an invalid pointer).
+  // We also can't copy the string's content since we would leak that copy
+  // otherwise.
+  _WRAP_VFUNC(const char* get_id() const, get_id)
+
+#m4  _CONVERSION(`ClutterScript*', `const Glib::RefPtr<Script>&', `Glib::wrap(($3), true)')
+  _WRAP_VFUNC(void set_custom_property(const Glib::RefPtr<Script>& script, const Glib::ustring& name, const Glib::ValueBase& value), set_custom_property)
+
+  // TODO: parse_custom_node vfunc
 };
 
 } // namespace Clutter

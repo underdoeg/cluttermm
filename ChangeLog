@@ -1,3 +1,35 @@
+2008-06-21  Armin Burgmeier  <armin@openismus.com>
+
+	* clutter/src/clutter_methods.defs: Removed private definitions from
+	clutter-script-private.h.
+
+	* clutter/src/types.hg:
+	* clutter/src/types.ccg:
+	* tools/m4/convert_cluttermm.m4: Wrapped ClutterKnot, adapted
+	conversions.
+
+	* clutter/src/behaviour-bspline.hg:
+	* clutter/src/behaviour-depth.hg:
+	* clutter/src/behaviour-ellipse.hg:
+	* clutter/src/behaviour-path.hg:
+	* clutter/src/behaviour-scale.hg:
+	* clutter/src/behaviour-rotate.hg:
+	* clutter/src/behaviour-opacity.hg:
+	* clutter/src/behaviour-bspline.ccg:
+	* clutter/src/behaviour-path.ccg: Wrapped missing methods and
+	properties.
+
+	* clutter/src/clutter_vfuncs.defs: Fix signature for
+	ClutterScriptable's set_custom_property vfunc (GValue* vs. const
+	GValue*).
+	* clutter/src/scriptable.hg: Wrapped missing methods and the
+	set_custom_property vfunc.
+
+	* clutter/src/script.hg:
+	* clutter/src/script.ccg: Wrapped the load_from_data method and the
+	get_type_from_name vfunc in which we try to instantiate
+	gtkmm-overriden objects, as libglademm does.
+
 2008-06-20  Armin Burgmeier  <armin@openismus.com>
 
 	* clutter/src/Makefile_list_of_hg.am_fragment:

@@ -19,12 +19,23 @@
 
 namespace Clutter
 {
-    ClutterKnot BehaviourBspline::get_origin() const
-    {
-        ClutterKnot knot;
-        clutter_behaviour_bspline_get_origin(const_cast<ClutterBehaviourBspline*>(gobj()), &knot);
-        return knot;
-    }
+
+BehaviourBspline::BehaviourBspline(const Glib::RefPtr<Alpha>& alpha, const Glib::ArrayHandle<Knot>& knots)
+:
+  _CONSTRUCT("alpha", Glib::unwrap(alpha))
+{
+  for(Glib::ArrayHandle<Knot>::const_iterator iter = knots.begin(); iter != knots.end(); ++ iter)
+  {
+    append_knot(*iter);
+  }
+}
+
+Knot BehaviourBspline::get_origin() const
+{
+  Knot knot;
+  clutter_behaviour_bspline_get_origin(const_cast<ClutterBehaviourBspline*>(gobj()), knot.gobj());
+  return knot;
+}
 
 } //namespace Clutter
 

@@ -36,7 +36,16 @@ protected:
 public:
   _WRAP_CREATE()
 
-  //_WRAP_METHOD(guint load_from_data(const std::string& data), clutter_script_load_from_data, errthrow)
+  // We don't support signal autoconnection in C++:
+  _IGNORE(clutter_script_connect_signals, clutter_script_connect_signals_full,
+          clutter_script_get_type_from_name)
+
+  _WRAP_METHOD_DOCS_ONLY(clutter_script_load_from_data)
+#ifdef GLIBMM_EXCEPTIONS_ENABLED
+  guint load_from_data(const Glib::ustring& data);
+#else
+  guint load_from_data(const Glib::ustring& data, std::auto_ptr<Glib::Error>& error);
+#endif
   _WRAP_METHOD(guint load_from_file(const std::string& filename), clutter_script_load_from_file, errthrow)
 
   _WRAP_METHOD(Glib::RefPtr<Glib::Object> get_object(const Glib::ustring& name), clutter_script_get_object, refreturn)
@@ -57,7 +66,21 @@ public:
 
   _WRAP_PROPERTY("filename", std::string)
   _WRAP_PROPERTY("filename-set", bool)
+
+protected:
+#m4begin
+dnl Custom-coded vfunc:
+dnl
+  _PUSH(SECTION_PCC_CLASS_INIT_VFUNCS)
+  klass->get_type_from_name = &get_type_from_name_vfunc_callback;
+  _SECTION(SECTION_PH_VFUNCS)
+  static GType get_type_from_name_vfunc_callback(ClutterScript* script, const char* type_name);
+  _POP()
+#m4end
+
+  // TODO: Make sure this is actually invoked even with disabled vfuncs so
+  // that ClutterScript creates gtkmm's GObjects.
+  virtual GType get_type_from_name_vfunc(const Glib::ustring& type_name);
 };
 
 } // namespace Clutter
-// vim:ts=2,sw=2
