@@ -39,10 +39,10 @@ guint Script::load_from_data(const Glib::ustring& data, std::auto_ptr<Glib::Erro
   return result;
 }
 
-#ifdef GLIBMM_VFUNGS_ENABLED
+#ifdef GLIBMM_VFUNCS_ENABLED
 // Custom coded so that we can custom-code the vfunc in the ClutterScript class.
 // This is marginally better than modifying gtkmmproc to allow this.
-GType Script_Class::get_type_from_name_vfunc_callback(ClutterScript* slef, const char* type_name)
+GType Script_Class::get_type_from_name_vfunc_callback(ClutterScript* self, const char* type_name)
 {
   CppObjectType *const obj = dynamic_cast<CppObjectType*>(
       Glib::ObjectBase::_get_current_wrapper((GObject*) self));
@@ -68,13 +68,13 @@ GType Script_Class::get_type_from_name_vfunc_callback(ClutterScript* slef, const
         g_type_class_peek_parent(G_OBJECT_GET_CLASS(self)) // Get the parent class of the object class.
     );
 
-    if(base && base->lookup_type)
-      return (*base->lookup_type)(self, type_name);
+    if(base && base->get_type_from_name)
+      return (*base->get_type_from_name)(self, type_name);
   }
 
   return 0;
 }
-#endif
+#endif // GLIBMM_VFUNCS_ENABLED
 
 GType Script::get_type_from_name_vfunc(const Glib::ustring& type_name)
 {

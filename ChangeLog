@@ -1,3 +1,18 @@
+2008-06-22  Armin Burgmeier  <armin@openismus.com>
+
+	* clutter/src/script.ccg: Fixed a typo so that the vfuncs is actually
+	used.
+
+	* clutter/src/shader.hg: Wrapped new methods and properties.
+
+	* clutter/src/actor.hg:
+	* clutter/src/actor.ccg: Removed the get_paint_area function and vfunc
+	since it has been removed from clutter trunk.
+
+	* tests/test-alpha-func.cc:
+	* tests/test-alpha-creation.cc:
+	* examples/test-actors.cc: Adapt to new clutter API.
+
 2008-06-21  Armin Burgmeier  <armin@openismus.com>
 
 	* clutter/src/clutter_methods.defs: Removed private definitions from

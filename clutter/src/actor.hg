@@ -143,8 +143,8 @@ public:
   _WRAP_METHOD(Glib::RefPtr<const Shader> get_shader() const, clutter_actor_get_shader, constversion)
   _WRAP_METHOD(void set_shader(const Glib::RefPtr<Shader>& shader), clutter_actor_set_shader)
   _WRAP_METHOD(void set_shader_param(const Glib::ustring& param, float value), clutter_actor_set_shader_param)
-  _WRAP_METHOD_DOCS_ONLY(clutter_actor_get_paint_area)
-  ActorBox get_paint_area() const;
+  //_WRAP_METHOD_DOCS_ONLY(clutter_actor_get_paint_area)
+  //ActorBox get_paint_area() const;
   _WRAP_METHOD(bool is_rotated() const, clutter_actor_is_rotated)
   _WRAP_METHOD(bool is_scaled() const, clutter_actor_is_scaled)
   _WRAP_METHOD_DOCS_ONLY(clutter_actor_get_allocation_vertices)
@@ -281,19 +281,6 @@ public:
   _WRAP_VFUNC(void get_preferred_height(Unit for_width, Unit& min_height_p, Unit& natural_height_p) const, "get_preferred_height")
   _WRAP_VFUNC(void allocate(const ActorBox& box, bool absolute_origin_changed), "allocate")
 
-#ifdef GLIBMM_VFUNCS_ENABLED
-  // Hand code, since ActorBox can only copy a ClutterActorBox* but not ref one.
-  virtual void get_paint_area_vfunc(ActorBox& box) const;
-  //_WRAP_VFUNC(void get_paint_area(ActorBox& box), "get_paint_area")
-#endif
-
-#m4begin
-  _PUSH(SECTION_PCC_CLASS_INIT_VFUNCS)
-  klass->get_paint_area = &get_paint_area_vfunc_callback;
-  _SECTION(SECTION_PH_VFUNCS)
-  static void get_paint_area_vfunc_callback(ClutterActor* self, ClutterActorBox* box);
-  _POP()
-#m4end
 };
 
 } // namespace Clutter

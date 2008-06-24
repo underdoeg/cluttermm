@@ -176,14 +176,12 @@ main (int argc, char *argv[])
     Glib::RefPtr<Clutter::BehaviourScale> scaler_1 =
         Clutter::BehaviourScale::create (alpha,
                 0.5, 0.5,
-                1.0, 1.0,
-                Clutter::GRAVITY_CENTER);
+                1.0, 1.0);
 
     Glib::RefPtr<Clutter::BehaviourScale> scaler_2 =
         Clutter::BehaviourScale::create (alpha,
                 1.0, 1.0,
-                0.5, 0.5,
-                Clutter::GRAVITY_CENTER);
+                0.5, 0.5);
 
     // create a new group to hold multiple actors in a group
     oh->group = Clutter::Group::create ();

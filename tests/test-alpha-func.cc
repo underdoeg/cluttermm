@@ -33,8 +33,7 @@ main (int argc, char *argv[])
     Glib::RefPtr<Clutter::BehaviourScale> scaler_1 =
         Clutter::BehaviourScale::create (alpha,
                 0.5, 0.5,
-                1.0, 1.0,
-                Clutter::GRAVITY_CENTER);
+                1.0, 1.0);
 
     // Show everying ( and map window )
     stage->show ();

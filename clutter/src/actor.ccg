@@ -35,12 +35,14 @@ Geometry Actor::get_geometry() const
   return geom;
 }
 
+#if 0
 ActorBox Actor::get_paint_area() const
 {
   ActorBox box;
   clutter_actor_get_paint_area(const_cast<ClutterActor*>(gobj()), box.gobj());
   return box;
 }
+#endif
 
 void Actor::get_abs_allocation_vertices(Vertex vertices[4]) const
 {
@@ -76,6 +78,7 @@ Geometry Actor::get_allocation_geometry() const
   return geom;
 }
 
+#if 0
 // We need to hand-code this vfunc to write the result back into the
 // box variable. The C++ wrapper cannot ref the existing variable, but only
 // make a copy.
@@ -133,7 +136,7 @@ void Actor::get_paint_area_vfunc(ActorBox& box) const
   if(base && base->get_paint_area)
     (*base->get_paint_area)(const_cast<ClutterActor*>(gobj()), box.gobj());
 }
-
+#endif
 
 } //namespace Clutter
 
