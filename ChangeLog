@@ -1,3 +1,32 @@
+2008-06-30  Armin Burgmeier  <armin@openismus.com>
+
+	* clutter/src/types.hg: Wrap ClutterInitError.
+
+	* clutter/cluttermm/init.h:
+	* clutter/cluttermm/init.cc: Allow reference parameters for init(),
+	wrapped clutter_init_with_args, throw InitError if the initialization
+	fails.
+
+	* clutter/cluttermm/main.h:
+	* clutter/cluttermm/main.cc: Wrapped clutter_main_* functions.
+
+	* clutter/cluttermm/utility.h:
+	* clutter/cluttermm/utility.cc: Wrapped clutter_get_debug_enabled,
+	clutter_get_show_fps, clutter_get_timestamp, clutter_get_actor_by_gid,
+	clutter_set_default_frame_rate, clutter_get_default_frame_rate,
+	clutter_set_motion_events_enabled, clutter_get_motion_events_enabled,
+	clutter_set_motion_events_frequency,
+	clutter_get_motion_events_frequency, clutter_clear_glyph_cache,
+	clutter_set_use_mipmapped_text and clutter_get_use_mipmapped_text.
+
+	* clutter/cluttermm/threads.h:
+	* clutter/cluttermm/threads.cc: Wrapped the clutter_threads_*
+	functions.
+
+	* clutter/cluttermm.h: Added the new header files.
+
+	* clutter/cluttermm/Makefile.am: Added new files to the build.
+
 2008-06-22  Armin Burgmeier  <armin@openismus.com>
 
 	* clutter/src/script.ccg: Fixed a typo so that the vfuncs is actually

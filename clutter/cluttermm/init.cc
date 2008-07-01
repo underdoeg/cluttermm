@@ -17,22 +17,59 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <glibmm/init.h>
-#include <glibmm/ustring.h>
 #include <gdkmm/wrap_init.h>
 #include <cluttermmconfig.h> //For LIBCLUTTERMM_VERSION
+#include <cluttermm/init.h>
 #include <cluttermm/wrap_init.h>
 #include <clutter/clutter.h>
+
+namespace
+{
+
+void common_init()
+{
+  Glib::init(); //Sets up the g type system and the Glib::wrap() table.
+  Gdk::wrap_init();
+  Clutter::wrap_init(); //Tells the Glib::wrap() table about the libcluttermm classes.
+}
+
+}
 
 namespace Clutter
 {
 
-void init(int* nargs, gchar **args[])
+void init(int* argc, gchar **argv[])
 {
-  Glib::init(); //Sets up the g type system and the Glib::wrap() table.
-  Gdk::wrap_init();
-  wrap_init(); //Tells the Glib::wrap() table about the libcluttermm classes.
-  clutter_init(nargs, args);
+  common_init();
+  GError* error = NULL;
+  clutter_init_with_args(argc, argv, NULL, NULL, NULL, &error);
+  if(error != NULL) Glib::Error::throw_exception(error);
 }
+
+void init(int& argc, gchar**& argv)
+{
+  init(&argc, &argv);
+}
+
+void init(int* argc, gchar** argv[], const Glib::ustring& parameter_string, const ArrayHandle_OptionEntries& entries, const std::string& translation_domain)
+{
+  common_init();
+  GError* error = NULL;
+  clutter_init_with_args(argc, argv, const_cast<char*>(parameter_string.c_str()), const_cast<GOptionEntry*>(entries.data()), const_cast<char*>(translation_domain.c_str()), &error);
+  if(error != NULL) Glib::Error::throw_exception(error);
+}
+
+void init(int& argc, gchar**& argv, const Glib::ustring& parameter_string, const ArrayHandle_OptionEntries& entries, const std::string& translation_domain)
+{
+  init(&argc, &argv, parameter_string, entries, translation_domain);
+}
+
+void add_clutter_option_group(Glib::OptionContext& option_context)
+{
+  // This returns a newly created option group of which we take ownership
+  Glib::OptionGroup cluttergroup(clutter_get_option_group());
+  option_context.add_group(cluttergroup);
+}
+
 
 } //namespace Clutter
