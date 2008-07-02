@@ -11,8 +11,8 @@ sublib_cflags		= $(CLUTTERMM_CFLAGS)
 sublib_topdir = clutter
 
 
-files_extra_h	= init.h main.h utility.h threads.h wrap_init.h
-files_extra_cc	= init.cc main.cc utility.cc threads.cc
+files_extra_h	= init.h main.h utility.h threads.h frame-source.h wrap_init.h
+files_extra_cc	= init.cc main.cc utility.cc threads.cc frame-source.cc
 
 include $(top_srcdir)/build_shared/Makefile_build_gensrc.am_fragment
 

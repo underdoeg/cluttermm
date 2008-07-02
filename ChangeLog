@@ -1,5 +1,28 @@
 2008-06-30  Armin Burgmeier  <armin@openismus.com>
 
+	* clutter/src/timeout-pool.hg:
+	* clutter/src/timeout-pool.ccg: Wrapped ClutterTimeoutPool.
+
+	* clutter/cluttermm/frame-source.h:
+	* clutter/cluttermm/frame-source.cc: Wrapped clutter_frame_source_add.
+
+	* clutter/cluttermm/main.h:
+	* clutter/cluttermm/main.cc: Wrapped the pointer grabbing/ungrabbing
+	functions.
+
+	* clutter/cluttermm/threads.h: Fix documentation.
+
+	* clutter/cluttermm/utility.cc:
+	* clutter/cluttermm/utility.h: Wrapped clutter_util_next_p2.
+
+	* clutter/cluttermm/Makefile.am:
+	* clutter/src/Makefile_list_of_hg.am_fragment: Added new files to
+	build.
+
+	* clutter/cluttermm.h: Added new includes.
+
+2008-06-30  Armin Burgmeier  <armin@openismus.com>
+
 	* clutter/src/types.hg: Wrap ClutterInitError.
 
 	* clutter/cluttermm/init.h:

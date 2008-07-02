@@ -41,6 +41,7 @@ extern const int cluttermm_micro_version;
 #include <cluttermm/color.h>
 #include <cluttermm/effecttemplate.h>
 #include <cluttermm/entry.h>
+#include <cluttermm/frame-source.h>
 #include <cluttermm/group.h>
 #include <cluttermm/init.h>
 #include <cluttermm/label.h>
@@ -54,6 +55,7 @@ extern const int cluttermm_micro_version;
 #include <cluttermm/score.h>
 #include <cluttermm/shader.h>
 #include <cluttermm/script.h>
+#include <cluttermm/timeout-pool.h>
 #include <cluttermm/types.h>
 #include <cluttermm/utility.h>
 

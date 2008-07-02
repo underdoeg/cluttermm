@@ -1,8 +1,4 @@
-// -*- c++ -*-
-#ifndef _LIBCLUTTERMM_UTILITY_H
-#define _LIBCLUTTERMM_UTILITY_H
-/*
- * Copyright 2008 Jonathon Jongsma
+/* Copyright (C) 2007 The cluttermm Development Team
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -19,14 +15,28 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <glibmm.h>
+namespace
+{
+
+gboolean timout_source_func(gpointer data)
+{
+  return (*static_cast<Clutter::TimeoutPool::TimeoutSlot*>(data))();
+}
+
+void timeout_slot_destroy_func(gpointer data)
+{
+  delete static_cast<Clutter::TimeoutPool::TimeoutSlot*>(data);
+}
+
+}
 
 namespace Clutter
 {
 
-int util_next_p2(int a);
+guint TimeoutPool::add(guint interval, const TimeoutSlot& func, int priority)
+{
+  return clutter_timeout_pool_add(gobj(), interval, timout_source_func, new TimeoutSlot(func), timeout_slot_destroy_func);
+}
 
-} //namespace Clutter
-
-#endif //_LIBCLUTTERMM_UTILITY_H
+}
 

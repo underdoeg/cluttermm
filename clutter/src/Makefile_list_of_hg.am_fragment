@@ -29,5 +29,6 @@ score.hg \
 shader.hg \
 script.hg \
 scriptable.hg \
-effecttemplate.hg
+effecttemplate.hg \
+timeout-pool.hg
 #layout.hg box.hg margin.hg

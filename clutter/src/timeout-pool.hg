@@ -1,0 +1,61 @@
+/* Copyright (C) 2007 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <clutter/clutter-timeout-pool.h>
+
+_DEFS(cluttermm,clutter)
+
+namespace Clutter
+{
+
+/** A timeout pool should be used when multiple timeout functions, running at
+ * the same priority, are needed and the Glib::SignalTimeout API might lead to
+ * starvation of the time slice of the main loop. A timeout pool allocates a
+ * single time slice of the main loop and runs every timeout function
+ * inside it. The timeout pool is always sorted, so that the extraction of
+ * the next timeout function is a constant time operation.
+ *
+ * Inside Clutter, every Timeline share the same timeout pool, unless the
+ * CLUTTER_TIMELINE=no-pool environment variable is set.
+ */
+class TimeoutPool
+{
+  _CLASS_GENERIC(TimeoutPool, ClutterTimeoutPool)
+
+public:
+  explicit TimeoutPool(int priority);
+
+  typedef sigc::slot<bool> TimeoutSlot;
+  _WRAP_METHOD_DOCS_ONLY(clutter_timeout_pool_add)
+  guint add(guint interval, const TimeoutSlot& func, int priority = Glib::PRIORITY_DEFAULT);
+
+  _WRAP_METHOD(void remove(guint id), clutter_timeout_pool_remove)
+
+  ClutterTimeoutPool* gobj() { return gobject_; }
+  const ClutterTimeoutPool* gobj() const { return gobject_; }
+
+protected:
+  ClutterTimeoutPool* gobject_;
+
+private:
+  // noncopyable:
+  TimeoutPool(const TimeoutPool& other);
+  TimeoutPool& operator=(const TimeoutPool& other);
+};
+
+}
+

@@ -48,10 +48,10 @@ void threads_leave();
 // sigc::connection makes more semantical sense?
 
 /** Adds a function to be called whenever there are no higher priority events
- * pending. If the function returns FALSE it is automatically removed from
+ * pending. If the function returns false it is automatically removed from
  * the list of event sources and will not be called again.
  *
- * This variant of g_idle_add_full() calls function with the Clutter lock
+ * This variant of Glib::signal_idle calls function with the Clutter lock
  * held. It can be thought of a MT-safe version for Clutter actors for the
  * use case where you have to worry about idle_callback() running in thread A
  * and accessing self after it has been finalized in thread B.
@@ -66,9 +66,8 @@ sigc::connection threads_add_idle(const sigc::slot<bool>& callback, int priority
 /** Sets a function to be called at regular intervals holding the Clutter
  * lock, with the given priority. The function is called repeatedly until it
  * returns false, at which point the timeout is automatically destroyed and
- * the function will not be called again. The notify function is called when
- * the timeout is destroyed. The first call to the function will be at the
- * end of the first interval.
+ * the function will not be called again. The first call to the function will
+ * be at the end of the first interval.
  *
  * Note that timeout functions may be delayed, due to the processing of other
  * event sources. Thus they should not be relied on for precise timing. After
@@ -76,7 +75,7 @@ sigc::connection threads_add_idle(const sigc::slot<bool>& callback, int priority
  * recalculated based on the current time and the given interval (it does not
  * try to 'catch up' time lost in delays).
  *
- * This variant of g_timeout_add_full() can be thought of a MT-safe version
+ * This variant of Glib::SignalTimeout can be thought of a MT-safe version
  * for Clutter actors. See also threads_add_idle().
  *
  * @param callback function to call
@@ -89,12 +88,11 @@ sigc::connection threads_add_timeout(const sigc::slot<bool>& callback, guint int
 
 /** Sets a function to be called at regular intervals holding the Clutter
  * lock, with the given priority. The function is called repeatedly until it
- * returns FALSE, at which point the timeout is automatically destroyed and
- * the function will not be called again. The notify function is called when
- * the timeout is destroyed. The first call to the function will be at the
- * end of the first interval.
+ * returns false, at which point the timeout is automatically destroyed and
+ * the function will not be called again. The first call to the function will
+ * be at the end of the first interval.
  *
- * This function is similar to clutter_threads_add_timeout_full() except
+ * This function is similar to threads_add_timeout_full() except
  * that it will try to compensate for delays. For example, if func takes half
  * the interval time to execute then the function will be called again half
  * the interval time after it finished. In contrast
@@ -109,7 +107,7 @@ sigc::connection threads_add_timeout(const sigc::slot<bool>& callback, guint int
  * @param callback function to call
  * @param interval the time between calls to the function, in milliseconds
  * @param the priority of the timeout source. Typically this will be in the range between Glib::PRIORITY_DEFAULT and Glib::PRIORITY_HIGH.
- * @param A sigc::connection that can be used to disconnect the callback from the timeout source.
+ * @return A sigc::connection that can be used to disconnect the callback from the timeout source.
  */
 sigc::connection threads_add_frame_source(const sigc::slot<bool>& callback, guint interval, gint priority = Glib::PRIORITY_DEFAULT);
 
