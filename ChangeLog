@@ -1,3 +1,15 @@
+0.7.0:
+
+2008-07-05  Armin Burgmeier  <armin@openismus.com>
+
+	* clutter/cluttermm/init.h:
+	* clutter/cluttermm/init.cc: Commented out the init() overload that
+	takes a Glib::OptionContext& since for this to work we need a clutter
+	release with clutter bug #1033 fixed.
+
+	* clutter/examples/test-actors.cc: Use the normal init() for now,
+	don't accepting the -n command line argument.
+
 2008-07-05  Armin Burgmeier  <armin@openismus.com>
 
 	* clutter/cluttermm/event.h:

@@ -88,10 +88,13 @@ int main(int argc, char *argv[])
 
     try
     {
+      // TODO: Pass context to init as soon as that init() overload has been
+      // uncommented in cluttermm. This depends on a clutter release with
+      // clutter bug #1033 fixed.
       // initialize the C++ wrapper types
-      Clutter::init(&argc, &argv, context);
+      Clutter::init(&argc, &argv); //, context);
     }
-    catch(const Glib::Error& ex)
+    catch(const Glib::Exception& ex)
     {
         std::cerr << "Failed to initialize clutter: " << ex.what() << std::endl;
         return -1;

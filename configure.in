@@ -5,7 +5,7 @@ AC_INIT(clutter/cluttermmconfig.h.in)
 #########################################################################
 CLUTTERMM_MAJOR_VERSION=0
 CLUTTERMM_MINOR_VERSION=7
-CLUTTERMM_MICRO_VERSION=1
+CLUTTERMM_MICRO_VERSION=0
 
 #
 # +1 : ? : +1  == new interface that does not break old one

@@ -51,6 +51,10 @@ void init(int& argc, gchar**& argv)
   init(&argc, &argv);
 }
 
+// TODO: This does not work yet because because of clutter bug #1033. It has
+// already been fixed in trunk but there was no release since. We can
+// uncomment this as soon as clutter with that fix has been released.
+#if 0
 void init(int* argc, gchar** argv[], Glib::OptionContext& option_context)
 {
   common_init();
@@ -66,6 +70,7 @@ void init(int& argc, gchar**& argv, Glib::OptionContext& option_context)
 {
   init(&argc, &argv, option_context);
 }
+#endif
 
 void add_clutter_option_group(Glib::OptionContext& option_context)
 {

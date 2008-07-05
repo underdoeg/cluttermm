@@ -1,3 +1,11 @@
+0.7.0:
+
+* Update to new clutter-0.7 API
+  (Armin Burgmeier, Openismus)
+* Wrap several remaining classes, methods, signals, properties and free
+  functions. Coverage is still not 100%, but not much is missing.
+  (Armin Burgmeier, Openismus)
+
 0.5.1:
 
 * Added cluttermm-gtk, wrapping clutter-gtk.
