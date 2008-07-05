@@ -20,6 +20,9 @@
 #include <cluttermm/frame-source.h>
 #include <clutter/clutter.h>
 
+// TODO: Remove this as soon as it is included from clutter.h:
+#include <clutter/clutter-frame-source.h> 
+
 namespace
 {
 

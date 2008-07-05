@@ -1,3 +1,41 @@
+2008-07-05  Armin Burgmeier  <armin@openismus.com>
+
+	* clutter/cluttermm/event.h:
+	* clutter/cluttermm/event.cc: Wrapped some of the clutter_event_*
+	functions. Don't wrap those taking a raw ClutterEvent* for now since
+	"derived" events such as ClutterEventKey would need an ugly
+	reinterpret_cast<> to use those functions anyway. We should probably
+	think of a cleverer API for this.
+
+	* clutter/cluttermm/Makefile.am: Add the new files to the build.
+
+	* clutter/cluttermm.h: Include cluttermm/event.h.
+
+	* clutter/src/actor.hg:
+	* clutter/src/types.hg: Moved event typedefs from actor.hg to
+	types.hg.
+
+	* clutter/src/behaviour-scale.hg: Fixed order of arguments in
+	constructors and create functions to match the order of
+	clutter_behaviour_scale_new and the set_bounds functions.
+
+	* clutter/cluttermm/init.h:
+	* clutter/cluttermm/init.cc: Removed the Clutter::init overload that
+	takes an array of Glib::OptionEntry objects since that could not be
+	actually used in C++, because in C++ we need a Glib::OptionGroup to
+	associate a variable to an entry. Instead, take a Context that is used
+	to parse the arguments, as gtkmm does.
+
+	* clutter/cluttermm/frame-source.cc: Include
+	<clutter/clutter-frame-source.h> explicitely since this is not
+	included from <clutter/clutter.h>. See clutter bug #1019.
+
+	* examples/effect.cc:
+	* examples/flowers.cc:
+	* examples/test-actors.cc:
+	* examples/simple-cairo.cc: Make use of the new C++ API to remove most
+	of the C stuff the examples were still using.
+
 2008-06-30  Armin Burgmeier  <armin@openismus.com>
 
 	* clutter/src/timeout-pool.hg:

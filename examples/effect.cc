@@ -1,12 +1,6 @@
 #include <cluttermm.h>
 #include <cluttermm/init.h>
-// FIXME: remove this when enough stuff is wrapped
-#include <clutter/clutter.h>
 #include <iostream>
-
-#if defined (_MSC_VER) && !defined (_USE_MATH_DEFINES)
-#define _USE_MATH_DEFINES
-#endif
 
 void move_finished(const Glib::RefPtr<Clutter::Actor>& actor, const Glib::RefPtr<Clutter::EffectTemplate>& effect)
 {
@@ -29,7 +23,6 @@ main (int argc, char *argv[])
 
     Glib::RefPtr<Clutter::Timeline> timeline =
         Clutter::Timeline::create (360, 60); // num frames, fps
-    //timeline->set_loop (true); // have it loop
     Glib::RefPtr<Clutter::EffectTemplate> effect = Clutter::EffectTemplate::create(timeline, Clutter::ALPHA_RAMP);
 
     Glib::RefPtr<Clutter::Texture> texture(Clutter::Texture::create());
@@ -41,6 +34,6 @@ main (int argc, char *argv[])
     timeline->start();
     effect->move(texture, 450, 450, sigc::bind(sigc::ptr_fun(move_finished), effect));
 
-    clutter_main ();
+    Clutter::main();
     return 0;
 }

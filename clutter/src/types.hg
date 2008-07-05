@@ -16,6 +16,7 @@
  */
 
 #include <clutter/clutter-types.h>
+#include <clutter/clutter-event.h>
 #include <clutter/clutter-units.h>
 #include <clutter/clutter-color.h>
 #include <clutter/clutter-main.h>
@@ -24,6 +25,13 @@ _DEFS(cluttermm,clutter)
 
 namespace Clutter
 {
+
+typedef ClutterEvent Event;
+typedef ClutterButtonEvent ButtonEvent;
+typedef ClutterKeyEvent KeyEvent;
+typedef ClutterMotionEvent MotionEvent;
+typedef ClutterScrollEvent ScrollEvent;
+typedef ClutterCrossingEvent CrossingEvent;
 
 //TODO: Maybe redefine these, to avoid including a C header in our C++ header:
 typedef ClutterUnit Unit;

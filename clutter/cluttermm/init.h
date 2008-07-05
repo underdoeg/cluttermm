@@ -30,7 +30,7 @@ namespace Clutter
  *
  * @param argc a pointer to the number of command line arguments
  * @param argv a pointer to the array of comman line arguments
- * @throws InitError
+ * @throws InitError, Glib::OptionError
  */
 void init(int* argc, gchar** argv[]);
 
@@ -38,61 +38,35 @@ void init(int* argc, gchar** argv[]);
  * some standard command line options. argc and argv are adjusted accordingly
  * so your own code will never see those standard arguments.
  *
- * @param argc a pointer to the number of command line arguments
- * @param argv a pointer to the array of comman line arguments
- * @throws InitError
+ * @param argc a reference to the number of command line arguments
+ * @param argv a reference to the array of comman line arguments
+ * @throws InitError, Glib::OptionError
  */
 void init(int& argc, gchar**& argv);
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
-struct OptionEntryTraits
-{
-  typedef Glib::OptionEntry CppType;
-  typedef GOptionEntry CType;
-
-  static CppType to_cpp_type(const CType& obj)
-  {
-    // We only convert the other way around:
-    g_assert_not_reached();
-    return CppType();
-  }
-
-  static CType to_c_type(CppType& obj) { return *obj.gobj(); }
-};
-#endif
-typedef Glib::ArrayHandle<Glib::OptionEntry, OptionEntryTraits> ArrayHandle_OptionEntries;
-
-/** This function does the same work as init(). Additionally, it
- * allows you to add your own command line options, and it automatically
- * generates nicely formatted --help output. Note that your program will be
- * terminated after writing out the help output. Also note that, in case of
- * error, the error message will be placed inside error instead of being
- * printed on the display.
+/** It will initialise everything needed to operate with Clutter and parses
+ * some standard command line options and the options specified in your
+ * @a option_context. Add a Glib::OptionGroup to the Glib::OptionContext to
+ * parse your own command-line arguments.
  *
  * @param argc a pointer to the number of command line arguments
  * @param argv a pointer to the array of comman line arguments
- * @param parameter_string a string which is displayed in the first line of --help output, after programname [OPTION...]
- * @param entries an array of Glib::OptionEntrys describing the options of your program
- * @param translation_domain a translation domain to use for translating the --help output for the options in entries with gettext()
- * @throws InitError
+ * @param option_context A Glib::OptionContext containing Glib::OptionGroups which described the command-line arguments taken by your program.
+ * @throws InitError, Glib::OptionError
  */
-void init(int* argc, gchar** argv[], const Glib::ustring& parameter_string, const ArrayHandle_OptionEntries& entries, const std::string& translation_domain);
+void init(int* argc, char** argv[], Glib::OptionContext& option_context);
 
-/** This function does the same work as init(). Additionally, it
- * allows you to add your own command line options, and it automatically
- * generates nicely formatted --help output. Note that your program will be
- * terminated after writing out the help output. Also note that, in case of
- * error, the error message will be placed inside error instead of being
- * printed on the display.
+/** It will initialise everything needed to operate with Clutter and parses
+ * some standard command line options and the options specified in your
+ * @a option_context. Add a Glib::OptionGroup to the Glib::OptionContext to
+ * parse your own command-line arguments.
  *
- * @param argc a pointer to the number of command line arguments
- * @param argv a pointer to the array of comman line arguments
- * @param parameter_string a string which is displayed in the first line of --help output, after programname [OPTION...]
- * @param entries an array of Glib::OptionEntrys describing the options of your program
- * @param translation_domain a translation domain to use for translating the --help output for the options in entries with gettext()
- * @throws InitError
+ * @param argc a reference to the number of command line arguments
+ * @param argv a reference to the array of comman line arguments
+ * @param option_context A Glib::OptionContext containing Glib::OptionGroups which described the command-line arguments taken by your program.
+ * @throws InitError, Glib::OptionError
  */
-void init(int& argc, gchar**& argv, const Glib::ustring& parameter_string, const ArrayHandle_OptionEntries& entries, const std::string& translation_domain);
+void init(int& argc, char**& argv, Glib::OptionContext& option_context);
 
 /** Adds a Glib::OptionGroup for the command line arguments recognized by
  * Clutter to the given context. This is useful if you are using

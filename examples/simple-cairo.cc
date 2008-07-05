@@ -43,8 +43,7 @@ main (int argc, char **argv)
   stage->show_all ();
   stage->signal_key_press_event ().connect (sigc::hide (sigc::bind_return (sigc::ptr_fun (&clutter_main_quit), true)));
 
-  // TODO: wrap clutter_main ?
-  clutter_main();
+  Clutter::main();
 
   return 0;
 }

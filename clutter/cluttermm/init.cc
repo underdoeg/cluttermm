@@ -51,17 +51,20 @@ void init(int& argc, gchar**& argv)
   init(&argc, &argv);
 }
 
-void init(int* argc, gchar** argv[], const Glib::ustring& parameter_string, const ArrayHandle_OptionEntries& entries, const std::string& translation_domain)
+void init(int* argc, gchar** argv[], Glib::OptionContext& option_context)
 {
   common_init();
   GError* error = NULL;
-  clutter_init_with_args(argc, argv, const_cast<char*>(parameter_string.c_str()), const_cast<GOptionEntry*>(entries.data()), const_cast<char*>(translation_domain.c_str()), &error);
+  add_clutter_option_group(option_context);
+  option_context.parse(*argc, *argv);
+  // option_context_parse already parsed the clutter arguments:
+  clutter_init_with_args(NULL, NULL, NULL, NULL, NULL, &error);
   if(error != NULL) Glib::Error::throw_exception(error);
 }
 
-void init(int& argc, gchar**& argv, const Glib::ustring& parameter_string, const ArrayHandle_OptionEntries& entries, const std::string& translation_domain)
+void init(int& argc, gchar**& argv, Glib::OptionContext& option_context)
 {
-  init(&argc, &argv, parameter_string, entries, translation_domain);
+  init(&argc, &argv, option_context);
 }
 
 void add_clutter_option_group(Glib::OptionContext& option_context)

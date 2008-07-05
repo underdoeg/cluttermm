@@ -19,8 +19,8 @@
 #include <cluttermm/color.h>
 #include <cluttermm/scriptable.h>
 #include <cluttermm/shader.h>
+#include <cluttermm/types.h> // For Event*
 #include <clutter/clutter-actor.h> // For ClutterActorBox
-#include <clutter/clutter-event.h> //For Clutter*Event
  
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)
@@ -28,13 +28,6 @@ _PINCLUDE(glibmm/private/object_p.h)
 
 namespace Clutter
 {
-
-typedef ClutterEvent Event;
-typedef ClutterButtonEvent ButtonEvent;
-typedef ClutterKeyEvent KeyEvent;
-typedef ClutterMotionEvent MotionEvent;
-typedef ClutterScrollEvent ScrollEvent;
-typedef ClutterCrossingEvent CrossingEvent;
 
 class ActorBox
 {
