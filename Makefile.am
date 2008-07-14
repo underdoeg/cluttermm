@@ -1,4 +1,4 @@
-SUBDIRS		= tools clutter clutter-cairo clutter-gtk docs examples tests
+SUBDIRS		= tools clutter clutter-cairo docs examples tests
 DIST_SUBDIRS	= $(SUBDIRS) scripts
 
 EXTRA_DIST	=  \

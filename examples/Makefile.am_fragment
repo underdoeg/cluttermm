@@ -1,13 +1,11 @@
 local_cluttermm_libs = $(top_builddir)/clutter/cluttermm/libcluttermm-$(API_VER).la \
-					   $(top_builddir)/clutter-cairo/cluttermm-cairo/libcluttermm-cairo-$(API_VER).la \
-					   $(top_builddir)/clutter-gtk/cluttermm-gtk/libcluttermm-gtk-$(API_VER).la
+					   $(top_builddir)/clutter-cairo/cluttermm-cairo/libcluttermm-cairo-$(API_VER).la
 
-LIBS  = $(CLUTTERMM_LIBS) $(CLUTTERMM_CAIRO_LIBS) $(CLUTTERMM_GTK_LIBS) $(local_cluttermm_libs) 
+LIBS  = $(CLUTTERMM_LIBS) $(CLUTTERMM_CAIRO_LIBS) $(local_cluttermm_libs) 
 
 all_includes = -I$(top_builddir)/clutter -I$(top_srcdir)/clutter \
 			   -I$(top_builddir)/clutter-cairo -I$(top_srcdir)/clutter-cairo \
-			   -I$(top_builddir)/clutter-gtk -I$(top_srcdir)/clutter-gtk \
-               $(CLUTTERMM_CFLAGS) $(CLUTTERMM_CAIRO_CFLAGS) $(CLUTTERMM_GTK_CFLAGS)
+               $(CLUTTERMM_CFLAGS) $(CLUTTERMM_CAIRO_CFLAGS)
 
 DEFS = @DEFS@
 DEFAULT_INCLUDES =

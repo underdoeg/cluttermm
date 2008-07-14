@@ -1,3 +1,16 @@
+2008-07-14  Murray Cumming  <murrayc@murrayc.com>
+
+	* Makefile.am:
+	* clutter-gtk/
+	* configure.in:
+	* examples/Makefile.am:
+	* examples/Makefile.am_fragment:
+	* examples/embed-gtk.cc: Moved clutter-gtkmm into a separate module, 
+	because someone did not want to use gtkmm.
+	clutter-cairomm is still there, but maybe we should remove that too.
+
+	Ths does not actually build yet because clutter-cairo-0.8 does not exist yet.
+
 2008-07-05  Armin Burgmeier  <armin@openismus.com>
 
 	* configure.in: Post-release version bump to 0.7.1.

@@ -38,7 +38,6 @@ AM_INIT_AUTOMAKE($PACKAGE, $VERSION)
 dnl Specify a configuration file (no autoheader)
 AM_CONFIG_HEADER(clutter/cluttermmconfig.h)
 AM_CONFIG_HEADER(clutter-cairo/cluttermm-cairo-config.h)
-AM_CONFIG_HEADER(clutter-gtk/cluttermm-gtk-config.h)
 AM_MAINTAINER_MODE
 AL_ACLOCAL_INCLUDE(scripts)
 
@@ -74,19 +73,14 @@ AC_CHECK_PROGS(PERL, perl5 perl)
 #########################################################################
 
 PKG_CHECK_MODULES(CLUTTERMM,
-                  gtkmm-2.4 >= 2.10.9
-                  clutter-0.7)
+                  clutter-0.8)
 AC_SUBST(CLUTTERMM_CFLAGS)
 AC_SUBST(CLUTTERMM_LIBS)
 
 PKG_CHECK_MODULES(CLUTTERMM_CAIRO,
-                  [gtkmm-2.4
-                   clutter-cairo-0.7
+                  [clutter-cairo-0.8
                    cairomm-1.0])
 
-PKG_CHECK_MODULES(CLUTTERMM_GTK,
-                  [gtkmm-2.4
-                   clutter-gtk-0.7])
 
 # the API version of the library.  Libraries and pkg-config files will have this
 # value appended to them, e.g. libclutter-0.6.so
@@ -124,12 +118,6 @@ AC_OUTPUT([
   clutter-cairo/src/Makefile
   clutter-cairo/cluttermm-cairo/Makefile
   clutter-cairo/cluttermm-cairo/private/Makefile
-
-  clutter-gtk/Makefile
-  clutter-gtk/cluttermm-gtk-$API_VER.pc:clutter-gtk/cluttermm-gtk.pc.in
-  clutter-gtk/src/Makefile
-  clutter-gtk/cluttermm-gtk/Makefile
-  clutter-gtk/cluttermm-gtk/private/Makefile
 
   tools/Makefile
     tools/extra_defs_gen/Makefile
