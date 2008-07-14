@@ -1,3 +1,10 @@
+0.7.1:
+
+* Target clutter-0.8 instead of clutter-0.7
+* Remove clutter-cairomm and clutter-gtkmm. We will release bindings 
+  for clutter-cairo-0.8 and clutter-gtk-0.8 when they exist.
+  (Murray Cumming)
+
 0.7.0:
 
 * Update to new clutter-0.7 API
