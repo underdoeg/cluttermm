@@ -37,7 +37,6 @@ AM_INIT_AUTOMAKE($PACKAGE, $VERSION)
 
 dnl Specify a configuration file (no autoheader)
 AM_CONFIG_HEADER(clutter/cluttermmconfig.h)
-AM_CONFIG_HEADER(clutter-cairo/cluttermm-cairo-config.h)
 AM_MAINTAINER_MODE
 AL_ACLOCAL_INCLUDE(scripts)
 
@@ -72,18 +71,19 @@ AC_CHECK_PROGS(PERL, perl5 perl)
 #  Dependancy checks
 #########################################################################
 
+# Note: We depend on cairomm only because pangomm depends on it
+# (but it was not in the pangomm .pc file until recently).
 PKG_CHECK_MODULES(CLUTTERMM,
-                  clutter-0.8)
+                  [clutter-0.8
+                   glibmm-2.4 >= 2.14
+                   pangomm-1.4 >= 2.12
+                   cairomm-1.0])
 AC_SUBST(CLUTTERMM_CFLAGS)
 AC_SUBST(CLUTTERMM_LIBS)
 
-PKG_CHECK_MODULES(CLUTTERMM_CAIRO,
-                  [clutter-cairo-0.8
-                   cairomm-1.0])
-
 
 # the API version of the library.  Libraries and pkg-config files will have this
-# value appended to them, e.g. libclutter-0.6.so
+# value appended to them, e.g. libclutter-0.8.so
 API_VER=[0.8]
 AC_SUBST(API_VER)
 
@@ -112,12 +112,6 @@ AC_OUTPUT([
   clutter/src/Makefile
   clutter/cluttermm/Makefile
   clutter/cluttermm/private/Makefile
-
-  clutter-cairo/Makefile
-  clutter-cairo/cluttermm-cairo-$API_VER.pc:clutter-cairo/cluttermm-cairo.pc.in
-  clutter-cairo/src/Makefile
-  clutter-cairo/cluttermm-cairo/Makefile
-  clutter-cairo/cluttermm-cairo/private/Makefile
 
   tools/Makefile
     tools/extra_defs_gen/Makefile

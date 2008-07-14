@@ -1,5 +1,0 @@
-(include clutter-cairo_methods.defs)
-(include clutter-cairo_signals.defs)
-(include clutter-cairo_vfuncs.defs)
-(include clutter-cairo_enums.defs)
-(include clutter-cairo_others.defs)

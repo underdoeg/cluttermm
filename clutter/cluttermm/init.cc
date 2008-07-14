@@ -17,7 +17,6 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <gdkmm/wrap_init.h>
 #include <cluttermmconfig.h> //For LIBCLUTTERMM_VERSION
 #include <cluttermm/init.h>
 #include <cluttermm/wrap_init.h>
@@ -29,7 +28,6 @@ namespace
 void common_init()
 {
   Glib::init(); //Sets up the g type system and the Glib::wrap() table.
-  Gdk::wrap_init();
   Clutter::wrap_init(); //Tells the Glib::wrap() table about the libcluttermm classes.
 }
 

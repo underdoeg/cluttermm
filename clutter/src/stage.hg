@@ -17,7 +17,6 @@
 
 #include <cluttermm/group.h>
 #include <cluttermm/color.h>
-#include <gdkmm/pixbuf.h>
 #include <clutter/clutter-stage.h> // For ClutterPerspective
  
 _DEFS(cluttermm,clutter)

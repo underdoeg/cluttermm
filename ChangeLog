@@ -1,6 +1,25 @@
 2008-07-14  Murray Cumming  <murrayc@murrayc.com>
 
 	* Makefile.am:
+	* clutter-cairo/
+	* clutter/cluttermm.pc.in:
+	* clutter/cluttermm/init.cc:
+	* clutter/src/stage.hg:
+	* clutter/src/texture.hg:
+	* configure.in:
+	* examples/Makefile.am:
+	* examples/Makefile.am_fragment:
+	* examples/flowers.cc:
+	* tools/extra_defs_gen/Makefile.am:
+	* tools/extra_defs_gen/generate_defs_clutter.cc:
+	* tools/extra_defs_gen/generate_defs_clutter_cairo.cc:
+	Moved clutter-cairomm into a separate module, though we 
+	still depend on cairomm because we depend on pangomm (which depends on 
+	cairomm to wrap pango-cairo sensibly). 
+
+2008-07-14  Murray Cumming  <murrayc@murrayc.com>
+
+	* Makefile.am:
 	* clutter-gtk/
 	* configure.in:
 	* examples/Makefile.am:

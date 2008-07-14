@@ -15,15 +15,14 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include "glibmm_generate_extra_defs/generate_extra_defs.h"
-#include <gtk/gtk.h>
+#include <glibmm_generate_extra_defs/generate_extra_defs.h>
 #include <clutter/clutter.h>
 #include <iostream>
 
 
 int main (int argc, char *argv[])
 {
-  gtk_init(&argc, &argv) ;
+  clutter_init(&argc, &argv) ;
 
   std::cout 
     << get_defs(CLUTTER_TYPE_ACTOR)
