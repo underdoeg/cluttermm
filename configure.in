@@ -75,13 +75,13 @@ AC_CHECK_PROGS(PERL, perl5 perl)
 
 PKG_CHECK_MODULES(CLUTTERMM,
                   gtkmm-2.4 >= 2.10.9
-                  clutter-0.7)
+                  clutter-0.8)
 AC_SUBST(CLUTTERMM_CFLAGS)
 AC_SUBST(CLUTTERMM_LIBS)
 
 PKG_CHECK_MODULES(CLUTTERMM_CAIRO,
                   [gtkmm-2.4
-                   clutter-cairo-0.7
+                   clutter-cairo-0.8
                    cairomm-1.0])
 
 PKG_CHECK_MODULES(CLUTTERMM_GTK,
@@ -89,7 +89,7 @@ PKG_CHECK_MODULES(CLUTTERMM_GTK,
                    clutter-gtk-0.7])
 
 # the API version of the library.  Libraries and pkg-config files will have this
-# value appended to them, e.g. libclutter-0.6.so
+# value appended to them, e.g. libclutter-0.8.so
 API_VER=[0.8]
 AC_SUBST(API_VER)
 

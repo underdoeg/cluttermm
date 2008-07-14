@@ -1,1 +1,1 @@
-/usr/share/libtool/config/ltmain.sh
+/opt/gnome220/share/libtool/ltmain.sh
