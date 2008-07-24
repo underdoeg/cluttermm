@@ -2,6 +2,8 @@
 
 	* clutter/cluttermm.pc.in: Added pangomm
 
+0.7.1:
+
 2008-07-14  Murray Cumming  <murrayc@murrayc.com>
 
 	* Makefile.am:
