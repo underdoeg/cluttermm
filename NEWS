@@ -1,3 +1,8 @@
+0.7.2:
+
+* pkg-config .pc file: Add needed dependency on pangomm.
+  (Siavash Safi)
+
 0.7.1:
 
 * Target clutter-0.8 instead of clutter-0.7
