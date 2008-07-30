@@ -1,3 +1,12 @@
+2008-07-30  Murray Cumming  <murrayc@murrayc.com>
+
+	* examples/simple-cairo.cc: Removed this. It was not 
+	being built and it is now in clutter-cairomm anyway.
+	* examples/effect.cc:
+	* examples/test-actors.cc:
+	* examples/test-boxes.cc: Corrected the syntax 
+	formatting.
+
 0.7.2:
 
 2008-07-23  Siavash Safi  <siavash.safi@gmail.com>
