@@ -1,3 +1,10 @@
+2008-08-04  Murray Cumming  <murrayc@murrayc.com>
+
+	* clutter/src/container.ccg:
+	* clutter/src/container.hg: Added get/set_child_property<>() and 
+	get/set_child_property_value(), using the same technique as 
+	Glib::ObjectBase::get/set_property().
+
 2008-07-30  Murray Cumming  <murrayc@murrayc.com>
 
 	* examples/simple-cairo.cc: Removed this. It was not 

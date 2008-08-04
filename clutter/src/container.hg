@@ -57,10 +57,39 @@ public:
   _IGNORE(clutter_container_foreach)
 
   // not sure the valist stuff is good to wrap in C++
-  _IGNORE(clutter_container_add_valist, clutter_container_remove_valist, clutter_container_add, clutter_container_remove, clutter_container_child_get, clutter_contaienr_child_set, clutter_container_class_find_child_property, clutter_container_class_list_child_properties)
+  _IGNORE(clutter_container_add_valist, clutter_container_remove_valist, clutter_container_add, clutter_container_remove, clutter_container_child_get, clutter_container_child_set, clutter_container_class_find_child_property, clutter_container_class_list_child_properties)
 
-  // TODO: Do we want to wrap clutter_container_get/set_child_property, and/or
-  // clutter_container_get_child_meta?
+ 
+  template <class PropertyType> inline
+  void set_child_property(const Glib::RefPtr<Actor>& child, const Glib::ustring& property_name, const PropertyType& value);
+
+  _WRAP_METHOD(void set_child_property_value(const Glib::RefPtr<Actor>& child, const Glib::ustring& property_name, const Glib::ValueBase& value), clutter_container_child_set_property)
+
+  template <class PropertyType> inline
+  void get_child_property(const Glib::RefPtr<Actor>& child, const Glib::ustring& property_name, PropertyType& value) const;
+
+  void get_child_property_value(const Glib::RefPtr<Actor>& child, const Glib::ustring& property_name, Glib::ValueBase& value) const;
+
+
+  /*
+
+void              clutter_container_child_get_property          (ClutterContainer *container,
+                                                                 ClutterActor     *child,
+                                                                 const gchar      *property,
+                                                                 GValue           *value);
+void              clutter_container_child_set                   (ClutterContainer *container,
+                                                                 ClutterActor     *actor,
+                                                                 const gchar      *first_prop,
+                                                                 ...) G_GNUC_NULL_TERMINATED;
+void              clutter_container_child_get                   (ClutterContainer *container,
+                                                                 ClutterActor     *actor,
+                                                                 const gchar      *first_prop,
+                                                                 ...) G_GNUC_NULL_TERMINATED;
+
+  */
+
+  // TODO: clutter_container_get_child_meta?
+
 
 #m4 _CONVERSION(`ClutterActor*',`const Glib::RefPtr<Actor>&',`Glib::wrap($3, true)')
   _WRAP_SIGNAL(void actor_added(const Glib::RefPtr<Actor>& actor), "actor_added")
@@ -85,6 +114,34 @@ protected:
   // TODO: Do we want to wrap create_child_meta, destory_child_meta,
   // get_child_meta?
 };
+
+
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+
+template <class PropertyType> inline
+void Container::set_child_property(const Glib::RefPtr<Actor>& child, const Glib::ustring& property_name, const PropertyType& value)
+{
+  Glib::Value<PropertyType> property_value;
+  property_value.init(Glib::Value<PropertyType>::value_type());
+
+  property_value.set(value);
+  this->set_child_property_value(property_name, property_value);
+}
+
+template <class PropertyType> inline
+void Container::get_child_property(const Glib::RefPtr<Actor>& child, const Glib::ustring& property_name, PropertyType& value) const
+{
+  Glib::Value<PropertyType> property_value;
+  property_value.init(Glib::Value<PropertyType>::value_type());
+
+  this->get_child_property_value(property_name, property_value);
+
+  value = property_value.get();
+}
+
+#endif /* DOXYGEN_SHOULD_SKIP_THIS */
+
+
 
 } // namespace Clutter
 //vim: ts=2,sw=2
