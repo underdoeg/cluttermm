@@ -1,3 +1,7 @@
+0.7.3:
+
+* Container: Added set_child_property().
+
 0.7.2:
 
 * pkg-config .pc file: Add needed dependency on pangomm.
