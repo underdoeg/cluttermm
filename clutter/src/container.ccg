@@ -58,9 +58,9 @@ void Container::foreach(const SlotForEach& slot)
 }
 
 
-void Container::get_child_property_value(const Glib::RefPtr<Actor>& child, const Glib::ustring& property_name, Glib::ValueBase& value) const
+void Container::get_child_property_value(const Glib::RefPtr<const Actor>& child, const Glib::ustring& property_name, Glib::ValueBase& value) const
 {
-  clutter_container_child_get_property(const_cast<ClutterContainer*>(gobj()), child->gobj(), property_name.c_str(), value.gobj());
+  clutter_container_child_get_property(const_cast<ClutterContainer*>(gobj()), const_cast<ClutterActor*>(child->gobj()), property_name.c_str(), value.gobj());
 }
 
 } //namespace Clutter

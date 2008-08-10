@@ -66,9 +66,10 @@ public:
   _WRAP_METHOD(void set_child_property_value(const Glib::RefPtr<Actor>& child, const Glib::ustring& property_name, const Glib::ValueBase& value), clutter_container_child_set_property)
 
   template <class PropertyType> inline
-  void get_child_property(const Glib::RefPtr<Actor>& child, const Glib::ustring& property_name, PropertyType& value) const;
+  void get_child_property(const Glib::RefPtr<const Actor>& child, const Glib::ustring& property_name, PropertyType& value) const;
 
-  void get_child_property_value(const Glib::RefPtr<Actor>& child, const Glib::ustring& property_name, Glib::ValueBase& value) const;
+  void get_child_property_value(const Glib::RefPtr<const Actor>& child, const Glib::ustring& property_name, Glib::ValueBase& value) const;
+  _IGNORE(clutter_container_child_get_property)
 
 
   /*
@@ -125,16 +126,16 @@ void Container::set_child_property(const Glib::RefPtr<Actor>& child, const Glib:
   property_value.init(Glib::Value<PropertyType>::value_type());
 
   property_value.set(value);
-  this->set_child_property_value(property_name, property_value);
+  this->set_child_property_value(child, property_name, property_value);
 }
 
 template <class PropertyType> inline
-void Container::get_child_property(const Glib::RefPtr<Actor>& child, const Glib::ustring& property_name, PropertyType& value) const
+void Container::get_child_property(const Glib::RefPtr<const Actor>& child, const Glib::ustring& property_name, PropertyType& value) const
 {
   Glib::Value<PropertyType> property_value;
   property_value.init(Glib::Value<PropertyType>::value_type());
 
-  this->get_child_property_value(property_name, property_value);
+  this->get_child_property_value(child, property_name, property_value);
 
   value = property_value.get();
 }

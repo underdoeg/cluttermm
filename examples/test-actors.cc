@@ -13,8 +13,9 @@ unsigned int get_radius(unsigned int num_actors)
     + Clutter::Stage::get_default()->get_height()) / num_actors;
 }
 
-struct SuperOH
+class SuperOH
 {
+public:
   std::vector<Glib::RefPtr<Clutter::Actor> > hands;
   Glib::RefPtr<Clutter::Actor> bgtex;
   Glib::RefPtr<Clutter::Group> group;
