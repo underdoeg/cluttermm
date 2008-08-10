@@ -1,13 +1,9 @@
-2008-08-10  Murray Cumming,,,  <murrayc@murrayc.com>
-
-	reviewed by: <delete if not using a buddy>
-	patch by: <delete if not someone else's patch>
+2008-08-10  Murray Cumming  <murrayc@murrayc.com>
 
 	* clutter/src/container.ccg:
-	* clutter/src/container.hg:
-	* examples/test-actors.cc:
-	* scripts/config.guess:
-	* scripts/config.sub:
+	* clutter/src/container.hg: get_child_property(), 
+	set_child_property(): Correct the implementation to fix 
+	a compile error when using these templated methods.
 
 2008-08-04  Murray Cumming  <murrayc@murrayc.com>
 
