@@ -1,3 +1,8 @@
+2008-08-11  Murray Cumming  <murrayc@murrayc.com>
+
+	* clutter/src/types.hg: Added some default parameter values for 
+	constructors.
+
 0.7.3:
 
 2008-08-10  Murray Cumming  <murrayc@murrayc.com>

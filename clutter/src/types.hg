@@ -63,7 +63,7 @@ class Vertex
 {
   _CLASS_BOXEDTYPE_STATIC(Vertex, ClutterVertex)
 public:
-  Vertex(Unit x, Unit y, Unit z);
+  Vertex(Unit x, Unit y, Unit z = 0);
 
   _MEMBER_GET(x, x, Unit, ClutterUnit)
   _MEMBER_SET(x, x, Unit, ClutterUnit)
@@ -77,7 +77,7 @@ class Geometry
 {
   _CLASS_BOXEDTYPE_STATIC(Geometry, ClutterGeometry)
 public:
-  Geometry(int x, int y, unsigned int width, unsigned int height);
+  Geometry(int x, int y, unsigned int width = 0, unsigned int height = 0);
 
   _MEMBER_GET(x, x, int, gint)
   _MEMBER_SET(x, x, int, gint)
