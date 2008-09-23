@@ -1,5 +1,13 @@
 2008-09-23  Murray Cumming  <murrayc@murrayc.com>
 
+	* clutter/src/timeout-pool.ccg:
+	* clutter/src/timeout-pool.hg: Implement the constructor.
+	Bug #553157 (Cristi Posoiu)
+	Added a destructor, though it is not clear how we should free the 
+	C struct. See http://bugzilla.o-hand.com/show_bug.cgi?id=1154
+
+2008-09-23  Murray Cumming  <murrayc@murrayc.com>
+
 	* clutter/src/timeline.hg: Constructor: Rename the msecs parameter 
 	to duration so that the implementation uses the correct property name.
 	Bug #553157 (Cristi Posoiu)

@@ -33,6 +33,19 @@ void timeout_slot_destroy_func(gpointer data)
 namespace Clutter
 {
 
+TimeoutPool::TimeoutPool(int priority)
+: gobject_( clutter_timeout_pool_new(priority) )
+{
+}
+
+TimeoutPool::~TimeoutPool()
+{
+  if(gobject_)
+  {
+    //TODO: How should we free it? See http://bugzilla.o-hand.com/show_bug.cgi?id=1154
+  } 
+}
+
 guint TimeoutPool::add(guint interval, const TimeoutSlot& func, int priority)
 {
   return clutter_timeout_pool_add(gobj(), interval, timout_source_func, new TimeoutSlot(func), timeout_slot_destroy_func);

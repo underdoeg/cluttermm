@@ -38,8 +38,10 @@ class TimeoutPool
 
 public:
   explicit TimeoutPool(int priority);
+  ~TimeoutPool();
 
   typedef sigc::slot<bool> TimeoutSlot;
+
   _WRAP_METHOD_DOCS_ONLY(clutter_timeout_pool_add)
   guint add(guint interval, const TimeoutSlot& func, int priority = Glib::PRIORITY_DEFAULT);
 
