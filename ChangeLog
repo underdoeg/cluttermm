@@ -1,3 +1,9 @@
+2008-09-23  Murray Cumming  <murrayc@murrayc.com>
+
+	* clutter/src/timeline.hg: Constructor: Rename the msecs parameter 
+	to duration so that the implementation uses the correct property name.
+	Bug #553157 (Cristi Posoiu)
+
 2008-08-11  Murray Cumming  <murrayc@murrayc.com>
 
 	* clutter/src/types.hg: Added some default parameter values for 
