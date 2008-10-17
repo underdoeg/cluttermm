@@ -1,3 +1,12 @@
+0.7.4:
+
+* Timeline: Correct the constructor implementation.
+  (Murray Cumming) Bug #553157 (Cristi Posoiu)
+* Vertex, Geometry: Added some default parameter values to the 
+  constructors. (Murray Cumming)
+* Removed TimeoutPool because ClutterTimeoutPool is not really
+  public API. (Murray Cumming) Bug #553157 (Cristi Posoiu)
+
 0.7.3:
 
 * Container: Added set_child_property().
