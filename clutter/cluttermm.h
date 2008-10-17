@@ -56,7 +56,6 @@ extern const int cluttermm_micro_version;
 #include <cluttermm/score.h>
 #include <cluttermm/shader.h>
 #include <cluttermm/script.h>
-#include <cluttermm/timeout-pool.h>
 #include <cluttermm/types.h>
 #include <cluttermm/utility.h>
 

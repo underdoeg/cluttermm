@@ -119,5 +119,5 @@ Color operator+(const Color& color1, const Color& color2);
  */
 Color operator-(const Color& color1, const Color& color2);
 
-} // namespace Gdk
+} // namespace Clutter
 

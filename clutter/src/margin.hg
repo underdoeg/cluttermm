@@ -42,6 +42,6 @@ public:
   _MEMBER_SET(left, left, Unit, ClutterUnit)
 };
 
-} // namespace Gdk
+} // namespace Clutter
 
 //vim: ts=2,sw=2

@@ -29,6 +29,6 @@ score.hg \
 shader.hg \
 script.hg \
 scriptable.hg \
-effecttemplate.hg \
-timeout-pool.hg
-#layout.hg box.hg margin.hg
+effecttemplate.hg
+
+#Not for bindings/applications: timeout-pool.hg
