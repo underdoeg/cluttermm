@@ -15,8 +15,7 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <clutter/clutter-clone-texture.h>
-#include <clutter/clutter-enum-types.h>
+#include <clutter/clutter.h>
 
 namespace Clutter
 {

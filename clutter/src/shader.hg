@@ -16,7 +16,7 @@
  */
 
 #include <glibmm/object.h>
-#include <clutter/clutter-shader.h>
+#include <clutter/clutter.h>
  
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)

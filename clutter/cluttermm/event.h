@@ -21,9 +21,8 @@
 
 #include <glibmm.h>
 #include <cluttermm/types.h>
-#include <clutter/clutter-event.h>
 // We also need these in C++:
-#include <clutter/clutter-keysyms.h>
+#include <clutter/clutter.h>
 
 namespace Clutter
 {

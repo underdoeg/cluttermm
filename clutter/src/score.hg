@@ -17,7 +17,7 @@
 
 #include <glibmm/object.h>
 #include <cluttermm/timeline.h>
-#include <clutter/clutter-score.h>
+#include <clutter/clutter.h>
  
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)

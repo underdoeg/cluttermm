@@ -15,7 +15,7 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <clutter/clutter-behaviour.h>
+#include <clutter/clutter.h>
 
 static void SignalProxy_behaviours_foreach_callback(ClutterBehaviour* behaviour, ClutterActor *actor, gpointer user_data)
 {

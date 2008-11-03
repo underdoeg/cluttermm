@@ -74,7 +74,7 @@ AC_CHECK_PROGS(PERL, perl5 perl)
 # Note: We depend on cairomm only because pangomm depends on it
 # (but it was not in the pangomm .pc file until recently).
 PKG_CHECK_MODULES(CLUTTERMM,
-                  [clutter-0.8
+                  [clutter-0.9
                    glibmm-2.4 >= 2.14
                    pangomm-1.4 >= 2.12
                    cairomm-1.0])
@@ -84,7 +84,7 @@ AC_SUBST(CLUTTERMM_LIBS)
 
 # the API version of the library.  Libraries and pkg-config files will have this
 # value appended to them, e.g. libclutter-0.8.so
-API_VER=[0.8]
+API_VER=[0.9]
 AC_SUBST(API_VER)
 
 GMM_PROCDIR=`pkg-config --variable=gmmprocdir glibmm-2.4`

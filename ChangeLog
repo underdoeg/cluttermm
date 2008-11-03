@@ -1,5 +1,50 @@
 2008-11-03   Piotr Rak <piotr.rak@gmail.com>
 
+	* configure.in: Use clutter-0.9 instead of clutter-0.8.
+	* clutter/cluttermm/event.h:
+	* clutter/cluttermm/frame-source.cc:
+	* clutter/src/actor.ccg:
+	* clutter/src/actor.hg:
+	* clutter/src/alpha.ccg:
+	* clutter/src/alpha.hg:
+	* clutter/src/behaviour-bspline.ccg:
+	* clutter/src/behaviour-depth.ccg:
+	* clutter/src/behaviour-ellipse.ccg:
+	* clutter/src/behaviour-opacity.ccg:
+	* clutter/src/behaviour-path.ccg:
+	* clutter/src/behaviour-rotate.ccg:
+	* clutter/src/behaviour-scale.ccg:
+	* clutter/src/behaviour.ccg:
+	* clutter/src/clone-texture.ccg:
+	* clutter/src/container.ccg:
+	* clutter/src/container.hg:
+	* clutter/src/effecttemplate.ccg:
+	* clutter/src/entry.ccg:
+	* clutter/src/group.ccg:
+	* clutter/src/label.ccg:
+	* clutter/src/media.hg:
+	* clutter/src/rectangle.ccg:
+	* clutter/src/score.ccg:
+	* clutter/src/score.hg:
+	* clutter/src/script.ccg:
+	* clutter/src/script.hg:
+	* clutter/src/scriptable.ccg:
+	* clutter/src/scriptable.hg:
+	* clutter/src/shader.hg:
+	* clutter/src/stage.ccg:
+	* clutter/src/stage.hg:
+	* clutter/src/texture.ccg:
+	* clutter/src/texture.hg:
+	* clutter/src/timeline.ccg:
+	* clutter/src/types.ccg:
+	* clutter/src/types.hg: Include clutter.h instead of individual files, 
+	as required by clutter-0.9.
+	Bug #559176
+
+This is is trunk, for cluttermm-0.9. See also the cluttermm-0.8 branch.
+
+2008-11-03   Piotr Rak <piotr.rak@gmail.com>
+
 	* clutter/src/behaviour-path.hg: Remove a parameter name to avoid 
 	a g++ warning about the unused parameter.
 	Bug #558873. 
