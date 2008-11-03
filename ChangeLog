@@ -1,3 +1,9 @@
+2008-11-04  Piotr Rak <piotr.rak@gmail.com>
+
+	* clutter/src/behaviour-depth.hg: Constructor: Rename parameter names, 
+	so that gmmproc uses the correct GObject property names.
+	Bug #559176
+
 2008-11-03   Piotr Rak <piotr.rak@gmail.com>
 
 	* configure.in: Use clutter-0.9 instead of clutter-0.8.

@@ -30,7 +30,7 @@ class BehaviourDepth : public Behaviour
   _CLASS_GOBJECT(BehaviourDepth, ClutterBehaviourDepth, CLUTTER_BEHAVIOUR_DEPTH, Behaviour, ClutterBehaviour)
 
 protected:
-  _WRAP_CTOR(BehaviourDepth(const Glib::RefPtr<Alpha>& alpha, int start_depth, int end_depth), clutter_behaviour_depth_new)
+  _WRAP_CTOR(BehaviourDepth(const Glib::RefPtr<Alpha>& alpha, int depth_start, int depth_end), clutter_behaviour_depth_new)
 
 public:
   _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, int start_depth, int end_depth)
