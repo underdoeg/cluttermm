@@ -135,7 +135,8 @@ public:
   _WRAP_METHOD(Glib::RefPtr<Shader> get_shader(), clutter_actor_get_shader)
   _WRAP_METHOD(Glib::RefPtr<const Shader> get_shader() const, clutter_actor_get_shader, constversion)
   _WRAP_METHOD(void set_shader(const Glib::RefPtr<Shader>& shader), clutter_actor_set_shader)
-  _WRAP_METHOD(void set_shader_param(const Glib::ustring& param, float value), clutter_actor_set_shader_param)
+  _WRAP_METHOD_DOCS_ONLY(clutter_actor_set_shader_param)
+  template <class ParamType> void set_shader_param(const Glib::ustring& param, const ParamType& value);
   //_WRAP_METHOD_DOCS_ONLY(clutter_actor_get_paint_area)
   //ActorBox get_paint_area() const;
   _WRAP_METHOD(bool is_rotated() const, clutter_actor_is_rotated)
@@ -255,7 +256,9 @@ public:
   _WRAP_PROPERTY("x", int)
   _WRAP_PROPERTY("y", int)
 
-  protected:
+protected:
+  _WRAP_METHOD(void set_shader_param_value(const Glib::ustring& param, const Glib::ValueBase& value),
+               clutter_actor_set_shader_param)
   // according to the clutter docs, these functions should never be called
   // directly and are only for subclasses
   _WRAP_METHOD(void pick(const Color& color), clutter_actor_pick)
@@ -276,5 +279,16 @@ public:
 
 };
 
-} // namespace Clutter
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+template <class ParamType>
+void Actor::set_shader_param(const Glib::ustring& param, const ParamType& value)
+{
+  Glib::Value<ParamType> param_value;
+  param_value.init(Glib::Value<ParamType>::value_type());
 
+  param_value.set(value);
+  this->set_shader_param_value(param, param_value);
+}
+#endif /* DOXYGEN_SHOULD_SKIP_THIS */
+
+} // namespace Clutter

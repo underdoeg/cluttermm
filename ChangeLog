@@ -1,5 +1,11 @@
 2008-12-12  Daniel Elstner  <danielk@openismus.com>
 
+	* clutter/src/actor.hg (Actor::set_shader_param): Replace with
+	generic template method to accommodate an API change in clutter.
+	Doesn't build yet as the .defs still need to be regenerated.
+
+2008-12-12  Daniel Elstner  <danielk@openismus.com>
+
 	* tools/extra_defs_gen/generate_defs_clutter.cc: Remove reference
 	to CLUTTER_TYPE_BEHAVIOUR_BSPLINE as it has been merged with the
 	path behavior.
