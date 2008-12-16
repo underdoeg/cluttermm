@@ -23,7 +23,6 @@
 _DEFS(cluttermm,clutter)
 _PINCLUDE(cluttermm/private/behaviour_p.h)
 
-
 namespace Clutter
 {
 
@@ -37,19 +36,11 @@ class BehaviourPath
 protected:
   // TODO: pass the knots as a C++ container
   BehaviourPath(const Glib::RefPtr<Alpha>& alpha, const Glib::ArrayHandle<Knot>& knots);
-  _IGNORE(clutter_behaviour_path_new)
-
-  // We don't wrap the vararg functions:
-  _IGNORE(clutter_behaviour_path_append_knots)
+  _IGNORE(clutter_behaviour_path_new_with_knots)
 
 public:
   // TODO: pass the knots as a C++ container
-  _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, const Glib::ArrayHandle<Knot>& knot);
-
-  _WRAP_METHOD(void append_knot(const Knot& knot), clutter_behaviour_path_append_knot)
-  _WRAP_METHOD(void insert_knot(guint offset, const Knot& knot), clutter_behaviour_path_insert_knot)
-  _WRAP_METHOD(void remove_knot(guint offset), clutter_behaviour_path_remove_knot)
-  _WRAP_METHOD(void clear(), clutter_behaviour_path_clear)
+  _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, const Glib::ArrayHandle<Knot>& knots)
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -67,14 +58,11 @@ struct KnotTraits
 
 #endif // DOXYGEN_SHOULD_SKIP_THIS
 
-  typedef Glib::SListHandle<Knot, KnotTraits> ListHandle_Knots;
-  _WRAP_METHOD_DOCS_ONLY(clutter_behaviour_path_get_knots)
-  ListHandle_Knots get_knots() const;
+//  typedef Glib::SListHandle<Knot, KnotTraits> ListHandle_Knots;
+//  _WRAP_METHOD_DOCS_ONLY(clutter_behaviour_path_get_knots)
+//  ListHandle_Knots get_knots() const;
 
-  _WRAP_SIGNAL(void knot_reached(const Knot& knot), "knot_reached")
-
-  _WRAP_PROPERTY("knot", Knot)
-
+  _WRAP_SIGNAL(void knot_reached(guint knot_num), "knot_reached")
 };
 
 } // namespace Clutter

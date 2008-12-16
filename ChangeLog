@@ -1,5 +1,11 @@
 2008-12-16  Daniel Elstner  <danielk@openismus.com>
 
+	* clutter/src/behaviour-path.{ccg,hg}: Remove wrapper methods
+	for functionality that was moved into the separate ClutterPath
+	class.  Builds now but needs more work.
+
+2008-12-16  Daniel Elstner  <danielk@openismus.com>
+
 	* clutter/src/score.{ccg,hg}: Change uses of guint to gulong,
 	following an API change in Clutter.
 
