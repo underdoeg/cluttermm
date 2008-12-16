@@ -482,27 +482,16 @@
   (construct-only #f)
 )
 
-;; From ClutterBackend
-
-;; From ClutterBehaviourBspline
-
-(define-signal knot-reached
-  (of-object "ClutterBehaviourBspline")
-  (return-type "void")
-  (when "last")
-  (parameters
-    '("const-ClutterKnot*" "p0")
-  )
-)
-
-(define-property alpha
-  (of-object "ClutterBehaviourBspline")
-  (prop-type "GParamObject")
-  (docs "Alpha Object to drive the behaviour")
+(define-property mode
+  (of-object "ClutterAlpha")
+  (prop-type "GParamEnum")
+  (docs "Progress mode")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
+
+;; From ClutterBackend
 
 ;; From ClutterBehaviourDepth
 
@@ -690,7 +679,7 @@
   (return-type "void")
   (when "last")
   (parameters
-    '("const-ClutterKnot*" "p0")
+    '("guint" "p0")
   )
 )
 
@@ -703,11 +692,11 @@
   (construct-only #f)
 )
 
-(define-property knot
+(define-property path
   (of-object "ClutterBehaviourPath")
-  (prop-type "GParamBoxed")
-  (docs "Can be used to append a knot to the path")
-  (readable #f)
+  (prop-type "GParamObject")
+  (docs "The ClutterPath object representing the path to animate along")
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
@@ -1557,8 +1546,8 @@
 
 (define-property color
   (of-object "ClutterEntry")
-  (prop-type "GParamBoxed")
-  (docs "Font Colour")
+  (prop-type "ClutterParamSpecColor")
+  (docs "The color of the text")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2284,7 +2273,7 @@
 (define-property font-name
   (of-object "ClutterLabel")
   (prop-type "GParamString")
-  (docs "Pango font description")
+  (docs "The font to be used by the label")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2293,7 +2282,7 @@
 (define-property text
   (of-object "ClutterLabel")
   (prop-type "GParamString")
-  (docs "Text to render")
+  (docs "The text to render")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2301,8 +2290,8 @@
 
 (define-property color
   (of-object "ClutterLabel")
-  (prop-type "GParamBoxed")
-  (docs "Font Colour")
+  (prop-type "ClutterParamSpecColor")
+  (docs "Color of the font used by the label")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2320,7 +2309,7 @@
 (define-property use-markup
   (of-object "ClutterLabel")
   (prop-type "GParamBoolean")
-  (docs "The text of the label includes XML markup. See pango_parse_markup()")
+  (docs "Whether or not the text of the label includes Pango markup")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2329,7 +2318,7 @@
 (define-property alignment
   (of-object "ClutterLabel")
   (prop-type "GParamEnum")
-  (docs "The preferred alignment for the string")
+  (docs "The preferred alignment for the string, for multi-line text")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2338,7 +2327,7 @@
 (define-property wrap
   (of-object "ClutterLabel")
   (prop-type "GParamBoolean")
-  (docs "If set, wrap lines if the text becomes too wide")
+  (docs "If set, wrap the lines if the text becomes too wide")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2347,7 +2336,7 @@
 (define-property wrap-mode
   (of-object "ClutterLabel")
   (prop-type "GParamEnum")
-  (docs "If wrap is set, controls how line-wrapping is done")
+  (docs "Control how line-wrapping is done")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2373,6 +2362,57 @@
 
 ;; From ClutterMedia
 
+(define-signal eos
+  (of-object "ClutterMedia")
+  (return-type "void")
+  (when "last")
+)
+
+(define-signal error
+  (of-object "ClutterMedia")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("gpointer" "p0")
+  )
+)
+
+(define-property playing
+  (of-object "ClutterMedia")
+  (prop-type "GParamBoolean")
+  (docs "TRUE if playing.")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property buffer-percent
+  (of-object "ClutterMedia")
+  (prop-type "GParamInt")
+  (docs "The percentage the current stream buffer is filled.")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property uri
+  (of-object "ClutterMedia")
+  (prop-type "GParamString")
+  (docs "The loaded URI.")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property volume
+  (of-object "ClutterMedia")
+  (prop-type "GParamDouble")
+  (docs "The audio volume.")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property position
   (of-object "ClutterMedia")
   (prop-type "GParamInt")
@@ -2397,42 +2437,6 @@
   (docs "The duration of the current stream in seconds.")
   (readable #t)
   (writable #f)
-  (construct-only #f)
-)
-
-(define-property uri
-  (of-object "ClutterMedia")
-  (prop-type "GParamString")
-  (docs "The loaded URI.")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property playing
-  (of-object "ClutterMedia")
-  (prop-type "GParamBoolean")
-  (docs "TRUE if playing.")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property buffer-percent
-  (of-object "ClutterMedia")
-  (prop-type "GParamInt")
-  (docs "The percentage the current stream buffer is filled.")
-  (readable #t)
-  (writable #f)
-  (construct-only #f)
-)
-
-(define-property volume
-  (of-object "ClutterMedia")
-  (prop-type "GParamDouble")
-  (docs "The audio volume.")
-  (readable #t)
-  (writable #t)
   (construct-only #f)
 )
 
@@ -2755,7 +2759,7 @@
 
 (define-property color
   (of-object "ClutterRectangle")
-  (prop-type "GParamBoxed")
+  (prop-type "ClutterParamSpecColor")
   (docs "The color of the rectangle")
   (readable #t)
   (writable #t)
@@ -2764,7 +2768,7 @@
 
 (define-property border-color
   (of-object "ClutterRectangle")
-  (prop-type "GParamBoxed")
+  (prop-type "ClutterParamSpecColor")
   (docs "The color of the border of the rectangle")
   (readable #t)
   (writable #t)
@@ -3199,8 +3203,8 @@
 
 (define-property color
   (of-object "ClutterStage")
-  (prop-type "GParamBoxed")
-  (docs "The color of the main stage")
+  (prop-type "ClutterParamSpecColor")
+  (docs "The color of the stage")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -3228,6 +3232,15 @@
   (of-object "ClutterStage")
   (prop-type "GParamBoolean")
   (docs "Whether the mouse pointer is visible on the main stage ")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property perspective
+  (of-object "ClutterStage")
+  (prop-type "GParamBoxed")
+  (docs "Perspective projection parameters")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -3670,6 +3683,15 @@
   (prop-type "GParamString")
   (docs "The full path of the file containing the texture")
   (readable #f)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property keep-aspect-ratio
+  (of-object "ClutterTexture")
+  (prop-type "GParamBoolean")
+  (docs "Keep the aspect ratio of the texture when requesting the preferred width or height")
+  (readable #t)
   (writable #t)
   (construct-only #f)
 )
