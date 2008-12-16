@@ -39,7 +39,7 @@ public:
   _WRAP_METHOD(void set_loop(bool loop = true), clutter_score_set_loop)
   _WRAP_METHOD(bool get_loop() const, clutter_score_get_loop)
 
-  _WRAP_METHOD(guint append(const Glib::RefPtr<Timeline>& parent, const Glib::RefPtr<Timeline>& timeline), clutter_score_append)
+  _WRAP_METHOD(gulong append(const Glib::RefPtr<Timeline>& parent, const Glib::RefPtr<Timeline>& timeline), clutter_score_append)
 
   /** Appends a timeline to another one existing in the score. The new timeline
    * will be started when start() is called.
@@ -47,15 +47,15 @@ public:
    * @param timeline the Timeline to append
    * @return the id of the newly added timeline, to be used with get_timeline() and remove().
    */
-  guint append(const Glib::RefPtr<Timeline>& timeline);
+  gulong append(const Glib::RefPtr<Timeline>& timeline);
 
   _WRAP_METHOD(void append_at_marker(const Glib::RefPtr<Timeline>& parent, const Glib::ustring& marker_name, const Glib::RefPtr<Timeline>& timeline), clutter_score_append_at_marker)
 
-  _WRAP_METHOD(void remove(guint id), clutter_score_remove)
+  _WRAP_METHOD(void remove(gulong id), clutter_score_remove)
   _WRAP_METHOD(void remove_all(), clutter_score_remove_all)
 
-  _WRAP_METHOD(Glib::RefPtr<Timeline> get_timeline(guint id), clutter_score_get_timeline, refreturn)
-  _WRAP_METHOD(Glib::RefPtr<const Timeline> get_timeline(guint id) const, clutter_score_get_timeline, , refreturn, constversion)
+  _WRAP_METHOD(Glib::RefPtr<Timeline> get_timeline(gulong id), clutter_score_get_timeline, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Timeline> get_timeline(gulong id) const, clutter_score_get_timeline, , refreturn, constversion)
 
 #m4 _CONVERSION(`GSList*', `Glib::SListHandle<Glib::RefPtr<Timeline> >', `$2(($3), Glib::OWNERSHIP_SHALLOW)')
 #m4 _CONVERSION(`GSList*', `Glib::SListHandle<Glib::RefPtr<const Timeline> >', `$2(($3), Glib::OWNERSHIP_SHALLOW)')
