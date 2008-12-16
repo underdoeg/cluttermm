@@ -1,0 +1,95 @@
+/*
+ * Copyright (c) 2008  The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+_DEFS(cluttermm,clutter)
+
+#include <cluttermm/types.h>
+#include <glibmm/object.h>
+#include <clutter/clutter.h>
+_PINCLUDE(glibmm/private/object_p.h)
+
+namespace Clutter
+{
+
+_WRAP_ENUM(PathNodeType, ClutterPathNodeType, NO_GTYPE)
+
+class PathNode
+{
+  _CLASS_BOXEDTYPE_STATIC(PathNode, ClutterPathNode)
+public:
+  typedef unsigned int  size_type;
+  typedef int           difference_type;
+
+  typedef Knot          value_type;
+  typedef Knot&         reference;
+  typedef const Knot&   const_reference;
+
+  // Use plain pointers for simplicity.
+  typedef Knot*         iterator;
+  typedef const Knot*   const_iterator;
+
+#ifndef GLIBMM_HAVE_SUN_REVERSE_ITERATOR
+  typedef std::reverse_iterator<iterator>       reverse_iterator;
+  typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
+#else
+  typedef std::reverse_iterator<iterator, std::random_access_iterator_tag,
+                                Knot, Knot&, Knot*, ptrdiff_t> reverse_iterator;
+
+  typedef std::reverse_iterator<const_iterator, std::random_access_iterator_tag,
+                                Knot, const Knot&, const Knot*, ptrdiff_t> const_reverse_iterator;
+#endif
+  explicit PathNode(PathNodeType type);
+
+  size_type size() const;
+  bool empty() const;
+
+  iterator begin();
+  iterator end();
+  const_iterator begin() const;
+  const_iterator end()   const;
+
+  // Note: there is no advantage in not inlining these methods.
+  // We can't change them without breaking ABI anyway.
+  reverse_iterator       rbegin()       { return reverse_iterator(end());         }
+  reverse_iterator       rend()         { return reverse_iterator(begin());       }
+  const_reverse_iterator rbegin() const { return const_reverse_iterator(end());   }
+  const_reverse_iterator rend()   const { return const_reverse_iterator(begin()); }
+
+  reference       front()       { return *begin();  }
+  const_reference front() const { return *begin();  }
+  reference       back()        { return *rbegin(); }
+  const_reference back()  const { return *rbegin(); }
+
+  reference       operator[](size_type i)       { return begin()[i]; }
+  const_reference operator[](size_type i) const { return begin()[i]; }
+
+#m4begin
+  _WRAP_EQUAL(clutter_path_node_equal)
+#m4end
+};
+
+class Path : public Glib::Object
+{
+  _CLASS_GOBJECT(Path, ClutterPath, CLUTTER_PATH, Glib::Object, GObject)
+  _DERIVES_INITIALLY_UNOWNED()
+public:
+  _CTOR_DEFAULT()
+
+};
+
+} // namespace Clutter

@@ -1,0 +1,76 @@
+/*
+ * Copyright (c) 2008  The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <cstring>
+
+namespace
+{
+
+// Lookup table to map from ClutterPathNodeType to the number of points used
+static const unsigned char n_points[4] =
+{
+  2, // CLUTTER_PATH_MOVE_TO
+  2, // CLUTTER_PATH_LINE_TO
+  3, // CLUTTER_PATH_CURVE_TO
+  0  // CLUTTER_PATH_CLOSE
+};
+
+} // anonymous namespace
+
+namespace Clutter
+{
+
+PathNode::PathNode(PathNodeType type)
+{
+  gobject_.type = static_cast<ClutterPathNodeType>(int(type));
+  std::memset(&gobject_.points, 0, sizeof(gobject_.points));
+}
+
+PathNode::size_type PathNode::size() const
+{
+  return n_points[gobject_.type % G_N_ELEMENTS(n_points)];
+}
+
+bool PathNode::empty() const
+{
+  return (gobject_.type == CLUTTER_PATH_CLOSE);
+}
+
+PathNode::iterator PathNode::begin()
+{
+  return reinterpret_cast<Knot*>(&gobject_.points[0]);
+}
+
+PathNode::iterator PathNode::end()
+{
+  const size_type count = n_points[gobject_.type % G_N_ELEMENTS(n_points)];
+  return reinterpret_cast<Knot*>(&gobject_.points[count]);
+}
+
+PathNode::const_iterator PathNode::begin() const
+{
+  return reinterpret_cast<const Knot*>(&gobject_.points[0]);
+}
+
+PathNode::const_iterator PathNode::end() const
+{
+  const size_type count = n_points[gobject_.type % G_N_ELEMENTS(n_points)];
+  return reinterpret_cast<const Knot*>(&gobject_.points[count]);
+}
+
+} // namespace Clutter

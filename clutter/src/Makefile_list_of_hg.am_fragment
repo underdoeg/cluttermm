@@ -17,6 +17,7 @@ label.hg \
 entry.hg \
 timeline.hg \
 alpha.hg \
+path.hg \
 behaviour.hg \
 behaviour-depth.hg \
 behaviour-opacity.hg \

@@ -1,5 +1,14 @@
 2008-12-16  Daniel Elstner  <danielk@openismus.com>
 
+	* clutter/src/behaviour-bspline.{ccg,hg}: Remove files, as
+	the functionality was merged into BehaviourPath.
+	* clutter/src/path.{ccg,hg}: New files wrapping ClutterPath
+	and auxiliary types.  Not complete yet.
+	* clutter/src/Makefile_list_of_hg.am_fragment: Remove old
+	and add new files listed above.
+
+2008-12-16  Daniel Elstner  <danielk@openismus.com>
+
 	* clutter/src/clutter_enums.defs: Regenerate.
 	(PathNodeType): Hand-edit definition.
 	(TokenType): Likewise.
