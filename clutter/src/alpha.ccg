@@ -90,6 +90,7 @@ Alpha::SlotAlphaFunc generate_alpha_slot_proxy (ClutterAlphaFunc func)
     return sigc::bind (sigc::ptr_fun(alpha_slot_proxy), func);
 }
 
+#if 0
 Alpha::SlotAlphaFunc ALPHA_RAMP_INC = generate_alpha_slot_proxy(CLUTTER_ALPHA_RAMP_INC);
 Alpha::SlotAlphaFunc ALPHA_RAMP_DEC = generate_alpha_slot_proxy(CLUTTER_ALPHA_RAMP_DEC);
 Alpha::SlotAlphaFunc ALPHA_RAMP = generate_alpha_slot_proxy(CLUTTER_ALPHA_RAMP);
@@ -102,6 +103,7 @@ Alpha::SlotAlphaFunc ALPHA_SMOOTHSTEP_INC = generate_alpha_slot_proxy(CLUTTER_AL
 Alpha::SlotAlphaFunc ALPHA_SMOOTHSTEP_DEC = generate_alpha_slot_proxy(CLUTTER_ALPHA_SMOOTHSTEP_DEC);
 Alpha::SlotAlphaFunc ALPHA_EXP_INC = generate_alpha_slot_proxy(CLUTTER_ALPHA_EXP_INC);
 Alpha::SlotAlphaFunc ALPHA_EXP_DEC = generate_alpha_slot_proxy(CLUTTER_ALPHA_EXP_DEC);
+#endif
 
 } //namespace Clutter
 
