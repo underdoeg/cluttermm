@@ -15,8 +15,6 @@ _CONVERSION(`ClutterTimeline*',`Glib::RefPtr<const Timeline>',`Glib::wrap($3)')
 _CONVERSION(`const Glib::RefPtr<Alpha>&',`ClutterAlpha*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`ClutterAlpha*',`Glib::RefPtr<Alpha>',`Glib::wrap($3)')
 _CONVERSION(`ClutterAlpha*',`Glib::RefPtr<const Alpha>',`Glib::wrap($3)')
-#_CONVERSION(`ClutterBehaviourBspline*',`const Glib::RefPtr<const BehaviourBspline>&',`Glib::wrap($3)')
-_CONVERSION(`const Glib::RefPtr<const BehaviourBspline>&',`ClutterBehaviourBspline*',const_cast<ClutterBehaviourBspline*>(__CONVERT_REFPTR_TO_P))
 
 _CONVERSION(`const Glib::RefPtr<Texture>&',`ClutterTexture*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`ClutterTexture*',`Glib::RefPtr<Texture>',`Glib::wrap($3)')
@@ -31,6 +29,11 @@ _CONVERSION(`const Knot&',`ClutterKnot*',`const_cast<ClutterKnot*>(($3).gobj())'
 _CONVERSION(`const Knot&',`const ClutterKnot*',`($3).gobj()')
 _CONVERSION(`ClutterKnot*',`const Knot&',`Knot($3)')
 _CONVERSION(`const ClutterKnot*',`const Knot&',`Knot($3)')
+
+_CONVERSION(`Vertex&',`ClutterVertex*',`($3).gobj()')
+_CONVERSION(`const Vertex&',`const ClutterVertex*',`($3).gobj()')
+_CONVERSION(`const ClutterVertex*',`const Vertex&',`Vertex($3)')
+
 _CONVERSION(`Padding&',`ClutterPadding*',`&($3)')
 _CONVERSION(`const Padding&',`const ClutterPadding*',`&($3)')
 _CONVERSION(`ClutterPadding*',`Padding&',`*($3)')

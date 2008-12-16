@@ -1,5 +1,11 @@
 2008-12-16  Daniel Elstner  <danielk@openismus.com>
 
+	* tools/m4/convert_cluttermm.m4 (BehaviourBspline): Remove
+	conversions, as the class doesn't exist anymore.
+	(Vertex): Add missing conversions.
+
+2008-12-16  Daniel Elstner  <danielk@openismus.com>
+
 	* clutter/src/behaviour-bspline.{ccg,hg}: Remove files, as
 	the functionality was merged into BehaviourPath.
 	* clutter/src/path.{ccg,hg}: New files wrapping ClutterPath
