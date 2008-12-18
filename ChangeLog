@@ -1,4 +1,15 @@
-2008-12-16  Daniel Elstner  <danielk@openismus.com>
+2008-12-18  Daniel Elstner  <danielk@openismus.com>
+
+	* clutter/src/alpha.{ccg,hg} (ALPHA_*): Replace global slot objects
+	for the convenience alpha functions by ordinary static methods of
+	class Alpha.  This is just as easy to use but simpler and without
+	the trouble associated with the runtime initialization  of global
+	objects in dynamic libraries.  Also adapt the code to the additions
+	and syntax changes in the Clutter API.
+	(Alpha::Alpha): Remove the ctor which takes a plain ClutterFunction
+	argument.  If absolutely necessary, there is always the C API.
+
+2008-12-18  Daniel Elstner  <danielk@openismus.com>
 
 	* clutter/src/path.{ccg,hg} (Path::Nodes): New proxy container class
 	which implements an STL-style interface to the PathNodes of a Path.

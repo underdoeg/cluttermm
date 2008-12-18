@@ -17,25 +17,27 @@
 
 #include <clutter/clutter.h>
 
+namespace
+{
+
 static guint32 SignalProxy_Alpha_callback(ClutterAlpha *alpha, gpointer user_data)
 {
   guint32 value;
   Clutter::Alpha::SlotAlphaFunc* the_slot = static_cast<Clutter::Alpha::SlotAlphaFunc*>(user_data);
 
-  #ifdef GLIBMM_EXCEPTIONS_ENABLED
+#ifdef GLIBMM_EXCEPTIONS_ENABLED
   try
   {
-  #endif //GLIBMM_EXCEPTIONS_ENABLED
+#endif
     Glib::RefPtr<Clutter::Alpha> cpp_alpha = Glib::wrap(alpha, true /* take reference */);
     value = (*the_slot)(cpp_alpha);
-  #ifdef GLIBMM_EXCEPTIONS_ENABLED
+#ifdef GLIBMM_EXCEPTIONS_ENABLED
   }
   catch(...)
   {
     Glib::exception_handlers_invoke();
   }
-  #endif //GLIBMM_EXCEPTIONS_ENABLED
-
+#endif
   return value;
 }
 
@@ -44,8 +46,100 @@ static void SignalProxy_Alpha_callback_destroy(void* data)
   delete static_cast<Clutter::Alpha::SlotAlphaFunc*>(data);
 }
 
+} // anonymous namespace
+
 namespace Clutter
 {
+
+guint32 Alpha::ramp_inc_func(const Glib::RefPtr<Alpha>& alpha)
+{
+  return clutter_ramp_inc_func(alpha->gobj(), 0);
+}
+
+guint32 Alpha::ramp_dec_func(const Glib::RefPtr<Alpha>& alpha)
+{
+  return clutter_ramp_dec_func(alpha->gobj(), 0);
+}
+
+guint32 Alpha::ramp_func(const Glib::RefPtr<Alpha>& alpha)
+{
+  return clutter_ramp_func(alpha->gobj(), 0);
+}
+
+guint32 Alpha::sine_func(const Glib::RefPtr<Alpha>& alpha)
+{
+  return clutter_sine_func(alpha->gobj(), 0);
+}
+
+guint32 Alpha::sine_inc_func(const Glib::RefPtr<Alpha>& alpha)
+{
+  return clutter_sine_inc_func(alpha->gobj(), 0);
+}
+
+guint32 Alpha::sine_dec_func(const Glib::RefPtr<Alpha>& alpha)
+{
+  return clutter_sine_dec_func(alpha->gobj(), 0);
+}
+
+guint32 Alpha::sine_half_func(const Glib::RefPtr<Alpha>& alpha)
+{
+  return clutter_sine_half_func(alpha->gobj(), 0);
+}
+
+guint32 Alpha::sine_in_func(const Glib::RefPtr<Alpha>& alpha)
+{
+  return clutter_sine_in_func(alpha->gobj(), 0);
+}
+
+guint32 Alpha::sine_out_func(const Glib::RefPtr<Alpha>& alpha)
+{
+  return clutter_sine_out_func(alpha->gobj(), 0);
+}
+
+guint32 Alpha::sine_in_out_func(const Glib::RefPtr<Alpha>& alpha)
+{
+  return clutter_sine_in_out_func(alpha->gobj(), 0);
+}
+
+guint32 Alpha::square_func(const Glib::RefPtr<Alpha>& alpha)
+{
+  return clutter_square_func(alpha->gobj(), 0);
+}
+
+guint32 Alpha::smoothstep_inc_func(const Glib::RefPtr<Alpha>& alpha)
+{
+  return clutter_smoothstep_inc_func(alpha->gobj(), 0);
+}
+
+guint32 Alpha::smoothstep_dec_func(const Glib::RefPtr<Alpha>& alpha)
+{
+  return clutter_smoothstep_dec_func(alpha->gobj(), 0);
+}
+
+guint32 Alpha::exp_inc_func(const Glib::RefPtr<Alpha>& alpha)
+{
+  return clutter_exp_inc_func(alpha->gobj(), 0);
+}
+
+guint32 Alpha::exp_dec_func(const Glib::RefPtr<Alpha>& alpha)
+{
+  return clutter_exp_dec_func(alpha->gobj(), 0);
+}
+
+guint32 Alpha::ease_in_func(const Glib::RefPtr<Alpha>& alpha)
+{
+  return clutter_ease_in_func(alpha->gobj(), 0);
+}
+
+guint32 Alpha::ease_out_func(const Glib::RefPtr<Alpha>& alpha)
+{
+  return clutter_ease_out_func(alpha->gobj(), 0);
+}
+
+guint32 Alpha::ease_in_out_func(const Glib::RefPtr<Alpha>& alpha)
+{
+  return clutter_ease_in_out_func(alpha->gobj(), 0);
+}
 
 Alpha::Alpha(const Glib::RefPtr<Timeline>& timeline, const SlotAlphaFunc& slot)
 :
@@ -56,21 +150,11 @@ Alpha::Alpha(const Glib::RefPtr<Timeline>& timeline, const SlotAlphaFunc& slot)
   set_func(slot);
 }
 
-Alpha::Alpha(const Glib::RefPtr<Timeline>& timeline, ClutterAlphaFunc callback)
-:
-  _CONSTRUCT()
-{
-  _INITIALLY_UNOWNED_SINK
-  set_timeline(timeline);
-  clutter_alpha_set_func(gobj(), callback, NULL, NULL);
-}
-
-
 void Alpha::set_func(const SlotAlphaFunc& slot)
 {
   //Create a copy of the slot. A pointer to this will be passed through the callback's data parameter.
   //It will be deleted when SignalProxy_Alpha_callback_destroy() is called.
-  SlotAlphaFunc* slot_copy = new SlotAlphaFunc(slot);
+  SlotAlphaFunc *const slot_copy = new SlotAlphaFunc(slot);
 
   clutter_alpha_set_func(
       gobj(),
@@ -78,32 +162,4 @@ void Alpha::set_func(const SlotAlphaFunc& slot)
       &SignalProxy_Alpha_callback_destroy);
 }
 
-static guint32
-alpha_slot_proxy(const Glib::RefPtr<Alpha>& alpha, ClutterAlphaFunc c_func)
-{
-    return c_func(alpha->gobj (), NULL);
-}
-
-inline static
-Alpha::SlotAlphaFunc generate_alpha_slot_proxy (ClutterAlphaFunc func)
-{
-    return sigc::bind (sigc::ptr_fun(alpha_slot_proxy), func);
-}
-
-#if 0
-Alpha::SlotAlphaFunc ALPHA_RAMP_INC = generate_alpha_slot_proxy(CLUTTER_ALPHA_RAMP_INC);
-Alpha::SlotAlphaFunc ALPHA_RAMP_DEC = generate_alpha_slot_proxy(CLUTTER_ALPHA_RAMP_DEC);
-Alpha::SlotAlphaFunc ALPHA_RAMP = generate_alpha_slot_proxy(CLUTTER_ALPHA_RAMP);
-Alpha::SlotAlphaFunc ALPHA_SINE = generate_alpha_slot_proxy(CLUTTER_ALPHA_SINE);
-Alpha::SlotAlphaFunc ALPHA_SINE_INC = generate_alpha_slot_proxy(CLUTTER_ALPHA_SINE_INC);
-Alpha::SlotAlphaFunc ALPHA_SINE_DEC = generate_alpha_slot_proxy(CLUTTER_ALPHA_SINE_DEC);
-Alpha::SlotAlphaFunc ALPHA_SINE_HALF = generate_alpha_slot_proxy(CLUTTER_ALPHA_SINE_HALF);
-Alpha::SlotAlphaFunc ALPHA_SQUARE = generate_alpha_slot_proxy(CLUTTER_ALPHA_SQUARE);
-Alpha::SlotAlphaFunc ALPHA_SMOOTHSTEP_INC = generate_alpha_slot_proxy(CLUTTER_ALPHA_SMOOTHSTEP_INC);
-Alpha::SlotAlphaFunc ALPHA_SMOOTHSTEP_DEC = generate_alpha_slot_proxy(CLUTTER_ALPHA_SMOOTHSTEP_DEC);
-Alpha::SlotAlphaFunc ALPHA_EXP_INC = generate_alpha_slot_proxy(CLUTTER_ALPHA_EXP_INC);
-Alpha::SlotAlphaFunc ALPHA_EXP_DEC = generate_alpha_slot_proxy(CLUTTER_ALPHA_EXP_DEC);
-#endif
-
-} //namespace Clutter
-
+} // namespace Clutter
