@@ -65,18 +65,18 @@ public:
 
   // Note: there is no advantage in not inlining these methods.
   // We can't change them without breaking ABI anyway.
-  reverse_iterator       rbegin()       { return reverse_iterator(end());         }
-  reverse_iterator       rend()         { return reverse_iterator(begin());       }
-  const_reverse_iterator rbegin() const { return const_reverse_iterator(end());   }
-  const_reverse_iterator rend()   const { return const_reverse_iterator(begin()); }
+  inline reverse_iterator       rbegin()       { return reverse_iterator(end());         }
+  inline reverse_iterator       rend()         { return reverse_iterator(begin());       }
+  inline const_reverse_iterator rbegin() const { return const_reverse_iterator(end());   }
+  inline const_reverse_iterator rend()   const { return const_reverse_iterator(begin()); }
 
-  reference       front()       { return *begin();  }
-  const_reference front() const { return *begin();  }
-  reference       back()        { return *rbegin(); }
-  const_reference back()  const { return *rbegin(); }
+  inline reference       front()       { return *begin();  }
+  inline const_reference front() const { return *begin();  }
+  inline reference       back()        { return *rbegin(); }
+  inline const_reference back()  const { return *rbegin(); }
 
-  reference       operator[](size_type i)       { return begin()[i]; }
-  const_reference operator[](size_type i) const { return begin()[i]; }
+  inline reference       operator[](size_type i)       { return begin()[i]; }
+  inline const_reference operator[](size_type i) const { return begin()[i]; }
 
 #m4begin
   _WRAP_EQUAL(clutter_path_node_equal)
@@ -87,9 +87,145 @@ class Path : public Glib::Object
 {
   _CLASS_GOBJECT(Path, ClutterPath, CLUTTER_PATH, Glib::Object, GObject)
   _DERIVES_INITIALLY_UNOWNED()
-public:
-  _CTOR_DEFAULT()
 
+protected:
+  _CTOR_DEFAULT()
+  _WRAP_CTOR(Path(const Glib::ustring& description),
+             clutter_path_new_with_description)
+
+public:
+  class Nodes;
+
+  _WRAP_CREATE()
+  _WRAP_CREATE(const Glib::ustring& description)
+
+  inline Nodes nodes();
+  inline const Nodes nodes() const;
+
+  _WRAP_PROPERTY("description", Glib::ustring)
+  _WRAP_PROPERTY("length", guint)
 };
+
+class Path::Nodes
+{
+private:
+  friend class Clutter::Path;
+
+  ClutterPath* path_;
+
+  inline Nodes(const Path::Nodes& other) : path_ (other.path_) {}
+  explicit inline Nodes(ClutterPath* path) : path_ (path) {}
+  Nodes& operator=(const Path::Nodes&);
+
+public:
+  typedef unsigned int size_type;
+  typedef int          difference_type;
+  typedef PathNode     value_type;
+  typedef value_type   const_reference;
+
+  class const_iterator;
+  class iterator;
+
+  class reference
+  {
+  private:
+    friend class Path::Nodes::iterator;
+    friend class Path::Nodes::const_iterator;
+
+    ClutterPath* path_;
+    unsigned int index_;
+
+    inline reference(ClutterPath* path, unsigned int index)
+      : path_ (path), index_ (index) {}
+
+    // disallow the address operator
+    reference* operator&();
+    const reference* operator&() const;
+
+  public:
+    reference& operator=(const PathNode& node);
+    operator PathNode() const;
+  };
+
+  class const_iterator
+  {
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
+  protected:
+    Path::Nodes::reference ref_;
+  #endif
+  public:
+    typedef std::random_access_iterator_tag iterator_category;
+    typedef PathNode                        value_type;
+    typedef int                             difference_type;
+    typedef const value_type                reference;
+    typedef void                            pointer;
+
+    inline const_iterator() : ref_ (0, 0) {}
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
+    inline const_iterator(ClutterPath* path, unsigned int index)
+      : ref_ (path, index) {}
+
+    inline bool equal(const const_iterator& b) const
+      { return (ref_.index_ == b.ref_.index_); }
+  #endif
+    reference operator*() const;
+    reference operator[](difference_type i) const;
+
+    inline const_iterator& operator++()    { ++ref_.index_; return *this; }
+    inline const_iterator  operator++(int) { return const_iterator(ref_.path_, ref_.index_++); }
+    inline const_iterator& operator--()    { --ref_.index_; return *this; }
+    inline const_iterator  operator--(int) { return const_iterator(ref_.path_, ref_.index_--); }
+  };
+
+  class iterator : public const_iterator
+  {
+  public:
+    typedef Path::Nodes::reference reference;
+
+    inline iterator() {}
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
+    inline iterator(ClutterPath* path, unsigned int index)
+      : const_iterator(path, index) {}
+  #endif
+    inline reference operator*() const { return ref_; }
+    inline reference operator[](difference_type i) const
+      { return reference(ref_.path_, ref_.index_ + i); }
+
+    inline iterator& operator++()    { ++ref_.index_; return *this; }
+    inline iterator  operator++(int) { return iterator(ref_.path_, ref_.index_++); }
+    inline iterator& operator--()    { --ref_.index_; return *this; }
+    inline iterator  operator--(int) { return iterator(ref_.path_, ref_.index_--); }
+  };
+
+#ifndef GLIBMM_HAVE_SUN_REVERSE_ITERATOR
+  typedef std::reverse_iterator<iterator>       reverse_iterator;
+  typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
+#else
+  typedef std::reverse_iterator<iterator, std::random_access_iterator_tag,
+                                value_type, reference, void, ptrdiff_t> reverse_iterator;
+  typedef std::reverse_iterator<const_iterator, std::random_access_iterator_tag,
+                                value_type, const_reference, void, ptrdiff_t> const_reverse_iterator;
+#endif
+
+  size_type size() const;
+  inline bool empty() const { return (size() == 0); }
+};
+
+/** @relates Path::Nodes::const_iterator */
+inline bool operator==(const Path::Nodes::const_iterator& a, const Path::Nodes::const_iterator& b)
+  { return a.equal(b); }
+
+/** @relates Path::Nodes::const_iterator */
+inline bool operator!=(const Path::Nodes::const_iterator& a, const Path::Nodes::const_iterator& b)
+  { return !a.equal(b); }
+
+
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+inline Path::Nodes Path::nodes()
+  { return Path::Nodes(gobj()); }
+
+inline const Path::Nodes Path::nodes() const
+  { return Path::Nodes(const_cast<ClutterPath*>(gobj())); }
+#endif /* DOXYGEN_SHOULD_SKIP_THIS */
 
 } // namespace Clutter

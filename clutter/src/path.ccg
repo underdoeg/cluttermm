@@ -73,4 +73,36 @@ PathNode::const_iterator PathNode::end() const
   return reinterpret_cast<const Knot*>(&gobject_.points[count]);
 }
 
+Path::Nodes::size_type Path::Nodes::size() const
+{
+  return clutter_path_get_n_nodes(path_);
+}
+
+Path::Nodes::reference::operator PathNode() const
+{
+  PathNode node (PATH_CLOSE);
+  clutter_path_get_node(path_, index_, node.gobj());
+  return node;
+}
+
+Path::Nodes::reference& Path::Nodes::reference::operator=(const PathNode& node)
+{
+  clutter_path_replace_node(path_, index_, node.gobj());
+  return *this;
+}
+
+Path::Nodes::const_iterator::reference Path::Nodes::const_iterator::operator*() const
+{
+  PathNode node (PATH_CLOSE);
+  clutter_path_get_node(ref_.path_, ref_.index_, node.gobj());
+  return node;
+}
+
+Path::Nodes::const_iterator::reference Path::Nodes::const_iterator::operator[](difference_type i) const
+{
+  PathNode node (PATH_CLOSE);
+  clutter_path_get_node(ref_.path_, ref_.index_ + i, node.gobj());
+  return node;
+}
+
 } // namespace Clutter

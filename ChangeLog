@@ -1,5 +1,14 @@
 2008-12-16  Daniel Elstner  <danielk@openismus.com>
 
+	* clutter/src/path.{ccg,hg} (Path::Nodes): New proxy container class
+	which implements an STL-style interface to the PathNodes of a Path.
+	(Path::Nodes::reference): New proxy "reference" class which enables
+	write access to a Path through iterators or array subscripting.
+	(Path::Nodes::const_iterator): New random access iterator type.
+	(Path::Nodes::iterator): New writable random access iterator type.
+
+2008-12-16  Daniel Elstner  <danielk@openismus.com>
+
 	* clutter/src/alpha.{ccg,hg}: Temporarily disable the global
 	ALPHA_* function slots.  The code needs to be reworked as the
 	corresponding Clutter API has changed, and also because I don't
