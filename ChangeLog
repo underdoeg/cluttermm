@@ -1,5 +1,12 @@
 2008-12-18  Daniel Elstner  <danielk@openismus.com>
 
+	* tests/test-actors.cc: Adapt to new syntax of Clutter::Alpha
+	convenience functions.
+	* tests/test-alpha-creation.cc: ditto,
+	* examples/effect.cc: ditto.
+
+2008-12-18  Daniel Elstner  <danielk@openismus.com>
+
 	* clutter/src/behaviour-path.{ccg,hg} (BehaviourPath): Switch to
 	the new Clutter::Path interface.
 

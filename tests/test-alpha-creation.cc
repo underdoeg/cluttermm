@@ -20,7 +20,7 @@ main (int argc, char *argv[])
     //Causes a Gobject (refcount?) warning: Glib::RefPtr<Clutter::Alpha> alpha =
     //    Clutter::Alpha::create (timeline, Clutter::ALPHA_SINE);
     Glib::RefPtr<Clutter::Alpha> alpha =
-        Clutter::Alpha::create (timeline, CLUTTER_ALPHA_SINE);
+        Clutter::Alpha::create(timeline, &Clutter::Alpha::sine_func);
 
     Glib::RefPtr<Clutter::BehaviourScale> scaler_1 =
         Clutter::BehaviourScale::create (alpha,
