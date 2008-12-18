@@ -1,5 +1,10 @@
 2008-12-18  Daniel Elstner  <danielk@openismus.com>
 
+	* clutter/src/behaviour-path.{ccg,hg} (BehaviourPath): Switch to
+	the new Clutter::Path interface.
+
+2008-12-18  Daniel Elstner  <danielk@openismus.com>
+
 	* clutter/tools/convert_cluttermm.m4: Add conversions to and from
 	Clutter::Path.
 

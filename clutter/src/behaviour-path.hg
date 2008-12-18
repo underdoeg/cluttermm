@@ -18,49 +18,34 @@
 #include <cluttermm/behaviour.h>
 #include <cluttermm/scriptable.h>
 #include <cluttermm/alpha.h>
+#include <cluttermm/path.h>
 #include <cluttermm/types.h>
- 
+
 _DEFS(cluttermm,clutter)
 _PINCLUDE(cluttermm/private/behaviour_p.h)
 
 namespace Clutter
 {
 
-class BehaviourPath 
-: public Behaviour, 
+class BehaviourPath
+: public Behaviour,
   public Scriptable
 {
   _CLASS_GOBJECT(BehaviourPath, ClutterBehaviourPath, CLUTTER_BEHAVIOUR_PATH, Behaviour, ClutterBehaviour)
   _IMPLEMENTS_INTERFACE(Scriptable)
 
 protected:
-  // TODO: pass the knots as a C++ container
-  BehaviourPath(const Glib::RefPtr<Alpha>& alpha, const Glib::ArrayHandle<Knot>& knots);
-  _IGNORE(clutter_behaviour_path_new_with_knots)
+  _WRAP_CTOR(BehaviourPath(const Glib::RefPtr<Alpha>& alpha, const Glib::RefPtr<Path>& path),
+             clutter_behaviour_path_new)
 
 public:
-  // TODO: pass the knots as a C++ container
-  _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, const Glib::ArrayHandle<Knot>& knots)
-
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
-
-struct KnotTraits
-{
-  typedef Knot CppType;
-  typedef const ClutterKnot* CType;
-  typedef ClutterKnot* CTypeNonConst;
-
-  static CType to_c_type(const CppType& obj) { return obj.gobj(); }
-  static CType to_c_type(const CType& obj) { return obj; }
-  static CppType to_cpp_type(const CType& obj) { return Knot(obj); }
-  static void release_c_type(const CType& ) { }
-};
-
-#endif // DOXYGEN_SHOULD_SKIP_THIS
-
-//  typedef Glib::SListHandle<Knot, KnotTraits> ListHandle_Knots;
-//  _WRAP_METHOD_DOCS_ONLY(clutter_behaviour_path_get_knots)
-//  ListHandle_Knots get_knots() const;
+  _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, const Glib::RefPtr<Path>& path)
+  _IGNORE(clutter_behaviour_path_new_with_knots,
+          clutter_behaviour_path_new_with_description)
+  static Glib::RefPtr<BehaviourPath> create_with_knots(const Glib::RefPtr<Alpha>& alpha,
+                                                       const Glib::ArrayHandle<Knot>& knots);
+  static Glib::RefPtr<BehaviourPath> create_with_description(const Glib::RefPtr<Alpha>& alpha,
+                                                             const Glib::ustring& description);
 
   _WRAP_SIGNAL(void knot_reached(guint knot_num), "knot_reached")
 };
