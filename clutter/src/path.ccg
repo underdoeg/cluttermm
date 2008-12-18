@@ -78,6 +78,13 @@ Path::Nodes::size_type Path::Nodes::size() const
   return clutter_path_get_n_nodes(path_);
 }
 
+Path::Nodes::const_reference Path::Nodes::operator[](size_type i) const
+{
+  PathNode node (PATH_CLOSE);
+  clutter_path_get_node(path_, i, node.gobj());
+  return node;
+}
+
 Path::Nodes::reference::operator PathNode() const
 {
   PathNode node (PATH_CLOSE);

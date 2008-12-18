@@ -1,5 +1,10 @@
 2008-12-18  Daniel Elstner  <danielk@openismus.com>
 
+	* clutter/src/path.{ccg,hg} (Path): Wrap add_*() methods.
+	(Path::Nodes): Implement basic container access operations.
+
+2008-12-18  Daniel Elstner  <danielk@openismus.com>
+
 	* tests/test-alpha-creation.cc: Kill cruft.  The test case still
 	seems a bit odd though since it creates a Behaviour which is never
 	used.

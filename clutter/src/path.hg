@@ -63,11 +63,9 @@ public:
   const_iterator begin() const;
   const_iterator end()   const;
 
-  // Note: there is no advantage in not inlining these methods.
-  // We can't change them without breaking ABI anyway.
-  inline reverse_iterator       rbegin()       { return reverse_iterator(end());         }
-  inline reverse_iterator       rend()         { return reverse_iterator(begin());       }
-  inline const_reverse_iterator rbegin() const { return const_reverse_iterator(end());   }
+  inline reverse_iterator       rbegin()       { return reverse_iterator(end()); }
+  inline reverse_iterator       rend()         { return reverse_iterator(begin()); }
+  inline const_reverse_iterator rbegin() const { return const_reverse_iterator(end()); }
   inline const_reverse_iterator rend()   const { return const_reverse_iterator(begin()); }
 
   inline reference       front()       { return *begin();  }
@@ -102,6 +100,27 @@ public:
   inline Nodes nodes();
   inline const Nodes nodes() const;
 
+  _WRAP_METHOD(void add_move_to(int x, int y), clutter_path_add_move_to)
+  _WRAP_METHOD(void add_rel_move_to(int x, int y), clutter_path_add_rel_move_to)
+  _WRAP_METHOD(void add_line_to(int x, int y), clutter_path_add_line_to)
+  _WRAP_METHOD(void add_rel_line_to(int x, int y), clutter_path_add_rel_line_to)
+  _WRAP_METHOD(void add_curve_to(int x1, int y1, int x2, int y2, int x3, int y3),
+               clutter_path_add_curve_to)
+  _WRAP_METHOD(void add_rel_curve_to(int x1, int y1, int x2, int y2, int x3, int y3),
+               clutter_path_add_rel_curve_to)
+  _WRAP_METHOD(void add_close(), clutter_path_add_close)
+  _WRAP_METHOD(bool add_string(const Glib::ustring& str), clutter_path_add_string)
+
+#m4 dnl Functionality is available through the STL-style Path::Nodes interfaces
+  _IGNORE(clutter_path_add_node, clutter_path_get_n_nodes, clutter_path_get_node,
+          clutter_path_get_nodes, clutter_path_insert_node, clutter_path_remove_node,
+          clutter_path_replace_node)
+
+  _WRAP_METHOD(Glib::ustring get_description() const, clutter_path_get_description)
+  _WRAP_METHOD(void set_description(const Glib::ustring& str), clutter_path_set_description)
+
+  _WRAP_METHOD(guint get_length() const, clutter_path_get_length)
+
   _WRAP_PROPERTY("description", Glib::ustring)
   _WRAP_PROPERTY("length", guint)
 };
@@ -118,10 +137,10 @@ private:
   Nodes& operator=(const Path::Nodes&);
 
 public:
-  typedef unsigned int size_type;
-  typedef int          difference_type;
-  typedef PathNode     value_type;
-  typedef value_type   const_reference;
+  typedef unsigned int      size_type;
+  typedef int               difference_type;
+  typedef PathNode          value_type;
+  typedef const value_type  const_reference;
 
   class const_iterator;
   class iterator;
@@ -129,6 +148,7 @@ public:
   class reference
   {
   private:
+    friend class Path::Nodes;
     friend class Path::Nodes::iterator;
     friend class Path::Nodes::const_iterator;
 
@@ -138,7 +158,7 @@ public:
     inline reference(ClutterPath* path, unsigned int index)
       : path_ (path), index_ (index) {}
 
-    // disallow the address operator
+    // disallow the address-of operator
     reference* operator&();
     const reference* operator&() const;
 
@@ -149,10 +169,10 @@ public:
 
   class const_iterator
   {
-  #ifndef DOXYGEN_SHOULD_SKIP_THIS
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
   protected:
     Path::Nodes::reference ref_;
-  #endif
+#endif
   public:
     typedef std::random_access_iterator_tag iterator_category;
     typedef PathNode                        value_type;
@@ -161,13 +181,13 @@ public:
     typedef void                            pointer;
 
     inline const_iterator() : ref_ (0, 0) {}
-  #ifndef DOXYGEN_SHOULD_SKIP_THIS
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
     inline const_iterator(ClutterPath* path, unsigned int index)
       : ref_ (path, index) {}
 
     inline bool equal(const const_iterator& b) const
       { return (ref_.index_ == b.ref_.index_); }
-  #endif
+#endif
     reference operator*() const;
     reference operator[](difference_type i) const;
 
@@ -183,10 +203,10 @@ public:
     typedef Path::Nodes::reference reference;
 
     inline iterator() {}
-  #ifndef DOXYGEN_SHOULD_SKIP_THIS
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
     inline iterator(ClutterPath* path, unsigned int index)
       : const_iterator(path, index) {}
-  #endif
+#endif
     inline reference operator*() const { return ref_; }
     inline reference operator[](difference_type i) const
       { return reference(ref_.path_, ref_.index_ + i); }
@@ -206,9 +226,26 @@ public:
   typedef std::reverse_iterator<const_iterator, std::random_access_iterator_tag,
                                 value_type, const_reference, void, ptrdiff_t> const_reverse_iterator;
 #endif
-
-  size_type size() const;
+  size_type   size() const;
   inline bool empty() const { return (size() == 0); }
+
+  inline iterator       begin()       { return iterator(path_, 0); }
+  inline const_iterator begin() const { return const_iterator(path_, 0); }
+  inline iterator       end()         { return iterator(path_, size()); }
+  inline const_iterator end() const   { return const_iterator(path_, size()); }
+
+  inline reverse_iterator       rbegin()       { return reverse_iterator(end()); }
+  inline reverse_iterator       rend()         { return reverse_iterator(begin()); }
+  inline const_reverse_iterator rbegin() const { return const_reverse_iterator(end()); }
+  inline const_reverse_iterator rend()   const { return const_reverse_iterator(begin()); }
+
+  const_reference  operator[](size_type i) const;
+  inline reference operator[](size_type i) { return reference(path_, i); }
+
+  inline reference       front()       { return reference(path_, 0); }
+  inline const_reference front() const { return (*this)[0]; }
+  inline reference       back()        { return reference(path_, size() - 1); }
+  inline const_reference back()  const { return (*this)[size() - 1]; }
 };
 
 /** @relates Path::Nodes::const_iterator */
@@ -218,7 +255,6 @@ inline bool operator==(const Path::Nodes::const_iterator& a, const Path::Nodes::
 /** @relates Path::Nodes::const_iterator */
 inline bool operator!=(const Path::Nodes::const_iterator& a, const Path::Nodes::const_iterator& b)
   { return !a.equal(b); }
-
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 inline Path::Nodes Path::nodes()
