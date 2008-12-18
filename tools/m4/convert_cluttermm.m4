@@ -19,6 +19,10 @@ _CONVERSION(`ClutterAlpha*',`Glib::RefPtr<const Alpha>',`Glib::wrap($3)')
 _CONVERSION(`const Glib::RefPtr<Texture>&',`ClutterTexture*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`ClutterTexture*',`Glib::RefPtr<Texture>',`Glib::wrap($3)')
 
+_CONVERSION(`const Glib::RefPtr<Path>&',`ClutterPath*',__CONVERT_REFPTR_TO_P)
+_CONVERSION(`ClutterPath*',`Glib::RefPtr<Path>',`Glib::wrap($3)')
+_CONVERSION(`ClutterPath*',`Glib::RefPtr<const Path>',`Glib::wrap($3)')
+
 _CONVERSION(`const Color&',`const ClutterColor*',`($3).gobj()')
 _CONVERSION(`const Margin&',`const ClutterMargin*',`($3).gobj()')
 

@@ -1,5 +1,10 @@
 2008-12-18  Daniel Elstner  <danielk@openismus.com>
 
+	* clutter/tools/convert_cluttermm.m4: Add conversions to and from
+	Clutter::Path.
+
+2008-12-18  Daniel Elstner  <danielk@openismus.com>
+
 	* clutter/src/alpha.{ccg,hg} (ALPHA_*): Replace global slot objects
 	for the convenience alpha functions by ordinary static methods of
 	class Alpha.  This is just as easy to use but simpler and without
