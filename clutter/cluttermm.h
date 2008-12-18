@@ -20,7 +20,7 @@
 #ifndef LIBCLUTTERMM_H
 #define LIBCLUTTERMM_H
 
-/* cluttermm version.  */
+// cluttermm version
 extern const int cluttermm_major_version;
 extern const int cluttermm_minor_version;
 extern const int cluttermm_micro_version;
@@ -30,7 +30,6 @@ extern const int cluttermm_micro_version;
 #include <cluttermm/actor.h>
 #include <cluttermm/alpha.h>
 #include <cluttermm/behaviour.h>
-#include <cluttermm/behaviour-bspline.h>
 #include <cluttermm/behaviour-depth.h>
 #include <cluttermm/behaviour-ellipse.h>
 #include <cluttermm/behaviour-opacity.h>
@@ -48,6 +47,7 @@ extern const int cluttermm_micro_version;
 #include <cluttermm/label.h>
 #include <cluttermm/main.h>
 #include <cluttermm/media.h>
+#include <cluttermm/path.h>
 #include <cluttermm/rectangle.h>
 #include <cluttermm/stage.h>
 #include <cluttermm/texture.h>
@@ -64,4 +64,4 @@ extern const int cluttermm_micro_version;
 //#include <cluttermm/layout.h>
 //#include <cluttermm/margin.h>
 
-#endif /* #ifndef LIBCLUTTERMM_H */
+#endif /* !LIBCLUTTERMM_H */

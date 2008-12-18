@@ -1,5 +1,10 @@
 2008-12-18  Daniel Elstner  <danielk@openismus.com>
 
+	* clutter/cluttermm.h (behaviour-bspline.h): Remove.
+	(path.h): Add.
+
+2008-12-18  Daniel Elstner  <danielk@openismus.com>
+
 	* clutter/src/path.{ccg,hg} (Path): Wrap add_*() methods.
 	(Path::Nodes): Implement basic container access operations.
 
