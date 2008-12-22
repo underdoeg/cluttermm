@@ -1,5 +1,10 @@
 2008-12-22  Daniel Elstner  <danielk@openismus.com>
 
+	* clutter/src/behaviour-path.ccg
+	(BehaviourPath::create_with_description): Implement.
+
+2008-12-22  Daniel Elstner  <danielk@openismus.com>
+
 	* clutter/src/effecttemplate.{ccg,hg} (EffectTemplate::path):
 	Use C++ container wrapper instead of a POD array.
 
