@@ -1,3 +1,8 @@
+2008-12-22  Daniel Elstner  <danielk@openismus.com>
+
+	* clutter/src/effecttemplate.{ccg,hg} (EffectTemplate::path):
+	Use C++ container wrapper instead of a POD array.
+
 2008-12-18  Daniel Elstner  <danielk@openismus.com>
 
 	* clutter/cluttermm.h (behaviour-bspline.h): Remove.
