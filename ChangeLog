@@ -1,5 +1,10 @@
 2008-12-22  Daniel Elstner  <danielk@openismus.com>
 
+	* clutter/src/types.{ccg,hg} (Knot): Use _WRAP_EQUAL() to auto-
+	generate the (in-)equality operators.
+
+2008-12-22  Daniel Elstner  <danielk@openismus.com>
+
 	* clutter/src/types.{ccg,hg} (Knot::set_*): Implement manually
 	to avoid pointless indirection in argument passing.
 	(Geometry::set_*): ditto.
