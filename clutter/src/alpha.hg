@@ -68,6 +68,8 @@ protected:
   Alpha(const Glib::RefPtr<Timeline>& timeline, const SlotAlphaFunc& slot);
 
 public:
+  enum { MAX_ALPHA = 0xFFFF };
+
   _WRAP_CREATE()
   _WRAP_CREATE(const Glib::RefPtr<Timeline>& timeline, const SlotAlphaFunc& slot)
 

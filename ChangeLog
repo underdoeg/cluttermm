@@ -1,5 +1,9 @@
 2008-12-22  Daniel Elstner  <danielk@openismus.com>
 
+	* clutter/src/alpha.hg (Alpha::MAX_ALPHA): Add constant.
+
+2008-12-22  Daniel Elstner  <danielk@openismus.com>
+
 	* clutter/src/effecttemplate.{ccg,hg} (EffectTemplate::path):
 	Add method overload without the 'func' parameter.
 
