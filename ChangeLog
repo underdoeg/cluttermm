@@ -1,5 +1,18 @@
 2008-12-22  Daniel Elstner  <danielk@openismus.com>
 
+	* clutter/src/effecttemplate.{ccg,hg} (EffectTemplate::path): Remove
+	method overload again and use a default argument instead, in order
+	to avoid combinatorial explosion.  But install the slot callback
+	only if a non-default argument has been passed.
+	(EffectTemplate::fade): Add default argument for 'func' and runtime
+	check, as above.
+	(EffectTemplate::depth): ditto,
+	(EffectTemplate::move): ditto,
+	(EffectTemplate::scale): ditto,
+	(EffectTemplate::rotate): ditto.
+
+2008-12-22  Daniel Elstner  <danielk@openismus.com>
+
 	* clutter/src/alpha.hg (Alpha::MAX_ALPHA): Add constant.
 
 2008-12-22  Daniel Elstner  <danielk@openismus.com>

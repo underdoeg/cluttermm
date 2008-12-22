@@ -49,26 +49,28 @@ public:
   _WRAP_METHOD(bool get_timeline_clone() const, clutter_effect_template_get_timeline_clone)
 
   _WRAP_METHOD_DOCS_ONLY(clutter_effect_fade)
-  Glib::RefPtr<Timeline> fade(const Glib::RefPtr<Actor>& actor, guint8 opacity_end, const SlotEffectCompleteFunc& func);
+  Glib::RefPtr<Timeline> fade(const Glib::RefPtr<Actor>& actor, guint8 opacity_end,
+                              const SlotEffectCompleteFunc& func = SlotEffectCompleteFunc());
 
   _WRAP_METHOD_DOCS_ONLY(clutter_effect_depth)
-  Glib::RefPtr<Timeline> depth(const Glib::RefPtr<Actor>& actor, int depth_end, const SlotEffectCompleteFunc& func);
+  Glib::RefPtr<Timeline> depth(const Glib::RefPtr<Actor>& actor, int depth_end,
+                               const SlotEffectCompleteFunc& func = SlotEffectCompleteFunc());
 
   _WRAP_METHOD_DOCS_ONLY(clutter_effect_move)
-  Glib::RefPtr<Timeline> move(const Glib::RefPtr<Actor>& actor, int x, int y, const SlotEffectCompleteFunc& func);
+  Glib::RefPtr<Timeline> move(const Glib::RefPtr<Actor>& actor, int x, int y,
+                              const SlotEffectCompleteFunc& func = SlotEffectCompleteFunc());
 
   _WRAP_METHOD_DOCS_ONLY(clutter_effect_path)
-  Glib::RefPtr<Timeline> path(const Glib::RefPtr<Actor>& actor,
-                              const Glib::ArrayHandle<Knot>& knots,
-                              const SlotEffectCompleteFunc& func);
-  Glib::RefPtr<Timeline> path(const Glib::RefPtr<Actor>& actor,
-                              const Glib::ArrayHandle<Knot>& knots);
+  Glib::RefPtr<Timeline> path(const Glib::RefPtr<Actor>& actor, const Glib::ArrayHandle<Knot>& knots,
+                              const SlotEffectCompleteFunc& func = SlotEffectCompleteFunc());
 
   _WRAP_METHOD_DOCS_ONLY(clutter_effect_scale)
-  Glib::RefPtr<Timeline> scale(const Glib::RefPtr<Actor>& actor, double x_scale_end, double y_scale_end, const SlotEffectCompleteFunc& func);
+  Glib::RefPtr<Timeline> scale(const Glib::RefPtr<Actor>& actor, double x_scale_end, double y_scale_end,
+                               const SlotEffectCompleteFunc& func = SlotEffectCompleteFunc());
 
   _WRAP_METHOD_DOCS_ONLY(clutter_effect_rotate)
-  Glib::RefPtr<Timeline> rotate(const Glib::RefPtr<Actor>& actor, RotateAxis axis, double angle_end, int center_x, int center_y, int center_z, RotateDirection direction, const SlotEffectCompleteFunc& func);
+  Glib::RefPtr<Timeline> rotate(const Glib::RefPtr<Actor>& actor, RotateAxis axis, double angle_end, int center_x, int center_y, int center_z, RotateDirection direction,
+                                const SlotEffectCompleteFunc& func = SlotEffectCompleteFunc());
 
   _WRAP_PROPERTY("timeline", Glib::RefPtr<Timeline>)
   _WRAP_PROPERTY("clone", bool)
