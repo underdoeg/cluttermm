@@ -1,5 +1,14 @@
 2008-12-22  Daniel Elstner  <danielk@openismus.com>
 
+	* clutter/src/types.{ccg,hg} (Knot::set_*): Implement manually
+	to avoid pointless indirection in argument passing.
+	(Geometry::set_*): ditto.
+	(Knot::set_xy): New convenience accessor.
+	(Geometry::set_xy): ditto,
+	(Geometry::set_size): ditto.
+
+2008-12-22  Daniel Elstner  <danielk@openismus.com>
+
 	* clutter/src/behaviour-path.ccg
 	(BehaviourPath::create_with_description): Implement.
 

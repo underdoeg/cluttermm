@@ -26,9 +26,20 @@ Knot::Knot(int x, int y)
   gobject_.y = y;
 }
 
-bool Knot::operator==(const Knot& knot) const
+void Knot::set_x(int x)
 {
-  return clutter_knot_equal(gobj(), knot.gobj());
+  gobject_.x = x;
+}
+
+void Knot::set_y(int y)
+{
+  gobject_.y = y;
+}
+
+void Knot::set_xy(int x, int y)
+{
+  gobject_.x = x;
+  gobject_.y = y;
 }
 
 Vertex::Vertex(Unit x, Unit y, Unit z)
@@ -42,9 +53,40 @@ Geometry::Geometry(int x, int y, unsigned int width, unsigned int height)
 {
   gobject_.x = x;
   gobject_.y = y;
-  gobject_.width = width;
+  gobject_.width  = width;
   gobject_.height = height;
 }
 
+void Geometry::set_x(int x)
+{
+  gobject_.x = x;
 }
 
+void Geometry::set_y(int y)
+{
+  gobject_.y = y;
+}
+
+void Geometry::set_xy(int x, int y)
+{
+  gobject_.x = x;
+  gobject_.y = y;
+}
+
+void Geometry::set_width(unsigned int width)
+{
+  gobject_.width = width;
+}
+
+void Geometry::set_height(unsigned int height)
+{
+  gobject_.height = height;
+}
+
+void Geometry::set_size(unsigned int width, unsigned int height)
+{
+  gobject_.width  = width;
+  gobject_.height = height;
+}
+
+} // namespace Clutter
