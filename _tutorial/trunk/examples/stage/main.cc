@@ -41,17 +41,17 @@ int main(int argc, char** argv)
   {
     Clutter::init(&argc, &argv);
 
-    // Get the stage and set its size and color:
+    // Get the stage and set its size and color
     Glib::RefPtr<Clutter::Stage> stage = Clutter::Stage::get_default();
     stage->set_size(200, 200);
     stage->set_color(Clutter::Color(0, 0, 0)); // black
 
     stage->show();
 
-    // Connect a signal handler to handle mouse clicks:
+    // Connect a signal handler to handle mouse clicks
     stage->signal_button_press_event().connect(&on_stage_button_press);
 
-    // Start the main loop, so we can respond to events:
+    // Start the main loop, so we can respond to events
     Clutter::main();
   }
   catch (const Glib::Error& error)
