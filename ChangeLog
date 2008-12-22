@@ -1,5 +1,10 @@
 2008-12-22  Daniel Elstner  <danielk@openismus.com>
 
+	* clutter/src/effecttemplate.{ccg,hg} (EffectTemplate::path):
+	Add method overload without the 'func' parameter.
+
+2008-12-22  Daniel Elstner  <danielk@openismus.com>
+
 	* clutter/src/types.{ccg,hg} (Knot): Use _WRAP_EQUAL() to auto-
 	generate the (in-)equality operators.
 

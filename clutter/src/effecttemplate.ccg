@@ -105,6 +105,15 @@ Glib::RefPtr<Timeline> EffectTemplate::path(const Glib::RefPtr<Actor>& actor,
   return timeline;
 }
 
+Glib::RefPtr<Timeline> EffectTemplate::path(const Glib::RefPtr<Actor>& actor,
+                                            const Glib::ArrayHandle<Knot>& knots)
+{
+  // Note: Don't copy this code if you don't understand WHY the cast works here.
+  return Glib::wrap(clutter_effect_path(
+      gobj(), actor->gobj(), reinterpret_cast<const ClutterKnot*>(knots.data()),
+      knots.size(), 0, 0), true);
+}
+
 Glib::RefPtr<Timeline> EffectTemplate::scale(const Glib::RefPtr<Actor>& actor, double x_scale_end, double y_scale_end, const SlotEffectCompleteFunc& func)
 {
   Glib::RefPtr<Timeline> timeline(Glib::wrap(clutter_effect_scale(gobj(), actor->gobj(), x_scale_end, y_scale_end, NULL, NULL), true));

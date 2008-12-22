@@ -57,11 +57,12 @@ public:
   _WRAP_METHOD_DOCS_ONLY(clutter_effect_move)
   Glib::RefPtr<Timeline> move(const Glib::RefPtr<Actor>& actor, int x, int y, const SlotEffectCompleteFunc& func);
 
-  // TODO: Use C++ container for knots
   _WRAP_METHOD_DOCS_ONLY(clutter_effect_path)
   Glib::RefPtr<Timeline> path(const Glib::RefPtr<Actor>& actor,
                               const Glib::ArrayHandle<Knot>& knots,
                               const SlotEffectCompleteFunc& func);
+  Glib::RefPtr<Timeline> path(const Glib::RefPtr<Actor>& actor,
+                              const Glib::ArrayHandle<Knot>& knots);
 
   _WRAP_METHOD_DOCS_ONLY(clutter_effect_scale)
   Glib::RefPtr<Timeline> scale(const Glib::RefPtr<Actor>& actor, double x_scale_end, double y_scale_end, const SlotEffectCompleteFunc& func);
