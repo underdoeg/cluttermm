@@ -33,8 +33,7 @@ _WRAP_ENUM(TextureQuality, ClutterTextureQuality, NO_GTYPE)
  */
 _WRAP_GERROR(TextureError, ClutterTextureError, CLUTTER_TEXTURE_ERROR)
 
-class Texture :
-  public Actor
+class Texture : public Actor
 {
   _CLASS_GOBJECT(Texture, ClutterTexture, CLUTTER_TEXTURE, Actor, ClutterActor)
 
@@ -43,7 +42,7 @@ protected:
   // We do not wrap this constructor because it might throw an error. This
   // gets difficult to get right especially for disabled exceptions in glibmm,
   // and it is easy enough to create a texture and call set_from_file() on
-  // it manually:
+  // it manually.  But we do wrap the create method at least. --danielk
   _IGNORE(clutter_texture_new_from_file)
 
   // TODO: Wrap clutter_texture_new_from_actor. This needs changes in clutter
@@ -54,14 +53,14 @@ public:
 #m4 _CONVERSION(`ClutterActor*',`Glib::RefPtr<Texture>',`Glib::wrap((ClutterTexture*)$3)')
 
   _WRAP_CREATE()
-  //_WRAP_CREATE(const Glib::ustring& filename);
+  static Glib::RefPtr<Texture> create_from_file(const std::string& filename);
   //_WRAP_CREATE(const Glib::RefPtr<Actor>& actor);
 
-  _WRAP_METHOD(bool set_from_file(const Glib::ustring& filename), clutter_texture_set_from_file, errthrow)
-  _WRAP_METHOD(bool set_from_rgb_data(const guchar* data, bool has_alpha, int width, int height, int rowstride, int bpp, TextureFlags flags), clutter_texture_set_from_rgb_data, errthrow)
-  _WRAP_METHOD(bool set_from_yuv_data(const guchar* data, int width, int height, TextureFlags flags), clutter_texture_set_from_yuv_data, errthrow)
-  _WRAP_METHOD(bool set_area_from_rgb_data(const guchar* data, bool has_alpha, int x, int y, int width, int height, int rowstride, int bpp, TextureFlags flags), clutter_texture_set_area_from_rgb_data, errthrow)
-  _WRAP_METHOD(void get_base_size(gint& width, gint& height) const, clutter_texture_get_base_size)
+  _WRAP_METHOD(bool set_from_file(const std::string& filename), clutter_texture_set_from_file, errthrow)
+  _WRAP_METHOD(bool set_from_rgb_data(const guint8* data, bool has_alpha, int width, int height, int rowstride, int bpp, TextureFlags flags), clutter_texture_set_from_rgb_data, errthrow)
+  _WRAP_METHOD(bool set_from_yuv_data(const guint8* data, int width, int height, TextureFlags flags), clutter_texture_set_from_yuv_data, errthrow)
+  _WRAP_METHOD(bool set_area_from_rgb_data(const guint8* data, bool has_alpha, int x, int y, int width, int height, int rowstride, int bpp, TextureFlags flags), clutter_texture_set_area_from_rgb_data, errthrow)
+  _WRAP_METHOD(void get_base_size(int& width, int& height) const, clutter_texture_get_base_size)
 
   _WRAP_METHOD(TextureQuality get_filter_quality() const, clutter_texture_get_filter_quality)
   _WRAP_METHOD(void set_filter_quality(TextureQuality filter_quality), clutter_texture_set_filter_quality)
@@ -72,12 +71,13 @@ public:
   _WRAP_METHOD(CoglHandle get_cogl_texture() const, clutter_texture_get_cogl_texture)
   _WRAP_METHOD(void set_cogl_texture(CoglHandle handle), clutter_texture_set_cogl_texture)
 
-  _WRAP_SIGNAL(void size_change(gint width, gint height), "size_change")
+  _WRAP_SIGNAL(void size_change(int width, int height), "size_change")
   _WRAP_SIGNAL(void pixbuf_change(), "pixbuf_change")
 
+#m4 // TODO: What's with the C type?
   _WRAP_PROPERTY("cogl-texture", CoglHandle)
   _WRAP_PROPERTY("disable-slicing", bool)
-  _WRAP_PROPERTY("filename", Glib::ustring)
+  _WRAP_PROPERTY("filename", std::string)
   _WRAP_PROPERTY("filter-quality", TextureQuality)
   _WRAP_PROPERTY("pixel-format", int)
   _WRAP_PROPERTY("repeat-x", bool)
@@ -87,5 +87,3 @@ public:
 };
 
 } // namespace Clutter
-
-//vim: ts=2,sw=2

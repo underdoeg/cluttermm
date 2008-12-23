@@ -42,6 +42,10 @@ _CONVERSION(`Padding&',`ClutterPadding*',`&($3)')
 _CONVERSION(`const Padding&',`const ClutterPadding*',`&($3)')
 _CONVERSION(`ClutterPadding*',`Padding&',`*($3)')
 
+_EQUAL(`guint8',`guchar')
+_EQUAL(`guint8*',`guchar*')
+_EQUAL(`const guint8*',`const guchar*')
+
 _CONVERSION(`guint8&',`guint8*',`&($3)')
 _CONVERSION(`guint8*',`guint8&',`*($3)')
 _CONVERSION(`ClutterFixed&',`ClutterFixed*',`&($3)')

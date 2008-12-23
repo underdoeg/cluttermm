@@ -1,4 +1,5 @@
-/* Copyright (C) 2007 The cluttermm Development Team
+/*
+ * Copyright (c) 2007 The cluttermm Development Team
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -20,5 +21,11 @@
 namespace Clutter
 {
 
-} //namespace Clutter
+Glib::RefPtr<Texture> Texture::create_from_file(const std::string& filename)
+{
+  const Glib::RefPtr<Texture> result (new Texture());
+  result->set_from_file(filename);
+  return result;
+}
 
+} // namespace Clutter
