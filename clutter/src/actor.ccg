@@ -28,6 +28,36 @@ ActorBox::ActorBox(Unit x1, Unit y1, Unit x2, Unit y2)
   gobject_.y2 = y2;
 }
 
+void Actor::set_flags(ActorFlags flags)
+{
+  CLUTTER_ACTOR_SET_FLAGS(gobj(), static_cast<guint32>(flags));
+}
+
+void Actor::unset_flags(ActorFlags flags)
+{
+  CLUTTER_ACTOR_UNSET_FLAGS(gobj(), static_cast<guint32>(flags));
+}
+
+bool Actor::is_mapped() const
+{
+  return (CLUTTER_ACTOR_IS_MAPPED(gobj()) != 0);
+}
+
+bool Actor::is_realized() const
+{
+  return (CLUTTER_ACTOR_IS_REALIZED(gobj()) != 0);
+}
+
+bool Actor::is_visible() const
+{
+  return CLUTTER_ACTOR_IS_VISIBLE(gobj());
+}
+
+bool Actor::is_reactive() const
+{
+  return (CLUTTER_ACTOR_IS_REACTIVE(gobj()) != 0);
+}
+
 Geometry Actor::get_geometry() const
 {
   Geometry geom;

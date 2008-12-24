@@ -1,5 +1,13 @@
 2008-12-24  Daniel Elstner  <danielk@openismus.com>
 
+	* clutter/src/actor.{ccg,hg} (ActorFlags): Wrap enumeration.
+	({set,unset,get}_flags): Implement missing accessors.
+	(is_{mapped,realized,visible,reactive}): ditto.
+	* tools/m4/convert_cluttermm.m4 (ActorFlags): Add generic
+	enumeration conversions and a special conversion from guint32.
+
+2008-12-24  Daniel Elstner  <danielk@openismus.com>
+
 	* clutter/src/box.hg (PackType): Remove NO_GTYPE flag passed to
 	_WRAP_ENUM(), because the enumeration in question clearly has a
 	GObject type and associated _get_type() function.

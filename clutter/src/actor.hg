@@ -45,6 +45,8 @@ public:
   _MEMBER_SET(y2, y2, Unit, ClutterUnit)
 };
 
+_WRAP_ENUM(ActorFlags, ClutterActorFlags)
+
 class Actor : public Glib::Object, public Scriptable
 {
   _CLASS_GOBJECT(Actor, ClutterActor, CLUTTER_ACTOR, Glib::Object, GObject)
@@ -57,7 +59,16 @@ protected:
 public:
   //There is no create() because this is an abstract base class.
   //_WRAP_CREATE()
-  
+
+  void set_flags(ActorFlags flags);
+  void unset_flags(ActorFlags flags);
+  _MEMBER_GET(flags, flags, ActorFlags, guint32)
+
+  bool is_mapped() const;
+  bool is_realized() const;
+  bool is_visible() const;
+  bool is_reactive() const;
+
   _WRAP_METHOD(void show(), clutter_actor_show)
   _WRAP_METHOD(void show_all(), clutter_actor_show_all)
   _WRAP_METHOD(void hide(), clutter_actor_hide)

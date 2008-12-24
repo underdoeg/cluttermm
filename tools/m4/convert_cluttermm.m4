@@ -68,6 +68,7 @@ _EQUAL(ClutterKeyEvent*,KeyEvent*)
 _EQUAL(ClutterScrollEvent*,ScrollEvent*)
 _EQUAL(ClutterCrossingEvent*,CrossingEvent*)
 
+_CONV_ENUM(Clutter,ActorFlags)
 _CONV_ENUM(Clutter,LayoutFlags)
 _CONV_ENUM(Clutter,PackType)
 _CONV_ENUM(Clutter,TextureFlags)
@@ -79,4 +80,5 @@ _CONV_ENUM(Clutter,TextureQuality)
 _CONV_ENUM(Pango,EllipsizeMode)
 _CONV_ENUM(Pango,WrapMode)
 
+_CONVERSION(`guint32', `ActorFlags', `static_cast<ActorFlags>($3)')
 _CONVERSION(`const gchar*', `const Glib::ustring&',__GCHARP_TO_USTRING)
