@@ -1,3 +1,8 @@
+2008-12-24  Daniel Elstner  <danielk@openismus.com>
+
+	* clutter/src/texture.hg (Texture::*): Revert to use guchar instead
+	of guint8 to stay consistent with the Clutter C API.
+
 2008-12-23  Daniel Elstner  <danielk@openismus.com>
 
 	* clutter/src/texture.{ccg,hg} (Texture::set_from_file): Replace

@@ -57,9 +57,9 @@ public:
   //_WRAP_CREATE(const Glib::RefPtr<Actor>& actor);
 
   _WRAP_METHOD(bool set_from_file(const std::string& filename), clutter_texture_set_from_file, errthrow)
-  _WRAP_METHOD(bool set_from_rgb_data(const guint8* data, bool has_alpha, int width, int height, int rowstride, int bpp, TextureFlags flags), clutter_texture_set_from_rgb_data, errthrow)
-  _WRAP_METHOD(bool set_from_yuv_data(const guint8* data, int width, int height, TextureFlags flags), clutter_texture_set_from_yuv_data, errthrow)
-  _WRAP_METHOD(bool set_area_from_rgb_data(const guint8* data, bool has_alpha, int x, int y, int width, int height, int rowstride, int bpp, TextureFlags flags), clutter_texture_set_area_from_rgb_data, errthrow)
+  _WRAP_METHOD(bool set_from_rgb_data(const guchar* data, bool has_alpha, int width, int height, int rowstride, int bpp, TextureFlags flags), clutter_texture_set_from_rgb_data, errthrow)
+  _WRAP_METHOD(bool set_from_yuv_data(const guchar* data, int width, int height, TextureFlags flags), clutter_texture_set_from_yuv_data, errthrow)
+  _WRAP_METHOD(bool set_area_from_rgb_data(const guchar* data, bool has_alpha, int x, int y, int width, int height, int rowstride, int bpp, TextureFlags flags), clutter_texture_set_area_from_rgb_data, errthrow)
   _WRAP_METHOD(void get_base_size(int& width, int& height) const, clutter_texture_get_base_size)
 
   _WRAP_METHOD(TextureQuality get_filter_quality() const, clutter_texture_get_filter_quality)
