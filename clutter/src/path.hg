@@ -26,7 +26,7 @@ _PINCLUDE(glibmm/private/object_p.h)
 namespace Clutter
 {
 
-_WRAP_ENUM(PathNodeType, ClutterPathNodeType, NO_GTYPE)
+_WRAP_ENUM(PathNodeType, ClutterPathNodeType)
 
 class PathNode
 {

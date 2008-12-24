@@ -26,8 +26,8 @@ _PINCLUDE(cluttermm/private/actor_p.h)
 namespace Clutter
 {
 
-_WRAP_ENUM(TextureFlags, ClutterTextureFlags, NO_GTYPE)
-_WRAP_ENUM(TextureQuality, ClutterTextureQuality, NO_GTYPE)
+_WRAP_ENUM(TextureFlags, ClutterTextureFlags)
+_WRAP_ENUM(TextureQuality, ClutterTextureQuality)
 
 /** Exception class for Clutter::Texture errors.
  */

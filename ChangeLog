@@ -1,5 +1,20 @@
 2008-12-24  Daniel Elstner  <danielk@openismus.com>
 
+	* clutter/src/box.hg (PackType): Remove NO_GTYPE flag passed to
+	_WRAP_ENUM(), because the enumeration in question clearly has a
+	GObject type and associated _get_type() function.
+	* clutter/src/layout.hg (LayoutFlags): ditto,
+	* clutter/src/path.hg (PathNodeType): ditto,
+	* clutter/src/texture.hg (TextureFlags): ditto,
+	(TextureQuality): ditto,
+	* clutter/src/timeline.hg (TimelineDirection): ditto,
+	* clutter/src/types.hg (RotateDirection): ditto,
+	(RotateAxis): ditto,
+	(Gravity): ditto,
+	(RequestMode): ditto.
+
+2008-12-24  Daniel Elstner  <danielk@openismus.com>
+
 	* clutter/src/texture.hg (Texture::*): Revert to use guchar instead
 	of guint8 to stay consistent with the Clutter C API.
 

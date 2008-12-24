@@ -25,7 +25,7 @@ _PINCLUDE(glibmm/private/object_p.h)
 namespace Clutter
 {
 
-_WRAP_ENUM(TimelineDirection, ClutterTimelineDirection, NO_GTYPE)
+_WRAP_ENUM(TimelineDirection, ClutterTimelineDirection)
 
 class Timeline : public Glib::Object
 {

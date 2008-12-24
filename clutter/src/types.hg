@@ -34,12 +34,12 @@ typedef ClutterUnit Unit;
 typedef ClutterFixed Fixed;
 typedef ClutterAngle Angle;
 
-_WRAP_GERROR(InitError, ClutterInitError, CLUTTER_INIT_ERROR, NO_GTYPE)
+_WRAP_GERROR(InitError, ClutterInitError, CLUTTER_INIT_ERROR)
 
-_WRAP_ENUM(RotateDirection, ClutterRotateDirection, NO_GTYPE)
-_WRAP_ENUM(RotateAxis, ClutterRotateAxis, NO_GTYPE)
-_WRAP_ENUM(Gravity, ClutterGravity, NO_GTYPE)
-_WRAP_ENUM(RequestMode, ClutterRequestMode, NO_GTYPE)
+_WRAP_ENUM(RotateDirection, ClutterRotateDirection)
+_WRAP_ENUM(RotateAxis, ClutterRotateAxis)
+_WRAP_ENUM(Gravity, ClutterGravity)
+_WRAP_ENUM(RequestMode, ClutterRequestMode)
 
 class Knot
 {
