@@ -4,8 +4,8 @@ AC_INIT(clutter/cluttermmconfig.h.in)
 #  Version and initialization
 #########################################################################
 CLUTTERMM_MAJOR_VERSION=0
-CLUTTERMM_MINOR_VERSION=7
-CLUTTERMM_MICRO_VERSION=4
+CLUTTERMM_MINOR_VERSION=9
+CLUTTERMM_MICRO_VERSION=0
 
 #
 # +1 : ? : +1  == new interface that does not break old one
@@ -126,4 +126,3 @@ AC_OUTPUT([
   examples/Makefile
   tests/Makefile
 ])
-:

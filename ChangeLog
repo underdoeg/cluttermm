@@ -1,5 +1,9 @@
 2008-12-29  Daniel Elstner  <danielk@openismus.com>
 
+	* configure.in: Bump version number to 0.9.0.
+
+2008-12-29  Daniel Elstner  <danielk@openismus.com>
+
 	* clutter/src/actor.hg (Actor::pick): Make public because custom
 	container implementations need to call this method.
 	(Actor::should_pick_paint): ditto.
