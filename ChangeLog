@@ -1,3 +1,10 @@
+2008-12-29  Daniel Elstner  <danielk@openismus.com>
+
+	* clutter/src/container.{ccg,hg} (Container::actor_added): New method
+	which emits the "actor-added" signal.  This precludes the need to use
+	the GObject API directly when implementing a custom container in C++.
+	(Container::actor_removed): Likewise for the "actor-removed" signal.
+
 2008-12-24  Daniel Elstner  <danielk@openismus.com>
 
 	* clutter/src/actor.{ccg,hg} (ActorFlags): Wrap enumeration.
