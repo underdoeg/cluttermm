@@ -1,0 +1,9 @@
+Cluttermm Tutorial
+==================
+
+This package no longer comes with its own autogen.sh script.
+To generate the build environment within a fresh checkout, run:
+
+  autoreconf --install --force
+
+Continue with "./configure; make" as usual.
