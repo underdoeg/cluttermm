@@ -214,6 +214,10 @@ public:
   _WRAP_METHOD(void get_anchor_pointu(Unit& anchor_x, Unit& anchor_y), clutter_actor_get_anchor_pointu)
   _WRAP_METHOD(void set_anchor_point_from_gravity(ClutterGravity gravity), clutter_actor_set_anchor_point_from_gravity)
 
+  // These are needed by custom container implementations and therefore public.
+  _WRAP_METHOD(void pick(const Color& color), clutter_actor_pick)
+  _WRAP_METHOD(bool should_pick_paint() const, clutter_actor_should_pick_paint)
+
 // signals
   _WRAP_SIGNAL(bool button_press_event(ButtonEvent* event), "button_press_event")
   _WRAP_SIGNAL(bool button_release_event(ButtonEvent* event), "button_release_event")
@@ -270,10 +274,6 @@ public:
 protected:
   _WRAP_METHOD(void set_shader_param_value(const Glib::ustring& param, const Glib::ValueBase& value),
                clutter_actor_set_shader_param)
-  // according to the clutter docs, these functions should never be called
-  // directly and are only for subclasses
-  _WRAP_METHOD(void pick(const Color& color), clutter_actor_pick)
-  _WRAP_METHOD(bool should_pick_paint() const, clutter_actor_should_pick_paint)
 
   _WRAP_VFUNC(void show_all(), "show_all")
   _WRAP_VFUNC(void hide_all(), "hide_all")
