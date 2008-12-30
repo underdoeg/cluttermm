@@ -1,0 +1,6 @@
+2008-12-30  Daniel Elstner  <danielk@openismus.com>
+
+	* examples/scrolling/{scrollingcontainer.{cc,h},main.cc}: New
+	example demonstrating a custom container which scrolls its content.
+	Convert from the C Clutter tutorial example of the same name.
+	* Makefile.am (bin_PROGRAMS): Add examples/scrolling/example.

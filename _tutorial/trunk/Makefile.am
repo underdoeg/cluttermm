@@ -36,6 +36,7 @@ bin_PROGRAMS =	\
 	examples/effects/example		\
 	examples/full_example/example		\
 	examples/score/example			\
+	examples/scrolling/example		\
 	examples/stage/example			\
 	examples/stage_widget/example		\
 	examples/timeline/example
@@ -55,6 +56,10 @@ examples_custom_container_example_SOURCES =	\
 examples_effects_example_SOURCES		= examples/effects/main.cc
 examples_full_example_example_SOURCES		= examples/full_example/main.cc
 examples_score_example_SOURCES			= examples/score/main.cc
+examples_scrolling_example_SOURCES =		\
+	examples/scrolling/main.cc		\
+	examples/scrolling/scrollingcontainer.cc\
+	examples/scrolling/scrollingcontainer.h
 examples_stage_example_SOURCES			= examples/stage/main.cc
 examples_stage_widget_example_SOURCES		= examples/stage_widget/main.cc
 examples_timeline_example_SOURCES		= examples/timeline/main.cc
