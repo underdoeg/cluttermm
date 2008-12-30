@@ -18,6 +18,7 @@
 
 #include "examplebox.h"
 #include <cogl/cogl.h>
+#include <algorithm>
 
 namespace Tutorial
 {
