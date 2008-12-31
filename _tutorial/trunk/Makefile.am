@@ -35,6 +35,7 @@ bin_PROGRAMS =	\
 	examples/custom_container/example	\
 	examples/effects/example		\
 	examples/full_example/example		\
+	examples/multiline_text_entry/example	\
 	examples/score/example			\
 	examples/scrolling/example		\
 	examples/stage/example			\
@@ -55,6 +56,10 @@ examples_custom_container_example_SOURCES =	\
 	examples/custom_container/main.cc
 examples_effects_example_SOURCES		= examples/effects/main.cc
 examples_full_example_example_SOURCES		= examples/full_example/main.cc
+examples_multiline_text_entry_example_SOURCES =		\
+	examples/multiline_text_entry/main.cc		\
+	examples/multiline_text_entry/multiline_entry.cc\
+	examples/multiline_text_entry/multiline_entry.h
 examples_score_example_SOURCES			= examples/score/main.cc
 examples_scrolling_example_SOURCES =		\
 	examples/scrolling/main.cc		\

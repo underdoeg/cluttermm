@@ -1,6 +1,14 @@
+2008-12-31  Daniel Elstner  <danielk@openismus.com>
+
+	* examples/multiline_text_entry/{multiline_entry.{cc,h},main.cc}:
+	New example implementing a multi-line text entry actor.  Converted
+	from the C Clutter tutorial example of the same name.
+	* Makefile.am (bin_PROGRAMS): Add
+	examples/multiline_text_entry/example.
+
 2008-12-30  Daniel Elstner  <danielk@openismus.com>
 
 	* examples/scrolling/{scrollingcontainer.{cc,h},main.cc}: New
 	example demonstrating a custom container which scrolls its content.
-	Convert from the C Clutter tutorial example of the same name.
+	Converted from the C Clutter tutorial example of the same name.
 	* Makefile.am (bin_PROGRAMS): Add examples/scrolling/example.
