@@ -26,7 +26,7 @@ AUTOMAKE_OPTIONS = subdir-objects
 ACLOCAL_AMFLAGS  = -I m4 $(ACLOCAL_FLAGS)
 DISTCHECK_CONFIGURE_FLAGS = --enable-warnings=fatal
 
-bin_PROGRAMS =	\
+noinst_PROGRAMS =	\
 	examples/actor/example			\
 	examples/actor_group/example		\
 	examples/actor_transformations/example	\
@@ -223,7 +223,7 @@ doc-rebuild: doc-clean html pdf
 
 tutorialdir = $(clutter_docdir)/tutorial/html
 
-install-tutorial: html docs/tutorial/style.css
+install-tutorial: docs/tutorial/html/index.html docs/tutorial/style.css
 	@$(NORMAL_INSTALL)
 	$(mkinstalldirs) $(DESTDIR)$(tutorialdir)
 	@dir='$(<D)'; for p in $$dir/*.html ; do \
@@ -233,7 +233,7 @@ install-tutorial: html docs/tutorial/style.css
 	done
 	$(INSTALL_DATA) $(srcdir)/docs/tutorial/style.css $(DESTDIR)$(tutorialdir)
 
-uninstall-tutorial: html docs/tutorial/style.css
+uninstall-tutorial: docs/tutorial/html/index.html docs/tutorial/style.css
 	@$(NORMAL_UNINSTALL)
 	@dir='$(<D)'; for p in $$dir/*.html ; do \
 	  f="`echo $$p | sed -e 's|^.*/||'`"; \
