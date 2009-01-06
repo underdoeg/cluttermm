@@ -16,9 +16,9 @@
 
       #Beginning of comment:
       # Look for
-      # <para><ulink url="&url_examples_base;helloworld">Source Code</ulink></para>
+      # <para><ulink url="&url_examples_base;helloworld">Source code</ulink></para>
 
-      if(/<para><ulink url=\"&url_examples_base;([\/\w]+)\">Source Code<\/ulink><\/para>/)
+      if(/<para><ulink url=\"&url_examples_base;([\/\w]+)\">Source [Cc]ode<\/ulink><\/para>/)
       {
         #List all the source files in that directory:
         my $directory = $examples_base . $1;
@@ -27,7 +27,7 @@
         my @dir_contents = readdir(DIR);
         closedir(DIR);
 
-        my @source_files = grep(/\.c$/, @dir_contents);
+        my @source_files = grep(/\.cc$/, @dir_contents);
         my @header_files = grep(/\.h$/,  @dir_contents);
 
         print "<!-- start inserted example code -->\n";
@@ -79,4 +79,3 @@ sub process_source_file($)
 
   close(SOURCE_FILE);
 }
-

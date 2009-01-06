@@ -1,5 +1,11 @@
 2009-01-06  Daniel Elstner  <danielk@openismus.com>
 
+	* docs/tutorial/insert_example_code.pl: Look for files with ".cc"
+	extension rather than ".c".  Also be more lenient with regards to
+	the capitalization of "Source code".
+
+2009-01-06  Daniel Elstner  <danielk@openismus.com>
+
 	* Makefile.am (cluttermm_docdir): Rename from clutter_docdir and
 	change the path to point to the cluttermm-0.9 documentation instead
 	of the clutter one.
