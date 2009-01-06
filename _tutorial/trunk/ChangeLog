@@ -1,3 +1,10 @@
+2009-01-06  Murray Cumming  <murrayc@murrayc.com>
+
+	* COPYING:
+	* INSTALL: Added these to svn.
+	* Makefile.am: Correct the upload, which must be a little more complex 
+	for the new non-recursive build structure.
+
 2009-01-06  Daniel Elstner  <danielk@openismus.com>
 
 	* docs/tutorial/insert_example_code.pl: Look for files with ".cc"

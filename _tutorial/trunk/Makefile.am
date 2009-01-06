@@ -184,13 +184,13 @@ validate-original: docs/tutorial/cluttermm-tut.xml
 validate: docs/tutorial/cluttermm-tut-with-examples.xml
 	xmllint --xinclude --valid --noout --catalogs $(DOCBOOK_STYLESHEET) $<
 
-post-html: html docs/tutorial/style.css pdf
+post-html: docs/tutorial/html/index.html docs/tutorial/style.css docs/tutorial/pdf/programming-with-cluttermm.pdf
 	rsync $(rsync_args) $(srcdir)/docs/tutorial/figures/*.png $$USER@$(web_host):$(clutter_tut_path)/figures/
 	rsync $(rsync_args) $(srcdir)/docs/tutorial/icons/*.png $$USER@$(web_host):$(clutter_tut_path)/icons/
 	rsync $(rsync_args) -r docs/tutorial/html/ $$USER@$(web_host):$(clutter_tut_path)/html/
 	rsync $(rsync_args) $(srcdir)/docs/tutorial/*.css $$USER@$(web_host):$(clutter_tut_path)/html/
 	rsync $(rsync_args) -r docs/tutorial/pdf/ $$USER@$(web_host):$(clutter_tut_path)/pdf/
-	scp $$SSH_OPT $^ $$USER@$(web_host):$(web_path_docs)
+	rsync $(rsync_args) -r examples/ $$USER@$(web_host):$(web_path)/examples/
 
 # PDF Generation:
 
