@@ -1,3 +1,10 @@
+2009-01-06  Murray Cumming  <murrayc@murrayc.com>
+
+	* docs/Makefile.am:
+	* docs/Makefile_web.am_fragment:
+	* docs/reference/Makefile.am: Quick-but-kind-of-works upload of 
+	the documentation. We really need to get library.gnome.org working for us.
+
 2008-12-29  Daniel Elstner  <danielk@openismus.com>
 
 	* configure.in: Bump version number to 0.9.0.
