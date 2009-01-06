@@ -85,3 +85,170 @@ dist_pkgdata_DATA =						\
 	examples/full_example/images/matthias_clasen.jpg	\
 	examples/full_example/images/mikael_hallendal.jpg	\
 	examples/full_example/images/ryan_lortie.jpg
+
+clutter_docdir	= $(datadir)/doc/clutter/docs
+figuresdir	= $(clutter_docdir)/tutorial/figures
+iconsdir	= $(clutter_docdir)/tutorial/icons
+
+dist_figures_DATA =					\
+	docs/tutorial/figures/actor_events.png		\
+	docs/tutorial/figures/actor_group.png		\
+	docs/tutorial/figures/actors.png		\
+	docs/tutorial/figures/actor_transformations.png	\
+	docs/tutorial/figures/alpha-func.png		\
+	docs/tutorial/figures/behaviours.png		\
+	docs/tutorial/figures/custom_actor.png		\
+	docs/tutorial/figures/custom_container.png	\
+	docs/tutorial/figures/effects.png		\
+	docs/tutorial/figures/full_example.png		\
+	docs/tutorial/figures/multiline_text_entry.png	\
+	docs/tutorial/figures/path-alpha-func.png	\
+	docs/tutorial/figures/score.png			\
+	docs/tutorial/figures/scrolling.png		\
+	docs/tutorial/figures/stage.png			\
+	docs/tutorial/figures/stage_widget.png		\
+	docs/tutorial/figures/timeline.png
+
+dist_icons_DATA =				\
+	docs/tutorial/icons/caution.png		\
+	docs/tutorial/icons/home.png		\
+	docs/tutorial/icons/important.png	\
+	docs/tutorial/icons/next.png		\
+	docs/tutorial/icons/note.png		\
+	docs/tutorial/icons/prev.png		\
+	docs/tutorial/icons/tip.png		\
+	docs/tutorial/icons/up.png		\
+	docs/tutorial/icons/warning.png
+
+web_host	= www.openismus.com
+web_path	= /home/murrayc/openismus.com/documents/clutter_tutorial/0.8/
+web_path_docs	= $(web_path)docs/
+
+clutter_tut_path = $(web_path_docs)tutorial
+
+# --delete and --delete-after are causing
+# "
+# Invalid file index: 1768710413 (count=0) [receiver]
+# rsync error: protocol incompatibility (code 2) at sender.c(156)
+# "
+# with sourceforge recently (May 2005). murrayc.
+
+#rsync_args	= -vz --rsh ssh --delete --delete-after
+rsync_args	= -vz --rsh ssh
+
+DOCBOOK_PHPWEBNOTES_TRANSFORM = docs/tutorial/docbook_phpwebnotes.xsl
+
+dist_noinst_DATA =					\
+	docs/index.html					\
+	docs/tutorial/README				\
+	docs/tutorial/cluttermm-tut.xml			\
+	docs/tutorial/cluttermm-tut-with-examples.xml	\
+	$(DOCBOOK_PHPWEBNOTES_TRANSFORM)		\
+	docs/tutorial/insert_example_code.pl		\
+	docs/tutorial/style.css
+
+EXTRA_DIST = docs/tutorial/html
+
+DOCBOOK_STYLESHEET ?= http://docbook.sourceforge.net/release/xsl/current/xhtml/chunk.xsl
+
+# Create a DocBook source file that doesn't have the examples' comments blocks:
+docs/tutorial/cluttermm-tut-with-examples.xml: docs/tutorial/cluttermm-tut.xml docs/tutorial/insert_example_code.pl
+	$(PERL_PATH) $(srcdir)/docs/tutorial/insert_example_code.pl $(srcdir)/examples $< >$@
+
+# The new XML DocBook way:
+XSLTPROC = xsltproc
+
+docs/tutorial/html/index.html: docs/tutorial/cluttermm-tut-with-examples.xml
+	-rm -rf docs/tutorial/html
+	mkdir docs/tutorial/html
+	$(XSLTPROC) \
+	  --param toc.section.depth 1 \
+	  --stringparam html.stylesheet style.css \
+	  --stringparam admon.graphics 1 \
+	  --stringparam admon.graphics.path ../icons/ \
+	  --stringparam admon.graphics.extension .png \
+	  --stringparam chunker.output.indent yes \
+	  --stringparam chunker.output.encoding UTF-8 \
+	  --stringparam navig.graphics yes \
+	  --stringparam navig.graphics.extension .png \
+	  --stringparam navig.graphics.path ../icons/ \
+	  --stringparam toc.list.type ul \
+	  --stringparam use.id.as.filename 1 \
+	  --xinclude --catalogs -o docs/tutorial/html/ \
+	  $(DOCBOOK_STYLESHEET) $<
+
+validate-original: docs/tutorial/cluttermm-tut.xml
+	xmllint --xinclude --valid --noout --catalogs $(DOCBOOK_STYLESHEET) $<
+
+validate: docs/tutorial/cluttermm-tut-with-examples.xml
+	xmllint --xinclude --valid --noout --catalogs $(DOCBOOK_STYLESHEET) $<
+
+post-html: html docs/tutorial/style.css pdf
+	rsync $(rsync_args) $(srcdir)/docs/tutorial/figures/*.png $$USER@$(web_host):$(clutter_tut_path)/figures/
+	rsync $(rsync_args) $(srcdir)/docs/tutorial/icons/*.png $$USER@$(web_host):$(clutter_tut_path)/icons/
+	rsync $(rsync_args) -r docs/tutorial/html/ $$USER@$(web_host):$(clutter_tut_path)/html/
+	rsync $(rsync_args) $(srcdir)/docs/tutorial/*.css $$USER@$(web_host):$(clutter_tut_path)/html/
+	rsync $(rsync_args) -r docs/tutorial/pdf/ $$USER@$(web_host):$(clutter_tut_path)/pdf/
+	scp $$SSH_OPT $^ $$USER@$(web_host):$(web_path_docs)
+
+# PDF Generation:
+
+XMLLINT = xmllint
+DB2PDF = docbook2pdf
+
+# we need to produce a version with full examples with all of the XIncludes done so that it
+# can processed for PDF
+docs/tutorial/programming-with-cluttermm.xml: docs/tutorial/cluttermm-tut-with-examples.xml
+	rm -rf docs/tutorial/html
+	mkdir docs/tutorial/html
+	$(XMLLINT) --xinclude --postvalid -o $@ $<
+
+# We have to generate the pdf in a subdirectory (e.g. pdf/) because the tutorial
+# specifies the path to the figures as '../figures' so if we build it in this
+# directory, it won't find the images.
+docs/tutorial/pdf/programming-with-cluttermm.pdf: docs/tutorial/programming-with-cluttermm.xml
+	$(DB2PDF) --output docs/tutorial/pdf $<
+
+pdf-local: docs/tutorial/pdf/programming-with-cluttermm.pdf
+
+html-local: docs/tutorial/html/index.html
+
+doc-clean:
+	-rm -rf docs/tutorial/html docs/tutorial/html_withcomments docs/tutorial/pdf
+	-rm -f docs/tutorial/cluttermm-tut-with-examples.xml
+
+clean-local: doc-clean
+
+doc-rebuild: doc-clean html pdf
+
+tutorialdir = $(clutter_docdir)/tutorial/html
+
+install-tutorial: html docs/tutorial/style.css
+	@$(NORMAL_INSTALL)
+	$(mkinstalldirs) $(DESTDIR)$(tutorialdir)
+	@dir='$(<D)'; for p in $$dir/*.html ; do \
+	  f=`echo "$$p" | sed -e 's|^.*/||'`; \
+	  echo " $(INSTALL_DATA) $$p $(DESTDIR)$(tutorialdir)/$$f"; \
+	  $(INSTALL_DATA) $$p $(DESTDIR)$(tutorialdir)/$$f; \
+	done
+	$(INSTALL_DATA) $(srcdir)/docs/tutorial/style.css $(DESTDIR)$(tutorialdir)
+
+uninstall-tutorial: html docs/tutorial/style.css
+	@$(NORMAL_UNINSTALL)
+	@dir='$(<D)'; for p in $$dir/*.html ; do \
+	  f="`echo $$p | sed -e 's|^.*/||'`"; \
+	  echo " rm -f $(DESTDIR)$(tutorialdir)/$$f"; \
+	  rm -f $(DESTDIR)$(tutorialdir)/$$f; \
+	done
+	rm -f $(DESTDIR)$(tutorialdir)/style.css
+	rm -f $(DESTDIR)$(tutorialdir)/icons
+
+all-local: html
+
+install-data-local: install-tutorial
+
+uninstall-local: uninstall-tutorial
+
+maintainer-clean-local: doc-clean
+
+.PHONY: post-html doc-clean install-tutorial uninstall-tutorial validate validate-original
