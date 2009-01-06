@@ -1,5 +1,11 @@
 2009-01-06  Murray Cumming  <murrayc@murrayc.com>
 
+	* docs/tutorial/cluttermm-tut.xml: Introduction: cluttermm: Correct a 
+	typo and mention that exceptions are optional (at glibmm configure time) 
+	for embedded developers who are scared of them.
+
+2009-01-06  Murray Cumming  <murrayc@murrayc.com>
+
 	* docs/tutorial/cluttermm-tut.xml: Correct the base URLs for the 
 	(not ideal) reference documentation for cluttermm and clutter-gtkmm.
 	* examples/full_example/main.cc: Replaced some g_print()s with 

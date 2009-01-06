@@ -110,9 +110,9 @@ at embedded devices. So, where necessary, you may also use OpenGL or OpenGL ES d
 <sect1 id="sec-cluttermm">
 <title>Cluttermm</title>
 <para>&cluttermm; is a language binding for C++ on top of &clutter;. It has the same functionality
-and concepts as plain &clutter;, but provides C++ programmers with an interface that makes of
+and concepts as plain &clutter;, but provides C++ programmers with an interface that uses 
 language features and common concepts of C++, such as static type safety, class inheritance and
-exception handling.</para>
+(optionally) exception handling.</para>
 <para>In the next few chapters you will learn how to place actors on the stage, how to set their
 properties, how to change their properties (including their position) over time by using timelines
 and behaviours, and how to do all this in response to user interaction.</para>
