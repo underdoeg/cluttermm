@@ -1,3 +1,7 @@
+2009-01-06  Murray Cumming  <murrayc@murrayc.com>
+
+	* Makefile.am: Correct the upload URL.
+
 2009-01-06  Daniel Elstner  <danielk@openismus.com>
 
 	* docs/index.html: Copy file from Clutter tutorial.

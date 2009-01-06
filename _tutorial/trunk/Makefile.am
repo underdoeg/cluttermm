@@ -121,7 +121,7 @@ dist_icons_DATA =				\
 	docs/tutorial/icons/warning.png
 
 web_host	= www.openismus.com
-web_path	= /home/murrayc/openismus.com/documents/clutter_tutorial/0.8/
+web_path	= /home/murrayc/openismus.com/documents/cluttermm_tutorial/0.9/
 web_path_docs	= $(web_path)docs/
 
 clutter_tut_path = $(web_path_docs)tutorial
