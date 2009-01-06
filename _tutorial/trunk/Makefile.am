@@ -86,9 +86,10 @@ dist_pkgdata_DATA =						\
 	examples/full_example/images/mikael_hallendal.jpg	\
 	examples/full_example/images/ryan_lortie.jpg
 
-clutter_docdir	= $(datadir)/doc/clutter/docs
-figuresdir	= $(clutter_docdir)/tutorial/figures
-iconsdir	= $(clutter_docdir)/tutorial/icons
+cluttermm_docdir = $(datadir)/doc/cluttermm-0.9/docs
+tutorialdir	= $(cluttermm_docdir)/tutorial/html
+figuresdir	= $(cluttermm_docdir)/tutorial/figures
+iconsdir	= $(cluttermm_docdir)/tutorial/icons
 
 dist_figures_DATA =					\
 	docs/tutorial/figures/actor_events.png		\
@@ -220,8 +221,6 @@ doc-clean:
 clean-local: doc-clean
 
 doc-rebuild: doc-clean html pdf
-
-tutorialdir = $(clutter_docdir)/tutorial/html
 
 install-tutorial: docs/tutorial/html/index.html docs/tutorial/style.css
 	@$(NORMAL_INSTALL)
