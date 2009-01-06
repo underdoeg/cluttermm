@@ -13,8 +13,8 @@
  <!ENTITY url_refdocs_base_clutter "http://clutter-project.org/docs/clutter/0.9/Clutter">
  <!ENTITY url_refdocs_base_clutter_alt "http://clutter-project.org/docs/clutter/0.9/clutter-Clutter-">
  <!ENTITY url_refdocs_base_clutter_gtk "http://www.clutter-project.org/docs/clutter-gtk/0.9/">
- <!ENTITY url_refdocs_base_cluttermm "FIXME">
- <!ENTITY url_refdocs_base_clutter_gtkmm "FIXME">
+ <!ENTITY url_refdocs_base_cluttermm "http://www.gtkmm.org/docs/cluttermm-0.9/docs/reference/html/">
+ <!ENTITY url_refdocs_base_clutter_gtkmm "http://www.gtkmm.org/docs/clutter-gtkmm-0.9/docs/reference/html/">
 ]>
 
 <!--

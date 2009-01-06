@@ -19,6 +19,7 @@
 #include <algorithm>
 #include <list>
 #include <string>
+#include <iostream>
 #include <cmath>
 
 namespace
@@ -327,7 +328,7 @@ void Example::rotate_item_to_front(std::list<Item>::iterator pitem)
   // Set the number of frames to be proportional to the distance to travel,
   // so the speed is always the same:
   const int pos_to_move = (pos_front < pos) ? items_.size() + (pos - pos_front)
-                                            : pos_front - pos;
+                                            : pos_front - pos; //TODO: This is not used. murrayc.
   timeline_rotation_->set_n_frames(angle_diff);
 
   // Remember what item will be at the front when this timeline finishes:
@@ -342,11 +343,11 @@ bool Example::on_texture_button_press(Clutter::ButtonEvent* event, std::list<Ite
   // if the objects are moving), to simplify things.
   if(timeline_rotation_ && timeline_rotation_->is_playing())
   {
-    g_print("on_texture_button_press(): ignoring\n");
+    std::cout << "on_texture_button_press(): ignoring." << std::endl;
     return false;
   }
   else
-    g_print("on_texture_button_press(): handling\n");
+    std::cout << "on_texture_button_press(): handling.o" << std::endl;
 
   rotate_item_to_front(pitem);
   return true;
