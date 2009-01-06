@@ -35,7 +35,7 @@ namespace Tutorial
 
 Box::Box()
 :
-  // Create a named GObject type for the custom container class
+  // Create a named GObject type for the custom container class:
   Glib::ObjectBase(typeid(Box))
 {
   property_request_mode() = Clutter::REQUEST_WIDTH_FOR_HEIGHT;
@@ -73,7 +73,7 @@ void Box::remove_vfunc(const Glib::RefPtr<Clutter::Actor>& actor)
   const Glib::RefPtr<Clutter::Actor> element = actor;
   const ChildrenList::iterator p = std::find(children_.begin(), children_.end(), element);
 
-  if (p != children_.end())
+  if(p != children_.end())
   {
     element->unparent();
     children_.erase(p);
@@ -99,7 +99,7 @@ void Box::sort_depth_order_vfunc()
 
 void Box::foreach_vfunc(ClutterCallback callback, gpointer user_data)
 {
-  for (ChildrenList::iterator p = children_.begin(); p != children_.end(); ++p)
+  for(ChildrenList::iterator p = children_.begin(); p != children_.end(); ++p)
     callback((*p)->gobj(), user_data);
 }
 
@@ -107,9 +107,9 @@ void Box::on_paint()
 {
   cogl_push_matrix();
 
-  for (ChildrenList::iterator p = children_.begin(); p != children_.end(); ++p)
+  for(ChildrenList::iterator p = children_.begin(); p != children_.end(); ++p)
   {
-    if ((*p)->is_mapped())
+    if((*p)->is_mapped())
       (*p)->paint();
   }
 
@@ -118,7 +118,7 @@ void Box::on_paint()
 
 void Box::show_all_vfunc()
 {
-  for (ChildrenList::iterator p = children_.begin(); p != children_.end(); ++p)
+  for(ChildrenList::iterator p = children_.begin(); p != children_.end(); ++p)
     (*p)->show();
 
   show();
@@ -128,15 +128,15 @@ void Box::hide_all_vfunc()
 {
   hide();
 
-  for (ChildrenList::iterator p = children_.begin(); p != children_.end(); ++p)
+  for(ChildrenList::iterator p = children_.begin(); p != children_.end(); ++p)
     (*p)->hide();
 }
 
 void Box::pick_vfunc(const Clutter::Color& color)
 {
-  for (ChildrenList::iterator p = children_.begin(); p != children_.end(); ++p)
+  for(ChildrenList::iterator p = children_.begin(); p != children_.end(); ++p)
   {
-    if ((*p)->is_mapped())
+    if((*p)->is_mapped())
       (*p)->pick(color);
   }
 }
@@ -155,8 +155,8 @@ void Box::get_preferred_width_vfunc(Clutter::Unit  for_height,
 
   // Calculate the preferred width for this container, 
   // based on the preferred width requested by the children.
-  for (ChildrenList::iterator p = children_.begin(); p != children_.end(); ++p)
-    if ((*p)->is_visible())
+  for(ChildrenList::iterator p = children_.begin(); p != children_.end(); ++p)
+    if((*p)->is_visible())
     {
       Clutter::Unit child_min_width     = 0;
       Clutter::Unit child_natural_width = 0;
@@ -184,8 +184,8 @@ void Box::get_preferred_height_vfunc(Clutter::Unit  for_width,
 
   // Calculate the preferred height for this container,
   // based on the preferred height requested by the children.
-  for (ChildrenList::iterator p = children_.begin(); p != children_.end(); ++p)
-    if ((*p)->is_visible())
+  for(ChildrenList::iterator p = children_.begin(); p != children_.end(); ++p)
+    if((*p)->is_visible())
     {
       Clutter::Unit child_min_height     = 0;
       Clutter::Unit child_natural_height = 0;
@@ -204,7 +204,7 @@ void Box::allocate_vfunc(const Clutter::ActorBox& box, bool absolute_origin_chan
 {
   Clutter::Unit child_x = 0;
 
-  for (ChildrenList::iterator p = children_.begin(); p != children_.end(); ++p)
+  for(ChildrenList::iterator p = children_.begin(); p != children_.end(); ++p)
   {
     Clutter::Unit min_width    = 0;
     Clutter::Unit min_height   = 0;
@@ -218,7 +218,7 @@ void Box::allocate_vfunc(const Clutter::ActorBox& box, bool absolute_origin_chan
     const Clutter::ActorBox child_box (child_x, 0, child_x + child_width, child_height);
     child_x += child_width;
 
-    // Tell the child what position and size it may actually have
+    // Tell the child what position and size it may actually have:
     (*p)->allocate(child_box, absolute_origin_changed);
   }
 

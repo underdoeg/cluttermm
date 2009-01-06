@@ -73,21 +73,22 @@ void Triangle::on_paint()
 {
   CoglColor coglcolor;
 
-  // Paint the triangle with the actor's color
+  // Paint the triangle with the actor's color:
   cogl_color_set_from_4ub(&coglcolor,
-                          color_.get_red(),
-                          color_.get_green(),
-                          color_.get_blue(),
-                          get_opacity());
+    color_.get_red(),
+    color_.get_green(),
+    color_.get_blue(),
+    get_opacity());
+
   do_triangle_paint(&coglcolor);
 }
 
 void Triangle::pick_vfunc(const Clutter::Color& color)
 {
-  CoglColor coglcolor;
   // Paint the triangle with the pick color, offscreen.
   // This is used by Clutter to detect the actor under the cursor 
   // by identifying the unique color under the cursor.
+  CoglColor coglcolor;
   cogl_color_set_from_4ub(&coglcolor,
                           color.get_red(),
                           color.get_green(),
@@ -117,7 +118,7 @@ void Triangle::set_color(const Clutter::Color& color)
   color_ = color;
   set_opacity(color_.get_alpha());
 
-  if (is_visible())
+  if(is_visible())
     queue_redraw();
 }
 

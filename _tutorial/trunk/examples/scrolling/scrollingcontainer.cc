@@ -22,7 +22,7 @@ namespace
 {
 
 static void allocate_child(const Glib::RefPtr<Clutter::Actor>& actor,
-                           int& child_x, bool absolute_origin_changed)
+  int& child_x, bool absolute_origin_changed)
 {
   Clutter::Unit min_width  = 0;
   Clutter::Unit min_height = 0;
@@ -32,7 +32,7 @@ static void allocate_child(const Glib::RefPtr<Clutter::Actor>& actor,
   actor->get_preferred_size(min_width, min_height, width, height);
 
   const Clutter::ActorBox child_box (CLUTTER_UNITS_FROM_DEVICE(child_x), 0,
-                                     CLUTTER_UNITS_FROM_DEVICE(child_x) + width, height);
+    CLUTTER_UNITS_FROM_DEVICE(child_x) + width, height);
 
   actor->allocate(child_box, absolute_origin_changed);
 
@@ -52,24 +52,24 @@ namespace Tutorial
 ScrollingContainer::ScrollingContainer()
 :
   Glib::ObjectBase(typeid(ScrollingContainer)),
-  border_   (Clutter::Rectangle::create(Clutter::Color(0xFF, 0xFF, 0xCC, 0xFF))),
-  children_ (Clutter::Group::create()),
-  offset_   (0)
+  border_(Clutter::Rectangle::create(Clutter::Color(0xFF, 0xFF, 0xCC, 0xFF))),
+  children_(Clutter::Group::create()),
+  offset_(0)
 {
-  // Ugly but necessary:  Explicitely acquire an additional reference
+  // Ugly but necessary: Explicitely acquire an additional reference
   // because Glib::RefPtr assumes ownership.
   const Glib::RefPtr<Clutter::Actor> self ((reference(), this));
-  border_  ->set_parent(self);
+  border_->set_parent(self);
   children_->set_parent(self);
 
-  children_->signal_actor_added()  .connect(sigc::mem_fun(*this, &ScrollingContainer::actor_added));
+  children_->signal_actor_added().connect(sigc::mem_fun(*this, &ScrollingContainer::actor_added));
   children_->signal_actor_removed().connect(sigc::mem_fun(*this, &ScrollingContainer::actor_removed));
 }
 
 ScrollingContainer::~ScrollingContainer()
 {
   children_->unparent();
-  border_  ->unparent();
+  border_->unparent();
 }
 
 Glib::RefPtr<ScrollingContainer> ScrollingContainer::create()
@@ -100,13 +100,13 @@ void ScrollingContainer::remove_vfunc(const Glib::RefPtr<Clutter::Actor>& actor)
 }
 
 void ScrollingContainer::raise_vfunc(const Glib::RefPtr<Clutter::Actor>&,
-                                     const Glib::RefPtr<Clutter::Actor>&)
+  const Glib::RefPtr<Clutter::Actor>&)
 {
   g_assert_not_reached();
 }
 
 void ScrollingContainer::lower_vfunc(const Glib::RefPtr<Clutter::Actor>&,
-                                     const Glib::RefPtr<Clutter::Actor>&)
+  const Glib::RefPtr<Clutter::Actor>&)
 {
   g_assert_not_reached();
 }
@@ -155,7 +155,7 @@ void ScrollingContainer::hide_all_vfunc()
 
 void ScrollingContainer::pick_vfunc(const Clutter::Color& color)
 {
-  if (border_->is_mapped())
+  if(border_->is_mapped())
     border_->pick(color);
 
   children_->pick(color);
@@ -168,13 +168,13 @@ void ScrollingContainer::allocate_vfunc(const Clutter::ActorBox& box, bool absol
 
   Clutter::ActorBox child_box (0, 0, width, height);
 
-  // Position the child at the top of the container
+  // Position the child at the top of the container:
   children_->allocate(child_box, absolute_origin_changed);
 
-  // Make sure that the group only shows the specified area, by clipping
+  // Make sure that the group only shows the specified area, by clipping:
   children_->set_clip(0, 0, CLUTTER_UNITS_TO_DEVICE(width), CLUTTER_UNITS_TO_DEVICE(height));
 
-  // Show a rectangle border to show the area
+  // Show a rectangle border to show the area:
   border_->allocate(child_box, absolute_origin_changed);
 
   int child_x = -offset_;

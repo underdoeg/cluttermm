@@ -23,19 +23,19 @@ int main(int argc, char** argv)
 {
   Clutter::init(&argc, &argv);
 
-  // Get the stage and set its size and color
+  // Get the stage and set its size and color:
   const Glib::RefPtr<Clutter::Stage> stage = Clutter::Stage::get_default();
   stage->set_size(200, 200);
   stage->set_color(Clutter::Color(0x00, 0x00, 0x00, 0xFF)); // black
 
-  // Add our custom container to the stage
+  // Add our custom container to the stage:
   const Glib::RefPtr<Tutorial::Box> box = Tutorial::Box::create();
 
-  // Set the size to the preferred size of the container
+  // Set the size to the preferred size of the container:
   box->set_size(-1, -1);
   box->set_position(20, 20);
 
-  // Add some actors to our container
+  // Add some actors to our container:
   const Glib::RefPtr<Clutter::Rectangle>
     rect1 = Clutter::Rectangle::create(Clutter::Color(0xFF, 0xFF, 0xFF, 0x99));
   rect1->set_size(75, 75);
@@ -50,7 +50,7 @@ int main(int argc, char** argv)
   box->show_all();
   stage->show();
 
-  // Start the main loop, so we can respond to events
+  // Start the main loop, so we can respond to events:
   Clutter::main();
 
   return 0;

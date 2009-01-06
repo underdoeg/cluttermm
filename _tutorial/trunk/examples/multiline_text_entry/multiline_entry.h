@@ -30,9 +30,9 @@ public:
   virtual ~MultilineEntry();
   static Glib::RefPtr<MultilineEntry> create();
 
-  sigc::signal<void>&                     signal_text_changed() { return signal_text_changed_; }
+  sigc::signal<void>& signal_text_changed() { return signal_text_changed_; }
   sigc::signal<void, Clutter::Geometry&>& signal_cursor_event() { return signal_cursor_event_; }
-  sigc::signal<void>&                     signal_activate()     { return signal_activate_;     }
+  sigc::signal<void>& signal_activate() { return signal_activate_; }
 
   void set_text(const Glib::ustring& text);
   Glib::ustring get_text() const;
@@ -57,25 +57,25 @@ protected:
   virtual void on_activate();
 
 private:
-  sigc::signal<void>                      signal_text_changed_;
-  sigc::signal<void, Clutter::Geometry&>  signal_cursor_event_;
-  sigc::signal<void>                      signal_activate_;
+  sigc::signal<void> signal_text_changed_;
+  sigc::signal<void, Clutter::Geometry&> signal_cursor_event_;
+  sigc::signal<void> signal_activate_;
 
-  Glib::RefPtr<Pango::Context>            context_;
-  Pango::FontDescription                  font_;
+  Glib::RefPtr<Pango::Context> context_;
+  Pango::FontDescription font_;
 
-  Clutter::Color                          fgcol_;
-  Glib::ustring                           text_;
+  Clutter::Color fgcol_;
+  Glib::ustring text_;
 
-  int                                     width_;
-  Glib::ustring::size_type                position_;
-  int                                     text_x_;
+  int width_;
+  Glib::ustring::size_type position_;
+  int text_x_;
 
-  Pango::AttrList                         effective_attrs_;
-  Glib::RefPtr<Pango::Layout>             layout_;
+  Pango::AttrList effective_attrs_;
+  Glib::RefPtr<Pango::Layout> layout_;
 
-  Clutter::Geometry                       cursor_pos_;
-  Glib::RefPtr<Clutter::Rectangle>        cursor_;
+  Clutter::Geometry cursor_pos_;
+  Glib::RefPtr<Clutter::Rectangle> cursor_;
 
   void ensure_layout(int width);
   void ensure_cursor_position();

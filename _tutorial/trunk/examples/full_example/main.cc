@@ -26,17 +26,17 @@ namespace
 
 enum
 {
-  ELLIPSE_Y      = 390, // the y position of the ellipse of images
-  ELLIPSE_HEIGHT = 450, // the distance from front to back when it's rotated 90 degrees
-  IMAGE_HEIGHT   = 100
+  ELLIPSE_Y = 390, // The y position of the ellipse of images.
+  ELLIPSE_HEIGHT = 450, // The distance from front to back when it's rotated 90 degrees.
+  IMAGE_HEIGHT = 100
 };
 
 const double angle_step = 30.0;
 
 struct Item
 {
-  std::string                             filepath;
-  Glib::RefPtr<Clutter::Texture>          texture;
+  std::string filepath;
+  Glib::RefPtr<Clutter::Texture> texture;
   Glib::RefPtr<Clutter::BehaviourEllipse> behaviour;
 
   Item() {}
@@ -51,22 +51,22 @@ public:
   virtual ~Example();
 
 private:
-  std::list<Item>                   items_;
-  std::list<Item>::iterator         front_item_;
+  std::list<Item> items_;
+  std::list<Item>::iterator front_item_;
 
-  Glib::RefPtr<Clutter::Stage>      stage_;
+  Glib::RefPtr<Clutter::Stage> stage_;
 
   // For showing the filename:
-  Glib::RefPtr<Clutter::Label>      label_filename_;
+  Glib::RefPtr<Clutter::Label> label_filename_;
 
-  // For rotating all images around an ellipse:
-  Glib::RefPtr<Clutter::Timeline>   timeline_rotation_;
+  // For rotating all images around an ellipse::
+  Glib::RefPtr<Clutter::Timeline> timeline_rotation_;
 
-  // For moving one image up and scaling it:
-  Glib::RefPtr<Clutter::Timeline>   timeline_moveup_;
-  Glib::RefPtr<Clutter::Behaviour>  behaviour_scale_;
-  Glib::RefPtr<Clutter::Behaviour>  behaviour_path_;
-  Glib::RefPtr<Clutter::Behaviour>  behaviour_opacity_;
+  // For moving one image up and scaling it::
+  Glib::RefPtr<Clutter::Timeline> timeline_moveup_;
+  Glib::RefPtr<Clutter::Behaviour> behaviour_scale_;
+  Glib::RefPtr<Clutter::Behaviour> behaviour_path_;
+  Glib::RefPtr<Clutter::Behaviour> behaviour_opacity_;
 
   void load_images(const std::string& directory_path);
   void add_image_actors();
@@ -79,11 +79,11 @@ private:
 
 static void scale_texture_default(const Glib::RefPtr<Clutter::Texture>& texture)
 {
-  int width  = 0;
+  int width = 0;
   int height = 0;
   texture->get_base_size(width, height);
 
-  if (height > 0)
+  if(height > 0)
   {
     const double scale = IMAGE_HEIGHT / double(height);
     texture->set_scale(scale, scale);
@@ -101,7 +101,7 @@ Example::Example()
   stage_->set_size(800, 600);
   stage_->set_color(Clutter::Color(0xB0, 0xB0, 0xB0, 0xFF)); // light gray
 
-  // Create and add a label actor, hidden at first
+  // Create and add a label actor, hidden at first:
   label_filename_->set_color(Clutter::Color(0x60, 0x60, 0x90, 0xFF)); // blueish
   label_filename_->set_font_name("Sans 24");
   label_filename_->set_position(10, 10);
@@ -109,34 +109,35 @@ Example::Example()
   stage_->add_actor(label_filename_);
   label_filename_->show();
 
-  // Add a plane under the ellipse of images
+  // Add a plane under the ellipse of images:
   const Glib::RefPtr<Clutter::Actor> rect =
       Clutter::Rectangle::create(Clutter::Color(0xFF, 0xFF, 0xFF, 0xFF)); // white
 
   rect->set_width(stage_->get_width() + 100);
   rect->set_height(ELLIPSE_HEIGHT + 20);
-  // Position it so that its center is under the images
+  // Position it so that its center is under the images:
   rect->set_position(-(rect->get_width() - stage_->get_width()) / 2,
                      ELLIPSE_Y + IMAGE_HEIGHT - rect->get_height() / 2);
-  // Rotate it around its center
+
+  // Rotate it around its center:
   rect->set_rotation(Clutter::X_AXIS, -90.0, 0, rect->get_height() / 2, 0);
   stage_->add_actor(rect);
   rect->show();
 
-  // Show the stage
+  // Show the stage:
   stage_->show();
 
   timeline_rotation_->signal_completed()
     .connect(sigc::mem_fun(*this, &Example::on_timeline_rotation_completed));
 
-  // Add an actor for each image
+  // Add an actor for each image:
   load_images("images");
   add_image_actors();
-#if 0
+#if 0 //TODO: What's this?
   timeline_rotation_->set_loop(true);
 #endif
-  // Move them a bit to start with
-  if (!items_.empty())
+  // Move them a bit to start with:
+  if(!items_.empty())
     rotate_item_to_front(items_.begin());
 }
 
@@ -150,7 +151,7 @@ void Example::load_images(const std::string& directory_path)
 
   Glib::Dir dir (directory_path);
 
-  for (Glib::Dir::iterator p = dir.begin(); p != dir.end(); ++p)
+  for(Glib::Dir::iterator p = dir.begin(); p != dir.end(); ++p)
   {
     const std::string path = Glib::build_filename(directory_path, *p);
     try
@@ -171,14 +172,14 @@ void Example::add_image_actors()
   int y = 0;
   double angle = 0.0;
 
-  for (std::list<Item>::iterator p = items_.begin(); p != items_.end(); ++p)
+  for(std::list<Item>::iterator p = items_.begin(); p != items_.end(); ++p)
   {
     const Glib::RefPtr<Clutter::Actor> actor = p->texture;
 
-    // Add the actor to the stage
+    // Add the actor to the stage:
     stage_->add_actor(actor);
 
-    // Set an initial position
+    // Set an initial position:
     actor->set_position(x, y);
     y += 100;
 
@@ -211,7 +212,7 @@ void Example::add_image_actors()
  */
 void Example::on_timeline_moveup_completed()
 {
-  // Unref this timeline because we have now finished with it
+  // Forget this timeline because we have now finished with it:
   timeline_moveup_.clear();
   behaviour_scale_.clear();
   behaviour_path_.clear();
@@ -228,13 +229,13 @@ void Example::on_timeline_rotation_completed()
   // front.  Now we transform just this one item gradually some more, and
   // show the filename.
 
-  // Transform the image
+  // Transform the image:
   const Glib::RefPtr<Clutter::Actor> actor = front_item_->texture;
   timeline_moveup_ = Clutter::Timeline::create(60 /*frames*/, 30 /*fps*/);
   const Glib::RefPtr<Clutter::Alpha> alpha =
       Clutter::Alpha::create(timeline_moveup_, &Clutter::Alpha::sine_inc_func);
  
-  // Scale the item from its normal scale to approximately twice the normal scale
+  // Scale the item from its normal scale to approximately twice the normal scale:
   double scale_start = 0.0;
   actor->get_scale(scale_start, scale_start);
   const double scale_end = scale_start * 1.8;
@@ -244,7 +245,7 @@ void Example::on_timeline_rotation_completed()
                                                      scale_end, scale_end);
   behaviour_scale_->apply(actor);
 
-  // Move the item up the y axis
+  // Move the item up the y axis:
   std::vector<Clutter::Knot> knots (2);
   knots[0].set_xy(actor->get_x(), actor->get_y());
   knots[1].set_xy(knots[0].get_x(), knots[0].get_y() - 250);
@@ -252,12 +253,12 @@ void Example::on_timeline_rotation_completed()
   behaviour_path_ = Clutter::BehaviourPath::create_with_knots(alpha, knots);
   behaviour_path_->apply(actor);
 
-  // Show the filename gradually
+  // Show the filename gradually:
   label_filename_->set_text(front_item_->filepath);
   behaviour_opacity_ = Clutter::BehaviourOpacity::create(alpha, 0, 255);
   behaviour_opacity_->apply(label_filename_);
 
-  // Start the timeline and handle its "completed" signal so we can unref it
+  // Start the timeline and handle its "completed" signal so we can unref it:
   timeline_moveup_->signal_completed()
     .connect(sigc::mem_fun(*this, &Example::on_timeline_moveup_completed));
   timeline_moveup_->start();
@@ -269,31 +270,31 @@ void Example::rotate_item_to_front(std::list<Item>::iterator pitem)
 
   timeline_rotation_->stop();
 
-  // Stop the other timeline in case that is active at the same time
-  if (timeline_moveup_)
+  // Stop the other timeline in case that is active at the same time:
+  if(timeline_moveup_)
     timeline_moveup_->stop();
 
   label_filename_->set_opacity(0);
 
-  // Get the item's position in the list
+  // Get the item's position in the list:
   const int pos = std::distance(items_.begin(), pitem);
 
-  if (front_item_ == items_.end())
+  if(front_item_ == items_.end())
     front_item_ = items_.begin();
 
   const int pos_front = std::distance(items_.begin(), front_item_);
 
-  // Calculate the end angle of the first item
+  // Calculate the end angle of the first item:
   const double angle_front = 180.0;
   double angle_start = std::fmod(angle_front - (angle_step * pos_front), 360.0);
   double angle_end   = angle_front - (angle_step * pos);
 
   double angle_diff = 0.0;
 
-  // Set the end angles
-  for (std::list<Item>::iterator p = items_.begin(); p != items_.end(); ++p)
+  // Set the end angles:
+  for(std::list<Item>::iterator p = items_.begin(); p != items_.end(); ++p)
   {
-    // Reset its size
+    // Reset its size:
     scale_texture_default(p->texture);
 
     angle_start = std::fmod(angle_start, 360.0);
@@ -301,15 +302,15 @@ void Example::rotate_item_to_front(std::list<Item>::iterator pitem)
 
     // Move 360° instead of 0° when moving for the first time,
     // and when clicking on something that is already at the front.
-    if (front_item_ == pitem)
+    if(front_item_ == pitem)
       angle_end += 360.0;
 
     p->behaviour->set_angle_start(angle_start);
     p->behaviour->set_angle_end(angle_end);
 
-    if (p == pitem)
+    if(p == pitem)
     {
-      if (angle_start < angle_end)
+      if(angle_start < angle_end)
         angle_diff = angle_end - angle_start;
       else
         angle_diff = 360 - (angle_start - angle_end);
@@ -324,12 +325,12 @@ void Example::rotate_item_to_front(std::list<Item>::iterator pitem)
   }
 
   // Set the number of frames to be proportional to the distance to travel,
-  // so the speed is always the same
+  // so the speed is always the same:
   const int pos_to_move = (pos_front < pos) ? items_.size() + (pos - pos_front)
                                             : pos_front - pos;
   timeline_rotation_->set_n_frames(angle_diff);
 
-  // Remember what item will be at the front when this timeline finishes
+  // Remember what item will be at the front when this timeline finishes:
   front_item_ = pitem;
 
   timeline_rotation_->start();
@@ -339,7 +340,7 @@ bool Example::on_texture_button_press(Clutter::ButtonEvent* event, std::list<Ite
 {
   // Ignore the events if the timeline_rotation is running (meaning,
   // if the objects are moving), to simplify things.
-  if (timeline_rotation_ && timeline_rotation_->is_playing())
+  if(timeline_rotation_ && timeline_rotation_->is_playing())
   {
     g_print("on_texture_button_press(): ignoring\n");
     return false;
@@ -359,7 +360,7 @@ int main(int argc, char** argv)
 
   Example example;
 
-  // Start the main loop, so we can respond to events
+  // Start the main loop, so we can respond to events:
   Clutter::main();
 
   return 0;

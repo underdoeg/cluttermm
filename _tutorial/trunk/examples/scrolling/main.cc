@@ -23,7 +23,7 @@ namespace
 {
 
 static bool on_stage_button_press(Clutter::ButtonEvent*,
-                                  Glib::RefPtr<Tutorial::ScrollingContainer> scrolling)
+  Glib::RefPtr<Tutorial::ScrollingContainer> scrolling)
 {
   std::cout << "Scrolling\n";
 
@@ -38,7 +38,7 @@ int main(int argc, char** argv)
 {
   Clutter::init(&argc, &argv);
 
-  // Get the stage and set its size and color
+  // Get the stage and set its size and color:
   const Glib::RefPtr<Clutter::Stage> stage = Clutter::Stage::get_default();
   stage->set_size(200, 200);
   stage->set_color(Clutter::Color(0x00, 0x00, 0x00, 0xFF)); // black
@@ -50,19 +50,21 @@ int main(int argc, char** argv)
   scrolling->set_position(10, 10);
   stage->add_actor(scrolling);
 
-  // Add some actors to our container
+  // Add some actors to our container:
   {
     const Glib::RefPtr<Clutter::Actor>
       actor = Clutter::Rectangle::create(Clutter::Color(0x7F, 0xAE, 0xFF, 0xFF));
     actor->set_size(75, 75);
     scrolling->add_actor(actor);
   }
+
   {
     const Glib::RefPtr<Clutter::Actor>
       actor = Clutter::Rectangle::create(Clutter::Color(0xFF, 0x7F, 0xAE, 0xFF));
     actor->set_size(75, 75);
     scrolling->add_actor(actor);
   }
+
   {
     const Glib::RefPtr<Clutter::Actor>
       actor = Clutter::Rectangle::create(Clutter::Color(0xAE, 0xFF, 0x7F, 0xFF));
@@ -73,10 +75,10 @@ int main(int argc, char** argv)
   scrolling->show_all();
   stage->show();
 
-  // Connect signal handlers to handle mouse clicks on the stage
+  // Connect signal handlers to handle mouse clicks on the stage:
   stage->signal_button_press_event().connect(sigc::bind(&on_stage_button_press, scrolling));
 
-  // Start the main loop, so we can respond to events
+  // Start the main loop, so we can respond to events:
   Clutter::main();
 
   return 0;

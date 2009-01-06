@@ -24,7 +24,7 @@ int main(int argc, char** argv)
   Pango::init();
   Clutter::init(&argc, &argv);
 
-  // Get the stage and set its size and color
+  // Get the stage and set its size and color:
   const Glib::RefPtr<Clutter::Stage> stage = Clutter::Stage::get_default();
   stage->set_size(400, 400);
   stage->set_color(Clutter::Color(0x00, 0x00, 0x00, 0xFF)); // black
@@ -46,13 +46,13 @@ int main(int argc, char** argv)
   stage->add_actor(multiline);
   multiline->show();
 
-  // Connect signal handlers to handle key presses on the stage
+  // Connect signal handlers to handle key presses on the stage:
   stage->signal_key_press_event().connect(
-       sigc::mem_fun(*multiline.operator->(), &Tutorial::MultilineEntry::handle_key_event));
+    sigc::mem_fun(*multiline.operator->(), &Tutorial::MultilineEntry::handle_key_event));
 
   stage->show();
 
-  // Start the main loop, so we can respond to events
+  // Start the main loop, so we can respond to events:
   Clutter::main();
 
   return 0;

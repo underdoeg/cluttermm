@@ -36,25 +36,23 @@ public:
 protected:
   Box();
 
-  // Clutter::Container interface
-  virtual void add_vfunc   (const Glib::RefPtr<Actor>& actor);
+  // Clutter::Container interface:
+  virtual void add_vfunc(const Glib::RefPtr<Actor>& actor);
   virtual void remove_vfunc(const Glib::RefPtr<Actor>& actor);
-  virtual void raise_vfunc (const Glib::RefPtr<Actor>& actor, const Glib::RefPtr<Actor>& sibling);
-  virtual void lower_vfunc (const Glib::RefPtr<Actor>& actor, const Glib::RefPtr<Actor>& sibling);
+  virtual void raise_vfunc(const Glib::RefPtr<Actor>& actor, const Glib::RefPtr<Actor>& sibling);
+  virtual void lower_vfunc(const Glib::RefPtr<Actor>& actor, const Glib::RefPtr<Actor>& sibling);
   virtual void sort_depth_order_vfunc();
   virtual void foreach_vfunc(ClutterCallback callback, gpointer user_data);
 
-  // Clutter::Actor interface
+  // Clutter::Actor interface:
   virtual void on_paint();
   virtual void show_all_vfunc();
   virtual void hide_all_vfunc();
   virtual void pick_vfunc(const Clutter::Color& color);
-  virtual void get_preferred_width_vfunc (Clutter::Unit  for_height,
-                                          Clutter::Unit& min_width_p,
-                                          Clutter::Unit& natural_width_p);
-  virtual void get_preferred_height_vfunc(Clutter::Unit  for_width,
-                                          Clutter::Unit& min_height_p,
-                                          Clutter::Unit& natural_height_p);
+  virtual void get_preferred_width_vfunc(Clutter::Unit for_height,
+    Clutter::Unit& min_width_p, Clutter::Unit& natural_width_p);
+  virtual void get_preferred_height_vfunc(Clutter::Unit for_width,
+    Clutter::Unit& min_height_p, Clutter::Unit& natural_height_p);
   virtual void allocate_vfunc(const Clutter::ActorBox& box, bool absolute_origin_changed);
 
 private:

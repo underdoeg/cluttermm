@@ -22,23 +22,23 @@ int main(int argc, char** argv)
 {
   Clutter::init(&argc, &argv);
 
-  // Get the stage and set its size and color
+  // Get the stage and set its size and color:
   Glib::RefPtr<Clutter::Stage> stage = Clutter::Stage::get_default();
   stage->set_size(200, 200);
   stage->set_color(Clutter::Color(0x00, 0x00, 0x00, 0xFF)); // black
 
-  // Add our custom actor to the stage
+  // Add our custom actor to the stage:
   Glib::RefPtr<Tutorial::Triangle> actor =
-      Tutorial::Triangle::create(Clutter::Color(0xFF, 0xFF, 0xFF, 0x99));
+    Tutorial::Triangle::create(Clutter::Color(0xFF, 0xFF, 0xFF, 0x99));
   actor->set_size(100, 100);
   actor->set_position(20, 20);
   stage->add_actor(actor);
   actor->show();
 
-  // Show the stage
+  // Show the stage:
   stage->show();
 
-  // Start the main loop, so we can respond to events
+  // Start the main loop, so we can respond to events:
   Clutter::main();
 
   return 0;

@@ -21,14 +21,14 @@ int main(int argc, char** argv)
 {
   Clutter::init(&argc, &argv);
 
-  // Get the stage and set its size and color
+  // Get the stage and set its size and color:
   const Glib::RefPtr<Clutter::Stage> stage = Clutter::Stage::get_default();
   stage->set_size(200, 200);
   stage->set_color(Clutter::Color(0, 0, 0, 0xFF)); // black
 
   const Clutter::Color actor_color (0xff, 0xff, 0xff, 0x99);
 
-  // Add a rectangle to the stage
+  // Add a rectangle to the stage:
   const Glib::RefPtr<Clutter::Rectangle> rect = Clutter::Rectangle::create(actor_color);
   rect->set_size(100, 100);
   rect->set_position(20, 20);
@@ -36,10 +36,10 @@ int main(int argc, char** argv)
   rect->show();
 
   // Rotate it 20 degrees away from us around the x axis
-  // (around its top edge)
+  // (around its top edge):
   rect->set_rotation(Clutter::X_AXIS, -20, 0, 0, 0);
 
-  // Add a label to the stage
+  // Add a label to the stage:
   const Glib::RefPtr<Clutter::Label> label =
       Clutter::Label::create("Sans 12", "Some Text", actor_color);
   label->set_size(500, 500);
@@ -47,19 +47,19 @@ int main(int argc, char** argv)
   stage->add_actor(label);
   label->show();
 
-  // Scale it 300% along the x axis
+  // Scale it 300% along the x axis:
   label->set_scale(3.0, 1.0);
 
-  // Move it up and to the right
+  // Move it up and to the right:
   label->move_by(10, -10);
 
-  // Move it along the z axis, further from the viewer
+  // Move it along the z axis, further from the viewer:
   label->set_depth(-20);
 
-  // Show the stage
+  // Show the stage:
   stage->show();
 
-  // Start the main loop, so we can respond to events
+  // Start the main loop, so we can respond to events:
   Clutter::main();
 
   return 0;

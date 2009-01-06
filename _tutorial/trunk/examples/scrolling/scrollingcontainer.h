@@ -34,15 +34,15 @@ public:
 protected:
   ScrollingContainer();
 
-  // Clutter::Container interface
-  virtual void add_vfunc   (const Glib::RefPtr<Actor>& actor);
+  // Clutter::Container interface:
+  virtual void add_vfunc(const Glib::RefPtr<Actor>& actor);
   virtual void remove_vfunc(const Glib::RefPtr<Actor>& actor);
-  virtual void raise_vfunc (const Glib::RefPtr<Actor>& actor, const Glib::RefPtr<Actor>& sibling);
-  virtual void lower_vfunc (const Glib::RefPtr<Actor>& actor, const Glib::RefPtr<Actor>& sibling);
+  virtual void raise_vfunc(const Glib::RefPtr<Actor>& actor, const Glib::RefPtr<Actor>& sibling);
+  virtual void lower_vfunc(const Glib::RefPtr<Actor>& actor, const Glib::RefPtr<Actor>& sibling);
   virtual void sort_depth_order_vfunc();
   virtual void foreach_vfunc(ClutterCallback callback, gpointer user_data);
 
-  // Clutter::Actor interface
+  // Clutter::Actor interface:
   virtual void on_paint();
   virtual void on_show();
   virtual void on_hide();
@@ -53,8 +53,8 @@ protected:
 
 private:
   Glib::RefPtr<Clutter::Rectangle> border_;
-  Glib::RefPtr<Clutter::Group>     children_;
-  int                              offset_;
+  Glib::RefPtr<Clutter::Group> children_;
+  int offset_;
 };
 
 } // namespace Tutorial

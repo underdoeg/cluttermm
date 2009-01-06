@@ -30,11 +30,11 @@ static Glib::RefPtr<Pango::Context> ref_shared_context()
 {
   static void* context = 0;
 
-  if (context == 0)
+  if(context == 0)
   {
     double resolution = clutter_backend_get_resolution(clutter_get_default_backend());
 
-    if (resolution < 0.0)
+    if(resolution < 0.0)
       resolution = 96.0; // fallback
 
     PangoFontMap *const fontmap = cogl_pango_font_map_new();
@@ -42,14 +42,14 @@ static Glib::RefPtr<Pango::Context> ref_shared_context()
 
     context = cogl_pango_font_map_create_context(COGL_PANGO_FONT_MAP(fontmap));
 
-    // Clear the pointer when the object is destroyed
+    // Clear the pointer when the object is destroyed:
     g_object_add_weak_pointer(static_cast<GObject*>(context), &context);
 
-    // Transfer ownership
+    // Transfer ownership:
     return Glib::wrap(static_cast<PangoContext*>(context), false);
   }
 
-  // Increase reference count
+  // Increase reference count:
   return Glib::wrap(static_cast<PangoContext*>(context), true);
 }
 
@@ -103,7 +103,7 @@ void MultilineEntry::set_text(const Glib::ustring& text)
   layout_.clear();
   cursor_pos_.set_width(0);
 
-  if (is_visible())
+  if(is_visible())
     queue_redraw();
 
   signal_text_changed_.emit();
@@ -123,16 +123,16 @@ void MultilineEntry::set_font_name(const Glib::ustring& font_name)
 {
   Pango::FontDescription font ((font_name.empty()) ? Glib::ustring(default_font_name) : font_name);
 
-  if (font == font_)
+  if(font == font_)
     return;
 
   swap(font_, font);
 
-  if (!text_.empty())
+  if(!text_.empty())
   {
     layout_.clear();
 
-    if (is_visible())
+    if(is_visible())
       queue_redraw();
   }
 }
@@ -149,7 +149,7 @@ void MultilineEntry::set_color(const Clutter::Color& color)
 
   cursor_->set_color(fgcol_);
 
-  if (is_visible())
+  if(is_visible())
     queue_redraw();
 }
 
@@ -180,13 +180,13 @@ void MultilineEntry::delete_chars(Glib::ustring::size_type num)
 
   set_text(ustring(text_).erase(start, end - start));
 
-  if (position_ != ustring::npos)
+  if(position_ != ustring::npos)
     set_cursor_position(start);
 }
 
 void MultilineEntry::ensure_layout(int width)
 {
-  if (!layout_)
+  if(!layout_)
   {
     Glib::RefPtr<Pango::Layout> layout = Pango::Layout::create(context_);
 
@@ -203,10 +203,9 @@ void MultilineEntry::ensure_layout(int width)
 
 void MultilineEntry::ensure_cursor_position()
 {
-
   Glib::ustring::iterator pos = text_.begin();
 
-  if (position_ == Glib::ustring::npos)
+  if(position_ == Glib::ustring::npos)
     pos = text_.end();
   else
     std::advance(pos, position_);
@@ -227,14 +226,14 @@ void MultilineEntry::ensure_cursor_position()
  */
 void MultilineEntry::set_cursor_position(Glib::ustring::size_type position)
 {
-  if (position < text_.length())
+  if(position < text_.length())
     position_ = position;
   else
     position_ = Glib::ustring::npos;
 
   cursor_pos_.set_width(0);
 
-  if (is_visible())
+  if(is_visible())
     queue_redraw();
 }
 
@@ -246,17 +245,17 @@ void MultilineEntry::insert_unichar(gunichar wc)
 {
   g_return_if_fail(Glib::Unicode::validate(wc));
 
-  if (wc == 0)
+  if(wc == 0)
     return;
 
   using Glib::ustring;
 
-  if (position_ == ustring::npos)
+  if(position_ == ustring::npos)
     set_text(text_ + wc);
   else
     set_text(ustring(text_).insert(position_, 1, wc));
 
-  if (position_ != ustring::npos)
+  if(position_ != ustring::npos)
     set_cursor_position(position_ + 1);
 }
 
@@ -294,33 +293,33 @@ void MultilineEntry::on_paint()
   const Pango::Rectangle logical = layout_->get_logical_extents();
   int text_width = logical.get_width() / Pango::SCALE;
 
-  if (actor_width < text_width)
+  if(actor_width < text_width)
   {
-    // We need to do some scrolling
+    // We need to do some scrolling:
     const int cursor_x = cursor_pos_.get_x();
 
     // If the cursor is at the begining or the end of the text, the placement
     // is easy, however, if the cursor is in the middle somewhere, we need to
     // make sure the text doesn't move until the cursor is either in the
-    // far left or far right
-    if (position_ == 0)
+    // far left or far right.
+    if(position_ == 0)
     {
       text_x_ = 0;
     }
-    else if (position_ == Glib::ustring::npos)
+    else if(position_ == Glib::ustring::npos)
     {
       text_x_ = actor_width - text_width;
       cursor_pos_.set_x(cursor_x + text_x_);
     }
     else
     {
-      if (text_x_ <= 0)
+      if(text_x_ <= 0)
       {
         const int diff = -text_x_;
 
-        if (cursor_x < diff)
+        if(cursor_x < diff)
           text_x_ += diff - cursor_x;
-        else if (cursor_x > diff + actor_width)
+        else if(cursor_x > diff + actor_width)
           text_x_ -= cursor_x - (diff + actor_width);
       }
       cursor_pos_.set_x(cursor_x + text_x_);
@@ -346,7 +345,7 @@ void MultilineEntry::allocate_vfunc(const Clutter::ActorBox& box, bool absolute_
 {
   const int width = CLUTTER_UNITS_TO_DEVICE(box.get_x2() - box.get_x1());
 
-  if (width_ != width)
+  if(width_ != width)
   {
     layout_.clear();
     ensure_layout(width);
@@ -367,38 +366,38 @@ void MultilineEntry::allocate_vfunc(const Clutter::ActorBox& box, bool absolute_
  */
 bool MultilineEntry::handle_key_event(Clutter::KeyEvent* event)
 {
-  switch (Clutter::key_event_symbol(event))
+  switch(Clutter::key_event_symbol(event))
   {
     case CLUTTER_Escape:
     case CLUTTER_Shift_L:
     case CLUTTER_Shift_R:
-      // Ignore these - Don't try to insert them as characters
+      // Ignore these - Don't try to insert them as characters:
       return false;
 
     case CLUTTER_BackSpace:
-      // Delete the current character
-      if (position_ != 0 && !text_.empty())
+      // Delete the current character:
+      if(position_ != 0 && !text_.empty())
         delete_chars(1);
       break;
 
     case CLUTTER_Delete:
     case CLUTTER_KP_Delete:
-      // Delete the current character
-      if (!text_.empty() && position_ != Glib::ustring::npos)
+      // Delete the current character:
+      if(!text_.empty() && position_ != Glib::ustring::npos)
         delete_text(position_, position_ + 1);
       break;
 
     case CLUTTER_Left:
     case CLUTTER_KP_Left:
-      // Move the cursor one character left
-      if (position_ != 0 && !text_.empty())
+      // Move the cursor one character left:
+      if(position_ != 0 && !text_.empty())
         set_cursor_position(((position_ == Glib::ustring::npos) ? text_.length() : position_) - 1);
       break;
 
     case CLUTTER_Right:
     case CLUTTER_KP_Right:
-      // Move the cursor one character right
-      if (position_ != Glib::ustring::npos && !text_.empty() && position_ < text_.length())
+      // Move the cursor one character right:
+      if(position_ != Glib::ustring::npos && !text_.empty() && position_ < text_.length())
         set_cursor_position(position_ + 1);
       break;
 
@@ -416,14 +415,14 @@ bool MultilineEntry::handle_key_event(Clutter::KeyEvent* event)
 
     case CLUTTER_End:
     case CLUTTER_KP_End:
-      // Move the cursor to the end of the text
+      // Move the cursor to the end of the text:
       set_cursor_position(Glib::ustring::npos);
       break;
 
     case CLUTTER_Begin:
     case CLUTTER_Home:
     case CLUTTER_KP_Home:
-      // Move the cursor to the start of the text
+      // Move the cursor to the start of the text:
       set_cursor_position(0);
       break;
   

@@ -29,9 +29,9 @@ public:
   virtual ~StageWindow();
 
 private:
-  Clutter::Gtk::Embed*          embed_;
-  Glib::RefPtr<Clutter::Stage>  stage_;
-  bool                          colored_;
+  Clutter::Gtk::Embed* embed_;
+  Glib::RefPtr<Clutter::Stage> stage_;
+  bool colored_;
 
   void on_button_clicked();
   static bool on_stage_button_press(Clutter::ButtonEvent* event);
@@ -39,8 +39,8 @@ private:
 
 StageWindow::StageWindow()
 :
-  embed_   (0),
-  colored_ (false)
+  embed_(0),
+  colored_(false)
 {
   Gtk::Box *const box = new Gtk::VBox(false, 6);
   add(*Gtk::manage(box));
@@ -70,7 +70,7 @@ void StageWindow::on_button_clicked()
 {
   colored_ = !colored_;
   stage_->set_color((colored_) ? Clutter::Color(32, 32, 160)
-                               : Clutter::Color(0, 0, 0));
+    : Clutter::Color(0, 0, 0));
 }
 
 bool StageWindow::on_stage_button_press(Clutter::ButtonEvent* event)

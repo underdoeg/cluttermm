@@ -35,12 +35,12 @@ static Glib::RefPtr<Clutter::Rectangle> rect;
  */
 static guint32 on_alpha(Glib::RefPtr<Clutter::Alpha> alpha)
 {
-  // Get the position in the timeline, so we can base our value upon it
+  // Get the position in the timeline, so we can base our value upon it:
   const Glib::RefPtr<Clutter::Timeline> timeline = alpha->get_timeline();
   const int current_frame_num = timeline->get_current_frame();
   const int n_frames = timeline->get_n_frames();
 
-  // Return a value that is simply proportional to the frame position
+  // Return a value that is simply proportional to the frame position:
   return Clutter::Alpha::MAX_ALPHA * current_frame_num / n_frames;
 }
 
@@ -50,19 +50,19 @@ int main(int argc, char** argv)
 {
   Clutter::init(&argc, &argv);
 
-  // Get the stage and set its size and color
+  // Get the stage and set its size and color:
   const Glib::RefPtr<Clutter::Stage> stage = Clutter::Stage::get_default();
   stage->set_size(200, 200);
   stage->set_color(Clutter::Color(0x00, 0x00, 0x00, 0xFF)); // black
 
-  // Add a rectangle to the stage
+  // Add a rectangle to the stage:
   rect = Clutter::Rectangle::create(Clutter::Color(0xFF, 0xFF, 0xFF, 0x99));
   rect->set_size(40, 40);
   rect->set_position(10, 10);
   stage->add_actor(rect);
   rect->show();
 
-  // Show the stage
+  // Show the stage:
   stage->show();
 
   {
@@ -85,7 +85,7 @@ int main(int argc, char** argv)
     behaviour->apply(rect);
   }
 
-  // Start the main loop, so we can respond to events
+  // Start the main loop, so we can respond to events:
   Clutter::main();
 
   return 0;

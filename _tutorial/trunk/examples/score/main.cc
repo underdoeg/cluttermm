@@ -22,30 +22,30 @@ namespace
 
 static Glib::RefPtr<Clutter::Rectangle> rect;
 
-static int rotation_angle     = 0;
+static int rotation_angle = 0;
 static int color_change_count = 0;
 
 /*
  * Rotate the rectangle and alternate its color.
  */
 static void on_timeline_rotation_new_frame(int frame_num,
-               Glib::RefPtr<Clutter::Timeline> timeline)
+  Glib::RefPtr<Clutter::Timeline> timeline)
 {
-  if (++rotation_angle >= 360)
+  if(++rotation_angle >= 360)
     rotation_angle = 0;
 
   // Rotate the rectangle clockwise around the z axis, around
-  // it's top-left corner
+  // it's top-left corner:
   rect->set_rotation(Clutter::X_AXIS, rotation_angle, 0, 0, 0);
 
   // Change the color
   // (This is a silly example, making the rectangle flash)
-  if (++color_change_count > 100)
+  if(++color_change_count > 100)
     color_change_count = 0;
 
-  if (color_change_count == 0)
+  if(color_change_count == 0)
     rect->set_color(Clutter::Color(0xFF, 0xFF, 0xFF, 0x99));
-  else if (color_change_count == 50)
+  else if(color_change_count == 50)
     rect->set_color(Clutter::Color(0x10, 0x40, 0x90, 0xFF));
 }
 
@@ -53,11 +53,11 @@ static void on_timeline_rotation_new_frame(int frame_num,
  * Move the rectangle.
  */
 static void on_timeline_move_new_frame(int frame_num,
-           Glib::RefPtr<Clutter::Timeline> timeline)
+  Glib::RefPtr<Clutter::Timeline> timeline)
 {
   int x_position = rect->get_x();
 
-  if (++x_position >= 150)
+  if(++x_position >= 150)
     x_position = 0;
 
   rect->set_x(x_position);
@@ -69,23 +69,23 @@ int main(int argc, char** argv)
 {
   Clutter::init(&argc, &argv);
 
-  // Get the stage and set its size and color
+  // Get the stage and set its size and color:
   const Glib::RefPtr<Clutter::Stage> stage = Clutter::Stage::get_default();
   stage->set_size(200, 200);
   stage->set_color(Clutter::Color(0x00, 0x00, 0x00, 0xFF));
 
-  // Add a rectangle to the stage
+  // Add a rectangle to the stage:
   rect = Clutter::Rectangle::create(Clutter::Color(0xFF, 0xFF, 0xFF, 0x99));
   rect->set_size(70, 70);
   rect->set_position(50, 100);
   stage->add_actor(rect);
   rect->show();
 
-  // Show the stage
+  // Show the stage:
   stage->show();
 
   // Create a score and add two timelines to it,
-  // so the second timeline starts when the first one stops
+  // so the second timeline starts when the first one stops:
   const Glib::RefPtr<Clutter::Score> score = Clutter::Score::create();
   score->set_loop(true);
 
@@ -103,7 +103,7 @@ int main(int argc, char** argv)
 
   score->start();
 
-  // Start the main loop, so we can respond to events
+  // Start the main loop, so we can respond to events:
   Clutter::main();
 
   return 0;
