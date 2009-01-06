@@ -3,60 +3,64 @@
   "http://docbook.org/docbook/xml/4.5/docbookx.dtd" [
  <!ENTITY path_examples_base "../../examples">
  <!ENTITY clutter "<application>Clutter</application>">
+ <!ENTITY cluttermm "<application>Cluttermm</application>">
  <!ENTITY tidy "<application>Tidy</application>">
- <!ENTITY clutterversion "0.8">
+ <!ENTITY clutterversion "0.9">
  <!ENTITY gtk "<application>GTK+</application>">
+ <!ENTITY gtkmm "<application>gtkmm</application>">
  <!ENTITY url_figures_base "../figures/">
  <!ENTITY url_examples_base "../../../examples/">
- <!ENTITY url_refdocs_base_clutter "http://clutter-project.org/docs/clutter/0.8/Clutter">
- <!ENTITY url_refdocs_base_clutter_alt "http://clutter-project.org/docs/clutter/0.8/clutter-Clutter-">
- <!ENTITY url_refdocs_base_clutter_gtk "http://www.clutter-project.org/docs/clutter-gtk/0.8/">
+ <!ENTITY url_refdocs_base_clutter "http://clutter-project.org/docs/clutter/0.9/Clutter">
+ <!ENTITY url_refdocs_base_clutter_alt "http://clutter-project.org/docs/clutter/0.9/clutter-Clutter-">
+ <!ENTITY url_refdocs_base_clutter_gtk "http://www.clutter-project.org/docs/clutter-gtk/0.9/">
+ <!ENTITY url_refdocs_base_cluttermm "FIXME">
+ <!ENTITY url_refdocs_base_clutter_gtkmm "FIXME">
 ]>
 
 <!--
-NOTE TO TUTORIAL DOCUMENTATION AUTHORS:
-When referring to the clutter project in this document, please use the form
-&clutter; so that the name is consistent throughout the document. This will wrap clutter with <application></application> tags which can then be styled by CSS if
-desired (e.g. boldface, monospace, etc) to make it stand out as the project
-name
+NOTE TO TUTORIAL DOCUMENTATION AUTHORS: When referring to the clutter project in this document,
+please use the form &clutter; so that the name is consistent throughout the document. This will wrap
+clutter with <application></application> tags which can then be styled by CSS if desired (e.g.
+boldface, monospace, etc) to make it stand out as the project name
 -->
 
 <book>
 
   <bookinfo>
 
-    <title>Programming with &clutter;</title>
+    <title>Programming with &cluttermm;</title>
 
     <authorgroup>
       <author>
         <firstname>Murray</firstname>
         <surname>Cumming</surname>
       </author>
+      <author>
+        <firstname>Daniel</firstname>
+        <surname>Elstner</surname>
+      </author>
     </authorgroup>
 
     <abstract>
 
-      <para>
-        We very much appreciate any reports of inaccuracies or other errors in
-        this document.  Contributions are also most welcome.  Post your
-        suggestions, critiques or addenda to the <ulink
-          url="mailto:murrayc@openismus.com">team</ulink>.</para>
+      <para> We very much appreciate any reports of inaccuracies or other errors in this document.
+Contributions are also most welcome. Post your suggestions, critiques or addenda to the <ulink
+url="mailto:murrayc@openismus.com">team</ulink>.</para>
 
     </abstract>
 
     <copyright>
-      <year>2007, 2008</year>
+      <year>2007, 2008, 2009</year>
       <holder>Openismus GmbH</holder>
     </copyright>
 
     <legalnotice>
-      <para>
-        Permission is granted to copy, distribute and/or modify this document
-        under the terms of the GNU Free Documentation License, Version 1.2
-        or any later version published by the Free Software Foundation;
-        with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
-        You may obtain a copy of the GNU Free Documentation License from the Free Software Foundation by visiting their Web site or by writing to: Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
-      </para>
+      <para>Permission is granted to copy, distribute and/or modify this document under the terms of
+the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software
+Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts. You may
+obtain a copy of the GNU Free Documentation License from the Free Software Foundation by visiting
+their Web site or by writing to: Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+Boston, MA 02111-1307, USA.</para>
     </legalnotice>
 
   </bookinfo>
@@ -65,44 +69,53 @@ name
 <title>Introduction</title>
 
 <sect1 id="sec-introduction-this-book">
-<title>This book</title>
+<title>This Book</title>
 
-<para>This book assumes a good
-understanding of C, and how to create C programs.
-</para>
-
-<para>This book attempts to explain key &clutter; concepts and introduce some of the more commonly used user interface elements (&quot;actors&quot;). For full API information you should follow the links into the reference documentation. 
-This document covers the API in &clutter; version &clutterversion;.</para>
-
-<para>Each chapter contains very simple examples. These are meant to show the use of the API rather than show an impressive visual result. 
-However, the <link linkend="sec-full-example">full example</link> should give some idea of what can be achieved with &clutter;</para>
- 
-<para>The &clutter; platform uses techniques found in the <ulink url="http://www.gtk.org">GTK+</ulink> platform, so you will sometimes wish to refer to the &gtk; documentation.</para>
-
-<para>
-We would very much like to hear of any problems you have learning &clutter; 
-with this document, and would appreciate input regarding improvements. Please see the <link linkend="sec-Contributing">Contributing</link> section for further information.
-</para>
+<para>This book assumes a good understanding of C++, and how to create C++ programs.</para>
+<para>This book attempts to explain key &clutter; concepts and introduce some of the more commonly
+used user interface elements (&quot;actors&quot;). For full API information you should follow the
+links into the reference documentation. This document covers the API in &cluttermm; version
+&clutterversion;.</para>
+<para>Each chapter contains very simple examples. These are meant to show the use of the API rather
+than show an impressive visual result. However, the <link linkend="sec-full-example">full
+example</link> should give some idea of what can be achieved with &cluttermm;</para>
+<para>The &cluttermm; platform uses techniques found in the <ulink
+url="http://www.gtkmm.org/">gtkmm</ulink> platform, so you will sometimes wish to refer to the
+&gtkmm; documentation.</para>
+<para> We would very much like to hear of any problems you have learning &cluttermm; with this
+document, and would appreciate input regarding improvements. Please see the <link
+linkend="sec-Contributing">Contributing</link> section for further information.</para>
 </sect1>
 
 <sect1 id="sec-clutter">
 <title>Clutter</title>
-<para>
-&clutter; is a C programming API that allows you to create simple but visually appealing and involving user interfaces.
-It offers a variety of objects (actors) which can be placed on a canvas (stage) and manipulated by the application or the user. 
-It is therefore a &quot;retained mode&quot; graphics API. Unlike traditional 2D canvas APIs, &clutter; allows these actors to move partly in the Z dimension. </para>
-<para>This concept simplifies the creation of 3D interfaces compared to direct use of OpenGL or other 3D drawing APIs. 
-For instance, it restricts the user interaction to the 2D plane facing the user, which is appropriate for today's devices 
-allowing interaction only with a 2D plane such as a touchscreen. In addition, your application does not need to provide visual 
-context to show the user which objects are, for instance, small rather than far away.</para>
-<para>In addition, &clutter; provides timeline and behavior abstractions which simplify animation by allowing you to associate actor properties 
-(such as position, rotation, or opacity) with callback functions, including pre-defined functions of time such as sine waves.</para> 
-<para>&clutter; uses the popular OpenGL 3D graphics API on regular desktop PCs, allowing it access to hardware acceleration. 
-On handheld devices it can use OpenGL ES, a subset of the OpenGL API aimed at embedded devices. So, where necessary, you may also use OpenGL or OpenGL ES directly.</para> 
-<para>
-In the next few chapters you will learn how to place actors on the stage, how to set their properties, how to change 
-their properties (including their position) over time by using timelines and behaviours, and how to do all this in response to 
-user interaction.</para>
+<para>&clutter; is a C programming API that allows you to create simple but visually appealing and
+involving user interfaces. It offers a variety of objects (actors) which can be placed on a canvas
+(stage) and manipulated by the application or the user. It is therefore a &quot;retained mode&quot;
+graphics API. Unlike traditional 2D canvas APIs, &clutter; allows these actors to move partly in the
+Z dimension.</para>
+<para>This concept simplifies the creation of 3D interfaces compared to direct use of OpenGL or
+other 3D drawing APIs. For instance, it restricts the user interaction to the 2D plane facing the
+user, which is appropriate for today's devices allowing interaction only with a 2D plane such as a
+touchscreen. In addition, your application does not need to provide visual context to show the user
+which objects are, for instance, small rather than far away.</para>
+<para>In addition, &clutter; provides timeline and behavior abstractions which simplify animation by
+allowing you to associate actor properties (such as position, rotation, or opacity) with callback
+functions, including pre-defined functions of time such as sine waves.</para>
+<para>&clutter; uses the popular OpenGL 3D graphics API on regular desktop PCs, allowing it access
+to hardware acceleration. On handheld devices it can use OpenGL ES, a subset of the OpenGL API aimed
+at embedded devices. So, where necessary, you may also use OpenGL or OpenGL ES directly.</para>
+</sect1>
+
+<sect1 id="sec-cluttermm">
+<title>Cluttermm</title>
+<para>&cluttermm; is a language binding for C++ on top of &clutter;. It has the same functionality
+and concepts as plain &clutter;, but provides C++ programmers with an interface that makes of
+language features and common concepts of C++, such as static type safety, class inheritance and
+exception handling.</para>
+<para>In the next few chapters you will learn how to place actors on the stage, how to set their
+properties, how to change their properties (including their position) over time by using timelines
+and behaviours, and how to do all this in response to user interaction.</para>
 </sect1>
 
 </chapter>
@@ -114,55 +127,44 @@ user interaction.</para>
 <sect1 id="sec-linux-install-from-packages">
 <title>Prebuilt Packages</title>
 
-<para>&clutter; packages are probably available from your Linux distribution. 
-For instance, on Ubuntu Linux or Debian you can install the <literal>libclutter-&clutterversion;-dev</literal> package.
-</para>
+<para>&clutter; and &cluttermm; packages are probably available from your Linux distribution. For
+instance, on Ubuntu Linux or Debian you can install the
+<literal>libcluttermm-&clutterversion;-dev</literal> package.</para>
 
 </sect1>
 
 <sect1 id="sec-install_from_source">
-<title>Installing From Source</title>
+<title>Installing from Source</title>
 
-<para>
-  After you've installed all of the dependencies, download the &clutter; source
-  code, unpack it, and change to the newly created directory. &clutter; can be
-  built and installed with the following sequence of commands:
+<para>After you've installed all of the dependencies, download the &cluttermm; source code, unpack
+it, and change to the newly created directory. &cluttermm; can be built and installed with the
+following sequence of commands:
 <screen>
 # ./configure
 # make
 # make install
-</screen>
-</para>
-
-<para>
-    The <filename>configure</filename> script will check to make sure all of
-    the required dependencies are already installed. If you are missing any
-    dependencies it will exit and display an error.
-</para>
-<para>
-    By default, &clutter; will be installed under the
-    <filename>/usr/local</filename> directory.
-</para>
-<para>
-  If you want to help develop &clutter; or experiment with new features, you can
-  also install &clutter; from SVN. Details are available at the 
-  <ulink url="http://www.clutter-project.org/">&clutter; web site</ulink>.
-</para>
+</screen></para>
+<para> The <filename>configure</filename> script will check to make sure all of the required
+dependencies are already installed. If you are missing any dependencies it will exit and display an
+error. </para>
+<para> By default, &cluttermm; will be installed under the <filename>/usr/local</filename>
+directory.</para>
+<para>If you want to help develop &cluttermm; or experiment with new features, you can also install
+&cluttermm; from SVN. Details are available at the <ulink url="http://www.gtkmm.org/">&gtkmm;
+website</ulink>.</para>
 
 <sect2 id="sec-installation-dependencies">
 <title>Dependencies</title>
-<para>
-  Before attempting to install &clutter;, you should first install these other
-  packages:
-</para>
+<para>Before attempting to install &cluttermm;, you should first install these other
+packages:</para>
 <itemizedlist>
   <listitem><para><application>GTK+</application></para></listitem>
   <listitem><para><application>libgl (Mesa)</application></para></listitem>
+  <listitem><para><application>clutter</application></para></listitem>
+  <listitem><para><application>clutter-gtk</application></para></listitem>
 </itemizedlist>
-<para>
-These dependencies have their own dependencies, including the following
-applications and libraries:
-</para>
+<para>These dependencies have their own dependencies, including the following applications and
+libraries:</para>
 <itemizedlist>
   <listitem><para><application>pkg-config</application></para></listitem>
   <listitem><para><application>glib</application></para></listitem>
@@ -177,31 +179,28 @@ applications and libraries:
 
 <chapter id="chapter-headers-and-linking">
 <title>Header Files And Linking</title>
-<para>
-To use the &clutter; APIs, you must include the headers for the libraries, and link to their shared libraries. The necessary compiler and linker commands can be obtained from the pkg-config utiltity like so:
-</para>
+<para>To use the &cluttermm; APIs, you must include the headers for the libraries, and link to
+their shared libraries. The necessary compiler and linker commands can be obtained from the
+<command>pkg-config</command> utiltity like so:</para>
 
-<para>
-<programlisting>
-pkg-config clutter-&clutterversion; --cflags
-pkg-config clutter-&clutterversion; --libs
-</programlisting>
-</para>
+<para><programlisting>
+pkg-config --cflags cluttermm-&clutterversion;
+pkg-config --libs cluttermm-&clutterversion;
+</programlisting></para>
 
-<para>
-However, if you are using the &quot;autotools&quot; (<command>automake</command>, <command>autoconf</command>, etc) build system, you will find it more convenient to use the <function>PKG_CHECK_MODULES</function> macro in your configure.ac file. For instance:
-</para>
+<para>However, if you are using the &quot;autotools&quot; (<command>automake</command>,
+<command>autoconf</command>, etc) build system, you will find it more convenient to use the
+<function>PKG_CHECK_MODULES</function> macro in your <filename>configure.ac</filename> file.
+For instance:</para>
+<para><programlisting>
+PKG_CHECK_MODULES([EXAMPLE], [cluttermm-&clutterversion; &gt;= &clutterversion;.0])
+</programlisting></para>
 
-<para>
-<programlisting>
-PKG_CHECK_MODULES(EXAMPLE, clutter-&clutterversion;)
-AC_SUBST(EXAMPLE_CFLAGS)
-AC_SUBST(EXAMPLE_LIBS)
-</programlisting>
-</para>
-
-<para>
-You should then use the generated _CFLAGS and _LIBS definitions in your Makefile.am files. Note that you may mention other libraries in the same <function>PKG_CHECK_MODULES</function> call, separated by spaces. For instance, some examples in this tutorial require extra &clutter; libraries, such as <literal>clutter-gtk-&clutterversion;</literal>, <literal>clutter-cairo-&clutterversion;</literal> or <literal>clutter-gst-&clutterversion;</literal>.</para>
+<para> You should then use the generated <literal>$(EXAMPLE_CFLAGS)</literal> and
+<literal>$(EXAMPLE_LIBS)</literal> variables in your Makefile.am files. Note that you may mention
+other libraries in the same <function>PKG_CHECK_MODULES</function> call, separated by spaces. For
+instance, some examples in this tutorial require additional &cluttermm; libraries, such as
+<literal>clutter-gtkmm-&clutterversion;</literal>.</para>
 
 </chapter>
 
@@ -211,38 +210,39 @@ You should then use the generated _CFLAGS and _LIBS definitions in your Makefile
 <sect1 id="sec-stage-basics">
 <title>Stage Basics</title>
 
-<para>Each &clutter; application contains at least one <classname>ClutterStage</classname>. This stage contains Actors such as rectangles, images, or text. We will talk more about the actors in the next chapter, but for now let's see how a stage can be created and how we can respond to user interaction with the stage itself.
-</para>
-<para>First make sure that you have called <function>clutter_init()</function> to initialize &clutter;. 
-You may then get the application's stage with <function>clutter_stage_get_default()</function>. This function always returns 
-the same instance, with its own window. You could instead use a <classname>GtkClutterEmbed</classname> widget inside a more 
-complicated GTK+ window - see the <link linkend="sec-stage-widget">Stage Widget</link> section.
-</para>
-<para><classname>ClutterStage</classname> is derived from the <classname>ClutterActor</classname> object so many of that object's 
-functions are useful for the stage. For instance, call <function>clutter_actor_show()</function> to make the stage visible.
-</para>
-<para><classname>ClutterStage</classname> also implements the <classname>ClutterContainer</classname> interface, allowing it to contain 
-child actors via calls to <function>clutter_container_add()</function>.
-</para>
-<para>Call <function>clutter_main()</function> to start a main loop so that the stage can animate its contents and respond to user 
-interaction.
-</para>
+<para>Each &cluttermm; application contains at least one <classname>Clutter::Stage</classname>. This
+stage contains Actors such as rectangles, images, or text. We will talk more about the actors in the
+next chapter, but for now let's see how a stage can be created and how we can respond to user
+interaction with the stage itself.</para>
+<para>First make sure that you have called <function>Clutter::init()</function> to initialize
+&cluttermm;. You may then get the application's stage with
+<function>Clutter::Stage::get_default()</function>. This method always returns the same instance,
+with its own window. You could instead use a <classname>Clutter::Gtk::Embed</classname> widget
+inside a more complicated GTK+ window -- see the <link linkend="sec-stage-widget">Stage Widget</link>
+section.</para>
+<para><classname>Clutter::Stage</classname> is derived from the <classname>Clutter::Actor</classname>
+class so many of that class' methods are useful for the stage. For instance, call
+<function>Clutter::Actor::show()</function> to make the stage visible.</para>
+<para><classname>Clutter::Stage</classname> also implements the
+<classname>Clutter::Container</classname> interface, allowing it to contain child actors via calls
+to <function>Clutter::Container::add_actor()</function>.</para>
+<para>Call <function>Clutter::main()</function> to start a main loop so that the stage can animate
+its contents and respond to user interaction.</para>
 
-<para><ulink url="&url_refdocs_base_clutter;Stage.html">Reference</ulink></para>
+<para><ulink url="&url_refdocs_base_cluttermm;classClutter_1_1Stage.html"><classname>Clutter::Stage</classname>
+class reference</ulink></para>
 
 <sect2 id="stage-example"><title>Example</title>
-<para>
-The following example shows a <classname>ClutterStage</classname> and handles clicks on the stage.
-There are no actors yet so all you will see is a black rectangle.
-</para>
+<para> The following example shows a <classname>Clutter::Stage</classname> and handles clicks on the
+stage. There are no actors yet so all you will see is a black rectangle. </para>
 
-<para>You can create an executable from this code like so, being careful to use <literal>backticks</literal> around the call to <command>pkg-config</command>. See also the <link linkend="chapter-headers-and-linking">Header Files And Linking</link> section.</para>
+<para>You can create an executable from this code like so, being careful to use backticks
+around the call to <command>pkg-config</command>. See also the <link
+linkend="chapter-headers-and-linking">Header Files And Linking</link> section.</para>
 
-<para>
-<programlisting>
-gcc -Wall -g example.c -o example `pkg-config clutter-&clutterversion; --cflags  --libs`
-</programlisting>
-</para>
+<para><programlisting>
+c++ -Wall -g `pkg-config --cflags --libs cluttermm-&clutterversion;` -o example main.cc
+</programlisting></para>
 
 <figure id="figure-stage">
   <title>Stage</title>
@@ -259,34 +259,38 @@ gcc -Wall -g example.c -o example `pkg-config clutter-&clutterversion; --cflags 
 <sect1 id="sec-stage-widget">
 <title>Stage Widget</title>
 
-<para>The <classname>GtkClutterEmbed</classname> widget allows you to place a <classname>ClutterStage</classname> inside an 
-existing GTK+ window. For instance, the window might contain other GTK+ widgets allowing the user to affect the actors in 
-stage. Use <function>gtk_clutter_embed_new()</function> to instantiate the widget and then add it to a container just like any 
-other GTK+ widget. Call <function>gtk_clutter_embed_get_stage</function> to get the <classname>ClutterStage</classname> from the 
-<classname>GtkClutterEmbed</classname> widget so you can then use the main &clutter; API.
-</para>
-<para>When using the <classname>GtkClutterEmbed</classname> widget you should use <function>gtk_clutter_init</function> instead
-of <function>clutter_init()</function> and <function>gtk_init()</function> to initialize &clutter; and &gtk;. And you should use
-the regular <function>gtk_main()</function> function to start the mainloop rather than <function>clutter_main()</function>.
-</para>
-<para>For simplicity, all other examples in this document will instead use <function>clutter_stage_get_default()</function>, 
-but all the techniques can also be used with a stage inside the <classname>GtkClutterEmbed</classname> widget.</para> 
+<para>The <classname>Clutter::Gtk::Embed</classname> widget allows you to place a
+<classname>Clutter::Stage</classname> inside an existing GTK+ window. For instance, the window might
+contain other GTK+ widgets allowing the user to affect the actors in stage. Use
+<function>Clutter::Gtk::Embed::create()</function> to instantiate the widget and then add it to a
+container just like any other GTK+ widget. Call <function>Clutter::Gtk::Embed::get_stage()</function>
+to get the <classname>Clutter::Stage</classname> from the <classname>Clutter::Gtk::Embed</classname>
+widget so you can then use the main &cluttermm; API.</para>
+<para>When using the <classname>Clutter::Gtk::Embed</classname> widget you should use
+<function>Clutter::Gtk::init()</function> instead of <function>Clutter::init()</function> and
+<classname>Gtk::Main</classname> to initialize &clutter; and &gtkmm;. And you should use the regular
+<function>Gtk::Main::run()</function> method to start the mainloop rather than
+<function>Clutter::main()</function>.</para>
+<para>For simplicity, all other examples in this document will instead use
+<function>Clutter::Stage::get_default()</function>, but all the techniques can also be used with a
+stage inside the <classname>Clutter::Gtk::Embed</classname> widget.</para>
 
-<para><ulink url="&url_refdocs_base_clutter_gtk;GtkClutterEmbed.html">Reference</ulink></para>
+<para><ulink url="&url_refdocs_base_clutter_gtkmm;classClutter_1_1Gtk_1_1Embed.html"><classname>Clutter::Embed</classname>
+class reference</ulink></para>
 
 <sect2 id="stage-widget-example"><title>Example</title>
-<para>
-The following example shows a <classname>GtkClutterEmbed</classname> GTK+ widget and changes the stage color when a button is 
-clicked.
-</para>
+<para>The following example shows a <classname>Clutter::Gtk::Embed</classname> GTK+ widget and
+changes the stage color when a button is clicked. </para>
 
-<para>Note that this example requires the <literal>clutter-gtk-&clutterversion;</literal> library as well as the standard <literal>clutter-&clutterversion;</literal> library. You can create an executable from this code like so, being careful to use <literal>backticks</literal> around the call to <command>pkg-config</command>. See also the <link linkend="chapter-headers-and-linking">Header Files And Linking</link> section.</para>
+<para>Note that this example requires the <literal>clutter-gtkmm-&clutterversion;</literal> library
+as well as the standard <literal>cluttermm-&clutterversion;</literal> library. You can create an
+executable from this code like so, being careful to use <literal>backticks</literal> around the call
+to <command>pkg-config</command>. See also the <link linkend="chapter-headers-and-linking">Header
+Files And Linking</link> section.</para>
 
-<para>
-<programlisting>
-gcc -Wall -g example.c -o example `pkg-config clutter-&clutterversion; clutter-gtk-&clutterversion; --cflags  --libs`
-</programlisting>
-</para>
+<para><programlisting>
+c++ -Wall -g `pkg-config --cflags --libs clutter-gtkmm-&clutterversion;` -o example main.cc
+</programlisting></para>
 
 <figure id="figure-stage-widget">
   <title>Stage Widget</title>
@@ -300,45 +304,55 @@ gcc -Wall -g example.c -o example `pkg-config clutter-&clutterversion; clutter-g
 </sect2>
 </sect1>
 
-
 </chapter>
-
 
 <chapter id="sec-actors">
 <title>Actors</title>
 
 <sect1 id = "sec-actors-basics">
 <title>Actor Basics</title>
-<para>As mentioned in the <link linkend="sec-clutter">introduction</link>, &clutter; is a canvas API for 2D surfaces in 3D space. 
-Standard &clutter; actors have 2D shapes and can be positioned and rotated in all three dimensions, but they have no depth. 
-Theoretically, therefore, most actors would be invisible if they were exactly rotated so that only their edge faced the screen. 
-When complex 3D objects are needed, you may use the full OpenGL ES API, as mentioned in the <link linkend="appendix-implementing-actors">Implementing Actors</link> appendix, 
-but let's look at the standard actors for now:
+<para>As mentioned in the <link linkend="sec-clutter">introduction</link>, &clutter; is a canvas API
+for 2D surfaces in 3D space. Standard &clutter; actors have 2D shapes and can be positioned and
+rotated in all three dimensions, but they have no depth. Theoretically, therefore, most actors would
+be invisible if they were exactly rotated so that only their edge faced the screen. When complex 3D
+objects are needed, you may use the full OpenGL ES API, as mentioned in the <link
+linkend="appendix-implementing-actors">Implementing Actors</link> appendix, but let's look at the
+standard actors for now:
 <itemizedlist>
-<listitem><para><ulink url="&url_refdocs_base_clutter;Stage.html">ClutterStage</ulink>: The stage itself, mentioned already</para></listitem>
-<listitem><para><ulink url="&url_refdocs_base_clutter;Rectangle.html">ClutterRectangle</ulink>: A rectangle.</para></listitem>
-<listitem><para><ulink url="&url_refdocs_base_clutter;Label.html">ClutterLabel</ulink>: Displays text.</para></listitem>
-<listitem><para><ulink url="&url_refdocs_base_clutter;Entry.html">ClutterEntry</ulink>: Text that may be edited by the user.</para></listitem>
-<listitem><para><ulink url="&url_refdocs_base_clutter;Texture.html">ClutterTexture</ulink>: An image.</para></listitem>
-</itemizedlist>
-</para>
+<listitem><para><ulink url="&url_refdocs_base_cluttermm;classClutter_1_1Stage.html">Clutter::Stage</ulink>: The stage itself, mentioned already</para></listitem>
+<listitem><para><ulink url="&url_refdocs_base_cluttermm;classClutter_1_1Rectangle.html">Clutter::Rectangle</ulink>: A rectangle.</para></listitem>
+<listitem><para><ulink url="&url_refdocs_base_cluttermm;classClutter_1_1Label.html">Clutter::Label</ulink>: Displays text.</para></listitem>
+<listitem><para><ulink url="&url_refdocs_base_cluttermm;classClutter_1_1Entry.html">Clutter::Entry</ulink>: Text that may be edited by the user.</para></listitem>
+<listitem><para><ulink url="&url_refdocs_base_cluttermm;classClutter_1_1Texture.html">Clutter::Texture</ulink>: An image.</para></listitem>
+</itemizedlist></para>
+<para>Each actor should be added to the stage with <function>Clutter::Container::add_actor()</function>
+and its positions should then be specified. All actors derive from <classname>Clutter::Actor</classname>
+so you can call <function>Clutter::Actor::set_position()</function> to set the x and y coordinates,
+and the z coordinate can be set with <function>Clutter::Actor::set_depth()</function>, with larger
+values placing the actor further away from the observer. <function>Clutter::Actor::set_size()</function>
+sets the width and height.</para>
+<para>The actor's position is relative to the top-left (0, 0) of the parent container
+(such as the stage), but this origin can be changed by calling
+<function>Clutter::Actor::set_anchor_point()</function>.</para>
+<para>By default, actors are hidden, so remember to call <function>Clutter::Actor::show()</function>.
+You may later call <function>Clutter::Actor::hide()</function> to temporarily hide the object
+again.</para>
+<para>Like all objects of the <classname>Glib::Object</classname> class, &cluttermm; actors are
+reference counted. The reference count starts at one when they are first instantiated with a method
+such as <function>Clutter::Rectangle::create()</function>. This reference is then managed by the
+<classname>Glib::RefPtr&lt;Clutter::Rectangle&gt;</classname> smart pointer returned by the method.
+If the smart pointer goes out of scope, the reference count is decremented again, and the actor will
+be destroyed if the reference count reached zero. However, if the actor is added to a container such
+as the stage, the container will obtain another reference to the actor, which is not released until
+the actor has been removed again from the container. This means you do not need to keep around the
+<classname>Glib::RefPtr&lt;Clutter::Rectangle&gt;</classname> after the actor was added to a
+container, and neither do you have to manually reference or unreference any &cluttermm;
+object.</para>
+<para>Actors may also be transformed by scaling or rotation, and may be made partly
+transparent.</para>
 
-<para>Each actor should be added to the stage with <function>clutter_container_add()</function> and its 
-positions should then be specified. All actors derive from <classname>ClutterActor</classname> so you can call 
-<function>clutter_actor_set_position()</function> to set the x and y coordinates, and the z coordinate can be set with 
-<function>clutter_actor_set_depth()</function>, with larger values placing the actor further away from the observer. 
-<function>clutter_actor_set_size()</function> sets the width and height.
-</para>
-<para>The actor's position is relative to the top-left (0, 0) of the parent container (such as the stage), but this origin can be changed by 
-calling <function>clutter_actor_set_anchor_point()</function>.</para>
-<para>By default, actors are hidden, so remember to call <function>clutter_actor_show</function>(). You may later call <function>clutter_actor_hide()</function> to 
-temporarily hide the object again.</para>
-<para>Like &gtk; widgets, &clutter; actors have a &quot;floating reference&quot; when they are first instantiated with a function 
-such as <function>clutter_rectangle_new()</function>. This reference is then taken when the actor is added to a container, 
-such as the stage. This means that you do not need to unreference the actor after creating it.</para>
-<para>Actors may also be transformed by scaling or rotation, and may be made partly transparent.</para>
-
-<para><ulink url="&url_refdocs_base_clutter;Actor.html">Reference</ulink></para>
+<para><ulink url="&url_refdocs_base_cluttermm;classClutter_1_1Actor.html"><classname>Clutter::Actor</classname>
+class reference</ulink></para>
 
 <sect2 id="actor-example"><title>Example</title>
 <para>
@@ -362,51 +376,53 @@ The following example demonstrates two unmoving actors in a stage:
 
 <sect2>
 <title>Scaling</title>
-<para>Call <function>clutter_actor_set_scale()</function> to increase or decrease the apparent size of the actor. 
-Note that this will not change the result of <function>clutter_actor_get_width()</function> and 
-<function>clutter_actor_get_height()</function> because it only changes the size of the actor as seen by the user. 
-Calling <function>clutter_actor_set_scale()</function> again will replace the first scale rather than multiplying it.
-</para>
+<para>Call <function>Clutter::Actor::set_scale()</function> to increase or decrease the apparent
+size of the actor. Note that this will not change the result of <function>Clutter::Actor::get_width()</function>
+and <function>Clutter::Actor::get_height()</function> because it only changes the size of the actor
+as seen by the user. Calling <function>Clutter::Actor::set_scale()</function> again will replace the
+first scale rather than multiplying it.</para>
 </sect2>
 
 <sect2>
 <title>Rotation</title>
-<para>Call <function>clutter_actor_set_rotation()</function> to rotate the actor around an axis, specifying either 
-<literal>CLUTTER_X_AXIS</literal>, <literal>CLUTTER_Y_AXIS</literal> or <literal>CLUTTER_Z_AXIS</literal> and the desired angle. Only two of 
-the x, y, and z coordinates are used, depending on the specified axis. For instance, when using <literal>CLUTTER_X_AXIS</literal>, the y and z parameters specify the center of rotation on 
-the plane of the x axis.
-</para>
-<para>Like the <function>clutter_actor_set_scale()</function>, this does not affect the position, width, or height of the actor as 
-returned by functions such as <function>clutter_actor_get_x()</function>.
-</para>
+<para>Call <function>Clutter::Actor::set_rotation()</function> to rotate the actor around an axis,
+specifying either <literal>Clutter::X_AXIS</literal>, <literal>Clutter::Y_AXIS</literal> or
+<literal>Clutter::Z_AXIS</literal> and the desired angle. Only two of the x, y, and z coordinates
+are used, depending on the specified axis. For instance, when using <literal>Clutter::X_AXIS</literal>,
+the y and z parameters specify the center of rotation on the plane of the x axis.</para>
+<para>Like the <function>Clutter::Actor::set_scale()</function>, this does not affect the position,
+width, or height of the actor as returned by functions such as
+<function>Clutter::Actor::get_x()</function>.</para>
 </sect2>
 
 <sect2>
 <title>Clipping</title>
-<para><classname>Actors</classname> may be &quot;clipped&quot; so that only one rectangular part of the actor is visible, 
-by calling <function>clutter_actor_set_clip()</function>, providing a position relative to the actor, along with the size. 
-For instance, you might implement scrolling by creating a large container actor and setting a clip rectangle so that only 
-a small part of the whole is visible at any one time. Scrolling up could then be implemented by moving the actor down while  
-moving the clip up. Clipping can be reverted by calling <function>clutter_actor_remove_clip()</function>.
-</para>
-<para>The area outside of the clip does not consume video memory and generally does not require much processing.</para>
+<para><classname>Actors</classname> may be &quot;clipped&quot; so that only one rectangular part of
+the actor is visible, by calling <function>Clutter::Actor::set_clip()</function>, providing a
+position relative to the actor, along with the size. For instance, you might implement scrolling by
+creating a large container actor and setting a clip rectangle so that only a small part of the whole
+is visible at any one time. Scrolling up could then be implemented by moving the actor down while
+moving the clip up. Clipping can be reverted by calling
+<function>Clutter::Actor::remove_clip()</function>.</para>
+<para>The area outside of the clip does not consume video memory and generally does not require much
+processing.</para>
 </sect2>
 
 <sect2>
 <title>Movement</title>
-<para>&clutter; does not have a translation function that behaves similarly to 
-<function>clutter_actor_set_scale()</function> and <function>clutter_actor_set_rotation()</function>, but you can move the actor by 
-calling <function>clutter_actor_move_by()</function> or <function>clutter_actor_set_depth</function>.
-</para>
-<para>Unlike the scaling and rotation functions, <function>clutter_actor_move_by()</function> does change the result of 
-functions such as <function>clutter_actor_get_x()</function>.
-</para>
+<para>&cluttermm; does not have a translation method that behaves similarly to
+<function>Clutter::Actor::set_scale()</function> and
+<function>Clutter::Actor::set_rotation()</function>, but you can move the actor by calling
+<function>Clutter::Actor::move_by()</function> or
+<function>Clutter::Actor::set_depth</function>.</para>
+<para>Unlike the scaling and rotation methods, <function>Clutter::Actor::move_by()</function> does
+change the result of methods such as <function>Clutter::Actor::get_x()</function>.</para>
 </sect2>
 
-<sect2 id="actor-example-transformations"><title>Example</title>
-<para>
-The following example demonstrates two unmoving actors in a stage, using rotation, scaling and movement:
-</para>
+<sect2 id="actor-example-transformations">
+<title>Example</title>
+<para>The following example demonstrates two unmoving actors in a stage, using rotation, scaling
+and movement:</para>
 
 <figure id="figure-actor-transformations">
   <title>Actor</title>
@@ -415,40 +431,35 @@ The following example demonstrates two unmoving actors in a stage, using rotatio
   </screenshot>
 </figure>
 
-<para><ulink url="&url_examples_base;actor_transformations">Source Code</ulink></para>
+<para><ulink url="&url_examples_base;actor_transformations">Source code</ulink></para>
 </sect2>
-
 
 </sect1>
 
 <sect1 id = "sec-containers">
 <title>Containers</title>
-<para>Some clutter actors implement the <classname>ClutterContainer</classname> 
-interface. These actors can contain child actors and may position them in 
-relation to each other, for instance in a list or a table formation. In addition, 
-transformations or property changes may be applied to all children. Child actors 
-can be added to a container with the <function>clutter_container_add()</function> 
-function.</para>
-<para>The main <classname>ClutterStage</classname> is itself a container, allowing 
-it to contain all the child actors. The only other container in Core &clutter; 
-is <classname>ClutterGroup</classname>, which can contain child actors, with 
-positions relative to the parent <classname>ClutterGroup</classname>. Scaling, 
-rotation and clipping of the group applies to the child actors, which can 
-simplify your code.
-</para>
-<para>Additional &clutter; containers can be found in the &tidy; toolkit library. 
-See also the <link linkend="appendix-implementing-actors-containers">Implementing Containers</link> section.
-</para>
+<para>Some clutter actors implement the <classname>Clutter::Container</classname> interface. These
+actors can contain child actors and may position them in relation to each other, for instance in a
+list or a table formation. In addition, transformations or property changes may be applied to all
+children. Child actors can be added to a container with the
+<function>Clutter::Container::add_actor()</function> method.</para>
+<para>The main <classname>Clutter::Stage</classname> is itself a container, allowing it to contain
+all the child actors. The only other container in core &cluttermm; is
+<classname>Clutter::Group</classname>, which can contain child actors, with positions relative to
+the parent <classname>Clutter::Group</classname>. Scaling, rotation and clipping of the group
+applies to the child actors, which can simplify your code.</para>
+<para>Additional &clutter; containers can be found in the &tidy; toolkit library. See also the <link
+linkend="appendix-implementing-actors-containers">Implementing Containers</link> section.</para>
 <!-- Add a link to a Tidy web page when one exists. -->
 
-<para><ulink url="&url_refdocs_base_clutter;Container.html">ClutterContainer Reference</ulink></para>
-<para><ulink url="&url_refdocs_base_clutter;Group.html">ClutterGroup Reference</ulink></para>
+<para><ulink url="&url_refdocs_base_cluttermm;classClutter_1_1Container.html"><classname>Clutter::Container</classname>
+class reference</ulink></para>
+<para><ulink url="&url_refdocs_base_cluttermm;classClutter_1_1Group.html"><classname>Clutter::Group</classname>
+class reference</ulink></para>
 
 <sect2 id="actor-example-containers"><title>Example</title>
-<para>
-The following example shows the use of the <classname>ClutterGroup</classname> 
-container, with two child actors being rotated together.
-</para>
+<para>The following example shows the use of the <classname>Clutter::Group</classname> container,
+with two child actors being rotated together.</para>
 
 <figure id="figure-actor-containers">
   <title>Group</title>
@@ -457,49 +468,53 @@ container, with two child actors being rotated together.
   </screenshot>
 </figure>
 
-<para><ulink url="&url_examples_base;actor_group">Source Code</ulink></para>
+<para><ulink url="&url_examples_base;actor_group">Source code</ulink></para>
 </sect2>
 </sect1>
 
-<sect1 id = "sec-actors-events">
+<sect1 id="sec-actors-events">
 <title>Events</title>
-<para>The base <classname>ClutterActor</classname> has several signals that are emitted when the user interacts with the actor:
+<para>The base <classname>Clutter::Actor</classname> has several signals that are emitted when the
+user interacts with the actor:
 <itemizedlist>
-  <listitem><para><function>button-press-event</function>: Emitted when the user presses the mouse over the actor.</para></listitem>
-  <listitem><para><function>button-release-event</function>: Emitted when the user releases the mouse over the actor.</para></listitem>
-  <listitem><para><function>motion-event</function>: Emitted when the user moves the mouse over the actor.</para></listitem>
-  <listitem><para><function>enter-event</function>: Emitted when the user moves the mouse in to the actor's area.</para></listitem>
-  <listitem><para><function>leave-event</function>: Emitted when the user moves the mouse out of the actor's area.</para></listitem>
-</itemizedlist>
-</para>
+  <listitem><para><function>signal_button_press_event()</function>: Emitted when the user presses the mouse over the actor.</para></listitem>
+  <listitem><para><function>signal_button_release_event()</function>: Emitted when the user releases the mouse over the actor.</para></listitem>
+  <listitem><para><function>signal_motion_event()</function>: Emitted when the user moves the mouse over the actor.</para></listitem>
+  <listitem><para><function>signal_enter_event()</function>: Emitted when the user moves the mouse in to the actor's area.</para></listitem>
+  <listitem><para><function>signal_leave_event()</function>: Emitted when the user moves the mouse out of the actor's area.</para></listitem>
+</itemizedlist></para>
 <para>For instance, you can detect button clicks on an actor like so:
 <programlisting>
-g_signal_connect (rect, "button-press-event", G_CALLBACK (on_rect_button_press), NULL);
-</programlisting>
-</para>
-<para>Alternatively, you might just handle signals from the parent <classname>ClutterStage</classname> and use 
-<function>clutter_stage_get_actor_at_pos</function> to discover which actor should be affected.</para>
-<para>However, as a performance optimization, &clutter; does not emit all event signals by default. For instance, to 
-receive event signals for an actor instead of just the stage, you must call <function>clutter_actor_set_reactive()</function>. 
-If you don't need the motion event signals (<literal>motion-event</literal>, <literal>enter-event</literal> and <literal>leave-event</literal>), 
-you may call the global <function>clutter_set_motion_events_enabled()</function> function with <literal>FALSE</literal> to further optimize performance.
-</para>
-<para>Your event signal handler should return <literal>true</literal> when it has fully handled the event, or <literal>false</literal> if you want the event to be sent also 
-to the next actor in the event chain. &clutter; first allows the stage to handle each event via the <literal>captured-event</literal> signal. But if the stage does not handle the 
-event then it will be passed down to the child actor, first passing through the actor's parent containers, giving each actor in the hierarchy a chance to handle the event via a 
-<literal>captured-event</literal> signal handler.
-If the event has still not been handled fully by any actor then the event will then be emitted via a specific signal (such as <literal>button-press-event</literal> or 
-<literal>key-press-event</literal>. These specific signals are emitted first from the child actor, then by its parent, passing all they way back up to the stage if no signal handler 
-returns <literal>true</literal> to indicate that it has handled the event fully.</para>
-
-<para>Actors usually only receive keyboard events when the actor has key focus, but you can give an actor exclusive access to any events by grabbing either the pointer or 
-the keyboard, using <function>clutter_grab_pointer</function> or <function>clutter_grab_keyboard</function>.
-</para>
+rect-&gt;signal_button_press_event().connect(&amp;on_rect_button_press);
+</programlisting></para>
+<para>Alternatively, you might just handle signals from the parent
+<classname>Clutter::Stage</classname> and use <function>Clutter::Stage::get_actor_at_pos()</function>
+to discover which actor should be affected.</para>
+<para>However, as a performance optimization, &clutter; does not emit all event signals by default.
+For instance, to receive event signals for an actor instead of just the stage, you must call
+<function>Clutter::Actor::set_reactive()</function>. If you don't need the motion event signals
+(<function>signal_motion_event()</function>, <function>signal_enter_event()</function> and
+<function>signal_leave_event()</function>), you may call the global
+<function>Clutter::set_motion_events_enabled()</function> function with <literal>false</literal> to
+further optimize performance.</para>
+<para>Your event signal handler should return <literal>true</literal> when it has fully handled the
+event, or <literal>false</literal> if you want the event to be sent also to the next actor in the
+event chain. &cluttermm; first allows the stage to handle each event via the
+<function>signal_captured_event()</function> signal. But if the stage does not handle the event then
+it will be passed down to the child actor, first passing through the actor's parent containers,
+giving each actor in the hierarchy a chance to handle the event via a
+<function>signal_captured_event()</function> signal handler. If the event has still not been handled
+fully by any actor then the event will then be emitted via a specific signal (such as
+<function>signal_button_press_event()</function> or <function>signal_key_press_event()</function>.
+These specific signals are emitted first from the child actor, then by its parent, passing all they
+way back up to the stage if no signal handler returns <literal>true</literal> to indicate that it
+has handled the event fully.</para>
+<para>Actors usually only receive keyboard events when the actor has key focus, but you can give an
+actor exclusive access to any events by grabbing either the pointer or the keyboard, using
+<function>Clutter::grab_pointer()</function> or <function>Clutter::grab_keyboard()</function>.</para>
 
 <sect2 id="actor-example-events"><title>Example</title>
-<para>
-The following example demonstrates handing of clicks on an actor:
-</para>
+<para>The following example demonstrates handing of clicks on an actor:</para>
 
 <figure id="figure-actor-events">
   <title>Actor Events</title>
@@ -508,12 +523,11 @@ The following example demonstrates handing of clicks on an actor:
   </screenshot>
 </figure>
 
-<para><ulink url="&url_examples_base;actor_events">Source Code</ulink></para>
+<para><ulink url="&url_examples_base;actor_events">Source code</ulink></para>
 </sect2>
 </sect1>
 
 </chapter>
-
 
 <chapter id="sec-timelines">
 <title>Timelines</title>
@@ -521,37 +535,33 @@ The following example demonstrates handing of clicks on an actor:
 <sect1>
 <title>Using Timelines</title>
 <para>
-A <classname>ClutterTimeline</classname> can be used to change the position or appearance of an actor over time. 
-These can be used directly as described in this chapter, or together with an effect or behaviour, as you will see in 
-the following chapters.</para> 
+A <classname>Clutter::Timeline</classname> can be used to change the position or appearance of an
+actor over time. These can be used directly as described in this chapter, or together with an effect
+or behaviour, as you will see in the following chapters.</para> 
+<para> The timeline object emits its <function>signal_new_frame()</function> signal for each frame
+that should be drawn, for as many frames per second as specified. In your signal handler you can set
+the actor's properties. For instance, the actor might be moved and rotated over time, and its color
+might change while this is happening. You could even change the properties of several actors to
+animate the entire stage.</para>
+<para>The <function>Clutter::Timeline::create()</function> constructor function takes a number of
+frames, and a number of frames per second, so the entire timeline will have a duration of
+<parameter>n_frames</parameter> / <parameter>fps</parameter>. You might therefore choose the number
+of frames based on a desired duration, by dividing the duration by the desired frames per
+second.</para>
+<para>You may also use <function>Clutter::Timeline::set_loop()</function> to cause the timeline to
+repeat forever, or until you call <function>Clutter::Timeline::stop()</function>. The timeline does
+not start until you call <function>Clutter::Timeline::start()</function>.</para>
 
-<para>
-The timeline object emits its <literal>new-frame</literal> signal for each frame that should be drawn, 
-for as many frames per second as specified. In your signal handler you can set the actor's properties. 
-For instance, the actor might be moved and rotated over time, and its color might change while this is happening.
-You could even change the properties of several actors to animate the entire stage.
-</para>
-<para>The <function>clutter_timeline_new()</function> constructor function takes a number of frames, and a number 
-of frames per second, so the entire timeline will have a duration of <parameter>n_frames</parameter> / <parameter>fps</parameter>. 
-You might therefore choose the number of frames based on a desired duration, by dividing the duration by the desired frames per second.
-</para>
+<para>When a timeline has completed, it emits the <function>signal_completed()</function>
+signal.</para>
 
-<para>You may also use <function>clutter_timeline_set_loop()</function> to cause the timeline to 
-repeat for ever, or until you call <function>clutter_timeline_stop()</function>. The timeline does not start 
-until you call <function>clutter_timeline_start()</function>.
-</para>
-
-<para>Remember to unref the timeline when you are finished with it. Unlike actors, this does not have a &quot;floating reference&quot;. 
-You may either do this after your mainloop has finished, or when the timeline has finished, by handling the 
-timeline's <literal>completed</literal> signal.</para> 
-
-<para><ulink url="&url_refdocs_base_clutter;Timeline.html">Reference</ulink></para>
+<para><ulink url="&url_refdocs_base_cluttermm;classClutter_1_1Timeline.html"><classname>Clutter::Timeline</classname>
+class reference</ulink></para>
 </sect1>
 
 <sect1 id="timeline-example"><title>Example</title>
-<para>
-The following example demonstrates the use of a timeline to rotate a rectangle around the x axis while changing its color:
-</para>
+<para>The following example demonstrates the use of a timeline to rotate a rectangle around the x
+axis while changing its color:</para>
 
 <figure id="figure-timeline">
   <title>Timeline</title>
@@ -560,29 +570,29 @@ The following example demonstrates the use of a timeline to rotate a rectangle a
   </screenshot>
 </figure>
 
-<para><ulink url="&url_examples_base;timeline">Source Code</ulink></para>
+<para><ulink url="&url_examples_base;timeline">Source code</ulink></para>
 </sect1>
 
 <sect1 id="sec-timelines-score">
 <title>Grouping TimeLines in a Score</title>
-<para>
-A <classname>ClutterScore</classname> allows you to start and stop several timelines at once, or run them in sequence one after the other.</para> 
+<para>A <classname>Clutter::Score</classname> allows you to start and stop several timelines at
+once, or run them in sequence one after the other.</para>
+<para>To add a timeline that should start first, call <function>Clutter::Score::append()</function>
+without the <parameter>parent</parameter> argument. All such timelines will be started when you call
+<function>Clutter::Score::start()</function>.</para>
+<para>To add a timeline that should be started when a previously added timeline stops, call
+<function>Clutter::Score::append()</function> with the first timeline for the
+<parameter>parent</parameter> argument.</para>
 
-<para>To add a timeline that should start first, call <function>clutter_score_append()</function> with NULL for the parent argument. 
-All such timelines will be started when you call <function>clutter_score_start()</function>.</para>
-<para>To add a timeline that should be started when a previously added timeline stops, call <function>clutter_score_append()</function> with the first 
-timeline for the parent argument.</para>
-
-<para><ulink url="&url_refdocs_base_clutter;Score.html">Reference</ulink></para>
+<para><ulink url="&url_refdocs_base_cluttermm;classClutter_1_1Score.html"><classname>Clutter::Score</classname>
+class reference</ulink></para>
 </sect1>
 
 <sect1 id="score-example"><title>Example</title>
-<para>
-The following example demonstrates the use of a score containing two timelines, 
-with one starting when the other ends, and the whole score running as a loop. 
-The first timeline rotates the rectangle as in the previous example, and the 
-second timeline moves the rectangle horizontally.
-</para>
+<para>The following example demonstrates the use of a score containing two timelines, with one
+starting when the other ends, and the whole score running as a loop. The first timeline rotates the
+rectangle as in the previous example, and the second timeline moves the rectangle
+horizontally.</para>
 
 <figure id="figure-score">
   <title>Score</title>
@@ -591,7 +601,7 @@ second timeline moves the rectangle horizontally.
   </screenshot>
 </figure>
 
-<para><ulink url="&url_examples_base;score">Source Code</ulink></para>
+<para><ulink url="&url_examples_base;score">Source code</ulink></para>
 </sect1>
 
 </chapter>
@@ -603,21 +613,25 @@ second timeline moves the rectangle horizontally.
 <sect1>
 <title>Using Effects</title>
 
-<para>
-&clutter; provides several effects functions that can be used together with a timeline to change the properties of 
-a single actor over time, using a simple numeric calculation. In many cases this is an easier way to implement animation. 
-For instance, <function>clutter_effect_fade()</function> gradually changes the opacity of an 
-actor or <function>clutter_effect_rotate()</function> gradually changes the rotation of an actor, calculating the opacity or 
-rotation by calling the supplied <literal>alpha</literal> callback.
-</para>
-<para>To use a clutter effect, you should first create a <classname>ClutterEffectTemplate</classname>, specifying your 
-timeline object and a <classname>ClutterAlphaFunc</classname> callback. This callback will need to call 
-<function>clutter_alpha_get_timeline()</function> so it can return a value based on the timeline's current frame number 
-and total number of frames, using <function>clutter_timeline_get_current_frame()</function> and 
-<function>clutter_timeline_get_n_frames()</function>. The result should be between 0 and CLUTTER_ALPHA_MAX, with the meaning of 
-the result depending on the effect used. For instance, CLUTTER_ALPHA_MAX would be 100% opacity when using <function>clutter_effect_fade()</function>. 
-Several built-in callbacks, such as <function>CLUTTER_ALPHA_SINE</function>, allow you to easily specify natural movement. 
-</para>
+<para>&cluttermm; provides several effects methods that can be used together with a timeline to
+change the properties of a single actor over time, using a simple numeric calculation. In many cases
+this is an easier way to implement animation. For instance,
+<function>Clutter::EffectTemplate::fade()</function> gradually changes the opacity of an actor or
+<function>Clutter::EffectTemplate::rotate()</function> gradually changes the rotation of an actor,
+calculating the opacity or rotation by calling the supplied <parameter>alpha_func</parameter>
+slot.</para>
+<para>To use a clutter effect, you should first create a
+<classname>Clutter::EffectTemplate</classname>, specifying your timeline object and an
+<parameter>alpha_func</parameter> function slot. This function will need to call
+<function>Clutter::Alpha::get_timeline()</function> so it can return a value based on the timeline's
+current frame number and total number of frames, using
+<function>Clutter::Timeline::get_current_frame()</function> and
+<function>Clutter::Timeline::get_n_frames()</function>. The result should be between
+<literal>0</literal> and <literal>Clutter::Alpha::MAX_ALPHA</literal>, with the meaning of the
+result depending on the effect used. For instance, <literal>Clutter::Alpha::MAX_ALPHA</literal>
+would be 100% opacity when using <function>Clutter::EffectTemplate::fade()</function>. Several
+built-in callbacks, such as <function>Clutter::Alpha::sine_func()</function>, allow you to easily
+specify natural movement.</para>
 
 <figure id="figure-alpha-func">
   <title>Graphic representation of some alpha functions.</title>
@@ -626,28 +640,26 @@ Several built-in callbacks, such as <function>CLUTTER_ALPHA_SINE</function>, all
   </screenshot>
 </figure>
 
-<para>You should then provide this <classname>ClutterEffectTemplate</classname> to one of the <function>clutter_effect</function> 
-functions, along with the actor and any extra parameters required by that function. Remember to unref the effect template after providing it to the effect function 
-(which will take a reference). Unlike actors, these do not have &quot;floating references&quot;.
-</para>
-<para>To make it easier to use different timelines with different effects, you can use <function>clutter_effect_template_set_timeline_clone()</function> to cause the 
-effect to clone (copy instead of just referencing) the timeline, allowing you to change the original timeline and supply it to a second effect, without 
-influencing the first effect.</para>
+<para>You should then use one of the effect methods of this
+<classname>Clutter::EffectTemplate</classname>, and pass along the actor and any extra parameters
+required by that method.</para>
+<para>To make it easier to use different timelines with different effects, you can use
+<function>Clutter::EffectTemplate::set_timeline_clone()</function> to cause the effect to clone
+(copy instead of just referencing) the timeline, allowing you to change the original timeline and
+supply it to a second effect, without influencing the first effect.</para>
+<para>The effects API is actually a simplified API that wraps the
+<classname>Clutter::Behaviour</classname> objects. However, the effect methods can only control one
+actor at a time and do not allow you to change the effects while the timeline is running. To do this
+you can use the behaviours directly, as described in the <link
+linkend="sec-behaviours">Behaviours</link> section.</para>
 
-<para>The effects API is actually a simplified API that wraps the <classname>ClutterBehaviour</classname> objects. 
-However, the effect functions can only control one actor at a time and do not allow you to change the effects while the timeline 
-is running. To do this you can use the behaviours directly, as described in the <link linkend="sec-behaviours">Behaviours</link> section.
-</para>
-
-<para><ulink url="&url_refdocs_base_clutter_alt;Effects.html">Reference</ulink></para>
+<para><ulink url="&url_refdocs_base_cluttermm;classClutter_1_1EffectTemplate.html"><classname>Clutter::EffectTemplate</classname>
+class reference</ulink></para>
 </sect1>
 
-
 <sect1 id="effects-example"><title>Example</title>
-<para>
-The following example demonstrates the use of both a fade effect and a path effect on the same actor,
-changing a rectangle's opacity while it is moved a long a straight line:
-</para>
+<para>The following example demonstrates the use of both a fade effect and a path effect on the
+same actor, changing a rectangle's opacity while it is moved a long a straight line:</para>
 
 <figure id="figure-effects">
   <title>Behaviour</title>
@@ -656,11 +668,10 @@ changing a rectangle's opacity while it is moved a long a straight line:
   </screenshot>
 </figure>
 
-<para><ulink url="&url_examples_base;effects">Source Code</ulink></para>
+<para><ulink url="&url_examples_base;effects">Source code</ulink></para>
 </sect1>
 
 </chapter>
-
 
 
 <chapter id="sec-behaviours">
@@ -669,21 +680,20 @@ changing a rectangle's opacity while it is moved a long a straight line:
 <sect1>
 <title>Using Behaviours</title>
 
-<para>The <link linkend="sec-effects">Effects</link> API is simple but you will often need to 
-use behaviours directly to have more control.
-</para>
-
-<para>
-Although the <classname>ClutterTimeline</classname>'s <literal>new-frame</literal> signal allows you to set actor 
-properties for each frame, &clutter; also provides <literal>Behaviour</literal>s which can change specific properties 
-of one specific actor over time, using a simple numeric calculation. However, unlike the simplified <link linkend="sec-effects">Effects</link> 
-API, using behaviours directly allows you to combine them to control multiple actors simultaneously and allows you to change the parameters of the 
-behaviours while the timeline is running.
-</para>
-<para>For instance, <classname>ClutterBehaviourPath</classname> moves the actor along a specified path, calculating the position 
-on the path once per frame by calling a supplied <literal>alpha</literal> callback. The <classname>ClutterAlpha</classname> 
-object is constructed with this callback and a <classname>ClutterTimeline</classname> which tells it when a new frame needs a 
-new value to be calculated.</para>
+<para>The <link linkend="sec-effects">Effects</link> API is simple but you will often need to use
+behaviours directly to have more control.</para>
+<para> Although the <classname>Clutter::Timeline</classname>'s
+<function>signal_new_frame()</function> signal allows you to set actor properties for each frame,
+&cluttermm; also provides <classname>Behaviour</classname>s which can change specific properties of
+one specific actor over time, using a simple numeric calculation. However, unlike the simplified
+<link linkend="sec-effects">Effects</link> API, using behaviours directly allows you to combine them
+to control multiple actors simultaneously and allows you to change the parameters of the behaviours
+while the timeline is running.</para>
+<para>For instance, <classname>Clutter::BehaviourPath</classname> moves the actor along a specified
+path, calculating the position on the path once per frame by calling a supplied
+<parameter>alpha_func</parameter> slot. The <classname>Clutter::Alpha</classname> object is
+constructed with this slot and a <classname>Clutter::Timeline</classname> which tells it when a new
+frame needs a new value to be calculated.</para>
 
 <figure id="figure-path-alpha-func">
   <title>Effects of alpha functions on a path.</title>
@@ -692,41 +702,44 @@ new value to be calculated.</para>
   </screenshot>
 </figure>
 
-<para>Your <literal>alpha</literal> callback will need to call <function>clutter_alpha_get_timeline()</function> so it can return 
-a value based on the timeline's current frame number and total number of frames, using 
-<function>clutter_timeline_get_current_frame</function> and <function>clutter_timeline_get_n_frames()</function>. Several built-in callbacks, such as 
-<function>CLUTTER_ALPHA_SINE</function>, allow you to easily specify natural movement. 
-</para>
+<para>Your <parameter>alpha_func</parameter> slot will need to call
+<function>Clutter::Alpha::get_timeline()</function> so it can return a value based on the timeline's
+current frame number and total number of frames, using
+<function>Clutter::Timeline::get_current_frame()</function> and
+<function>Clutter::Timeline::get_n_frames()</function>. Several built-in callbacks, such as
+<function>Clutter::Alpha::sine_func</function>, allow you to easily specify natural
+movement.</para>
+<para>If the behaviour's timeline is started and not stopped then the end point of the behaviour
+will always be reached and it will end there unless the timeline is set to loop. For instance, an
+actor will move along a path until it has reached the end, taking as much time as specified by the
+timeline's number of frames and frames per second.</para> 
+<para>Like containers, behaviours maintain a reference to the supplied
+<classname>Clutter::Alpha</classname> object. For this reason it is not necessary to keep around
+a reference to the alpha object yourself. However, you should clear the smart pointers to the
+behaviours when you are finished with them.</para>
 
-<para>If the behaviour's timeline is started and not stopped then the end point of the behaviour will always be reached and it will 
-end there unless the timeline is set to loop. For instance, an actor will move along a path until it has reached the end, taking 
-as much time as specified by the timeline's number of frames and frames per second.</para> 
+<para><ulink url="&url_refdocs_base_cluttermm;classClutter_1_1Behaviour.html"><classname>Clutter::BehaviourPath</classname>
+class reference</ulink></para>
+<para><ulink url="&url_refdocs_base_cluttermm;classClutter_1_1Alpha.html"><classname>Clutter::Alpha</classname>
+class reference</ulink></para>
 
-<para>Like actors, <classname>ClutterAlpha</classname> has a &quot;floating references&quot; so you don't need to unref it if you have added it to a behaviour. 
-However, the behaviours do not have a floating reference, so you should unref them when you are finished with them. You might do this at the same time as you 
-unref the timeline, for instance in a signal handler for the timeline's <literal>completed</literal> signal.</para>
-
-<para><ulink url="&url_refdocs_base_clutter;Behaviour.html">ClutterBehaviour Reference</ulink></para>
-<para><ulink url="&url_refdocs_base_clutter;Alpha.html">ClutterAlpha Reference</ulink></para>
-
-<para>The following standard behaviours are available in &clutter;:
+<para>The following standard behaviours are available in &cluttermm;:
 <itemizedlist>
-<listitem><para><ulink url="&url_refdocs_base_clutter;BehaviourDepth.html">ClutterBehaviourDepth</ulink>: Moves the actor along the z axis.</para></listitem>
-<listitem><para><ulink url="&url_refdocs_base_clutter;BehaviourEllipse.html">ClutterBehaviourEllipse</ulink>: Moves the actor around an ellipse.</para></listitem>
-<listitem><para><ulink url="&url_refdocs_base_clutter;BehaviourOpacity.html">ClutterBehaviourOpacity</ulink>: Changes the opacity of the actor.</para></listitem>
-<listitem><para><ulink url="&url_refdocs_base_clutter;BehaviourPath.html">ClutterBehaviourPath</ulink>: Moves the actor along straight lines and bezier curves.</para></listitem>
-<listitem><para><ulink url="&url_refdocs_base_clutter;BehaviourRotate.html">ClutterBehaviourRotate</ulink>: Rotates the actor.</para></listitem>
-<listitem><para><ulink url="&url_refdocs_base_clutter;BehaviourScale.html">ClutterBehaviourScale</ulink>: Scales the actor.</para></listitem>
+<listitem><para><ulink url="&url_refdocs_base_cluttermm;classClutter_1_1BehaviourDepth.html"><classname>Clutter::BehaviourDepth</classname></ulink>: Moves the actor along the z axis.</para></listitem>
+<listitem><para><ulink url="&url_refdocs_base_cluttermm;classClutter_1_1BehaviourEllipse.html"><classname>Clutter::BehaviourEllipse</classname></ulink>: Moves the actor around an ellipse.</para></listitem>
+<listitem><para><ulink url="&url_refdocs_base_cluttermm;classClutter_1_1BehaviourOpacity.html"><classname>Clutter::BehaviourOpacity</classname></ulink>: Changes the opacity of the actor.</para></listitem>
+<listitem><para><ulink url="&url_refdocs_base_cluttermm;classClutter_1_1BehaviourPath.html"><classname>Clutter::BehaviourPath</classname></ulink>: Moves the actor along straight lines and bezier curves.</para></listitem>
+<listitem><para><ulink url="&url_refdocs_base_cluttermm;classClutter_1_1BehaviourRotate.html"><classname>Clutter::BehaviourRotate</classname></ulink>: Rotates the actor.</para></listitem>
+<listitem><para><ulink url="&url_refdocs_base_cluttermm;classClutter_1_1BehaviourScale.html"><classname>Clutter::BehaviourScale</classname></ulink>: Scales the actor.</para></listitem>
 </itemizedlist>
 </para>
 
 </sect1>
 
 <sect1 id="behaviour-example"><title>Example</title>
-<para>
-The following example demonstrates the use of a <classname>ClutterBehaviourPath</classname> with a simple custom alpha callback. 
-This simply moves the rectangle from the top-left to the bottom-right of the canvas at constant speed:
-</para>
+<para>The following example demonstrates the use of a <classname>Clutter::BehaviourPath</classname>
+with a simple custom alpha function. This simply moves the rectangle from the top-left to the
+bottom-right of the canvas at constant speed:</para>
 
 <figure id="figure-behaviour">
   <title>Behaviour</title>
@@ -735,7 +748,7 @@ This simply moves the rectangle from the top-left to the bottom-right of the can
   </screenshot>
 </figure>
 
-<para><ulink url="&url_examples_base;behaviour">Source Code</ulink></para>
+<para><ulink url="&url_examples_base;behaviour">Source code</ulink></para>
 </sect1>
 
 </chapter>
@@ -744,18 +757,14 @@ This simply moves the rectangle from the top-left to the bottom-right of the can
 <chapter id="sec-full-example">
 <title>Full Example</title>
 
-<para>This example loads images from a directory and displays them in a rotating ellipse. You may click an image to 
-bring it to the front. When the image has rotated to the front it will move up while increasing in size, and the file path 
-will appear at the top of the window.
-</para>
-<para>
-This is larger than the examples used so far, with multiple timelines and multiple behaviours affecting multiple actors. 
-However, it's still a relatively simple example. A real application would need to be more flexible and have more functionality.
-</para>
+<para>This example loads images from a directory and displays them in a rotating ellipse. You may
+click an image to bring it to the front. When the image has rotated to the front it will move up
+while increasing in size, and the file path will appear at the top of the window.</para>
+<para>This is larger than the examples used so far, with multiple timelines and multiple behaviours
+affecting multiple actors. However, it's still a relatively simple example. A real application would
+need to be more flexible and have more functionality.</para>
 
-<para>
-TODO: Make this prettier. Use containers to do that.
-</para>
+<para>TODO: Make this prettier. Use containers to do that.</para>
 
 <figure id="figure-full-example">
   <title>Full Example</title>
@@ -764,7 +773,7 @@ TODO: Make this prettier. Use containers to do that.
   </screenshot>
 </figure>
 
-<para><ulink url="&url_examples_base;full_example">Source Code</ulink></para>
+<para><ulink url="&url_examples_base;full_example">Source code</ulink></para>
 
 </chapter>
 
@@ -773,57 +782,57 @@ TODO: Make this prettier. Use containers to do that.
 
 <sect1 id="appendix-implementing-actors-simple">
 <title>Implementing Simple Actors</title>
-<para>
-If the standard &clutter; actors don't meet all your needs then you may create your own custom actor objects. 
-Implementing a custom actor is much like implementing any new GObject type. You may use the <function>G_DEFINE_TYPE</function> 
-macro to specify that the type is derived from <classname>ClutterActor</classname>. For instance:
+<para>If the standard &clutter; actors don't meet all your needs then you may create your own custom
+actor objects. Implementing a custom actor is much like implementing any new Glib::Object subclass.
 <programlisting>
-G_DEFINE_TYPE (ClutterTriangle, clutter_triangle, CLUTTER_TYPE_ACTOR);
-</programlisting>
-</para>
-
-<para>You should then specify your object's implementation of the <function>ClutterActor::paint()</function> virtual function in your <literal>class_init</literal> function: 
-<programlisting>
-static void
-clutter_triangle_class_init (ClutterTriangleClass *klass)
+class Triangle : public Clutter::Actor
 {
-  ClutterActorClass *actor_class = CLUTTER_ACTOR_CLASS (klass);
+  // ...
+};
+</programlisting></para>
 
-  actor_class->paint = clutter_triangle_paint;
+<para>You should then override the <function>Clutter::Actor::on_paint()</function> virtual method
+in your class:
+<programlisting>
+class Triangle : public Clutter::Actor
+{
+  // ...
+protected:
+  virtual void on_paint();
+};
 
-  ...
+void Triangle::on_paint()
+{
+  // ...
 }
-</programlisting>
-</para>
+</programlisting></para>
 
-<para>
-Your <function>ClutterActor::paint()</function> implementation should use the OpenGL API to actually paint something. 
-You will probably need some information from your object's generic <classname>ClutterActor</classname> base class, for instance 
-by calling <function>clutter_actor_get_geometry()</function> and <function>clutter_actor_get_opacity()</function>, and by using your object's specific property values. 
-</para>
-
-<para>To make your code work with both OpenGL ES and regular OpenGL (and maybe even future &clutter; backends), you may wish 
-to use &clutter;'s <literal>cogl</literal> abstraction API which provides functions such as <function>cogl_rectangle()</function> 
-and <function>cogl_push_matrix()</function>. You can also detect whether the platform has support for either the OpenGL or OpenGL ES API by ifdefing for 
-<literal>CLUTTER_COGL_HAS_GL</literal> or <literal>CLUTTER_COGL_HAS_GLES</literal>.
-</para>
-
-<para>You should also implement the <function>ClutterActor::pick()</function> virtual function, painting a silhouette of your actor 
-in the provided color. &clutter; uses this to draw each actor's silhouette offscreen in a unique color, using the color to quickly 
-identify the actor under the cursor. If your actor is simple then you can probably reuse the code from your paint() implementation.</para>
-
-<para>Most of the rest of <classname>ClutterActor</classname>'s virtual functions don't need to be reimplemented, because a suitable default implemention exists in 
-<classname>ClutterActor</classname>. For instance, 
-<function>show()</function>, <function>show_all()</function>, <function>hide()</function>, <function>hide_all()</function>, 
-<function>request_coord()</function>.
-
-</para>
+<para>Your <function>Clutter::Actor::on_paint()</function> implementation should use the OpenGL API
+to actually paint something. You will probably need some information from your object's generic
+<classname>Clutter::Actor</classname> base class, for instance by calling
+<function>Clutter::Actor::get_geometry()</function> and
+<function>Clutter::Actor::get_opacity()</function>, and by using your object's specific property
+values.</para>
+<para>To make your code work with both OpenGL ES and regular OpenGL (and maybe even future &clutter;
+backends), you may wish to use &clutter;'s <literal>cogl</literal> abstraction API which provides
+functions such as <function>cogl_rectangle()</function> and <function>cogl_push_matrix()</function>.
+You can also detect whether the platform has support for either the OpenGL or OpenGL ES API by
+testing for the preprocessor macro <literal>CLUTTER_COGL_HAS_GL</literal> or
+<literal>CLUTTER_COGL_HAS_GLES</literal>.</para>
+<para>You should also implement the <function>ClutterActor::pick_vfunc()</function> virtual
+function, painting a silhouette of your actor in the provided color. &clutter; uses this to draw
+each actor's silhouette offscreen in a unique color, using the color to quickly identify the actor
+under the cursor. If your actor is simple then you can probably reuse the code from your
+<function>on_paint()</function> implementation.</para>
+<para>Most of the rest of <classname>Clutter::Actor</classname>'s virtual functions don't need to be
+reimplemented, because a suitable default implemention exists in
+<classname>Clutter::Actor</classname>. For instance, <function>on_show()</function>,
+<function>on_show_all()</function>, <function>on_hide()</function>,
+<function>on_hide_all()</function>, <function>allocate_vfunc()</function>.</para>
 </sect1>
 
 <sect1 id="custom-actor-example"><title>Example</title>
-<para>
-The following example demonstrates the implementation of a new triangle Actor type.
-</para>
+<para>The following example demonstrates the implementation of a new triangle Actor type.</para>
 
 <figure id="figure-custom-actor">
   <title>Behaviour</title>
@@ -832,95 +841,84 @@ The following example demonstrates the implementation of a new triangle Actor ty
   </screenshot>
 </figure>
 
-<para><ulink url="&url_examples_base;custom_actor">Source Code</ulink></para>
+<para><ulink url="&url_examples_base;custom_actor">Source code</ulink></para>
 </sect1>
-
 
 <sect1 id="appendix-implementing-actors-containers">
 <title>Implementing Container Actors</title>
-<para>
-You can create container actors that arrange child actors by implementing the 
-ClutterContainer interface in your actor. You may use the <function>G_DEFINE_TYPE_WITH_CODE</function> 
-macro to specify that the type is derived from <classname>ClutterActor</classname> 
-and also implements the <classname>ClutterContainer</classname> interface. For instance:
+<para>You can create container actors that arrange child actors by implementing the
+Clutter::Container interface in your actor. This is done by using multiple inheritance to specify
+that the type is derived from <classname>Clutter::Actor</classname> and also implements the
+<classname>Clutter::Container</classname> interface. For instance:
 <programlisting>
-static void clutter_container_iface_init (ClutterContainerIface *iface);
+class ExampleContainer : public Clutter::Actor, public Clutter::Container
+{
+  ExampleContainer();
+  // ...
+};
 
-G_DEFINE_TYPE_WITH_CODE (ExampleContainer, example_container, CLUTTER_TYPE_ACTOR,
-                         G_IMPLEMENT_INTERFACE (CLUTTER_TYPE_CONTAINER,
-                                                clutter_container_iface_init));
-</programlisting>
-</para>
+ExampleContainer::ExampleContainer()
+:
+  // Create a named GObject type for the custom container class
+  Glib::ObjectBase(typeid(ExampleContainer))
+{}
+</programlisting></para>
 
 <sect2>
-<title>ClutterActor virtual functions to implement</title>
-<para>If your container should control the position or size of its children then 
-it should implement the <classname>ClutterActor</classname>'s 
-<function>allocate()</function>, <function>get_preferred_width()</function> and 
-<function>get_preferred_height()</function> virtual functions.</para>
+<title>Clutter::Actor virtual functions to implement</title>
+<para>If your container should control the position or size of its children then it should implement
+the <classname>Clutter::Actor</classname>'s <function>allocate_vfunc()</function>,
+<function>get_preferred_width_vfunc()</function> and <function>get_preferred_height_vfunc()</function>
+virtual methods.</para>
+<para>For instance, your <function>allocate_vfunc()</function> implementation should use the
+provided allocation to layout its child actors, by calling <function>Clutter::Actor::allocate()</function>
+on each child actor with appropriate allocations.</para>
+<para>Your <function>get_preferred_width_vfunc()</function> and
+<function>get_preferred_height_vfunc()</function> implementations should return the size desired by
+your container, by providing both the minimum and natural size as output parameters. Depending on
+your container, this might be dependent on the child actors. By calling
+<function>Clutter::Actor::get_preferred_size()</function> you can discover the preferred height and
+width of a child actor.</para>
+<para>Your actor should implement one of two geometry management modes -- either height for width
+(<literal>Clutter::REQUEST_HEIGHT_FOR_WIDTH</literal>) or width for height
+<literal>Clutter::REQUEST_WIDTH_FOR_HEIGHT</literal>) and should set its
+<function>property_request_mode()</function> property to indicate which one it uses. For instance,
+in height-for-width mode, the parent actor first asks for the preferred height and then asks for a
+preferred width appropriate for that height.
+<function>Clutter::Actor::get_preferred_size()</function> checks this property and then calls either
+<function>Clutter::Actor::get_preferred_width()</function> or
+<function>Clutter::Actor::get_preferred_height()</function> in the correct sequence.</para>
 
-<para>For instance, your <function>allocate()</function> implementation should 
-use the provided allocation to layout its child actors, by calling 
-<function>clutter_actor_allocate()</function> on each child actor with appropriate 
-allocations.
-</para>
-
-<para>Your <function>get_preferred_width()</function> and 
-<function>get_preferred_height()</function> implementations should 
-return the size desired by your container, by providing both the minimum and
-natural size as output parameters. Depending on your 
-container, this might be dependent on the child actors. By calling
-<function>clutter_actor_get_preferred_size()</function> you can discover the preferred
-height and width of a child actor.</para>
-
-<para>Your actor should implement one of two geometry management modes - either height 
-for width (<literal>CLUTTER_REQUEST_HEIGHT_FOR_WIDTH</literal>) or width for height 
-<literal>CLUTTER_REQUEST_WIDTH_FOR_HEIGHT</literal>) and should set its 
-<literal>request-mode</literal> property to indicate which one it uses. For instance, in 
-height-for-width mode, the parent actor first asks for the preferred height and then asks for 
-a preferred width appropriate for that height. <function>clutter_actor_get_preferred_size()</function> 
-checks this property and then calls either <function>clutter_actor_get_preferred_width()</function> 
-or <function>clutter_actor_get_preferred_height()</function> in the correct sequence.
-</para>
-
-<para>You should implement the <function>paint()</function> function, usually 
-calling <function>clutter_actor_paint()</function> on the child actors. All 
-containers should also implement the <function>pick()</function> function, calling 
-<function>clutter_actor_pick()</function> on each child actor.</para>
-<para>See the <link linkend="appendix-implementing-actors">Custom Actor</link> 
-section for more details these virtual functions.</para>
+<para>You should implement the <function>on_paint()</function> method, usually calling
+<function>Clutter::Actor::paint()</function> on the child actors. All containers should also
+implement the <function>pick_vfunc()</function> method, calling
+<function>Clutter::Actor::pick()</function> on each child actor.</para>
+<para>See the <link linkend="appendix-implementing-actors">Custom Actor</link> section for more
+details these virtual methods.</para>
 </sect2>
 
 <sect2>
-<title>ClutterContainer virtual functions to implement</title>
-<para>Your container implementation should also implement some of the 
-<classname>ClutterContainer</classname> virtual functions so that the container's 
-children will be affected appropriately when functions are called on the container.  
-</para>
-
-<para>For instance, your <function>add()</function> and 
-<function>remove()</function> implementions should manage your container's 
-internal list of child actors and might need to trigger repositioning or 
-resizing of the child actors by calling
-<function>clutter_actor_queue_relayout()</function>.
-</para>
-<para>Your <function>foreach</function> implementation would simply call the 
-provided callback on your container's list of child actors. Note that your container 
-could actually contain additional actors that are not considered to be child 
-actors for the purposes of add(), remove(), and foreach().</para>
-
+<title>Clutter::Container virtual methods to implement</title>
+<para>Your container implementation should also implement some of the
+<classname>Clutter::Container</classname> virtual methods so that the container's children will be
+affected appropriately when methods are called on the container.</para>
+<para>For instance, your <function>add_vfunc()</function> and <function>remove_vfunc()</function>
+implementions should manage your container's internal list of child actors and might need to trigger
+repositioning or resizing of the child actors by calling
+<function>Clutter::Actor::queue_relayout()</function>.</para>
+<para>Your <function>foreach_vfunc()</function> implementation would simply call the provided
+callback on your container's list of child actors. Note that your container could actually contain
+additional actors that are not considered to be child actors for the purposes of add_vfunc(),
+remove_vfunc() and foreach_vfunc().</para>
 </sect2>
 
 </sect1>
 
 <sect1 id="custom-container-example"><title>Example</title>
-<para>
-The following example demonstrates the implementation of a box container that 
-lays its child actors out horizontally. A real container should probably allow 
-optional padding around the container and spacing between the child actors. 
-You might also want to allow some child actors to expand to fill the available 
-space, or align differently inside the container.
-</para>
+<para>The following example demonstrates the implementation of a box container that lays its child
+actors out horizontally. A real container should probably allow optional padding around the
+container and spacing between the child actors. You might also want to allow some child actors to
+expand to fill the available space, or align differently inside the container.</para>
 
 <figure id="figure-custom-container">
   <title>Behaviour</title>
@@ -929,9 +927,8 @@ space, or align differently inside the container.
   </screenshot>
 </figure>
 
-<para><ulink url="&url_examples_base;custom_container">Source Code</ulink></para>
+<para><ulink url="&url_examples_base;custom_container">Source code</ulink></para>
 </sect1>
-
 
 </appendix>
 
@@ -941,30 +938,23 @@ space, or align differently inside the container.
 <sect1>
 <title>The Technique</title>
 
-<para>There is not yet a standard container in &clutter; to show and scroll through 
-a small part of a set of widgets, like the 
-<classname>GtkScrolledWindow</classname> widget in the GTK+ toolkit, so you may 
-need to implement this functionality in your application.
-</para>
-<para>The &tidy; project 
-contains some suggested implementations for such actors, but here is a simpler example 
-of the general technique. It creates the impression of scrolling by clipping a 
-container so that it only shows a small area of the screen, while moving the child 
-widgets in that container.
-</para>
+<para>There is not yet a standard container in &clutter; to show and scroll through a small part of
+a set of widgets, like the <classname>Gtk::ScrolledWindow</classname> widget in the &gtk; toolkit,
+so you may need to implement this functionality in your application.</para>
+<para>The &tidy; project contains some suggested implementations for such actors, but here is a
+simpler example of the general technique. It creates the impression of scrolling by clipping a
+container so that it only shows a small area of the screen, while moving the child widgets in that
+container.</para>
 </sect1>
 
 <sect1 id="scrolling-container-example"><title>Example</title>
-<para>
-This example places three rectangles in a custom container which scrolls its 
-child widgets to the left when the user clicks on the stage.
-</para>
+<para>This example places three rectangles in a custom container which scrolls its child widgets to
+the left when the user clicks on the stage.</para>
 
-<para>
-Real-world applications will of course want to implement more specific behaviour, depending on their needs. For instance, 
-adding scrollbars that show accurate scroll positions, scrolling smoothly with animation, efficiently drawing only objects 
-that should be visible when dealing with large numbers of rows.
-</para>
+<para>Real-world applications will of course want to implement more specific behaviour, depending
+on their needs. For instance, adding scrollbars that show accurate scroll positions, scrolling
+smoothly with animation, efficiently drawing only objects that should be visible when dealing with
+large numbers of rows.</para>
 
 <figure id="figure-scrolling-container">
   <title>Scrolling Container</title>
@@ -973,11 +963,10 @@ that should be visible when dealing with large numbers of rows.
   </screenshot>
 </figure>
 
-<para><ulink url="&url_examples_base;scrolling">Source Code</ulink></para>
+<para><ulink url="&url_examples_base;scrolling">Source code</ulink></para>
 </sect1>
 
 </appendix>
-
 
 <appendix id="appendix-implementing-text-editing">
 <title>Implementing Text Editing</title>
@@ -985,44 +974,22 @@ that should be visible when dealing with large numbers of rows.
 <sect1>
 <title>The Technique</title>
 
-<para>
-&clutter; provides a <classname>ClutterEntry</classname> actor for text entry. 
-However, this is limited to single lines of text. Therefore you will need to 
-implement your own custom actor if you need this functionality with multiple 
-lines of text.
-</para>
-
-<para>Like <classname>ClutterEntry</classname> you can use the Pango API - 
-specifically the <classname>PangoLayout</classname> object. The 
-<classname>PangoLayout</classname> can then be rendered to the clutter display  
-in your <function>ClutterActor::paint()</function> implementation by using 
-the <function>pango_clutter_render_layout()</function> utility function.
-</para>
-
-<note>
-<para>
-However, <function>pango_clutter_render_layout()</function> is not official 
-public &clutter; API and could disappear in future version of &clutter;. You 
-may choose to investigate its implementation and reimplement it in your 
-application. Future versions of Pango are likely to provide new API to make 
-this easier. 
-</para>  
-</note>
-
+<para>&cluttermm; provides a <classname>Clutter::Entry</classname> actor for text entry. However,
+this is limited to single lines of text. Therefore you will need to implement your own custom actor
+if you need this functionality with multiple lines of text.</para>
+<para>Like <classname>Clutter::Entry</classname> you can use the Pango API -- specifically the
+<classname>Pango::Layout</classname> object. The <classname>Pango::Layout</classname> can then be
+rendered to the clutter display in your <function>ClutterActor::on_paint()</function> implementation
+by using the <function>cogl_pango_render_layout()</function> utility function.</para>
 </sect1>
 
 <sect1 id="multiline-text-entry-example"><title>Example</title>
-<para>
-This example has a custom actor, based on the <classname>ClutterEntry</classname> 
-implementation, using a <classname>PangoLayout</classname> to show text wrapped 
-over multiple lines.
-</para>
-
-<para>
-Real-world applications will probably want to implement more text-editing features, 
-such as the ability to move the cursor vertically, the ability to select and copy 
-sections of text, the ability to show and manipulate right-to-left text, etc.
-</para>
+<para>This example has a custom actor, based on the <classname>Clutter::Entry</classname>
+implementation, using a <classname>PangoLayout</classname> to show text wrapped over multiple
+lines.</para>
+<para>Real-world applications will probably want to implement more text-editing features, such as
+the ability to move the cursor vertically, the ability to select and copy sections of text, the
+ability to show and manipulate right-to-left text, etc.</para>
 
 <figure id="figure-multiline-text-entry">
   <title>Multiline Text Entry</title>
@@ -1031,22 +998,15 @@ sections of text, the ability to show and manipulate right-to-left text, etc.
   </screenshot>
 </figure>
 
-<para><ulink url="&url_examples_base;multiline_text_entry">Source Code</ulink></para>
+<para><ulink url="&url_examples_base;multiline_text_entry">Source code</ulink></para>
 </sect1>
 
 </appendix>
 
-
 <chapter id="sec-Contributing">
 <title>Contributing</title>
-<para>
-If you find errors in this documentation or if you would like to contribute additional material, you are
-encouraged to write an email to clutter@o-hand.com. Thanks.
-</para>
+<para>If you find errors in this documentation or if you would like to contribute additional
+material, you are encouraged to write an email to clutter@o-hand.com. Thanks.</para>
 </chapter>
 
 </book>
-
-<!-- some vim settings
-    vim:ts=2 sw=2 et
--->

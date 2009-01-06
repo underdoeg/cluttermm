@@ -1,5 +1,10 @@
 2009-01-06  Daniel Elstner  <danielk@openismus.com>
 
+	* docs/tutorial/cluttermm-tut.xml: Rework the Clutter tutorial for
+	the Cluttermm API.
+
+2009-01-06  Daniel Elstner  <danielk@openismus.com>
+
 	* Makefile.am (bin_PROGRAMS): Rename to noinst_PROGRAMS, or every
 	example executable will be installed as $(bindir)/example -- the
 	last one wins.  Do we want to install the example binaries, and if
