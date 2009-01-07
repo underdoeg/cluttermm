@@ -30,8 +30,8 @@ static Glib::RefPtr<Clutter::Rectangle> rect;
  * This will be called as many times per seconds as specified in our call
  * to Clutter::Timeline::create().
  *
- * See also, for instance Clutter::Alpha::SINE_HALF for a useful built-in
- * callback.
+ * See also, for instance Clutter::Alpha::sine_half_func for a useful
+ * built-in callback.
  */
 static guint32 on_alpha(Glib::RefPtr<Clutter::Alpha> alpha)
 {
