@@ -72,7 +72,7 @@ int main(int argc, char** argv)
     timeline->start();
 
     // Instead of our custom callback, we could use a standard callback.
-    // For instance, Clutter::Alpha::SINE_INC.
+    // For instance, Clutter::Alpha::sine_inc_func.
     const Glib::RefPtr<Clutter::Alpha>
       alpha = Clutter::Alpha::create(timeline, &on_alpha);
 

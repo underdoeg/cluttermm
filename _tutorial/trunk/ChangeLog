@@ -1,5 +1,10 @@
 2009-01-07  Daniel Elstner  <danielk@openismus.com>
 
+	* examples/behaviour/main.cc (main): Correct a method name mentioned
+	in a comment.
+
+2009-01-07  Daniel Elstner  <danielk@openismus.com>
+
 	* Makefile.am: Minor cleanup.
 	(post-html): Prefix the examples directory with $(srcdir) because
 	the sources do not live in the build tree in a VPATH setup.  Also
