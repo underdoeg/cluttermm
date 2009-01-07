@@ -1,6 +1,7 @@
 2009-01-07  Daniel Elstner  <danielk@openismus.com>
 
-	* examples/behaviour/main.cc (Example::Example): Simplify expression.
+	* examples/full_example/main.cc (Example::Example): Simplify
+	expression.
 
 2009-01-07  Daniel Elstner  <danielk@openismus.com>
 
