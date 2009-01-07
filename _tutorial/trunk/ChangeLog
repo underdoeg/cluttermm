@@ -1,5 +1,10 @@
 2009-01-07  Daniel Elstner  <danielk@openismus.com>
 
+	* examples/full_example/main.cc (Example::rotate_item_to_front):
+	Disable a piece of code that calculates a value which is not used.
+
+2009-01-07  Daniel Elstner  <danielk@openismus.com>
+
 	* examples/full_example/main.cc (Example::Example): Simplify
 	expression.
 

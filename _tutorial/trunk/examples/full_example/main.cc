@@ -327,8 +327,10 @@ void Example::rotate_item_to_front(std::list<Item>::iterator pitem)
 
   // Set the number of frames to be proportional to the distance to travel,
   // so the speed is always the same:
+#if 0 /* TODO: This value is never used. */
   const int pos_to_move = (pos_front < pos) ? items_.size() + (pos - pos_front)
-                                            : pos_front - pos; //TODO: This is not used. murrayc.
+                                            : pos_front - pos;
+#endif
   timeline_rotation_->set_n_frames(angle_diff);
 
   // Remember what item will be at the front when this timeline finishes:
