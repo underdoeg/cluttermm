@@ -1,3 +1,11 @@
+2009-01-07  Daniel Elstner  <danielk@openismus.com>
+
+	* Makefile.am: Minor cleanup.
+	(post-html): Prefix the examples directory with $(srcdir) because
+	the sources do not live in the build tree in a VPATH setup.  Also
+	make use of the -C option of rsync to omit build garbage from the
+	upload.
+
 2009-01-06  Murray Cumming  <murrayc@murrayc.com>
 
 	* docs/tutorial/cluttermm-tut.xml: Introduction: cluttermm: Correct a 

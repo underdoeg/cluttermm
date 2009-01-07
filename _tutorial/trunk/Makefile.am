@@ -158,6 +158,8 @@ docs/tutorial/cluttermm-tut-with-examples.xml: docs/tutorial/cluttermm-tut.xml d
 
 # The new XML DocBook way:
 XSLTPROC = xsltproc
+XMLLINT = xmllint
+DB2PDF = docbook2pdf
 
 docs/tutorial/html/index.html: docs/tutorial/cluttermm-tut-with-examples.xml
 	-rm -rf docs/tutorial/html
@@ -179,23 +181,20 @@ docs/tutorial/html/index.html: docs/tutorial/cluttermm-tut-with-examples.xml
 	  $(DOCBOOK_STYLESHEET) $<
 
 validate-original: docs/tutorial/cluttermm-tut.xml
-	xmllint --xinclude --valid --noout --catalogs $(DOCBOOK_STYLESHEET) $<
+	$(XMLLINT) --xinclude --valid --noout --catalogs $(DOCBOOK_STYLESHEET) $<
 
 validate: docs/tutorial/cluttermm-tut-with-examples.xml
-	xmllint --xinclude --valid --noout --catalogs $(DOCBOOK_STYLESHEET) $<
+	$(XMLLINT) --xinclude --valid --noout --catalogs $(DOCBOOK_STYLESHEET) $<
 
 post-html: docs/tutorial/html/index.html docs/tutorial/style.css docs/tutorial/pdf/programming-with-cluttermm.pdf
 	rsync $(rsync_args) $(srcdir)/docs/tutorial/figures/*.png $$USER@$(web_host):$(clutter_tut_path)/figures/
 	rsync $(rsync_args) $(srcdir)/docs/tutorial/icons/*.png $$USER@$(web_host):$(clutter_tut_path)/icons/
-	rsync $(rsync_args) -r docs/tutorial/html/ $$USER@$(web_host):$(clutter_tut_path)/html/
+	rsync $(rsync_args) -Cr docs/tutorial/html/ $$USER@$(web_host):$(clutter_tut_path)/html/
 	rsync $(rsync_args) $(srcdir)/docs/tutorial/*.css $$USER@$(web_host):$(clutter_tut_path)/html/
-	rsync $(rsync_args) -r docs/tutorial/pdf/ $$USER@$(web_host):$(clutter_tut_path)/pdf/
-	rsync $(rsync_args) -r examples/ $$USER@$(web_host):$(web_path)/examples/
+	rsync $(rsync_args) -Cr docs/tutorial/pdf/ $$USER@$(web_host):$(clutter_tut_path)/pdf/
+	rsync $(rsync_args) -Cr $(srcdir)/examples/ --exclude '*/example' $$USER@$(web_host):$(web_path)/examples/
 
 # PDF Generation:
-
-XMLLINT = xmllint
-DB2PDF = docbook2pdf
 
 # we need to produce a version with full examples with all of the XIncludes done so that it
 # can processed for PDF
@@ -240,7 +239,7 @@ uninstall-tutorial: docs/tutorial/html/index.html docs/tutorial/style.css
 	  rm -f $(DESTDIR)$(tutorialdir)/$$f; \
 	done
 	rm -f $(DESTDIR)$(tutorialdir)/style.css
-	rm -f $(DESTDIR)$(tutorialdir)/icons
+	rm -rf $(DESTDIR)$(tutorialdir)/icons
 
 all-local: html
 
@@ -250,4 +249,4 @@ uninstall-local: uninstall-tutorial
 
 maintainer-clean-local: doc-clean
 
-.PHONY: post-html doc-clean install-tutorial uninstall-tutorial validate validate-original
+.PHONY: post-html doc-clean doc-rebuild install-tutorial uninstall-tutorial validate validate-original
