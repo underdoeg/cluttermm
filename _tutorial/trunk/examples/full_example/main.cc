@@ -348,8 +348,7 @@ bool Example::on_texture_button_press(Clutter::ButtonEvent* event, std::list<Ite
     std::cout << "on_texture_button_press(): ignoring." << std::endl;
     return false;
   }
-  else
-    std::cout << "on_texture_button_press(): handling.o" << std::endl;
+  std::cout << "on_texture_button_press(): handling." << std::endl;
 
   rotate_item_to_front(pitem);
   return true;
