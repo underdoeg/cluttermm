@@ -1,5 +1,9 @@
 2009-01-07  Daniel Elstner  <danielk@openismus.com>
 
+	* examples/behaviour/main.cc (Example::Example): Simplify expression.
+
+2009-01-07  Daniel Elstner  <danielk@openismus.com>
+
 	* examples/behaviour/main.cc (main): Correct a method name mentioned
 	in a comment.
 

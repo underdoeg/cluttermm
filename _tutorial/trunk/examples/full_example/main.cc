@@ -117,7 +117,7 @@ Example::Example()
   rect->set_width(stage_->get_width() + 100);
   rect->set_height(ELLIPSE_HEIGHT + 20);
   // Position it so that its center is under the images:
-  rect->set_position(-(rect->get_width() - stage_->get_width()) / 2,
+  rect->set_position((stage_->get_width() - rect->get_width()) / 2,
                      ELLIPSE_Y + IMAGE_HEIGHT - rect->get_height() / 2);
 
   // Rotate it around its center:
