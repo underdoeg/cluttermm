@@ -1,5 +1,9 @@
 2009-01-07  Daniel Elstner  <danielk@openismus.com>
 
+	* docs/tutorial/README: Document "make html".
+
+2009-01-07  Daniel Elstner  <danielk@openismus.com>
+
 	* examples/full_example/main.cc (Example::on_texture_button_press):
 	Fix typo.
 

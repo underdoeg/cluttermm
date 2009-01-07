@@ -1,7 +1,7 @@
 cluttermm-tut.xml is a Cluttermm tutorial in DocBook XML format.
 
 You can build the html by typing
-    make docs/tutorial/html/index.html
+    make html
 in the top build directory.
 
 You'll need to install this stuff:
