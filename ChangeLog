@@ -1,5 +1,11 @@
 2009-01-09  Daniel Elstner  <danielk@openismus.com>
 
+	* clutter/src/alpha.hg (Alpha::[gs]et_mode): Wrap new methods.
+	* clutter/src/types.hg (AnimationMode): Wrap new enum.
+	* tools/m4/convert_cluttermm.m4 (AnimationMode): Add conversions.
+
+2009-01-09  Daniel Elstner  <danielk@openismus.com>
+
 	* clutter/src/clutter_methods.defs: Regenerate.
 	* clutter/src/clutter_enums.defs: Regenerate and merge manual
 	changes.

@@ -75,6 +75,7 @@ _EQUAL(ClutterScrollEvent*,ScrollEvent*)
 _EQUAL(ClutterCrossingEvent*,CrossingEvent*)
 
 _CONV_ENUM(Clutter,ActorFlags)
+_CONV_ENUM(Clutter,AnimationMode)
 _CONV_ENUM(Clutter,LayoutFlags)
 _CONV_ENUM(Clutter,PackType)
 _CONV_ENUM(Clutter,TextureFlags)

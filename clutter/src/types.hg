@@ -36,6 +36,7 @@ typedef ClutterAngle Angle;
 
 _WRAP_GERROR(InitError, ClutterInitError, CLUTTER_INIT_ERROR)
 
+_WRAP_ENUM(AnimationMode, ClutterAnimationMode)
 _WRAP_ENUM(RotateDirection, ClutterRotateDirection)
 _WRAP_ENUM(RotateAxis, ClutterRotateAxis)
 _WRAP_ENUM(Gravity, ClutterGravity)

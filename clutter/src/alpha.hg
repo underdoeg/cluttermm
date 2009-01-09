@@ -80,6 +80,9 @@ public:
   _IGNORE(clutter_alpha_set_func)
   void set_func(const SlotAlphaFunc& slot);
 
+  _WRAP_METHOD(void set_mode(AnimationMode mode), clutter_alpha_set_mode)
+  _WRAP_METHOD(AnimationMode get_mode() const, clutter_alpha_get_mode)
+
   _WRAP_PROPERTY("alpha", guint)
   _WRAP_PROPERTY("timeline", Glib::RefPtr<Timeline>)
 
