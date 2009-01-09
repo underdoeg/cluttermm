@@ -89,3 +89,5 @@ _CONV_ENUM(Pango,WrapMode)
 
 _CONVERSION(`guint32', `ActorFlags', `static_cast<ActorFlags>($3)')
 _CONVERSION(`const gchar*', `const Glib::ustring&',__GCHARP_TO_USTRING)
+
+_CONVERSION(`PangoContext*',`Glib::RefPtr<const Pango::Context>',Glib::wrap($3))

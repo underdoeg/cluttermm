@@ -16,6 +16,7 @@
  */
 
 #include <glibmm/object.h>
+#include <pangomm/context.h>
 #include <cluttermm/color.h>
 #include <cluttermm/scriptable.h>
 #include <cluttermm/shader.h>
@@ -79,8 +80,18 @@ public:
   _WRAP_METHOD(void queue_redraw(), clutter_actor_queue_redraw)
   _WRAP_METHOD(void queue_relayout(), clutter_actor_queue_relayout)
 
+#m4 dnl // Those are varargs convenience functions for C coders
+  _IGNORE(clutter_actor_animate, clutter_actor_animate_with_alpha, clutter_actor_animate_with_timeline)
+
   //TODO: Check that we don't want to wrap this: _WRAP_METHOD(void destroy(), clutter_actor_destroy)
   //_IGNORE(clutter_actor_destroy)
+
+  _WRAP_METHOD(Glib::RefPtr<Pango::Context> get_pango_context(),
+               clutter_actor_get_pango_context, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Pango::Context> get_pango_context() const,
+               clutter_actor_get_pango_context, refreturn, constversion)
+  _WRAP_METHOD(Glib::RefPtr<Pango::Context> create_pango_context(),
+               clutter_actor_create_pango_context)
 
   _WRAP_METHOD(Glib::RefPtr<Actor> get_stage(), clutter_actor_get_stage)
   _WRAP_METHOD(Glib::RefPtr<const Actor> get_stage() const, clutter_actor_get_stage)
@@ -148,6 +159,7 @@ public:
   _WRAP_METHOD(void set_shader(const Glib::RefPtr<Shader>& shader), clutter_actor_set_shader)
   _WRAP_METHOD_DOCS_ONLY(clutter_actor_set_shader_param)
   template <class ParamType> void set_shader_param(const Glib::ustring& param, const ParamType& value);
+  _IGNORE(clutter_actor_set_shader_param_int, clutter_actor_set_shader_param_float)
   //_WRAP_METHOD_DOCS_ONLY(clutter_actor_get_paint_area)
   //ActorBox get_paint_area() const;
   _WRAP_METHOD(bool is_rotated() const, clutter_actor_is_rotated)
@@ -162,6 +174,7 @@ public:
   ActorBox get_allocation_box() const;
 #m4 _CONVERSION(`const ActorBox&', `const ClutterActorBox*',`($3).gobj()')
   _WRAP_METHOD(void allocate(const ActorBox& box, bool absolute_origin_changed), clutter_actor_allocate)
+  _WRAP_METHOD(void allocate(bool absolute_origin_changed), clutter_actor_allocate_preferred_size)
 
 #m4 _CONVERSION(`const Vertex&',`ClutterVertex*',`const_cast<ClutterVertex*>(($3).gobj())')
 #m4 _CONVERSION(`Vertex&',`ClutterVertex*',`($3).gobj()')
@@ -173,6 +186,7 @@ public:
   _WRAP_METHOD(void get_preferred_width(Unit for_height, Unit& min_width_p, Unit& natural_width_p) const, clutter_actor_get_preferred_width)
   _WRAP_METHOD(void get_preferred_height(Unit for_width, Unit& min_height_p, Unit& natural_height_p) const, clutter_actor_get_preferred_height)
   _WRAP_METHOD(guint8 get_paint_opacity() const, clutter_actor_get_paint_opacity)
+  _WRAP_METHOD(bool get_paint_visibility() const, clutter_actor_get_paint_visibility)
   _WRAP_METHOD(void move_anchor_point_from_gravity(Gravity gravity), clutter_actor_move_anchor_point_from_gravity)
   _WRAP_METHOD(void move_anchor_point(int anchor_x, int anchor_y), clutter_actor_move_anchor_point)
   _WRAP_METHOD(void move_anchor_pointu(Unit anchor_x, Unit anchor_y), clutter_actor_move_anchor_pointu)
@@ -218,6 +232,8 @@ public:
   _WRAP_METHOD(void pick(const Color& color), clutter_actor_pick)
   _WRAP_METHOD(bool should_pick_paint() const, clutter_actor_should_pick_paint)
 
+  _WRAP_METHOD(void grab_key_focus(), clutter_actor_grab_key_focus)
+
 // signals
   _WRAP_SIGNAL(bool button_press_event(ButtonEvent* event), "button_press_event")
   _WRAP_SIGNAL(bool button_release_event(ButtonEvent* event), "button_release_event")
@@ -231,7 +247,7 @@ public:
   _WRAP_SIGNAL(bool event(Event* event), "event")
   _WRAP_SIGNAL(void focus_out(), "focus_out")
   _WRAP_SIGNAL(void focus_in(), "focus_in")
-  #m4 _CONVERSION(`ClutterActor*', `const Glib::RefPtr<Actor>&', `Glib::wrap(($3),true)')
+#m4 _CONVERSION(`ClutterActor*', `const Glib::RefPtr<Actor>&', `Glib::wrap(($3),true)')
   _WRAP_SIGNAL(void parent_set(const Glib::RefPtr<Actor>& old_parent), "parent_set")
   _WRAP_SIGNAL(bool scroll_event(ScrollEvent* event), "scroll_event")
   _WRAP_SIGNAL(bool key_press_event(KeyEvent* event), "key_press_event")

@@ -1,5 +1,13 @@
 2009-01-09  Daniel Elstner  <danielk@openismus.com>
 
+	* clutter/src/actor.hg (Actor): Wrap all of the missing methods
+	listed by gmmproc, except for clutter_actor_destroy(), for which
+	we would first need to check whether we want to wrap it.
+	* tools/m4/convert_cluttermm.m4 (const Pango::Context): Add
+	conversion.
+
+2009-01-09  Daniel Elstner  <danielk@openismus.com>
+
 	* clutter/src/alpha.hg (Alpha::[gs]et_mode): Wrap new methods.
 	* clutter/src/types.hg (AnimationMode): Wrap new enum.
 	* tools/m4/convert_cluttermm.m4 (AnimationMode): Add conversions.
