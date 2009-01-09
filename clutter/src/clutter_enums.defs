@@ -1,16 +1,48 @@
-;; From clutter/clutter-actor.h
+;; From clutter-main.h
 
-(define-flags-extended ActorFlags
+(define-enum-extended InitError
   (in-module "Clutter")
-  (c-name "ClutterActorFlags")
+  (c-name "ClutterInitError")
   (values
-    '("mapped" "CLUTTER_ACTOR_MAPPED" "1 << 1")
-    '("realized" "CLUTTER_ACTOR_REALIZED" "1 << 2")
-    '("reactive" "CLUTTER_ACTOR_REACTIVE" "1 << 3")
+    '("success" "CLUTTER_INIT_SUCCESS" "1")
+    '("error-unknown" "CLUTTER_INIT_ERROR_UNKNOWN" "0")
+    '("error-threads" "CLUTTER_INIT_ERROR_THREADS" "-1")
+    '("error-backend" "CLUTTER_INIT_ERROR_BACKEND" "-2")
+    '("error-internal" "CLUTTER_INIT_ERROR_INTERNAL" "-3")
   )
 )
 
-;; From clutter/clutter-event.h
+;; From clutter-path.h
+;; hand-edited to deal with CLUTTER_PATH_RELATIVE flag
+
+(define-flags-extended PathNodeType
+  (in-module "Clutter")
+  (c-name "ClutterPathNodeType")
+  (values
+    '("move-to" "CLUTTER_PATH_MOVE_TO" "0")
+    '("line-to" "CLUTTER_PATH_LINE_TO" "1")
+    '("curve-to" "CLUTTER_PATH_CURVE_TO" "2")
+    '("close" "CLUTTER_PATH_CLOSE" "3")
+    '("relative" "CLUTTER_PATH_RELATIVE" "32")
+    '("rel-move-to" "CLUTTER_PATH_REL_MOVE_TO" "PATH_RELATIVE | PATH_MOVE_TO")
+    '("rel-line-to" "CLUTTER_PATH_REL_LINE_TO" "PATH_RELATIVE | PATH_LINE_TO")
+    '("rel-curve-to" "CLUTTER_PATH_REL_CURVE_TO" "PATH_RELATIVE | PATH_CURVE_TO")
+  )
+)
+
+;; From clutter-shader.h
+
+(define-enum-extended ShaderError
+  (in-module "Clutter")
+  (c-name "ClutterShaderError")
+  (values
+    '("no-asm" "CLUTTER_SHADER_ERROR_NO_ASM" "0")
+    '("no-glsl" "CLUTTER_SHADER_ERROR_NO_GLSL" "1")
+    '("compile" "CLUTTER_SHADER_ERROR_COMPILE" "2")
+  )
+)
+
+;; From clutter-event.h
 
 (define-flags-extended ModifierType
   (in-module "Clutter")
@@ -37,11 +69,13 @@
   )
 )
 
+;; Hand-edited because enum.pl failed to find the correct common prefix
+
 (define-flags-extended EventFlags
   (in-module "Clutter")
   (c-name "ClutterEventFlags")
   (values
-    '("c" "CLUTTER_EVENT_FLAG_SYNTHETIC" "1 << 0")
+    '("synthetic" "CLUTTER_EVENT_FLAG_SYNTHETIC" "1 << 0")
   )
 )
 
@@ -86,82 +120,7 @@
   )
 )
 
-;; From clutter/clutter-feature.h
-
-(define-flags-extended FeatureFlags
-  (in-module "Clutter")
-  (c-name "ClutterFeatureFlags")
-  (values
-    '("texture-npot" "CLUTTER_FEATURE_TEXTURE_NPOT" "1 << 2")
-    '("sync-to-vblank" "CLUTTER_FEATURE_SYNC_TO_VBLANK" "1 << 3")
-    '("texture-yuv" "CLUTTER_FEATURE_TEXTURE_YUV" "1 << 4")
-    '("texture-read-pixels" "CLUTTER_FEATURE_TEXTURE_READ_PIXELS" "1 << 5")
-    '("stage-static" "CLUTTER_FEATURE_STAGE_STATIC" "1 << 6")
-    '("stage-user-resize" "CLUTTER_FEATURE_STAGE_USER_RESIZE" "1 << 7")
-    '("stage-cursor" "CLUTTER_FEATURE_STAGE_CURSOR" "1 << 8")
-    '("shaders-glsl" "CLUTTER_FEATURE_SHADERS_GLSL" "1 << 9")
-    '("offscreen" "CLUTTER_FEATURE_OFFSCREEN" "1 << 10")
-    '("stage-multiple" "CLUTTER_FEATURE_STAGE_MULTIPLE" "1 << 11")
-  )
-)
-
-;; From clutter/clutter-main.h
-
-(define-enum-extended InitError
-  (in-module "Clutter")
-  (c-name "ClutterInitError")
-  (values
-    '("success" "CLUTTER_INIT_SUCCESS" "1")
-    '("error-unknown" "CLUTTER_INIT_ERROR_UNKNOWN" "0")
-    '("error-threads" "CLUTTER_INIT_ERROR_THREADS" "-1")
-    '("error-backend" "CLUTTER_INIT_ERROR_BACKEND" "-2")
-    '("error-internal" "CLUTTER_INIT_ERROR_INTERNAL" "-3")
-  )
-)
-
-;; From clutter/clutter-path.h
-;; hand-edited to deal with CLUTTER_PATH_RELATIVE flag
-
-(define-flags-extended PathNodeType
-  (in-module "Clutter")
-  (c-name "ClutterPathNodeType")
-  (values
-    '("move-to" "CLUTTER_PATH_MOVE_TO" "0")
-    '("line-to" "CLUTTER_PATH_LINE_TO" "1")
-    '("curve-to" "CLUTTER_PATH_CURVE_TO" "2")
-    '("close" "CLUTTER_PATH_CLOSE" "3")
-    '("relative" "CLUTTER_PATH_RELATIVE" "32")
-    '("rel-move-to" "CLUTTER_PATH_REL_MOVE_TO" "PATH_MOVE_TO | PATH_RELATIVE")
-    '("rel-line-to" "CLUTTER_PATH_REL_LINE_TO" "PATH_LINE_TO | PATH_RELATIVE")
-    '("rel-curve-to" "CLUTTER_PATH_REL_CURVE_TO" "PATH_CURVE_TO | PATH_RELATIVE")
-  )
-)
-
-;; From clutter/clutter-script.h
-
-(define-enum-extended ScriptError
-  (in-module "Clutter")
-  (c-name "ClutterScriptError")
-  (values
-    '("type-function" "CLUTTER_SCRIPT_ERROR_INVALID_TYPE_FUNCTION" "0")
-    '("property" "CLUTTER_SCRIPT_ERROR_INVALID_PROPERTY" "1")
-    '("value" "CLUTTER_SCRIPT_ERROR_INVALID_VALUE" "2")
-  )
-)
-
-;; From clutter/clutter-shader.h
-
-(define-enum-extended ShaderError
-  (in-module "Clutter")
-  (c-name "ClutterShaderError")
-  (values
-    '("no-asm" "CLUTTER_SHADER_ERROR_NO_ASM" "0")
-    '("no-glsl" "CLUTTER_SHADER_ERROR_NO_GLSL" "1")
-    '("compile" "CLUTTER_SHADER_ERROR_COMPILE" "2")
-  )
-)
-
-;; From clutter/clutter-texture.h
+;; From clutter-texture.h
 
 (define-enum-extended TextureError
   (in-module "Clutter")
@@ -193,7 +152,31 @@
   )
 )
 
-;; From clutter/clutter-timeline.h
+;; From clutter-script.h
+
+(define-enum-extended ScriptError
+  (in-module "Clutter")
+  (c-name "ClutterScriptError")
+  (values
+    '("type-function" "CLUTTER_SCRIPT_ERROR_INVALID_TYPE_FUNCTION" "0")
+    '("property" "CLUTTER_SCRIPT_ERROR_INVALID_PROPERTY" "1")
+    '("value" "CLUTTER_SCRIPT_ERROR_INVALID_VALUE" "2")
+  )
+)
+
+;; From clutter-actor.h
+
+(define-flags-extended ActorFlags
+  (in-module "Clutter")
+  (c-name "ClutterActorFlags")
+  (values
+    '("mapped" "CLUTTER_ACTOR_MAPPED" "1 << 1")
+    '("realized" "CLUTTER_ACTOR_REALIZED" "1 << 2")
+    '("reactive" "CLUTTER_ACTOR_REACTIVE" "1 << 3")
+  )
+)
+
+;; From clutter-timeline.h
 
 (define-enum-extended TimelineDirection
   (in-module "Clutter")
@@ -204,7 +187,7 @@
   )
 )
 
-;; From clutter/clutter-types.h
+;; From clutter-types.h
 
 (define-enum-extended Gravity
   (in-module "Clutter")
@@ -270,75 +253,22 @@
   )
 )
 
-;; From clutter/json/json-parser.h
+;; From clutter-feature.h
 
-(define-enum-extended ParserError
-  (in-module "Json")
-  (c-name "JsonParserError")
-  (values
-    '("parse" "JSON_PARSER_ERROR_PARSE" "0")
-    '("unknown" "JSON_PARSER_ERROR_UNKNOWN" "1")
-  )
-)
-
-;; hand-edited to fix reference to G_TOKEN_LAST
-(define-enum-extended TokenType
-  (in-module "Json")
-  (c-name "JsonTokenType")
-  (values
-    '("invalid" "JSON_TOKEN_INVALID" "270")
-    '("true" "JSON_TOKEN_TRUE" "271")
-    '("false" "JSON_TOKEN_FALSE" "272")
-    '("null" "JSON_TOKEN_NULL" "273")
-    '("last" "JSON_TOKEN_LAST" "274")
-  )
-)
-
-;; From clutter/json/json-types.h
-
-(define-enum-extended NodeType
-  (in-module "Json")
-  (c-name "JsonNodeType")
-  (values
-    '("object" "JSON_NODE_OBJECT" "0")
-    '("array" "JSON_NODE_ARRAY" "1")
-    '("value" "JSON_NODE_VALUE" "2")
-    '("null" "JSON_NODE_NULL" "3")
-  )
-)
-
-;; From clutter/x11/clutter-x11.h
-
-(define-enum-extended X11FilterReturn
+(define-flags-extended FeatureFlags
   (in-module "Clutter")
-  (c-name "ClutterX11FilterReturn")
+  (c-name "ClutterFeatureFlags")
   (values
-    '("continue" "CLUTTER_X11_FILTER_CONTINUE" "0")
-    '("translate" "CLUTTER_X11_FILTER_TRANSLATE" "1")
-    '("remove" "CLUTTER_X11_FILTER_REMOVE" "2")
-  )
-)
-
-(define-enum-extended X11XInputEventTypes
-  (in-module "Clutter")
-  (c-name "ClutterX11XInputEventTypes")
-  (values
-    '("key-press-event" "CLUTTER_X11_XINPUT_KEY_PRESS_EVENT" "0")
-    '("key-release-event" "CLUTTER_X11_XINPUT_KEY_RELEASE_EVENT" "1")
-    '("button-press-event" "CLUTTER_X11_XINPUT_BUTTON_PRESS_EVENT" "2")
-    '("button-release-event" "CLUTTER_X11_XINPUT_BUTTON_RELEASE_EVENT" "3")
-    '("motion-notify-event" "CLUTTER_X11_XINPUT_MOTION_NOTIFY_EVENT" "4")
-    '("last-event" "CLUTTER_X11_XINPUT_LAST_EVENT" "5")
-  )
-)
-
-(define-enum-extended X11InputDeviceType
-  (in-module "Clutter")
-  (c-name "ClutterX11InputDeviceType")
-  (values
-    '("pointer-device" "CLUTTER_X11_XINPUT_POINTER_DEVICE" "0")
-    '("keyboard-device" "CLUTTER_X11_XINPUT_KEYBOARD_DEVICE" "1")
-    '("extension-device" "CLUTTER_X11_XINPUT_EXTENSION_DEVICE" "2")
+    '("texture-npot" "CLUTTER_FEATURE_TEXTURE_NPOT" "1 << 2")
+    '("sync-to-vblank" "CLUTTER_FEATURE_SYNC_TO_VBLANK" "1 << 3")
+    '("texture-yuv" "CLUTTER_FEATURE_TEXTURE_YUV" "1 << 4")
+    '("texture-read-pixels" "CLUTTER_FEATURE_TEXTURE_READ_PIXELS" "1 << 5")
+    '("stage-static" "CLUTTER_FEATURE_STAGE_STATIC" "1 << 6")
+    '("stage-user-resize" "CLUTTER_FEATURE_STAGE_USER_RESIZE" "1 << 7")
+    '("stage-cursor" "CLUTTER_FEATURE_STAGE_CURSOR" "1 << 8")
+    '("shaders-glsl" "CLUTTER_FEATURE_SHADERS_GLSL" "1 << 9")
+    '("offscreen" "CLUTTER_FEATURE_OFFSCREEN" "1 << 10")
+    '("stage-multiple" "CLUTTER_FEATURE_STAGE_MULTIPLE" "1 << 11")
   )
 )
 

@@ -130,14 +130,6 @@
   (return-type "int")
 )
 
-; ClutterEntry
-
-(define-vfunc paint_cursor
-  (of-object "ClutterEntry")
-  (return-type "void")
-)
-
-
 ; ClutterBehaviour
 
 (define-vfunc alpha_notify
@@ -306,6 +298,7 @@
     '("ClutterActor*" "actor")
   )
 )
+
 (define-vfunc get_child_meta
   (of-object "ClutterContainer")
   (return-type "ClutterChildMeta*")

@@ -42,6 +42,12 @@ _CONVERSION(`Padding&',`ClutterPadding*',`&($3)')
 _CONVERSION(`const Padding&',`const ClutterPadding*',`&($3)')
 _CONVERSION(`ClutterPadding*',`Padding&',`*($3)')
 
+_CONVERSION(`Geometry&',`Clutter::Geometry*',`($3).gobj()')
+_CONVERSION(`const Geometry&',`ClutterGeometry*',`const_cast<ClutterGeometry*>(($3).gobj())')
+_CONVERSION(`const Geometry&',`const ClutterGeometry*',`($3).gobj()')
+_CONVERSION(`ClutterGeometry*',`const Geometry&',`Geometry($3)')
+_CONVERSION(`const ClutterGeometry*',`const Geometry&',`Geometry($3)')
+
 _EQUAL(`guint8',`guchar')
 _EQUAL(`guint8*',`guchar*')
 _EQUAL(`const guint8*',`const guchar*')

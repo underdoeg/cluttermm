@@ -1,3 +1,25 @@
+2009-01-09  Daniel Elstner  <danielk@openismus.com>
+
+	* clutter/src/clutter_methods.defs: Regenerate.
+	* clutter/src/clutter_enums.defs: Regenerate and merge manual
+	changes.
+	* clutter/src/clutter_signals.defs: ditto.
+	* clutter/src/clutter_vfuncs.defs: Remove ClutterEntry vfuncs.
+
+	* clutter/src/text.{ccg,hg}: New files.  Clutter::Text is a new
+	actor that replaces both Clutter::Entry and Clutter::Label.
+	* clutter/src/entry.{ccg,hg}: Remove files.
+	* clutter/src/label.{ccg,hg}: ditto.
+
+	* clutter/cluttermm.h: Remove entry.h and label.h.  Add text.h.
+	* clutter/src/Makefile_list_of_hg.am_fragment (files_hg): Remove
+	entry.hg and label.hg.  Add text.hg.
+	* tools/extra_defs_gen/generate_defs_clutter.cc: Remove lookup of
+	CLUTTER_TYPE_ENTRY and CLUTTER_TYPE_LABEL.  Add CLUTTER_TYPE_TEXT.
+
+	* tools/m4/convert_cluttermm.m4: Add conversions from/to
+	ClutterGeometry.
+
 2009-01-06  Murray Cumming  <murrayc@murrayc.com>
 
 	* docs/Makefile.am:

@@ -1,0 +1,106 @@
+/*
+ * Copyright (c) 2009  The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include <cluttermm/actor.h>
+#include <cluttermm/color.h>
+#include <pangomm.h>
+ 
+_DEFS(cluttermm,clutter)
+_PINCLUDE(cluttermm/private/actor_p.h)
+
+namespace Clutter
+{
+
+class Text : public Actor
+{
+  _CLASS_GOBJECT(Text, ClutterText, CLUTTER_TEXT, Actor, ClutterActor)
+
+protected:
+  _CTOR_DEFAULT()
+  _WRAP_CTOR(Text(const Glib::ustring& font_name, const Glib::ustring& text), clutter_text_new_with_text)
+  _WRAP_CTOR(Text(const Glib::ustring& font_name, const Glib::ustring& text, const Color& color), clutter_text_new_full)
+
+public:
+  _WRAP_CREATE()
+  _WRAP_CREATE(const Glib::ustring& font_name, const Glib::ustring& text)
+  _WRAP_CREATE(const Glib::ustring& font_name, const Glib::ustring& text, const Color& color)
+
+#m4 dnl _CONVERSION(`ClutterActor*',`Glib::RefPtr<Text>',`Glib::wrap((ClutterText*)$3)')
+
+  _WRAP_METHOD(void set_text(const Glib::ustring& text), clutter_text_set_text)
+  _WRAP_METHOD(Glib::ustring get_text() const, clutter_text_get_text)
+  _WRAP_METHOD(void set_font_name(const Glib::ustring& font_name), clutter_text_set_font_name)
+  _WRAP_METHOD(Glib::ustring get_font_name() const, clutter_text_get_font_name)
+
+  _WRAP_METHOD(void set_color(const Color& color), clutter_text_set_color)
+  _WRAP_METHOD_DOCS_ONLY(clutter_text_get_color)
+  Color get_color() const;
+  _IGNORE(clutter_text_get_color)
+
+  _WRAP_METHOD(Glib::RefPtr<Pango::Layout> get_layout(), clutter_text_get_layout)
+  _WRAP_METHOD(Glib::RefPtr<const Pango::Layout> get_layout() const, clutter_text_get_layout, constversion)
+
+  _WRAP_METHOD(Pango::Alignment get_alignment() const, clutter_text_get_alignment)
+  _WRAP_METHOD(void set_alignment(Pango::Alignment wrap_mode), clutter_text_set_alignment)
+
+  _WRAP_METHOD(int get_cursor_position() const, clutter_text_get_cursor_position)
+  _WRAP_METHOD(void set_cursor_position(int position), clutter_text_set_cursor_position)
+
+  _WRAP_METHOD(void insert(gunichar wc), clutter_text_insert_unichar)
+  _WRAP_METHOD(void insert(const Glib::ustring& text, gssize position), clutter_text_insert_text)
+
+  _WRAP_METHOD(void delete_chars(guint len), clutter_text_delete_chars)
+  _WRAP_METHOD(void delete_text(gssize start_pos, gssize end_pos), clutter_text_delete_text)
+
+  _WRAP_METHOD(void set_cursor_visible(bool visible), clutter_text_set_cursor_visible)
+  _WRAP_METHOD(bool get_cursor_visible() const, clutter_text_get_cursor_visible)
+
+  _WRAP_METHOD(void set_password_char(gunichar wc), clutter_text_set_password_char)
+  _WRAP_METHOD(gunichar get_password_char() const, clutter_text_get_password_char)
+
+  _WRAP_METHOD(int get_max_length() const, clutter_text_get_max_length)
+  _WRAP_METHOD(void set_max_length(int max_length), clutter_text_set_max_length)
+
+  _WRAP_SIGNAL(void activate(), "activate")
+  _WRAP_SIGNAL(void text_changed(), "text_changed")
+  _WRAP_SIGNAL(void cursor_event(const Geometry& geometry), "cursor_event")
+
+  _WRAP_PROPERTY("font-name", Glib::ustring)
+  _WRAP_PROPERTY("text", Glib::ustring)
+  _WRAP_PROPERTY("color", Color)
+  _WRAP_PROPERTY("editable", bool)
+  _WRAP_PROPERTY("selectable", bool)
+  _WRAP_PROPERTY("activatable", bool)
+  _WRAP_PROPERTY("cursor-visible", bool)
+  _WRAP_PROPERTY("cursor-color", Color)
+  _WRAP_PROPERTY("cursor-color-set", bool)
+  _WRAP_PROPERTY("cursor-size", int)
+  _WRAP_PROPERTY("position", int)
+  _WRAP_PROPERTY("selection-bound", int)
+  _WRAP_PROPERTY("attributes", Pango::AttrList)
+  _WRAP_PROPERTY("use-markup", bool)
+  _WRAP_PROPERTY("line-wrap", bool)
+  _WRAP_PROPERTY("line-wrap-mode", Pango::WrapMode)
+  _WRAP_PROPERTY("ellipsize", Pango::EllipsizeMode)
+  _WRAP_PROPERTY("alignment", Pango::Alignment)
+  _WRAP_PROPERTY("justify", bool)
+  _WRAP_PROPERTY("password-char", gunichar)
+  _WRAP_PROPERTY("max-length", int)
+  _WRAP_PROPERTY("single-line-mode", bool)
+};
+
+} // namespace Clutter

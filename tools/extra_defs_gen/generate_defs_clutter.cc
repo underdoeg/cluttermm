@@ -19,12 +19,11 @@
 #include <clutter/clutter.h>
 #include <iostream>
 
-
-int main (int argc, char *argv[])
+int main(int argc, char** argv)
 {
-  clutter_init(&argc, &argv) ;
+  clutter_init(&argc, &argv);
 
-  std::cout 
+  std::cout
     << get_defs(CLUTTER_TYPE_ACTOR)
     << get_defs(CLUTTER_TYPE_ALPHA)
     << get_defs(CLUTTER_TYPE_BACKEND)
@@ -40,17 +39,16 @@ int main (int argc, char *argv[])
     << get_defs(CLUTTER_TYPE_COLOR)
 //    << get_defs(CLUTTER_TYPE_CONTAINER)
     << get_defs(CLUTTER_TYPE_EFFECT_TEMPLATE)
-    << get_defs(CLUTTER_TYPE_ENTRY)
     << get_defs(CLUTTER_TYPE_EVENT)
     << get_defs(CLUTTER_TYPE_GROUP)
 //    << get_defs(CLUTTER_TYPE_HBOX)
-    << get_defs(CLUTTER_TYPE_LABEL)
 //    << get_defs(CLUTTER_TYPE_LAYOUT)
     << get_defs(CLUTTER_TYPE_MEDIA)
     << get_defs(CLUTTER_TYPE_RECTANGLE)
     << get_defs(CLUTTER_TYPE_SCORE)
     << get_defs(CLUTTER_TYPE_SCRIPT)
     << get_defs(CLUTTER_TYPE_STAGE)
+    << get_defs(CLUTTER_TYPE_TEXT)
     << get_defs(CLUTTER_TYPE_TEXTURE)
     << get_defs(CLUTTER_TYPE_TIMELINE)
     << get_defs(CLUTTER_TYPE_SCORE)

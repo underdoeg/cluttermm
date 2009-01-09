@@ -104,13 +104,6 @@
   (gtype-id "CLUTTER_TYPE_EFFECT_TEMPLATE")
 )
 
-(define-object Entry
-  (in-module "Clutter")
-  (parent "ClutterActor")
-  (c-name "ClutterEntry")
-  (gtype-id "CLUTTER_TYPE_ENTRY")
-)
-
 (define-object Group
   (in-module "Clutter")
   (parent "ClutterActor")
@@ -123,13 +116,6 @@
   (parent "GInitiallyUnowned")
   (c-name "ClutterInterval")
   (gtype-id "CLUTTER_TYPE_INTERVAL")
-)
-
-(define-object Label
-  (in-module "Clutter")
-  (parent "ClutterActor")
-  (c-name "ClutterLabel")
-  (gtype-id "CLUTTER_TYPE_LABEL")
 )
 
 (define-object Model
@@ -194,6 +180,13 @@
   (gtype-id "CLUTTER_TYPE_STAGE")
 )
 
+(define-object Text
+  (in-module "Clutter")
+  (parent "ClutterActor")
+  (c-name "ClutterText")
+  (gtype-id "CLUTTER_TYPE_TEXT")
+)
+
 (define-object Texture
   (in-module "Clutter")
   (parent "ClutterActor")
@@ -201,39 +194,18 @@
   (gtype-id "CLUTTER_TYPE_TEXTURE")
 )
 
+(define-object CairoTexture
+  (in-module "Clutter")
+  (parent "ClutterTexture")
+  (c-name "ClutterCairoTexture")
+  (gtype-id "CLUTTER_TYPE_CAIRO_TEXTURE")
+)
+
 (define-object Timeline
   (in-module "Clutter")
   (parent "GObject")
   (c-name "ClutterTimeline")
   (gtype-id "CLUTTER_TYPE_TIMELINE")
-)
-
-(define-object X11TexturePixmap
-  (in-module "Clutter")
-  (parent "ClutterTexture")
-  (c-name "ClutterX11TexturePixmap")
-  (gtype-id "CLUTTER_TYPE_X11_TEXTURE_PIXMAP")
-)
-
-(define-object GLXTexturePixmap
-  (in-module "Clutter")
-  (parent "ClutterX11TexturePixmap")
-  (c-name "ClutterGLXTexturePixmap")
-  (gtype-id "CLUTTER_TYPE_GLX_TEXTURE_PIXMAP")
-)
-
-(define-object Generator
-  (in-module "Json")
-  (parent "GObject")
-  (c-name "JsonGenerator")
-  (gtype-id "JSON_TYPE_GENERATOR")
-)
-
-(define-object Parser
-  (in-module "Json")
-  (parent "GObject")
-  (c-name "JsonParser")
-  (gtype-id "JSON_TYPE_PARSER")
 )
 
 ;; Enumerations and flags ...
@@ -508,41 +480,6 @@
   )
 )
 
-(define-enum NodeType
-  (in-module "Json")
-  (c-name "JsonNodeType")
-  (gtype-id "JSON_TYPE_NODE_TYPE")
-  (values
-    '("object" "JSON_NODE_OBJECT")
-    '("array" "JSON_NODE_ARRAY")
-    '("value" "JSON_NODE_VALUE")
-    '("null" "JSON_NODE_NULL")
-  )
-)
-
-(define-enum ParserError
-  (in-module "Json")
-  (c-name "JsonParserError")
-  (gtype-id "JSON_TYPE_PARSER_ERROR")
-  (values
-    '("parse" "JSON_PARSER_ERROR_PARSE")
-    '("unknown" "JSON_PARSER_ERROR_UNKNOWN")
-  )
-)
-
-(define-enum TokenType
-  (in-module "Json")
-  (c-name "JsonTokenType")
-  (gtype-id "JSON_TYPE_TOKEN_TYPE")
-  (values
-    '("invalid" "JSON_TOKEN_INVALID")
-    '("true" "JSON_TOKEN_TRUE")
-    '("false" "JSON_TOKEN_FALSE")
-    '("null" "JSON_TOKEN_NULL")
-    '("last" "JSON_TOKEN_LAST")
-  )
-)
-
 
 ;; From clutter-backend.h
 
@@ -614,6 +551,458 @@
   (of-object "ClutterBackend")
   (c-name "clutter_backend_get_font_options")
   (return-type "cairo_font_options_t*")
+)
+
+(define-method set_font_name
+  (of-object "ClutterBackend")
+  (c-name "clutter_backend_set_font_name")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "font_name")
+  )
+)
+
+(define-method get_font_name
+  (of-object "ClutterBackend")
+  (c-name "clutter_backend_get_font_name")
+  (return-type "const-gchar*")
+)
+
+
+
+;; From clutter-text.h
+
+(define-function clutter_text_get_type
+  (c-name "clutter_text_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_text_new
+  (c-name "clutter_text_new")
+  (is-constructor-of "ClutterText")
+  (return-type "ClutterActor*")
+)
+
+(define-function clutter_text_new_full
+  (c-name "clutter_text_new_full")
+  (return-type "ClutterActor*")
+  (parameters
+    '("const-gchar*" "font_name")
+    '("const-gchar*" "text")
+    '("const-ClutterColor*" "color")
+  )
+)
+
+(define-function clutter_text_new_with_text
+  (c-name "clutter_text_new_with_text")
+  (return-type "ClutterActor*")
+  (parameters
+    '("const-gchar*" "font_name")
+    '("const-gchar*" "text")
+  )
+)
+
+(define-method get_text
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_text")
+  (return-type "const-gchar*")
+)
+
+(define-method set_text
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_text")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "text")
+  )
+)
+
+(define-method get_layout
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_layout")
+  (return-type "PangoLayout*")
+)
+
+(define-method set_color
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_color")
+  (return-type "none")
+  (parameters
+    '("const-ClutterColor*" "color")
+  )
+)
+
+(define-method get_color
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_color")
+  (return-type "none")
+  (parameters
+    '("ClutterColor*" "color")
+  )
+)
+
+(define-method set_font_name
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_font_name")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "font_name")
+  )
+)
+
+(define-method get_font_name
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_font_name")
+  (return-type "const-gchar*")
+)
+
+(define-method set_ellipsize
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_ellipsize")
+  (return-type "none")
+  (parameters
+    '("PangoEllipsizeMode" "mode")
+  )
+)
+
+(define-method get_ellipsize
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_ellipsize")
+  (return-type "PangoEllipsizeMode")
+)
+
+(define-method set_line_wrap
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_line_wrap")
+  (return-type "none")
+  (parameters
+    '("gboolean" "line_wrap")
+  )
+)
+
+(define-method get_line_wrap
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_line_wrap")
+  (return-type "gboolean")
+)
+
+(define-method set_line_wrap_mode
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_line_wrap_mode")
+  (return-type "none")
+  (parameters
+    '("PangoWrapMode" "wrap_mode")
+  )
+)
+
+(define-method get_line_wrap_mode
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_line_wrap_mode")
+  (return-type "PangoWrapMode")
+)
+
+(define-method get_layout
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_layout")
+  (return-type "PangoLayout*")
+)
+
+(define-method set_attributes
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_attributes")
+  (return-type "none")
+  (parameters
+    '("PangoAttrList*" "attrs")
+  )
+)
+
+(define-method get_attributes
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_attributes")
+  (return-type "PangoAttrList*")
+)
+
+(define-method set_use_markup
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_use_markup")
+  (return-type "none")
+  (parameters
+    '("gboolean" "setting")
+  )
+)
+
+(define-method get_use_markup
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_use_markup")
+  (return-type "gboolean")
+)
+
+(define-method set_alignment
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_alignment")
+  (return-type "none")
+  (parameters
+    '("PangoAlignment" "alignment")
+  )
+)
+
+(define-method get_alignment
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_alignment")
+  (return-type "PangoAlignment")
+)
+
+(define-method set_justify
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_justify")
+  (return-type "none")
+  (parameters
+    '("gboolean" "justify")
+  )
+)
+
+(define-method get_justify
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_justify")
+  (return-type "gboolean")
+)
+
+(define-method insert_unichar
+  (of-object "ClutterText")
+  (c-name "clutter_text_insert_unichar")
+  (return-type "none")
+  (parameters
+    '("gunichar" "wc")
+  )
+)
+
+(define-method delete_chars
+  (of-object "ClutterText")
+  (c-name "clutter_text_delete_chars")
+  (return-type "none")
+  (parameters
+    '("guint" "n_chars")
+  )
+)
+
+(define-method insert_text
+  (of-object "ClutterText")
+  (c-name "clutter_text_insert_text")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "text")
+    '("gssize" "position")
+  )
+)
+
+(define-method delete_text
+  (of-object "ClutterText")
+  (c-name "clutter_text_delete_text")
+  (return-type "none")
+  (parameters
+    '("gssize" "start_pos")
+    '("gssize" "end_pos")
+  )
+)
+
+(define-method get_chars
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_chars")
+  (return-type "gchar*")
+  (parameters
+    '("gssize" "start_pos")
+    '("gssize" "end_pos")
+  )
+)
+
+(define-method set_editable
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_editable")
+  (return-type "none")
+  (parameters
+    '("gboolean" "editable")
+  )
+)
+
+(define-method get_editable
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_editable")
+  (return-type "gboolean")
+)
+
+(define-method set_activatable
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_activatable")
+  (return-type "none")
+  (parameters
+    '("gboolean" "activatable")
+  )
+)
+
+(define-method get_activatable
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_activatable")
+  (return-type "gboolean")
+)
+
+(define-method get_cursor_position
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_cursor_position")
+  (return-type "gint")
+)
+
+(define-method set_cursor_position
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_cursor_position")
+  (return-type "none")
+  (parameters
+    '("gint" "position")
+  )
+)
+
+(define-method set_cursor_visible
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_cursor_visible")
+  (return-type "none")
+  (parameters
+    '("gboolean" "cursor_visible")
+  )
+)
+
+(define-method get_cursor_visible
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_cursor_visible")
+  (return-type "gboolean")
+)
+
+(define-method set_cursor_color
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_cursor_color")
+  (return-type "none")
+  (parameters
+    '("const-ClutterColor*" "color")
+  )
+)
+
+(define-method get_cursor_color
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_cursor_color")
+  (return-type "none")
+  (parameters
+    '("ClutterColor*" "color")
+  )
+)
+
+(define-method set_cursor_size
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_cursor_size")
+  (return-type "none")
+  (parameters
+    '("gint" "size")
+  )
+)
+
+(define-method get_cursor_size
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_cursor_size")
+  (return-type "guint")
+)
+
+(define-method set_selectable
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_selectable")
+  (return-type "none")
+  (parameters
+    '("gboolean" "selectable")
+  )
+)
+
+(define-method get_selectable
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_selectable")
+  (return-type "gboolean")
+)
+
+(define-method set_selection_bound
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_selection_bound")
+  (return-type "none")
+  (parameters
+    '("gint" "selection_bound")
+  )
+)
+
+(define-method get_selection_bound
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_selection_bound")
+  (return-type "gint")
+)
+
+(define-method set_selection
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_selection")
+  (return-type "none")
+  (parameters
+    '("gssize" "start_pos")
+    '("gssize" "end_pos")
+  )
+)
+
+(define-method get_selection
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_selection")
+  (return-type "gchar*")
+)
+
+(define-method set_password_char
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_password_char")
+  (return-type "none")
+  (parameters
+    '("gunichar" "wc")
+  )
+)
+
+(define-method get_password_char
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_password_char")
+  (return-type "gunichar")
+)
+
+(define-method set_max_length
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_max_length")
+  (return-type "none")
+  (parameters
+    '("gint" "max")
+  )
+)
+
+(define-method get_max_length
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_max_length")
+  (return-type "gint")
+)
+
+(define-method set_single_line_mode
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_single_line_mode")
+  (return-type "none")
+  (parameters
+    '("gboolean" "single_line")
+  )
+)
+
+(define-method get_single_line_mode
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_single_line_mode")
+  (return-type "gboolean")
+)
+
+(define-method activate
+  (of-object "ClutterText")
+  (c-name "clutter_text_activate")
+  (return-type "gboolean")
 )
 
 
@@ -1103,6 +1492,11 @@
   (return-type "GType")
 )
 
+(define-function clutter_path_node_get_type
+  (c-name "clutter_path_node_get_type")
+  (return-type "GType")
+)
+
 (define-function clutter_path_new
   (c-name "clutter_path_new")
   (is-constructor-of "ClutterPath")
@@ -1162,12 +1556,12 @@
   (c-name "clutter_path_add_curve_to")
   (return-type "none")
   (parameters
-    '("gint" "x1")
-    '("gint" "y1")
-    '("gint" "x2")
-    '("gint" "y2")
-    '("gint" "x3")
-    '("gint" "y3")
+    '("gint" "x_1")
+    '("gint" "y_1")
+    '("gint" "x_2")
+    '("gint" "y_2")
+    '("gint" "x_3")
+    '("gint" "y_3")
   )
 )
 
@@ -1176,12 +1570,12 @@
   (c-name "clutter_path_add_rel_curve_to")
   (return-type "none")
   (parameters
-    '("gint" "x1")
-    '("gint" "y1")
-    '("gint" "x2")
-    '("gint" "y2")
-    '("gint" "x3")
-    '("gint" "y3")
+    '("gint" "x_1")
+    '("gint" "y_1")
+    '("gint" "x_2")
+    '("gint" "y_2")
+    '("gint" "x_3")
+    '("gint" "y_3")
   )
 )
 
@@ -1209,6 +1603,15 @@
   )
 )
 
+(define-method add_cairo_path
+  (of-object "ClutterPath")
+  (c-name "clutter_path_add_cairo_path")
+  (return-type "none")
+  (parameters
+    '("const-cairo_path_t*" "cpath")
+  )
+)
+
 (define-method get_n_nodes
   (of-object "ClutterPath")
   (c-name "clutter_path_get_n_nodes")
@@ -1220,7 +1623,7 @@
   (c-name "clutter_path_get_node")
   (return-type "none")
   (parameters
-    '("guint" "index")
+    '("guint" "index_")
     '("ClutterPathNode*" "node")
   )
 )
@@ -1246,7 +1649,7 @@
   (c-name "clutter_path_insert_node")
   (return-type "none")
   (parameters
-    '("gint" "index")
+    '("gint" "index_")
     '("const-ClutterPathNode*" "node")
   )
 )
@@ -1256,7 +1659,7 @@
   (c-name "clutter_path_remove_node")
   (return-type "none")
   (parameters
-    '("guint" "index")
+    '("guint" "index_")
   )
 )
 
@@ -1265,7 +1668,7 @@
   (c-name "clutter_path_replace_node")
   (return-type "none")
   (parameters
-    '("guint" "index")
+    '("guint" "index_")
     '("const-ClutterPathNode*" "node")
   )
 )
@@ -1291,12 +1694,21 @@
   (return-type "none")
 )
 
+(define-method to_cairo_path
+  (of-object "ClutterPath")
+  (c-name "clutter_path_to_cairo_path")
+  (return-type "none")
+  (parameters
+    '("cairo_t*" "cr")
+  )
+)
+
 (define-method get_position
   (of-object "ClutterPath")
   (c-name "clutter_path_get_position")
   (return-type "guint")
   (parameters
-    '("guint" "alpha")
+    '("gdouble" "progress")
     '("ClutterKnot*" "position")
   )
 )
@@ -1326,11 +1738,6 @@
   (parameters
     '("const-ClutterPathNode*" "node_b")
   )
-)
-
-(define-function clutter_path_node_get_type
-  (c-name "clutter_path_node_get_type")
-  (return-type "GType")
 )
 
 
@@ -1664,6 +2071,72 @@
     '("const-gchar*" "blurb")
     '("const-ClutterColor*" "default_value")
     '("GParamFlags" "flags")
+  )
+)
+
+
+
+;; From clutter-cairo-texture.h
+
+(define-function clutter_cairo_texture_get_type
+  (c-name "clutter_cairo_texture_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_cairo_texture_new
+  (c-name "clutter_cairo_texture_new")
+  (is-constructor-of "ClutterCairoTexture")
+  (return-type "ClutterActor*")
+  (parameters
+    '("guint" "width")
+    '("guint" "height")
+  )
+)
+
+(define-method create_region
+  (of-object "ClutterCairoTexture")
+  (c-name "clutter_cairo_texture_create_region")
+  (return-type "cairo_t*")
+  (parameters
+    '("gint" "x_offset")
+    '("gint" "y_offset")
+    '("gint" "width")
+    '("gint" "height")
+  )
+)
+
+(define-method create
+  (of-object "ClutterCairoTexture")
+  (c-name "clutter_cairo_texture_create")
+  (return-type "cairo_t*")
+)
+
+(define-method set_surface_size
+  (of-object "ClutterCairoTexture")
+  (c-name "clutter_cairo_texture_set_surface_size")
+  (return-type "none")
+  (parameters
+    '("guint" "width")
+    '("guint" "height")
+  )
+)
+
+(define-method get_surface_size
+  (of-object "ClutterCairoTexture")
+  (c-name "clutter_cairo_texture_get_surface_size")
+  (return-type "none")
+  (parameters
+    '("guint*" "width")
+    '("guint*" "height")
+  )
+)
+
+(define-function clutter_cairo_set_source_color
+  (c-name "clutter_cairo_set_source_color")
+  (return-type "none")
+  (parameters
+    '("cairo_t*" "cr")
+    '("const-ClutterColor*" "color")
   )
 )
 
@@ -5096,6 +5569,12 @@
   (return-type "guint8")
 )
 
+(define-method get_paint_visibility
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_paint_visibility")
+  (return-type "gboolean")
+)
+
 (define-method set_name
   (of-object "ClutterActor")
   (c-name "clutter_actor_set_name")
@@ -5558,10 +6037,22 @@
   )
 )
 
-(define-method get_paint_visibility
+(define-method grab_key_focus
   (of-object "ClutterActor")
-  (c-name "clutter_actor_get_paint_visibility")
-  (return-type "gboolean")
+  (c-name "clutter_actor_grab_key_focus")
+  (return-type "none")
+)
+
+(define-method get_pango_context
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_pango_context")
+  (return-type "PangoContext*")
+)
+
+(define-method create_pango_context
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_create_pango_context")
+  (return-type "PangoContext*")
 )
 
 
@@ -6103,10 +6594,28 @@
   )
 )
 
-(define-method list_actions
+(define-method override_action
   (of-object "ClutterBindingPool")
-  (c-name "clutter_binding_pool_list_actions")
-  (return-type "gchar**")
+  (c-name "clutter_binding_pool_override_action")
+  (return-type "none")
+  (parameters
+    '("guint" "key_val")
+    '("ClutterModifierType" "modifiers")
+    '("GCallback" "callback")
+    '("gpointer" "data")
+    '("GDestroyNotify" "notify")
+  )
+)
+
+(define-method override_closure
+  (of-object "ClutterBindingPool")
+  (c-name "clutter_binding_pool_override_closure")
+  (return-type "none")
+  (parameters
+    '("guint" "key_val")
+    '("ClutterModifierType" "modifiers")
+    '("GClosure*" "closure")
+  )
 )
 
 (define-method find_action
@@ -6160,231 +6669,6 @@
 
 
 
-;; From clutter-entry.h
-
-(define-function clutter_entry_get_type
-  (c-name "clutter_entry_get_type")
-  (return-type "GType")
-)
-
-(define-function clutter_entry_new
-  (c-name "clutter_entry_new")
-  (is-constructor-of "ClutterEntry")
-  (return-type "ClutterActor*")
-)
-
-(define-function clutter_entry_new_full
-  (c-name "clutter_entry_new_full")
-  (return-type "ClutterActor*")
-  (parameters
-    '("const-gchar*" "font_name")
-    '("const-gchar*" "text")
-    '("const-ClutterColor*" "color")
-  )
-)
-
-(define-function clutter_entry_new_with_text
-  (c-name "clutter_entry_new_with_text")
-  (return-type "ClutterActor*")
-  (parameters
-    '("const-gchar*" "font_name")
-    '("const-gchar*" "text")
-  )
-)
-
-(define-method set_text
-  (of-object "ClutterEntry")
-  (c-name "clutter_entry_set_text")
-  (return-type "none")
-  (parameters
-    '("const-gchar*" "text")
-  )
-)
-
-(define-method get_text
-  (of-object "ClutterEntry")
-  (c-name "clutter_entry_get_text")
-  (return-type "const-gchar*")
-)
-
-(define-method set_font_name
-  (of-object "ClutterEntry")
-  (c-name "clutter_entry_set_font_name")
-  (return-type "none")
-  (parameters
-    '("const-gchar*" "font_name")
-  )
-)
-
-(define-method get_font_name
-  (of-object "ClutterEntry")
-  (c-name "clutter_entry_get_font_name")
-  (return-type "const-gchar*")
-)
-
-(define-method set_color
-  (of-object "ClutterEntry")
-  (c-name "clutter_entry_set_color")
-  (return-type "none")
-  (parameters
-    '("const-ClutterColor*" "color")
-  )
-)
-
-(define-method get_color
-  (of-object "ClutterEntry")
-  (c-name "clutter_entry_get_color")
-  (return-type "none")
-  (parameters
-    '("ClutterColor*" "color")
-  )
-)
-
-(define-method get_layout
-  (of-object "ClutterEntry")
-  (c-name "clutter_entry_get_layout")
-  (return-type "PangoLayout*")
-)
-
-(define-method set_alignment
-  (of-object "ClutterEntry")
-  (c-name "clutter_entry_set_alignment")
-  (return-type "none")
-  (parameters
-    '("PangoAlignment" "alignment")
-  )
-)
-
-(define-method get_alignment
-  (of-object "ClutterEntry")
-  (c-name "clutter_entry_get_alignment")
-  (return-type "PangoAlignment")
-)
-
-(define-method set_cursor_position
-  (of-object "ClutterEntry")
-  (c-name "clutter_entry_set_cursor_position")
-  (return-type "none")
-  (parameters
-    '("gint" "position")
-  )
-)
-
-(define-method get_cursor_position
-  (of-object "ClutterEntry")
-  (c-name "clutter_entry_get_cursor_position")
-  (return-type "gint")
-)
-
-(define-method insert_unichar
-  (of-object "ClutterEntry")
-  (c-name "clutter_entry_insert_unichar")
-  (return-type "none")
-  (parameters
-    '("gunichar" "wc")
-  )
-)
-
-(define-method delete_chars
-  (of-object "ClutterEntry")
-  (c-name "clutter_entry_delete_chars")
-  (return-type "none")
-  (parameters
-    '("guint" "len")
-  )
-)
-
-(define-method insert_text
-  (of-object "ClutterEntry")
-  (c-name "clutter_entry_insert_text")
-  (return-type "none")
-  (parameters
-    '("const-gchar*" "text")
-    '("gssize" "position")
-  )
-)
-
-(define-method delete_text
-  (of-object "ClutterEntry")
-  (c-name "clutter_entry_delete_text")
-  (return-type "none")
-  (parameters
-    '("gssize" "start_pos")
-    '("gssize" "end_pos")
-  )
-)
-
-(define-method set_visible_cursor
-  (of-object "ClutterEntry")
-  (c-name "clutter_entry_set_visible_cursor")
-  (return-type "none")
-  (parameters
-    '("gboolean" "visible")
-  )
-)
-
-(define-method get_visible_cursor
-  (of-object "ClutterEntry")
-  (c-name "clutter_entry_get_visible_cursor")
-  (return-type "gboolean")
-)
-
-(define-method set_visibility
-  (of-object "ClutterEntry")
-  (c-name "clutter_entry_set_visibility")
-  (return-type "none")
-  (parameters
-    '("gboolean" "visible")
-  )
-)
-
-(define-method get_visibility
-  (of-object "ClutterEntry")
-  (c-name "clutter_entry_get_visibility")
-  (return-type "gboolean")
-)
-
-(define-method set_invisible_char
-  (of-object "ClutterEntry")
-  (c-name "clutter_entry_set_invisible_char")
-  (return-type "none")
-  (parameters
-    '("gunichar" "wc")
-  )
-)
-
-(define-method get_invisible_char
-  (of-object "ClutterEntry")
-  (c-name "clutter_entry_get_invisible_char")
-  (return-type "gunichar")
-)
-
-(define-method set_max_length
-  (of-object "ClutterEntry")
-  (c-name "clutter_entry_set_max_length")
-  (return-type "none")
-  (parameters
-    '("gint" "max")
-  )
-)
-
-(define-method get_max_length
-  (of-object "ClutterEntry")
-  (c-name "clutter_entry_get_max_length")
-  (return-type "gint")
-)
-
-(define-method handle_key_event
-  (of-object "ClutterEntry")
-  (c-name "clutter_entry_handle_key_event")
-  (return-type "none")
-  (parameters
-    '("ClutterKeyEvent*" "kev")
-  )
-)
-
-
-
 ;; From clutter-timeout-pool.h
 
 (define-function clutter_timeout_pool_new
@@ -6432,199 +6716,6 @@
 (define-function clutter_feature_get_all
   (c-name "clutter_feature_get_all")
   (return-type "ClutterFeatureFlags")
-)
-
-
-
-;; From clutter-label.h
-
-(define-function clutter_label_get_type
-  (c-name "clutter_label_get_type")
-  (return-type "GType")
-)
-
-(define-function clutter_label_new
-  (c-name "clutter_label_new")
-  (is-constructor-of "ClutterLabel")
-  (return-type "ClutterActor*")
-)
-
-(define-function clutter_label_new_full
-  (c-name "clutter_label_new_full")
-  (return-type "ClutterActor*")
-  (parameters
-    '("const-gchar*" "font_name")
-    '("const-gchar*" "text")
-    '("const-ClutterColor*" "color")
-  )
-)
-
-(define-function clutter_label_new_with_text
-  (c-name "clutter_label_new_with_text")
-  (return-type "ClutterActor*")
-  (parameters
-    '("const-gchar*" "font_name")
-    '("const-gchar*" "text")
-  )
-)
-
-(define-method set_text
-  (of-object "ClutterLabel")
-  (c-name "clutter_label_set_text")
-  (return-type "none")
-  (parameters
-    '("const-gchar*" "text")
-  )
-)
-
-(define-method get_text
-  (of-object "ClutterLabel")
-  (c-name "clutter_label_get_text")
-  (return-type "const-gchar*")
-)
-
-(define-method set_font_name
-  (of-object "ClutterLabel")
-  (c-name "clutter_label_set_font_name")
-  (return-type "none")
-  (parameters
-    '("const-gchar*" "font_name")
-  )
-)
-
-(define-method get_font_name
-  (of-object "ClutterLabel")
-  (c-name "clutter_label_get_font_name")
-  (return-type "const-gchar*")
-)
-
-(define-method set_color
-  (of-object "ClutterLabel")
-  (c-name "clutter_label_set_color")
-  (return-type "none")
-  (parameters
-    '("const-ClutterColor*" "color")
-  )
-)
-
-(define-method get_color
-  (of-object "ClutterLabel")
-  (c-name "clutter_label_get_color")
-  (return-type "none")
-  (parameters
-    '("ClutterColor*" "color")
-  )
-)
-
-(define-method set_ellipsize
-  (of-object "ClutterLabel")
-  (c-name "clutter_label_set_ellipsize")
-  (return-type "none")
-  (parameters
-    '("PangoEllipsizeMode" "mode")
-  )
-)
-
-(define-method get_ellipsize
-  (of-object "ClutterLabel")
-  (c-name "clutter_label_get_ellipsize")
-  (return-type "PangoEllipsizeMode")
-)
-
-(define-method set_line_wrap
-  (of-object "ClutterLabel")
-  (c-name "clutter_label_set_line_wrap")
-  (return-type "none")
-  (parameters
-    '("gboolean" "wrap")
-  )
-)
-
-(define-method get_line_wrap
-  (of-object "ClutterLabel")
-  (c-name "clutter_label_get_line_wrap")
-  (return-type "gboolean")
-)
-
-(define-method set_line_wrap_mode
-  (of-object "ClutterLabel")
-  (c-name "clutter_label_set_line_wrap_mode")
-  (return-type "none")
-  (parameters
-    '("PangoWrapMode" "wrap_mode")
-  )
-)
-
-(define-method get_line_wrap_mode
-  (of-object "ClutterLabel")
-  (c-name "clutter_label_get_line_wrap_mode")
-  (return-type "PangoWrapMode")
-)
-
-(define-method get_layout
-  (of-object "ClutterLabel")
-  (c-name "clutter_label_get_layout")
-  (return-type "PangoLayout*")
-)
-
-(define-method set_attributes
-  (of-object "ClutterLabel")
-  (c-name "clutter_label_set_attributes")
-  (return-type "none")
-  (parameters
-    '("PangoAttrList*" "attrs")
-  )
-)
-
-(define-method get_attributes
-  (of-object "ClutterLabel")
-  (c-name "clutter_label_get_attributes")
-  (return-type "PangoAttrList*")
-)
-
-(define-method set_use_markup
-  (of-object "ClutterLabel")
-  (c-name "clutter_label_set_use_markup")
-  (return-type "none")
-  (parameters
-    '("gboolean" "setting")
-  )
-)
-
-(define-method get_use_markup
-  (of-object "ClutterLabel")
-  (c-name "clutter_label_get_use_markup")
-  (return-type "gboolean")
-)
-
-(define-method set_alignment
-  (of-object "ClutterLabel")
-  (c-name "clutter_label_set_alignment")
-  (return-type "none")
-  (parameters
-    '("PangoAlignment" "alignment")
-  )
-)
-
-(define-method get_alignment
-  (of-object "ClutterLabel")
-  (c-name "clutter_label_get_alignment")
-  (return-type "PangoAlignment")
-)
-
-(define-method set_justify
-  (of-object "ClutterLabel")
-  (c-name "clutter_label_set_justify")
-  (return-type "none")
-  (parameters
-    '("gboolean" "justify")
-  )
-)
-
-(define-method get_justify
-  (of-object "ClutterLabel")
-  (c-name "clutter_label_get_justify")
-  (return-type "gboolean")
 )
 
 
@@ -6876,719 +6967,6 @@
   (parameters
     '("ClutterRotateDirection" "direction")
   )
-)
-
-
-
-;; From clutter-glx.h
-
-
-
-;; From clutter-glx-texture-pixmap.h
-
-(define-function clutter_glx_texture_pixmap_get_type
-  (c-name "clutter_glx_texture_pixmap_get_type")
-  (return-type "GType")
-)
-
-(define-function clutter_glx_texture_pixmap_new
-  (c-name "clutter_glx_texture_pixmap_new")
-  (is-constructor-of "ClutterGlxTexturePixmap")
-  (return-type "ClutterActor*")
-)
-
-(define-function clutter_glx_texture_pixmap_new_with_pixmap
-  (c-name "clutter_glx_texture_pixmap_new_with_pixmap")
-  (return-type "ClutterActor*")
-  (parameters
-    '("Pixmap" "pixmap")
-  )
-)
-
-(define-function clutter_glx_texture_pixmap_new_with_window
-  (c-name "clutter_glx_texture_pixmap_new_with_window")
-  (return-type "ClutterActor*")
-  (parameters
-    '("Window" "window")
-  )
-)
-
-(define-method using_extension
-  (of-object "ClutterGLXTexturePixmap")
-  (c-name "clutter_glx_texture_pixmap_using_extension")
-  (return-type "gboolean")
-)
-
-
-
-;; From json-types.h
-
-(define-function json_node_new
-  (c-name "json_node_new")
-  (is-constructor-of "JsonNode")
-  (return-type "JsonNode*")
-  (parameters
-    '("JsonNodeType" "type")
-  )
-)
-
-(define-method copy
-  (of-object "JsonNode")
-  (c-name "json_node_copy")
-  (return-type "JsonNode*")
-)
-
-(define-method free
-  (of-object "JsonNode")
-  (c-name "json_node_free")
-  (return-type "none")
-)
-
-(define-method set_object
-  (of-object "JsonNode")
-  (c-name "json_node_set_object")
-  (return-type "none")
-  (parameters
-    '("JsonObject*" "object")
-  )
-)
-
-(define-method take_object
-  (of-object "JsonNode")
-  (c-name "json_node_take_object")
-  (return-type "none")
-  (parameters
-    '("JsonObject*" "object")
-  )
-)
-
-(define-method get_object
-  (of-object "JsonNode")
-  (c-name "json_node_get_object")
-  (return-type "JsonObject*")
-)
-
-(define-method dup_object
-  (of-object "JsonNode")
-  (c-name "json_node_dup_object")
-  (return-type "JsonObject*")
-)
-
-(define-method set_array
-  (of-object "JsonNode")
-  (c-name "json_node_set_array")
-  (return-type "none")
-  (parameters
-    '("JsonArray*" "array")
-  )
-)
-
-(define-method take_array
-  (of-object "JsonNode")
-  (c-name "json_node_take_array")
-  (return-type "none")
-  (parameters
-    '("JsonArray*" "array")
-  )
-)
-
-(define-method get_array
-  (of-object "JsonNode")
-  (c-name "json_node_get_array")
-  (return-type "JsonArray*")
-)
-
-(define-method dup_array
-  (of-object "JsonNode")
-  (c-name "json_node_dup_array")
-  (return-type "JsonArray*")
-)
-
-(define-method set_value
-  (of-object "JsonNode")
-  (c-name "json_node_set_value")
-  (return-type "none")
-  (parameters
-    '("const-GValue*" "value")
-  )
-)
-
-(define-method get_value
-  (of-object "JsonNode")
-  (c-name "json_node_get_value")
-  (return-type "none")
-  (parameters
-    '("GValue*" "value")
-  )
-)
-
-(define-method set_string
-  (of-object "JsonNode")
-  (c-name "json_node_set_string")
-  (return-type "none")
-  (parameters
-    '("const-gchar*" "value")
-  )
-)
-
-(define-method get_string
-  (of-object "JsonNode")
-  (c-name "json_node_get_string")
-  (return-type "const-gchar*")
-)
-
-(define-method dup_string
-  (of-object "JsonNode")
-  (c-name "json_node_dup_string")
-  (return-type "gchar*")
-)
-
-(define-method set_int
-  (of-object "JsonNode")
-  (c-name "json_node_set_int")
-  (return-type "none")
-  (parameters
-    '("gint" "value")
-  )
-)
-
-(define-method get_int
-  (of-object "JsonNode")
-  (c-name "json_node_get_int")
-  (return-type "gint")
-)
-
-(define-method set_double
-  (of-object "JsonNode")
-  (c-name "json_node_set_double")
-  (return-type "none")
-  (parameters
-    '("gdouble" "value")
-  )
-)
-
-(define-method get_double
-  (of-object "JsonNode")
-  (c-name "json_node_get_double")
-  (return-type "gdouble")
-)
-
-(define-method set_boolean
-  (of-object "JsonNode")
-  (c-name "json_node_set_boolean")
-  (return-type "none")
-  (parameters
-    '("gboolean" "value")
-  )
-)
-
-(define-method get_boolean
-  (of-object "JsonNode")
-  (c-name "json_node_get_boolean")
-  (return-type "gboolean")
-)
-
-(define-method get_parent
-  (of-object "JsonNode")
-  (c-name "json_node_get_parent")
-  (return-type "JsonNode*")
-)
-
-(define-method type_name
-  (of-object "JsonNode")
-  (c-name "json_node_type_name")
-  (return-type "const-gchar*")
-)
-
-(define-function json_object_get_type
-  (c-name "json_object_get_type")
-  (return-type "GType")
-)
-
-(define-function json_object_new
-  (c-name "json_object_new")
-  (is-constructor-of "JsonObject")
-  (return-type "JsonObject*")
-)
-
-(define-method ref
-  (of-object "JsonObject")
-  (c-name "json_object_ref")
-  (return-type "JsonObject*")
-)
-
-(define-method unref
-  (of-object "JsonObject")
-  (c-name "json_object_unref")
-  (return-type "none")
-)
-
-(define-method add_member
-  (of-object "JsonObject")
-  (c-name "json_object_add_member")
-  (return-type "none")
-  (parameters
-    '("const-gchar*" "member_name")
-    '("JsonNode*" "node")
-  )
-)
-
-(define-method get_members
-  (of-object "JsonObject")
-  (c-name "json_object_get_members")
-  (return-type "GList*")
-)
-
-(define-method get_member
-  (of-object "JsonObject")
-  (c-name "json_object_get_member")
-  (return-type "JsonNode*")
-  (parameters
-    '("const-gchar*" "member_name")
-  )
-)
-
-(define-method has_member
-  (of-object "JsonObject")
-  (c-name "json_object_has_member")
-  (return-type "gboolean")
-  (parameters
-    '("const-gchar*" "member_name")
-  )
-)
-
-(define-method remove_member
-  (of-object "JsonObject")
-  (c-name "json_object_remove_member")
-  (return-type "none")
-  (parameters
-    '("const-gchar*" "member_name")
-  )
-)
-
-(define-method get_size
-  (of-object "JsonObject")
-  (c-name "json_object_get_size")
-  (return-type "guint")
-)
-
-(define-function json_array_get_type
-  (c-name "json_array_get_type")
-  (return-type "GType")
-)
-
-(define-function json_array_new
-  (c-name "json_array_new")
-  (is-constructor-of "JsonArray")
-  (return-type "JsonArray*")
-)
-
-(define-function json_array_sized_new
-  (c-name "json_array_sized_new")
-  (is-constructor-of "JsonArraySized")
-  (return-type "JsonArray*")
-  (parameters
-    '("guint" "n_elements")
-  )
-)
-
-(define-method ref
-  (of-object "JsonArray")
-  (c-name "json_array_ref")
-  (return-type "JsonArray*")
-)
-
-(define-method unref
-  (of-object "JsonArray")
-  (c-name "json_array_unref")
-  (return-type "none")
-)
-
-(define-method add_element
-  (of-object "JsonArray")
-  (c-name "json_array_add_element")
-  (return-type "none")
-  (parameters
-    '("JsonNode*" "node")
-  )
-)
-
-(define-method get_elements
-  (of-object "JsonArray")
-  (c-name "json_array_get_elements")
-  (return-type "GList*")
-)
-
-(define-method get_element
-  (of-object "JsonArray")
-  (c-name "json_array_get_element")
-  (return-type "JsonNode*")
-  (parameters
-    '("guint" "index_")
-  )
-)
-
-(define-method remove_element
-  (of-object "JsonArray")
-  (c-name "json_array_remove_element")
-  (return-type "none")
-  (parameters
-    '("guint" "index_")
-  )
-)
-
-(define-method get_length
-  (of-object "JsonArray")
-  (c-name "json_array_get_length")
-  (return-type "guint")
-)
-
-
-
-;; From json-generator.h
-
-(define-function json_generator_get_type
-  (c-name "json_generator_get_type")
-  (return-type "GType")
-)
-
-(define-function json_generator_new
-  (c-name "json_generator_new")
-  (is-constructor-of "JsonGenerator")
-  (return-type "JsonGenerator*")
-)
-
-(define-method to_data
-  (of-object "JsonGenerator")
-  (c-name "json_generator_to_data")
-  (return-type "gchar*")
-  (parameters
-    '("gsize*" "length")
-  )
-)
-
-(define-method to_file
-  (of-object "JsonGenerator")
-  (c-name "json_generator_to_file")
-  (return-type "gboolean")
-  (parameters
-    '("const-gchar*" "filename")
-    '("GError**" "error")
-  )
-)
-
-(define-method set_root
-  (of-object "JsonGenerator")
-  (c-name "json_generator_set_root")
-  (return-type "none")
-  (parameters
-    '("JsonNode*" "node")
-  )
-)
-
-
-
-;; From json-glib.h
-
-
-
-;; From json-marshal.h
-
-
-
-;; From json-parser.h
-
-(define-function json_parser_error_quark
-  (c-name "json_parser_error_quark")
-  (return-type "GQuark")
-)
-
-(define-function json_parser_get_type
-  (c-name "json_parser_get_type")
-  (return-type "GType")
-)
-
-(define-function json_parser_new
-  (c-name "json_parser_new")
-  (is-constructor-of "JsonParser")
-  (return-type "JsonParser*")
-)
-
-(define-method load_from_file
-  (of-object "JsonParser")
-  (c-name "json_parser_load_from_file")
-  (return-type "gboolean")
-  (parameters
-    '("const-gchar*" "filename")
-    '("GError**" "error")
-  )
-)
-
-(define-method load_from_data
-  (of-object "JsonParser")
-  (c-name "json_parser_load_from_data")
-  (return-type "gboolean")
-  (parameters
-    '("const-gchar*" "data")
-    '("gssize" "length")
-    '("GError**" "error")
-  )
-)
-
-(define-method get_root
-  (of-object "JsonParser")
-  (c-name "json_parser_get_root")
-  (return-type "JsonNode*")
-)
-
-(define-method get_current_line
-  (of-object "JsonParser")
-  (c-name "json_parser_get_current_line")
-  (return-type "guint")
-)
-
-(define-method get_current_pos
-  (of-object "JsonParser")
-  (c-name "json_parser_get_current_pos")
-  (return-type "guint")
-)
-
-
-
-;; From clutter-x11-texture-pixmap.h
-
-(define-function clutter_x11_texture_pixmap_get_type
-  (c-name "clutter_x11_texture_pixmap_get_type")
-  (return-type "GType")
-)
-
-(define-function clutter_x11_texture_pixmap_new
-  (c-name "clutter_x11_texture_pixmap_new")
-  (is-constructor-of "ClutterX11TexturePixmap")
-  (return-type "ClutterActor*")
-)
-
-(define-function clutter_x11_texture_pixmap_new_with_pixmap
-  (c-name "clutter_x11_texture_pixmap_new_with_pixmap")
-  (return-type "ClutterActor*")
-  (parameters
-    '("Pixmap" "pixmap")
-  )
-)
-
-(define-function clutter_x11_texture_pixmap_new_with_window
-  (c-name "clutter_x11_texture_pixmap_new_with_window")
-  (return-type "ClutterActor*")
-  (parameters
-    '("Window" "window")
-  )
-)
-
-(define-method set_pixmap
-  (of-object "ClutterX11TexturePixmap")
-  (c-name "clutter_x11_texture_pixmap_set_pixmap")
-  (return-type "none")
-  (parameters
-    '("Pixmap" "pixmap")
-  )
-)
-
-(define-method set_window
-  (of-object "ClutterX11TexturePixmap")
-  (c-name "clutter_x11_texture_pixmap_set_window")
-  (return-type "none")
-  (parameters
-    '("Window" "window")
-    '("gboolean" "automatic")
-  )
-)
-
-(define-method sync_window
-  (of-object "ClutterX11TexturePixmap")
-  (c-name "clutter_x11_texture_pixmap_sync_window")
-  (return-type "none")
-)
-
-(define-method update_area
-  (of-object "ClutterX11TexturePixmap")
-  (c-name "clutter_x11_texture_pixmap_update_area")
-  (return-type "none")
-  (parameters
-    '("gint" "x")
-    '("gint" "y")
-    '("gint" "width")
-    '("gint" "height")
-  )
-)
-
-(define-method set_automatic
-  (of-object "ClutterX11TexturePixmap")
-  (c-name "clutter_x11_texture_pixmap_set_automatic")
-  (return-type "none")
-  (parameters
-    '("gboolean" "setting")
-  )
-)
-
-
-
-;; From clutter-x11.h
-
-(define-function clutter_x11_trap_x_errors
-  (c-name "clutter_x11_trap_x_errors")
-  (return-type "none")
-)
-
-(define-function clutter_x11_untrap_x_errors
-  (c-name "clutter_x11_untrap_x_errors")
-  (return-type "gint")
-)
-
-(define-function clutter_x11_get_default_display
-  (c-name "clutter_x11_get_default_display")
-  (return-type "Display*")
-)
-
-(define-function clutter_x11_get_default_screen
-  (c-name "clutter_x11_get_default_screen")
-  (return-type "int")
-)
-
-(define-function clutter_x11_get_root_window
-  (c-name "clutter_x11_get_root_window")
-  (return-type "Window")
-)
-
-(define-function clutter_x11_set_display
-  (c-name "clutter_x11_set_display")
-  (return-type "none")
-  (parameters
-    '("Display*" "xdpy")
-  )
-)
-
-(define-function clutter_x11_get_stage_window
-  (c-name "clutter_x11_get_stage_window")
-  (return-type "Window")
-  (parameters
-    '("ClutterStage*" "stage")
-  )
-)
-
-(define-function clutter_x11_get_stage_visual
-  (c-name "clutter_x11_get_stage_visual")
-  (return-type "XVisualInfo*")
-  (parameters
-    '("ClutterStage*" "stage")
-  )
-)
-
-(define-function clutter_x11_set_stage_foreign
-  (c-name "clutter_x11_set_stage_foreign")
-  (return-type "gboolean")
-  (parameters
-    '("ClutterStage*" "stage")
-    '("Window" "xwindow")
-  )
-)
-
-(define-function clutter_x11_add_filter
-  (c-name "clutter_x11_add_filter")
-  (return-type "none")
-  (parameters
-    '("ClutterX11FilterFunc" "func")
-    '("gpointer" "data")
-  )
-)
-
-(define-function clutter_x11_remove_filter
-  (c-name "clutter_x11_remove_filter")
-  (return-type "none")
-  (parameters
-    '("ClutterX11FilterFunc" "func")
-    '("gpointer" "data")
-  )
-)
-
-(define-function clutter_x11_handle_event
-  (c-name "clutter_x11_handle_event")
-  (return-type "ClutterX11FilterReturn")
-  (parameters
-    '("XEvent*" "xevent")
-  )
-)
-
-(define-function clutter_x11_set_display
-  (c-name "clutter_x11_set_display")
-  (return-type "none")
-  (parameters
-    '("Display*" "xdpy")
-  )
-)
-
-(define-function clutter_x11_disable_event_retrieval
-  (c-name "clutter_x11_disable_event_retrieval")
-  (return-type "none")
-)
-
-(define-function clutter_x11_has_event_retrieval
-  (c-name "clutter_x11_has_event_retrieval")
-  (return-type "gboolean")
-)
-
-(define-function clutter_x11_get_stage_from_window
-  (c-name "clutter_x11_get_stage_from_window")
-  (return-type "ClutterStage*")
-  (parameters
-    '("Window" "win")
-  )
-)
-
-(define-function clutter_x11_get_input_devices
-  (c-name "clutter_x11_get_input_devices")
-  (return-type "GSList*")
-)
-
-(define-function clutter_x11_get_input_device_type
-  (c-name "clutter_x11_get_input_device_type")
-  (return-type "ClutterX11InputDeviceType")
-  (parameters
-    '("ClutterX11XInputDevice*" "device")
-  )
-)
-
-(define-function clutter_x11_enable_xinput
-  (c-name "clutter_x11_enable_xinput")
-  (return-type "none")
-)
-
-(define-function clutter_x11_has_xinput
-  (c-name "clutter_x11_has_xinput")
-  (return-type "gboolean")
-)
-
-(define-function clutter_x11_has_composite_extension
-  (c-name "clutter_x11_has_composite_extension")
-  (return-type "gboolean")
-)
-
-
-
-;; From clutter-x11-enum-types.h
-
-(define-function clutter_x11_filter_return_get_type
-  (c-name "clutter_x11_filter_return_get_type")
-  (return-type "GType")
-)
-
-(define-function clutter_x11_xinput_event_types_get_type
-  (c-name "clutter_x11_xinput_event_types_get_type")
-  (return-type "GType")
-)
-
-(define-function clutter_x11_input_device_type_get_type
-  (c-name "clutter_x11_input_device_type_get_type")
-  (return-type "GType")
 )
 
 

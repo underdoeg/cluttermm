@@ -3,32 +3,31 @@
 # so it's like copy-and-pasting this into each of those Makefile.am files.
 
 files_hg = \
-types.hg \
-actor.hg  \
-color.hg \
-media.hg \
-group.hg \
-stage.hg \
-rectangle.hg \
-texture.hg \
-clone-texture.hg \
-container.hg \
-label.hg \
-entry.hg \
-timeline.hg \
+actor.hg \
 alpha.hg \
-path.hg \
 behaviour.hg \
 behaviour-depth.hg \
+behaviour-ellipse.hg \
 behaviour-opacity.hg \
 behaviour-path.hg \
-behaviour-ellipse.hg \
 behaviour-rotate.hg \
 behaviour-scale.hg \
+clone-texture.hg \
+color.hg \
+container.hg \
+effecttemplate.hg \
+group.hg \
+media.hg \
+path.hg \
+rectangle.hg \
 score.hg \
-shader.hg \
-script.hg \
 scriptable.hg \
-effecttemplate.hg
+script.hg \
+shader.hg \
+stage.hg \
+text.hg \
+texture.hg \
+timeline.hg \
+types.hg
 
 #Not for bindings/applications: timeout-pool.hg
