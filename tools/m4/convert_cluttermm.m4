@@ -1,8 +1,10 @@
 _CONVERSION(`const Glib::RefPtr<Actor>&',`ClutterActor*',__CONVERT_REFPTR_TO_P)
-_CONVERSION(`const Glib::RefPtr<ActorBox>&',`ClutterActorBox*',__CONVERT_REFPTR_TO_P)
+_CONVERSION(`const Glib::RefPtr<const Actor>&',`ClutterActor*',__CONVERT_CONST_REFPTR_TO_P)
 
 _CONVERSION(`ClutterActor*',`Glib::RefPtr<Actor>',`Glib::wrap($3)')
 _CONVERSION(`ClutterActor*',`Glib::RefPtr<const Actor>',`Glib::wrap($3)')
+
+_CONVERSION(`const Glib::RefPtr<ActorBox>&',`ClutterActorBox*',__CONVERT_REFPTR_TO_P)
 
 _CONVERSION(`const Glib::RefPtr<Shader>&',`ClutterShader*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`ClutterShader*',`Glib::RefPtr<Shader>', `Glib::wrap($3)')
@@ -22,6 +24,15 @@ _CONVERSION(`ClutterTexture*',`Glib::RefPtr<Texture>',`Glib::wrap($3)')
 _CONVERSION(`const Glib::RefPtr<Path>&',`ClutterPath*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`ClutterPath*',`Glib::RefPtr<Path>',`Glib::wrap($3)')
 _CONVERSION(`ClutterPath*',`Glib::RefPtr<const Path>',`Glib::wrap($3)')
+
+_CONVERSION(`const Glib::RefPtr<Container>&',`ClutterContainer*',__CONVERT_REFPTR_TO_P)
+_CONVERSION(`ClutterContainer*',`Glib::RefPtr<Container>',`Glib::wrap($3)')
+_CONVERSION(`ClutterContainer*',`Glib::RefPtr<const Container>',`Glib::wrap($3)')
+
+_CONVERSION(`const Glib::RefPtr<ChildMeta>&',`ClutterChildMeta*',__CONVERT_REFPTR_TO_P)
+_CONVERSION(`Glib::RefPtr<ChildMeta>',`ClutterChildMeta*',__CONVERT_REFPTR_TO_P)
+_CONVERSION(`ClutterChildMeta*',`Glib::RefPtr<ChildMeta>',`Glib::wrap($3)')
+_CONVERSION(`ClutterChildMeta*',`Glib::RefPtr<const ChildMeta>',`Glib::wrap($3)')
 
 _CONVERSION(`const Color&',`const ClutterColor*',`($3).gobj()')
 _CONVERSION(`const Margin&',`const ClutterMargin*',`($3).gobj()')

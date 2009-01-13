@@ -1,5 +1,20 @@
 2009-01-13  Daniel Elstner  <danielk@openismus.com>
 
+	* clutter/src/childmeta.{ccg,hg}: New files, implementing the
+	Clutter::ChildMeta wrapper class for ClutterChildMeta.
+	* clutter/src/Makefile_list_of_hg.am_fragment (files_hg): Add
+	childmeta.hg.
+	* tools/extra_defs_gen/generate_defs_clutter.cc: Add
+	CLUTTER_TYPE_CHILD_META.
+	* clutter/src/clutter_signals.defs: Regenerate and merge.
+	* clutter/src/container.hg (Container): Wrap methods and vfuncs
+	dealing with per-child meta data.
+	* tools/m4/convert_cluttermm.m4: Add conversion for the newly added
+	ChildMeta wrapper class, and also a couple of const variations for
+	other types.
+
+2009-01-13  Daniel Elstner  <danielk@openismus.com>
+
 	* clutter/src/behaviour-path.hg (BehaviourPath::[gs]et_path): Wrap.
 
 2009-01-13  Daniel Elstner  <danielk@openismus.com>

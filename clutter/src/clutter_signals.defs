@@ -842,6 +842,26 @@
   (construct-only #f)
 )
 
+;; From ClutterChildMeta
+
+(define-property container
+  (of-object "ClutterChildMeta")
+  (prop-type "GParamObject")
+  (docs "The container that created this data")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property actor
+  (of-object "ClutterChildMeta")
+  (prop-type "GParamObject")
+  (docs "The actor wrapped by this data")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
 ;; From ClutterCloneTexture
 
 (define-property name
@@ -1571,33 +1591,6 @@
   (construct-only #f)
 )
 
-(define-property buffer-percent
-  (of-object "ClutterMedia")
-  (prop-type "GParamInt")
-  (docs "The percentage the current stream buffer is filled.")
-  (readable #t)
-  (writable #f)
-  (construct-only #f)
-)
-
-(define-property volume
-  (of-object "ClutterMedia")
-  (prop-type "GParamDouble")
-  (docs "The audio volume.")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property duration
-  (of-object "ClutterMedia")
-  (prop-type "GParamInt")
-  (docs "The duration of the current stream in seconds.")
-  (readable #t)
-  (writable #f)
-  (construct-only #f)
-)
-
 (define-property can-seek
   (of-object "ClutterMedia")
   (prop-type "GParamBoolean")
@@ -1613,6 +1606,33 @@
   (docs "The position in the current stream in seconds.")
   (readable #t)
   (writable #t)
+  (construct-only #f)
+)
+
+(define-property duration
+  (of-object "ClutterMedia")
+  (prop-type "GParamInt")
+  (docs "The duration of the current stream in seconds.")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property volume
+  (of-object "ClutterMedia")
+  (prop-type "GParamDouble")
+  (docs "The audio volume.")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property buffer-percent
+  (of-object "ClutterMedia")
+  (prop-type "GParamInt")
+  (docs "The percentage the current stream buffer is filled.")
+  (readable #t)
+  (writable #f)
   (construct-only #f)
 )
 

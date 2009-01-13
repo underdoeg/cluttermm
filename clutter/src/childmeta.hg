@@ -1,0 +1,48 @@
+/*
+ * Copyright (c) 2009  The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include <glibmm/object.h>
+#include <glibmm/refptr.h>
+
+_DEFS(cluttermm,clutter)
+_PINCLUDE(glibmm/private/object_p.h)
+
+extern "C" { typedef struct _ClutterChildMeta ClutterChildMeta; }
+
+namespace Clutter
+{
+
+class Actor;
+class Container;
+
+class ChildMeta : public Glib::Object
+{
+  _CLASS_GOBJECT(ChildMeta, ClutterChildMeta, CLUTTER_CHILD_META, Glib::Object, GObject)
+protected:
+  ChildMeta(const Glib::RefPtr<Container>& container, const Glib::RefPtr<Actor>& actor);
+
+public:
+  _WRAP_METHOD(Glib::RefPtr<Container> get_container(), clutter_child_meta_get_container, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Container> get_container() const, clutter_child_meta_get_container, refreturn, constversion)
+  _WRAP_METHOD(Glib::RefPtr<Actor> get_actor(), clutter_child_meta_get_actor, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Actor> get_actor() const, clutter_child_meta_get_actor, refreturn, constversion)
+
+  _WRAP_PROPERTY("container", Glib::RefPtr<Container>)
+  _WRAP_PROPERTY("actor", Glib::RefPtr<Actor>)
+};
+
+} // namespace Clutter

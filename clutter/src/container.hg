@@ -16,13 +16,13 @@
  */
 
 #include <cluttermm/actor.h>
+#include <cluttermm/childmeta.h>
 #include <glibmm/interface.h>
 #include <glibmm/ustring.h>
 #include <clutter/clutter.h>
  
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/interface_p.h)
-
 
 namespace Clutter
 {
@@ -73,33 +73,16 @@ public:
   void get_child_property_value(const Glib::RefPtr<const Actor>& child, const Glib::ustring& property_name, Glib::ValueBase& value) const;
   _IGNORE(clutter_container_child_get_property)
 
-
-  /*
-
-void              clutter_container_child_get_property          (ClutterContainer *container,
-                                                                 ClutterActor     *child,
-                                                                 const gchar      *property,
-                                                                 GValue           *value);
-void              clutter_container_child_set                   (ClutterContainer *container,
-                                                                 ClutterActor     *actor,
-                                                                 const gchar      *first_prop,
-                                                                 ...) G_GNUC_NULL_TERMINATED;
-void              clutter_container_child_get                   (ClutterContainer *container,
-                                                                 ClutterActor     *actor,
-                                                                 const gchar      *first_prop,
-                                                                 ...) G_GNUC_NULL_TERMINATED;
-
-  */
-
-  // TODO: clutter_container_get_child_meta?
-
+  _WRAP_METHOD(Glib::RefPtr<ChildMeta> get_child_meta(const Glib::RefPtr<const Actor>& actor),
+               clutter_container_get_child_meta, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const ChildMeta> get_child_meta(const Glib::RefPtr<const Actor>& actor) const,
+               clutter_container_get_child_meta, refreturn, constversion)
 
 #m4 _CONVERSION(`ClutterActor*',`const Glib::RefPtr<Actor>&',`Glib::wrap($3, true)')
   _WRAP_SIGNAL(void actor_added(const Glib::RefPtr<Actor>& actor), "actor_added")
   _WRAP_SIGNAL(void actor_removed(const Glib::RefPtr<Actor>& actor), "actor_removed")
 
-  // TODO: child-notify signal? Perhaps doesn't make sense until we wrap
-  // the ClutterChildMeta stuff, and clutter_container_get/set_child_property.
+  _WRAP_SIGNAL(void child_notify(const Glib::RefPtr<Actor>& actor, GParamSpec* pspec), "child_notify")
 
 protected:
 
@@ -123,8 +106,9 @@ protected:
    */
   void actor_removed(const Glib::RefPtr<Actor>& actor);
 
-  // TODO: Do we want to wrap create_child_meta, destory_child_meta,
-  // get_child_meta?
+  _WRAP_VFUNC(void create_child_meta(const Glib::RefPtr<Actor>& actor), create_child_meta)
+  _WRAP_VFUNC(void destroy_child_meta(const Glib::RefPtr<Actor>& actor), destroy_child_meta)
+  _WRAP_VFUNC(Glib::RefPtr<ChildMeta> get_child_meta(const Glib::RefPtr<Actor>& actor), get_child_meta)
 };
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
