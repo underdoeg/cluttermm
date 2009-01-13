@@ -3550,6 +3550,12 @@
   (return-type "gboolean")
 )
 
+(define-method ensure_viewport
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_ensure_viewport")
+  (return-type "none")
+)
+
 
 
 ;; From clutter-child-meta.h

@@ -36,7 +36,7 @@
   )
 )
 
-; Hand-edited to use more specific event type
+;; Hand-edited to use more specific event type
 (define-signal button-press-event
   (of-object "ClutterActor")
   (return-type "gboolean")
@@ -46,7 +46,7 @@
   )
 )
 
-; Hand-edited to use more specific event type
+;; Hand-edited to use more specific event type
 (define-signal button-release-event
   (of-object "ClutterActor")
   (return-type "gboolean")
@@ -56,7 +56,7 @@
   )
 )
 
-; Hand-edited to use more specific event type
+;; Hand-edited to use more specific event type
 (define-signal scroll-event
   (of-object "ClutterActor")
   (return-type "gboolean")
@@ -66,7 +66,7 @@
   )
 )
 
-; Hand-edited to use more specific event type
+;; Hand-edited to use more specific event type
 (define-signal key-press-event
   (of-object "ClutterActor")
   (return-type "gboolean")
@@ -76,7 +76,7 @@
   )
 )
 
-; Hand-edited to use more specific event type
+;; Hand-edited to use more specific event type
 (define-signal key-release-event
   (of-object "ClutterActor")
   (return-type "gboolean")
@@ -86,7 +86,7 @@
   )
 )
 
-; Hand-edited to use more specific event type
+;; Hand-edited to use more specific event type
 (define-signal motion-event
   (of-object "ClutterActor")
   (return-type "gboolean")
@@ -108,7 +108,7 @@
   (when "last")
 )
 
-; Hand-edited to use more specific event type
+;; Hand-edited to use more specific event type
 (define-signal enter-event
   (of-object "ClutterActor")
   (return-type "gboolean")
@@ -118,7 +118,7 @@
   )
 )
 
-; Hand-edited to use more specific event type
+;; Hand-edited to use more specific event type
 (define-signal leave-event
   (of-object "ClutterActor")
   (return-type "gboolean")
@@ -1562,10 +1562,19 @@
   )
 )
 
-(define-property duration
+(define-property uri
+  (of-object "ClutterMedia")
+  (prop-type "GParamString")
+  (docs "The loaded URI.")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property buffer-percent
   (of-object "ClutterMedia")
   (prop-type "GParamInt")
-  (docs "The duration of the current stream in seconds.")
+  (docs "The percentage the current stream buffer is filled.")
   (readable #t)
   (writable #f)
   (construct-only #f)
@@ -1580,21 +1589,12 @@
   (construct-only #f)
 )
 
-(define-property playing
+(define-property duration
   (of-object "ClutterMedia")
-  (prop-type "GParamBoolean")
-  (docs "TRUE if playing.")
+  (prop-type "GParamInt")
+  (docs "The duration of the current stream in seconds.")
   (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property uri
-  (of-object "ClutterMedia")
-  (prop-type "GParamString")
-  (docs "The loaded URI.")
-  (readable #t)
-  (writable #t)
+  (writable #f)
   (construct-only #f)
 )
 
@@ -1607,21 +1607,41 @@
   (construct-only #f)
 )
 
-(define-property buffer-percent
-  (of-object "ClutterMedia")
-  (prop-type "GParamInt")
-  (docs "The percentage the current stream buffer is filled.")
-  (readable #t)
-  (writable #f)
-  (construct-only #f)
-)
-
 (define-property position
   (of-object "ClutterMedia")
   (prop-type "GParamInt")
   (docs "The position in the current stream in seconds.")
   (readable #t)
   (writable #t)
+  (construct-only #f)
+)
+
+(define-property playing
+  (of-object "ClutterMedia")
+  (prop-type "GParamBoolean")
+  (docs "TRUE if playing.")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From ClutterPath
+
+(define-property description
+  (of-object "ClutterPath")
+  (prop-type "GParamString")
+  (docs "SVG-style description of the path")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property length
+  (of-object "ClutterPath")
+  (prop-type "GParamUInt")
+  (docs "An approximation of the total length of the path.")
+  (readable #t)
+  (writable #f)
   (construct-only #f)
 )
 
@@ -2071,6 +2091,12 @@
   (when "last")
 )
 
+(define-signal queue-redraw
+  (of-object "ClutterStage")
+  (return-type "void")
+  (when "first")
+)
+
 (define-property name
   (of-object "ClutterStage")
   (prop-type "GParamString")
@@ -2472,7 +2498,7 @@
   (when "last")
 )
 
-; Hand-edited to add constness
+;; Hand-edited to add constness
 (define-signal cursor-event
   (of-object "ClutterText")
   (return-type "void")

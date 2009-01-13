@@ -13,8 +13,8 @@
 )
 
 ;; From clutter-path.h
-;; hand-edited to deal with CLUTTER_PATH_RELATIVE flag
 
+;; Hand-edited to deal with CLUTTER_PATH_RELATIVE flag
 (define-flags-extended PathNodeType
   (in-module "Clutter")
   (c-name "ClutterPathNodeType")
@@ -70,7 +70,6 @@
 )
 
 ;; Hand-edited because enum.pl failed to find the correct common prefix
-
 (define-flags-extended EventFlags
   (in-module "Clutter")
   (c-name "ClutterEventFlags")
