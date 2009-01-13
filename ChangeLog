@@ -1,5 +1,9 @@
 2009-01-13  Daniel Elstner  <danielk@openismus.com>
 
+	* clutter/src/behaviour-path.hg (BehaviourPath::[gs]et_path): Wrap.
+
+2009-01-13  Daniel Elstner  <danielk@openismus.com>
+
 	* tools/extra_defs_gen/generate_defs_clutter.cc:
 	Add CLUTTER_TYPE_PATH.
 	* clutter/src/clutter_enums.defs: Regenerate and merge manual

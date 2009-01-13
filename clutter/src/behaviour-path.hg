@@ -47,6 +47,10 @@ public:
   static Glib::RefPtr<BehaviourPath> create_with_description(const Glib::RefPtr<Alpha>& alpha,
                                                              const Glib::ustring& description);
 
+  _WRAP_METHOD(void set_path(const Glib::RefPtr<Path>& path), clutter_behaviour_path_set_path)
+  _WRAP_METHOD(Glib::RefPtr<Path> get_path(), clutter_behaviour_path_get_path, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Path> get_path() const, clutter_behaviour_path_get_path, refreturn, constversion)
+
   _WRAP_SIGNAL(void knot_reached(guint knot_num), "knot_reached")
 };
 
