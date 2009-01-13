@@ -1,5 +1,10 @@
 2009-01-13  Daniel Elstner  <danielk@openismus.com>
 
+	* clutter/src/box.{ccg,hg}: Remove file, as ClutterBox is no more.
+	* clutter/src/margin.{ccg,hg}: Same for ClutterMargin.
+
+2009-01-13  Daniel Elstner  <danielk@openismus.com>
+
 	* clutter/src/childmeta.{ccg,hg}: New files, implementing the
 	Clutter::ChildMeta wrapper class for ClutterChildMeta.
 	* clutter/src/Makefile_list_of_hg.am_fragment (files_hg): Add
