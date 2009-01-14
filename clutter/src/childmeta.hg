@@ -21,8 +21,6 @@
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)
 
-extern "C" { typedef struct _ClutterChildMeta ClutterChildMeta; }
-
 namespace Clutter
 {
 

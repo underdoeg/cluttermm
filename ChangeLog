@@ -1,3 +1,8 @@
+2009-01-14  Daniel Elstner  <danielk@openismus.com>
+
+	* clutter/src/childmeta.hg (_ClutterChildMeta): Remove redundant
+	forward declaration and typedef.
+
 2009-01-13  Daniel Elstner  <danielk@openismus.com>
 
 	* clutter/src/box.{ccg,hg}: Remove file, as ClutterBox is no more.
