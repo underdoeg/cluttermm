@@ -1,48 +1,40 @@
-;; From clutter-main.h
+;; From /home/murrayc/svn/gnome220/branches/clutter/clutter/clutter-actor.h
 
-(define-enum-extended InitError
+(define-flags-extended ActorFlags
   (in-module "Clutter")
-  (c-name "ClutterInitError")
+  (c-name "ClutterActorFlags")
   (values
-    '("success" "CLUTTER_INIT_SUCCESS" "1")
-    '("error-unknown" "CLUTTER_INIT_ERROR_UNKNOWN" "0")
-    '("error-threads" "CLUTTER_INIT_ERROR_THREADS" "-1")
-    '("error-backend" "CLUTTER_INIT_ERROR_BACKEND" "-2")
-    '("error-internal" "CLUTTER_INIT_ERROR_INTERNAL" "-3")
+    '("mapped" "CLUTTER_ACTOR_MAPPED" "1 << 1")
+    '("realized" "CLUTTER_ACTOR_REALIZED" "1 << 2")
+    '("reactive" "CLUTTER_ACTOR_REACTIVE" "1 << 3")
   )
 )
 
-;; From clutter-path.h
+;; From /home/murrayc/svn/gnome220/branches/clutter/clutter/clutter-debug.h
 
-;; Hand-edited to deal with CLUTTER_PATH_RELATIVE flag
-(define-flags-extended PathNodeType
+(define-flags-extended DebugFlag
   (in-module "Clutter")
-  (c-name "ClutterPathNodeType")
+  (c-name "ClutterDebugFlag")
   (values
-    '("move-to" "CLUTTER_PATH_MOVE_TO" "0")
-    '("line-to" "CLUTTER_PATH_LINE_TO" "1")
-    '("curve-to" "CLUTTER_PATH_CURVE_TO" "2")
-    '("close" "CLUTTER_PATH_CLOSE" "3")
-    '("relative" "CLUTTER_PATH_RELATIVE" "32")
-    '("rel-move-to" "CLUTTER_PATH_REL_MOVE_TO" "PATH_RELATIVE | PATH_MOVE_TO")
-    '("rel-line-to" "CLUTTER_PATH_REL_LINE_TO" "PATH_RELATIVE | PATH_LINE_TO")
-    '("rel-curve-to" "CLUTTER_PATH_REL_CURVE_TO" "PATH_RELATIVE | PATH_CURVE_TO")
+    '("misc" "CLUTTER_DEBUG_MISC" "1 << 0")
+    '("actor" "CLUTTER_DEBUG_ACTOR" "1 << 1")
+    '("texture" "CLUTTER_DEBUG_TEXTURE" "1 << 2")
+    '("event" "CLUTTER_DEBUG_EVENT" "1 << 3")
+    '("paint" "CLUTTER_DEBUG_PAINT" "1 << 4")
+    '("gl" "CLUTTER_DEBUG_GL" "1 << 5")
+    '("alpha" "CLUTTER_DEBUG_ALPHA" "1 << 6")
+    '("behaviour" "CLUTTER_DEBUG_BEHAVIOUR" "1 << 7")
+    '("pango" "CLUTTER_DEBUG_PANGO" "1 << 8")
+    '("backend" "CLUTTER_DEBUG_BACKEND" "1 << 9")
+    '("scheduler" "CLUTTER_DEBUG_SCHEDULER" "1 << 10")
+    '("script" "CLUTTER_DEBUG_SCRIPT" "1 << 11")
+    '("shader" "CLUTTER_DEBUG_SHADER" "1 << 12")
+    '("multistage" "CLUTTER_DEBUG_MULTISTAGE" "1 << 13")
+    '("animation" "CLUTTER_DEBUG_ANIMATION" "1 << 14")
   )
 )
 
-;; From clutter-shader.h
-
-(define-enum-extended ShaderError
-  (in-module "Clutter")
-  (c-name "ClutterShaderError")
-  (values
-    '("no-asm" "CLUTTER_SHADER_ERROR_NO_ASM" "0")
-    '("no-glsl" "CLUTTER_SHADER_ERROR_NO_GLSL" "1")
-    '("compile" "CLUTTER_SHADER_ERROR_COMPILE" "2")
-  )
-)
-
-;; From clutter-event.h
+;; From /home/murrayc/svn/gnome220/branches/clutter/clutter/clutter-event.h
 
 (define-flags-extended ModifierType
   (in-module "Clutter")
@@ -69,12 +61,11 @@
   )
 )
 
-;; Hand-edited because enum.pl failed to find the correct common prefix
 (define-flags-extended EventFlags
   (in-module "Clutter")
   (c-name "ClutterEventFlags")
   (values
-    '("synthetic" "CLUTTER_EVENT_FLAG_SYNTHETIC" "1 << 0")
+    '("c" "CLUTTER_EVENT_FLAG_SYNTHETIC" "1 << 0")
   )
 )
 
@@ -119,7 +110,106 @@
   )
 )
 
-;; From clutter-texture.h
+;; From /home/murrayc/svn/gnome220/branches/clutter/clutter/clutter-feature.h
+
+(define-flags-extended FeatureFlags
+  (in-module "Clutter")
+  (c-name "ClutterFeatureFlags")
+  (values
+    '("texture-npot" "CLUTTER_FEATURE_TEXTURE_NPOT" "1 << 2")
+    '("sync-to-vblank" "CLUTTER_FEATURE_SYNC_TO_VBLANK" "1 << 3")
+    '("texture-yuv" "CLUTTER_FEATURE_TEXTURE_YUV" "1 << 4")
+    '("texture-read-pixels" "CLUTTER_FEATURE_TEXTURE_READ_PIXELS" "1 << 5")
+    '("stage-static" "CLUTTER_FEATURE_STAGE_STATIC" "1 << 6")
+    '("stage-user-resize" "CLUTTER_FEATURE_STAGE_USER_RESIZE" "1 << 7")
+    '("stage-cursor" "CLUTTER_FEATURE_STAGE_CURSOR" "1 << 8")
+    '("shaders-glsl" "CLUTTER_FEATURE_SHADERS_GLSL" "1 << 9")
+    '("offscreen" "CLUTTER_FEATURE_OFFSCREEN" "1 << 10")
+    '("stage-multiple" "CLUTTER_FEATURE_STAGE_MULTIPLE" "1 << 11")
+  )
+)
+
+;; From /home/murrayc/svn/gnome220/branches/clutter/clutter/clutter-main.h
+
+(define-enum-extended InitError
+  (in-module "Clutter")
+  (c-name "ClutterInitError")
+  (values
+    '("success" "CLUTTER_INIT_SUCCESS" "1")
+    '("error-unknown" "CLUTTER_INIT_ERROR_UNKNOWN" "0")
+    '("error-threads" "CLUTTER_INIT_ERROR_THREADS" "-1")
+    '("error-backend" "CLUTTER_INIT_ERROR_BACKEND" "-2")
+    '("error-internal" "CLUTTER_INIT_ERROR_INTERNAL" "-3")
+  )
+)
+
+;; From /home/murrayc/svn/gnome220/branches/clutter/clutter/clutter-path.h
+
+(define-enum-extended PathNodeType
+  (in-module "Clutter")
+  (c-name "ClutterPathNodeType")
+  (values
+    '("move-to" "CLUTTER_PATH_MOVE_TO" "0")
+    '("line-to" "CLUTTER_PATH_LINE_TO" "1")
+    '("curve-to" "CLUTTER_PATH_CURVE_TO" "2")
+    '("close" "CLUTTER_PATH_CLOSE" "3")
+    '("rel-move-to" "CLUTTER_PATH_REL_MOVE_TO" "#error")
+    '("rel-line-to" "CLUTTER_PATH_REL_LINE_TO" "1")
+    '("rel-curve-to" "CLUTTER_PATH_REL_CURVE_TO" "2")
+  )
+)
+
+;; From /home/murrayc/svn/gnome220/branches/clutter/clutter/clutter-private.h
+
+(define-flags-extended PrivateFlags
+  (in-module "Clutter")
+  (c-name "ClutterPrivateFlags")
+  (values
+    '("actor-unused-flag" "CLUTTER_ACTOR_UNUSED_FLAG" "0")
+    '("actor-in-destruction" "CLUTTER_ACTOR_IN_DESTRUCTION" "1 << 0")
+    '("actor-is-toplevel" "CLUTTER_ACTOR_IS_TOPLEVEL" "1 << 1")
+    '("actor-in-reparent" "CLUTTER_ACTOR_IN_REPARENT" "1 << 2")
+    '("actor-in-paint" "CLUTTER_ACTOR_IN_PAINT" "1 << 4")
+    '("actor-in-relayout" "CLUTTER_ACTOR_IN_RELAYOUT" "1 << 5")
+    '("texture-in-clone-paint" "CLUTTER_TEXTURE_IN_CLONE_PAINT" "1 << 6")
+  )
+)
+
+(define-enum-extended PickMode
+  (in-module "Clutter")
+  (c-name "ClutterPickMode")
+  (values
+    '("none" "CLUTTER_PICK_NONE" "0")
+    '("reactive" "CLUTTER_PICK_REACTIVE" "1")
+    '("all" "CLUTTER_PICK_ALL" "2")
+  )
+)
+
+;; From /home/murrayc/svn/gnome220/branches/clutter/clutter/clutter-script.h
+
+(define-enum-extended ScriptError
+  (in-module "Clutter")
+  (c-name "ClutterScriptError")
+  (values
+    '("type-function" "CLUTTER_SCRIPT_ERROR_INVALID_TYPE_FUNCTION" "0")
+    '("property" "CLUTTER_SCRIPT_ERROR_INVALID_PROPERTY" "1")
+    '("value" "CLUTTER_SCRIPT_ERROR_INVALID_VALUE" "2")
+  )
+)
+
+;; From /home/murrayc/svn/gnome220/branches/clutter/clutter/clutter-shader.h
+
+(define-enum-extended ShaderError
+  (in-module "Clutter")
+  (c-name "ClutterShaderError")
+  (values
+    '("no-asm" "CLUTTER_SHADER_ERROR_NO_ASM" "0")
+    '("no-glsl" "CLUTTER_SHADER_ERROR_NO_GLSL" "1")
+    '("compile" "CLUTTER_SHADER_ERROR_COMPILE" "2")
+  )
+)
+
+;; From /home/murrayc/svn/gnome220/branches/clutter/clutter/clutter-texture.h
 
 (define-enum-extended TextureError
   (in-module "Clutter")
@@ -151,31 +241,7 @@
   )
 )
 
-;; From clutter-script.h
-
-(define-enum-extended ScriptError
-  (in-module "Clutter")
-  (c-name "ClutterScriptError")
-  (values
-    '("type-function" "CLUTTER_SCRIPT_ERROR_INVALID_TYPE_FUNCTION" "0")
-    '("property" "CLUTTER_SCRIPT_ERROR_INVALID_PROPERTY" "1")
-    '("value" "CLUTTER_SCRIPT_ERROR_INVALID_VALUE" "2")
-  )
-)
-
-;; From clutter-actor.h
-
-(define-flags-extended ActorFlags
-  (in-module "Clutter")
-  (c-name "ClutterActorFlags")
-  (values
-    '("mapped" "CLUTTER_ACTOR_MAPPED" "1 << 1")
-    '("realized" "CLUTTER_ACTOR_REALIZED" "1 << 2")
-    '("reactive" "CLUTTER_ACTOR_REACTIVE" "1 << 3")
-  )
-)
-
-;; From clutter-timeline.h
+;; From /home/murrayc/svn/gnome220/branches/clutter/clutter/clutter-timeline.h
 
 (define-enum-extended TimelineDirection
   (in-module "Clutter")
@@ -186,7 +252,7 @@
   )
 )
 
-;; From clutter-types.h
+;; From /home/murrayc/svn/gnome220/branches/clutter/clutter/clutter-types.h
 
 (define-enum-extended Gravity
   (in-module "Clutter")
@@ -239,35 +305,46 @@
   (values
     '("custom-mode" "CLUTTER_CUSTOM_MODE" "0")
     '("linear" "CLUTTER_LINEAR" "1")
-    '("sine-in" "CLUTTER_SINE_IN" "2")
-    '("sine-out" "CLUTTER_SINE_OUT" "3")
-    '("sine-in-out" "CLUTTER_SINE_IN_OUT" "4")
-    '("ease-in" "CLUTTER_EASE_IN" "5")
-    '("ease-out" "CLUTTER_EASE_OUT" "6")
-    '("ease-in-out" "CLUTTER_EASE_IN_OUT" "7")
-    '("expo-in" "CLUTTER_EXPO_IN" "8")
-    '("expo-out" "CLUTTER_EXPO_OUT" "9")
-    '("expo-in-out" "CLUTTER_EXPO_IN_OUT" "10")
-    '("smooth-in-out" "CLUTTER_SMOOTH_IN_OUT" "11")
+    '("ease-in-quad" "CLUTTER_EASE_IN_QUAD" "2")
+    '("ease-out-quad" "CLUTTER_EASE_OUT_QUAD" "3")
+    '("ease-in-out-quad" "CLUTTER_EASE_IN_OUT_QUAD" "4")
+    '("ease-in-cubic" "CLUTTER_EASE_IN_CUBIC" "5")
+    '("ease-out-cubic" "CLUTTER_EASE_OUT_CUBIC" "6")
+    '("ease-in-out-cubic" "CLUTTER_EASE_IN_OUT_CUBIC" "7")
+    '("ease-in-quart" "CLUTTER_EASE_IN_QUART" "8")
+    '("ease-out-quart" "CLUTTER_EASE_OUT_QUART" "9")
+    '("ease-in-out-quart" "CLUTTER_EASE_IN_OUT_QUART" "10")
+    '("ease-in-quint" "CLUTTER_EASE_IN_QUINT" "11")
+    '("ease-out-quint" "CLUTTER_EASE_OUT_QUINT" "12")
+    '("ease-in-out-quint" "CLUTTER_EASE_IN_OUT_QUINT" "13")
+    '("ease-in-sine" "CLUTTER_EASE_IN_SINE" "14")
+    '("ease-out-sine" "CLUTTER_EASE_OUT_SINE" "15")
+    '("ease-in-out-sine" "CLUTTER_EASE_IN_OUT_SINE" "16")
+    '("ease-in-expo" "CLUTTER_EASE_IN_EXPO" "17")
+    '("ease-out-expo" "CLUTTER_EASE_OUT_EXPO" "18")
+    '("ease-in-out-expo" "CLUTTER_EASE_IN_OUT_EXPO" "19")
+    '("ease-in-circ" "CLUTTER_EASE_IN_CIRC" "20")
+    '("ease-out-circ" "CLUTTER_EASE_OUT_CIRC" "21")
+    '("ease-in-out-circ" "CLUTTER_EASE_IN_OUT_CIRC" "22")
+    '("ease-in-elastic" "CLUTTER_EASE_IN_ELASTIC" "23")
+    '("ease-out-elastic" "CLUTTER_EASE_OUT_ELASTIC" "24")
+    '("ease-in-out-elastic" "CLUTTER_EASE_IN_OUT_ELASTIC" "25")
+    '("ease-in-back" "CLUTTER_EASE_IN_BACK" "26")
+    '("ease-out-back" "CLUTTER_EASE_OUT_BACK" "27")
+    '("ease-in-out-back" "CLUTTER_EASE_IN_OUT_BACK" "28")
+    '("ease-in-bounce" "CLUTTER_EASE_IN_BOUNCE" "29")
+    '("ease-out-bounce" "CLUTTER_EASE_OUT_BOUNCE" "30")
+    '("ease-in-out-bounce" "CLUTTER_EASE_IN_OUT_BOUNCE" "31")
+    '("animation-last" "CLUTTER_ANIMATION_LAST" "32")
   )
 )
 
-;; From clutter-feature.h
-
-(define-flags-extended FeatureFlags
+(define-flags-extended FontFlags
   (in-module "Clutter")
-  (c-name "ClutterFeatureFlags")
+  (c-name "ClutterFontFlags")
   (values
-    '("texture-npot" "CLUTTER_FEATURE_TEXTURE_NPOT" "1 << 2")
-    '("sync-to-vblank" "CLUTTER_FEATURE_SYNC_TO_VBLANK" "1 << 3")
-    '("texture-yuv" "CLUTTER_FEATURE_TEXTURE_YUV" "1 << 4")
-    '("texture-read-pixels" "CLUTTER_FEATURE_TEXTURE_READ_PIXELS" "1 << 5")
-    '("stage-static" "CLUTTER_FEATURE_STAGE_STATIC" "1 << 6")
-    '("stage-user-resize" "CLUTTER_FEATURE_STAGE_USER_RESIZE" "1 << 7")
-    '("stage-cursor" "CLUTTER_FEATURE_STAGE_CURSOR" "1 << 8")
-    '("shaders-glsl" "CLUTTER_FEATURE_SHADERS_GLSL" "1 << 9")
-    '("offscreen" "CLUTTER_FEATURE_OFFSCREEN" "1 << 10")
-    '("stage-multiple" "CLUTTER_FEATURE_STAGE_MULTIPLE" "1 << 11")
+    '("mipmapping" "CLUTTER_FONT_MIPMAPPING" "1 << 0")
+    '("hinting" "CLUTTER_FONT_HINTING" "1 << 1")
   )
 )
 

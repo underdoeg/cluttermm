@@ -1,4 +1,4 @@
-/* Copyright (C) 2007 The cluttermm Development Team
+/* Copyright (C) 2007-2009 The cluttermm Development Team
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -25,21 +25,22 @@ _PINCLUDE(cluttermm/private/actor_p.h)
 namespace Clutter
 {
 
-class CloneTexture :
+class Clone :
   public Actor
 {
-  _CLASS_GOBJECT(CloneTexture, ClutterCloneTexture, CLUTTER_CLONE_TEXTURE, Actor, ClutterActor)
+  _CLASS_GOBJECT(Clone, ClutterClone, CLUTTER_CLONE, Actor, ClutterActor)
 
 protected:
-  _WRAP_CTOR(CloneTexture(const Glib::RefPtr<Texture>& parent_texture), clutter_clone_texture_new)
+  _WRAP_CTOR(Clone(const Glib::RefPtr<Actor>& source), clutter_clone_new)
 
 public:
-#m4 _CONVERSION(`ClutterActor*',`Glib::RefPtr<CloneTexture>',`Glib::wrap((ClutterCloneTexture*)$3)')
+#m4 _CONVERSION(`ClutterActor*',`Glib::RefPtr<Clone>',`Glib::wrap((ClutterCloneTexture*)$3)')
 
-  _WRAP_CREATE(const Glib::RefPtr<Texture>& parent_texture);
+  _WRAP_CREATE(const Glib::RefPtr<Actor>& source);
 
-  _WRAP_METHOD(Glib::RefPtr<Texture> get_parent_texture() const, clutter_clone_texture_get_parent_texture)
-  _WRAP_METHOD(void get_parent_texture(const Glib::RefPtr<Texture>& texture), clutter_clone_texture_set_parent_texture)
+  _WRAP_METHOD(Glib::RefPtr<Actor> get_source(), clutter_clone_get_source)
+  _WRAP_METHOD(Glib::RefPtr<const Actor> get_source() const, clutter_clone_get_source, refreturn)
+  _WRAP_METHOD(void get_source(const Glib::RefPtr<Actor>& source), clutter_clone_set_source)
 
 };
 

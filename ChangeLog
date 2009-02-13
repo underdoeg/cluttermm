@@ -1,3 +1,34 @@
+2009-02-13  Murray Cumming  <murrayc@murrayc.com>
+
+	* tools/extra_defs_gen/generate_defs_clutter.cc: Add new types.
+	* clutter/src/clutter_methods.defs: Regenerated.
+
+	* clutter/src/clutter_enums.defs:
+	* clutter/src/clutter_vfuncs.defs: Hand-changed some parts.
+
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* clutter/cluttermm.h: Adjusted for removed files.
+
+	* clutter/src/types.hg: Added FontFlags.
+	* clutter/cluttermm/main.[h|cc]: Replaced get/set_use_mipmapped_text() 
+	with get/set_font_flags().
+
+	* clutter/src/alpha.[hg|ccg]: Added a constructor and create() to take 
+	the animation mode.
+	* clutter/src/behaviour.hg: Replace some guints with doubles.
+	* clutter/src/clone.hg: Renamed from clone-texture.hg (CloneTexture).
+
+	* clutter/src/media.hg: Remove vfuncs, which have been removed from 
+	the C API.
+
+	* clutter/src/effectstemplate.[hg|ccg|: Removed.
+	* examples/Makefile.am: Remove effects example. We must replace this 
+	with an example of the new animation API.
+
+	* examples/test-actors.cc:
+	* tests/test-alpha-creation.cc: Use the AnimationMode instead of 
+	standard callback functions (now removed).
+
 2009-01-24  Deng Xiyue  <manphiz@gmail.com>
 
 	* Change license header to mention Lesser General Public License

@@ -41,6 +41,7 @@ _WRAP_ENUM(RotateDirection, ClutterRotateDirection)
 _WRAP_ENUM(RotateAxis, ClutterRotateAxis)
 _WRAP_ENUM(Gravity, ClutterGravity)
 _WRAP_ENUM(RequestMode, ClutterRequestMode)
+_WRAP_ENUM(FontFlags, ClutterFontFlags)
 
 class Knot
 {

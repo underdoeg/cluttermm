@@ -34,32 +34,11 @@ public:
   /** For instance,
    * guint32 on_alpha(const Glib::RefPtr<Alpha>& alpha);
    */
-  typedef sigc::slot<guint32, const Glib::RefPtr<Alpha>&> SlotAlphaFunc;
-
-  //! @name Pre-defined Alpha Functions
-  //! @{
-  static guint32 ramp_inc_func(const Glib::RefPtr<Alpha>& alpha);
-  static guint32 ramp_dec_func(const Glib::RefPtr<Alpha>& alpha);
-  static guint32 ramp_func(const Glib::RefPtr<Alpha>& alpha);
-  static guint32 sine_func(const Glib::RefPtr<Alpha>& alpha);
-  static guint32 sine_inc_func(const Glib::RefPtr<Alpha>& alpha);
-  static guint32 sine_dec_func(const Glib::RefPtr<Alpha>& alpha);
-  static guint32 sine_half_func(const Glib::RefPtr<Alpha>& alpha);
-  static guint32 sine_in_func(const Glib::RefPtr<Alpha>& alpha);
-  static guint32 sine_out_func(const Glib::RefPtr<Alpha>& alpha);
-  static guint32 sine_in_out_func(const Glib::RefPtr<Alpha>& alpha);
-  static guint32 square_func(const Glib::RefPtr<Alpha>& alpha);
-  static guint32 smoothstep_inc_func(const Glib::RefPtr<Alpha>& alpha);
-  static guint32 smoothstep_dec_func(const Glib::RefPtr<Alpha>& alpha);
-  static guint32 exp_inc_func(const Glib::RefPtr<Alpha>& alpha);
-  static guint32 exp_dec_func(const Glib::RefPtr<Alpha>& alpha);
-  static guint32 ease_in_func(const Glib::RefPtr<Alpha>& alpha);
-  static guint32 ease_out_func(const Glib::RefPtr<Alpha>& alpha);
-  static guint32 ease_in_out_func(const Glib::RefPtr<Alpha>& alpha);
-  //! @}
+  typedef sigc::slot<double, const Glib::RefPtr<Alpha>&> SlotAlphaFunc;
 
 protected:
   _CTOR_DEFAULT()
+  _WRAP_CTOR(Alpha(const Glib::RefPtr<Timeline>& timeline, gulong mode), clutter_alpha_new_full)
 
   /** Creates a new Alpha instance and sets the timeline and the alpha function.
    * @param timeline Timeline.
@@ -72,18 +51,20 @@ public:
 
   _WRAP_CREATE()
   _WRAP_CREATE(const Glib::RefPtr<Timeline>& timeline, const SlotAlphaFunc& slot)
+  _WRAP_CREATE(const Glib::RefPtr<Timeline>& timeline, gulong mode)
 
   _WRAP_METHOD(void set_timeline(const Glib::RefPtr<Timeline>& timeline), clutter_alpha_set_timeline)
   _WRAP_METHOD(Glib::RefPtr<Timeline> get_timeline() const, clutter_alpha_get_timeline)
-  _WRAP_METHOD(guint32 get_alpha() const, clutter_alpha_get_alpha)
+  _WRAP_METHOD(double get_alpha() const, clutter_alpha_get_alpha)
 
   _IGNORE(clutter_alpha_set_func)
   void set_func(const SlotAlphaFunc& slot);
 
-  _WRAP_METHOD(void set_mode(AnimationMode mode), clutter_alpha_set_mode)
-  _WRAP_METHOD(AnimationMode get_mode() const, clutter_alpha_get_mode)
+  //TODO: Special methods that take AnimationMode?
+  _WRAP_METHOD(void set_mode(gulong mode), clutter_alpha_set_mode)
+  _WRAP_METHOD(gulong get_mode() const, clutter_alpha_get_mode)
 
-  _WRAP_PROPERTY("alpha", guint)
+  _WRAP_PROPERTY("alpha", double)
   _WRAP_PROPERTY("timeline", Glib::RefPtr<Timeline>)
 
   // We don't need the GClosure stuff in C++:

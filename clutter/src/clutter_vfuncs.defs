@@ -136,7 +136,7 @@
   (of-object "ClutterBehaviour")
   (return-type "void")
   (parameters
-    '("guint32" "alpha_value")
+    '("double" "alpha_value")
   )
 )
 

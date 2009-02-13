@@ -122,18 +122,12 @@ guint get_motion_events_frequency();
  */
 void clear_glyph_cache();
 
-/** Sets whether subsequent text rendering operations will use mipmapped
- * textures or not. Using mipmapped textures will improve the quality for
- * scaled down text but will use more texture memory.
- * @param value true to enable mipmapping or false to disable.
- */
-void set_use_mipmapped_text(bool value);
+//TODO: Documentation:
 
-/** Gets whether mipmapped textures are used in text operations. See
- * set_use_mipmapped_text().
- * @return true if text operations should use mipmapped textures
- */
-bool get_use_mipmapped_text();
+void set_font_flags(FontFlags flags);
+
+FontFlags get_font_flags();
+
 
 /** Queries the current keyboard grab of clutter.
  * @return the actor currently holding the keyboard grab, or an empty

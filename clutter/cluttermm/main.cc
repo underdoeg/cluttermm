@@ -93,14 +93,14 @@ void clear_glyph_cache()
   clutter_clear_glyph_cache();
 }
 
-void set_use_mipmapped_text(bool value)
+void set_font_flags(FontFlags flags)
 {
-  clutter_set_use_mipmapped_text(value);
+  clutter_set_font_flags((ClutterFontFlags)flags);
 }
 
-bool get_use_mipmapped_text()
+FontFlags get_font_flags()
 {
-  return clutter_get_use_mipmapped_text();
+  return (FontFlags)clutter_get_font_flags();
 }
 
 Glib::RefPtr<Actor> get_keyboard_grab()

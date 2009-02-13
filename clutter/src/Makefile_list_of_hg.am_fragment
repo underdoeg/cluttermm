@@ -13,10 +13,9 @@ behaviour-path.hg \
 behaviour-rotate.hg \
 behaviour-scale.hg \
 childmeta.hg \
-clone-texture.hg \
+clone.hg \
 color.hg \
 container.hg \
-effecttemplate.hg \
 group.hg \
 media.hg \
 path.hg \

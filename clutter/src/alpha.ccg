@@ -20,9 +20,9 @@
 namespace
 {
 
-static guint32 SignalProxy_Alpha_callback(ClutterAlpha *alpha, gpointer user_data)
+static double SignalProxy_Alpha_callback(ClutterAlpha *alpha, gpointer user_data)
 {
-  guint32 value;
+  double value = 0;
   Clutter::Alpha::SlotAlphaFunc* the_slot = static_cast<Clutter::Alpha::SlotAlphaFunc*>(user_data);
 
 #ifdef GLIBMM_EXCEPTIONS_ENABLED
@@ -50,6 +50,8 @@ static void SignalProxy_Alpha_callback_destroy(void* data)
 
 namespace Clutter
 {
+
+/* TODO: What's the clutter-0.10 equivalent?
 
 guint32 Alpha::ramp_inc_func(const Glib::RefPtr<Alpha>& alpha)
 {
@@ -140,6 +142,8 @@ guint32 Alpha::ease_in_out_func(const Glib::RefPtr<Alpha>& alpha)
 {
   return clutter_ease_in_out_func(alpha->gobj(), 0);
 }
+
+*/
 
 Alpha::Alpha(const Glib::RefPtr<Timeline>& timeline, const SlotAlphaFunc& slot)
 :

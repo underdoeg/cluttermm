@@ -72,7 +72,7 @@ _CONVERSION(`ClutterActor*',`const Glib::RefPtr<Actor>&',`Glib::wrap($3)')
   _WRAP_SIGNAL(void removed(const Glib::RefPtr<Actor>& actor), "removed")
 
 protected:
-  _WRAP_VFUNC(void alpha_notify(guint32 alpha_value), alpha_notify)
+  _WRAP_VFUNC(void alpha_notify(double alpha_value), alpha_notify)
 
 };
 
