@@ -1,3 +1,8 @@
+2009-02-16  Daniel Elstner  <danielk@openismus.com>
+
+	* clutter/src/clutter_signals.defs: Regenerate, and merge the manual
+	changes made to the old file.
+
 2009-02-13  Murray Cumming  <murrayc@murrayc.com>
 
 	* tools/extra_defs_gen/generate_defs_clutter.cc: Add new types.

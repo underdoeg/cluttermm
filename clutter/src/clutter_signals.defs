@@ -155,6 +155,15 @@
   (when "last")
 )
 
+(define-signal pick
+  (of-object "ClutterActor")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("ClutterColor*" "p0")
+  )
+)
+
 (define-property name
   (of-object "ClutterActor")
   (prop-type "GParamString")
@@ -389,6 +398,33 @@
   (construct-only #f)
 )
 
+(define-property scale-center-x
+  (of-object "ClutterActor")
+  (prop-type "GParamInt")
+  (docs "Horizontal scale center")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property scale-center-y
+  (of-object "ClutterActor")
+  (prop-type "GParamInt")
+  (docs "Vertical scale center")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property scale-gravity
+  (of-object "ClutterActor")
+  (prop-type "GParamEnum")
+  (docs "The center of scaling")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property rotation-angle-x
   (of-object "ClutterActor")
   (prop-type "GParamDouble")
@@ -443,6 +479,15 @@
   (construct-only #f)
 )
 
+(define-property rotation-center-z-gravity
+  (of-object "ClutterActor")
+  (prop-type "GParamEnum")
+  (docs "Center point for rotation around the Z axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property anchor-x
   (of-object "ClutterActor")
   (prop-type "GParamInt")
@@ -456,6 +501,15 @@
   (of-object "ClutterActor")
   (prop-type "GParamInt")
   (docs "Y coordinate of the anchor point")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property anchor-gravity
+  (of-object "ClutterActor")
+  (prop-type "GParamEnum")
+  (docs "The anchor point as a ClutterGravity")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -475,7 +529,7 @@
 (define-property timeline
   (of-object "ClutterAlpha")
   (prop-type "GParamObject")
-  (docs "Timeline")
+  (docs "Timeline used by the alpha")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -483,7 +537,7 @@
 
 (define-property alpha
   (of-object "ClutterAlpha")
-  (prop-type "GParamUInt")
+  (prop-type "GParamDouble")
   (docs "Alpha value")
   (readable #t)
   (writable #f)
@@ -492,7 +546,7 @@
 
 (define-property mode
   (of-object "ClutterAlpha")
-  (prop-type "GParamEnum")
+  (prop-type "GParamULong")
   (docs "Progress mode")
   (readable #t)
   (writable #t)
@@ -504,13 +558,13 @@
 (define-signal resolution-changed
   (of-object "ClutterBackend")
   (return-type "void")
-  (when "last")
+  (when "first")
 )
 
 (define-signal font-changed
   (of-object "ClutterBackend")
   (return-type "void")
-  (when "last")
+  (when "first")
 )
 
 ;; From ClutterBehaviourDepth
@@ -842,6 +896,485 @@
   (construct-only #f)
 )
 
+;; From ClutterCairoTexture
+
+(define-property name
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamString")
+  (docs "Name of the actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property x
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamInt")
+  (docs "X coordinate of the actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property y
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamInt")
+  (docs "Y coordinate of the actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property width
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamInt")
+  (docs "Width of the actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property height
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamInt")
+  (docs "Height of the actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fixed-x
+  (of-object "ClutterCairoTexture")
+  (prop-type "ClutterParamSpecUnit")
+  (docs "Forced X position of the actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fixed-y
+  (of-object "ClutterCairoTexture")
+  (prop-type "ClutterParamSpecUnit")
+  (docs "Forced Y position of the actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fixed-position-set
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamBoolean")
+  (docs "Whether to use fixed positioning for the actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property min-width
+  (of-object "ClutterCairoTexture")
+  (prop-type "ClutterParamSpecUnit")
+  (docs "Forced minimum width request for the actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property min-width-set
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamBoolean")
+  (docs "Whether to use the min-width property")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property min-height
+  (of-object "ClutterCairoTexture")
+  (prop-type "ClutterParamSpecUnit")
+  (docs "Forced minimum height request for the actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property min-height-set
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamBoolean")
+  (docs "Whether to use the min-height property")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property natural-width
+  (of-object "ClutterCairoTexture")
+  (prop-type "ClutterParamSpecUnit")
+  (docs "Forced natural width request for the actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property natural-width-set
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamBoolean")
+  (docs "Whether to use the natural-width property")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property natural-height
+  (of-object "ClutterCairoTexture")
+  (prop-type "ClutterParamSpecUnit")
+  (docs "Forced natural height request for the actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property natural-height-set
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamBoolean")
+  (docs "Whether to use the natural-height property")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property request-mode
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamEnum")
+  (docs "The actor's request mode")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property allocation
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamBoxed")
+  (docs "The actor's allocation")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property depth
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamInt")
+  (docs "Depth of actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property clip
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamBoxed")
+  (docs "The clip region for the actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property has-clip
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamBoolean")
+  (docs "Whether the actor has a clip set or not")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property opacity
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamUChar")
+  (docs "Opacity of actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property visible
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamBoolean")
+  (docs "Whether the actor is visible or not")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property reactive
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamBoolean")
+  (docs "Whether the actor is reactive to events or not")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property scale-x
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamDouble")
+  (docs "Scale factor on the X axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property scale-y
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamDouble")
+  (docs "Scale factor on the Y axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property scale-center-x
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamInt")
+  (docs "Horizontal scale center")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property scale-center-y
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamInt")
+  (docs "Vertical scale center")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property scale-gravity
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamEnum")
+  (docs "The center of scaling")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-angle-x
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamDouble")
+  (docs "The rotation angle on the X axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-angle-y
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamDouble")
+  (docs "The rotation angle on the Y axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-angle-z
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamDouble")
+  (docs "The rotation angle on the Z axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-center-x
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamBoxed")
+  (docs "The rotation center on the X axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-center-y
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamBoxed")
+  (docs "The rotation center on the Y axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-center-z
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamBoxed")
+  (docs "The rotation center on the Z axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property rotation-center-z-gravity
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamEnum")
+  (docs "Center point for rotation around the Z axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property anchor-x
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamInt")
+  (docs "X coordinate of the anchor point")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property anchor-y
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamInt")
+  (docs "Y coordinate of the anchor point")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property anchor-gravity
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamEnum")
+  (docs "The anchor point as a ClutterGravity")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property show-on-set-parent
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamBoolean")
+  (docs "Whether the actor is shown when parented")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property disable-slicing
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamBoolean")
+  (docs "Force the underlying texture to be singlularand not made of of smaller space saving inidivual textures.")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property tile-waste
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamInt")
+  (docs "Max wastage dimension of a texture when using sliced textures or -1 to disable slicing. Bigger values use less textures, smaller values less texture memory.")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property pixel-format
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamInt")
+  (docs "CoglPixelFormat to use.")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property sync-size
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamBoolean")
+  (docs "Auto sync size of actor to underlying pixbuf dimensions")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property repeat-y
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamBoolean")
+  (docs "Repeat underlying pixbuf rather than scale in y direction.")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property repeat-x
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamBoolean")
+  (docs "Repeat underlying pixbuf rather than scale in x direction.")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property filter-quality
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamEnum")
+  (docs "Rendering quality used when drawing the texture.")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property cogl-texture
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamBoxed")
+  (docs "The underlying COGL texture handle used to draw this actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property filename
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamString")
+  (docs "The full path of the file containing the texture")
+  (readable #f)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property keep-aspect-ratio
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamBoolean")
+  (docs "Keep the aspect ratio of the texture when requesting the preferred width or height")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property load-async
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamBoolean")
+  (docs "Load files inside a thread to avoid blocking when loading images.")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property surface-width
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamUInt")
+  (docs "Surface Width")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property surface-height
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamUInt")
+  (docs "Surface Height")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 ;; From ClutterChildMeta
 
 (define-property container
@@ -862,10 +1395,10 @@
   (construct-only #t)
 )
 
-;; From ClutterCloneTexture
+;; From ClutterClone
 
 (define-property name
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "GParamString")
   (docs "Name of the actor")
   (readable #t)
@@ -874,7 +1407,7 @@
 )
 
 (define-property x
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "GParamInt")
   (docs "X coordinate of the actor")
   (readable #t)
@@ -883,7 +1416,7 @@
 )
 
 (define-property y
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "GParamInt")
   (docs "Y coordinate of the actor")
   (readable #t)
@@ -892,7 +1425,7 @@
 )
 
 (define-property width
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "GParamInt")
   (docs "Width of the actor")
   (readable #t)
@@ -901,7 +1434,7 @@
 )
 
 (define-property height
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "GParamInt")
   (docs "Height of the actor")
   (readable #t)
@@ -910,7 +1443,7 @@
 )
 
 (define-property fixed-x
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "ClutterParamSpecUnit")
   (docs "Forced X position of the actor")
   (readable #t)
@@ -919,7 +1452,7 @@
 )
 
 (define-property fixed-y
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "ClutterParamSpecUnit")
   (docs "Forced Y position of the actor")
   (readable #t)
@@ -928,7 +1461,7 @@
 )
 
 (define-property fixed-position-set
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "GParamBoolean")
   (docs "Whether to use fixed positioning for the actor")
   (readable #t)
@@ -937,7 +1470,7 @@
 )
 
 (define-property min-width
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "ClutterParamSpecUnit")
   (docs "Forced minimum width request for the actor")
   (readable #t)
@@ -946,7 +1479,7 @@
 )
 
 (define-property min-width-set
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "GParamBoolean")
   (docs "Whether to use the min-width property")
   (readable #t)
@@ -955,7 +1488,7 @@
 )
 
 (define-property min-height
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "ClutterParamSpecUnit")
   (docs "Forced minimum height request for the actor")
   (readable #t)
@@ -964,7 +1497,7 @@
 )
 
 (define-property min-height-set
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "GParamBoolean")
   (docs "Whether to use the min-height property")
   (readable #t)
@@ -973,7 +1506,7 @@
 )
 
 (define-property natural-width
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "ClutterParamSpecUnit")
   (docs "Forced natural width request for the actor")
   (readable #t)
@@ -982,7 +1515,7 @@
 )
 
 (define-property natural-width-set
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "GParamBoolean")
   (docs "Whether to use the natural-width property")
   (readable #t)
@@ -991,7 +1524,7 @@
 )
 
 (define-property natural-height
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "ClutterParamSpecUnit")
   (docs "Forced natural height request for the actor")
   (readable #t)
@@ -1000,7 +1533,7 @@
 )
 
 (define-property natural-height-set
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "GParamBoolean")
   (docs "Whether to use the natural-height property")
   (readable #t)
@@ -1009,7 +1542,7 @@
 )
 
 (define-property request-mode
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "GParamEnum")
   (docs "The actor's request mode")
   (readable #t)
@@ -1018,7 +1551,7 @@
 )
 
 (define-property allocation
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "GParamBoxed")
   (docs "The actor's allocation")
   (readable #t)
@@ -1027,7 +1560,7 @@
 )
 
 (define-property depth
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "GParamInt")
   (docs "Depth of actor")
   (readable #t)
@@ -1036,7 +1569,7 @@
 )
 
 (define-property clip
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "GParamBoxed")
   (docs "The clip region for the actor")
   (readable #t)
@@ -1045,7 +1578,7 @@
 )
 
 (define-property has-clip
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "GParamBoolean")
   (docs "Whether the actor has a clip set or not")
   (readable #t)
@@ -1054,7 +1587,7 @@
 )
 
 (define-property opacity
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "GParamUChar")
   (docs "Opacity of actor")
   (readable #t)
@@ -1063,7 +1596,7 @@
 )
 
 (define-property visible
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "GParamBoolean")
   (docs "Whether the actor is visible or not")
   (readable #t)
@@ -1072,7 +1605,7 @@
 )
 
 (define-property reactive
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "GParamBoolean")
   (docs "Whether the actor is reactive to events or not")
   (readable #t)
@@ -1081,7 +1614,7 @@
 )
 
 (define-property scale-x
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "GParamDouble")
   (docs "Scale factor on the X axis")
   (readable #t)
@@ -1090,7 +1623,7 @@
 )
 
 (define-property scale-y
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "GParamDouble")
   (docs "Scale factor on the Y axis")
   (readable #t)
@@ -1098,8 +1631,35 @@
   (construct-only #f)
 )
 
+(define-property scale-center-x
+  (of-object "ClutterClone")
+  (prop-type "GParamInt")
+  (docs "Horizontal scale center")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property scale-center-y
+  (of-object "ClutterClone")
+  (prop-type "GParamInt")
+  (docs "Vertical scale center")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property scale-gravity
+  (of-object "ClutterClone")
+  (prop-type "GParamEnum")
+  (docs "The center of scaling")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property rotation-angle-x
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "GParamDouble")
   (docs "The rotation angle on the X axis")
   (readable #t)
@@ -1108,7 +1668,7 @@
 )
 
 (define-property rotation-angle-y
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "GParamDouble")
   (docs "The rotation angle on the Y axis")
   (readable #t)
@@ -1117,7 +1677,7 @@
 )
 
 (define-property rotation-angle-z
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "GParamDouble")
   (docs "The rotation angle on the Z axis")
   (readable #t)
@@ -1126,7 +1686,7 @@
 )
 
 (define-property rotation-center-x
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "GParamBoxed")
   (docs "The rotation center on the X axis")
   (readable #t)
@@ -1135,7 +1695,7 @@
 )
 
 (define-property rotation-center-y
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "GParamBoxed")
   (docs "The rotation center on the Y axis")
   (readable #t)
@@ -1144,7 +1704,7 @@
 )
 
 (define-property rotation-center-z
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "GParamBoxed")
   (docs "The rotation center on the Z axis")
   (readable #t)
@@ -1152,8 +1712,17 @@
   (construct-only #f)
 )
 
+(define-property rotation-center-z-gravity
+  (of-object "ClutterClone")
+  (prop-type "GParamEnum")
+  (docs "Center point for rotation around the Z axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property anchor-x
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "GParamInt")
   (docs "X coordinate of the anchor point")
   (readable #t)
@@ -1162,7 +1731,7 @@
 )
 
 (define-property anchor-y
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "GParamInt")
   (docs "Y coordinate of the anchor point")
   (readable #t)
@@ -1170,8 +1739,17 @@
   (construct-only #f)
 )
 
+(define-property anchor-gravity
+  (of-object "ClutterClone")
+  (prop-type "GParamEnum")
+  (docs "The anchor point as a ClutterGravity")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property show-on-set-parent
-  (of-object "ClutterCloneTexture")
+  (of-object "ClutterClone")
   (prop-type "GParamBoolean")
   (docs "Whether the actor is shown when parented")
   (readable #t)
@@ -1179,56 +1757,50 @@
   (construct-only #f)
 )
 
-(define-property parent-texture
-  (of-object "ClutterCloneTexture")
+(define-property source
+  (of-object "ClutterClone")
   (prop-type "GParamObject")
-  (docs "The parent texture to clone")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property repeat-y
-  (of-object "ClutterCloneTexture")
-  (prop-type "GParamBoolean")
-  (docs "Reapeat underlying pixbuf rather than scale in y direction.")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property repeat-x
-  (of-object "ClutterCloneTexture")
-  (prop-type "GParamBoolean")
-  (docs "Reapeat underlying pixbuf rather than scale in x direction.")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-;; From ClutterColor
-
-;; From ClutterEffectTemplate
-
-(define-property timeline
-  (of-object "ClutterEffectTemplate")
-  (prop-type "GParamObject")
-  (docs "Timeline to use as a reference for the Template")
+  (docs "Specifies the actor to be cloned")
   (readable #t)
   (writable #t)
   (construct-only #t)
 )
 
-(define-property clone
-  (of-object "ClutterEffectTemplate")
-  (prop-type "GParamBoolean")
-  (docs "controls if effects should clone or reference the templated timeline")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
+;; From ClutterColor
+
+;; From ClutterContainer
+
+(define-signal actor-added
+  (of-object "ClutterContainer")
+  (return-type "void")
+  (when "first")
+  (parameters
+    '("ClutterActor*" "p0")
+  )
+)
+
+(define-signal actor-removed
+  (of-object "ClutterContainer")
+  (return-type "void")
+  (when "first")
+  (parameters
+    '("ClutterActor*" "p0")
+  )
+)
+
+(define-signal child-notify
+  (of-object "ClutterContainer")
+  (return-type "void")
+  (when "first")
+  (parameters
+    '("ClutterActor*" "p0")
+    '("GParam" "p1")
+  )
 )
 
 ;; From ClutterEvent
+
+;; From ClutterFixed
 
 ;; From ClutterGroup
 
@@ -1484,6 +2056,33 @@
   (construct-only #f)
 )
 
+(define-property scale-center-x
+  (of-object "ClutterGroup")
+  (prop-type "GParamInt")
+  (docs "Horizontal scale center")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property scale-center-y
+  (of-object "ClutterGroup")
+  (prop-type "GParamInt")
+  (docs "Vertical scale center")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property scale-gravity
+  (of-object "ClutterGroup")
+  (prop-type "GParamEnum")
+  (docs "The center of scaling")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property rotation-angle-x
   (of-object "ClutterGroup")
   (prop-type "GParamDouble")
@@ -1538,6 +2137,15 @@
   (construct-only #f)
 )
 
+(define-property rotation-center-z-gravity
+  (of-object "ClutterGroup")
+  (prop-type "GParamEnum")
+  (docs "Center point for rotation around the Z axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property anchor-x
   (of-object "ClutterGroup")
   (prop-type "GParamInt")
@@ -1551,6 +2159,15 @@
   (of-object "ClutterGroup")
   (prop-type "GParamInt")
   (docs "Y coordinate of the anchor point")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property anchor-gravity
+  (of-object "ClutterGroup")
+  (prop-type "GParamEnum")
+  (docs "The anchor point as a ClutterGravity")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1585,7 +2202,7 @@
 (define-property uri
   (of-object "ClutterMedia")
   (prop-type "GParamString")
-  (docs "The loaded URI.")
+  (docs "URI of a media file")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1594,43 +2211,7 @@
 (define-property can-seek
   (of-object "ClutterMedia")
   (prop-type "GParamBoolean")
-  (docs "TRUE if the current stream is seekable.")
-  (readable #t)
-  (writable #f)
-  (construct-only #f)
-)
-
-(define-property position
-  (of-object "ClutterMedia")
-  (prop-type "GParamInt")
-  (docs "The position in the current stream in seconds.")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property duration
-  (of-object "ClutterMedia")
-  (prop-type "GParamInt")
-  (docs "The duration of the current stream in seconds.")
-  (readable #t)
-  (writable #f)
-  (construct-only #f)
-)
-
-(define-property volume
-  (of-object "ClutterMedia")
-  (prop-type "GParamDouble")
-  (docs "The audio volume.")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property buffer-percent
-  (of-object "ClutterMedia")
-  (prop-type "GParamInt")
-  (docs "The percentage the current stream buffer is filled.")
+  (docs "Whether the current stream is seekable")
   (readable #t)
   (writable #f)
   (construct-only #f)
@@ -1639,9 +2220,45 @@
 (define-property playing
   (of-object "ClutterMedia")
   (prop-type "GParamBoolean")
-  (docs "TRUE if playing.")
+  (docs "Wheter the actor is playing")
   (readable #t)
   (writable #t)
+  (construct-only #f)
+)
+
+(define-property progress
+  (of-object "ClutterMedia")
+  (prop-type "GParamDouble")
+  (docs "Current progress of the playback")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property audio-volume
+  (of-object "ClutterMedia")
+  (prop-type "GParamDouble")
+  (docs "The volume of the audio")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property duration
+  (of-object "ClutterMedia")
+  (prop-type "GParamUInt")
+  (docs "The duration of the stream, in seconds")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property buffer-fill
+  (of-object "ClutterMedia")
+  (prop-type "GParamDouble")
+  (docs "The fill level of the buffer")
+  (readable #t)
+  (writable #f)
   (construct-only #f)
 )
 
@@ -1901,6 +2518,33 @@
   (construct-only #f)
 )
 
+(define-property scale-center-x
+  (of-object "ClutterRectangle")
+  (prop-type "GParamInt")
+  (docs "Horizontal scale center")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property scale-center-y
+  (of-object "ClutterRectangle")
+  (prop-type "GParamInt")
+  (docs "Vertical scale center")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property scale-gravity
+  (of-object "ClutterRectangle")
+  (prop-type "GParamEnum")
+  (docs "The center of scaling")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property rotation-angle-x
   (of-object "ClutterRectangle")
   (prop-type "GParamDouble")
@@ -1955,6 +2599,15 @@
   (construct-only #f)
 )
 
+(define-property rotation-center-z-gravity
+  (of-object "ClutterRectangle")
+  (prop-type "GParamEnum")
+  (docs "Center point for rotation around the Z axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property anchor-x
   (of-object "ClutterRectangle")
   (prop-type "GParamInt")
@@ -1968,6 +2621,15 @@
   (of-object "ClutterRectangle")
   (prop-type "GParamInt")
   (docs "Y coordinate of the anchor point")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property anchor-gravity
+  (of-object "ClutterRectangle")
+  (prop-type "GParamEnum")
+  (docs "The anchor point as a ClutterGravity")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2114,7 +2776,7 @@
 (define-signal queue-redraw
   (of-object "ClutterStage")
   (return-type "void")
-  (when "first")
+  (when "last")
 )
 
 (define-property name
@@ -2351,6 +3013,33 @@
   (construct-only #f)
 )
 
+(define-property scale-center-x
+  (of-object "ClutterStage")
+  (prop-type "GParamInt")
+  (docs "Horizontal scale center")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property scale-center-y
+  (of-object "ClutterStage")
+  (prop-type "GParamInt")
+  (docs "Vertical scale center")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property scale-gravity
+  (of-object "ClutterStage")
+  (prop-type "GParamEnum")
+  (docs "The center of scaling")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property rotation-angle-x
   (of-object "ClutterStage")
   (prop-type "GParamDouble")
@@ -2405,6 +3094,15 @@
   (construct-only #f)
 )
 
+(define-property rotation-center-z-gravity
+  (of-object "ClutterStage")
+  (prop-type "GParamEnum")
+  (docs "Center point for rotation around the Z axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property anchor-x
   (of-object "ClutterStage")
   (prop-type "GParamInt")
@@ -2418,6 +3116,15 @@
   (of-object "ClutterStage")
   (prop-type "GParamInt")
   (docs "Y coordinate of the anchor point")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property anchor-gravity
+  (of-object "ClutterStage")
+  (prop-type "GParamEnum")
+  (docs "The anchor point as a ClutterGravity")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2762,6 +3469,33 @@
   (construct-only #f)
 )
 
+(define-property scale-center-x
+  (of-object "ClutterText")
+  (prop-type "GParamInt")
+  (docs "Horizontal scale center")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property scale-center-y
+  (of-object "ClutterText")
+  (prop-type "GParamInt")
+  (docs "Vertical scale center")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property scale-gravity
+  (of-object "ClutterText")
+  (prop-type "GParamEnum")
+  (docs "The center of scaling")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property rotation-angle-x
   (of-object "ClutterText")
   (prop-type "GParamDouble")
@@ -2816,6 +3550,15 @@
   (construct-only #f)
 )
 
+(define-property rotation-center-z-gravity
+  (of-object "ClutterText")
+  (prop-type "GParamEnum")
+  (docs "Center point for rotation around the Z axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property anchor-x
   (of-object "ClutterText")
   (prop-type "GParamInt")
@@ -2829,6 +3572,15 @@
   (of-object "ClutterText")
   (prop-type "GParamInt")
   (docs "Y coordinate of the anchor point")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property anchor-gravity
+  (of-object "ClutterText")
+  (prop-type "GParamEnum")
+  (docs "The anchor point as a ClutterGravity")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2888,7 +3640,7 @@
   (construct-only #f)
 )
 
-(define-property alignment
+(define-property line-alignment
   (of-object "ClutterText")
   (prop-type "GParamEnum")
   (docs "The preferred alignment for the string, for multi-line text")
@@ -3057,6 +3809,15 @@
   (of-object "ClutterTexture")
   (return-type "void")
   (when "last")
+)
+
+(define-signal load-finished
+  (of-object "ClutterTexture")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("gpointer" "p0")
+  )
 )
 
 (define-property name
@@ -3293,6 +4054,33 @@
   (construct-only #f)
 )
 
+(define-property scale-center-x
+  (of-object "ClutterTexture")
+  (prop-type "GParamInt")
+  (docs "Horizontal scale center")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property scale-center-y
+  (of-object "ClutterTexture")
+  (prop-type "GParamInt")
+  (docs "Vertical scale center")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property scale-gravity
+  (of-object "ClutterTexture")
+  (prop-type "GParamEnum")
+  (docs "The center of scaling")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property rotation-angle-x
   (of-object "ClutterTexture")
   (prop-type "GParamDouble")
@@ -3347,6 +4135,15 @@
   (construct-only #f)
 )
 
+(define-property rotation-center-z-gravity
+  (of-object "ClutterTexture")
+  (prop-type "GParamEnum")
+  (docs "Center point for rotation around the Z axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property anchor-x
   (of-object "ClutterTexture")
   (prop-type "GParamInt")
@@ -3360,6 +4157,15 @@
   (of-object "ClutterTexture")
   (prop-type "GParamInt")
   (docs "Y coordinate of the anchor point")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property anchor-gravity
+  (of-object "ClutterTexture")
+  (prop-type "GParamEnum")
+  (docs "The anchor point as a ClutterGravity")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -3464,6 +4270,15 @@
   (construct-only #f)
 )
 
+(define-property load-async
+  (of-object "ClutterTexture")
+  (prop-type "GParamBoolean")
+  (docs "Load files inside a thread to avoid blocking when loading images.")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 ;; From ClutterTimeline
 
 (define-signal completed
@@ -3506,7 +4321,7 @@
 (define-property fps
   (of-object "ClutterTimeline")
   (prop-type "GParamUInt")
-  (docs "Timeline frames per second")
+  (docs "Frames per second")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -3515,7 +4330,7 @@
 (define-property num-frames
   (of-object "ClutterTimeline")
   (prop-type "GParamUInt")
-  (docs "Timelines total number of frames")
+  (docs "Total number of frames")
   (readable #t)
   (writable #t)
   (construct-only #f)
