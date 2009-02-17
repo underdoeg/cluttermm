@@ -1,3 +1,8 @@
+2009-02-17  Daniel Elstner  <danielk@openismus.com>
+
+	* autogen.sh: Add minimal variant of this common shell script
+	which simply runs autoreconf and then configure.
+
 2009-01-07  Daniel Elstner  <danielk@openismus.com>
 
 	* docs/tutorial/README: Document "make html".
