@@ -17,11 +17,10 @@
 
 #include <glibmm/object.h>
 #include <cluttermm/timeline.h>
-#include <clutter/clutter-alpha.h>
+#include <clutter/clutter.h>
  
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)
-
 
 namespace Clutter
 {
@@ -31,42 +30,47 @@ class Alpha : public Glib::Object
   _CLASS_GOBJECT(Alpha, ClutterAlpha, CLUTTER_ALPHA, Glib::Object, GObject)
   _DERIVES_INITIALLY_UNOWNED()
 
-protected:
-  _CTOR_DEFAULT()
-
 public:
-
   /** For instance,
    * guint32 on_alpha(const Glib::RefPtr<Alpha>& alpha);
    */
-  typedef sigc::slot<guint32, const Glib::RefPtr<Alpha>& > SlotAlphaFunc;
+  typedef sigc::slot<guint32, const Glib::RefPtr<Alpha>&> SlotAlphaFunc;
+
+  //! @name Pre-defined Alpha Functions
+  //! @{
+  static guint32 ramp_inc_func(const Glib::RefPtr<Alpha>& alpha);
+  static guint32 ramp_dec_func(const Glib::RefPtr<Alpha>& alpha);
+  static guint32 ramp_func(const Glib::RefPtr<Alpha>& alpha);
+  static guint32 sine_func(const Glib::RefPtr<Alpha>& alpha);
+  static guint32 sine_inc_func(const Glib::RefPtr<Alpha>& alpha);
+  static guint32 sine_dec_func(const Glib::RefPtr<Alpha>& alpha);
+  static guint32 sine_half_func(const Glib::RefPtr<Alpha>& alpha);
+  static guint32 square_func(const Glib::RefPtr<Alpha>& alpha);
+  static guint32 smoothstep_inc_func(const Glib::RefPtr<Alpha>& alpha);
+  static guint32 smoothstep_dec_func(const Glib::RefPtr<Alpha>& alpha);
+  static guint32 exp_inc_func(const Glib::RefPtr<Alpha>& alpha);
+  static guint32 exp_dec_func(const Glib::RefPtr<Alpha>& alpha);
+  //! @}
 
 protected:
+  _CTOR_DEFAULT()
+
   /** Creates a new Alpha instance and sets the timeline and the alpha function.
    * @param timeline Timeline.
    * @param slot Alpha function.
    */
   Alpha(const Glib::RefPtr<Timeline>& timeline, const SlotAlphaFunc& slot);
 
-  /** Creates a new Alpha instance and sets the timeline and the alpha function.
-   * @param timeline Timeline.
-   * @param slot Alpha function.
-   */
-  Alpha(const Glib::RefPtr<Timeline>& timeline, ClutterAlphaFunc callback);
-
 public:
   _WRAP_CREATE()
   _WRAP_CREATE(const Glib::RefPtr<Timeline>& timeline, const SlotAlphaFunc& slot)
-  _WRAP_CREATE(const Glib::RefPtr<Timeline>& timeline, ClutterAlphaFunc callback)
-
-
 
   _WRAP_METHOD(void set_timeline(const Glib::RefPtr<Timeline>& timeline), clutter_alpha_set_timeline)
   _WRAP_METHOD(Glib::RefPtr<Timeline> get_timeline() const, clutter_alpha_get_timeline)
   _WRAP_METHOD(guint32 get_alpha() const, clutter_alpha_get_alpha)
 
-  void set_func(const SlotAlphaFunc& slot);
   _IGNORE(clutter_alpha_set_func)
+  void set_func(const SlotAlphaFunc& slot);
 
   _WRAP_PROPERTY("alpha", guint)
   _WRAP_PROPERTY("timeline", Glib::RefPtr<Timeline>)
@@ -75,22 +79,4 @@ public:
   _IGNORE(clutter_alpha_set_closure)
 };
 
-/// @name Pre-defined Alpha functions
-/// @related Alpha
-/// @{
-extern Alpha::SlotAlphaFunc ALPHA_RAMP_INC;
-extern Alpha::SlotAlphaFunc ALPHA_RAMP_DEC;
-extern Alpha::SlotAlphaFunc ALPHA_RAMP;
-extern Alpha::SlotAlphaFunc ALPHA_SINE;
-extern Alpha::SlotAlphaFunc ALPHA_SINE_INC;
-extern Alpha::SlotAlphaFunc ALPHA_SINE_DEC;
-extern Alpha::SlotAlphaFunc ALPHA_SINE_HALF;
-extern Alpha::SlotAlphaFunc ALPHA_SQUARE;
-extern Alpha::SlotAlphaFunc ALPHA_SMOOTHSTEP_INC;
-extern Alpha::SlotAlphaFunc ALPHA_SMOOTHSTEP_DEC;
-extern Alpha::SlotAlphaFunc ALPHA_EXP_INC;
-extern Alpha::SlotAlphaFunc ALPHA_EXP_DEC;
-/// @}
-
 } // namespace Clutter
-// vim:ts=2,sw=2

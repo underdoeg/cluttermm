@@ -4941,7 +4941,7 @@
   (c-name "clutter_score_remove")
   (return-type "none")
   (parameters
-    '("guint" "id")
+    '("gulong" "id")
   )
 )
 
@@ -4956,7 +4956,7 @@
   (c-name "clutter_score_get_timeline")
   (return-type "ClutterTimeline*")
   (parameters
-    '("guint" "id")
+    '("gulong" "id")
   )
 )
 

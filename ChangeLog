@@ -1,3 +1,38 @@
+2008-12-18  Daniel Elstner  <danielk@openismus.com>
+
+	* tests/test-alpha-creation.cc: Kill cruft.  The test case still
+	seems a bit odd though since it creates a Behaviour which is never
+	used.
+
+2008-12-18  Daniel Elstner  <danielk@openismus.com>
+
+	* tests/test-actors.cc: Adapt to new syntax of Clutter::Alpha
+	convenience functions.
+	* tests/test-alpha-creation.cc: ditto,
+	* examples/effect.cc: ditto.
+
+2008-12-18  Daniel Elstner  <danielk@openismus.com>
+
+	* clutter/src/alpha.{ccg,hg} (ALPHA_*): Replace global slot objects
+	for the convenience alpha functions by ordinary static methods of
+	class Alpha.  This is just as easy to use but simpler and without
+	the trouble associated with the runtime initialization  of global
+	objects in dynamic libraries.  Also adapt the code to the additions
+	and syntax changes in the Clutter API.
+	(Alpha::Alpha): Remove the ctor which takes a plain ClutterFunction
+	argument.  If absolutely necessary, there is always the C API.
+
+2008-12-16  Daniel Elstner  <danielk@openismus.com>
+
+	* clutter/src/score.{ccg,hg}: Change uses of guint to gulong,
+	following an API change in Clutter.
+
+2008-12-12  Daniel Elstner  <danielk@openismus.com>
+
+	* clutter/src/actor.hg (Actor::set_shader_param): Replace with
+	generic template method to accommodate an API change in clutter.
+	Doesn't build yet as the .defs still need to be regenerated.
+
 2008-11-03   Piotr Rak <piotr.rak@gmail.com>
 
 	* clutter/src/behaviour-path.hg: Remove a parameter name to avoid 

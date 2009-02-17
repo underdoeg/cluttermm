@@ -17,7 +17,7 @@
 
 #include <cluttermm/actor.h>
 #include <cluttermm/types.h>
-#include <clutter/clutter-texture.h> // For CoglHandle
+#include <clutter/clutter.h> // For CoglHandle
  
 _DEFS(cluttermm,clutter)
 _PINCLUDE(cluttermm/private/actor_p.h)

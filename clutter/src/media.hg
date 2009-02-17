@@ -17,7 +17,7 @@
 
 #include <glibmm/interface.h>
 #include <glibmm/ustring.h>
-#include <clutter/clutter-media.h>
+#include <clutter/clutter.h>
  
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/interface_p.h)

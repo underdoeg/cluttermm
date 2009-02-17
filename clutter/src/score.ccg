@@ -15,15 +15,14 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <clutter/clutter-score.h>
+#include <clutter/clutter.h>
 
 namespace Clutter
 {
 
-guint Score::append(const Glib::RefPtr<Timeline>& timeline)
+gulong Score::append(const Glib::RefPtr<Timeline>& timeline)
 {
-    return clutter_score_append(gobj(), NULL, timeline->gobj());
+  return clutter_score_append(gobj(), NULL, timeline->gobj());
 }
 
-} //namespace Clutter
-
+} // namespace Clutter

@@ -128,7 +128,7 @@ int main(int argc, char *argv[])
 
   // Set up some behaviours to handle scaling
   Glib::RefPtr<Clutter::Alpha> alpha =
-    Clutter::Alpha::create(timeline, Clutter::ALPHA_SINE);
+    Clutter::Alpha::create(timeline, &Clutter::Alpha::sine_func);
 
   Glib::RefPtr<Clutter::BehaviourScale> scaler_1 =
     Clutter::BehaviourScale::create(alpha,

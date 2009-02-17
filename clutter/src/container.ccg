@@ -15,7 +15,7 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <clutter/clutter-container.h>
+#include <clutter/clutter.h>
 
 
 static void SignalProxy_Container_foreach_callback(ClutterActor *actor, gpointer user_data)
