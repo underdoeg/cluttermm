@@ -1,0 +1,113 @@
+2009-01-07  Daniel Elstner  <danielk@openismus.com>
+
+	* docs/tutorial/README: Document "make html".
+
+2009-01-07  Daniel Elstner  <danielk@openismus.com>
+
+	* examples/full_example/main.cc (Example::on_texture_button_press):
+	Fix typo.
+
+2009-01-07  Daniel Elstner  <danielk@openismus.com>
+
+	* examples/full_example/main.cc (Example::rotate_item_to_front):
+	Disable a piece of code that calculates a value which is not used.
+
+2009-01-07  Daniel Elstner  <danielk@openismus.com>
+
+	* examples/full_example/main.cc (Example::Example): Simplify
+	expression.
+
+2009-01-07  Daniel Elstner  <danielk@openismus.com>
+
+	* examples/behaviour/main.cc (main): Correct a method name mentioned
+	in a comment.
+
+2009-01-07  Daniel Elstner  <danielk@openismus.com>
+
+	* Makefile.am: Minor cleanup.
+	(post-html): Prefix the examples directory with $(srcdir) because
+	the sources do not live in the build tree in a VPATH setup.  Also
+	make use of the -C option of rsync to omit build garbage from the
+	upload.
+
+2009-01-06  Murray Cumming  <murrayc@murrayc.com>
+
+	* docs/tutorial/cluttermm-tut.xml: Introduction: cluttermm: Correct a 
+	typo and mention that exceptions are optional (at glibmm configure time) 
+	for embedded developers who are scared of them.
+
+2009-01-06  Murray Cumming  <murrayc@murrayc.com>
+
+	* docs/tutorial/cluttermm-tut.xml: Correct the base URLs for the 
+	(not ideal) reference documentation for cluttermm and clutter-gtkmm.
+	* examples/full_example/main.cc: Replaced some g_print()s with 
+	std::cout.
+
+2009-01-06  Murray Cumming  <murrayc@murrayc.com>
+
+	* examples/: Mostly whitespace changes to be more like the gtkmm 
+	examples.
+
+2009-01-06  Murray Cumming  <murrayc@murrayc.com>
+
+	* COPYING:
+	* INSTALL: Added these to svn.
+	* Makefile.am: Correct the upload, which must be a little more complex 
+	for the new non-recursive build structure.
+
+2009-01-06  Daniel Elstner  <danielk@openismus.com>
+
+	* docs/tutorial/insert_example_code.pl: Look for files with ".cc"
+	extension rather than ".c".  Also be more lenient with regards to
+	the capitalization of "Source code".
+
+2009-01-06  Daniel Elstner  <danielk@openismus.com>
+
+	* Makefile.am (cluttermm_docdir): Rename from clutter_docdir and
+	change the path to point to the cluttermm-0.9 documentation instead
+	of the clutter one.
+
+2009-01-06  Daniel Elstner  <danielk@openismus.com>
+
+	* docs/tutorial/cluttermm-tut.xml: Rework the Clutter tutorial for
+	the Cluttermm API.
+
+2009-01-06  Daniel Elstner  <danielk@openismus.com>
+
+	* Makefile.am (bin_PROGRAMS): Rename to noinst_PROGRAMS, or every
+	example executable will be installed as $(bindir)/example -- the
+	last one wins.  Do we want to install the example binaries, and if
+	so, where?
+	({,un}install-tutorial): Depend on docs/tutorial/html/index.html
+	rather than the phony target html, because the rule derives the
+	location of the html build directory from the first dependency.
+
+2009-01-06  Murray Cumming  <murrayc@murrayc.com>
+
+	* Makefile.am: Correct the upload URL.
+
+2009-01-06  Daniel Elstner  <danielk@openismus.com>
+
+	* docs/index.html: Copy file from Clutter tutorial.
+	* docs/tutorial/README: ditto,
+	* docs/tutorial/cluttermm-tut.xml: ditto,
+	* docs/tutorial/docbook_phpwebnotes.xsl: ditto,
+	* docs/tutorial/insert_example_code.pl: ditto,
+	* docs/tutorial/style.css: ditto.
+	* Makefile.am: Integrate the documentation build infrastructure
+	from the Clutter tutorial into the non-recursive build system.
+
+2008-12-31  Daniel Elstner  <danielk@openismus.com>
+
+	* examples/multiline_text_entry/{multiline_entry.{cc,h},main.cc}:
+	New example implementing a multi-line text entry actor.  Converted
+	from the C Clutter tutorial example of the same name.
+	* Makefile.am (bin_PROGRAMS): Add
+	examples/multiline_text_entry/example.
+
+2008-12-30  Daniel Elstner  <danielk@openismus.com>
+
+	* examples/scrolling/{scrollingcontainer.{cc,h},main.cc}: New
+	example demonstrating a custom container which scrolls its content.
+	Converted from the C Clutter tutorial example of the same name.
+	* Makefile.am (bin_PROGRAMS): Add examples/scrolling/example.
