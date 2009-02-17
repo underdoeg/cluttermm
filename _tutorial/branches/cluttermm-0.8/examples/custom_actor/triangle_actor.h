@@ -44,7 +44,7 @@ protected:
 private:
   Clutter::Color color_;
 
-  void do_triangle_paint(const CoglColor* color);
+  void do_triangle_paint(const Clutter::Color& color);
 };
 
 } // namespace Tutorial

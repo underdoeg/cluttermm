@@ -16,7 +16,7 @@
 ## along with the Cluttermm Tutorial; if not, write to the Free Software
 ## Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA
 
-AC_INIT([cluttermm_tutorial], [0.9], [http://www.gtkmm.org/], [cluttermm_tutorial])
+AC_INIT([cluttermm_tutorial], [0.7.4], [http://www.gtkmm.org/], [cluttermm_tutorial])
 AC_PREREQ([2.58])
 
 AC_CONFIG_SRCDIR([examples/custom_actor/triangle_actor.cc])
@@ -27,7 +27,7 @@ AM_INIT_AUTOMAKE([1.8 -Wall gnu no-define nostdinc])
 AC_ARG_VAR([ACLOCAL_FLAGS], [aclocal flags, e.g. -I <macro dir>])
 
 AC_PROG_CXX()
-PKG_CHECK_MODULES([TUTORIAL_MODULES], [cluttermm-0.9 >= 0.9.0 clutter-gtkmm-0.9 >= 0.9.0])
+PKG_CHECK_MODULES([TUTORIAL_MODULES], [cluttermm-0.8 >= 0.7.4 clutter-gtkmm-0.8 >= 0.7.4])
 
 AC_LANG([C++])
 

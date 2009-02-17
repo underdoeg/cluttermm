@@ -1,3 +1,17 @@
+0.7.4:
+
+2009-02-17  Murray Cumming  <murrayc@murrayc.com>
+
+	* Makefile.am:
+	* configure.ac:
+	* docs/tutorial/cluttermm-tut.xml:
+	* examples/behaviour/main.cc:
+	* examples/custom_actor/triangle_actor.cc:
+	* examples/custom_actor/triangle_actor.h:
+	* examples/full_example/main.cc:
+	* examples/multiline_text_entry/multiline_entry.cc:
+	Back-ported to the cluttermm-0.8 API.
+
 2009-01-07  Daniel Elstner  <danielk@openismus.com>
 
 	* docs/tutorial/README: Document "make html".

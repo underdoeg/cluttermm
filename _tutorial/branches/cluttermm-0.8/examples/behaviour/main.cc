@@ -81,7 +81,7 @@ int main(int argc, char** argv)
     knots[1].set_xy(150, 150);
 
     const Glib::RefPtr<Clutter::Behaviour>
-      behaviour = Clutter::BehaviourPath::create_with_knots(alpha, knots);
+      behaviour = Clutter::BehaviourPath::create(alpha, knots);
     behaviour->apply(rect);
   }
 

@@ -251,7 +251,7 @@ void Example::on_timeline_rotation_completed()
   knots[0].set_xy(actor->get_x(), actor->get_y());
   knots[1].set_xy(knots[0].get_x(), knots[0].get_y() - 250);
 
-  behaviour_path_ = Clutter::BehaviourPath::create_with_knots(alpha, knots);
+  behaviour_path_ = Clutter::BehaviourPath::create(alpha, knots);
   behaviour_path_->apply(actor);
 
   // Show the filename gradually:

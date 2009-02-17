@@ -17,7 +17,7 @@
 
 #include "multiline_entry.h"
 #include <cogl/cogl.h>
-#include <cogl/cogl-pango.h>
+#include <clutter/pangoclutter.h>
 
 namespace
 {
@@ -29,6 +29,7 @@ enum { ENTRY_CURSOR_WIDTH = 1 };
 static Glib::RefPtr<Pango::Context> ref_shared_context()
 {
   static void* context = 0;
+  PangoClutterFontMap  *font_map = NULL;
 
   if(context == 0)
   {
@@ -37,10 +38,9 @@ static Glib::RefPtr<Pango::Context> ref_shared_context()
     if(resolution < 0.0)
       resolution = 96.0; // fallback
 
-    PangoFontMap *const fontmap = cogl_pango_font_map_new();
-    cogl_pango_font_map_set_resolution(COGL_PANGO_FONT_MAP(fontmap), resolution);
-
-    context = cogl_pango_font_map_create_context(COGL_PANGO_FONT_MAP(fontmap));
+    font_map = PANGO_CLUTTER_FONT_MAP (pango_clutter_font_map_new ());
+    pango_clutter_font_map_set_resolution (font_map, resolution);
+    context = pango_clutter_font_map_create_context (font_map);
 
     // Clear the pointer when the object is destroyed:
     g_object_add_weak_pointer(static_cast<GObject*>(context), &context);
@@ -330,13 +330,10 @@ void MultilineEntry::on_paint()
     text_x_ = 0;
   }
 
-  CoglColor color;
+  Clutter::Color color = fgcol_;
+  color.set_alpha( get_opacity() );
 
-  cogl_color_set_from_4ub(&color, fgcol_.get_red(),
-                                  fgcol_.get_green(),
-                                  fgcol_.get_blue(),
-                                  get_opacity());
-  cogl_pango_render_layout(layout_->gobj(), text_x_, 0, &color, 0);
+  pango_clutter_render_layout(layout_->gobj(), text_x_, 0, color.gobj(), 0);
 
   paint_cursor_vfunc();
 }
