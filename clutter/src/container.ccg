@@ -17,51 +17,66 @@
 
 #include <clutter/clutter.h>
 
-
+namespace
+{
+extern "C"
+{
 static void SignalProxy_Container_foreach_callback(ClutterActor *actor, gpointer user_data)
 {
-  Clutter::Container::SlotForEach* the_slot = static_cast<Clutter::Container::SlotForEach*>(user_data);
+  Clutter::Container::SlotForEach *const
+    the_slot = static_cast<Clutter::Container::SlotForEach*>(user_data);
 
-  #ifdef GLIBMM_EXCEPTIONS_ENABLED
+#ifdef GLIBMM_EXCEPTIONS_ENABLED
   try
+#endif
   {
-  #endif //GLIBMM_EXCEPTIONS_ENABLED
-    Glib::RefPtr<Clutter::Actor> cpp_actor = Glib::wrap(actor, true /* take reference */);
+    const Glib::RefPtr<Clutter::Actor> cpp_actor = Glib::wrap(actor, true /* take reference */);
     (*the_slot)(cpp_actor);
-  #ifdef GLIBMM_EXCEPTIONS_ENABLED
   }
-  catch(...)
+#ifdef GLIBMM_EXCEPTIONS_ENABLED
+  catch (...)
   {
     Glib::exception_handlers_invoke();
   }
-  #endif //GLIBMM_EXCEPTIONS_ENABLED
+#endif
 }
+} // extern "C"
+} // anonymous namespace
 
 namespace Clutter
 {
 
 void Container::raise_child(const Glib::RefPtr<Actor>& actor)
 {
-  clutter_container_raise_child(gobj(), Glib::unwrap(actor), NULL); 
+  clutter_container_raise_child(gobj(), Glib::unwrap(actor), 0); 
 }
 
 void Container::lower_child(const Glib::RefPtr<Actor>& actor)
 {
-  clutter_container_lower_child(gobj(), Glib::unwrap(actor), NULL); 
+  clutter_container_lower_child(gobj(), Glib::unwrap(actor), 0); 
 }
 
 void Container::foreach(const SlotForEach& slot)
 {
-  clutter_container_foreach(
-      gobj(),
+  clutter_container_foreach(gobj(),
       &SignalProxy_Container_foreach_callback, const_cast<SlotForEach*>(&slot));
 }
 
-
-void Container::get_child_property_value(const Glib::RefPtr<const Actor>& child, const Glib::ustring& property_name, Glib::ValueBase& value) const
+void Container::get_child_property_value(const Glib::RefPtr<const Actor>& child,
+                     const Glib::ustring& property_name, Glib::ValueBase& value) const
 {
-  clutter_container_child_get_property(const_cast<ClutterContainer*>(gobj()), const_cast<ClutterActor*>(child->gobj()), property_name.c_str(), value.gobj());
+  clutter_container_child_get_property(const_cast<ClutterContainer*>(gobj()),
+      const_cast<ClutterActor*>(child->gobj()), property_name.c_str(), value.gobj());
 }
 
-} //namespace Clutter
+void Container::actor_added(const Glib::RefPtr<Actor>& actor)
+{
+  g_signal_emit_by_name(gobj(), "actor_added", actor->gobj());
+}
 
+void Container::actor_removed(const Glib::RefPtr<Actor>& actor)
+{
+  g_signal_emit_by_name(gobj(), "actor_removed", actor->gobj());
+}
+
+} // namespace Clutter

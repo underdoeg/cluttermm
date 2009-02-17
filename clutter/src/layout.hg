@@ -26,7 +26,7 @@ _PINCLUDE(glibmm/private/interface_p.h)
 namespace Clutter
 {
 
-_WRAP_ENUM(LayoutFlags, ClutterLayoutFlags, NO_GTYPE)
+_WRAP_ENUM(LayoutFlags, ClutterLayoutFlags)
 
 class Layout : public Glib::Interface
 {

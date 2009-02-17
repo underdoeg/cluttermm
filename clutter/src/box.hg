@@ -29,7 +29,7 @@ _PINCLUDE(cluttermm/private/actor_p.h)
 namespace Clutter
 {
 
-_WRAP_ENUM(PackType, ClutterPackType, NO_GTYPE)
+_WRAP_ENUM(PackType, ClutterPackType)
 
 typedef ClutterPadding Padding;
 

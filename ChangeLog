@@ -1,3 +1,80 @@
+2008-12-29  Daniel Elstner  <danielk@openismus.com>
+
+	* clutter/src/actor.hg (Actor::pick): Make public because custom
+	container implementations need to call this method.
+	(Actor::should_pick_paint): ditto.
+
+2008-12-29  Daniel Elstner  <danielk@openismus.com>
+
+	* clutter/src/container.{ccg,hg} (Container::actor_added): New method
+	which emits the "actor-added" signal.  This precludes the need to use
+	the GObject API directly when implementing a custom container in C++.
+	(Container::actor_removed): Likewise for the "actor-removed" signal.
+
+2008-12-24  Daniel Elstner  <danielk@openismus.com>
+
+	* clutter/src/actor.{ccg,hg} (ActorFlags): Wrap enumeration.
+	({set,unset,get}_flags): Implement missing accessors.
+	(is_{mapped,realized,visible,reactive}): ditto.
+	* tools/m4/convert_cluttermm.m4 (ActorFlags): Add generic
+	enumeration conversions and a special conversion from guint32.
+
+2008-12-24  Daniel Elstner  <danielk@openismus.com>
+
+	* clutter/src/box.hg (PackType): Remove NO_GTYPE flag passed to
+	_WRAP_ENUM(), because the enumeration in question clearly has a
+	GObject type and associated _get_type() function.
+	* clutter/src/layout.hg (LayoutFlags): ditto,
+	* clutter/src/path.hg (PathNodeType): ditto,
+	* clutter/src/texture.hg (TextureFlags): ditto,
+	(TextureQuality): ditto,
+	* clutter/src/timeline.hg (TimelineDirection): ditto,
+	* clutter/src/types.hg (RotateDirection): ditto,
+	(RotateAxis): ditto,
+	(Gravity): ditto,
+	(RequestMode): ditto.
+
+2008-12-24  Daniel Elstner  <danielk@openismus.com>
+
+	* clutter/src/texture.hg (Texture::*): Revert to use guchar instead
+	of guint8 to stay consistent with the Clutter C API.
+
+2008-12-23  Daniel Elstner  <danielk@openismus.com>
+
+	* clutter/src/texture.{ccg,hg} (Texture::set_from_file): Replace
+	Glib::ustring parameter type by std::string.  Filenames have no
+	defined character encoding!
+	* clutter/src/texture.{ccg,hg} (Texture::create_from_file): Add it.
+	The justification for not wrapping clutter_texture_new_from_file()
+	might apply to the constructor, but I don't see how it applies to
+	the create method.
+	(Texture::*): Replace uses of guchar for binary data with guint8.
+	It's got nothing to do with character strings.
+	* tools/m4/convert_cluttermm.m4: Add _EQUAL() conversions between
+	guint8 and guchar.
+
+2008-12-22  Daniel Elstner  <danielk@openismus.com>
+
+	* clutter/src/effecttemplate.{ccg,hg} (EffectTemplate::path): Remove
+	method overload again and use a default argument instead, in order
+	to avoid combinatorial explosion.  But install the slot callback
+	only if a non-default argument has been passed.
+	(EffectTemplate::fade): Add default argument for 'func' and runtime
+	check, as above.
+	(EffectTemplate::depth): ditto,
+	(EffectTemplate::move): ditto,
+	(EffectTemplate::scale): ditto,
+	(EffectTemplate::rotate): ditto.
+
+2008-12-22  Daniel Elstner  <danielk@openismus.com>
+
+	* clutter/src/alpha.hg (Alpha::MAX_ALPHA): Add constant.
+
+2008-12-22  Daniel Elstner  <danielk@openismus.com>
+
+	* clutter/src/effecttemplate.{ccg,hg} (EffectTemplate::path):
+	Add method overload without the 'func' parameter.
+
 2008-12-22  Daniel Elstner  <danielk@openismus.com>
 
 	* clutter/src/types.{ccg,hg} (Knot): Use _WRAP_EQUAL() to auto-
