@@ -59,7 +59,9 @@ public:
 
   // TODO: Use C++ container for knots
   _WRAP_METHOD_DOCS_ONLY(clutter_effect_path)
-  Glib::RefPtr<Timeline> path(const Glib::RefPtr<Actor>& actor, const ClutterKnot* knots, guint n_knots, const SlotEffectCompleteFunc& func);
+  Glib::RefPtr<Timeline> path(const Glib::RefPtr<Actor>& actor,
+                              const Glib::ArrayHandle<Knot>& knots,
+                              const SlotEffectCompleteFunc& func);
 
   _WRAP_METHOD_DOCS_ONLY(clutter_effect_scale)
   Glib::RefPtr<Timeline> scale(const Glib::RefPtr<Actor>& actor, double x_scale_end, double y_scale_end, const SlotEffectCompleteFunc& func);
@@ -72,5 +74,3 @@ public:
 };
 
 } // namespace Clutter
-
-//vim: ts=2,sw=2

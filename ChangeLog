@@ -1,3 +1,22 @@
+2008-12-22  Daniel Elstner  <danielk@openismus.com>
+
+	* clutter/src/types.{ccg,hg} (Knot): Use _WRAP_EQUAL() to auto-
+	generate the (in-)equality operators.
+
+2008-12-22  Daniel Elstner  <danielk@openismus.com>
+
+	* clutter/src/types.{ccg,hg} (Knot::set_*): Implement manually
+	to avoid pointless indirection in argument passing.
+	(Geometry::set_*): ditto.
+	(Knot::set_xy): New convenience accessor.
+	(Geometry::set_xy): ditto,
+	(Geometry::set_size): ditto.
+
+2008-12-22  Daniel Elstner  <danielk@openismus.com>
+
+	* clutter/src/effecttemplate.{ccg,hg} (EffectTemplate::path):
+	Use C++ container wrapper instead of a POD array.
+
 2008-12-18  Daniel Elstner  <danielk@openismus.com>
 
 	* tests/test-alpha-creation.cc: Kill cruft.  The test case still

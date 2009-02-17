@@ -48,11 +48,15 @@ public:
   Knot(int x, int y);
 
   _MEMBER_GET(x, x, int, int)
-  _MEMBER_SET(x, x, int, int)
+  void set_x(int x);
   _MEMBER_GET(y, y, int, int)
-  _MEMBER_SET(y, y, int, int)
+  void set_y(int y);
+  void set_xy(int x, int y);
 
-  bool operator==(const Knot& knot) const;
+#m4begin
+  _WRAP_EQUAL(clutter_knot_equal)
+#m4end
+  _IGNORE(clutter_knot_equal)
 };
 
 class Vertex
@@ -76,14 +80,16 @@ public:
   Geometry(int x, int y, unsigned int width = 0, unsigned int height = 0);
 
   _MEMBER_GET(x, x, int, gint)
-  _MEMBER_SET(x, x, int, gint)
+  void set_x(int x);
   _MEMBER_GET(y, y, int, gint)
-  _MEMBER_SET(y, y, int, gint)
+  void set_y(int y);
+  void set_xy(int x, int y);
+
   _MEMBER_GET(width, width, unsigned int, guint)
-  _MEMBER_SET(width, width, unsigned int, guint)
+  void set_width(unsigned int width);
   _MEMBER_GET(height, height, unsigned int, guint)
-  _MEMBER_SET(height, height, unsigned int, guint)
+  void set_height(unsigned int height);
+  void set_size(unsigned int width, unsigned int height);
 };
 
-}
-
+} // namespace Clutter

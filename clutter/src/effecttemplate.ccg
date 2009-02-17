@@ -93,9 +93,14 @@ Glib::RefPtr<Timeline> EffectTemplate::move(const Glib::RefPtr<Actor>& actor, in
   return timeline;
 }
 
-Glib::RefPtr<Timeline> EffectTemplate::path(const Glib::RefPtr<Actor>& actor, const ClutterKnot* knots, guint n_knots, const SlotEffectCompleteFunc& func)
+Glib::RefPtr<Timeline> EffectTemplate::path(const Glib::RefPtr<Actor>& actor,
+                                            const Glib::ArrayHandle<Knot>& knots,
+                                            const SlotEffectCompleteFunc& func)
 {
-  Glib::RefPtr<Timeline> timeline(Glib::wrap(clutter_effect_path(gobj(), actor->gobj(), knots, n_knots, NULL, NULL), true));
+  // Note: Don't copy this code if you don't understand WHY the cast works here.
+  const Glib::RefPtr<Timeline> timeline = Glib::wrap(clutter_effect_path(
+      gobj(), actor->gobj(), reinterpret_cast<const ClutterKnot*>(knots.data()),
+      knots.size(), 0, 0), true);
   CompleteCallback::create(timeline, actor, func);
   return timeline;
 }
@@ -115,5 +120,3 @@ Glib::RefPtr<Timeline> EffectTemplate::rotate(const Glib::RefPtr<Actor>& actor, 
 }
 
 } // namespace Clutter
-
-//vim: ts=2,sw=2
