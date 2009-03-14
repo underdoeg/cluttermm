@@ -1,3 +1,25 @@
+2009-03-14  Siavash Safi  <siavash@siavashs.org>
+
+	* clutter/src/clutter_methods.defs: Regenerated
+	* clutter/src/actor.hg:
+	* clutter/src/behaviour-ellipse.hg:
+	* clutter/src/behaviour-rotate.hg:
+	* clutter/src/behaviour-scale.hg
+	* clutter/src/color.ccg:
+	* clutter/src/color.hg:
+	* clutter/src/media.hg:
+	* clutter/src/stage.ccg:
+	* clutter/src/stage.hg:
+	* clutter/src/text.hg:
+	* clutter/src/timeline.hg:
+	* clutter/src/types.hg: Replaced Clutter::Fixed with Cogl Fixed,
+	Removed Depricated methods, Updated changed methods
+	* tools/extra_defs_gen/generate_defs_clutter.cc:
+	* tools/m4/convert_cluttermm.m4: Removed Clutter:Fixed conversions
+	* tools/m4/convert.m4:
+	* tools/m4/Makefile_list_of_sources.am_fragment:
+	* cluttermm/trunk/tools/m4/convert_coglmm.m4: Added Cogl::Fixed conversions
+
 0.9.0:
 
 2009-02-16  Daniel Elstner  <danielk@openismus.com>
