@@ -65,14 +65,10 @@ _EQUAL(`const guint8*',`const guchar*')
 
 _CONVERSION(`guint8&',`guint8*',`&($3)')
 _CONVERSION(`guint8*',`guint8&',`*($3)')
-_CONVERSION(`ClutterFixed&',`ClutterFixed*',`&($3)')
-_CONVERSION(`ClutterFixed*',`ClutterFixed&',`*($3)')
 
 _EQUAL(ClutterUnit,Unit)
 _CONVERSION(`Unit&',`ClutterUnit*',`&($3)')
 
-_EQUAL(ClutterFixed,Fixed)
-_CONVERSION(`Fixed&',`ClutterFixed*',`&($3)')
 _EQUAL(ClutterAngle,Angle)
 _CONVERSION(`Angle&',`ClutterAngle*',`&($3)')
 _EQUAL(ClutterFog,Fog)

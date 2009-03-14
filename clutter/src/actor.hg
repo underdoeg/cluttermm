@@ -128,10 +128,8 @@ public:
   _WRAP_METHOD(bool get_reactive() const, clutter_actor_get_reactive)
 
   _WRAP_METHOD(void set_rotation(RotateAxis axis, double angle, int x, int y, int z), clutter_actor_set_rotation)
-  _WRAP_METHOD(void set_rotationx(RotateAxis axis, Fixed angle, int x, int y, int z), clutter_actor_set_rotationx)
   _WRAP_METHOD(void set_rotationu(RotateAxis axis, double angle, Unit x, Unit y, Unit z), clutter_actor_set_rotationu)
   _WRAP_METHOD(double get_rotation(RotateAxis axis, int& x, int& y, int& z) const, clutter_actor_get_rotation)
-  _WRAP_METHOD(Fixed get_rotationx(RotateAxis axis, int& x, int& y, int& z) const, clutter_actor_get_rotationx)
   _WRAP_METHOD(double get_rotationu(RotateAxis axis, Unit& x, Unit& y, Unit& z) const, clutter_actor_get_rotationu)
   _WRAP_METHOD(void set_opacity (guint8 opacity), clutter_actor_set_opacity)
   _WRAP_METHOD(guint8 get_opacity() const, clutter_actor_get_opacity)
@@ -205,9 +203,7 @@ public:
   _WRAP_METHOD(void set_depthu(Unit depth), clutter_actor_set_depthu)
   _WRAP_METHOD(int get_depth() const, clutter_actor_get_depth)
   _WRAP_METHOD(Unit get_depthu() const, clutter_actor_get_depthu)
-  _WRAP_METHOD(void set_scalex(Fixed scale_x, Fixed scale_y), clutter_actor_set_scalex)
   _WRAP_METHOD(void set_scale(double scale_x, double scale_y), clutter_actor_set_scale)
-  _WRAP_METHOD(void get_scalex(Fixed& scale_x, Fixed& scale_y) const, clutter_actor_get_scalex)
   _WRAP_METHOD(void get_scale(double& scale_x, double& scale_y) const, clutter_actor_get_scale)
 
   //_WRAP_METHOD(void get_abs_size(guint& width, guint& height) const, clutter_actor_get_abs_size)

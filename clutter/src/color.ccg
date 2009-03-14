@@ -55,7 +55,7 @@ Color::Color(guint32 pixel)
 
 void Color::set_from_string(const Glib::ustring& color)
 {
-  clutter_color_parse(color.c_str(), this->gobj());
+  clutter_color_from_string(this->gobj(), color.c_str());
 }
 
 void Color::set_from_rgb(guint8 red, guint8 blue, guint8 green)
@@ -84,12 +84,7 @@ void Color::darken()
 
 void Color::shade(double shade)
 {
-    clutter_color_shade(this->gobj(), this->gobj(), shade);
-}
-
-void Color::shadex(Fixed shade)
-{
-    clutter_color_shadex(this->gobj(), this->gobj(), shade);
+    clutter_color_shade(this->gobj(), shade, this->gobj());
 }
 
 void Color::lighten()

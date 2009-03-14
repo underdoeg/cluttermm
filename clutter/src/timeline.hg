@@ -63,7 +63,7 @@ public:
   _WRAP_METHOD(void set_delay(guint msecs), clutter_timeline_set_delay)
   _WRAP_METHOD(guint get_delay() const, clutter_timeline_get_delay)
   _WRAP_METHOD(double get_progress() const, clutter_timeline_get_progress)
-  _WRAP_METHOD(Fixed get_progressx() const, clutter_timeline_get_progressx)
+  _WRAP_METHOD(Cogl::Fixed get_progressx() const, clutter_timeline_get_progressx)
   _WRAP_METHOD(void set_direction(TimelineDirection direction), clutter_timeline_set_direction)
   _WRAP_METHOD(TimelineDirection get_direction() const, clutter_timeline_get_direction)
 

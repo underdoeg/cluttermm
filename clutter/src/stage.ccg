@@ -20,7 +20,7 @@
 namespace Clutter
 {
 
-Perspective::Perspective(Fixed fovy, Fixed aspect, Fixed z_near, Fixed z_far)
+Perspective::Perspective(Cogl::Fixed fovy, Cogl::Fixed aspect, Cogl::Fixed z_near, Cogl::Fixed z_far)
 {
   gobject_.fovy = fovy;
   gobject_.aspect = aspect;
@@ -33,13 +33,6 @@ Color Stage::get_color() const
   Color color;
   clutter_stage_get_color(const_cast<ClutterStage*>(gobj()), color.gobj());
   return color;
-}
-
-Perspective Stage::get_perspectivex() const
-{
-  Perspective perspective;
-  clutter_stage_get_perspectivex(const_cast<ClutterStage*>(gobj()), perspective.gobj());
-  return perspective;
 }
 
 void Stage::set_key_focus()

@@ -32,11 +32,11 @@ class BehaviourRotate : public Behaviour
 
 protected:
   _WRAP_CTOR(BehaviourRotate(const Glib::RefPtr<Alpha>& alpha, RotateAxis axis, RotateDirection direction, double angle_begin, double angle_end), clutter_behaviour_rotate_new)
-  _WRAP_CTOR(BehaviourRotate(const Glib::RefPtr<Alpha>& alpha, RotateAxis axis, RotateDirection direction, Fixed angle_begin, Fixed angle_end), clutter_behaviour_rotate_newx)
+  _WRAP_CTOR(BehaviourRotate(const Glib::RefPtr<Alpha>& alpha, RotateAxis axis, RotateDirection direction, Cogl::Fixed angle_begin, Cogl::Fixed angle_end), clutter_behaviour_rotate_newx)
 
 public:
   _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, RotateAxis axis, RotateDirection direction, double angle_begin, double angle_end)
-  _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, RotateAxis axis, RotateDirection direction, Fixed angle_begin, Fixed angle_end)
+  _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, RotateAxis axis, RotateDirection direction, Cogl::Fixed angle_begin, Cogl::Fixed angle_end)
 
   _WRAP_METHOD(void set_axis(RotateAxis axis), clutter_behaviour_rotate_set_axis)
   _WRAP_METHOD(RotateAxis get_axis() const, clutter_behaviour_rotate_get_axis)
@@ -50,8 +50,8 @@ public:
   _WRAP_METHOD(void set_bounds(double angle_begin, double angle_end), clutter_behaviour_rotate_set_bounds)
   _WRAP_METHOD(void get_bounds(double& angle_begin, double& angle_end) const, clutter_behaviour_rotate_get_bounds)
 
-  _WRAP_METHOD(void set_boundsx(Fixed angle_begin, Fixed angle_end), clutter_behaviour_rotate_set_boundsx)
-  _WRAP_METHOD(void get_boundsx(Fixed& angle_begin, Fixed& angle_end) const, clutter_behaviour_rotate_get_boundsx)
+  _WRAP_METHOD(void set_boundsx(Cogl::Fixed angle_begin, Cogl::Fixed angle_end), clutter_behaviour_rotate_set_boundsx)
+  _WRAP_METHOD(void get_boundsx(Cogl::Fixed& angle_begin, Cogl::Fixed& angle_end) const, clutter_behaviour_rotate_get_boundsx)
 
   _WRAP_PROPERTY("angle-end", double)
   _WRAP_PROPERTY("angle-start", double)

@@ -16,8 +16,14 @@
  */
 
 #include <clutter/clutter.h>
+#include <cogl/cogl.h>
 
 _DEFS(cluttermm,clutter)
+namespace Cogl
+{
+typedef CoglAngle Angle;
+typedef CoglFixed Fixed;
+} // namespace Cogl
 
 namespace Clutter
 {
@@ -31,8 +37,6 @@ typedef ClutterCrossingEvent CrossingEvent;
 
 //TODO: Maybe redefine these, to avoid including a C header in our C++ header:
 typedef ClutterUnit Unit;
-typedef ClutterFixed Fixed;
-typedef ClutterAngle Angle;
 
 _WRAP_GERROR(InitError, ClutterInitError, CLUTTER_INIT_ERROR)
 

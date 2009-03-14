@@ -32,11 +32,11 @@ class BehaviourEllipse : public Behaviour
 
 protected:
   _WRAP_CTOR(BehaviourEllipse(const Glib::RefPtr<Alpha>& alpha, int x, int y, int width, int height, RotateDirection direction, double begin, double end), clutter_behaviour_ellipse_new)
-  _WRAP_CTOR(BehaviourEllipse(const Glib::RefPtr<Alpha>& alpha, int x, int y, int width, int height, RotateDirection direction, Fixed begin, Fixed end), clutter_behaviour_ellipse_newx)
+  _WRAP_CTOR(BehaviourEllipse(const Glib::RefPtr<Alpha>& alpha, int x, int y, int width, int height, RotateDirection direction, Cogl::Fixed begin, Cogl::Fixed end), clutter_behaviour_ellipse_newx)
 
 public:
   _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, int x, int y, int width, int height, RotateDirection direction, double begin, double end)
-  _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, int x, int y, int width, int height, RotateDirection direction, Fixed begin, Fixed end)
+  _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, int x, int y, int width, int height, RotateDirection direction, Cogl::Fixed begin, Cogl::Fixed end)
 
   _WRAP_METHOD(void set_center(int x, int y), clutter_behaviour_ellipse_set_center)
   _WRAP_METHOD(void get_center(int& x, int& y) const, clutter_behaviour_ellipse_get_center)
@@ -56,15 +56,15 @@ public:
   _WRAP_METHOD(void set_tilt(double angle_tilt_x, double angle_tilt_y, double angle_tilt_z), clutter_behaviour_ellipse_set_tilt)
   _WRAP_METHOD(void get_tilt(double& angle_tilt_x, double& angle_tilt_y, double& angle_tilt_z) const, clutter_behaviour_ellipse_get_tilt)
 
-  _WRAP_METHOD(void set_angle_startx(Fixed angle_start), clutter_behaviour_ellipse_set_angle_startx)
-  _WRAP_METHOD(Fixed get_angle_startx() const, clutter_behaviour_ellipse_get_angle_startx)
-  _WRAP_METHOD(void set_angle_endx(Fixed angle_end), clutter_behaviour_ellipse_set_angle_endx)
-  _WRAP_METHOD(Fixed get_angle_endx() const, clutter_behaviour_ellipse_get_angle_endx)
-  _WRAP_METHOD(void set_angle_tiltx(RotateAxis axis, Fixed angle_tilt), clutter_behaviour_ellipse_set_angle_tiltx)
-  _WRAP_METHOD(Fixed get_angle_tiltx(RotateAxis axis) const, clutter_behaviour_ellipse_get_angle_tiltx)
+  _WRAP_METHOD(void set_angle_startx(Cogl::Fixed angle_start), clutter_behaviour_ellipse_set_angle_startx)
+  _WRAP_METHOD(Cogl::Fixed get_angle_startx() const, clutter_behaviour_ellipse_get_angle_startx)
+  _WRAP_METHOD(void set_angle_endx(Cogl::Fixed angle_end), clutter_behaviour_ellipse_set_angle_endx)
+  _WRAP_METHOD(Cogl::Fixed get_angle_endx() const, clutter_behaviour_ellipse_get_angle_endx)
+  _WRAP_METHOD(void set_angle_tiltx(RotateAxis axis, Cogl::Fixed angle_tilt), clutter_behaviour_ellipse_set_angle_tiltx)
+  _WRAP_METHOD(Cogl::Fixed get_angle_tiltx(RotateAxis axis) const, clutter_behaviour_ellipse_get_angle_tiltx)
 
-  _WRAP_METHOD(void set_tiltx(Fixed angle_tilt_x, Fixed angle_tilt_y, Fixed angle_tilt_z), clutter_behaviour_ellipse_set_tiltx)
-  _WRAP_METHOD(void get_tiltx(Fixed& angle_tilt_x, Fixed& angle_tilt_y, Fixed& angle_tilt_z) const, clutter_behaviour_ellipse_get_tiltx)
+  _WRAP_METHOD(void set_tiltx(Cogl::Fixed angle_tilt_x, Cogl::Fixed angle_tilt_y, Cogl::Fixed angle_tilt_z), clutter_behaviour_ellipse_set_tiltx)
+  _WRAP_METHOD(void get_tiltx(Cogl::Fixed& angle_tilt_x, Cogl::Fixed& angle_tilt_y, Cogl::Fixed& angle_tilt_z) const, clutter_behaviour_ellipse_get_tiltx)
 
   _WRAP_METHOD(void set_direction(RotateDirection direction), clutter_behaviour_ellipse_set_direction)
   _WRAP_METHOD(RotateDirection get_direction() const, clutter_behaviour_ellipse_get_direction)

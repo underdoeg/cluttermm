@@ -31,16 +31,16 @@ class Perspective
 {
   _CLASS_BOXEDTYPE_STATIC(Perspective, ClutterPerspective)
 public:
-  Perspective(Fixed fovy, Fixed aspect, Fixed z_near, Fixed z_far);
+  Perspective(Cogl::Fixed fovy, Cogl::Fixed aspect, Cogl::Fixed z_near, Cogl::Fixed z_far);
 
-  _MEMBER_GET(fovy, fovy, Fixed, ClutterFixed)
-  _MEMBER_SET(fovy, fovy, Fixed, ClutterFixed)
-  _MEMBER_GET(aspect, aspect, Fixed, ClutterFixed)
-  _MEMBER_SET(aspect, aspect, Fixed, ClutterFixed)
-  _MEMBER_GET(z_near, z_near, Fixed, ClutterFixed)
-  _MEMBER_SET(z_near, z_near, Fixed, ClutterFixed)
-  _MEMBER_GET(z_far, z_far, Fixed, ClutterFixed)
-  _MEMBER_SET(z_far, z_far, Fixed, ClutterFixed)
+  _MEMBER_GET(fovy, fovy, Cogl::Fixed, CoglFixed)
+  _MEMBER_SET(fovy, fovy, Cogl::Fixed, CoglFixed)
+  _MEMBER_GET(aspect, aspect, Cogl::Fixed, CoglFixed)
+  _MEMBER_SET(aspect, aspect, Cogl::Fixed, CoglFixed)
+  _MEMBER_GET(z_near, z_near, Cogl::Fixed, CoglFixed)
+  _MEMBER_SET(z_near, z_near, Cogl::Fixed, CoglFixed)
+  _MEMBER_GET(z_far, z_far, Cogl::Fixed, CoglFixed)
+  _MEMBER_SET(z_far, z_far, Cogl::Fixed, CoglFixed)
 };
 
 class Stage :
@@ -59,12 +59,10 @@ public:
   Color get_color() const;
 
 #m4 _CONVERSION(`const Perspective&', `ClutterPerspective*',`const_cast<$2>(($3).gobj())')
-  _WRAP_METHOD(void set_perspectivex(const Perspective& perspective), clutter_stage_set_perspectivex)
-  _WRAP_METHOD_DOCS_ONLY(clutter_stage_get_perspectivex)
-  Perspective get_perspectivex() const;
+#m4 _CONVERSION(`Perspective&', `ClutterPerspective*',`const_cast<$2>(($3).gobj())')
 
-  _WRAP_METHOD(void set_perspective(float fovy, float aspect, float z_near, float z_far), clutter_stage_set_perspective)
-  _WRAP_METHOD(void get_perspective(float& fovy, float& aspect, float& z_near, float& z_far), clutter_stage_get_perspective)
+  _WRAP_METHOD(void set_perspective(const Perspective& prespective), clutter_stage_set_perspective)
+  _WRAP_METHOD(void get_perspective(Perspective& prespective), clutter_stage_get_perspective)
   _WRAP_METHOD(void fullscreen(), clutter_stage_fullscreen)
   _WRAP_METHOD(void unfullscreen(), clutter_stage_unfullscreen)
   _WRAP_METHOD(void show_cursor(), clutter_stage_show_cursor)
@@ -88,13 +86,9 @@ public:
   _WRAP_METHOD(guchar* read_pixels(int x, int y, int width, int height) const, clutter_stage_read_pixels)
   _WRAP_METHOD(bool get_use_fog() const, clutter_stage_get_use_fog)
   _WRAP_METHOD(void set_use_fog(bool fog = true), clutter_stage_set_use_fog)
-  _WRAP_METHOD(void set_fog(double density, double z_near, double z_far), clutter_stage_set_fog)
-  _WRAP_METHOD(void get_fog(double& density, double& z_near, double& z_far) const, clutter_stage_get_fog)
 #m4 _CONVERSION(`const Fog&',`ClutterFog*',`const_cast<ClutterFog*>(&($3))')
-  _WRAP_METHOD(void set_fogx(const Fog& fog), clutter_stage_set_fogx)
-  _WRAP_METHOD(void get_fogx(Fog& fog) const, clutter_stage_get_fogx)
-  _WRAP_METHOD(double get_resolution() const, clutter_stage_get_resolution)
-  _WRAP_METHOD(Fixed get_resolutionx() const, clutter_stage_get_resolutionx)
+  _WRAP_METHOD(void set_fog(const Fog& fog), clutter_stage_set_fog)
+  _WRAP_METHOD(void get_fog(Fog& fog) const, clutter_stage_get_fog)
   
   _WRAP_METHOD(void stage_event(Event* event), clutter_stage_event)
   _WRAP_METHOD(bool is_default() const, clutter_stage_is_default)
