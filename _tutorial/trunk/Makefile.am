@@ -33,7 +33,6 @@ noinst_PROGRAMS =	\
 	examples/behaviour/example		\
 	examples/custom_actor/example		\
 	examples/custom_container/example	\
-	examples/effects/example		\
 	examples/full_example/example		\
 	examples/multiline_text_entry/example	\
 	examples/score/example			\
@@ -54,7 +53,6 @@ examples_custom_container_example_SOURCES =	\
 	examples/custom_container/examplebox.cc	\
 	examples/custom_container/examplebox.h	\
 	examples/custom_container/main.cc
-examples_effects_example_SOURCES		= examples/effects/main.cc
 examples_full_example_example_SOURCES		= examples/full_example/main.cc
 examples_multiline_text_entry_example_SOURCES =		\
 	examples/multiline_text_entry/main.cc		\

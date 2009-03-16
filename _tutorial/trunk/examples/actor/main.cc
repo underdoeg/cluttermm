@@ -37,7 +37,7 @@ int main(int argc, char** argv)
 
   // Add a label to the stage:
   const Glib::RefPtr<Clutter::Actor> label =
-    Clutter::Label::create("Sans 12", "Some Text", actor_color);
+    Clutter::Text::create("Sans 12", "Some Text", actor_color);
   label->set_size(500, 500);
   label->set_position(20, 150);
   stage->add_actor(label);

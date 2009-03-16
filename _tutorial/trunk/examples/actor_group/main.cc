@@ -43,8 +43,8 @@ int main(int argc, char** argv)
   rect->show();
 
   // Add a label to the group:
-  const Glib::RefPtr<Clutter::Label>
-    label = Clutter::Label::create("Sans 9", "Some Text", actor_color);
+  const Glib::RefPtr<Clutter::Text>
+    label = Clutter::Text::create("Sans 9", "Some Text", actor_color);
   label->set_position(0, 60);
   group->add_actor (label);
   label->show();

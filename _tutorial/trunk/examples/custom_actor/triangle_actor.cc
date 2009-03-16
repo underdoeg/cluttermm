@@ -50,20 +50,20 @@ void Triangle::do_triangle_paint(const CoglColor* color)
   cogl_push_matrix();
   cogl_set_source_color(color);
 
-  ClutterFixed coords[6];
+  Cogl::Fixed coords[6];
 
   // Paint a triangle.  The parent paint call will have translated us into
   // position so paint from 0, 0.
-  coords[0] = CLUTTER_INT_TO_FIXED(0);
-  coords[1] = CLUTTER_INT_TO_FIXED(0);
+  coords[0] = COGL_FIXED_FROM_INT(0);
+  coords[1] = COGL_FIXED_FROM_INT(0);
 
-  coords[2] = CLUTTER_INT_TO_FIXED(0);
-  coords[3] = CLUTTER_INT_TO_FIXED(geom.get_height());
+  coords[2] = COGL_FIXED_FROM_INT(0);
+  coords[3] = COGL_FIXED_FROM_INT(geom.get_height());
 
-  coords[4] = CLUTTER_INT_TO_FIXED(geom.get_width());
+  coords[4] = COGL_FIXED_FROM_INT(geom.get_width());
   coords[5] = coords[3];
 
-  cogl_path_polygon(coords, G_N_ELEMENTS(coords) / 2);
+  cogl_path_polygon((float*)coords, G_N_ELEMENTS(coords) / 2);
   cogl_path_fill();
 
   cogl_pop_matrix();

@@ -1,3 +1,14 @@
+2009-03-16  Siavash Safi  <siavash@siavashs.org>
+
+	* trunk/INSTALL: Autoupdated by autoconf
+	* trunk/Makefile.am: Disabled effects example (should be updated to use
+	Clutter::Animation when t's wrapped)
+	* trunk/examples/actor/main.cc:
+	* trunk/examples/actor_group/main.cc:
+	* trunk/examples/actor_transformations/main.cc:
+	* trunk/examples/custom_actor/triangle_actor.cc:
+	* trunk/examples/full_example/main.cc: Updated to use new API
+
 2009-02-17  Daniel Elstner  <danielk@openismus.com>
 
 	* autogen.sh: Add minimal variant of this common shell script

@@ -58,7 +58,7 @@ private:
   Glib::RefPtr<Clutter::Stage> stage_;
 
   // For showing the filename:
-  Glib::RefPtr<Clutter::Label> label_filename_;
+  Glib::RefPtr<Clutter::Text> label_filename_;
 
   // For rotating all images around an ellipse::
   Glib::RefPtr<Clutter::Timeline> timeline_rotation_;
@@ -96,7 +96,7 @@ Example::Example()
   items_             (),
   front_item_        (items_.end()),
   stage_             (Clutter::Stage::get_default()),
-  label_filename_    (Clutter::Label::create()),
+  label_filename_    (Clutter::Text::create()),
   timeline_rotation_ (Clutter::Timeline::create(60 /*frames*/, 30 /*fps*/))
 {
   stage_->set_size(800, 600);
@@ -191,7 +191,7 @@ void Example::add_image_actors()
         sigc::bind(sigc::mem_fun(*this, &Example::on_texture_button_press), p));
 
     const Glib::RefPtr<Clutter::Alpha> alpha =
-        Clutter::Alpha::create(timeline_rotation_, &Clutter::Alpha::sine_inc_func);
+        Clutter::Alpha::create(timeline_rotation_, CLUTTER_EASE_OUT_SINE);
 
     p->behaviour = Clutter::BehaviourEllipse
         ::create(alpha, 320, ELLIPSE_Y, // x, y
@@ -234,7 +234,7 @@ void Example::on_timeline_rotation_completed()
   const Glib::RefPtr<Clutter::Actor> actor = front_item_->texture;
   timeline_moveup_ = Clutter::Timeline::create(60 /*frames*/, 30 /*fps*/);
   const Glib::RefPtr<Clutter::Alpha> alpha =
-      Clutter::Alpha::create(timeline_moveup_, &Clutter::Alpha::sine_inc_func);
+      Clutter::Alpha::create(timeline_moveup_, CLUTTER_EASE_OUT_SINE);
  
   // Scale the item from its normal scale to approximately twice the normal scale:
   double scale_start = 0.0;
