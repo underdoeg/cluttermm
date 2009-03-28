@@ -27,6 +27,15 @@
   )
 )
 
+(define-signal queue-redraw
+  (of-object "ClutterActor")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("ClutterActor*" "p0")
+  )
+)
+
 (define-signal event
   (of-object "ClutterActor")
   (return-type "gboolean")
@@ -353,6 +362,15 @@
   (construct-only #f)
 )
 
+(define-property clip-to-allocation
+  (of-object "ClutterActor")
+  (prop-type "GParamBoolean")
+  (docs "Sets the clip region to track the actor's allocation")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property opacity
   (of-object "ClutterActor")
   (prop-type "GParamUChar")
@@ -553,6 +571,68 @@
   (construct-only #f)
 )
 
+;; From ClutterAnimation
+
+(define-signal completed
+  (of-object "ClutterAnimation")
+  (return-type "void")
+  (when "last")
+)
+
+(define-property object
+  (of-object "ClutterAnimation")
+  (prop-type "GParamObject")
+  (docs "Object to which the animation applies")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property mode
+  (of-object "ClutterAnimation")
+  (prop-type "GParamULong")
+  (docs "The mode of the animation")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property duration
+  (of-object "ClutterAnimation")
+  (prop-type "GParamUInt")
+  (docs "Duration of the animation, in milliseconds")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property loop
+  (of-object "ClutterAnimation")
+  (prop-type "GParamBoolean")
+  (docs "Whether the animation should loop")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property timeline
+  (of-object "ClutterAnimation")
+  (prop-type "GParamObject")
+  (docs "The timeline used by the animation")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property alpha
+  (of-object "ClutterAnimation")
+  (prop-type "GParamObject")
+  (docs "The alpha used by the animation")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 ;; From ClutterBackend
 
 (define-signal resolution-changed
@@ -619,7 +699,7 @@
 (define-property width
   (of-object "ClutterBehaviourEllipse")
   (prop-type "GParamInt")
-  (docs "Width of ellipse")
+  (docs "Width of the ellipse")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1087,6 +1167,15 @@
   (construct-only #f)
 )
 
+(define-property clip-to-allocation
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamBoolean")
+  (docs "Sets the clip region to track the actor's allocation")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property opacity
   (of-object "ClutterCairoTexture")
   (prop-type "GParamUChar")
@@ -1330,6 +1419,15 @@
   (construct-only #f)
 )
 
+(define-property cogl-material
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamBoxed")
+  (docs "The underlying COGL material handle used to draw this actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property filename
   (of-object "ClutterCairoTexture")
   (prop-type "GParamString")
@@ -1352,7 +1450,16 @@
   (of-object "ClutterCairoTexture")
   (prop-type "GParamBoolean")
   (docs "Load files inside a thread to avoid blocking when loading images.")
-  (readable #t)
+  (readable #f)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property load-data-async
+  (of-object "ClutterCairoTexture")
+  (prop-type "GParamBoolean")
+  (docs "Decode image data files inside a thread to reduce blocking when loading images.")
+  (readable #f)
   (writable #t)
   (construct-only #f)
 )
@@ -1586,6 +1693,15 @@
   (construct-only #f)
 )
 
+(define-property clip-to-allocation
+  (of-object "ClutterClone")
+  (prop-type "GParamBoolean")
+  (docs "Sets the clip region to track the actor's allocation")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property opacity
   (of-object "ClutterClone")
   (prop-type "GParamUChar")
@@ -1800,8 +1916,6 @@
 
 ;; From ClutterEvent
 
-;; From ClutterFixed
-
 ;; From ClutterGroup
 
 (define-signal add
@@ -2011,6 +2125,15 @@
   (construct-only #f)
 )
 
+(define-property clip-to-allocation
+  (of-object "ClutterGroup")
+  (prop-type "GParamBoolean")
+  (docs "Sets the clip region to track the actor's allocation")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property opacity
   (of-object "ClutterGroup")
   (prop-type "GParamUChar")
@@ -2182,6 +2305,17 @@
   (construct-only #f)
 )
 
+;; From ClutterInterval
+
+(define-property value-type
+  (of-object "ClutterInterval")
+  (prop-type "GParamGType")
+  (docs "The type of the values in the interval")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
 ;; From ClutterMedia
 
 (define-signal eos
@@ -2199,28 +2333,28 @@
   )
 )
 
-(define-property uri
+(define-property playing
   (of-object "ClutterMedia")
-  (prop-type "GParamString")
-  (docs "URI of a media file")
+  (prop-type "GParamBoolean")
+  (docs "Wheter the actor is playing")
   (readable #t)
   (writable #t)
   (construct-only #f)
 )
 
-(define-property can-seek
+(define-property buffer-fill
   (of-object "ClutterMedia")
-  (prop-type "GParamBoolean")
-  (docs "Whether the current stream is seekable")
+  (prop-type "GParamDouble")
+  (docs "The fill level of the buffer")
   (readable #t)
   (writable #f)
   (construct-only #f)
 )
 
-(define-property playing
+(define-property audio-volume
   (of-object "ClutterMedia")
-  (prop-type "GParamBoolean")
-  (docs "Wheter the actor is playing")
+  (prop-type "GParamDouble")
+  (docs "The volume of the audio")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2235,10 +2369,10 @@
   (construct-only #f)
 )
 
-(define-property audio-volume
+(define-property uri
   (of-object "ClutterMedia")
-  (prop-type "GParamDouble")
-  (docs "The volume of the audio")
+  (prop-type "GParamString")
+  (docs "URI of a media file")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2246,17 +2380,17 @@
 
 (define-property duration
   (of-object "ClutterMedia")
-  (prop-type "GParamUInt")
+  (prop-type "GParamDouble")
   (docs "The duration of the stream, in seconds")
   (readable #t)
   (writable #f)
   (construct-only #f)
 )
 
-(define-property buffer-fill
+(define-property can-seek
   (of-object "ClutterMedia")
-  (prop-type "GParamDouble")
-  (docs "The fill level of the buffer")
+  (prop-type "GParamBoolean")
+  (docs "Whether the current stream is seekable")
   (readable #t)
   (writable #f)
   (construct-only #f)
@@ -2470,6 +2604,15 @@
   (docs "Whether the actor has a clip set or not")
   (readable #t)
   (writable #f)
+  (construct-only #f)
+)
+
+(define-property clip-to-allocation
+  (of-object "ClutterRectangle")
+  (prop-type "GParamBoolean")
+  (docs "Sets the clip region to track the actor's allocation")
+  (readable #t)
+  (writable #t)
   (construct-only #f)
 )
 
@@ -2773,12 +2916,6 @@
   (when "last")
 )
 
-(define-signal queue-redraw
-  (of-object "ClutterStage")
-  (return-type "void")
-  (when "last")
-)
-
 (define-property name
   (of-object "ClutterStage")
   (prop-type "GParamString")
@@ -2965,6 +3102,15 @@
   (docs "Whether the actor has a clip set or not")
   (readable #t)
   (writable #f)
+  (construct-only #f)
+)
+
+(define-property clip-to-allocation
+  (of-object "ClutterStage")
+  (prop-type "GParamBoolean")
+  (docs "Sets the clip region to track the actor's allocation")
+  (readable #t)
+  (writable #t)
   (construct-only #f)
 )
 
@@ -3211,6 +3357,15 @@
   (construct-only #f)
 )
 
+(define-property fog
+  (of-object "ClutterStage")
+  (prop-type "GParamBoxed")
+  (docs "Settings for the depth cueing")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 ;; From ClutterText
 
 (define-signal activate
@@ -3421,6 +3576,15 @@
   (docs "Whether the actor has a clip set or not")
   (readable #t)
   (writable #f)
+  (construct-only #f)
+)
+
+(define-property clip-to-allocation
+  (of-object "ClutterText")
+  (prop-type "GParamBoolean")
+  (docs "Sets the clip region to track the actor's allocation")
+  (readable #t)
+  (writable #t)
   (construct-only #f)
 )
 
@@ -4009,6 +4173,15 @@
   (construct-only #f)
 )
 
+(define-property clip-to-allocation
+  (of-object "ClutterTexture")
+  (prop-type "GParamBoolean")
+  (docs "Sets the clip region to track the actor's allocation")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property opacity
   (of-object "ClutterTexture")
   (prop-type "GParamUChar")
@@ -4252,6 +4425,15 @@
   (construct-only #f)
 )
 
+(define-property cogl-material
+  (of-object "ClutterTexture")
+  (prop-type "GParamBoxed")
+  (docs "The underlying COGL material handle used to draw this actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 (define-property filename
   (of-object "ClutterTexture")
   (prop-type "GParamString")
@@ -4274,7 +4456,16 @@
   (of-object "ClutterTexture")
   (prop-type "GParamBoolean")
   (docs "Load files inside a thread to avoid blocking when loading images.")
-  (readable #t)
+  (readable #f)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property load-data-async
+  (of-object "ClutterTexture")
+  (prop-type "GParamBoolean")
+  (docs "Decode image data files inside a thread to reduce blocking when loading images.")
+  (readable #f)
   (writable #t)
   (construct-only #f)
 )

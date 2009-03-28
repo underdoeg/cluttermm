@@ -5,6 +5,7 @@
 files_hg = \
 actor.hg \
 alpha.hg \
+animation.hg \
 behaviour.hg \
 behaviour-depth.hg \
 behaviour-ellipse.hg \
@@ -17,6 +18,7 @@ clone.hg \
 color.hg \
 container.hg \
 group.hg \
+interval.hg \
 media.hg \
 path.hg \
 rectangle.hg \

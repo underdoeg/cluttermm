@@ -1,0 +1,81 @@
+/* Copyright (C) 2009 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <glibmm/object.h>
+#include <clutter/clutter.h>
+ 
+_DEFS(cluttermm,clutter)
+_PINCLUDE(glibmm/private/object_p.h)
+
+namespace Clutter
+{
+
+class Interval : public Glib::Object
+{
+
+  _CLASS_GOBJECT(Interval, ClutterInterval, CLUTTER_INTERVAL, Glib::Object, GObject)
+  _DERIVES_INITIALLY_UNOWNED()
+
+protected:
+  Interval(GType type, const Glib::ValueBase& initial, const Glib::ValueBase& final);
+
+public:
+
+  template <typename ValueType>
+  Glib::RefPtr<Interval> static create(const ValueType initial, const ValueType final);
+  template <typename ValueType>
+  Glib::RefPtr<Interval> static create_with_values(const Glib::Value<ValueType>& initial, const Glib::Value<ValueType>& final);
+
+  _WRAP_METHOD(Glib::RefPtr<Interval> clone() const, clutter_interval_clone)
+  _WRAP_METHOD(GType get_value_type() const, clutter_interval_get_value_type)
+  _WRAP_METHOD(void set_initial_value(const Glib::ValueBase& value), clutter_interval_set_initial_value)
+  _WRAP_METHOD(void get_initial_value(Glib::ValueBase& value) const, clutter_interval_get_initial_value)
+  _WRAP_METHOD(GValue* peek_initial_value(), clutter_interval_peek_initial_value)
+  _WRAP_METHOD(void set_final_value(const Glib::ValueBase& value), clutter_interval_set_final_value)
+  _WRAP_METHOD(void get_final_value(Glib::ValueBase& value) const, clutter_interval_get_final_value)
+  _WRAP_METHOD(GValue* peek_final_value(), clutter_interval_peek_final_value)
+
+  void set_interval(const Glib::ValueBase& initial, const Glib::ValueBase& final);
+  void get_interval(Glib::ValueBase& initial, Glib::ValueBase& final);
+
+  _WRAP_METHOD(bool compute_value(double factor, Glib::ValueBase& value) const, clutter_interval_compute_value)
+  _WRAP_METHOD(bool validate(GParamSpec *pspec) const, clutter_interval_validate)
+
+  _WRAP_PROPERTY("value-type", GType)
+
+  _IGNORE(clutter_interval_get_interval, clutter_interval_set_interval)
+};
+
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+template <typename ValueType>
+Glib::RefPtr<Interval> Interval::create(const ValueType initial, const ValueType final)
+{
+  Glib::Value<ValueType> initial_val, final_val;
+  initial_val.init(Glib::Value<ValueType>::value_type());
+  final_val.init(Glib::Value<ValueType>::value_type());
+  initial_val.set(initial);
+  final_val.set(final);
+  return create_with_values(initial_val, final_val);
+}
+
+template <typename ValueType>
+Glib::RefPtr<Interval> Interval::create_with_values(const Glib::Value<ValueType>& initial, const Glib::Value<ValueType>& final)
+{
+  return Glib::RefPtr<Interval>( new Interval(initial.value_type(), initial, final) );
+}
+#endif /* DOXYGEN_SHOULD_SKIP_THIS */
+} // namespace Clutter

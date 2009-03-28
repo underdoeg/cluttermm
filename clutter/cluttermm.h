@@ -29,6 +29,7 @@ extern const int cluttermm_micro_version;
 
 #include <cluttermm/actor.h>
 #include <cluttermm/alpha.h>
+#include <cluttermm/animation.h>
 #include <cluttermm/behaviour.h>
 #include <cluttermm/behaviour-depth.h>
 #include <cluttermm/behaviour-ellipse.h>
@@ -42,6 +43,7 @@ extern const int cluttermm_micro_version;
 #include <cluttermm/frame-source.h>
 #include <cluttermm/group.h>
 #include <cluttermm/init.h>
+#include <cluttermm/interval.h>
 #include <cluttermm/main.h>
 #include <cluttermm/media.h>
 #include <cluttermm/path.h>

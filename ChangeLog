@@ -1,3 +1,21 @@
+2009-03-28  Siavash Safi  <siavash@siavashs.org>
+
+	* clutter/src/animation.ccg:
+	* clutter/src/animation.hg: Added Clutter::Animation
+	* clutter/src/interval.ccg:
+	* clutter/src/interval.hg: Added Clutter::Interval
+	* clutter/cluttermm.h:
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* clutter/src/clutter_docs.xml: Regenerated
+	* clutter/src/clutter_enums.defs: Regenerated
+	* clutter/src/clutter_methods.defs: Regenerated
+	* clutter/src/clutter_signals.defs: Regenerated and modified by hand to
+	Support all Events
+	* tests/Makefile.am:
+	* tests/test-interval-creation.cc: Test Clutter::Interval creation
+	* tools/extra_defs_gen/generate_defs_clutter.cc:
+	* tools/m4/convert_cluttermm.m4:
+
 2009-03-14  Siavash Safi  <siavash@siavashs.org>
 
 	* clutter/src/clutter_methods.defs: Regenerated

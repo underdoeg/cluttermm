@@ -1836,10 +1836,20 @@
   (return-type "ClutterAlpha*")
 )
 
-(define-method bind_property
+(define-method bind
   (of-object "ClutterAnimation")
-  (c-name "clutter_animation_bind_property")
-  (return-type "none")
+  (c-name "clutter_animation_bind")
+  (return-type "ClutterAnimation*")
+  (parameters
+    '("const-gchar*" "property_name")
+    '("const-GValue*" "final")
+  )
+)
+
+(define-method bind_interval
+  (of-object "ClutterAnimation")
+  (c-name "clutter_animation_bind_interval")
+  (return-type "ClutterAnimation*")
   (parameters
     '("const-gchar*" "property_name")
     '("ClutterInterval*" "interval")
@@ -1855,9 +1865,9 @@
   )
 )
 
-(define-method update_property
+(define-method update_interval
   (of-object "ClutterAnimation")
-  (c-name "clutter_animation_update_property")
+  (c-name "clutter_animation_update_interval")
   (return-type "none")
   (parameters
     '("const-gchar*" "property_name")
@@ -1881,6 +1891,12 @@
   (parameters
     '("const-gchar*" "property_name")
   )
+)
+
+(define-method completed
+  (of-object "ClutterAnimation")
+  (c-name "clutter_animation_completed")
+  (return-type "none")
 )
 
 (define-method animate
@@ -1954,6 +1970,12 @@
     '("const-gchar*-const[]" "properties")
     '("const-GValue*" "values")
   )
+)
+
+(define-method get_animation
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_animation")
+  (return-type "ClutterAnimation*")
 )
 
 
@@ -3659,7 +3681,7 @@
   (c-name "clutter_frame_source_add")
   (return-type "guint")
   (parameters
-    '("guint" "interval")
+    '("guint" "fps")
     '("GSourceFunc" "func")
     '("gpointer" "data")
   )
@@ -3670,7 +3692,7 @@
   (return-type "guint")
   (parameters
     '("gint" "priority")
-    '("guint" "interval")
+    '("guint" "fps")
     '("GSourceFunc" "func")
     '("gpointer" "data")
     '("GDestroyNotify" "notify")
@@ -4102,7 +4124,7 @@
   (c-name "clutter_threads_add_frame_source")
   (return-type "guint")
   (parameters
-    '("guint" "interval")
+    '("guint" "fps")
     '("GSourceFunc" "func")
     '("gpointer" "data")
   )
@@ -4113,7 +4135,7 @@
   (return-type "guint")
   (parameters
     '("gint" "priority")
-    '("guint" "interval")
+    '("guint" "fps")
     '("GSourceFunc" "func")
     '("gpointer" "data")
     '("GDestroyNotify" "notify")
@@ -6638,7 +6660,7 @@
   (c-name "clutter_timeout_pool_add")
   (return-type "guint")
   (parameters
-    '("guint" "interval")
+    '("guint" "fps")
     '("GSourceFunc" "func")
     '("gpointer" "data")
     '("GDestroyNotify" "notify")

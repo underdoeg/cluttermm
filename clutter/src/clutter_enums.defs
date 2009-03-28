@@ -1,4 +1,4 @@
-;; From /home/murrayc/svn/gnome220/branches/clutter/clutter/clutter-actor.h
+;; From /usr/local/include/clutter-0.9/clutter/clutter-actor.h
 
 (define-flags-extended ActorFlags
   (in-module "Clutter")
@@ -10,31 +10,7 @@
   )
 )
 
-;; From /home/murrayc/svn/gnome220/branches/clutter/clutter/clutter-debug.h
-
-(define-flags-extended DebugFlag
-  (in-module "Clutter")
-  (c-name "ClutterDebugFlag")
-  (values
-    '("misc" "CLUTTER_DEBUG_MISC" "1 << 0")
-    '("actor" "CLUTTER_DEBUG_ACTOR" "1 << 1")
-    '("texture" "CLUTTER_DEBUG_TEXTURE" "1 << 2")
-    '("event" "CLUTTER_DEBUG_EVENT" "1 << 3")
-    '("paint" "CLUTTER_DEBUG_PAINT" "1 << 4")
-    '("gl" "CLUTTER_DEBUG_GL" "1 << 5")
-    '("alpha" "CLUTTER_DEBUG_ALPHA" "1 << 6")
-    '("behaviour" "CLUTTER_DEBUG_BEHAVIOUR" "1 << 7")
-    '("pango" "CLUTTER_DEBUG_PANGO" "1 << 8")
-    '("backend" "CLUTTER_DEBUG_BACKEND" "1 << 9")
-    '("scheduler" "CLUTTER_DEBUG_SCHEDULER" "1 << 10")
-    '("script" "CLUTTER_DEBUG_SCRIPT" "1 << 11")
-    '("shader" "CLUTTER_DEBUG_SHADER" "1 << 12")
-    '("multistage" "CLUTTER_DEBUG_MULTISTAGE" "1 << 13")
-    '("animation" "CLUTTER_DEBUG_ANIMATION" "1 << 14")
-  )
-)
-
-;; From /home/murrayc/svn/gnome220/branches/clutter/clutter/clutter-event.h
+;; From /usr/local/include/clutter-0.9/clutter/clutter-event.h
 
 (define-flags-extended ModifierType
   (in-module "Clutter")
@@ -110,7 +86,7 @@
   )
 )
 
-;; From /home/murrayc/svn/gnome220/branches/clutter/clutter/clutter-feature.h
+;; From /usr/local/include/clutter-0.9/clutter/clutter-feature.h
 
 (define-flags-extended FeatureFlags
   (in-module "Clutter")
@@ -129,7 +105,7 @@
   )
 )
 
-;; From /home/murrayc/svn/gnome220/branches/clutter/clutter/clutter-main.h
+;; From /usr/local/include/clutter-0.9/clutter/clutter-main.h
 
 (define-enum-extended InitError
   (in-module "Clutter")
@@ -143,7 +119,7 @@
   )
 )
 
-;; From /home/murrayc/svn/gnome220/branches/clutter/clutter/clutter-path.h
+;; From /usr/local/include/clutter-0.9/clutter/clutter-path.h
 
 (define-enum-extended PathNodeType
   (in-module "Clutter")
@@ -159,33 +135,7 @@
   )
 )
 
-;; From /home/murrayc/svn/gnome220/branches/clutter/clutter/clutter-private.h
-
-(define-flags-extended PrivateFlags
-  (in-module "Clutter")
-  (c-name "ClutterPrivateFlags")
-  (values
-    '("actor-unused-flag" "CLUTTER_ACTOR_UNUSED_FLAG" "0")
-    '("actor-in-destruction" "CLUTTER_ACTOR_IN_DESTRUCTION" "1 << 0")
-    '("actor-is-toplevel" "CLUTTER_ACTOR_IS_TOPLEVEL" "1 << 1")
-    '("actor-in-reparent" "CLUTTER_ACTOR_IN_REPARENT" "1 << 2")
-    '("actor-in-paint" "CLUTTER_ACTOR_IN_PAINT" "1 << 4")
-    '("actor-in-relayout" "CLUTTER_ACTOR_IN_RELAYOUT" "1 << 5")
-    '("texture-in-clone-paint" "CLUTTER_TEXTURE_IN_CLONE_PAINT" "1 << 6")
-  )
-)
-
-(define-enum-extended PickMode
-  (in-module "Clutter")
-  (c-name "ClutterPickMode")
-  (values
-    '("none" "CLUTTER_PICK_NONE" "0")
-    '("reactive" "CLUTTER_PICK_REACTIVE" "1")
-    '("all" "CLUTTER_PICK_ALL" "2")
-  )
-)
-
-;; From /home/murrayc/svn/gnome220/branches/clutter/clutter/clutter-script.h
+;; From /usr/local/include/clutter-0.9/clutter/clutter-script.h
 
 (define-enum-extended ScriptError
   (in-module "Clutter")
@@ -197,7 +147,7 @@
   )
 )
 
-;; From /home/murrayc/svn/gnome220/branches/clutter/clutter/clutter-shader.h
+;; From /usr/local/include/clutter-0.9/clutter/clutter-shader.h
 
 (define-enum-extended ShaderError
   (in-module "Clutter")
@@ -209,7 +159,7 @@
   )
 )
 
-;; From /home/murrayc/svn/gnome220/branches/clutter/clutter/clutter-texture.h
+;; From /usr/local/include/clutter-0.9/clutter/clutter-texture.h
 
 (define-enum-extended TextureError
   (in-module "Clutter")
@@ -241,7 +191,7 @@
   )
 )
 
-;; From /home/murrayc/svn/gnome220/branches/clutter/clutter/clutter-timeline.h
+;; From /usr/local/include/clutter-0.9/clutter/clutter-timeline.h
 
 (define-enum-extended TimelineDirection
   (in-module "Clutter")
@@ -252,7 +202,7 @@
   )
 )
 
-;; From /home/murrayc/svn/gnome220/branches/clutter/clutter/clutter-types.h
+;; From /usr/local/include/clutter-0.9/clutter/clutter-types.h
 
 (define-enum-extended Gravity
   (in-module "Clutter")
