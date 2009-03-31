@@ -55,7 +55,6 @@ StageWindow::StageWindow()
   button->signal_clicked().connect(sigc::mem_fun(*this, &StageWindow::on_button_clicked));
 
   stage_ = embed_->get_stage();
-  stage_->reference();
   stage_->set_color(Clutter::Color(0, 0, 0)); // black
   stage_->signal_button_press_event().connect(&StageWindow::on_stage_button_press);
 
