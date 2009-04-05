@@ -1,3 +1,10 @@
+2009-04-06  Siavash Safi  <siavash@siavashs.org>
+
+	* trunk/clutter/src/clutter_methods.defs:
+	* trunk/clutter/src/clutter_signals.defs: Regenerated .defs
+	* trunk/clutter/src/text.hg: Wrapped the new API
+	* trunk/tools/m4/convert_cluttermm.m4:
+
 2009-03-28  Siavash Safi  <siavash@siavashs.org>
 
 	* clutter/src/animation.ccg:

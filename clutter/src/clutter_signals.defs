@@ -1918,24 +1918,6 @@
 
 ;; From ClutterGroup
 
-(define-signal add
-  (of-object "ClutterGroup")
-  (return-type "void")
-  (when "first")
-  (parameters
-    '("ClutterActor*" "p0")
-  )
-)
-
-(define-signal remove
-  (of-object "ClutterGroup")
-  (return-type "void")
-  (when "first")
-  (parameters
-    '("ClutterActor*" "p0")
-  )
-)
-
 (define-property name
   (of-object "ClutterGroup")
   (prop-type "GParamString")
@@ -2333,48 +2315,12 @@
   )
 )
 
-(define-property playing
-  (of-object "ClutterMedia")
-  (prop-type "GParamBoolean")
-  (docs "Wheter the actor is playing")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
 (define-property buffer-fill
   (of-object "ClutterMedia")
   (prop-type "GParamDouble")
   (docs "The fill level of the buffer")
   (readable #t)
   (writable #f)
-  (construct-only #f)
-)
-
-(define-property audio-volume
-  (of-object "ClutterMedia")
-  (prop-type "GParamDouble")
-  (docs "The volume of the audio")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property progress
-  (of-object "ClutterMedia")
-  (prop-type "GParamDouble")
-  (docs "Current progress of the playback")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property uri
-  (of-object "ClutterMedia")
-  (prop-type "GParamString")
-  (docs "URI of a media file")
-  (readable #t)
-  (writable #t)
   (construct-only #f)
 )
 
@@ -2393,6 +2339,42 @@
   (docs "Whether the current stream is seekable")
   (readable #t)
   (writable #f)
+  (construct-only #f)
+)
+
+(define-property progress
+  (of-object "ClutterMedia")
+  (prop-type "GParamDouble")
+  (docs "Current progress of the playback")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property audio-volume
+  (of-object "ClutterMedia")
+  (prop-type "GParamDouble")
+  (docs "The volume of the audio")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property uri
+  (of-object "ClutterMedia")
+  (prop-type "GParamString")
+  (docs "URI of a media file")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property playing
+  (of-object "ClutterMedia")
+  (prop-type "GParamBoolean")
+  (docs "Wheter the actor is playing")
+  (readable #t)
+  (writable #t)
   (construct-only #f)
 )
 

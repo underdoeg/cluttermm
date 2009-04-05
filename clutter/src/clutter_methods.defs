@@ -3735,61 +3735,6 @@
   (return-type "none")
 )
 
-(define-method add_many
-  (of-object "ClutterGroup")
-  (c-name "clutter_group_add_many")
-  (return-type "none")
-  (parameters
-    '("ClutterActor*" "first_actor")
-  )
-  (varargs #t)
-)
-
-(define-method add_many_valist
-  (of-object "ClutterGroup")
-  (c-name "clutter_group_add_many_valist")
-  (return-type "none")
-  (parameters
-    '("ClutterActor*" "first_actor")
-    '("va_list" "var_args")
-  )
-)
-
-(define-method remove
-  (of-object "ClutterGroup")
-  (c-name "clutter_group_remove")
-  (return-type "none")
-  (parameters
-    '("ClutterActor*" "actor")
-  )
-)
-
-(define-method raise
-  (of-object "ClutterGroup")
-  (c-name "clutter_group_raise")
-  (return-type "none")
-  (parameters
-    '("ClutterActor*" "actor")
-    '("ClutterActor*" "sibling")
-  )
-)
-
-(define-method lower
-  (of-object "ClutterGroup")
-  (c-name "clutter_group_lower")
-  (return-type "none")
-  (parameters
-    '("ClutterActor*" "actor")
-    '("ClutterActor*" "sibling")
-  )
-)
-
-(define-method sort_depth_order
-  (of-object "ClutterGroup")
-  (c-name "clutter_group_sort_depth_order")
-  (return-type "none")
-)
-
 
 
 ;; From clutter-interval.h
@@ -5513,16 +5458,6 @@
   (of-object "ClutterShader")
   (c-name "clutter_shader_get_cogl_vertex_shader")
   (return-type "CoglHandle")
-)
-
-(define-method set_uniform_1f
-  (of-object "ClutterShader")
-  (c-name "clutter_shader_set_uniform_1f")
-  (return-type "none")
-  (parameters
-    '("const-gchar*" "name")
-    '("gfloat" "value")
-  )
 )
 
 

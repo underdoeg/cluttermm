@@ -42,23 +42,64 @@ public:
 #m4 dnl _CONVERSION(`ClutterActor*',`Glib::RefPtr<Text>',`Glib::wrap((ClutterText*)$3)')
 
   _WRAP_METHOD(void set_text(const Glib::ustring& text), clutter_text_set_text)
+  _WRAP_METHOD(void set_markup(const Glib::ustring& markup), clutter_text_set_markup)
   _WRAP_METHOD(Glib::ustring get_text() const, clutter_text_get_text)
-  _WRAP_METHOD(void set_font_name(const Glib::ustring& font_name), clutter_text_set_font_name)
-  _WRAP_METHOD(Glib::ustring get_font_name() const, clutter_text_get_font_name)
+
+  _WRAP_METHOD(void set_activatable(bool activatable=true), clutter_text_set_activatable)
+  _WRAP_METHOD(bool get_activatable() const, clutter_text_get_activatable)
+
+  _WRAP_METHOD(void set_attributes(Pango::AttrList& attrs), clutter_text_set_attributes)
+  _WRAP_METHOD(Pango::AttrList get_attributes(), clutter_text_get_attributes)
 
   _WRAP_METHOD(void set_color(const Color& color), clutter_text_set_color)
   _WRAP_METHOD_DOCS_ONLY(clutter_text_get_color)
   Color get_color() const;
   _IGNORE(clutter_text_get_color)
 
+  _WRAP_METHOD(void set_ellipsize(Pango::EllipsizeMode mode), clutter_text_set_ellipsize)
+  _WRAP_METHOD(Pango::EllipsizeMode get_ellipsize(), clutter_text_get_ellipsize)
+
+  _WRAP_METHOD(void set_font_name(const Glib::ustring& font_name), clutter_text_set_font_name)
+  _WRAP_METHOD(Glib::ustring get_font_name() const, clutter_text_get_font_name)
+
+  _WRAP_METHOD(void set_password_char(gunichar wc), clutter_text_set_password_char)
+  _WRAP_METHOD(gunichar get_password_char() const, clutter_text_get_password_char)
+
+  _WRAP_METHOD(void set_justify(bool justify=true), clutter_text_set_justify)
+  _WRAP_METHOD(bool get_justify() const, clutter_text_get_justify)
+
   _WRAP_METHOD(Glib::RefPtr<Pango::Layout> get_layout(), clutter_text_get_layout)
   _WRAP_METHOD(Glib::RefPtr<const Pango::Layout> get_layout() const, clutter_text_get_layout, constversion)
 
+  _WRAP_METHOD(void set_line_alignment(Pango::Alignment alignment), clutter_text_set_line_alignment)
   _WRAP_METHOD(Pango::Alignment get_line_alignment() const, clutter_text_get_line_alignment)
-  _WRAP_METHOD(void set_line_alignment(Pango::Alignment wrap_mode), clutter_text_set_line_alignment)
 
-  _WRAP_METHOD(int get_cursor_position() const, clutter_text_get_cursor_position)
-  _WRAP_METHOD(void set_cursor_position(int position), clutter_text_set_cursor_position)
+  _WRAP_METHOD(void set_line_wrap(bool line_wrap=true), clutter_text_set_line_wrap)
+  _WRAP_METHOD(bool get_line_wrap() const, clutter_text_get_line_wrap)
+
+  _WRAP_METHOD(Pango::WrapMode get_line_wrap_mode() const, clutter_text_get_line_wrap_mode)
+  _WRAP_METHOD(void set_line_wrap_mode(Pango::WrapMode wrap_mode), clutter_text_set_line_wrap_mode)
+
+  _WRAP_METHOD(int get_max_length() const, clutter_text_get_max_length)
+  _WRAP_METHOD(void set_max_length(int max_length), clutter_text_set_max_length)
+
+  _WRAP_METHOD(void set_selectable(bool selectable=true), clutter_text_set_selectable)
+  _WRAP_METHOD(bool get_selectable() const, clutter_text_get_selectable)
+
+  _WRAP_METHOD(void set_selection(gssize start_pos, gssize end_pos), clutter_text_set_selection)
+  _WRAP_METHOD(Glib::ustring get_selection() const, clutter_text_get_selection)
+
+  _WRAP_METHOD(void set_selection_bound(int selection_bound), clutter_text_set_selection_bound)
+  _WRAP_METHOD(int get_selection_bound() const, clutter_text_get_selection_bound)
+
+  _WRAP_METHOD(void set_single_line_mode(bool single_line=true), clutter_text_set_single_line_mode)
+  _WRAP_METHOD(bool get_single_line_mode() const, clutter_text_get_single_line_mode)
+
+  _WRAP_METHOD(void set_use_markup(bool setting=true), clutter_text_set_use_markup)
+  _WRAP_METHOD(bool get_use_markup() const, clutter_text_get_use_markup)
+
+  _WRAP_METHOD(void set_editable(bool editable=true), clutter_text_set_editable)
+  _WRAP_METHOD(bool get_editable() const, clutter_text_get_editable)
 
   _WRAP_METHOD(void insert(gunichar wc), clutter_text_insert_unichar)
   _WRAP_METHOD(void insert(const Glib::ustring& text, gssize position), clutter_text_insert_text)
@@ -66,14 +107,21 @@ public:
   _WRAP_METHOD(void delete_chars(guint len), clutter_text_delete_chars)
   _WRAP_METHOD(void delete_text(gssize start_pos, gssize end_pos), clutter_text_delete_text)
 
+  _WRAP_METHOD(Glib::ustring get_chars(gssize start_pos, gssize end_pos) const, clutter_text_get_chars)
+
+  _WRAP_METHOD(void set_cursor_color(const Color& color), clutter_text_set_cursor_color)
+  _WRAP_METHOD(void get_cursor_color(Color& color) const, clutter_text_get_cursor_color)
+
+  _WRAP_METHOD(void set_cursor_position(int position), clutter_text_set_cursor_position)
+  _WRAP_METHOD(int get_cursor_position() const, clutter_text_get_cursor_position)
+
   _WRAP_METHOD(void set_cursor_visible(bool visible), clutter_text_set_cursor_visible)
   _WRAP_METHOD(bool get_cursor_visible() const, clutter_text_get_cursor_visible)
 
-  _WRAP_METHOD(void set_password_char(gunichar wc), clutter_text_set_password_char)
-  _WRAP_METHOD(gunichar get_password_char() const, clutter_text_get_password_char)
+  _WRAP_METHOD(void set_cursor_size(int size), clutter_text_set_cursor_size)
+  _WRAP_METHOD(unsigned int get_cursor_size() const, clutter_text_get_cursor_size)
 
-  _WRAP_METHOD(int get_max_length() const, clutter_text_get_max_length)
-  _WRAP_METHOD(void set_max_length(int max_length), clutter_text_set_max_length)
+  _WRAP_METHOD(bool activate(), clutter_text_activate)
 
   _WRAP_SIGNAL(void activate(), "activate")
   _WRAP_SIGNAL(void text_changed(), "text_changed")
@@ -96,7 +144,6 @@ public:
   _WRAP_PROPERTY("line-wrap", bool)
   _WRAP_PROPERTY("line-wrap-mode", Pango::WrapMode)
   _WRAP_PROPERTY("ellipsize", Pango::EllipsizeMode)
-  _WRAP_PROPERTY("alignment", Pango::Alignment)
   _WRAP_PROPERTY("justify", bool)
   _WRAP_PROPERTY("password-char", gunichar)
   _WRAP_PROPERTY("max-length", int)
