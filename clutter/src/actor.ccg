@@ -16,6 +16,7 @@
  */
 
 #include <clutter/clutter.h>
+#include <iterator>
 
 namespace Clutter
 {
@@ -106,6 +107,51 @@ Geometry Actor::get_allocation_geometry() const
   Geometry geom;
   clutter_actor_get_allocation_geometry(const_cast<ClutterActor*>(gobj()), geom.gobj());
   return geom;
+}
+
+Glib::RefPtr<Animation>
+Actor::animate(gulong mode, unsigned int duration, const std::map<std::string, Glib::ValueBase>& properties)
+{
+  gchar* c_properties[properties.size()];
+  GValue values[properties.size()];
+
+  for(std::map<std::string, Glib::ValueBase>::const_iterator iter = properties.begin(); iter != properties.end(); ++iter)
+  {
+    c_properties[std::distance(properties.begin(), iter)] = g_strdup(iter->first.c_str());
+    g_value_copy(iter->second.gobj(), &values[std::distance(properties.begin(), iter)]);
+  }
+
+  return Glib::wrap(clutter_actor_animatev(gobj(), mode, duration, properties.size(), c_properties, values));
+}
+
+Glib::RefPtr<Animation>
+Actor::animate_with_timeline(gulong mode, const Glib::RefPtr<Timeline>& timeline, const std::map<std::string, Glib::ValueBase>& properties)
+{
+  gchar* c_properties[properties.size()];
+  GValue values[properties.size()];
+
+  for(std::map<std::string, Glib::ValueBase>::const_iterator iter = properties.begin(); iter != properties.end(); ++iter)
+  {
+    c_properties[std::distance(properties.begin(), iter)] = g_strdup(iter->first.c_str());
+    g_value_copy(iter->second.gobj(), &values[std::distance(properties.begin(), iter)]);
+  }
+
+  return Glib::wrap(clutter_actor_animate_with_timelinev(gobj(), mode, timeline->gobj(), properties.size(), c_properties, values));
+}
+
+Glib::RefPtr<Animation>
+Actor::animate_with_alpha(const Glib::RefPtr<Alpha>& alpha, const std::map<std::string, Glib::ValueBase>& properties)
+{
+  gchar* c_properties[properties.size()];
+  GValue values[properties.size()];
+
+  for(std::map<std::string, Glib::ValueBase>::const_iterator iter = properties.begin(); iter != properties.end(); ++iter)
+  {
+    c_properties[std::distance(properties.begin(), iter)] = g_strdup(iter->first.c_str());
+    g_value_copy(iter->second.gobj(), &values[std::distance(properties.begin(), iter)]);
+  }
+
+  return Glib::wrap(clutter_actor_animate_with_alphav(gobj(), alpha->gobj(), properties.size(), c_properties, values));
 }
 
 #if 0

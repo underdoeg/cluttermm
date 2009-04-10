@@ -17,6 +17,8 @@
 
 #include <glibmm/object.h>
 #include <pangomm/context.h>
+#include <pangomm/layout.h>
+#include <cluttermm/animation.h>
 #include <cluttermm/color.h>
 #include <cluttermm/scriptable.h>
 #include <cluttermm/shader.h>
@@ -29,6 +31,8 @@ _PINCLUDE(glibmm/private/object_p.h)
 
 namespace Clutter
 {
+
+class Animation;
 
 class ActorBox
 {
@@ -93,6 +97,9 @@ public:
   _WRAP_METHOD(Glib::RefPtr<Pango::Context> create_pango_context(),
                clutter_actor_create_pango_context)
 
+  _WRAP_METHOD(Glib::RefPtr<Pango::Layout> create_pango_layout(const Glib::ustring& text),
+               clutter_actor_create_pango_layout)
+
   _WRAP_METHOD(Glib::RefPtr<Actor> get_stage(), clutter_actor_get_stage)
   _WRAP_METHOD(Glib::RefPtr<const Actor> get_stage() const, clutter_actor_get_stage)
 #m4 _CONVERSION(`const Geometry&', `const ClutterGeometry*', `($3).gobj()')
@@ -101,45 +108,47 @@ public:
   Geometry get_geometry() const;
   //_WRAP_METHOD(void get_coords(int *x_1, int *y_1, int *x_2, int *y_2) const, clutter_actor_get_coords)
   _WRAP_METHOD(void set_size(int width, int height), clutter_actor_set_size)
-  _WRAP_METHOD(void set_sizeu(Unit width, Unit height), clutter_actor_set_sizeu)
+  _WRAP_METHOD(void set_size(Unit width, Unit height), clutter_actor_set_sizeu)
   _WRAP_METHOD(void get_position(int& x, int& y), clutter_actor_get_position)
-  _WRAP_METHOD(void get_positionu(Unit& x, Unit& y), clutter_actor_get_positionu)
+  _WRAP_METHOD(void get_position(Unit& x, Unit& y), clutter_actor_get_positionu)
   _WRAP_METHOD(void set_position(int x, int y), clutter_actor_set_position)
-  _WRAP_METHOD(void set_positionu(Unit x, Unit y), clutter_actor_set_positionu)
+  _WRAP_METHOD(void set_position(Unit x, Unit y), clutter_actor_set_positionu)
   //_WRAP_METHOD(void get_abs_position(int& x, int& y) const, clutter_actor_get_abs_position)
   _WRAP_METHOD(guint get_width() const, clutter_actor_get_width)
   _WRAP_METHOD(Unit get_widthu() const, clutter_actor_get_widthu)
   _WRAP_METHOD(guint get_height() const, clutter_actor_get_height)
   _WRAP_METHOD(Unit get_heightu() const, clutter_actor_get_heightu)
   _WRAP_METHOD(void set_width(guint width), clutter_actor_set_width)
-  _WRAP_METHOD(void set_widthu(Unit width), clutter_actor_set_widthu)
+  _WRAP_METHOD(void set_width(Unit width), clutter_actor_set_widthu)
   _WRAP_METHOD(void set_height(guint height), clutter_actor_set_height)
-  _WRAP_METHOD(void set_heightu(Unit height), clutter_actor_set_heightu)
+  _WRAP_METHOD(void set_height(Unit height), clutter_actor_set_heightu)
 
   _WRAP_METHOD(void set_x(int x), clutter_actor_set_x)
-  _WRAP_METHOD(void set_xu(Unit x), clutter_actor_set_xu)
+  _WRAP_METHOD(void set_x(Unit x), clutter_actor_set_xu)
   _WRAP_METHOD(int get_x() const, clutter_actor_get_x)
   _WRAP_METHOD(Unit get_xu() const, clutter_actor_get_xu)
   _WRAP_METHOD(void set_y(int y), clutter_actor_set_y)
-  _WRAP_METHOD(void set_yu(Unit y), clutter_actor_set_yu)
+  _WRAP_METHOD(void set_y(Unit y), clutter_actor_set_yu)
   _WRAP_METHOD(int get_y() const, clutter_actor_get_y)
   _WRAP_METHOD(Unit get_yu() const, clutter_actor_get_yu)
   _WRAP_METHOD(void set_reactive(bool reactive = true), clutter_actor_set_reactive)
   _WRAP_METHOD(bool get_reactive() const, clutter_actor_get_reactive)
 
   _WRAP_METHOD(void set_rotation(RotateAxis axis, double angle, int x, int y, int z), clutter_actor_set_rotation)
-  _WRAP_METHOD(void set_rotationu(RotateAxis axis, double angle, Unit x, Unit y, Unit z), clutter_actor_set_rotationu)
+  _WRAP_METHOD(void set_rotation(RotateAxis axis, double angle, Unit x, Unit y, Unit z), clutter_actor_set_rotationu)
+  _WRAP_METHOD(void set_z_rotation_from_gravity(double angle, Gravity gravity), clutter_actor_set_z_rotation_from_gravity)
   _WRAP_METHOD(double get_rotation(RotateAxis axis, int& x, int& y, int& z) const, clutter_actor_get_rotation)
-  _WRAP_METHOD(double get_rotationu(RotateAxis axis, Unit& x, Unit& y, Unit& z) const, clutter_actor_get_rotationu)
-  _WRAP_METHOD(void set_opacity (guint8 opacity), clutter_actor_set_opacity)
+  _WRAP_METHOD(double get_rotation(RotateAxis axis, Unit& x, Unit& y, Unit& z) const, clutter_actor_get_rotationu)
+  _WRAP_METHOD(Gravity get_z_rotation_gravity() const, clutter_actor_get_z_rotation_gravity)
+  _WRAP_METHOD(void set_opacity(guint8 opacity), clutter_actor_set_opacity)
   _WRAP_METHOD(guint8 get_opacity() const, clutter_actor_get_opacity)
-  _WRAP_METHOD(void set_name(const gchar           *name), clutter_actor_set_name)
+  _WRAP_METHOD(void set_name(const gchar *name), clutter_actor_set_name)
   _WRAP_METHOD(Glib::ustring get_name() const, clutter_actor_get_name)
   _WRAP_METHOD(guint32 get_gid() const, clutter_actor_get_gid)
   _WRAP_METHOD(void set_clip(int xoff, int yoff, int width, int height), clutter_actor_set_clip)
   _WRAP_METHOD(void get_clip(int& xoff, int& yoff, int& width, int& height), clutter_actor_get_clip)
-  _WRAP_METHOD(void set_clipu(Unit xoff, Unit yoff, Unit width, Unit height), clutter_actor_set_clipu)
-  _WRAP_METHOD(void get_clipu(Unit& xoff, Unit& yoff, Unit& width, Unit& height), clutter_actor_get_clipu)
+  _WRAP_METHOD(void set_clip(Unit xoff, Unit yoff, Unit width, Unit height), clutter_actor_set_clipu)
+  _WRAP_METHOD(void get_clip(Unit& xoff, Unit& yoff, Unit& width, Unit& height), clutter_actor_get_clipu)
   _WRAP_METHOD(void remove_clip(), clutter_actor_remove_clip)
   _WRAP_METHOD(bool has_clip() const, clutter_actor_has_clip)
   _WRAP_METHOD(void set_parent(const Glib::RefPtr<Actor>& parent), clutter_actor_set_parent)
@@ -187,30 +196,36 @@ public:
   _WRAP_METHOD(bool get_paint_visibility() const, clutter_actor_get_paint_visibility)
   _WRAP_METHOD(void move_anchor_point_from_gravity(Gravity gravity), clutter_actor_move_anchor_point_from_gravity)
   _WRAP_METHOD(void move_anchor_point(int anchor_x, int anchor_y), clutter_actor_move_anchor_point)
-  _WRAP_METHOD(void move_anchor_pointu(Unit anchor_x, Unit anchor_y), clutter_actor_move_anchor_pointu)
+  _WRAP_METHOD(void move_anchor_point(Unit anchor_x, Unit anchor_y), clutter_actor_move_anchor_pointu)
 
   _WRAP_METHOD(bool get_fixed_position_set() const, clutter_actor_get_fixed_position_set)
   _WRAP_METHOD(void set_fixed_position_set(bool is_set), clutter_actor_set_fixed_position_set)
   _WRAP_METHOD(void get_transformed_position(int& x, int& y) const, clutter_actor_get_transformed_position)
-  _WRAP_METHOD(void get_transformed_positionu(Unit& x, Unit& y) const, clutter_actor_get_transformed_positionu)
+  _WRAP_METHOD(void get_transformed_position(Unit& x, Unit& y) const, clutter_actor_get_transformed_positionu)
   _WRAP_METHOD(void get_transformed_size(guint& width, guint& height) const, clutter_actor_get_transformed_size)
-  _WRAP_METHOD(void get_transformed_sizeu(Unit& width, Unit& height) const, clutter_actor_get_transformed_sizeu)
+  _WRAP_METHOD(void get_transformed_size(Unit& width, Unit& height) const, clutter_actor_get_transformed_sizeu)
   _WRAP_METHOD(void get_allocation_coords(int& x1, int& y1, int& x2, int& y2) const, clutter_actor_get_allocation_coords)
   _WRAP_METHOD_DOCS_ONLY(clutter_actor_get_allocation_geometry)
   Geometry get_allocation_geometry() const;
 
   _WRAP_METHOD(void set_depth(int depth), clutter_actor_set_depth)
-  _WRAP_METHOD(void set_depthu(Unit depth), clutter_actor_set_depthu)
+  _WRAP_METHOD(void set_depth(Unit depth), clutter_actor_set_depthu)
   _WRAP_METHOD(int get_depth() const, clutter_actor_get_depth)
   _WRAP_METHOD(Unit get_depthu() const, clutter_actor_get_depthu)
   _WRAP_METHOD(void set_scale(double scale_x, double scale_y), clutter_actor_set_scale)
+  _WRAP_METHOD(void set_scale_full(double scale_x, double scale_y, int center_x, int center_y), clutter_actor_set_scale_full)
+  _WRAP_METHOD(void set_scale_full(double scale_x, double scale_y, Unit center_x, Unit center_y), clutter_actor_set_scale_fullu)
+  _WRAP_METHOD(void set_scale_with_gravity(double scale_x, double scale_y, Gravity gravity), clutter_actor_set_scale_with_gravity)
   _WRAP_METHOD(void get_scale(double& scale_x, double& scale_y) const, clutter_actor_get_scale)
+  _WRAP_METHOD(void get_scale_center(int& center_x, int& center_y) const, clutter_actor_get_scale_center)
+  _WRAP_METHOD(void get_scale_center(Unit& center_x, Unit& center_y) const, clutter_actor_get_scale_centeru)
+  _WRAP_METHOD(Gravity get_scale_gravity() const, clutter_actor_get_scale_gravity)
 
   //_WRAP_METHOD(void get_abs_size(guint& width, guint& height) const, clutter_actor_get_abs_size)
   _WRAP_METHOD(void get_size(guint& width, guint& height) const, clutter_actor_get_size)
-  _WRAP_METHOD(void get_sizeu(Unit& width, Unit& height) const, clutter_actor_get_sizeu)
+  _WRAP_METHOD(void get_size(Unit& width, Unit& height) const, clutter_actor_get_sizeu)
   _WRAP_METHOD(void move_by(int dx, int dy), clutter_actor_move_by)
-  _WRAP_METHOD(void move_byu(Unit dx, Unit dy), clutter_actor_move_byu)
+  _WRAP_METHOD(void move_by(Unit dx, Unit dy), clutter_actor_move_byu)
 
   _WRAP_METHOD(void apply_transform_to_point(const Vertex& point, Vertex& vertex) const, clutter_actor_apply_transform_to_point)
   _WRAP_METHOD(void transform_stage_point(Unit x, Unit y, Unit& x_out, Unit& y_out) const, clutter_actor_transform_stage_point)
@@ -220,15 +235,26 @@ public:
 
   _WRAP_METHOD(void set_anchor_point(int anchor_x, int anchor_y), clutter_actor_set_anchor_point)
   _WRAP_METHOD(void get_anchor_point(int& anchor_x, int& anchor_y) const, clutter_actor_get_anchor_point)
-  _WRAP_METHOD(void set_anchor_pointu(Unit anchor_x, Unit anchor_y), clutter_actor_set_anchor_pointu)
-  _WRAP_METHOD(void get_anchor_pointu(Unit& anchor_x, Unit& anchor_y), clutter_actor_get_anchor_pointu)
+  _WRAP_METHOD(void set_anchor_point(Unit anchor_x, Unit anchor_y), clutter_actor_set_anchor_pointu)
+  _WRAP_METHOD(void get_anchor_point(Unit& anchor_x, Unit& anchor_y), clutter_actor_get_anchor_pointu)
   _WRAP_METHOD(void set_anchor_point_from_gravity(ClutterGravity gravity), clutter_actor_set_anchor_point_from_gravity)
+  _WRAP_METHOD(Gravity get_anchor_point_gravity(), clutter_actor_get_anchor_point_gravity)
 
   // These are needed by custom container implementations and therefore public.
   _WRAP_METHOD(void pick(const Color& color), clutter_actor_pick)
   _WRAP_METHOD(bool should_pick_paint() const, clutter_actor_should_pick_paint)
 
   _WRAP_METHOD(void grab_key_focus(), clutter_actor_grab_key_focus)
+
+// Animation API
+  // Hand coded to use std::map instead of the 3 arguments used by C API
+  _IGNORE(clutter_actor_animatev, clutter_actor_animate_with_timelinev, clutter_actor_animate_with_alphav)
+
+  Glib::RefPtr<Animation> animate(gulong mode, unsigned int duration, const std::map<std::string, Glib::ValueBase>& properties);
+  Glib::RefPtr<Animation> animate_with_timeline(gulong mode, const Glib::RefPtr<Timeline>& timeline, const std::map<std::string, Glib::ValueBase>& properties);
+  Glib::RefPtr<Animation> animate_with_alpha(const Glib::RefPtr<Alpha>& alpha, const std::map<std::string, Glib::ValueBase>& properties);
+  _WRAP_METHOD(Glib::RefPtr<Animation> get_animation(), clutter_actor_get_animation)
+  _WRAP_METHOD(Glib::RefPtr<const Animation> get_animation() const, clutter_actor_get_animation, constversion)
 
 // signals
   _WRAP_SIGNAL(bool button_press_event(ButtonEvent* event), "button_press_event")
@@ -249,6 +275,7 @@ public:
   _WRAP_SIGNAL(bool key_press_event(KeyEvent* event), "key_press_event")
   _WRAP_SIGNAL(bool captured_event(Event* event), "captured_event")
   _WRAP_SIGNAL(void paint(), "paint")
+  _WRAP_SIGNAL(void queue_redaw(const Glib::RefPtr<Actor>& origin), "queue_redraw")
   _WRAP_SIGNAL(void realize(), "realize")
   _WRAP_SIGNAL(void unrealize(), "unrealize")
 
