@@ -37,6 +37,7 @@ extern const int cluttermm_micro_version;
 #include <cluttermm/behaviour-path.h>
 #include <cluttermm/behaviour-rotate.h>
 #include <cluttermm/behaviour-scale.h>
+#include <cluttermm/cairo-texture.h>
 #include <cluttermm/clone.h>
 #include <cluttermm/color.h>
 #include <cluttermm/event.h>

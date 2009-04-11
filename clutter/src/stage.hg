@@ -93,6 +93,7 @@ public:
   _WRAP_METHOD(void stage_event(Event* event), clutter_stage_event)
   _WRAP_METHOD(bool is_default() const, clutter_stage_is_default)
   _WRAP_METHOD(void ensure_current(), clutter_stage_ensure_current)
+  _WRAP_METHOD(void ensure_viewport(), clutter_stage_ensure_viewport)
 
   _WRAP_SIGNAL(void fullscreen(), "fullscreen")
   _WRAP_SIGNAL(void unfullscreen(), "unfullscreen")

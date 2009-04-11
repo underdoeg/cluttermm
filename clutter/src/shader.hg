@@ -58,8 +58,10 @@ public:
   _WRAP_METHOD(void release(), clutter_shader_release)
   _WRAP_METHOD(void set_is_enabled(bool enabled = true), clutter_shader_set_is_enabled)
   _WRAP_METHOD(bool get_is_enabled() const, clutter_shader_get_is_enabled)
-
-  _WRAP_METHOD(void set_uniform_1f(const std::string& name, float value), clutter_shader_set_uniform_1f)
+  _WRAP_METHOD(void set_uniform(const Glib::ustring& name, const Glib::ValueBase& value), clutter_shader_set_uniform)
+  _WRAP_METHOD(CoglHandle get_cogl_program() const, clutter_shader_get_cogl_program)
+  _WRAP_METHOD(CoglHandle get_cogl_vertex_shader() const, clutter_shader_get_cogl_vertex_shader)
+  _WRAP_METHOD(CoglHandle get_cogl_fragment_shader() const, clutter_shader_get_cogl_fragment_shader)
 
   _WRAP_PROPERTY("compiled", bool)
   _WRAP_PROPERTY("enabled", bool)

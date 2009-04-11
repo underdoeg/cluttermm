@@ -20,13 +20,23 @@ _DEFS(cluttermm,clutter)
 
 #include <cluttermm/types.h>
 #include <glibmm/object.h>
+#include <cairomm/context.h>
 #include <clutter/clutter.h>
 _PINCLUDE(glibmm/private/object_p.h)
 
 namespace Clutter
 {
 
-_WRAP_ENUM(PathNodeType, ClutterPathNodeType)
+enum PathNodeType
+{
+  PATH_MOVE_TO,
+  PATH_LINE_TO,
+  PATH_CURVE_TO,
+  PATH_CLOSE,
+  PATH_REL_MOVE_TO = PATH_MOVE_TO | CLUTTER_PATH_RELATIVE,
+  PATH_REL_LINE_TO = PATH_LINE_TO | CLUTTER_PATH_RELATIVE,
+  PATH_REL_CURVE_TO = PATH_CURVE_TO | CLUTTER_PATH_RELATIVE
+};
 
 class PathNode
 {
@@ -119,6 +129,11 @@ public:
   _WRAP_METHOD(Glib::ustring get_description() const, clutter_path_get_description)
   _WRAP_METHOD(void set_description(const Glib::ustring& str), clutter_path_set_description)
 
+  _WRAP_METHOD(void add_cairo_path(const Glib::RefPtr<Cairo::Path>& path), clutter_path_add_cairo_path)
+  _WRAP_METHOD(void to_cairo_path(Glib::RefPtr<Cairo::Context>& context) const, clutter_path_to_cairo_path)
+
+  _WRAP_METHOD(void clear(), clutter_path_clear)
+  _WRAP_METHOD(guint get_position(double progress, Knot& position), clutter_path_get_position)
   _WRAP_METHOD(guint get_length() const, clutter_path_get_length)
 
   _WRAP_PROPERTY("description", Glib::ustring)

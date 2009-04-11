@@ -103,6 +103,11 @@ FontFlags get_font_flags()
   return (FontFlags)clutter_get_font_flags();
 }
 
+Glib::RefPtr<Pango::FontMap> get_font_map()
+{
+  return Glib::wrap(clutter_get_font_map());
+}
+
 Glib::RefPtr<Actor> get_keyboard_grab()
 {
   return Glib::wrap(clutter_get_keyboard_grab(), true);

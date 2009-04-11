@@ -4,4 +4,5 @@ dnl $Id: convert.m4,v 1.1 2002/04/14 14:53:01 murrayc Exp $
 
 include(convert_gtkmm.m4)
 include(convert_coglmm.m4)
+include(convert_cairomm.m4)
 include(convert_cluttermm.m4)

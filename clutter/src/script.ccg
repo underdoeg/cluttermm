@@ -39,6 +39,11 @@ guint Script::load_from_data(const Glib::ustring& data, std::auto_ptr<Glib::Erro
   return result;
 }
 
+void Script::add_search_paths(const Glib::ArrayHandle<Glib::ustring>& paths)
+{
+  clutter_script_add_search_paths(gobj(), paths.data(), paths.size());
+}
+
 #ifdef GLIBMM_VFUNCS_ENABLED
 // Custom coded so that we can custom-code the vfunc in the ClutterScript class.
 // This is marginally better than modifying gtkmmproc to allow this.

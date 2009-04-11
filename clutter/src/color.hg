@@ -51,6 +51,7 @@ public:
 
   void set_from_rgb(guint8 red, guint8 blue, guint8 green);
   void set_from_string(const Glib::ustring& color);
+  _IGNORE(clutter_color_from_string)
   _WRAP_METHOD(Glib::ustring to_string() const, clutter_color_to_string)
   _WRAP_METHOD(void set_from_hls(float hue, float luminance, float saturation), clutter_color_from_hls)
   _WRAP_METHOD(void to_hls(float& hue, float& luminance, float& saturation) const, clutter_color_to_hls)

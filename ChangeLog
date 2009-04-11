@@ -1,3 +1,29 @@
+2009-04-11  Siavash Safi  <siavash@siavashs.org>
+
+	* trunk/clutter/src/cairo-texture.ccg:
+	* trunk/clutter/src/cairo-texture.hg: Added the Cairo API
+	* trunk/tools/m4/convert_cairomm.m4:
+	* clutter/cluttermm.h:
+	* clutter/cluttermm/main.cc:
+	* clutter/cluttermm/main.h: Added get_font_map()
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* clutter/src/alpha.ccg: Remove Deprecated API which is replaced by
+	the Animation API
+	* clutter/src/color.hg: Ignored clutter_color_from_string() which
+	is already hand coded
+	* clutter/src/media.hg: Added set/get_progress() methods and progress
+	property
+	* clutter/src/path.hg: Hand coded PathNodeType enum, added Cairo API and
+	clear(), get_position() methods
+	* clutter/src/script.ccg:
+	* clutter/src/script.hg: Added add_search_paths() and lookup_filename()
+	methods
+	* clutter/src/shader.hg: Added Cogl API
+	* clutter/src/stage.hg: Added ensure_viewport()
+	* clutter/src/texture.hg: Added Cogl API
+	* tools/m4/Makefile_list_of_sources.am_fragment:
+	* tools/m4/convert.m4:
+
 2009-04-10  Siavash Safi  <siavash@siavashs.org>
 
 	* trunk/clutter/src/actor.ccg:

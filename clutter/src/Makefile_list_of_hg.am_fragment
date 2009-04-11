@@ -13,6 +13,7 @@ behaviour-opacity.hg \
 behaviour-path.hg \
 behaviour-rotate.hg \
 behaviour-scale.hg \
+cairo-texture.hg \
 childmeta.hg \
 clone.hg \
 color.hg \

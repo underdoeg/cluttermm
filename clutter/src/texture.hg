@@ -70,7 +70,11 @@ public:
   // TODO: Is there a coglmm we could depend on for this?
   _WRAP_METHOD(CoglHandle get_cogl_texture() const, clutter_texture_get_cogl_texture)
   _WRAP_METHOD(void set_cogl_texture(CoglHandle handle), clutter_texture_set_cogl_texture)
+  _WRAP_METHOD(CoglHandle get_cogl_material() const, clutter_texture_get_cogl_material)
+  _WRAP_METHOD(void set_cogl_material(CoglHandle handle), clutter_texture_set_cogl_material)
 
+  // TODO: figure out what to do with this GError parameter
+  //_WRAP_SIGNAL(void load_finished(GError* error), "load_finished")
   _WRAP_SIGNAL(void size_change(int width, int height), "size_change")
   _WRAP_SIGNAL(void pixbuf_change(), "pixbuf_change")
 

@@ -128,6 +128,7 @@ void set_font_flags(FontFlags flags);
 
 FontFlags get_font_flags();
 
+Glib::RefPtr<Pango::FontMap> get_font_map();
 
 /** Queries the current keyboard grab of clutter.
  * @return the actor currently holding the keyboard grab, or an empty
