@@ -1,3 +1,8 @@
+2009-04-27  Siavash Safi  <siavash@siavashs.org>
+
+	* clutter/src/actor.hg: Reverted overloaded methods for now since
+	it's ambiguous for the compiler.
+
 2009-04-11  Siavash Safi  <siavash@siavashs.org>
 
 	* trunk/clutter/src/cairo-texture.ccg:
