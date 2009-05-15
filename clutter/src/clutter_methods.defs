@@ -22,7 +22,7 @@
 
 (define-object Animation
   (in-module "Clutter")
-  (parent "GInitiallyUnowned")
+  (parent "GObject")
   (c-name "ClutterAnimation")
   (gtype-id "CLUTTER_TYPE_ANIMATION")
 )
@@ -264,7 +264,7 @@
   (c-name "ClutterEventFlags")
   (gtype-id "CLUTTER_TYPE_EVENT_FLAGS")
   (values
-    '("c" "CLUTTER_EVENT_FLAG_SYNTHETIC")
+    '("synthetic" "CLUTTER_EVENT_FLAG_SYNTHETIC")
   )
 )
 
@@ -457,8 +457,8 @@
   (c-name "ClutterRotateDirection")
   (gtype-id "CLUTTER_TYPE_ROTATE_DIRECTION")
   (values
-    '("w" "CLUTTER_ROTATE_CW")
-    '("cw" "CLUTTER_ROTATE_CCW")
+    '("cw" "CLUTTER_ROTATE_CW")
+    '("ccw" "CLUTTER_ROTATE_CCW")
   )
 )
 
@@ -2356,6 +2356,94 @@
 
 
 
+;; From clutter-behaviour.h
+
+(define-function clutter_behaviour_get_type
+  (c-name "clutter_behaviour_get_type")
+  (return-type "GType")
+)
+
+(define-method apply
+  (of-object "ClutterBehaviour")
+  (c-name "clutter_behaviour_apply")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "actor")
+  )
+)
+
+(define-method remove
+  (of-object "ClutterBehaviour")
+  (c-name "clutter_behaviour_remove")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "actor")
+  )
+)
+
+(define-method remove_all
+  (of-object "ClutterBehaviour")
+  (c-name "clutter_behaviour_remove_all")
+  (return-type "none")
+)
+
+(define-method actors_foreach
+  (of-object "ClutterBehaviour")
+  (c-name "clutter_behaviour_actors_foreach")
+  (return-type "none")
+  (parameters
+    '("ClutterBehaviourForeachFunc" "func")
+    '("gpointer" "data")
+  )
+)
+
+(define-method get_n_actors
+  (of-object "ClutterBehaviour")
+  (c-name "clutter_behaviour_get_n_actors")
+  (return-type "gint")
+)
+
+(define-method get_nth_actor
+  (of-object "ClutterBehaviour")
+  (c-name "clutter_behaviour_get_nth_actor")
+  (return-type "ClutterActor*")
+  (parameters
+    '("gint" "index_")
+  )
+)
+
+(define-method get_actors
+  (of-object "ClutterBehaviour")
+  (c-name "clutter_behaviour_get_actors")
+  (return-type "GSList*")
+)
+
+(define-method get_alpha
+  (of-object "ClutterBehaviour")
+  (c-name "clutter_behaviour_get_alpha")
+  (return-type "ClutterAlpha*")
+)
+
+(define-method set_alpha
+  (of-object "ClutterBehaviour")
+  (c-name "clutter_behaviour_set_alpha")
+  (return-type "none")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+  )
+)
+
+(define-method is_applied
+  (of-object "ClutterBehaviour")
+  (c-name "clutter_behaviour_is_applied")
+  (return-type "gboolean")
+  (parameters
+    '("ClutterActor*" "actor")
+  )
+)
+
+
+
 ;; From clutter-behaviour-opacity.h
 
 (define-function clutter_behaviour_opacity_get_type
@@ -2657,94 +2745,6 @@
 
 
 
-;; From clutter-behaviour.h
-
-(define-function clutter_behaviour_get_type
-  (c-name "clutter_behaviour_get_type")
-  (return-type "GType")
-)
-
-(define-method apply
-  (of-object "ClutterBehaviour")
-  (c-name "clutter_behaviour_apply")
-  (return-type "none")
-  (parameters
-    '("ClutterActor*" "actor")
-  )
-)
-
-(define-method remove
-  (of-object "ClutterBehaviour")
-  (c-name "clutter_behaviour_remove")
-  (return-type "none")
-  (parameters
-    '("ClutterActor*" "actor")
-  )
-)
-
-(define-method remove_all
-  (of-object "ClutterBehaviour")
-  (c-name "clutter_behaviour_remove_all")
-  (return-type "none")
-)
-
-(define-method actors_foreach
-  (of-object "ClutterBehaviour")
-  (c-name "clutter_behaviour_actors_foreach")
-  (return-type "none")
-  (parameters
-    '("ClutterBehaviourForeachFunc" "func")
-    '("gpointer" "data")
-  )
-)
-
-(define-method get_n_actors
-  (of-object "ClutterBehaviour")
-  (c-name "clutter_behaviour_get_n_actors")
-  (return-type "gint")
-)
-
-(define-method get_nth_actor
-  (of-object "ClutterBehaviour")
-  (c-name "clutter_behaviour_get_nth_actor")
-  (return-type "ClutterActor*")
-  (parameters
-    '("gint" "index_")
-  )
-)
-
-(define-method get_actors
-  (of-object "ClutterBehaviour")
-  (c-name "clutter_behaviour_get_actors")
-  (return-type "GSList*")
-)
-
-(define-method get_alpha
-  (of-object "ClutterBehaviour")
-  (c-name "clutter_behaviour_get_alpha")
-  (return-type "ClutterAlpha*")
-)
-
-(define-method set_alpha
-  (of-object "ClutterBehaviour")
-  (c-name "clutter_behaviour_set_alpha")
-  (return-type "none")
-  (parameters
-    '("ClutterAlpha*" "alpha")
-  )
-)
-
-(define-method is_applied
-  (of-object "ClutterBehaviour")
-  (c-name "clutter_behaviour_is_applied")
-  (return-type "gboolean")
-  (parameters
-    '("ClutterActor*" "actor")
-  )
-)
-
-
-
 ;; From clutter-binding-pool.h
 
 (define-function clutter_binding_pool_get_type
@@ -2931,6 +2931,12 @@
     '("guint*" "width")
     '("guint*" "height")
   )
+)
+
+(define-method clear
+  (of-object "ClutterCairoTexture")
+  (c-name "clutter_cairo_texture_clear")
+  (return-type "none")
 )
 
 (define-function clutter_cairo_set_source_color
@@ -3737,6 +3743,10 @@
 
 
 
+;; From clutter.h
+
+
+
 ;; From clutter-interval.h
 
 (define-function clutter_interval_get_type
@@ -4516,6 +4526,12 @@
   )
 )
 
+(define-method get_filter_set
+  (of-object "ClutterModel")
+  (c-name "clutter_model_get_filter_set")
+  (return-type "gboolean")
+)
+
 (define-method resort
   (of-object "ClutterModel")
   (c-name "clutter_model_resort")
@@ -5087,6 +5103,53 @@
 
 
 
+;; From clutter-scriptable.h
+
+(define-function clutter_scriptable_get_type
+  (c-name "clutter_scriptable_get_type")
+  (return-type "GType")
+)
+
+(define-method set_id
+  (of-object "ClutterScriptable")
+  (c-name "clutter_scriptable_set_id")
+  (return-type "none")
+  (parameters
+    '("const-gchar*" "id")
+  )
+)
+
+(define-method get_id
+  (of-object "ClutterScriptable")
+  (c-name "clutter_scriptable_get_id")
+  (return-type "const-gchar*")
+)
+
+(define-method parse_custom_node
+  (of-object "ClutterScriptable")
+  (c-name "clutter_scriptable_parse_custom_node")
+  (return-type "gboolean")
+  (parameters
+    '("ClutterScript*" "script")
+    '("GValue*" "value")
+    '("const-gchar*" "name")
+    '("JsonNode*" "node")
+  )
+)
+
+(define-method set_custom_property
+  (of-object "ClutterScriptable")
+  (c-name "clutter_scriptable_set_custom_property")
+  (return-type "none")
+  (parameters
+    '("ClutterScript*" "script")
+    '("const-gchar*" "name")
+    '("const-GValue*" "value")
+  )
+)
+
+
+
 ;; From clutter-script.h
 
 (define-function clutter_script_error_quark
@@ -5223,129 +5286,6 @@
 
 
 
-;; From clutter-scriptable.h
-
-(define-function clutter_scriptable_get_type
-  (c-name "clutter_scriptable_get_type")
-  (return-type "GType")
-)
-
-(define-method set_id
-  (of-object "ClutterScriptable")
-  (c-name "clutter_scriptable_set_id")
-  (return-type "none")
-  (parameters
-    '("const-gchar*" "id")
-  )
-)
-
-(define-method get_id
-  (of-object "ClutterScriptable")
-  (c-name "clutter_scriptable_get_id")
-  (return-type "const-gchar*")
-)
-
-(define-method parse_custom_node
-  (of-object "ClutterScriptable")
-  (c-name "clutter_scriptable_parse_custom_node")
-  (return-type "gboolean")
-  (parameters
-    '("ClutterScript*" "script")
-    '("GValue*" "value")
-    '("const-gchar*" "name")
-    '("JsonNode*" "node")
-  )
-)
-
-(define-method set_custom_property
-  (of-object "ClutterScriptable")
-  (c-name "clutter_scriptable_set_custom_property")
-  (return-type "none")
-  (parameters
-    '("ClutterScript*" "script")
-    '("const-gchar*" "name")
-    '("const-GValue*" "value")
-  )
-)
-
-
-
-;; From clutter-shader-types.h
-
-(define-function clutter_shader_float_get_type
-  (c-name "clutter_shader_float_get_type")
-  (return-type "GType")
-)
-
-(define-function clutter_shader_int_get_type
-  (c-name "clutter_shader_int_get_type")
-  (return-type "GType")
-)
-
-(define-function clutter_shader_matrix_get_type
-  (c-name "clutter_shader_matrix_get_type")
-  (return-type "GType")
-)
-
-(define-function clutter_value_set_shader_float
-  (c-name "clutter_value_set_shader_float")
-  (return-type "none")
-  (parameters
-    '("GValue*" "value")
-    '("gint" "size")
-    '("const-gfloat*" "floats")
-  )
-)
-
-(define-function clutter_value_set_shader_int
-  (c-name "clutter_value_set_shader_int")
-  (return-type "none")
-  (parameters
-    '("GValue*" "value")
-    '("gint" "size")
-    '("const-gint*" "ints")
-  )
-)
-
-(define-function clutter_value_set_shader_matrix
-  (c-name "clutter_value_set_shader_matrix")
-  (return-type "none")
-  (parameters
-    '("GValue*" "value")
-    '("gint" "size")
-    '("const-gfloat*" "matrix")
-  )
-)
-
-(define-function clutter_value_get_shader_float
-  (c-name "clutter_value_get_shader_float")
-  (return-type "const-gfloat*")
-  (parameters
-    '("const-GValue*" "value")
-    '("gsize*" "length")
-  )
-)
-
-(define-function clutter_value_get_shader_int
-  (c-name "clutter_value_get_shader_int")
-  (return-type "const-COGLint*")
-  (parameters
-    '("const-GValue*" "value")
-    '("gsize*" "length")
-  )
-)
-
-(define-function clutter_value_get_shader_matrix
-  (c-name "clutter_value_get_shader_matrix")
-  (return-type "const-gfloat*")
-  (parameters
-    '("const-GValue*" "value")
-    '("gsize*" "length")
-  )
-)
-
-
-
 ;; From clutter-shader.h
 
 (define-function clutter_shader_error_quark
@@ -5462,37 +5402,78 @@
 
 
 
-;; From clutter-stage-manager.h
+;; From clutter-shader-types.h
 
-(define-function clutter_stage_manager_get_type
-  (c-name "clutter_stage_manager_get_type")
+(define-function clutter_shader_float_get_type
+  (c-name "clutter_shader_float_get_type")
   (return-type "GType")
 )
 
-(define-function clutter_stage_manager_get_default
-  (c-name "clutter_stage_manager_get_default")
-  (return-type "ClutterStageManager*")
+(define-function clutter_shader_int_get_type
+  (c-name "clutter_shader_int_get_type")
+  (return-type "GType")
 )
 
-(define-method set_default_stage
-  (of-object "ClutterStageManager")
-  (c-name "clutter_stage_manager_set_default_stage")
+(define-function clutter_shader_matrix_get_type
+  (c-name "clutter_shader_matrix_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_value_set_shader_float
+  (c-name "clutter_value_set_shader_float")
   (return-type "none")
   (parameters
-    '("ClutterStage*" "stage")
+    '("GValue*" "value")
+    '("gint" "size")
+    '("const-gfloat*" "floats")
   )
 )
 
-(define-method get_default_stage
-  (of-object "ClutterStageManager")
-  (c-name "clutter_stage_manager_get_default_stage")
-  (return-type "ClutterStage*")
+(define-function clutter_value_set_shader_int
+  (c-name "clutter_value_set_shader_int")
+  (return-type "none")
+  (parameters
+    '("GValue*" "value")
+    '("gint" "size")
+    '("const-gint*" "ints")
+  )
 )
 
-(define-method list_stages
-  (of-object "ClutterStageManager")
-  (c-name "clutter_stage_manager_list_stages")
-  (return-type "GSList*")
+(define-function clutter_value_set_shader_matrix
+  (c-name "clutter_value_set_shader_matrix")
+  (return-type "none")
+  (parameters
+    '("GValue*" "value")
+    '("gint" "size")
+    '("const-gfloat*" "matrix")
+  )
+)
+
+(define-function clutter_value_get_shader_float
+  (c-name "clutter_value_get_shader_float")
+  (return-type "const-gfloat*")
+  (parameters
+    '("const-GValue*" "value")
+    '("gsize*" "length")
+  )
+)
+
+(define-function clutter_value_get_shader_int
+  (c-name "clutter_value_get_shader_int")
+  (return-type "const-gint*")
+  (parameters
+    '("const-GValue*" "value")
+    '("gsize*" "length")
+  )
+)
+
+(define-function clutter_value_get_shader_matrix
+  (c-name "clutter_value_get_shader_matrix")
+  (return-type "const-gfloat*")
+  (parameters
+    '("const-GValue*" "value")
+    '("gsize*" "length")
+  )
 )
 
 
@@ -5716,6 +5697,41 @@
   (of-object "ClutterStage")
   (c-name "clutter_stage_ensure_viewport")
   (return-type "none")
+)
+
+
+
+;; From clutter-stage-manager.h
+
+(define-function clutter_stage_manager_get_type
+  (c-name "clutter_stage_manager_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_stage_manager_get_default
+  (c-name "clutter_stage_manager_get_default")
+  (return-type "ClutterStageManager*")
+)
+
+(define-method set_default_stage
+  (of-object "ClutterStageManager")
+  (c-name "clutter_stage_manager_set_default_stage")
+  (return-type "none")
+  (parameters
+    '("ClutterStage*" "stage")
+  )
+)
+
+(define-method get_default_stage
+  (of-object "ClutterStageManager")
+  (c-name "clutter_stage_manager_get_default_stage")
+  (return-type "ClutterStage*")
+)
+
+(define-method list_stages
+  (of-object "ClutterStageManager")
+  (c-name "clutter_stage_manager_list_stages")
+  (return-type "GSList*")
 )
 
 
@@ -6107,6 +6123,30 @@
   (return-type "gchar*")
 )
 
+(define-method set_selection_color
+  (of-object "ClutterText")
+  (c-name "clutter_text_set_selection_color")
+  (return-type "none")
+  (parameters
+    '("const-ClutterColor*" "color")
+  )
+)
+
+(define-method get_selection_color
+  (of-object "ClutterText")
+  (c-name "clutter_text_get_selection_color")
+  (return-type "none")
+  (parameters
+    '("ClutterColor*" "color")
+  )
+)
+
+(define-method delete_selection
+  (of-object "ClutterText")
+  (c-name "clutter_text_delete_selection")
+  (return-type "gboolean")
+)
+
 (define-method set_password_char
   (of-object "ClutterText")
   (c-name "clutter_text_set_password_char")
@@ -6156,6 +6196,18 @@
   (of-object "ClutterText")
   (c-name "clutter_text_activate")
   (return-type "gboolean")
+)
+
+(define-method position_to_coords
+  (of-object "ClutterText")
+  (c-name "clutter_text_position_to_coords")
+  (return-type "gboolean")
+  (parameters
+    '("gint" "position")
+    '("gfloat*" "x")
+    '("gfloat*" "y")
+    '("gfloat*" "line_height")
+  )
 )
 
 
@@ -6749,9 +6801,5 @@
 
 
 ;; From clutter-version.h
-
-
-
-;; From clutter.h
 
 

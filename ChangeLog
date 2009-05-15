@@ -1,3 +1,16 @@
+2009-05-15  Siavash Safi  <siavash@siavashs.org>
+
+	* .gitignore:
+	* clutter/src/animation.hg: Do not use _DERIVES_INITIALLY_UNOWNED because of
+	the changes in the C API, Wrap started() signal
+	* clutter/src/cairo-texture.hg: Add clear() method
+	* clutter/src/clutter_docs.xml:
+	* clutter/src/clutter_methods.defs:
+	* clutter/src/clutter_signals.defs: Regenerate all defs
+	* clutter/src/text.ccg:
+	* clutter/src/text.hg: Wrap new methods and properties
+	* configure.in: Increase version and required clutter version to 0.9.3
+
 2009-04-27  Siavash Safi  <siavash@siavashs.org>
 
 	* clutter/src/actor.hg: Reverted overloaded methods for now since

@@ -92,6 +92,11 @@ public:
   _WRAP_METHOD(void set_selection_bound(int selection_bound), clutter_text_set_selection_bound)
   _WRAP_METHOD(int get_selection_bound() const, clutter_text_get_selection_bound)
 
+  _WRAP_METHOD(void set_selection_color(const Color& color), clutter_text_set_selection_color)
+  _WRAP_METHOD_DOCS_ONLY(clutter_text_get_selection_color)
+  Color get_selection_color() const;
+  _IGNORE(clutter_text_get_color)
+
   _WRAP_METHOD(void set_single_line_mode(bool single_line=true), clutter_text_set_single_line_mode)
   _WRAP_METHOD(bool get_single_line_mode() const, clutter_text_get_single_line_mode)
 
@@ -106,6 +111,7 @@ public:
 
   _WRAP_METHOD(void delete_chars(guint len), clutter_text_delete_chars)
   _WRAP_METHOD(void delete_text(gssize start_pos, gssize end_pos), clutter_text_delete_text)
+  _WRAP_METHOD(bool delete_selection(), clutter_text_delete_selection)
 
   _WRAP_METHOD(Glib::ustring get_chars(gssize start_pos, gssize end_pos) const, clutter_text_get_chars)
 
@@ -123,31 +129,36 @@ public:
 
   _WRAP_METHOD(bool activate(), clutter_text_activate)
 
+  _WRAP_METHOD(bool position_to_coords(int position, float &x, float &y, float &line_height), clutter_text_position_to_coords)
+
   _WRAP_SIGNAL(void activate(), "activate")
   _WRAP_SIGNAL(void text_changed(), "text_changed")
   _WRAP_SIGNAL(void cursor_event(const Geometry& geometry), "cursor_event")
 
-  _WRAP_PROPERTY("font-name", Glib::ustring)
-  _WRAP_PROPERTY("text", Glib::ustring)
-  _WRAP_PROPERTY("color", Color)
-  _WRAP_PROPERTY("editable", bool)
-  _WRAP_PROPERTY("selectable", bool)
   _WRAP_PROPERTY("activatable", bool)
-  _WRAP_PROPERTY("cursor-visible", bool)
+  _WRAP_PROPERTY("attributes", Pango::AttrList)
+  _WRAP_PROPERTY("color", Color)
   _WRAP_PROPERTY("cursor-color", Color)
   _WRAP_PROPERTY("cursor-color-set", bool)
   _WRAP_PROPERTY("cursor-size", int)
-  _WRAP_PROPERTY("position", int)
-  _WRAP_PROPERTY("selection-bound", int)
-  _WRAP_PROPERTY("attributes", Pango::AttrList)
-  _WRAP_PROPERTY("use-markup", bool)
-  _WRAP_PROPERTY("line-wrap", bool)
-  _WRAP_PROPERTY("line-wrap-mode", Pango::WrapMode)
+  _WRAP_PROPERTY("cursor-visible", bool)
+  _WRAP_PROPERTY("editable", bool)
   _WRAP_PROPERTY("ellipsize", Pango::EllipsizeMode)
+  _WRAP_PROPERTY("font-name", Glib::ustring)
   _WRAP_PROPERTY("justify", bool)
-  _WRAP_PROPERTY("password-char", gunichar)
+  _WRAP_PROPERTY("line-alignment", Pango::Alignment)
+  _WRAP_PROPERTY("line-wrap-mode", Pango::WrapMode)
+  _WRAP_PROPERTY("line-wrap", bool)
   _WRAP_PROPERTY("max-length", int)
+  _WRAP_PROPERTY("password-char", gunichar)
+  _WRAP_PROPERTY("position", int)
+  _WRAP_PROPERTY("selectable", bool)
+  _WRAP_PROPERTY("selection-bound", int)
+  _WRAP_PROPERTY("selection-color", Color)
+  _WRAP_PROPERTY("selection-color-set", bool)
   _WRAP_PROPERTY("single-line-mode", bool)
+  _WRAP_PROPERTY("text", Glib::ustring)
+  _WRAP_PROPERTY("use-markup", bool)
 };
 
 } // namespace Clutter

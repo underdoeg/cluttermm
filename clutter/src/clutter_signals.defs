@@ -579,6 +579,12 @@
   (when "last")
 )
 
+(define-signal started
+  (of-object "ClutterAnimation")
+  (return-type "void")
+  (when "last")
+)
+
 (define-property object
   (of-object "ClutterAnimation")
   (prop-type "GParamObject")
@@ -2315,33 +2321,6 @@
   )
 )
 
-(define-property buffer-fill
-  (of-object "ClutterMedia")
-  (prop-type "GParamDouble")
-  (docs "The fill level of the buffer")
-  (readable #t)
-  (writable #f)
-  (construct-only #f)
-)
-
-(define-property duration
-  (of-object "ClutterMedia")
-  (prop-type "GParamDouble")
-  (docs "The duration of the stream, in seconds")
-  (readable #t)
-  (writable #f)
-  (construct-only #f)
-)
-
-(define-property can-seek
-  (of-object "ClutterMedia")
-  (prop-type "GParamBoolean")
-  (docs "Whether the current stream is seekable")
-  (readable #t)
-  (writable #f)
-  (construct-only #f)
-)
-
 (define-property progress
   (of-object "ClutterMedia")
   (prop-type "GParamDouble")
@@ -2360,6 +2339,24 @@
   (construct-only #f)
 )
 
+(define-property playing
+  (of-object "ClutterMedia")
+  (prop-type "GParamBoolean")
+  (docs "Wheter the actor is playing")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property buffer-fill
+  (of-object "ClutterMedia")
+  (prop-type "GParamDouble")
+  (docs "The fill level of the buffer")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
 (define-property uri
   (of-object "ClutterMedia")
   (prop-type "GParamString")
@@ -2369,12 +2366,21 @@
   (construct-only #f)
 )
 
-(define-property playing
+(define-property duration
+  (of-object "ClutterMedia")
+  (prop-type "GParamDouble")
+  (docs "The duration of the stream, in seconds")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property can-seek
   (of-object "ClutterMedia")
   (prop-type "GParamBoolean")
-  (docs "Wheter the actor is playing")
+  (docs "Whether the current stream is seekable")
   (readable #t)
-  (writable #t)
+  (writable #f)
   (construct-only #f)
 )
 
@@ -3846,6 +3852,24 @@
   (docs "The cursor position of the other end of the selection")
   (readable #t)
   (writable #t)
+  (construct-only #f)
+)
+
+(define-property selection-color
+  (of-object "ClutterText")
+  (prop-type "ClutterParamSpecColor")
+  (docs "Selection Color")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property selection-color-set
+  (of-object "ClutterText")
+  (prop-type "GParamBoolean")
+  (docs "Whether the selection color has been set")
+  (readable #t)
+  (writable #f)
   (construct-only #f)
 )
 

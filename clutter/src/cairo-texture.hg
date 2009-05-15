@@ -40,8 +40,11 @@ protected:
 public:
   _WRAP_CREATE(guint width, guint height)
 
+  _WRAP_METHOD(void clear(), clutter_cairo_texture_clear)
+
   _WRAP_METHOD(void set_surface_size(guint width, guint height), clutter_cairo_texture_set_surface_size)
   _WRAP_METHOD(void get_surface_size(guint& width, guint& height) const, clutter_cairo_texture_get_surface_size)
+
   _WRAP_METHOD(Glib::RefPtr< ::Cairo::Context > create_context(), clutter_cairo_texture_create)
   _WRAP_METHOD(Glib::RefPtr< ::Cairo::Context > create_context_region(int x_offset, int y_offset, int width, int height), clutter_cairo_texture_create_region)
 };

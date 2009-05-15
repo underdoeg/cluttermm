@@ -32,7 +32,6 @@ class Animation : public Glib::Object
 {
 
   _CLASS_GOBJECT(Animation, ClutterAnimation, CLUTTER_ANIMATION, Glib::Object, GObject)
-  _DERIVES_INITIALLY_UNOWNED()
 
 protected:
   _CTOR_DEFAULT()
@@ -61,6 +60,7 @@ public:
   _WRAP_METHOD(void unbind_property(const std::string& property_name), clutter_animation_unbind_property)
   _WRAP_METHOD(Glib::RefPtr<Interval> get_interval(const std::string& property_name) const, clutter_animation_get_interval)
 
+  _WRAP_SIGNAL(void started(), "started")
   _WRAP_SIGNAL(void completed(), "completed")
 };
 
