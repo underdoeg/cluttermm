@@ -125,7 +125,7 @@ Actor::animate(gulong mode, unsigned int duration, const std::map<std::string, G
 }
 
 Glib::RefPtr<Animation>
-Actor::animate_with_timeline(gulong mode, const Glib::RefPtr<Timeline>& timeline, const std::map<std::string, Glib::ValueBase>& properties)
+Actor::animate(gulong mode, const Glib::RefPtr<Timeline>& timeline, const std::map<std::string, Glib::ValueBase>& properties)
 {
   gchar* c_properties[properties.size()];
   GValue values[properties.size()];
@@ -140,7 +140,7 @@ Actor::animate_with_timeline(gulong mode, const Glib::RefPtr<Timeline>& timeline
 }
 
 Glib::RefPtr<Animation>
-Actor::animate_with_alpha(const Glib::RefPtr<Alpha>& alpha, const std::map<std::string, Glib::ValueBase>& properties)
+Actor::animate(const Glib::RefPtr<Alpha>& alpha, const std::map<std::string, Glib::ValueBase>& properties)
 {
   gchar* c_properties[properties.size()];
   GValue values[properties.size()];

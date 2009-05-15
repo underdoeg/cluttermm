@@ -1,3 +1,11 @@
+0.9.3:
+
+2009-05-15  Murray Cumming  <murrayc@murrayc.com>
+
+	* clutter/src/actor.[hg|ccg]: animate_with_timeline(), animate_with_alpha(): 
+	Rename to animate().
+	* tests/Makefile.am: Fix a typo to fix distcheck.
+
 2009-05-15  Siavash Safi  <siavash@siavashs.org>
 
 	* .gitignore:

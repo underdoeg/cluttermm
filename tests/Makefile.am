@@ -7,5 +7,5 @@ include $(top_srcdir)/examples/Makefile.am_fragment
 noinst_PROGRAMS = test-alpha-creation test-alpha-func test-interval-creation
 test_alpha_creation_SOURCES = test-alpha-creation.cc
 test_alpha_func_SOURCES = test-alpha-func.cc
-test_interval_creation = test-interval-creation.cc
+test_interval_creation_SOURCES = test-interval-creation.cc
 
