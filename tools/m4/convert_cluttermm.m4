@@ -22,6 +22,9 @@ _CONVERSION(`const Glib::RefPtr<Animation>&',`ClutterAnimation*',__CONVERT_REFPT
 _CONVERSION(`ClutterAnimation*',`Glib::RefPtr<Animation>',`Glib::wrap($3)')
 _CONVERSION(`ClutterAnimation*',`Glib::RefPtr<const Animation>',`Glib::wrap($3)')
 
+_CONVERSION(`const Glib::RefPtr<Backend>&',`ClutterBackend*',__CONVERT_REFPTR_TO_P)
+_CONVERSION(`ClutterBackend*',`Glib::RefPtr<Backend>',`Glib::wrap($3)')
+
 _CONVERSION(`const Glib::RefPtr<Interval>&',`ClutterInterval*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`ClutterInterval*',`Glib::RefPtr<Interval>',`Glib::wrap($3)')
 _CONVERSION(`ClutterInterval*',`Glib::RefPtr<const Interval>',`Glib::wrap($3)')

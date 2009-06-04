@@ -1,5 +1,14 @@
 2009-06-04  Siavash Safi  <siavash@siavashs.org>
 
+	* .gitignore:
+	* clutter/src/Makefile_list_of_hg.am_fragment:
+	* clutter/src/backend.ccg:
+	* clutter/src/backend.hg: Add Clutter::Backend
+	* tools/m4/convert_cairomm.m4:
+	* tools/m4/convert_cluttermm.m4:
+
+2009-06-04  Siavash Safi  <siavash@siavashs.org>
+
 	* clutter/src/clutter_docs.xml:
 	* clutter/src/clutter_enums.defs:
 	* clutter/src/clutter_methods.defs:

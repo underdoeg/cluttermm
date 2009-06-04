@@ -30,6 +30,8 @@ clutter/cluttermm/alpha.cc
 clutter/cluttermm/alpha.h
 clutter/cluttermm/animation.cc
 clutter/cluttermm/animation.h
+clutter/cluttermm/backend.h
+clutter/cluttermm/backend.cc
 clutter/cluttermm/behaviour-depth.cc
 clutter/cluttermm/behaviour-depth.h
 clutter/cluttermm/behaviour-ellipse.cc

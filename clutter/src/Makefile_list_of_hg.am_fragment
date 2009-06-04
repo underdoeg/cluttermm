@@ -6,6 +6,7 @@ files_hg = \
 actor.hg \
 alpha.hg \
 animation.hg \
+backend.hg \
 behaviour.hg \
 behaviour-depth.hg \
 behaviour-ellipse.hg \
