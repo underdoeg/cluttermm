@@ -62,8 +62,11 @@ public:
   _WRAP_METHOD(bool set_area_from_rgb_data(const guchar* data, bool has_alpha, int x, int y, int width, int height, int rowstride, int bpp, TextureFlags flags), clutter_texture_set_area_from_rgb_data, errthrow)
   _WRAP_METHOD(void get_base_size(int& width, int& height) const, clutter_texture_get_base_size)
 
+  _WRAP_METHOD(CoglPixelFormat get_pixel_format() const, clutter_texture_get_pixel_format)
+
   _WRAP_METHOD(TextureQuality get_filter_quality() const, clutter_texture_get_filter_quality)
   _WRAP_METHOD(void set_filter_quality(TextureQuality filter_quality), clutter_texture_set_filter_quality)
+
   _WRAP_METHOD(int get_amx_tile_waste() const, clutter_texture_get_max_tile_waste)
   _WRAP_METHOD(void set_max_tile_waste(int max_tile_waste), clutter_texture_set_max_tile_waste)
 
@@ -72,6 +75,22 @@ public:
   _WRAP_METHOD(void set_cogl_texture(CoglHandle handle), clutter_texture_set_cogl_texture)
   _WRAP_METHOD(CoglHandle get_cogl_material() const, clutter_texture_get_cogl_material)
   _WRAP_METHOD(void set_cogl_material(CoglHandle handle), clutter_texture_set_cogl_material)
+
+  _WRAP_METHOD(bool get_sync_size() const, clutter_texture_get_sync_size)
+  _WRAP_METHOD(void set_sync_size(bool sync_size=true), clutter_texture_set_sync_size)
+
+#m4 _CONVERSION(`bool&',`gboolean*',`reinterpret_cast<gboolean*>(&$3)')
+  _WRAP_METHOD(void get_repeat(bool& repeat_x, bool& repeat_y) const, clutter_texture_get_repeat)
+  _WRAP_METHOD(void set_repeat(bool repeat_x=true, bool repeat_y=true), clutter_texture_set_repeat)
+
+  _WRAP_METHOD(bool get_keep_aspect_ratio() const, clutter_texture_get_keep_aspect_ratio)
+  _WRAP_METHOD(void set_keep_aspect_ratio(bool keep_aspect=true), clutter_texture_set_keep_aspect_ratio)
+
+  _WRAP_METHOD(bool get_load_async() const, clutter_texture_get_load_async)
+  _WRAP_METHOD(void set_load_async(bool load_async=true), clutter_texture_set_load_async)
+
+  _WRAP_METHOD(bool get_load_data_async() const, clutter_texture_get_load_data_async)
+  _WRAP_METHOD(void set_load_data_async(bool load_async=true), clutter_texture_set_load_data_async)
 
   // TODO: figure out what to do with this GError parameter
   //_WRAP_SIGNAL(void load_finished(GError* error), "load_finished")
@@ -83,6 +102,9 @@ public:
   _WRAP_PROPERTY("disable-slicing", bool)
   _WRAP_PROPERTY("filename", std::string)
   _WRAP_PROPERTY("filter-quality", TextureQuality)
+  _WRAP_PROPERTY("keep-aspect-ratio", bool)
+  _WRAP_PROPERTY("load-async", bool)
+  _WRAP_PROPERTY("load-data-async", bool)
   _WRAP_PROPERTY("pixel-format", int)
   _WRAP_PROPERTY("repeat-x", bool)
   _WRAP_PROPERTY("repeat-y", bool)

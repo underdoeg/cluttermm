@@ -1373,7 +1373,7 @@
 
 (define-property pixel-format
   (of-object "ClutterCairoTexture")
-  (prop-type "GParamInt")
+  (prop-type "GParamEnum")
   (docs "CoglPixelFormat to use.")
   (readable #t)
   (writable #f)
@@ -2321,10 +2321,10 @@
   )
 )
 
-(define-property progress
+(define-property playing
   (of-object "ClutterMedia")
-  (prop-type "GParamDouble")
-  (docs "Current progress of the playback")
+  (prop-type "GParamBoolean")
+  (docs "Wheter the actor is playing")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2339,28 +2339,19 @@
   (construct-only #f)
 )
 
-(define-property playing
+(define-property can-seek
   (of-object "ClutterMedia")
   (prop-type "GParamBoolean")
-  (docs "Wheter the actor is playing")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property buffer-fill
-  (of-object "ClutterMedia")
-  (prop-type "GParamDouble")
-  (docs "The fill level of the buffer")
+  (docs "Whether the current stream is seekable")
   (readable #t)
   (writable #f)
   (construct-only #f)
 )
 
-(define-property uri
+(define-property progress
   (of-object "ClutterMedia")
-  (prop-type "GParamString")
-  (docs "URI of a media file")
+  (prop-type "GParamDouble")
+  (docs "Current progress of the playback")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2375,10 +2366,19 @@
   (construct-only #f)
 )
 
-(define-property can-seek
+(define-property uri
   (of-object "ClutterMedia")
-  (prop-type "GParamBoolean")
-  (docs "Whether the current stream is seekable")
+  (prop-type "GParamString")
+  (docs "URI of a media file")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property buffer-fill
+  (of-object "ClutterMedia")
+  (prop-type "GParamDouble")
+  (docs "The fill level of the buffer")
   (readable #t)
   (writable #f)
   (construct-only #f)
@@ -4379,7 +4379,7 @@
 
 (define-property pixel-format
   (of-object "ClutterTexture")
-  (prop-type "GParamInt")
+  (prop-type "GParamEnum")
   (docs "CoglPixelFormat to use.")
   (readable #t)
   (writable #f)

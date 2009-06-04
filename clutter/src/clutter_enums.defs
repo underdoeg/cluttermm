@@ -175,6 +175,7 @@
   (in-module "Clutter")
   (c-name "ClutterTextureFlags")
   (values
+    '("none" "CLUTTER_TEXTURE_NONE" "0")
     '("rgb-flag-bgr" "CLUTTER_TEXTURE_RGB_FLAG_BGR" "1 << 1")
     '("rgb-flag-premult" "CLUTTER_TEXTURE_RGB_FLAG_PREMULT" "1 << 2")
     '("yuv-flag-yuv2" "CLUTTER_TEXTURE_YUV_FLAG_YUV2" "1 << 3")

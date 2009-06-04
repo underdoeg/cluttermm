@@ -1,3 +1,11 @@
+2009-06-04  Siavash Safi  <siavash@siavashs.org>
+
+	* clutter/src/clutter_docs.xml:
+	* clutter/src/clutter_enums.defs:
+	* clutter/src/clutter_methods.defs:
+	* clutter/src/clutter_signals.defs: Regenerate all defs.
+	* clutter/src/texture.hg: Wrap new methods and properties.
+
 0.9.3:
 
 2009-05-15  Murray Cumming  <murrayc@murrayc.com>

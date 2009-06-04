@@ -808,6 +808,25 @@ Since: 1.0
 <return></return>
 </function>
 
+<function name="clutter_texture_get_load_async">
+<description>
+Retrieves the value set using clutter_texture_get_load_async()
+
+
+</description>
+<parameters>
+<parameter name="texture">
+<parameter_description> a #ClutterTexture
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE if the #ClutterTexture should load the data from
+disk asynchronously
+
+Since: 1.0
+</return>
+</function>
+
 <function name="clutter_behaviour_ellipse_get_height">
 <description>
 Gets the height of the elliptical path.
@@ -1272,6 +1291,27 @@ Since: 0.6
 <parameters>
 <parameter name="enable">
 <parameter_description> %TRUE to enable per-actor motion events
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="clutter_texture_set_keep_aspect_ratio">
+<description>
+Sets whether @texture should have a preferred size maintaining
+the aspect ratio of the underlying image
+
+Since: 1.0
+
+</description>
+<parameters>
+<parameter name="texture">
+<parameter_description> a #ClutterTexture
+</parameter_description>
+</parameter>
+<parameter name="keep_aspect">
+<parameter_description> %TRUE to maintain aspect ratio
 </parameter_description>
 </parameter>
 </parameters>
@@ -1746,6 +1786,30 @@ Since: 1.0
 <return></return>
 </function>
 
+<function name="clutter_script_lookup_filename">
+<description>
+Looks up @filename inside the search paths of @script. If @filename
+is found, its full path will be returned .
+
+
+</description>
+<parameters>
+<parameter name="script">
+<parameter_description> a #ClutterScript
+</parameter_description>
+</parameter>
+<parameter name="filename">
+<parameter_description> the name of the file to lookup
+</parameter_description>
+</parameter>
+</parameters>
+<return> the full path of @filename or %NULL if no path was
+found.
+
+Since: 0.8
+</return>
+</function>
+
 <function name="clutter_actor_get_anchor_pointu">
 <description>
 Gets the current anchor point of the @actor in #ClutterUnit&lt;!-- --&gt;s.
@@ -1890,17 +1954,16 @@ Since: 1.0
 </return>
 </function>
 
-<function name="ClutterAnimation">
+<function name="clutter_score_pause">
 <description>
-The ::started signal is emitted once the animation has been
-started
+Pauses a playing score @score.
 
-Since: 1.0
+Since: 0.6
 
 </description>
 <parameters>
-<parameter name="animation">
-<parameter_description> the animation that emitted the signal
+<parameter name="score">
+<parameter_description> a #ClutterScore
 </parameter_description>
 </parameter>
 </parameters>
@@ -2138,26 +2201,30 @@ Since: 0.6
 <return></return>
 </function>
 
-<function name="clutter_x11_set_stage_foreign">
+<function name="clutter_texture_set_load_async">
 <description>
-Target the #ClutterStage to use an existing external X Window
+Sets whether @texture should use a worker thread to load the data
+from disk asynchronously. Setting @load_async to %TRUE will make
+clutter_texture_set_from_file() return immediately.
 
+See the #ClutterTexture:load-async property documentation, and
+clutter_texture_set_load_data_async().
+
+Since: 1.0
 
 </description>
 <parameters>
-<parameter name="stage">
-<parameter_description> a #ClutterStage
+<parameter name="texture">
+<parameter_description> a #ClutterTexture
 </parameter_description>
 </parameter>
-<parameter name="xwindow">
-<parameter_description> an existing X Window id
+<parameter name="load_sync">
+<parameter_description> %TRUE if the texture should asynchronously load data
+from a filename
 </parameter_description>
 </parameter>
 </parameters>
-<return> %TRUE if foreign window is valid
-
-Since: 0.4
-</return>
+<return></return>
 </function>
 
 <function name="clutter_get_default_backend">
@@ -2201,20 +2268,16 @@ Since: 0.6
 </return>
 </function>
 
-<function name="clutter_score_pause">
+<function name="json_array_new">
 <description>
-Pauses a playing score @score.
+Creates a new #JsonArray.
 
-Since: 0.6
 
 </description>
 <parameters>
-<parameter name="score">
-<parameter_description> a #ClutterScore
-</parameter_description>
-</parameter>
 </parameters>
-<return></return>
+<return> the newly created #JsonArray
+</return>
 </function>
 
 <function name="clutter_actor_set_position">
@@ -2331,6 +2394,28 @@ parameter, when using #ClutterColor&lt;!-- --&gt;s as keys in a #GHashTable.
 
 Since: 1.0
 </return>
+</function>
+
+<function name="clutter_texture_set_sync_size">
+<description>
+Sets whether @texture should have the same preferred size as the
+underlying image data.
+
+Since: 1.0
+
+</description>
+<parameters>
+<parameter name="texture">
+<parameter_description> a #ClutterTexture
+</parameter_description>
+</parameter>
+<parameter name="sync_size">
+<parameter_description> %TRUE if the texture should have the same size of the
+underlying image data
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
 </function>
 
 <function name="clutter_stage_set_fog">
@@ -5358,6 +5443,25 @@ Since: 0.6
 <return></return>
 </function>
 
+<function name="clutter_texture_get_sync_size">
+<description>
+Retrieves the value set with clutter_texture_get_sync_size()
+
+
+</description>
+<parameters>
+<parameter name="texture">
+<parameter_description> a #ClutterTexture
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE if the #ClutterTexture should have the same
+preferred size of the underlying image data
+
+Since: 1.0
+</return>
+</function>
+
 <function name="clutter_value_get_shader_matrix">
 <description>
 Retrieves a matrix of floating point values stored inside
@@ -6020,6 +6124,33 @@ Since: 1.0
 </return>
 </function>
 
+<function name="clutter_texture_set_load_data_async">
+<description>
+Sets whether @texture should use a worker thread to load the data
+from disk asynchronously. Setting @load_async to %TRUE will make
+clutter_texture_set_from_file() block until the #ClutterTexture has
+determined the width and height of the image data.
+
+See the #ClutterTexture:load-async property documentation, and
+clutter_texture_set_load_async().
+
+Since: 1.0
+
+</description>
+<parameters>
+<parameter name="texture">
+<parameter_description> a #ClutterTexture
+</parameter_description>
+</parameter>
+<parameter name="load_async">
+<parameter_description> %TRUE if the texture should asynchronously load data
+from a filename
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
 <function name="clutter_win32_get_stage_window">
 <description>
 Gets the stage's window handle
@@ -6588,26 +6719,6 @@ Since: 1.0
 </return>
 </function>
 
-<function name="clutter_animation_set_duration">
-<description>
-Sets the duration of @animation in milliseconds.
-
-Since: 1.0
-
-</description>
-<parameters>
-<parameter name="animation">
-<parameter_description> a #ClutterAnimation
-</parameter_description>
-</parameter>
-<parameter name="msecs">
-<parameter_description> the duration in milliseconds
-</parameter_description>
-</parameter>
-</parameters>
-<return></return>
-</function>
-
 <function name="clutter_media_get_progress">
 <description>
 Retrieves the playback progress of @media.
@@ -6914,15 +7025,18 @@ Since: 0.4
 <return></return>
 </function>
 
-<function name="json_array_new">
+<function name="json_parser_new">
 <description>
-Creates a new #JsonArray.
+Creates a new #JsonParser instance. You can use the #JsonParser to
+load a JSON stream from either a file or a buffer and then walk the
+hierarchy using the data types API.
 
 
 </description>
 <parameters>
 </parameters>
-<return> the newly created #JsonArray
+<return> the newly created #JsonParser. Use g_object_unref()
+to release all the memory it allocates.
 </return>
 </function>
 
@@ -7878,6 +7992,25 @@ GLX_EXT_texture_from_pixmap OpenGL extension or falling back to
 slower software mechanism.
 
 Since: 0.8
+</return>
+</function>
+
+<function name="clutter_texture_get_keep_aspect_ratio">
+<description>
+Retrieves the value set using clutter_texture_get_keep_aspect_ratio()
+
+
+</description>
+<parameters>
+<parameter name="texture">
+<parameter_description> a #ClutterTexture
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE if the #ClutterTexture should maintain the
+aspect ratio of the underlying image
+
+Since: 1.0
 </return>
 </function>
 
@@ -8905,21 +9038,6 @@ Since: 1.0
 </return>
 </function>
 
-<function name="json_parser_new">
-<description>
-Creates a new #JsonParser instance. You can use the #JsonParser to
-load a JSON stream from either a file or a buffer and then walk the
-hierarchy using the data types API.
-
-
-</description>
-<parameters>
-</parameters>
-<return> the newly created #JsonParser. Use g_object_unref()
-to release all the memory it allocates.
-</return>
-</function>
-
 <function name="json_node_set_int">
 <description>
 Sets @value as the integer content of the @node, replacing any existing
@@ -9224,21 +9342,20 @@ Since: 1.0
 
 <function name="clutter_texture_get_base_size">
 <description>
-Gets the size in pixels of the untransformed underlying texture pixbuf data.
-
+Gets the size in pixels of the untransformed underlying image
 
 </description>
 <parameters>
 <parameter name="texture">
-<parameter_description> A #ClutterTexture
+<parameter_description> a #ClutterTexture
 </parameter_description>
 </parameter>
 <parameter name="width">
-<parameter_description>   Pointer to gint to be populated with width value if non NULL.
+<parameter_description> (out): return location for the width, or %NULL
 </parameter_description>
 </parameter>
 <parameter name="height">
-<parameter_description>  Pointer to gint to be populated with height value if non NULL.
+<parameter_description> (out): return location for the height, or %NULL
 </parameter_description>
 </parameter>
 </parameters>
@@ -9307,27 +9424,22 @@ Appends @node inside @array. The array will take ownership of the
 <return></return>
 </function>
 
-<function name="clutter_script_lookup_filename">
+<function name="clutter_model_iter_is_last">
 <description>
-Looks up @filename inside the search paths of @script. If @filename
-is found, its full path will be returned .
+Gets whether the iterator is at the end of the model to which it
+belongs.
 
 
 </description>
 <parameters>
-<parameter name="script">
-<parameter_description> a #ClutterScript
-</parameter_description>
-</parameter>
-<parameter name="filename">
-<parameter_description> the name of the file to lookup
+<parameter name="iter">
+<parameter_description> a #ClutterModelIter
 </parameter_description>
 </parameter>
 </parameters>
-<return> the full path of @filename or %NULL if no path was
-found.
+<return> #TRUE if @iter is the last iter in the filtered model.
 
-Since: 0.8
+Since: 0.6
 </return>
 </function>
 
@@ -11129,6 +11241,32 @@ Since: 1.0
 </parameter>
 </parameters>
 <return></return>
+</function>
+
+<function name="clutter_texture_get_pixel_format">
+<description>
+Retrieves the pixel format used by @texture. This is
+equivalent to:
+
+|[
+handle = clutter_texture_get_pixel_format (texture);
+
+if (handle != COGL_INVALID_HANDLE)
+format = cogl_texture_get_format (handle);
+]|
+
+
+</description>
+<parameters>
+<parameter name="texture">
+<parameter_description> a #ClutterTexture
+</parameter_description>
+</parameter>
+</parameters>
+<return> a #CoglPixelFormat value
+
+Since: 1.0
+</return>
 </function>
 
 <function name="clutter_list_model_newv">
@@ -14045,6 +14183,9 @@ automatically by modification functions.
 This function will not do anything if @self is not visible, or
 if the actor is inside an invisible part of the scenegraph.
 
+Also be aware that painting is a NOP for actors with an opacity of
+0
+
 </description>
 <parameters>
 <parameter name="self">
@@ -15156,25 +15297,20 @@ Since: 0.8
 </return>
 </function>
 
-<function name="clutter_model_iter_set_value">
+<function name="clutter_animation_set_duration">
 <description>
-Sets the data in the cell specified by @iter and @column. The type of
-@value must be convertable to the type of the column.
+Sets the duration of @animation in milliseconds.
 
-Since: 0.6
+Since: 1.0
 
 </description>
 <parameters>
-<parameter name="iter">
-<parameter_description> a #ClutterModelIter
+<parameter name="animation">
+<parameter_description> a #ClutterAnimation
 </parameter_description>
 </parameter>
-<parameter name="column">
-<parameter_description> column number to retrieve the value from
-</parameter_description>
-</parameter>
-<parameter name="value">
-<parameter_description> new value for the cell
+<parameter name="msecs">
+<parameter_description> the duration in milliseconds
 </parameter_description>
 </parameter>
 </parameters>
@@ -15405,6 +15541,53 @@ Return value: Number of microseconds since clutter_init() was called.
 <parameters>
 </parameters>
 <return> Number of microseconds since clutter_init() was called.
+</return>
+</function>
+
+<function name="clutter_model_iter_set_value">
+<description>
+Sets the data in the cell specified by @iter and @column. The type of
+@value must be convertable to the type of the column.
+
+Since: 0.6
+
+</description>
+<parameters>
+<parameter name="iter">
+<parameter_description> a #ClutterModelIter
+</parameter_description>
+</parameter>
+<parameter name="column">
+<parameter_description> column number to retrieve the value from
+</parameter_description>
+</parameter>
+<parameter name="value">
+<parameter_description> new value for the cell
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="clutter_x11_set_stage_foreign">
+<description>
+Target the #ClutterStage to use an existing external X Window
+
+
+</description>
+<parameters>
+<parameter name="stage">
+<parameter_description> a #ClutterStage
+</parameter_description>
+</parameter>
+<parameter name="xwindow">
+<parameter_description> an existing X Window id
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE if foreign window is valid
+
+Since: 0.4
 </return>
 </function>
 
@@ -15663,6 +15846,25 @@ Sets whether @timeline should loop.
 </parameter>
 </parameters>
 <return></return>
+</function>
+
+<function name="clutter_texture_get_load_data_async">
+<description>
+Retrieves the value set by clutter_texture_set_load_data_async()
+
+
+</description>
+<parameters>
+<parameter name="texture">
+<parameter_description> a #ClutterTexture
+</parameter_description>
+</parameter>
+</parameters>
+<return> %TRUE if the #ClutterTexture should load the image
+data from a file asynchronously
+
+Since: 1.0
+</return>
 </function>
 
 <function name="clutter_get_option_group_without_init">
@@ -16745,6 +16947,31 @@ Since: 0.4
 <return></return>
 </function>
 
+<function name="clutter_texture_set_repeat">
+<description>
+Sets whether the @texture should repeat horizontally or
+vertically when the actor size is bigger than the image size
+
+Since: 1.0
+
+</description>
+<parameters>
+<parameter name="texture">
+<parameter_description> a #ClutterTexture
+</parameter_description>
+</parameter>
+<parameter name="repeat_x">
+<parameter_description> %TRUE if the texture should repeat horizontally
+</parameter_description>
+</parameter>
+<parameter name="repeat_y">
+<parameter_description> %TRUE if the texture should repeat vertically
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
 <function name="clutter_stage_ensure_viewport">
 <description>
 Ensures that the GL viewport is updated with the current
@@ -17327,23 +17554,21 @@ Retrieves the #JsonArray stored inside a #JsonNode
 </return>
 </function>
 
-<function name="clutter_model_iter_is_last">
+<function name="ClutterAnimation">
 <description>
-Gets whether the iterator is at the end of the model to which it
-belongs.
+The ::started signal is emitted once the animation has been
+started
 
+Since: 1.0
 
 </description>
 <parameters>
-<parameter name="iter">
-<parameter_description> a #ClutterModelIter
+<parameter name="animation">
+<parameter_description> the animation that emitted the signal
 </parameter_description>
 </parameter>
 </parameters>
-<return> #TRUE if @iter is the last iter in the filtered model.
-
-Since: 0.6
-</return>
+<return></return>
 </function>
 
 <function name="ClutterAniamtion">
@@ -17598,6 +17823,31 @@ content.
 </parameter>
 <parameter name="value">
 <parameter_description> a boolean value
+</parameter_description>
+</parameter>
+</parameters>
+<return></return>
+</function>
+
+<function name="clutter_texture_get_repeat">
+<description>
+Retrieves the horizontal and vertical repeat values set
+using clutter_texture_set_repeat()
+
+Since: 1.0
+
+</description>
+<parameters>
+<parameter name="texture">
+<parameter_description> a #ClutterTexture
+</parameter_description>
+</parameter>
+<parameter name="repeat_x">
+<parameter_description> (out): return location for the horizontal repeat
+</parameter_description>
+</parameter>
+<parameter name="repeat_y">
+<parameter_description> (out): return location for the vertical repeat
 </parameter_description>
 </parameter>
 </parameters>
