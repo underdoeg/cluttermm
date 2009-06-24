@@ -12,14 +12,14 @@
 
   <maintainer>
     <foaf:Person>
-      <foaf:name>Murray Cumming</foaf:name>
-      <foaf:mbox rdf:resource="murrayc@murrayc.com" />
-      <gnome:userid>murrayc</gnome:userid>
+      <foaf:name>Jonathon Jongsma</foaf:name>
+      <foaf:mbox rdf:resource="mailto:jjongsma@gnome.org" />
+      <gnome:userid>jjongsma</gnome:userid>
     </foaf:Person>
     <foaf:Person>
-      <foaf:name>Jonathon Jongsma</foaf:name>
-      <foaf:mbox rdf:resource="jjongsma@gnome.org" />
-      <gnome:userid>jjongsma</gnome:userid>
+      <foaf:name>Murray Cumming</foaf:name>
+      <foaf:mbox rdf:resource="mailto:murrayc@murrayc.com" />
+      <gnome:userid>murrayc</gnome:userid>
     </foaf:Person>
   </maintainer>
 </Project>
