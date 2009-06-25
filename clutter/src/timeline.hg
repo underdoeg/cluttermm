@@ -33,10 +33,8 @@ class Timeline : public Glib::Object
 
 protected:
   _WRAP_CTOR(Timeline(guint num_frames, guint fps), clutter_timeline_new)
-  _WRAP_CTOR(Timeline(guint duration), clutter_timeline_new_for_duration)
 public:
   _WRAP_CREATE(guint n_frames, guint fps)
-  _WRAP_CREATE(guint msecs)
   
   //We don't wrap this as a copy constructor because there is 
   //no way to use copy constructors with RefPtr:
@@ -55,8 +53,7 @@ public:
   _WRAP_METHOD(void skip(guint n_frames), clutter_timeline_skip)
   _WRAP_METHOD(void advance(guint frame_num), clutter_timeline_advance)
   _WRAP_METHOD(int get_current_frame() const, clutter_timeline_get_current_frame)
-  _WRAP_METHOD(guint get_delta(guint& msecs) const, clutter_timeline_get_delta)
-  guint get_delta() const;
+  _WRAP_METHOD(guint get_delta() const, clutter_timeline_get_delta)
   _WRAP_METHOD(void set_n_frames(guint n_frames), clutter_timeline_set_n_frames)
   _WRAP_METHOD(guint get_n_frames() const, clutter_timeline_get_n_frames)
   _WRAP_METHOD(bool is_playing() const, clutter_timeline_is_playing)

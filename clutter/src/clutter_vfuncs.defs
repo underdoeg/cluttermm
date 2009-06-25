@@ -9,8 +9,8 @@
 	(of-object "ClutterLayout")
 	(return-type "void")
 	(parameters
-		'("ClutterUnit*" "width")
-		'("ClutterUnit" "height")
+		'("float*" "width")
+		'("float" "height")
 	)
 )
 
@@ -18,8 +18,8 @@
 	(of-object "ClutterLayout")
 	(return-type "void")
 	(parameters
-		'("ClutterUnit" "width")
-		'("ClutterUnit*" "height")
+		'("float" "width")
+		'("float*" "height")
 	)
 )
 
@@ -27,8 +27,8 @@
 	(of-object "ClutterLayout")
 	(return-type "void")
 	(parameters
-		'("ClutterUnit*" "width")
-		'("ClutterUnit*" "height")
+		'("float*" "width")
+		'("float*" "height")
 	)
 )
 
@@ -36,10 +36,10 @@
 	(of-object "ClutterLayout")
 	(return-type "gboolean")
 	(parameters
-		'("ClutterUnit" "given_width")
-		'("ClutterUnit" "given_height")
-		'("ClutterUnit*" "width")
-		'("ClutterUnit*" "height")
+		'("float" "given_width")
+		'("float" "given_height")
+		'("float*" "width")
+		'("float*" "height")
 	)
 )
 
@@ -200,9 +200,9 @@
   (of-object "ClutterActor")
   (return-type "void")
   (parameters
-    '("ClutterUnit" "for_height")
-    '("ClutterUnit*" "min_width_p")
-    '("ClutterUnit*" "natural_width_p")
+    '("float" "for_height")
+    '("float*" "min_width_p")
+    '("float*" "natural_width_p")
   )
 )
 
@@ -210,9 +210,9 @@
   (of-object "ClutterActor")
   (return-type "void")
   (parameters
-    '("ClutterUnit" "for_width")
-    '("ClutterUnit*" "min_height_p")
-    '("ClutterUnit*" "natural_height_p")
+    '("float" "for_width")
+    '("float*" "min_height_p")
+    '("float*" "natural_height_p")
   )
 )
 
@@ -221,7 +221,7 @@
   (return-type "void")
   (parameters
     '("const-ClutterActorBox*" "box")
-    '("gboolean" "absolute_origin_changed")
+    '("ClutterAllocationFlags" "absolute_origin_changed")
   )
 )
 

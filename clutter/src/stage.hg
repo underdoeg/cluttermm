@@ -25,6 +25,8 @@ _PINCLUDE(cluttermm/private/group_p.h)
 namespace Clutter
 {
 
+_WRAP_ENUM(PickMode, ClutterPickMode)
+
 typedef ClutterFog Fog;
 
 class Perspective
@@ -72,8 +74,8 @@ public:
   _WRAP_METHOD(void set_user_resizable(bool value), clutter_stage_set_user_resizable)
   _WRAP_METHOD(bool get_user_resizable() const, clutter_stage_get_user_resizable)
 
-  _WRAP_METHOD(Glib::RefPtr<Actor> get_actor_at_pos(int x, int y), clutter_stage_get_actor_at_pos, refreturn)
-  _WRAP_METHOD(Glib::RefPtr<const Actor> get_actor_at_pos(int x, int y) const, clutter_stage_get_actor_at_pos, refreturn, constversion)
+  _WRAP_METHOD(Glib::RefPtr<Actor> get_actor_at_pos(PickMode pick_mode, int x, int y), clutter_stage_get_actor_at_pos, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Actor> get_actor_at_pos(PickMode pick_mode, int x, int y) const, clutter_stage_get_actor_at_pos, refreturn, constversion)
 
   _WRAP_METHOD(Glib::RefPtr<Actor> get_key_focus(), clutter_stage_get_key_focus, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const Actor> get_key_focus() const, clutter_stage_get_key_focus,  refreturn, constversion)

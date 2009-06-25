@@ -36,7 +36,6 @@ typedef ClutterScrollEvent ScrollEvent;
 typedef ClutterCrossingEvent CrossingEvent;
 
 //TODO: Maybe redefine these, to avoid including a C header in our C++ header:
-typedef ClutterUnit Unit;
 
 _WRAP_GERROR(InitError, ClutterInitError, CLUTTER_INIT_ERROR)
 
@@ -69,14 +68,14 @@ class Vertex
 {
   _CLASS_BOXEDTYPE_STATIC(Vertex, ClutterVertex)
 public:
-  Vertex(Unit x, Unit y, Unit z = 0);
+  Vertex(float x, float y, float z = 0);
 
-  _MEMBER_GET(x, x, Unit, ClutterUnit)
-  _MEMBER_SET(x, x, Unit, ClutterUnit)
-  _MEMBER_GET(y, y, Unit, ClutterUnit)
-  _MEMBER_SET(y, y, Unit, ClutterUnit)
-  _MEMBER_GET(z, z, Unit, ClutterUnit)
-  _MEMBER_SET(z, z, Unit, ClutterUnit)
+  _MEMBER_GET(x, x, float, float)
+  _MEMBER_SET(x, x, float, float)
+  _MEMBER_GET(y, y, float, float)
+  _MEMBER_SET(y, y, float, float)
+  _MEMBER_GET(z, z, float, float)
+  _MEMBER_SET(z, z, float, float)
 };
 
 class Geometry

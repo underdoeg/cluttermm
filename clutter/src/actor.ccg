@@ -21,7 +21,7 @@
 namespace Clutter
 {
 
-ActorBox::ActorBox(Unit x1, Unit y1, Unit x2, Unit y2)
+ActorBox::ActorBox(float x1, float y1, float x2, float y2)
 {
   gobject_.x1 = x1;
   gobject_.y1 = y1;

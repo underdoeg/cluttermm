@@ -40,19 +40,19 @@ bool events_pending();
  * @param keyev A KeyEvent.
  * @return The keysym representing the key.
  */
-guint key_event_symbol(KeyEvent* keyev);
+guint key_event_get_symbol(KeyEvent* keyev);
 
 /** Retrieves the keycode of the key that caused @a keyev.
  * @param keyev A KeyEvent.
  * @return The keycode representing the key
  */
-guint16 key_event_code(KeyEvent* keyev);
+guint16 key_event_get_code(KeyEvent* keyev);
 
 /** Retrieves the unicode value for the key that caused @a keyev.
  * @param keyev A KeyEvent
  * @return The unicode value representing the key
  */
-guint32 key_event_unicode(KeyEvent* keyev);
+guint32 key_event_get_unicode(KeyEvent* keyev);
 
 /** Convert from a Clutter key symbol to the corresponding ISO10646 (Unicode)
  * character.

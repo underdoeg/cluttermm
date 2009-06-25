@@ -42,7 +42,7 @@ void Knot::set_xy(int x, int y)
   gobject_.y = y;
 }
 
-Vertex::Vertex(Unit x, Unit y, Unit z)
+Vertex::Vertex(float x, float y, float z)
 {
   gobject_.x = x;
   gobject_.y = y;

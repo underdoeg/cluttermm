@@ -45,11 +45,11 @@ public:
 protected:
   _WRAP_VFUNC(LayoutFlags get_layout_flags() const, add)
 
-#m4 _CONVERSION(`ClutterUnit*',`Unit&',`*($3)')
-  _WRAP_VFUNC(void width_for_height(Unit& width, Unit height) const, width_for_height)
-  _WRAP_VFUNC(void height_for_width(Unit width, Unit& height) const, height_for_width)
-  _WRAP_VFUNC(void natural_request(Unit& width, Unit& height) const, natural_request)
-  _WRAP_VFUNC(bool tune_request(Unit given_width, Unit given_height, Unit& width, Unit& height) const, tune_request)
+#m4 _CONVERSION(`float*',`float&',`*($3)')
+  _WRAP_VFUNC(void width_for_height(float& width, float height) const, width_for_height)
+  _WRAP_VFUNC(void height_for_width(float width, float& height) const, height_for_width)
+  _WRAP_VFUNC(void natural_request(float& width, float& height) const, natural_request)
+  _WRAP_VFUNC(bool tune_request(float given_width, float given_height, float& width, float& height) const, tune_request)
 };
 
 } // namespace Clutter

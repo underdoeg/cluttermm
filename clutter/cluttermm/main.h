@@ -95,27 +95,6 @@ void set_motion_events_enabled(bool enable);
  */
 bool get_motion_events_enabled();
 
-/** Sets the motion events frequency. Setting this to a non-zero value will
- * override the default setting, so it should be rarely used.
- *
- * Motion events are delivered from the default backend to the stage and are
- * used to generate the enter/leave events pair. This might lead to a
- * performance penalty due to the way the actors are identified. Using this
- * function is possible to reduce the frequency of the motion events
- * delivery to the stage.
- *
- * @param frequency the number of motion events per second, or 0 for the default value
- */
-void set_motion_events_frequency(guint frequency);
-
-/** Retrieves the number of motion events per second that are delivered to
- * the stage.
- *
- * See set_motion_events_frequency().
- * @return the number of motion events per second
- */
-guint get_motion_events_frequency();
-
 /** Clears the internal cache of glyphs used by the Pango renderer. This will
  * free up some memory and GL texture resources. The cache will be
  * automatically refilled as more text is drawn.

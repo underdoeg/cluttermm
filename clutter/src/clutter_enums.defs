@@ -1,4 +1,4 @@
-;; From /usr/local/include/clutter-0.9/clutter/clutter-actor.h
+;; From /home/murrayc/svn/gnome220/clutter/clutter/clutter-actor.h
 
 (define-flags-extended ActorFlags
   (in-module "Clutter")
@@ -7,10 +7,45 @@
     '("mapped" "CLUTTER_ACTOR_MAPPED" "1 << 1")
     '("realized" "CLUTTER_ACTOR_REALIZED" "1 << 2")
     '("reactive" "CLUTTER_ACTOR_REACTIVE" "1 << 3")
+    '("visible" "CLUTTER_ACTOR_VISIBLE" "1 << 4")
   )
 )
 
-;; From /usr/local/include/clutter-0.9/clutter/clutter-event.h
+(define-flags-extended AllocationFlags
+  (in-module "Clutter")
+  (c-name "ClutterAllocationFlags")
+  (values
+    '("allocation-none" "CLUTTER_ALLOCATION_NONE" "0")
+    '("absolute-origin-changed" "CLUTTER_ABSOLUTE_ORIGIN_CHANGED" "1 << 1")
+  )
+)
+
+;; From /home/murrayc/svn/gnome220/clutter/clutter/clutter-debug.h
+
+(define-flags-extended DebugFlag
+  (in-module "Clutter")
+  (c-name "ClutterDebugFlag")
+  (values
+    '("misc" "CLUTTER_DEBUG_MISC" "1 << 0")
+    '("actor" "CLUTTER_DEBUG_ACTOR" "1 << 1")
+    '("texture" "CLUTTER_DEBUG_TEXTURE" "1 << 2")
+    '("event" "CLUTTER_DEBUG_EVENT" "1 << 3")
+    '("paint" "CLUTTER_DEBUG_PAINT" "1 << 4")
+    '("gl" "CLUTTER_DEBUG_GL" "1 << 5")
+    '("alpha" "CLUTTER_DEBUG_ALPHA" "1 << 6")
+    '("behaviour" "CLUTTER_DEBUG_BEHAVIOUR" "1 << 7")
+    '("pango" "CLUTTER_DEBUG_PANGO" "1 << 8")
+    '("backend" "CLUTTER_DEBUG_BACKEND" "1 << 9")
+    '("scheduler" "CLUTTER_DEBUG_SCHEDULER" "1 << 10")
+    '("script" "CLUTTER_DEBUG_SCRIPT" "1 << 11")
+    '("shader" "CLUTTER_DEBUG_SHADER" "1 << 12")
+    '("multistage" "CLUTTER_DEBUG_MULTISTAGE" "1 << 13")
+    '("animation" "CLUTTER_DEBUG_ANIMATION" "1 << 14")
+    '("layout" "CLUTTER_DEBUG_LAYOUT" "1 << 15")
+  )
+)
+
+;; From /home/murrayc/svn/gnome220/clutter/clutter/clutter-event.h
 
 (define-flags-extended ModifierType
   (in-module "Clutter")
@@ -41,7 +76,8 @@
   (in-module "Clutter")
   (c-name "ClutterEventFlags")
   (values
-    '("c" "CLUTTER_EVENT_FLAG_SYNTHETIC" "1 << 0")
+    '("none" "CLUTTER_EVENT_NONE" "0")
+    '("flag-synthetic" "CLUTTER_EVENT_FLAG_SYNTHETIC" "1 << 0")
   )
 )
 
@@ -86,7 +122,18 @@
   )
 )
 
-;; From /usr/local/include/clutter-0.9/clutter/clutter-feature.h
+(define-enum-extended InputDeviceType
+  (in-module "Clutter")
+  (c-name "ClutterInputDeviceType")
+  (values
+    '("pointer-device" "CLUTTER_POINTER_DEVICE" "0")
+    '("keyboard-device" "CLUTTER_KEYBOARD_DEVICE" "1")
+    '("extension-device" "CLUTTER_EXTENSION_DEVICE" "2")
+    '("n-device-types" "CLUTTER_N_DEVICE_TYPES" "3")
+  )
+)
+
+;; From /home/murrayc/svn/gnome220/clutter/clutter/clutter-feature.h
 
 (define-flags-extended FeatureFlags
   (in-module "Clutter")
@@ -105,7 +152,7 @@
   )
 )
 
-;; From /usr/local/include/clutter-0.9/clutter/clutter-main.h
+;; From /home/murrayc/svn/gnome220/clutter/clutter/clutter-main.h
 
 (define-enum-extended InitError
   (in-module "Clutter")
@@ -119,7 +166,7 @@
   )
 )
 
-;; From /usr/local/include/clutter-0.9/clutter/clutter-path.h
+;; From /home/murrayc/svn/gnome220/clutter/clutter/clutter-path.h
 
 (define-enum-extended PathNodeType
   (in-module "Clutter")
@@ -135,7 +182,23 @@
   )
 )
 
-;; From /usr/local/include/clutter-0.9/clutter/clutter-script.h
+;; From /home/murrayc/svn/gnome220/clutter/clutter/clutter-private.h
+
+(define-flags-extended PrivateFlags
+  (in-module "Clutter")
+  (c-name "ClutterPrivateFlags")
+  (values
+    '("actor-unused-flag" "CLUTTER_ACTOR_UNUSED_FLAG" "0")
+    '("actor-in-destruction" "CLUTTER_ACTOR_IN_DESTRUCTION" "1 << 0")
+    '("actor-is-toplevel" "CLUTTER_ACTOR_IS_TOPLEVEL" "1 << 1")
+    '("actor-in-reparent" "CLUTTER_ACTOR_IN_REPARENT" "1 << 2")
+    '("actor-in-paint" "CLUTTER_ACTOR_IN_PAINT" "1 << 4")
+    '("actor-in-relayout" "CLUTTER_ACTOR_IN_RELAYOUT" "1 << 5")
+    '("texture-in-clone-paint" "CLUTTER_TEXTURE_IN_CLONE_PAINT" "1 << 6")
+  )
+)
+
+;; From /home/murrayc/svn/gnome220/clutter/clutter/clutter-script.h
 
 (define-enum-extended ScriptError
   (in-module "Clutter")
@@ -147,7 +210,7 @@
   )
 )
 
-;; From /usr/local/include/clutter-0.9/clutter/clutter-shader.h
+;; From /home/murrayc/svn/gnome220/clutter/clutter/clutter-shader.h
 
 (define-enum-extended ShaderError
   (in-module "Clutter")
@@ -159,7 +222,19 @@
   )
 )
 
-;; From /usr/local/include/clutter-0.9/clutter/clutter-texture.h
+;; From /home/murrayc/svn/gnome220/clutter/clutter/clutter-stage.h
+
+(define-enum-extended PickMode
+  (in-module "Clutter")
+  (c-name "ClutterPickMode")
+  (values
+    '("none" "CLUTTER_PICK_NONE" "0")
+    '("reactive" "CLUTTER_PICK_REACTIVE" "1")
+    '("all" "CLUTTER_PICK_ALL" "2")
+  )
+)
+
+;; From /home/murrayc/svn/gnome220/clutter/clutter/clutter-texture.h
 
 (define-enum-extended TextureError
   (in-module "Clutter")
@@ -192,7 +267,7 @@
   )
 )
 
-;; From /usr/local/include/clutter-0.9/clutter/clutter-timeline.h
+;; From /home/murrayc/svn/gnome220/clutter/clutter/clutter-timeline.h
 
 (define-enum-extended TimelineDirection
   (in-module "Clutter")
@@ -203,7 +278,7 @@
   )
 )
 
-;; From /usr/local/include/clutter-0.9/clutter/clutter-types.h
+;; From /home/murrayc/svn/gnome220/clutter/clutter/clutter-types.h
 
 (define-enum-extended Gravity
   (in-module "Clutter")
@@ -296,6 +371,19 @@
   (values
     '("mipmapping" "CLUTTER_FONT_MIPMAPPING" "1 << 0")
     '("hinting" "CLUTTER_FONT_HINTING" "1 << 1")
+  )
+)
+
+;; From /home/murrayc/svn/gnome220/clutter/clutter/clutter-units.h
+
+(define-enum-extended UnitType
+  (in-module "Clutter")
+  (c-name "ClutterUnitType")
+  (values
+    '("pixel" "CLUTTER_UNIT_PIXEL" "0")
+    '("em" "CLUTTER_UNIT_EM" "1")
+    '("mm" "CLUTTER_UNIT_MM" "2")
+    '("point" "CLUTTER_UNIT_POINT" "3")
   )
 )
 

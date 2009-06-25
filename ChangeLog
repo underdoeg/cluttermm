@@ -1,3 +1,28 @@
+2009-06-25  Murray Cumming  <murrayc@murrayc.com>
+
+	Fix the build by adapting to the latest clutter API.
+	
+	* clutter/src/clutter_methods.defs: Regenerated with h2defs.py
+	* clutter/src/clutter_enums.defs: Regenerated with enums.pl
+	* clutter/src/clutter_docs.xml:	Regenerated with docextract_to_xml.py
+	* clutter/src/clutter_vfuncs.defs: 
+	* tools/m4/convert_cluttermm.m4: Made changes by hand.
+
+	* clutter/src/actor.[hg|ccg]: 
+	Use float instead of guint/int or ClutterUnit for most things.
+	Remove the *u() versions of the methods.
+	Remove the focus_in() and focus_out() vfuncs.
+	* clutter/src/layout.hg: vfuncs: Use float instead of Unit.
+	* clutter/src/stage.hg: get_actor_at_pos(): Added the pick_mode parameter.
+	* clutter/src/timeline.hg|ccg]: get_delta(): Remove the duration parameter.
+	* clutter/src/types.[hg|ccg]: Remove Clutter::Unit.
+	* clutter/cluttermm/event.[h|cc]: key_event_code(), key_event_symbol(), 
+	key_event_unicode(): Renamed to key_event_get_code(), key_event_get_symbol(), 
+	key_event_get_unicode().
+	* clutter/cluttermm/main.cc:
+	* clutter/cluttermm/main.h: Removed get/set_motion_events_frequency().
+	* examples/test-actors.cc: Adapted.
+
 2009-06-04  Siavash Safi  <siavash@siavashs.org>
 
 	* .gitignore:

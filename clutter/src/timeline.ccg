@@ -20,10 +20,6 @@
 namespace Clutter
 {
 
-guint Timeline::get_delta() const
-{
-  return clutter_timeline_get_delta(const_cast<ClutterTimeline*>(gobj()), NULL);
-}
 
 Glib::StringArrayHandle Timeline::list_markers(gint frame_num) const
 {

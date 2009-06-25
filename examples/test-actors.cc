@@ -26,7 +26,7 @@ bool on_button_press(Clutter::ButtonEvent *event, const Glib::RefPtr<Clutter::St
   g_print("*** button press event (button:%d) ***\n",
     event->button);
 
-  Glib::RefPtr<Clutter::Actor> e = stage->get_actor_at_pos(event->x, event->y);
+  Glib::RefPtr<Clutter::Actor> e = stage->get_actor_at_pos(Clutter::PICK_ALL, event->x, event->y);
   if(e)
     e->hide();
 
@@ -36,9 +36,9 @@ bool on_button_press(Clutter::ButtonEvent *event, const Glib::RefPtr<Clutter::St
 bool on_key_release(Clutter::KeyEvent *event)
 {
   g_print("*** key press event (key:%c) ***\n",
-    Clutter::key_event_symbol(event));
+    Clutter::key_event_get_symbol(event));
 
-  if(Clutter::key_event_symbol(event) == CLUTTER_q)
+  if(Clutter::key_event_get_symbol(event) == CLUTTER_q)
     Clutter::main_quit();
 
   return false;

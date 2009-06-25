@@ -78,16 +78,6 @@ bool get_motion_events_enabled()
   return clutter_get_motion_events_enabled();
 }
 
-void set_motion_events_frequency(guint frequency)
-{
-  clutter_set_motion_events_frequency(frequency);
-}
-
-guint get_motion_events_frequency()
-{
-  return clutter_get_motion_events_frequency();
-}
-
 void clear_glyph_cache()
 {
   clutter_clear_glyph_cache();

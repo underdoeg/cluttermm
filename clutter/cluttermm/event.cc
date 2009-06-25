@@ -28,19 +28,19 @@ bool events_pending()
   return clutter_events_pending();
 }
 
-guint key_event_symbol(KeyEvent* keyev)
+guint key_event_get_symbol(KeyEvent* keyev)
 {
-  return clutter_key_event_symbol(keyev);
+  return clutter_event_get_key_symbol((ClutterEvent*)keyev);
 }
 
-guint16 key_event_code(KeyEvent* keyev)
+guint16 key_event_get_code(KeyEvent* keyev)
 {
-  return clutter_key_event_code(keyev);
+  return clutter_event_get_key_code((ClutterEvent*)keyev);
 }
 
-guint32 key_event_unicode(KeyEvent* keyev)
+guint32 key_event_get_unicode(KeyEvent* keyev)
 {
-  return clutter_key_event_unicode(keyev);
+  return clutter_event_get_key_unicode((ClutterEvent*)keyev);
 }
 
 guint32 keysym_to_unicode(guint keyval)
