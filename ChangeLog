@@ -1,3 +1,12 @@
+2009-07-29  Siavash Safi  <siavashs@siavashs.org>
+
+	patch by: Milosz Derezynski <internalerror@gmail.com>
+
+	Removed Deprecated methods from Actor.
+
+	* clutter/src/actor.hg: Removed get_allocation_coords(),
+	pick(), should_pick_paint()
+
 0.9.4:
 
 2009-06-25  Murray Cumming  <murrayc@murrayc.com>

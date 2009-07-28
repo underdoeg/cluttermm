@@ -190,9 +190,6 @@ public:
   _WRAP_METHOD(void get_transformed_position(float& x, float& y) const, clutter_actor_get_transformed_position)
   _WRAP_METHOD(void get_transformed_size(float& width, float& height) const, clutter_actor_get_transformed_size)
   
-  //TODO: Shouldn't the C function use floats?
-  _WRAP_METHOD(void get_allocation_coords(int& x1, int& y1, int& x2, int& y2) const, clutter_actor_get_allocation_coords)
-  
   _WRAP_METHOD_DOCS_ONLY(clutter_actor_get_allocation_geometry)
   Geometry get_allocation_geometry() const;
 
@@ -219,10 +216,6 @@ public:
   _WRAP_METHOD(void get_anchor_point(float& anchor_x, float& anchor_y) const, clutter_actor_get_anchor_point)
   _WRAP_METHOD(void set_anchor_point_from_gravity(ClutterGravity gravity), clutter_actor_set_anchor_point_from_gravity)
   _WRAP_METHOD(Gravity get_anchor_point_gravity(), clutter_actor_get_anchor_point_gravity)
-
-  // These are needed by custom container implementations and therefore public.
-  _WRAP_METHOD(void pick(const Color& color), clutter_actor_pick)
-  _WRAP_METHOD(bool should_pick_paint() const, clutter_actor_should_pick_paint)
 
   _WRAP_METHOD(void grab_key_focus(), clutter_actor_grab_key_focus)
 
