@@ -271,6 +271,7 @@
     '("multistage" "CLUTTER_DEBUG_MULTISTAGE")
     '("animation" "CLUTTER_DEBUG_ANIMATION")
     '("layout" "CLUTTER_DEBUG_LAYOUT")
+    '("nop-picking" "CLUTTER_DEBUG_NOP_PICKING")
   )
 )
 
@@ -424,7 +425,7 @@
     '("actor-sync-matrices" "CLUTTER_ACTOR_SYNC_MATRICES")
     '("actor-in-paint" "CLUTTER_ACTOR_IN_PAINT")
     '("actor-in-relayout" "CLUTTER_ACTOR_IN_RELAYOUT")
-    '("texture-in-clone-paint" "CLUTTER_TEXTURE_IN_CLONE_PAINT")
+    '("stage-in-resize" "CLUTTER_STAGE_IN_RESIZE")
   )
 )
 
@@ -703,15 +704,6 @@
   (return-type "none")
 )
 
-(define-method pick
-  (of-object "ClutterActor")
-  (c-name "clutter_actor_pick")
-  (return-type "none")
-  (parameters
-    '("const-ClutterColor*" "color")
-  )
-)
-
 (define-method queue_redraw
   (of-object "ClutterActor")
   (c-name "clutter_actor_queue_redraw")
@@ -796,18 +788,6 @@
   )
 )
 
-(define-method get_allocation_coords
-  (of-object "ClutterActor")
-  (c-name "clutter_actor_get_allocation_coords")
-  (return-type "none")
-  (parameters
-    '("gint*" "x_1")
-    '("gint*" "y_1")
-    '("gint*" "x_2")
-    '("gint*" "y_2")
-  )
-)
-
 (define-method get_allocation_box
   (of-object "ClutterActor")
   (c-name "clutter_actor_get_allocation_box")
@@ -832,7 +812,7 @@
   (return-type "none")
   (parameters
     '("ClutterActor*" "ancestor")
-    '("ClutterVertex" "verts[4]")
+    '("ClutterVertex[]" "verts")
   )
 )
 
@@ -1431,7 +1411,7 @@
   (c-name "clutter_actor_get_abs_allocation_vertices")
   (return-type "none")
   (parameters
-    '("ClutterVertex" "verts[4]")
+    '("ClutterVertex[]" "verts")
   )
 )
 
@@ -1481,6 +1461,21 @@
   (parameters
     '("const-gchar*" "text")
   )
+)
+
+(define-method get_transformation_matrix
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_transformation_matrix")
+  (return-type "none")
+  (parameters
+    '("CoglMatrix*" "matrix")
+  )
+)
+
+(define-method is_in_clone_paint
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_is_in_clone_paint")
+  (return-type "gboolean")
 )
 
 
@@ -5764,6 +5759,21 @@
   (return-type "none")
 )
 
+(define-method set_throttle_motion_events
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_set_throttle_motion_events")
+  (return-type "none")
+  (parameters
+    '("gboolean" "throttle")
+  )
+)
+
+(define-method get_throttle_motion_events
+  (of-object "ClutterStage")
+  (c-name "clutter_stage_get_throttle_motion_events")
+  (return-type "gboolean")
+)
+
 
 
 ;; From clutter-stage-manager.h
@@ -6987,27 +6997,27 @@
   (return-type "none")
 )
 
-(define-method pixels
+(define-method from_pixels
   (of-object "ClutterUnits")
-  (c-name "clutter_units_pixels")
+  (c-name "clutter_units_from_pixels")
   (return-type "none")
   (parameters
     '("gint" "px")
   )
 )
 
-(define-method em
+(define-method from_em
   (of-object "ClutterUnits")
-  (c-name "clutter_units_em")
+  (c-name "clutter_units_from_em")
   (return-type "none")
   (parameters
     '("gfloat" "em")
   )
 )
 
-(define-method em_for_font
+(define-method from_em_for_font
   (of-object "ClutterUnits")
-  (c-name "clutter_units_em_for_font")
+  (c-name "clutter_units_from_em_for_font")
   (return-type "none")
   (parameters
     '("const-gchar*" "font_name")
@@ -7015,18 +7025,18 @@
   )
 )
 
-(define-method mm
+(define-method from_mm
   (of-object "ClutterUnits")
-  (c-name "clutter_units_mm")
+  (c-name "clutter_units_from_mm")
   (return-type "none")
   (parameters
     '("gfloat" "mm")
   )
 )
 
-(define-method pt
+(define-method from_pt
   (of-object "ClutterUnits")
-  (c-name "clutter_units_pt")
+  (c-name "clutter_units_from_pt")
   (return-type "none")
   (parameters
     '("gfloat" "pt")
@@ -7039,12 +7049,6 @@
   (return-type "gfloat")
 )
 
-(define-method to_string
-  (of-object "ClutterUnits")
-  (c-name "clutter_units_to_string")
-  (return-type "gchar*")
-)
-
 (define-method from_string
   (of-object "ClutterUnits")
   (c-name "clutter_units_from_string")
@@ -7052,6 +7056,12 @@
   (parameters
     '("const-gchar*" "str")
   )
+)
+
+(define-method to_string
+  (of-object "ClutterUnits")
+  (c-name "clutter_units_to_string")
+  (return-type "gchar*")
 )
 
 (define-function clutter_param_units_get_type

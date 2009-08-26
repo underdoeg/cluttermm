@@ -1,4 +1,4 @@
-;; From /home/murrayc/svn/gnome220/clutter/clutter/clutter-actor.h
+;; From clutter-actor.h
 
 (define-flags-extended ActorFlags
   (in-module "Clutter")
@@ -20,7 +20,7 @@
   )
 )
 
-;; From /home/murrayc/svn/gnome220/clutter/clutter/clutter-debug.h
+;; From clutter-debug.h
 
 (define-flags-extended DebugFlag
   (in-module "Clutter")
@@ -42,10 +42,11 @@
     '("multistage" "CLUTTER_DEBUG_MULTISTAGE" "1 << 13")
     '("animation" "CLUTTER_DEBUG_ANIMATION" "1 << 14")
     '("layout" "CLUTTER_DEBUG_LAYOUT" "1 << 15")
+    '("nop-picking" "CLUTTER_DEBUG_NOP_PICKING" "1 << 16")
   )
 )
 
-;; From /home/murrayc/svn/gnome220/clutter/clutter/clutter-event.h
+;; From clutter-event.h
 
 (define-flags-extended ModifierType
   (in-module "Clutter")
@@ -133,7 +134,7 @@
   )
 )
 
-;; From /home/murrayc/svn/gnome220/clutter/clutter/clutter-feature.h
+;; From clutter-feature.h
 
 (define-flags-extended FeatureFlags
   (in-module "Clutter")
@@ -152,7 +153,7 @@
   )
 )
 
-;; From /home/murrayc/svn/gnome220/clutter/clutter/clutter-main.h
+;; From clutter-main.h
 
 (define-enum-extended InitError
   (in-module "Clutter")
@@ -166,7 +167,7 @@
   )
 )
 
-;; From /home/murrayc/svn/gnome220/clutter/clutter/clutter-path.h
+;; From clutter-path.h
 
 (define-enum-extended PathNodeType
   (in-module "Clutter")
@@ -182,7 +183,7 @@
   )
 )
 
-;; From /home/murrayc/svn/gnome220/clutter/clutter/clutter-private.h
+;; From clutter-private.h
 
 (define-flags-extended PrivateFlags
   (in-module "Clutter")
@@ -194,11 +195,11 @@
     '("actor-in-reparent" "CLUTTER_ACTOR_IN_REPARENT" "1 << 2")
     '("actor-in-paint" "CLUTTER_ACTOR_IN_PAINT" "1 << 4")
     '("actor-in-relayout" "CLUTTER_ACTOR_IN_RELAYOUT" "1 << 5")
-    '("texture-in-clone-paint" "CLUTTER_TEXTURE_IN_CLONE_PAINT" "1 << 6")
+    '("stage-in-resize" "CLUTTER_STAGE_IN_RESIZE" "1 << 6")
   )
 )
 
-;; From /home/murrayc/svn/gnome220/clutter/clutter/clutter-script.h
+;; From clutter-script.h
 
 (define-enum-extended ScriptError
   (in-module "Clutter")
@@ -210,7 +211,7 @@
   )
 )
 
-;; From /home/murrayc/svn/gnome220/clutter/clutter/clutter-shader.h
+;; From clutter-shader.h
 
 (define-enum-extended ShaderError
   (in-module "Clutter")
@@ -222,7 +223,7 @@
   )
 )
 
-;; From /home/murrayc/svn/gnome220/clutter/clutter/clutter-stage.h
+;; From clutter-stage.h
 
 (define-enum-extended PickMode
   (in-module "Clutter")
@@ -234,7 +235,7 @@
   )
 )
 
-;; From /home/murrayc/svn/gnome220/clutter/clutter/clutter-texture.h
+;; From clutter-texture.h
 
 (define-enum-extended TextureError
   (in-module "Clutter")
@@ -267,7 +268,7 @@
   )
 )
 
-;; From /home/murrayc/svn/gnome220/clutter/clutter/clutter-timeline.h
+;; From clutter-timeline.h
 
 (define-enum-extended TimelineDirection
   (in-module "Clutter")
@@ -278,7 +279,7 @@
   )
 )
 
-;; From /home/murrayc/svn/gnome220/clutter/clutter/clutter-types.h
+;; From clutter-types.h
 
 (define-enum-extended Gravity
   (in-module "Clutter")
@@ -374,7 +375,7 @@
   )
 )
 
-;; From /home/murrayc/svn/gnome220/clutter/clutter/clutter-units.h
+;; From clutter-units.h
 
 (define-enum-extended UnitType
   (in-module "Clutter")

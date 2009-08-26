@@ -74,7 +74,7 @@ AC_CHECK_PROGS(PERL, perl5 perl)
 # Note: We depend on cairomm only because pangomm depends on it
 # (but it was not in the pangomm .pc file until recently).
 PKG_CHECK_MODULES(CLUTTERMM,
-                  [clutter-0.9 >= 0.9.4
+                  [clutter-1.0 >= 1.0.0
                    glibmm-2.4 >= 2.14
                    pangomm-1.4 >= 2.12
                    cairomm-1.0])

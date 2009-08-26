@@ -1,3 +1,9 @@
+2009-08-26  Murray Cumming  <murrayc@murrayc.com>
+
+	* configure.in: Use clutter-1.0 instead of clutter-0.9.
+	* clutter/src/clutter_methods.defs:
+	* clutter/src/clutter_enums.defs: Regenerated.
+
 2009-07-29  Siavash Safi  <siavashs@siavashs.org>
 
 	patch by: Milosz Derezynski <internalerror@gmail.com>
