@@ -1,5 +1,9 @@
 2009-08-26  Murray Cumming  <murrayc@murrayc.com>
 
+	* clutter/cluttermm.pc.in: Depend on clutter-1.0 rather than clutter-0.9.
+
+2009-08-26  Murray Cumming  <murrayc@murrayc.com>
+
 	* configure.in: Use clutter-1.0 instead of clutter-0.9.
 	* clutter/src/clutter_methods.defs:
 	* clutter/src/clutter_enums.defs: Regenerated.
