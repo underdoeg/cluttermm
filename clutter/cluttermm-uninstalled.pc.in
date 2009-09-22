@@ -1,0 +1,11 @@
+gmmprocdir=${pc_top_builddir}/${pcfiledir}/@top_srcdir@/codegen
+doxytagfile=${pc_top_builddir}/doc/reference/@CLUTTERMM_MODULE_NAME@.tag
+htmlrefpub=http://library.gnome.org/@PACKAGE_TARNAME@/unstable/
+
+Name: cluttermm
+Description: C++ binding for clutter, not installed
+Version: @CLUTTERMM_VERSION@
+URL: http://www.gtkmm.org/
+Requires: @CLUTTERMM_MODULES@
+Libs: ${pc_top_builddir}/${pcfiledir}/cluttermm/libcluttermm-@CLUTTERMM_API_VERSION@.la
+Cflags: -I${pc_top_builddir}/${pcfiledir} -I${pc_top_builddir}/${pcfiledir}/@srcdir@

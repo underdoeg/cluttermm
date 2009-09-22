@@ -15,17 +15,12 @@
 ## You should have received a copy of the GNU Lesser General Public License
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-lib_LTLIBRARIES = libcluttermm-@CLUTTERMM_API_VERSION@.la
+include $(top_srcdir)/clutter/src/filelist.am
+include $(top_srcdir)/clutter/cluttermm/filelist.am
 
-include $(srcdir)/../src/filelist.am
-include $(srcdir)/filelist.am
-include $(top_srcdir)/build/compile-binding.am
+cluttermm_files_h = $(files_built_h) $(filter-out wrap_init.h,$(files_extra_h))
 
-local_cppflags = $(binding_includes) $(binding_cppflags) -DCLUTTERMM_BUILD=1
+book_name = $(CLUTTERMM_MODULE_NAME)
+doc_input = $(addprefix $(top_srcdir)/clutter/cluttermm/,$(cluttermm_files_h))
 
-AM_CPPFLAGS = $(local_cppflags) $(CLUTTERMM_CFLAGS)
-AM_CXXFLAGS = $(CLUTTERMM_WXXFLAGS)
-
-libcluttermm_@CLUTTERMM_API_VERSION@_la_SOURCES = $(binding_sources)
-libcluttermm_@CLUTTERMM_API_VERSION@_la_LDFLAGS = -no-undefined -version-info $(CLUTTERMM_SO_VERSION)
-libcluttermm_@CLUTTERMM_API_VERSION@_la_LIBADD  = $(CLUTTERMM_LIBS)
+include $(top_srcdir)/build/doc-reference.am

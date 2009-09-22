@@ -1,3 +1,52 @@
+2009-10-02  Daniel Elstner  <danielk@openismus.com>
+
+	Adopt new mm-common build infrastructure
+
+	* build/: Rename directory from scripts/ and delete the obsolete
+	M4 macros and build files.
+	* codegen/: Rename directory from tools/.
+	* codegen/extradefs/: Rename from tools/extra_defs_gen/.
+	* codegen/extradefs/generate_extra_defs_clutter.cc: Rename from
+	tools/extra_defs_gen/generate_defs_clutter to match the name of
+	the executable.
+	* doc/: Rename directory from docs/.
+	* build_shared/: Delete obsolete build support files.
+	* autogen.sh: Replace with minimal script based on autoreconf.
+	* configure.ac: Rename from configure.in and rewrite for mm-common.
+	* Makefile.am, doc/Makefile.am, examples/Makefile.am,
+	clutter/src/Makefile.am, clutter/cluttermm/Makefile.am,
+	tests/Makefile.am: Replace with mm-common skeleton build files
+	adapted for cluttermm.
+	* codegen/Makefile.am: Replace with skeleton file adapted for
+	cluttermm.  Do not install convert.m4 along with the public macro
+	files for gmmproc.
+	* codegen/m4/filelist.am, clutter/src/filelist.am,
+	clutter/cluttermm/filelist.am: New Automake include files listing
+	the cluttermm source files.
+	* codegen/m4/convert_cairo.m4: Rename from convert_cairomm.m4.
+	* codegen/m4/convert_clutter.m4: Rename from convert_cluttermm.m4.
+	* codegen/m4/convert_cogl.m4: Rename from convert_coglmm.m4.
+	* codegen/m4/convert.m4: Include M4 files by their new name.
+	* clutter/Makefile.am, clutter/src/Makefile_list_of_hg.am_fragment,
+	clutter/cluttermm/private/Makefile.am, docs/Makefile_web.am_fragment,
+	docs/reference/Makefile.am, examples/Makefile.am_fragment,
+	tools/Makefile_list_of_sources.am_fragment, tools/m4/Makefile.am,
+	tools/m4/Makefile_list_of_sources.am_fragment,
+	tools/extra_defs_gen/Makefile.am: Delete obsolete files.
+	* clutter/cluttermm.pc.in: Merge the modernized skeleton pkg-config
+	file from mm-common.
+	* clutter/cluttermm-uninstalled.pc.in: New pkg-config data file for
+	linking to an uninstalled build of cluttermm.
+	* clutter/cluttermmconfig.h.in: Remove all non-namespaced macros,
+	leaving only the cluttermm version number components.
+	* clutter/cluttermm.h: Clean up a bit and include cluttermmconfig.h.
+	Remove extern declarations of the runtime version number components
+	as they don't appear to be defined anywhere.
+	* doc/reference/Doxyfile.in: Replace file with mm-common skeleton
+	Doxygen configuration, adapted for cluttermm.
+	* clutter/README, docs/reference/README, examples/README.txt,
+	tools/m4/README: Delete useless or empty text files.
+
 2009-08-26  Murray Cumming  <murrayc@murrayc.com>
 
 	* clutter/cluttermm.pc.in: Depend on clutter-1.0 rather than clutter-0.9.

@@ -1,32 +1,26 @@
-/*
- * cluttermm - a C++ wrapper for clutter
+/* Copyright (c) 2007-2009  The cluttermm Development Team
  *
- * Copyright (c) 2007-2009  The cluttermm Development Team
+ * This file is part of cluttermm.
  *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * cluttermm is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published
+ * by the Free Software Foundation, either version 2.1 of the License,
+ * or (at your option) any later version.
  *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
+ * cluttermm is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library. If not, see <http://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef LIBCLUTTERMM_H
-#define LIBCLUTTERMM_H
-
-// cluttermm version
-extern const int cluttermm_major_version;
-extern const int cluttermm_minor_version;
-extern const int cluttermm_micro_version;
+#ifndef CLUTTERMM_H_INCLUDED
+#define CLUTTERMM_H_INCLUDED
 
 #include <glibmm.h>
-
+#include <cluttermmconfig.h>
 #include <cluttermm/actor.h>
 #include <cluttermm/alpha.h>
 #include <cluttermm/animation.h>
@@ -60,9 +54,4 @@ extern const int cluttermm_micro_version;
 #include <cluttermm/types.h>
 #include <cluttermm/utility.h>
 
-//#include <cluttermm/box.h>
-//#include <cluttermm/container.h>
-//#include <cluttermm/layout.h>
-//#include <cluttermm/margin.h>
-
-#endif /* !LIBCLUTTERMM_H */
+#endif /* !CLUTTERMM_H_INCLUDED */

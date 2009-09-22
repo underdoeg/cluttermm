@@ -15,17 +15,23 @@
 ## You should have received a copy of the GNU Lesser General Public License
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-lib_LTLIBRARIES = libcluttermm-@CLUTTERMM_API_VERSION@.la
+AUTOMAKE_OPTIONS = subdir-objects
 
-include $(srcdir)/../src/filelist.am
-include $(srcdir)/filelist.am
-include $(top_srcdir)/build/compile-binding.am
+include $(srcdir)/m4/filelist.am
 
-local_cppflags = $(binding_includes) $(binding_cppflags) -DCLUTTERMM_BUILD=1
+dist_noinst_DATA = $(addprefix m4/,$(files_codegen_m4_private))
 
-AM_CPPFLAGS = $(local_cppflags) $(CLUTTERMM_CFLAGS)
+codegen_m4dir = $(datadir)/$(CLUTTERMM_MODULE_NAME)/proc/m4
+dist_codegen_m4_DATA = $(addprefix m4/,$(files_codegen_m4_public))
+
+noinst_PROGRAMS = extradefs/generate_extra_defs
+
+extradefs_generate_extra_defs_SOURCES = extradefs/generate_extra_defs_clutter.cc
+extradefs_generate_extra_defs_LDADD   = $(CLUTTERMM_LIBS) -lglibmm_generate_extra_defs-2.4
+
+AM_CPPFLAGS = -I$(top_builddir) $(CLUTTERMM_CFLAGS)
 AM_CXXFLAGS = $(CLUTTERMM_WXXFLAGS)
 
-libcluttermm_@CLUTTERMM_API_VERSION@_la_SOURCES = $(binding_sources)
-libcluttermm_@CLUTTERMM_API_VERSION@_la_LDFLAGS = -no-undefined -version-info $(CLUTTERMM_SO_VERSION)
-libcluttermm_@CLUTTERMM_API_VERSION@_la_LIBADD  = $(CLUTTERMM_LIBS)
+# Instruct GNU make to delete the targets of a rule after it failed, in
+# order to avoid the complication of handling that situation manually.
+.DELETE_ON_ERROR:

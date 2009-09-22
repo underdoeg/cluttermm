@@ -1,0 +1,16 @@
+/*.cc
+!/event.cc
+!/frame-source.cc
+!/init.cc
+!/main.cc
+!/threads.cc
+!/utility.cc
+/*.h
+!/event.h
+!/frame-source.h
+!/init.h
+!/main.h
+!/threads.h
+!/utility.h
+!/wrap_init.h
+/private/*_p.h

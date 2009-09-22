@@ -1,0 +1,6 @@
+## This file is part of cluttermm.
+
+files_codegen_m4_private = convert.m4
+files_codegen_m4_public  = convert_cairo.m4 convert_clutter.m4 convert_cogl.m4
+
+files_codegen_m4 = $(files_codegen_m4_private) $(files_codegen_m4_public)
