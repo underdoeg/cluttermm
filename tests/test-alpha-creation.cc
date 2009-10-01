@@ -9,7 +9,7 @@ int main(int argc, char** argv)
 
   // Create a timeline to manage animation
   Glib::RefPtr<Clutter::Timeline> timeline =
-      Clutter::Timeline::create(360, 60); // num frames, fps
+      Clutter::Timeline::create(6000); // milliseconds
 
   // Set up some behaviours to handle scaling
   Glib::RefPtr<Clutter::Alpha> alpha =

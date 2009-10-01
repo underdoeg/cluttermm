@@ -44,9 +44,9 @@ namespace Clutter
  * @param the priority of the timeout source. Typically this will be in the range between Glib::PRIORITY_DEFAULT and Glib::PRIORITY_HIGH.
  * @return A sigc::connection that can be used to disconnect the callback from the timeout source.
  */
-sigc::connection frame_source_add(const sigc::slot<bool>& callback, guint interval, gint priority = Glib::PRIORITY_DEFAULT);
+sigc::connection frame_source_add(const sigc::slot<bool>& callback, guint interval,
+                                  int priority = Glib::PRIORITY_DEFAULT);
 
-} //namespace Clutter
+} // namespace Clutter
 
-#endif //_LIBCLUTTERMM_FRAME_SOURCE_H
-
+#endif /* !_LIBCLUTTERMM_FRAME_SOURCE_H */

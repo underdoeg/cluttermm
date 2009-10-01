@@ -21,7 +21,6 @@
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)
 
-
 namespace Clutter
 {
 
@@ -32,12 +31,11 @@ class Timeline : public Glib::Object
   _CLASS_GOBJECT(Timeline, ClutterTimeline, CLUTTER_TIMELINE, Glib::Object, GObject)
 
 protected:
-  _WRAP_CTOR(Timeline(guint num_frames, guint fps), clutter_timeline_new)
+  _WRAP_METHOD_DOCS_ONLY(clutter_timeline_new)
+  explicit Timeline(guint msecs);
+
 public:
-  _WRAP_CREATE(guint n_frames, guint fps)
-  
-  //We don't wrap this as a copy constructor because there is 
-  //no way to use copy constructors with RefPtr:
+  _WRAP_CREATE(guint msecs)
   _WRAP_METHOD(Glib::RefPtr<Timeline> clone() const, clutter_timeline_clone)
 
   _WRAP_METHOD(void set_duration(guint msecs), clutter_timeline_set_duration)
@@ -65,7 +63,7 @@ public:
   _WRAP_METHOD(TimelineDirection get_direction() const, clutter_timeline_get_direction)
 
   _WRAP_METHOD_DOCS_ONLY(clutter_timeline_list_markers)
-  Glib::StringArrayHandle list_markers(gint frame_num) const;
+  Glib::StringArrayHandle list_markers(int frame_num) const;
   _WRAP_METHOD(void add_marker_at_time(const Glib::ustring& marker_name, guint msecs), clutter_timeline_add_marker_at_time)
   _WRAP_METHOD(void add_marker_at_frame(const Glib::ustring& marker_name, guint frame_num), clutter_timeline_add_marker_at_frame)
   _WRAP_METHOD(bool has_marker(const Glib::ustring& marker_name), clutter_timeline_has_marker)
@@ -80,7 +78,7 @@ public:
   _WRAP_PROPERTY("num-frames", guint)
 
   _WRAP_SIGNAL(void completed(), "completed")
-  _WRAP_SIGNAL(void new_frame(gint fram_num), "new-frame")
+  _WRAP_SIGNAL(void new_frame(int fram_num), "new-frame")
   _WRAP_SIGNAL(void paused(), "paused")
   _WRAP_SIGNAL(void started(), "started")
 
@@ -92,4 +90,3 @@ public:
 };
 
 } // namespace Clutter
-

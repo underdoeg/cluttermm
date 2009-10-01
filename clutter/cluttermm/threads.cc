@@ -36,12 +36,13 @@ public:
 
 private:
   sigc::slot_base slot_;
-  guint source_id_;
+  guint           source_id_;
 };
 
 SourceConnectionNode::SourceConnectionNode(const sigc::slot_base& slot)
 :
-  slot_(slot), source_id_(0)
+  slot_      (slot),
+  source_id_ (0)
 {
   slot_.set_parent(this, &SourceConnectionNode::notify);
 }
@@ -57,49 +58,49 @@ void* SourceConnectionNode::notify(void* data)
     // Removing the source triggers the destroy_notify_handler, wait until
     // that for deletion.
   }
+  return 0;
 }
 
 void SourceConnectionNode::destroy_notify_callback(void* data)
 {
   SourceConnectionNode* const self = static_cast<SourceConnectionNode*>(data);
-  if(self)
-  {
-    self->source_id_ = 0;
-    delete self;
-  }
+  self->source_id_ = 0;
+  delete self;
 }
 
+inline
 void SourceConnectionNode::install(guint source_id)
 {
   source_id_ = source_id;
 }
 
+inline
 sigc::slot_base* SourceConnectionNode::get_slot()
 {
   return &slot_;
 }
 
+static
 gboolean source_callback(void* data)
 {
   SourceConnectionNode* const conn_data = static_cast<SourceConnectionNode*>(data);
-
 #ifdef GLIBMM_EXCEPTIONS_ENABLED
   try
-  {
 #endif
+  {
     // Recreate the specific slot from the generic slot node
     return (*static_cast<sigc::slot<bool>*>(conn_data->get_slot()))();
-#ifdef GLIBMM_EXCEPTIONS_ENABLED
   }
+#ifdef GLIBMM_EXCEPTIONS_ENABLED
   catch(...)
   {
     Glib::exception_handlers_invoke();
   }
-#endif // GLIBMM_EXCEPTIONS_ENABLED
+#endif
   return FALSE;
 }
 
-}
+} // anonymous namespace
 
 namespace Clutter
 {
@@ -119,34 +120,40 @@ void threads_leave()
   clutter_threads_leave();
 }
 
+// TODO: This is unlikely to be thread-safe because of the returned connection
+// object.  It's the same problem as with the glibmm idle source.
 sigc::connection threads_add_idle(const sigc::slot<bool>& callback, int priority)
 {
   SourceConnectionNode* const conn_node = new SourceConnectionNode(callback);
-  const sigc::connection connection(*conn_node->get_slot());
+  const sigc::connection connection (*conn_node->get_slot());
 
-  guint id = clutter_threads_add_idle_full(priority, &source_callback, conn_node, &SourceConnectionNode::destroy_notify_callback);
-  conn_node->install(id);
+  conn_node->install(clutter_threads_add_idle_full(priority, &source_callback, conn_node,
+                                                   &SourceConnectionNode::destroy_notify_callback));
   return connection;
 }
 
-sigc::connection threads_add_timeout(const sigc::slot<bool>& callback, guint interval, gint priority)
+sigc::connection threads_add_timeout(const sigc::slot<bool>& callback,
+                                     guint interval, int priority)
 {
   SourceConnectionNode* const conn_node = new SourceConnectionNode(callback);
-  const sigc::connection connection(*conn_node->get_slot());
+  const sigc::connection connection (*conn_node->get_slot());
 
-  guint id = clutter_threads_add_timeout_full(priority, interval, &source_callback, conn_node, &SourceConnectionNode::destroy_notify_callback);
-  conn_node->install(id);
+  conn_node->install(clutter_threads_add_timeout_full(
+      priority, interval, &source_callback, conn_node,
+      &SourceConnectionNode::destroy_notify_callback));
   return connection;
 }
 
-sigc::connection threads_add_frame_source(const sigc::slot<bool>& callback, guint interval, gint priority)
+sigc::connection threads_add_frame_source(const sigc::slot<bool>& callback,
+                                          guint interval, int priority)
 {
   SourceConnectionNode* const conn_node = new SourceConnectionNode(callback);
-  const sigc::connection connection(*conn_node->get_slot());
+  const sigc::connection connection (*conn_node->get_slot());
 
-  guint id = clutter_threads_add_frame_source_full(priority, interval, &source_callback, conn_node, &SourceConnectionNode::destroy_notify_callback);
-  conn_node->install(id);
+  conn_node->install(clutter_threads_add_frame_source_full(
+      priority, interval, &source_callback, conn_node,
+      &SourceConnectionNode::destroy_notify_callback));
   return connection;
 }
 
-} //namespace Clutter
+} // namespace Clutter

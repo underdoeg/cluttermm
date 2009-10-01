@@ -1,5 +1,22 @@
 2009-10-02  Daniel Elstner  <danielk@openismus.com>
 
+	Correct bad code pointed out by compiler warnings
+
+	* clutter/src/timeline.{ccg,hg} (Timeline::Timeline): Implement the
+	constructor manually, because the parameter names do not match the
+	names of the corresponding properties.  Also, adjust the signature to
+	the new ClutterTimeline API.
+	(Timeline::create): Change signature to match the constructor.
+	* clutter/cluttermm/{frame-source,threads}.cc: Add missing inline and
+	static keywords, and slightly clean up the code.
+	(SourceConnectionNode::notify): Actually return a defined value.
+	* examples/test-actors.cc (main), tests/test-alpha-creation.cc (main):
+	Adjust for the new Clutter::Timeline::create() API.
+	* tests/test-alpha-func.cc (on_alpha): Remove unused parameter name.
+	(main): Adapt to Clutter::Timeline::create() API change.
+
+2009-10-02  Daniel Elstner  <danielk@openismus.com>
+
 	Adopt new mm-common build infrastructure
 
 	* build/: Rename directory from scripts/ and delete the obsolete

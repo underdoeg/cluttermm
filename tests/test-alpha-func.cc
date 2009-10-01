@@ -6,7 +6,7 @@ Glib::RefPtr<Clutter::Actor> hand;
 
 guint32 alpha_val = 0;
 
-guint32 on_alpha(const Glib::RefPtr<Clutter::Alpha>& alpha)
+guint32 on_alpha(const Glib::RefPtr<Clutter::Alpha>&)
 {
   return ++alpha_val;
 }
@@ -17,11 +17,11 @@ main (int argc, char *argv[])
     // initialize the C++ wrapper types
     Clutter::init(&argc, &argv);
 
-    Glib::RefPtr<Clutter::Stage> stage = Clutter::Stage::get_default ();
+    Glib::RefPtr<Clutter::Stage> stage = Clutter::Stage::get_default();
 
     // Create a timeline to manage animation
     Glib::RefPtr<Clutter::Timeline> timeline =
-        Clutter::Timeline::create (1000, 60); // num frames, fps
+        Clutter::Timeline::create(16667); // milliseconds
     timeline->set_loop();
 
     // Set up some behaviours to handle scaling
