@@ -31,7 +31,7 @@ AM_MAINTAINER_MODE
 AC_ARG_VAR([ACLOCAL_FLAGS], [aclocal flags, e.g. -I <macro dir>])
 
 MM_PREREQ([0.8])
-MM_INIT_MODULE([cluttermm-0.9])
+MM_INIT_MODULE([cluttermm-1.0])
 
 # http://www.gnu.org/software/libtool/manual/html_node/Updating-version-info.html
 AC_SUBST([CLUTTERMM_SO_VERSION], [0:0:0])

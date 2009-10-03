@@ -1,3 +1,11 @@
+2009-10-03  Daniel Elstner  <daniel.kitta@gmail.com>
+
+	Increment cluttermm API version to 1.0
+
+	* configure.ac (MM_INIT_MODULE): Change the module name from
+	cluttermm-0.9 to cluttermm-1.0, following clutter.  Note that this
+	does not imply that cluttermm has reached API or ABI stability.
+
 2009-10-02  Daniel Elstner  <danielk@openismus.com>
 
 	Correct bad code pointed out by compiler warnings
