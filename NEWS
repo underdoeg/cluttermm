@@ -1,3 +1,15 @@
+0.9.5:
+
+* Use clutter-1.0 instead of clutter-0.9.
+  (Murray Cumming)
+* Likewise change our pkg-config file to cluttermm-1.0 instead of cluttermm-0.9, 
+  so please change your configure.ac checks too.
+  (Daniel Elstner) 
+* Remove deprecated Actor methods.
+  (Milosz Derezynski)
+* Use the mm-common build system.
+  (Daniel Elstner) 
+
 0.9.4:
 
 Updated for latest clutter-0.9 API, including use of float in the API instead 
