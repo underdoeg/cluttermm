@@ -4,6 +4,6 @@ files_built_cc = $(files_hg:.hg=.cc) wrap_init.cc
 files_built_h  = $(files_hg:.hg=.h)
 files_built_ph = $(patsubst %.hg,private/%_p.h,$(files_hg))
 
-files_extra_cc = event.cc frame-source.cc init.cc main.cc threads.cc utility.cc
-files_extra_h  = event.h frame-source.h init.h main.h threads.h utility.h wrap_init.h
+files_extra_cc = event.cc frame-source.cc init.cc main.cc threads.cc
+files_extra_h  = event.h frame-source.h init.h main.h threads.h wrap_init.h
 files_extra_ph =

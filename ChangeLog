@@ -1,3 +1,12 @@
+2010-04-16  Murray Cumming  <murrayc@murrayc.com>
+
+    Remove deprecated function (we are not API stable).
+
+    * clutter/cluttermm.h
+    * clutter/filelist.am
+	* clutter/cluttermm/utility.[h|cc]: Remove the utility.h API because 
+    it only wraps one function that is now deprecated in clutter 1.2.
+
 0.9.5:
 
 2009-10-03  Daniel Elstner  <daniel.kitta@gmail.com>

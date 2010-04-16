@@ -52,6 +52,5 @@
 #include <cluttermm/threads.h>
 #include <cluttermm/timeline.h>
 #include <cluttermm/types.h>
-#include <cluttermm/utility.h>
 
 #endif /* !CLUTTERMM_H_INCLUDED */
