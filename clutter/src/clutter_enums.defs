@@ -1,5 +1,15 @@
 ;; From clutter-actor.h
 
+;; Original typedef:
+;; typedef enum
+;; {
+;;   CLUTTER_ACTOR_MAPPED    = 1 << 1,
+;;   CLUTTER_ACTOR_REALIZED  = 1 << 2,
+;;   CLUTTER_ACTOR_REACTIVE  = 1 << 3,
+;;   CLUTTER_ACTOR_VISIBLE   = 1 << 4,
+;;   CLUTTER_ACTOR_NO_LAYOUT = 1 << 5
+;; } ClutterActorFlags;
+
 (define-flags-extended ActorFlags
   (in-module "Clutter")
   (c-name "ClutterActorFlags")
@@ -8,19 +18,122 @@
     '("realized" "CLUTTER_ACTOR_REALIZED" "1 << 2")
     '("reactive" "CLUTTER_ACTOR_REACTIVE" "1 << 3")
     '("visible" "CLUTTER_ACTOR_VISIBLE" "1 << 4")
+    '("no-layout" "CLUTTER_ACTOR_NO_LAYOUT" "1 << 5")
   )
 )
+
+;; Original typedef:
+;; typedef enum
+;; {
+;;   CLUTTER_ALLOCATION_NONE         = 0,
+;;   CLUTTER_ABSOLUTE_ORIGIN_CHANGED = 1 << 1
+;; } ClutterAllocationFlags;
 
 (define-flags-extended AllocationFlags
   (in-module "Clutter")
   (c-name "ClutterAllocationFlags")
   (values
-    '("allocation-none" "CLUTTER_ALLOCATION_NONE" "0")
+    '("allocation-none" "CLUTTER_ALLOCATION_NONE" "0x0")
     '("absolute-origin-changed" "CLUTTER_ABSOLUTE_ORIGIN_CHANGED" "1 << 1")
   )
 )
 
+;; Original typedef:
+;; typedef enum
+;; {
+;;   CLUTTER_REDRAW_CLIPPED_TO_BOX         = 0,
+;;   CLUTTER_REDRAW_CLIPPED_TO_ALLOCATION  = 1 << 1
+;; } ClutterRedrawFlags;
+
+(define-flags-extended RedrawFlags
+  (in-module "Clutter")
+  (c-name "ClutterRedrawFlags")
+  (values
+    '("box" "CLUTTER_REDRAW_CLIPPED_TO_BOX" "0x0")
+    '("allocation" "CLUTTER_REDRAW_CLIPPED_TO_ALLOCATION" "1 << 1")
+  )
+)
+
+;; From clutter-animator.h
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_INTERPOLATION_LINEAR,
+;;   CLUTTER_INTERPOLATION_CUBIC
+;; } ClutterInterpolation;
+
+(define-enum-extended Interpolation
+  (in-module "Clutter")
+  (c-name "ClutterInterpolation")
+  (values
+    '("linear" "CLUTTER_INTERPOLATION_LINEAR" "0")
+    '("cubic" "CLUTTER_INTERPOLATION_CUBIC" "1")
+  )
+)
+
+;; From clutter-bin-layout.h
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_BIN_ALIGNMENT_FIXED,
+;;   CLUTTER_BIN_ALIGNMENT_FILL,
+;;   CLUTTER_BIN_ALIGNMENT_START,
+;;   CLUTTER_BIN_ALIGNMENT_END,
+;;   CLUTTER_BIN_ALIGNMENT_CENTER
+;; } ClutterBinAlignment;
+
+(define-enum-extended BinAlignment
+  (in-module "Clutter")
+  (c-name "ClutterBinAlignment")
+  (values
+    '("fixed" "CLUTTER_BIN_ALIGNMENT_FIXED" "0")
+    '("fill" "CLUTTER_BIN_ALIGNMENT_FILL" "1")
+    '("start" "CLUTTER_BIN_ALIGNMENT_START" "2")
+    '("end" "CLUTTER_BIN_ALIGNMENT_END" "3")
+    '("center" "CLUTTER_BIN_ALIGNMENT_CENTER" "4")
+  )
+)
+
+;; From clutter-box-layout.h
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_BOX_ALIGNMENT_START,
+;;   CLUTTER_BOX_ALIGNMENT_END,
+;;   CLUTTER_BOX_ALIGNMENT_CENTER
+;; } ClutterBoxAlignment;
+
+(define-enum-extended BoxAlignment
+  (in-module "Clutter")
+  (c-name "ClutterBoxAlignment")
+  (values
+    '("start" "CLUTTER_BOX_ALIGNMENT_START" "0")
+    '("end" "CLUTTER_BOX_ALIGNMENT_END" "1")
+    '("center" "CLUTTER_BOX_ALIGNMENT_CENTER" "2")
+  )
+)
+
 ;; From clutter-debug.h
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_DEBUG_MISC                = 1 << 0,
+;;   CLUTTER_DEBUG_ACTOR               = 1 << 1,
+;;   CLUTTER_DEBUG_TEXTURE             = 1 << 2,
+;;   CLUTTER_DEBUG_EVENT               = 1 << 3,
+;;   CLUTTER_DEBUG_PAINT               = 1 << 4,
+;;   CLUTTER_DEBUG_GL                  = 1 << 5,
+;;   CLUTTER_DEBUG_ALPHA               = 1 << 6,
+;;   CLUTTER_DEBUG_BEHAVIOUR           = 1 << 7,
+;;   CLUTTER_DEBUG_PANGO               = 1 << 8,
+;;   CLUTTER_DEBUG_BACKEND             = 1 << 9,
+;;   CLUTTER_DEBUG_SCHEDULER           = 1 << 10,
+;;   CLUTTER_DEBUG_SCRIPT              = 1 << 11,
+;;   CLUTTER_DEBUG_SHADER              = 1 << 12,
+;;   CLUTTER_DEBUG_MULTISTAGE          = 1 << 13,
+;;   CLUTTER_DEBUG_ANIMATION           = 1 << 14,
+;;   CLUTTER_DEBUG_LAYOUT              = 1 << 15
+;; } ClutterDebugFlag;
 
 (define-flags-extended DebugFlag
   (in-module "Clutter")
@@ -42,11 +155,69 @@
     '("multistage" "CLUTTER_DEBUG_MULTISTAGE" "1 << 13")
     '("animation" "CLUTTER_DEBUG_ANIMATION" "1 << 14")
     '("layout" "CLUTTER_DEBUG_LAYOUT" "1 << 15")
-    '("nop-picking" "CLUTTER_DEBUG_NOP_PICKING" "1 << 16")
+  )
+)
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_DEBUG_NOP_PICKING         = 1 << 0,
+;;   CLUTTER_DEBUG_DUMP_PICK_BUFFERS   = 1 << 1
+;; } ClutterPickDebugFlag;
+
+(define-flags-extended PickDebugFlag
+  (in-module "Clutter")
+  (c-name "ClutterPickDebugFlag")
+  (values
+    '("nop-picking" "CLUTTER_DEBUG_NOP_PICKING" "1 << 0")
+    '("dump-pick-buffers" "CLUTTER_DEBUG_DUMP_PICK_BUFFERS" "1 << 1")
+  )
+)
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_DEBUG_DISABLE_SWAP_EVENTS     = 1 << 0,
+;;   CLUTTER_DEBUG_DISABLE_CLIPPED_REDRAWS = 1 << 1,
+;;   CLUTTER_DEBUG_REDRAWS                 = 1 << 2
+;; } ClutterDrawDebugFlag;
+
+(define-flags-extended DrawDebugFlag
+  (in-module "Clutter")
+  (c-name "ClutterDrawDebugFlag")
+  (values
+    '("disable-swap-events" "CLUTTER_DEBUG_DISABLE_SWAP_EVENTS" "1 << 0")
+    '("disable-clipped-redraws" "CLUTTER_DEBUG_DISABLE_CLIPPED_REDRAWS" "1 << 1")
+    '("redraws" "CLUTTER_DEBUG_REDRAWS" "1 << 2")
   )
 )
 
 ;; From clutter-event.h
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_SHIFT_MASK    = 1 << 0,
+;;   CLUTTER_LOCK_MASK     = 1 << 1,
+;;   CLUTTER_CONTROL_MASK  = 1 << 2,
+;;   CLUTTER_MOD1_MASK     = 1 << 3,
+;;   CLUTTER_MOD2_MASK     = 1 << 4,
+;;   CLUTTER_MOD3_MASK     = 1 << 5,
+;;   CLUTTER_MOD4_MASK     = 1 << 6,
+;;   CLUTTER_MOD5_MASK     = 1 << 7,
+;;   CLUTTER_BUTTON1_MASK  = 1 << 8,
+;;   CLUTTER_BUTTON2_MASK  = 1 << 9,
+;;   CLUTTER_BUTTON3_MASK  = 1 << 10,
+;;   CLUTTER_BUTTON4_MASK  = 1 << 11,
+;;   CLUTTER_BUTTON5_MASK  = 1 << 12,
+;; 
+;;   /* bits 15 to 25 are currently unused; bit 29 is used internally */
+;; 
+;;   CLUTTER_SUPER_MASK    = 1 << 26,
+;;   CLUTTER_HYPER_MASK    = 1 << 27,
+;;   CLUTTER_META_MASK     = 1 << 28,
+;; 
+;;   CLUTTER_RELEASE_MASK  = 1 << 30,
+;; 
+;;   CLUTTER_MODIFIER_MASK = 0x5c001fff
+;; } ClutterModifierType;
 
 (define-flags-extended ModifierType
   (in-module "Clutter")
@@ -73,14 +244,38 @@
   )
 )
 
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_EVENT_NONE           = 0,
+;;   CLUTTER_EVENT_FLAG_SYNTHETIC = 1 << 0,
+;; } ClutterEventFlags;
+
 (define-flags-extended EventFlags
   (in-module "Clutter")
   (c-name "ClutterEventFlags")
   (values
-    '("none" "CLUTTER_EVENT_NONE" "0")
+    '("none" "CLUTTER_EVENT_NONE" "0x0")
     '("flag-synthetic" "CLUTTER_EVENT_FLAG_SYNTHETIC" "1 << 0")
   )
 )
+
+;; Original typedef:
+;; typedef enum 
+;; {
+;;   CLUTTER_NOTHING = 0,
+;;   CLUTTER_KEY_PRESS,
+;;   CLUTTER_KEY_RELEASE,
+;;   CLUTTER_MOTION,
+;;   CLUTTER_ENTER,
+;;   CLUTTER_LEAVE,
+;;   CLUTTER_BUTTON_PRESS,
+;;   CLUTTER_BUTTON_RELEASE,
+;;   CLUTTER_SCROLL,
+;;   CLUTTER_STAGE_STATE,
+;;   CLUTTER_DESTROY_NOTIFY,
+;;   CLUTTER_CLIENT_MESSAGE,
+;;   CLUTTER_DELETE
+;; } ClutterEventType;
 
 (define-enum-extended EventType
   (in-module "Clutter")
@@ -102,6 +297,15 @@
   )
 )
 
+;; Original typedef:
+;; typedef enum
+;; {
+;;   CLUTTER_SCROLL_UP,
+;;   CLUTTER_SCROLL_DOWN,
+;;   CLUTTER_SCROLL_LEFT,
+;;   CLUTTER_SCROLL_RIGHT
+;; } ClutterScrollDirection;
+
 (define-enum-extended ScrollDirection
   (in-module "Clutter")
   (c-name "ClutterScrollDirection")
@@ -113,15 +317,87 @@
   )
 )
 
+;; Original typedef:
+;; typedef enum
+;; {
+;;   CLUTTER_STAGE_STATE_FULLSCREEN       = (1<<1),
+;;   CLUTTER_STAGE_STATE_OFFSCREEN        = (1<<2),
+;;   CLUTTER_STAGE_STATE_ACTIVATED        = (1<<3)
+;; } ClutterStageState;
+
 (define-flags-extended StageState
   (in-module "Clutter")
   (c-name "ClutterStageState")
   (values
-    '("fullscreen" "CLUTTER_STAGE_STATE_FULLSCREEN" "1<<1")
-    '("offscreen" "CLUTTER_STAGE_STATE_OFFSCREEN" "1<<2")
-    '("activated" "CLUTTER_STAGE_STATE_ACTIVATED" "1<<3")
+    '("fullscreen" "CLUTTER_STAGE_STATE_FULLSCREEN" "(1<<1)")
+    '("offscreen" "CLUTTER_STAGE_STATE_OFFSCREEN" "(1<<2)")
+    '("activated" "CLUTTER_STAGE_STATE_ACTIVATED" "(1<<3)")
   )
 )
+
+;; From clutter-feature.h
+
+;; Original typedef:
+;; typedef enum 
+;; {
+;;   CLUTTER_FEATURE_TEXTURE_NPOT           = (1 << 2),
+;;   CLUTTER_FEATURE_SYNC_TO_VBLANK         = (1 << 3),
+;;   CLUTTER_FEATURE_TEXTURE_YUV            = (1 << 4),
+;;   CLUTTER_FEATURE_TEXTURE_READ_PIXELS    = (1 << 5),
+;;   CLUTTER_FEATURE_STAGE_STATIC           = (1 << 6),
+;;   CLUTTER_FEATURE_STAGE_USER_RESIZE      = (1 << 7),
+;;   CLUTTER_FEATURE_STAGE_CURSOR           = (1 << 8),
+;;   CLUTTER_FEATURE_SHADERS_GLSL           = (1 << 9),
+;;   CLUTTER_FEATURE_OFFSCREEN              = (1 << 10),
+;;   CLUTTER_FEATURE_STAGE_MULTIPLE         = (1 << 11),
+;;   CLUTTER_FEATURE_SWAP_EVENTS            = (1 << 12)
+;; } ClutterFeatureFlags;
+
+(define-flags-extended FeatureFlags
+  (in-module "Clutter")
+  (c-name "ClutterFeatureFlags")
+  (values
+    '("texture-npot" "CLUTTER_FEATURE_TEXTURE_NPOT" "(1 << 2)")
+    '("sync-to-vblank" "CLUTTER_FEATURE_SYNC_TO_VBLANK" "(1 << 3)")
+    '("texture-yuv" "CLUTTER_FEATURE_TEXTURE_YUV" "(1 << 4)")
+    '("texture-read-pixels" "CLUTTER_FEATURE_TEXTURE_READ_PIXELS" "(1 << 5)")
+    '("stage-static" "CLUTTER_FEATURE_STAGE_STATIC" "(1 << 6)")
+    '("stage-user-resize" "CLUTTER_FEATURE_STAGE_USER_RESIZE" "(1 << 7)")
+    '("stage-cursor" "CLUTTER_FEATURE_STAGE_CURSOR" "(1 << 8)")
+    '("shaders-glsl" "CLUTTER_FEATURE_SHADERS_GLSL" "(1 << 9)")
+    '("offscreen" "CLUTTER_FEATURE_OFFSCREEN" "(1 << 10)")
+    '("stage-multiple" "CLUTTER_FEATURE_STAGE_MULTIPLE" "(1 << 11)")
+    '("swap-events" "CLUTTER_FEATURE_SWAP_EVENTS" "(1 << 12)")
+  )
+)
+
+;; From clutter-flow-layout.h
+
+;; Original typedef:
+;; typedef enum { /*< prefix=CLUTTER_FLOW >*/
+;;   CLUTTER_FLOW_HORIZONTAL,
+;;   CLUTTER_FLOW_VERTICAL
+;; } ClutterFlowOrientation;
+
+(define-enum-extended FlowOrientation
+  (in-module "Clutter")
+  (c-name "ClutterFlowOrientation")
+  (values
+    '("horizontal" "CLUTTER_FLOW_HORIZONTAL" "0")
+    '("vertical" "CLUTTER_FLOW_VERTICAL" "1")
+  )
+)
+
+;; From clutter-input-device.h
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_POINTER_DEVICE,
+;;   CLUTTER_KEYBOARD_DEVICE,
+;;   CLUTTER_EXTENSION_DEVICE,
+;; 
+;;   CLUTTER_N_DEVICE_TYPES
+;; } ClutterInputDeviceType;
 
 (define-enum-extended InputDeviceType
   (in-module "Clutter")
@@ -134,26 +410,16 @@
   )
 )
 
-;; From clutter-feature.h
-
-(define-flags-extended FeatureFlags
-  (in-module "Clutter")
-  (c-name "ClutterFeatureFlags")
-  (values
-    '("texture-npot" "CLUTTER_FEATURE_TEXTURE_NPOT" "1 << 2")
-    '("sync-to-vblank" "CLUTTER_FEATURE_SYNC_TO_VBLANK" "1 << 3")
-    '("texture-yuv" "CLUTTER_FEATURE_TEXTURE_YUV" "1 << 4")
-    '("texture-read-pixels" "CLUTTER_FEATURE_TEXTURE_READ_PIXELS" "1 << 5")
-    '("stage-static" "CLUTTER_FEATURE_STAGE_STATIC" "1 << 6")
-    '("stage-user-resize" "CLUTTER_FEATURE_STAGE_USER_RESIZE" "1 << 7")
-    '("stage-cursor" "CLUTTER_FEATURE_STAGE_CURSOR" "1 << 8")
-    '("shaders-glsl" "CLUTTER_FEATURE_SHADERS_GLSL" "1 << 9")
-    '("offscreen" "CLUTTER_FEATURE_OFFSCREEN" "1 << 10")
-    '("stage-multiple" "CLUTTER_FEATURE_STAGE_MULTIPLE" "1 << 11")
-  )
-)
-
 ;; From clutter-main.h
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_INIT_SUCCESS        =  1,
+;;   CLUTTER_INIT_ERROR_UNKNOWN  =  0,
+;;   CLUTTER_INIT_ERROR_THREADS  = -1,
+;;   CLUTTER_INIT_ERROR_BACKEND  = -2,
+;;   CLUTTER_INIT_ERROR_INTERNAL = -3
+;; } ClutterInitError;
 
 (define-enum-extended InitError
   (in-module "Clutter")
@@ -169,37 +435,104 @@
 
 ;; From clutter-path.h
 
-(define-enum-extended PathNodeType
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_PATH_MOVE_TO      = 0,
+;;   CLUTTER_PATH_LINE_TO      = 1,
+;;   CLUTTER_PATH_CURVE_TO     = 2,
+;;   CLUTTER_PATH_CLOSE        = 3,
+;; 
+;;   CLUTTER_PATH_REL_MOVE_TO  = CLUTTER_PATH_MOVE_TO | CLUTTER_PATH_RELATIVE,
+;;   CLUTTER_PATH_REL_LINE_TO  = CLUTTER_PATH_LINE_TO | CLUTTER_PATH_RELATIVE,
+;;   CLUTTER_PATH_REL_CURVE_TO = CLUTTER_PATH_CURVE_TO | CLUTTER_PATH_RELATIVE
+;; } ClutterPathNodeType;
+
+(define-flags-extended PathNodeType
   (in-module "Clutter")
   (c-name "ClutterPathNodeType")
   (values
-    '("move-to" "CLUTTER_PATH_MOVE_TO" "0")
-    '("line-to" "CLUTTER_PATH_LINE_TO" "1")
-    '("curve-to" "CLUTTER_PATH_CURVE_TO" "2")
-    '("close" "CLUTTER_PATH_CLOSE" "3")
-    '("rel-move-to" "CLUTTER_PATH_REL_MOVE_TO" "#error")
-    '("rel-line-to" "CLUTTER_PATH_REL_LINE_TO" "1")
-    '("rel-curve-to" "CLUTTER_PATH_REL_CURVE_TO" "2")
+    '("move-to" "CLUTTER_PATH_MOVE_TO" "0x0")
+    '("line-to" "CLUTTER_PATH_LINE_TO" "0x1")
+    '("curve-to" "CLUTTER_PATH_CURVE_TO" "0x2")
+    '("close" "CLUTTER_PATH_CLOSE" "0x3")
+    '("rel-move-to" "CLUTTER_PATH_REL_MOVE_TO" "0 | CLUTTER_PATH_RELATIVE")
+    '("rel-line-to" "CLUTTER_PATH_REL_LINE_TO" "1 | CLUTTER_PATH_RELATIVE")
+    '("rel-curve-to" "CLUTTER_PATH_REL_CURVE_TO" "2 | CLUTTER_PATH_RELATIVE")
   )
 )
 
 ;; From clutter-private.h
 
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_ACTOR_UNUSED_FLAG    = 0,
+;; 
+;;   CLUTTER_ACTOR_IN_DESTRUCTION = 1 << 0,
+;;   CLUTTER_ACTOR_IS_TOPLEVEL    = 1 << 1,
+;;   CLUTTER_ACTOR_IN_REPARENT    = 1 << 2,
+;; 
+;;   /* Used by the stage to indicate GL viewport / perspective etc needs
+;;    * (re)setting.
+;;    */
+;;   CLUTTER_ACTOR_SYNC_MATRICES  = 1 << 3,
+;; 
+;;   /* Used to avoid recursion */
+;;   CLUTTER_ACTOR_IN_PAINT       = 1 << 4,
+;; 
+;;   /* Used to avoid recursion */
+;;   CLUTTER_ACTOR_IN_RELAYOUT    = 1 << 5,
+;; 
+;;   /* Used by the stage if resizing is an asynchronous operation (like on
+;;    * X11) to delay queueing relayouts until we got a notification from the
+;;    * event handling
+;;    */
+;;   CLUTTER_STAGE_IN_RESIZE      = 1 << 6,
+;; 
+;;   /* a flag for internal children of Containers */
+;;   CLUTTER_ACTOR_INTERNAL_CHILD = 1 << 7
+;; } ClutterPrivateFlags;
+
 (define-flags-extended PrivateFlags
   (in-module "Clutter")
   (c-name "ClutterPrivateFlags")
   (values
-    '("actor-unused-flag" "CLUTTER_ACTOR_UNUSED_FLAG" "0")
+    '("actor-unused-flag" "CLUTTER_ACTOR_UNUSED_FLAG" "0x0")
     '("actor-in-destruction" "CLUTTER_ACTOR_IN_DESTRUCTION" "1 << 0")
     '("actor-is-toplevel" "CLUTTER_ACTOR_IS_TOPLEVEL" "1 << 1")
     '("actor-in-reparent" "CLUTTER_ACTOR_IN_REPARENT" "1 << 2")
+    '("actor-sync-matrices" "CLUTTER_ACTOR_SYNC_MATRICES" "1 << 3")
     '("actor-in-paint" "CLUTTER_ACTOR_IN_PAINT" "1 << 4")
     '("actor-in-relayout" "CLUTTER_ACTOR_IN_RELAYOUT" "1 << 5")
     '("stage-in-resize" "CLUTTER_STAGE_IN_RESIZE" "1 << 6")
+    '("actor-internal-child" "CLUTTER_ACTOR_INTERNAL_CHILD" "1 << 7")
+  )
+)
+
+;; From clutter-profile.h
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_PROFILE_PICKING_ONLY    = 1 << 0,
+;;   CLUTTER_PROFILE_DISABLE_REPORT  = 1 << 1
+;; } ClutterProfileFlag;
+
+(define-flags-extended ProfileFlag
+  (in-module "Clutter")
+  (c-name "ClutterProfileFlag")
+  (values
+    '("picking-only" "CLUTTER_PROFILE_PICKING_ONLY" "1 << 0")
+    '("disable-report" "CLUTTER_PROFILE_DISABLE_REPORT" "1 << 1")
   )
 )
 
 ;; From clutter-script.h
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_SCRIPT_ERROR_INVALID_TYPE_FUNCTION,
+;;   CLUTTER_SCRIPT_ERROR_INVALID_PROPERTY,
+;;   CLUTTER_SCRIPT_ERROR_INVALID_VALUE
+;; } ClutterScriptError;
 
 (define-enum-extended ScriptError
   (in-module "Clutter")
@@ -213,6 +546,13 @@
 
 ;; From clutter-shader.h
 
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_SHADER_ERROR_NO_ASM,
+;;   CLUTTER_SHADER_ERROR_NO_GLSL,
+;;   CLUTTER_SHADER_ERROR_COMPILE
+;; } ClutterShaderError;
+
 (define-enum-extended ShaderError
   (in-module "Clutter")
   (c-name "ClutterShaderError")
@@ -224,6 +564,13 @@
 )
 
 ;; From clutter-stage.h
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_PICK_NONE = 0,
+;;   CLUTTER_PICK_REACTIVE,
+;;   CLUTTER_PICK_ALL
+;; } ClutterPickMode;
 
 (define-enum-extended PickMode
   (in-module "Clutter")
@@ -237,6 +584,13 @@
 
 ;; From clutter-texture.h
 
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_TEXTURE_ERROR_OUT_OF_MEMORY,
+;;   CLUTTER_TEXTURE_ERROR_NO_YUV,
+;;   CLUTTER_TEXTURE_ERROR_BAD_FORMAT
+;; } ClutterTextureError;
+
 (define-enum-extended TextureError
   (in-module "Clutter")
   (c-name "ClutterTextureError")
@@ -247,16 +601,33 @@
   )
 )
 
+;; Original typedef:
+;; typedef enum { /*< prefix=CLUTTER_TEXTURE >*/
+;;   CLUTTER_TEXTURE_NONE             = 0,
+;;   CLUTTER_TEXTURE_RGB_FLAG_BGR     = 1 << 1,
+;;   CLUTTER_TEXTURE_RGB_FLAG_PREMULT = 1 << 2, /* FIXME: not handled */
+;;   CLUTTER_TEXTURE_YUV_FLAG_YUV2    = 1 << 3
+;; 
+;;   /* FIXME: add compressed types ? */
+;; } ClutterTextureFlags;
+
 (define-flags-extended TextureFlags
   (in-module "Clutter")
   (c-name "ClutterTextureFlags")
   (values
-    '("none" "CLUTTER_TEXTURE_NONE" "0")
+    '("none" "CLUTTER_TEXTURE_NONE" "0x0")
     '("rgb-flag-bgr" "CLUTTER_TEXTURE_RGB_FLAG_BGR" "1 << 1")
     '("rgb-flag-premult" "CLUTTER_TEXTURE_RGB_FLAG_PREMULT" "1 << 2")
     '("yuv-flag-yuv2" "CLUTTER_TEXTURE_YUV_FLAG_YUV2" "1 << 3")
   )
 )
+
+;; Original typedef:
+;; typedef enum { /*< prefix=CLUTTER_TEXTURE_QUALITY >*/
+;;   CLUTTER_TEXTURE_QUALITY_LOW,
+;;   CLUTTER_TEXTURE_QUALITY_MEDIUM,
+;;   CLUTTER_TEXTURE_QUALITY_HIGH
+;; } ClutterTextureQuality;
 
 (define-enum-extended TextureQuality
   (in-module "Clutter")
@@ -270,6 +641,12 @@
 
 ;; From clutter-timeline.h
 
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_TIMELINE_FORWARD,
+;;   CLUTTER_TIMELINE_BACKWARD
+;; } ClutterTimelineDirection;
+
 (define-enum-extended TimelineDirection
   (in-module "Clutter")
   (c-name "ClutterTimelineDirection")
@@ -280,6 +657,20 @@
 )
 
 ;; From clutter-types.h
+
+;; Original typedef:
+;; typedef enum { /*< prefix=CLUTTER_GRAVITY >*/
+;;   CLUTTER_GRAVITY_NONE       = 0,
+;;   CLUTTER_GRAVITY_NORTH,
+;;   CLUTTER_GRAVITY_NORTH_EAST,
+;;   CLUTTER_GRAVITY_EAST,
+;;   CLUTTER_GRAVITY_SOUTH_EAST,
+;;   CLUTTER_GRAVITY_SOUTH,
+;;   CLUTTER_GRAVITY_SOUTH_WEST,
+;;   CLUTTER_GRAVITY_WEST,
+;;   CLUTTER_GRAVITY_NORTH_WEST,
+;;   CLUTTER_GRAVITY_CENTER
+;; } ClutterGravity;
 
 (define-enum-extended Gravity
   (in-module "Clutter")
@@ -298,6 +689,13 @@
   )
 )
 
+;; Original typedef:
+;; typedef enum { /*< prefix=CLUTTER >*/
+;;   CLUTTER_X_AXIS,
+;;   CLUTTER_Y_AXIS,
+;;   CLUTTER_Z_AXIS
+;; } ClutterRotateAxis;
+
 (define-enum-extended RotateAxis
   (in-module "Clutter")
   (c-name "ClutterRotateAxis")
@@ -308,6 +706,12 @@
   )
 )
 
+;; Original typedef:
+;; typedef enum { /*< prefix=CLUTTER_ROTATE >*/
+;;   CLUTTER_ROTATE_CW,
+;;   CLUTTER_ROTATE_CCW
+;; } ClutterRotateDirection;
+
 (define-enum-extended RotateDirection
   (in-module "Clutter")
   (c-name "ClutterRotateDirection")
@@ -317,6 +721,12 @@
   )
 )
 
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_REQUEST_HEIGHT_FOR_WIDTH,
+;;   CLUTTER_REQUEST_WIDTH_FOR_HEIGHT
+;; } ClutterRequestMode;
+
 (define-enum-extended RequestMode
   (in-module "Clutter")
   (c-name "ClutterRequestMode")
@@ -325,6 +735,67 @@
     '("width-for-height" "CLUTTER_REQUEST_WIDTH_FOR_HEIGHT" "1")
   )
 )
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_CUSTOM_MODE = 0,
+;; 
+;;   /* linear */
+;;   CLUTTER_LINEAR,
+;; 
+;;   /* quadratic */
+;;   CLUTTER_EASE_IN_QUAD,
+;;   CLUTTER_EASE_OUT_QUAD,
+;;   CLUTTER_EASE_IN_OUT_QUAD,
+;; 
+;;   /* cubic */
+;;   CLUTTER_EASE_IN_CUBIC,
+;;   CLUTTER_EASE_OUT_CUBIC,
+;;   CLUTTER_EASE_IN_OUT_CUBIC,
+;; 
+;;   /* quartic */
+;;   CLUTTER_EASE_IN_QUART,
+;;   CLUTTER_EASE_OUT_QUART,
+;;   CLUTTER_EASE_IN_OUT_QUART,
+;; 
+;;   /* quintic */
+;;   CLUTTER_EASE_IN_QUINT,
+;;   CLUTTER_EASE_OUT_QUINT,
+;;   CLUTTER_EASE_IN_OUT_QUINT,
+;; 
+;;   /* sinusoidal */
+;;   CLUTTER_EASE_IN_SINE,
+;;   CLUTTER_EASE_OUT_SINE,
+;;   CLUTTER_EASE_IN_OUT_SINE,
+;; 
+;;   /* exponential */
+;;   CLUTTER_EASE_IN_EXPO,
+;;   CLUTTER_EASE_OUT_EXPO,
+;;   CLUTTER_EASE_IN_OUT_EXPO,
+;; 
+;;   /* circular */
+;;   CLUTTER_EASE_IN_CIRC,
+;;   CLUTTER_EASE_OUT_CIRC,
+;;   CLUTTER_EASE_IN_OUT_CIRC,
+;; 
+;;   /* elastic */
+;;   CLUTTER_EASE_IN_ELASTIC,
+;;   CLUTTER_EASE_OUT_ELASTIC,
+;;   CLUTTER_EASE_IN_OUT_ELASTIC,
+;; 
+;;   /* overshooting cubic */
+;;   CLUTTER_EASE_IN_BACK,
+;;   CLUTTER_EASE_OUT_BACK,
+;;   CLUTTER_EASE_IN_OUT_BACK,
+;; 
+;;   /* exponentially decaying parabolic */
+;;   CLUTTER_EASE_IN_BOUNCE,
+;;   CLUTTER_EASE_OUT_BOUNCE,
+;;   CLUTTER_EASE_IN_OUT_BOUNCE,
+;; 
+;;   /* guard, before registered alpha functions */
+;;   CLUTTER_ANIMATION_LAST
+;; } ClutterAnimationMode;
 
 (define-enum-extended AnimationMode
   (in-module "Clutter")
@@ -366,16 +837,49 @@
   )
 )
 
+;; Original typedef:
+;; typedef enum
+;; {
+;;   CLUTTER_FONT_MIPMAPPING = (1 << 0),
+;;   CLUTTER_FONT_HINTING    = (1 << 1),
+;; } ClutterFontFlags;
+
 (define-flags-extended FontFlags
   (in-module "Clutter")
   (c-name "ClutterFontFlags")
   (values
-    '("mipmapping" "CLUTTER_FONT_MIPMAPPING" "1 << 0")
-    '("hinting" "CLUTTER_FONT_HINTING" "1 << 1")
+    '("mipmapping" "CLUTTER_FONT_MIPMAPPING" "(1 << 0)")
+    '("hinting" "CLUTTER_FONT_HINTING" "(1 << 1)")
+  )
+)
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_TEXT_DIRECTION_DEFAULT,
+;;   CLUTTER_TEXT_DIRECTION_LTR,
+;;   CLUTTER_TEXT_DIRECTION_RTL
+;; } ClutterTextDirection;
+
+(define-enum-extended TextDirection
+  (in-module "Clutter")
+  (c-name "ClutterTextDirection")
+  (values
+    '("default" "CLUTTER_TEXT_DIRECTION_DEFAULT" "0")
+    '("ltr" "CLUTTER_TEXT_DIRECTION_LTR" "1")
+    '("rtl" "CLUTTER_TEXT_DIRECTION_RTL" "2")
   )
 )
 
 ;; From clutter-units.h
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_UNIT_PIXEL,
+;;   CLUTTER_UNIT_EM,
+;;   CLUTTER_UNIT_MM,
+;;   CLUTTER_UNIT_POINT,
+;;   CLUTTER_UNIT_CM
+;; } ClutterUnitType;
 
 (define-enum-extended UnitType
   (in-module "Clutter")
@@ -385,6 +889,7 @@
     '("em" "CLUTTER_UNIT_EM" "1")
     '("mm" "CLUTTER_UNIT_MM" "2")
     '("point" "CLUTTER_UNIT_POINT" "3")
+    '("cm" "CLUTTER_UNIT_CM" "4")
   )
 )
 

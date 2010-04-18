@@ -1,3 +1,11 @@
+2010-04-18  Murray Cumming  <murrayc@murrayc.com>
+
+	Actor: Wrapped new clutter-1.2 API.
+	
+	* clutter/src/clutter_enums.defs: Really regenerated with enums.pl
+	* clutter/src/types.hg: Added TextDirection.
+	* clutter/src/actor.[hg|ccg]: Added new methods from clutter 1.2.
+
 2010-04-18  Murray Cumming  <murrayc@murray.com>
 
 	Regenerated .defs files.

@@ -66,14 +66,17 @@ public:
   //There is no create() because this is an abstract base class.
   //_WRAP_CREATE()
 
-  void set_flags(ActorFlags flags);
-  void unset_flags(ActorFlags flags);
-  _MEMBER_GET(flags, flags, ActorFlags, guint32)
+  _WRAP_METHOD(void set_flags(ActorFlags flags), clutter_actor_set_flags)
+  _WRAP_METHOD(void unset_flags(ActorFlags flags), clutter_actor_unset_flags)
+  _WRAP_METHOD(ActorFlags get_flags() const, clutter_actor_get_flags)
 
+  //TODO: Remove these now that there are properties instead?
   bool is_mapped() const;
   bool is_realized() const;
   bool is_visible() const;
   bool is_reactive() const;
+
+  _IGNORE(clutter_actor_destroy)
 
   _WRAP_METHOD(void show(), clutter_actor_show)
   _WRAP_METHOD(void show_all(), clutter_actor_show_all)
@@ -81,6 +84,8 @@ public:
   _WRAP_METHOD(void hide_all(), clutter_actor_hide_all)
   _WRAP_METHOD(void realize(), clutter_actor_realize)
   _WRAP_METHOD(void unrealize(), clutter_actor_unrealize)
+  _WRAP_METHOD(void map(), clutter_actor_map)
+  _WRAP_METHOD(void unmap(), clutter_actor_unmap)
   _WRAP_METHOD(void paint(), clutter_actor_paint)
   _WRAP_METHOD(void queue_redraw(), clutter_actor_queue_redraw)
   _WRAP_METHOD(void queue_relayout(), clutter_actor_queue_relayout)
@@ -100,6 +105,15 @@ public:
 
   _WRAP_METHOD(Glib::RefPtr<Pango::Layout> create_pango_layout(const Glib::ustring& text),
                clutter_actor_create_pango_layout)
+
+  //TODO: Wrap CoglMatrix
+  _WRAP_METHOD(void get_transformation_matrix(CoglMatrix* matrix), clutter_actor_get_transformation_matrix)
+  
+  _WRAP_METHOD(bool is_in_clone_paint() const, clutter_actor_is_in_clone_paint)
+  _WRAP_METHOD(bool has_pointer() const, clutter_actor_has_pointer)
+  _WRAP_METHOD(void set_text_direction(TextDirection text_dir), clutter_actor_set_text_direction)
+  _WRAP_METHOD(TextDirection get_text_direction() const, clutter_actor_get_text_direction)
+
 
   _WRAP_METHOD(Glib::RefPtr<Actor> get_stage(), clutter_actor_get_stage)
   _WRAP_METHOD(Glib::RefPtr<const Actor> get_stage() const, clutter_actor_get_stage)
@@ -157,23 +171,34 @@ public:
   //ActorBox get_paint_area() const;
   _WRAP_METHOD(bool is_rotated() const, clutter_actor_is_rotated)
   _WRAP_METHOD(bool is_scaled() const, clutter_actor_is_scaled)
+  _WRAP_METHOD(bool should_pick_paint() const, clutter_actor_should_pick_paint)
+  
   _WRAP_METHOD_DOCS_ONLY(clutter_actor_get_allocation_vertices)
   void get_allocation_vertices(Vertex vertices[4]) const;
+  
   _WRAP_METHOD_DOCS_ONLY(clutter_actor_get_allocation_vertices)
   void get_allocation_vertices(const Glib::RefPtr<Actor>& ancestor, Vertex vertices[4]) const;
+  
   _WRAP_METHOD_DOCS_ONLY(clutter_actor_get_abs_allocation_vertices)
   void get_abs_allocation_vertices(Vertex vertices[4]) const;
+  
   _WRAP_METHOD_DOCS_ONLY(clutter_actor_get_allocation_box)
   ActorBox get_allocation_box() const;
+  
 #m4 _CONVERSION(`const ActorBox&', `const ClutterActorBox*',`($3).gobj()')
   _WRAP_METHOD(void allocate(const ActorBox& box, AllocationFlags absolute_origin_changed = ALLOCATION_NONE), clutter_actor_allocate)
-  _WRAP_METHOD(void allocate(AllocationFlags absolute_origin_changed = ALLOCATION_NONE), clutter_actor_allocate_preferred_size)
+  
+  _WRAP_METHOD(void allocate_preferred_size(AllocationFlags absolute_origin_changed = ALLOCATION_NONE), clutter_actor_allocate_preferred_size)
+    _WRAP_METHOD(void allocate_available_size(float x, float y, float available_width, float                 available_height, AllocationFlags flags = ALLOCATION_NONE), clutter_actor_allocate_available_size)
 
 #m4 _CONVERSION(`const Vertex&',`ClutterVertex*',`const_cast<ClutterVertex*>(($3).gobj())')
 #m4 _CONVERSION(`Vertex&',`ClutterVertex*',`($3).gobj()')
   _WRAP_METHOD(void apply_relative_transform_to_point(const Glib::RefPtr<Actor>& ancestor, const Vertex& point, Vertex& vertex) const, clutter_actor_apply_relative_transform_to_point)
   _WRAP_METHOD_DOCS_ONLY(clutter_actor_get_allocation_vertices)
   void apply_relative_transform_to_point(const Vertex& point, Vertex& vertex) const;
+
+  _WRAP_METHOD(void set_request_mode(RequestMode mode), clutter_actor_set_request_mode)
+  _WRAP_METHOD(RequestMode get_request_mode() const, clutter_actor_get_request_mode)
 
 #m4 _CONVERSION(`float&',`float*',`&($3)')
   _WRAP_METHOD(void get_preferred_size(float& min_width_p, float& min_height_p, float& natural_width_p, float& natural_height_p) const, clutter_actor_get_preferred_size)
@@ -231,6 +256,11 @@ public:
   _WRAP_METHOD(Glib::RefPtr<Animation> get_animation(), clutter_actor_get_animation)
   _WRAP_METHOD(Glib::RefPtr<const Animation> get_animation() const, clutter_actor_get_animation, constversion)
 
+protected:
+
+  _WRAP_METHOD(void push_internal(), clutter_actor_push_internal)
+  _WRAP_METHOD(void pop_internal(), clutter_actor_pop_internal)
+
 // signals
   _WRAP_SIGNAL(bool button_press_event(ButtonEvent* event), "button_press_event")
   _WRAP_SIGNAL(bool button_release_event(ButtonEvent* event), "button_release_event")
@@ -242,8 +272,8 @@ public:
   _WRAP_SIGNAL(bool key_release_event(KeyEvent* event), "key_release_event")
   _WRAP_SIGNAL(bool enter_event(CrossingEvent* event), "enter_event")
   _WRAP_SIGNAL(bool event(Event* event), "event")
-  //_WRAP_SIGNAL(void focus_out(), "focus_out")
-  //_WRAP_SIGNAL(void focus_in(), "focus_in")
+  _WRAP_SIGNAL(void key_focus_out(), "key-focus_out")
+  _WRAP_SIGNAL(void key_focus_in(), "key-focus_in")
 #m4 _CONVERSION(`ClutterActor*', `const Glib::RefPtr<Actor>&', `Glib::wrap(($3),true)')
   _WRAP_SIGNAL(void parent_set(const Glib::RefPtr<Actor>& old_parent), "parent_set")
   _WRAP_SIGNAL(bool scroll_event(ScrollEvent* event), "scroll_event")
