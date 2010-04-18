@@ -49,7 +49,7 @@ _WRAP_ENUM(TextDirection, ClutterTextDirection)
 
 class Knot
 {
-  _CLASS_BOXEDTYPE_STATIC(Knot, ClutterKnot)
+  _CLASS_BOXEDTYPE(Knot, ClutterKnot, NONE, clutter_knot_copy, clutter_knot_free)
 public:
   Knot(int x, int y);
 

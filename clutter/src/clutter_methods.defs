@@ -5783,59 +5783,6 @@
 )
 
 
-
-;; From clutter-model-private.h
-
-(define-method set_n_columns
-  (of-object "ClutterModel")
-  (c-name "clutter_model_set_n_columns")
-  (return-type "none")
-  (parameters
-    '("gint" "n_columns")
-    '("gboolean" "set_types")
-    '("gboolean" "set_names")
-  )
-)
-
-(define-function clutter_model_check_type
-  (c-name "clutter_model_check_type")
-  (return-type "gboolean")
-  (parameters
-    '("GType" "gtype")
-  )
-)
-
-(define-method set_column_type
-  (of-object "ClutterModel")
-  (c-name "clutter_model_set_column_type")
-  (return-type "none")
-  (parameters
-    '("gint" "column")
-    '("GType" "gtype")
-  )
-)
-
-(define-method set_column_name
-  (of-object "ClutterModel")
-  (c-name "clutter_model_set_column_name")
-  (return-type "none")
-  (parameters
-    '("gint" "column")
-    '("const-gchar*" "name")
-  )
-)
-
-(define-method set_row
-  (of-object "ClutterModelIter")
-  (c-name "clutter_model_iter_set_row")
-  (return-type "none")
-  (parameters
-    '("guint" "row")
-  )
-)
-
-
-
 ;; From clutter-path.h
 
 (define-function clutter_path_get_type
@@ -6090,11 +6037,6 @@
     '("const-ClutterPathNode*" "node_b")
   )
 )
-
-
-
-;; From clutter-private.h
-
 
 
 ;; From clutter-profile.h
@@ -6464,117 +6406,6 @@
   (return-type "gchar*")
   (parameters
     '("const-gchar*" "filename")
-  )
-)
-
-
-
-;; From clutter-script-private.h
-
-(define-function object_info_free
-  (c-name "object_info_free")
-  (return-type "none")
-  (parameters
-    '("gpointer" "data")
-  )
-)
-
-(define-function property_info_free
-  (c-name "property_info_free")
-  (return-type "none")
-  (parameters
-    '("gpointer" "data")
-  )
-)
-
-(define-function clutter_script_parser_get_type
-  (c-name "clutter_script_parser_get_type")
-  (return-type "GType")
-)
-
-(define-method parse_node
-  (of-object "ClutterScript")
-  (c-name "clutter_script_parse_node")
-  (return-type "gboolean")
-  (parameters
-    '("GValue*" "value")
-    '("const-gchar*" "name")
-    '("JsonNode*" "node")
-    '("GParamSpec*" "pspec")
-  )
-)
-
-(define-function clutter_script_get_type_from_symbol
-  (c-name "clutter_script_get_type_from_symbol")
-  (return-type "GType")
-  (parameters
-    '("const-gchar*" "symbol")
-  )
-)
-
-(define-function clutter_script_get_type_from_class
-  (c-name "clutter_script_get_type_from_class")
-  (return-type "GType")
-  (parameters
-    '("const-gchar*" "name")
-  )
-)
-
-(define-function clutter_script_resolve_animation_mode
-  (c-name "clutter_script_resolve_animation_mode")
-  (return-type "gulong")
-  (parameters
-    '("JsonNode*" "node")
-  )
-)
-
-(define-function clutter_script_enum_from_string
-  (c-name "clutter_script_enum_from_string")
-  (return-type "gboolean")
-  (parameters
-    '("GType" "gtype")
-    '("const-gchar*" "string")
-    '("gint*" "enum_value")
-  )
-)
-
-(define-function clutter_script_flags_from_string
-  (c-name "clutter_script_flags_from_string")
-  (return-type "gboolean")
-  (parameters
-    '("GType" "gtype")
-    '("const-gchar*" "string")
-    '("gint*" "flags_value")
-  )
-)
-
-(define-method parse_knot
-  (of-object "ClutterScript")
-  (c-name "clutter_script_parse_knot")
-  (return-type "gboolean")
-  (parameters
-    '("JsonNode*" "node")
-    '("ClutterKnot*" "knot")
-  )
-)
-
-(define-method parse_geometry
-  (of-object "ClutterScript")
-  (c-name "clutter_script_parse_geometry")
-  (return-type "gboolean")
-  (parameters
-    '("JsonNode*" "node")
-    '("ClutterGeometry*" "geometry")
-  )
-)
-
-(define-method parse_color
-  (of-object "ClutterScript")
-  (c-name "clutter_script_parse_color")
-  (return-type "gboolean")
-  (parameters
-    '("JsonNode*" "node")
-    '("ClutterColor*" "color")
   )
 )
 

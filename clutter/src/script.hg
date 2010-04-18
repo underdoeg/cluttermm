@@ -57,6 +57,12 @@ public:
   //clutter_script_get_objects() is a varargs convenience function for C.
   _IGNORE(clutter_script_get_objects)
 
+#m4 _CONVERSION(`GList*', `Glib::ListHandle<Glib::RefPtr<Glib::Object> >', `$2($3, Glib::OWNERSHIP_SHALLOW)')
+#m4 _CONVERSION(`GList*', `Glib::ListHandle<Glib::RefPtr<const Glib::Object> >', `$2($3, Glib::OWNERSHIP_SHALLOW)')
+ 
+  _WRAP_METHOD(Glib::ListHandle<Glib::RefPtr<Glib::Object> > list_objects(), clutter_script_list_objects)
+  _WRAP_METHOD(Glib::ListHandle<Glib::RefPtr<const Glib::Object> > list_objects() const, clutter_script_list_objects)
+
   _WRAP_METHOD(void unmerge_object(guint merge_id), clutter_script_unmerge_objects)
   _WRAP_METHOD(void ensure_objects(), clutter_script_ensure_objects)
 

@@ -22,24 +22,24 @@ namespace Clutter
 
 Knot::Knot(int x, int y)
 {
-  gobject_.x = x;
-  gobject_.y = y;
+  ClutterKnot tmp = {x, y};
+  gobject_ = clutter_knot_copy(&tmp);
 }
 
 void Knot::set_x(int x)
 {
-  gobject_.x = x;
+  gobject_->x = x;
 }
 
 void Knot::set_y(int y)
 {
-  gobject_.y = y;
+  gobject_->y = y;
 }
 
 void Knot::set_xy(int x, int y)
 {
-  gobject_.x = x;
-  gobject_.y = y;
+  gobject_->x = x;
+  gobject_->y = y;
 }
 
 Vertex::Vertex(float x, float y, float z)

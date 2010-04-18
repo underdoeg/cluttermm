@@ -65,8 +65,8 @@ public:
 
   _WRAP_METHOD(void set_perspective(const Perspective& prespective), clutter_stage_set_perspective)
   _WRAP_METHOD(void get_perspective(Perspective& prespective), clutter_stage_get_perspective)
-  _WRAP_METHOD(void fullscreen(), clutter_stage_fullscreen)
-  _WRAP_METHOD(void unfullscreen(), clutter_stage_unfullscreen)
+  _WRAP_METHOD(void set_fullscreen(bool fullscreen = true), clutter_stage_set_fullscreen)
+  _WRAP_METHOD(bool get_fullscreen() const, clutter_stage_get_fullscreen)
   _WRAP_METHOD(void show_cursor(), clutter_stage_show_cursor)
   _WRAP_METHOD(void hide_cursor(), clutter_stage_hide_cursor)
   _WRAP_METHOD(Glib::ustring get_title() const, clutter_stage_get_title)
@@ -96,6 +96,17 @@ public:
   _WRAP_METHOD(bool is_default() const, clutter_stage_is_default)
   _WRAP_METHOD(void ensure_current(), clutter_stage_ensure_current)
   _WRAP_METHOD(void ensure_viewport(), clutter_stage_ensure_viewport)
+
+  _WRAP_METHOD(void ensure_redraw(), clutter_stage_ensure_redraw)
+
+  _WRAP_METHOD(void set_throttle_motion_events(bool throttle = true), clutter_stage_set_throttle_motion_events)
+  _WRAP_METHOD(bool get_throttle_motion_events() const, clutter_stage_get_throttle_motion_events)
+
+  _WRAP_METHOD(void set_use_alpha(bool use_alpha = true), clutter_stage_set_use_alpha)
+  _WRAP_METHOD(bool get_use_alpha() const, clutter_stage_get_use_alpha)
+
+  _WRAP_METHOD(void set_minimum_size(guint width, guint height), clutter_stage_set_minimum_size)
+  _WRAP_METHOD(void get_minimum_size(guint& width, guint& height), clutter_stage_get_minimum_size)
 
   _WRAP_SIGNAL(void fullscreen(), "fullscreen")
   _WRAP_SIGNAL(void unfullscreen(), "unfullscreen")

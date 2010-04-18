@@ -54,9 +54,15 @@ public:
   _WRAP_METHOD(Glib::RefPtr<Alpha> get_alpha() const, clutter_animation_get_alpha)
   _WRAP_METHOD(void completed(), clutter_animation_completed)
   _WRAP_METHOD(Glib::RefPtr<Animation> bind(const std::string& property_name, const Glib::ValueBase& final), clutter_animation_bind)
+   //TODO: Add templated bind().
+   
   _WRAP_METHOD(void bind_interval(const std::string& property_name, const Glib::RefPtr<Interval>& interval), clutter_animation_bind_interval)
   _WRAP_METHOD(void update_interval(const std::string& property_name, const Glib::RefPtr<Interval>& interval), clutter_animation_update_interval)
   _WRAP_METHOD(bool has_property(const std::string& property_name) const, clutter_animation_has_property)
+  
+  _WRAP_METHOD(Glib::RefPtr<Animation> update(const std::string& property_name, const Glib::ValueBase& final), clutter_animation_update)
+  //TODO: Add templated update().
+  
   _WRAP_METHOD(void unbind_property(const std::string& property_name), clutter_animation_unbind_property)
   _WRAP_METHOD(Glib::RefPtr<Interval> get_interval(const std::string& property_name) const, clutter_animation_get_interval)
 

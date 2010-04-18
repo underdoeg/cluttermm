@@ -256,8 +256,6 @@ public:
   _WRAP_METHOD(Glib::RefPtr<Animation> get_animation(), clutter_actor_get_animation)
   _WRAP_METHOD(Glib::RefPtr<const Animation> get_animation() const, clutter_actor_get_animation, constversion)
 
-protected:
-
   _WRAP_METHOD(void push_internal(), clutter_actor_push_internal)
   _WRAP_METHOD(void pop_internal(), clutter_actor_pop_internal)
 

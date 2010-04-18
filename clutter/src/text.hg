@@ -62,6 +62,10 @@ public:
   _WRAP_METHOD(void set_font_name(const Glib::ustring& font_name), clutter_text_set_font_name)
   _WRAP_METHOD(Glib::ustring get_font_name() const, clutter_text_get_font_name)
 
+  _WRAP_METHOD(void set_font_description(const Pango::FontDescription& font_desc), clutter_text_set_font_description)
+#m4 _CONVERSION(`PangoFontDescription*',`Pango::FontDescription',`Pango::FontDescription(($3))')
+  _WRAP_METHOD(Pango::FontDescription get_font_description() const, clutter_text_get_font_description)
+  
   _WRAP_METHOD(void set_password_char(gunichar wc), clutter_text_set_password_char)
   _WRAP_METHOD(gunichar get_password_char() const, clutter_text_get_password_char)
 
@@ -130,6 +134,9 @@ public:
   _WRAP_METHOD(bool activate(), clutter_text_activate)
 
   _WRAP_METHOD(bool position_to_coords(int position, float &x, float &y, float &line_height), clutter_text_position_to_coords)
+
+#m4 _CONVERSION(`const Pango::AttrList&',`PangoAttrList*',`const_cast<PangoAttrList*>(($3).gobj())')
+  _WRAP_METHOD(void set_preedit_string(const Glib::ustring& preedit_str, const Pango::AttrList& preedit_attrs, guint ursor_pos), clutter_text_set_preedit_string)
 
   _WRAP_SIGNAL(void activate(), "activate")
   _WRAP_SIGNAL(void text_changed(), "text_changed")
