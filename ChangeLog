@@ -1,3 +1,13 @@
+2010-04-18  Murray Cumming  <murrayc@murray.com>
+
+	Regenerated .defs files.
+
+	* clutter/src/clutter_methods.defs: Regenerate with h2defs.py, against 
+	clutter-1.2.
+	* clutter/src/clutter_enums.defs: Regenerate with enums.pl
+	* clutter/src/clutter_signals.defs: Regenerated with extra_defs_gen.
+	* clutter/src/clutter_docs.xml: Regenerate with docextract_to_xml.py.
+
 2010-04-16  Murray Cumming  <murrayc@murrayc.com>
 
     Remove deprecated function (we are not API stable).
@@ -6,7 +16,7 @@
     * clutter/filelist.am
 	* clutter/cluttermm/utility.[h|cc]: Remove the utility.h API because 
     it only wraps one function that is now deprecated in clutter 1.2.
-
+    
 0.9.5:
 
 2009-10-03  Daniel Elstner  <daniel.kitta@gmail.com>
