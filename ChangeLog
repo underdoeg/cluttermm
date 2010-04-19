@@ -1,3 +1,11 @@
+2010-04-19  Murray Cumming  <murrayc@murrayc.com>
+
+	Actor, Animation: Updated signals and propeties for clutter 1.2.
+	
+	* clutter/src/actor.hg: Added new signals and new properties, correcting 
+	types of existing properties.
+	* clutter/src/animation.hg: Added new properties.
+
 2010-04-18  Murray Cumming  <murrayc@murrayc.com>
 
 	Wrapped more new clutter 1.2 API.

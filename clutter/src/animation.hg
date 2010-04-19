@@ -44,8 +44,11 @@ public:
   _WRAP_METHOD(Glib::RefPtr<const Glib::Object> get_object() const, clutter_animation_get_object)
   _WRAP_METHOD(void set_mode(gulong mode), clutter_animation_set_mode)
   _WRAP_METHOD(gulong get_mode() const, clutter_animation_get_mode)
+
+  //See http://bugzilla.o-hand.com/show_bug.cgi?id=2089 about the gint/guint difference.
   _WRAP_METHOD(void set_duration(int msecs), clutter_animation_set_duration)
   _WRAP_METHOD(guint get_duration() const, clutter_animation_get_duration)
+  
   _WRAP_METHOD(void set_loop(bool loop=true), clutter_animation_set_loop)
   _WRAP_METHOD(bool get_loop() const, clutter_animation_get_loop)
   _WRAP_METHOD(void set_timeline(const Glib::RefPtr<Timeline>& timeline), clutter_animation_set_timeline)
@@ -68,6 +71,14 @@ public:
 
   _WRAP_SIGNAL(void started(), "started")
   _WRAP_SIGNAL(void completed(), "completed")
+  
+  _WRAP_PROPERTY("object", Glib::RefPtr<Glib::Object>)
+  _WRAP_PROPERTY("mode", gulong)
+  _WRAP_PROPERTY("duration", guint)
+  _WRAP_PROPERTY("loop", bool)
+  _WRAP_PROPERTY("timeline", Glib::RefPtr<Timeline>)
+  _WRAP_PROPERTY("alpha", Glib::RefPtr<Alpha>)
+                               
 };
 
 } // namespace Clutter
