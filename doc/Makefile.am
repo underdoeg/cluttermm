@@ -21,6 +21,7 @@ include $(top_srcdir)/clutter/cluttermm/filelist.am
 cluttermm_files_h = $(files_built_h) $(filter-out wrap_init.h,$(files_extra_h))
 
 book_name = $(CLUTTERMM_MODULE_NAME)
-doc_input = $(addprefix $(top_srcdir)/clutter/cluttermm/,$(cluttermm_files_h))
+doc_input = $(addprefix $(top_srcdir)/clutter/cluttermm/,$(cluttermm_files_h)) \
+            $(top_srcdir)/clutter/cluttermm.h
 
 include $(top_srcdir)/build/doc-reference.am

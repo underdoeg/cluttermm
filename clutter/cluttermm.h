@@ -19,6 +19,39 @@
 #ifndef CLUTTERMM_H_INCLUDED
 #define CLUTTERMM_H_INCLUDED
 
+/** @mainpage cluttermm Reference Manual
+ *
+ * @section description Description
+ *
+ * cluttermm is a C++ wrapper for clutter.
+ *
+ * See also the <a href="http://www.clutter-project.org/">clutter website</a>.
+ *
+ * @section basics Basic Usage
+ *
+ * Include the cluttermm header:
+ * @code
+ * #include <cluttermm.h>
+ * @endcode
+ * (You may include individual headers, such as @c cluttermm/actor.h instead.)
+ *
+ * If your source file is @c program.cc, you can compile it with:
+ * @code
+ * g++ program.cc -o program `pkg-config --cflags --libs cluttermm-1.0`
+ * @endcode
+ *
+ * Alternatively, if using autoconf, use the following in @c configure.ac:
+ * @code
+ * PKG_CHECK_MODULES([CLUTTERMM], [cluttermm-1.0])
+ * @endcode
+ * Then use the generated @c CLUTTERMM_CFLAGS and @c CLUTTERMM_LIBS variables
+ * in the project @c Makefile.am files. For example:
+ * @code
+ * program_CPPFLAGS = $(CLUTTERMM_CFLAGS)
+ * program_LDADD = $(CLUTTERMM_LIBS)
+ * @endcode
+ */
+
 #include <glibmm.h>
 #include <cluttermmconfig.h>
 #include <cluttermm/actor.h>
