@@ -1,3 +1,9 @@
+0.9.6:
+
+* Wrap new API in clutter 1.2: 
+* Documentation: Added main page text for doxygen.
+  David King, Murray Cumming)
+
 0.9.5:
 
 * Use clutter-1.0 instead of clutter-0.9.

@@ -34,14 +34,14 @@ MM_PREREQ([0.8])
 MM_INIT_MODULE([cluttermm-1.0])
 
 # http://www.gnu.org/software/libtool/manual/html_node/Updating-version-info.html
-AC_SUBST([CLUTTERMM_SO_VERSION], [0:0:0])
+AC_SUBST([CLUTTERMM_SO_VERSION], [1:0:0])
 
 AC_PROG_CXX
 AC_DISABLE_STATIC
 AC_LIBTOOL_WIN32_DLL
 AC_PROG_LIBTOOL
 
-AC_SUBST([CLUTTERMM_MODULES], ['clutter-1.0 >= 1.0 pangomm-1.4 >= 2.24'])
+AC_SUBST([CLUTTERMM_MODULES], ['clutter-1.0 >= 1.2.0 pangomm-1.4 >= 2.24'])
 PKG_CHECK_MODULES([CLUTTERMM], [$CLUTTERMM_MODULES])
 MM_PKG_CONFIG_SUBST([GMMPROC_DIR], [--variable=gmmprocdir glibmm-2.4])
 
