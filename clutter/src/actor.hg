@@ -53,6 +53,7 @@ public:
 _WRAP_ENUM(ActorFlags, ClutterActorFlags)
 _WRAP_ENUM(AllocationFlags, ClutterAllocationFlags)
 
+//TODO: Write a version of the large description from here: http://clutter-project.org/docs/clutter/stable/ClutterActor.html#ClutterActor.description
 class Actor : public Glib::Object, public Scriptable
 {
   _CLASS_GOBJECT(Actor, ClutterActor, CLUTTER_ACTOR, Glib::Object, GObject)

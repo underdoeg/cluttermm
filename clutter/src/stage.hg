@@ -45,6 +45,21 @@ public:
   _MEMBER_SET(z_far, z_far, Cogl::Fixed, CoglFixed)
 };
 
+//TODO: Wrap clutter_feature_available(), as mentioned in the class comment.
+
+/** This is a top level 'window' on which child actors are placed and manipulated.
+ *
+ * Clutter creates a default stage upon initialization, which can be retrieved using Stage::get_default(). Clutter always 
+ * provides the default stage, unless the backend is unable to create one. The stage returned by Stage::get_default() is 
+ * guaranteed to always be the same.
+ *
+ * Backends might provide support for multiple stages. The support for this feature can be checked at run-time using the 
+ * clutter_feature_available() function and the CLUTTER_FEATURE_STAGE_MULTIPLE flag. If the backend used supports multiple 
+ * stages, new Clutter::Stage instances can be created.
+ * 
+ * Clutter::Stage is a proxy actor, wrapping the backend-specific implementation of the windowing system. It is possible 
+ * to subclass ClutterStage, as long as every overridden virtual function calls the implementation in the base class.
+ */
 class Stage :
   public Group
 {
