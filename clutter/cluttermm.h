@@ -23,9 +23,9 @@
  *
  * @section description Description
  *
- * cluttermm is a C++ wrapper for clutter.
- *
- * See also the <a href="http://www.clutter-project.org/">clutter website</a>.
+ * cluttermm is a C++ wrapper for <a href="http://www.clutter-project.org/">Clutter</a>.
+ * See Clutter::Stage and Clutter::Actor, for instance, and see the
+ * <a href="http://www.openismus.com/documents/cluttermm_tutorial/1.0/docs/tutorial/html/">Programming with cluttermm</a> tutorial.
  *
  * @section basics Basic Usage
  *

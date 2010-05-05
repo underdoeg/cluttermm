@@ -1,3 +1,10 @@
+2010-05-05  Murray Cumming  <murrayc@murrayc.com>
+
+	Documentation: Main page improvements.
+
+	* clutter/cluttermm.h: Improve the text slightly and link to Stage, Actor,
+    and the cluttermm tutorial.
+
 2010-04-27  David King  <davidk@openismus.com>
 
 	Add main page to Doxygen documentation
@@ -8,15 +15,15 @@
 2010-04-19  Murray Cumming  <murrayc@murrayc.com>
 
 	Actor, Animation: Updated signals and propeties for clutter 1.2.
-	
-	* clutter/src/actor.hg: Added new signals and new properties, correcting 
+
+	* clutter/src/actor.hg: Added new signals and new properties, correcting
 	types of existing properties.
 	* clutter/src/animation.hg: Added new properties.
 
 2010-04-18  Murray Cumming  <murrayc@murrayc.com>
 
 	Wrapped more new clutter 1.2 API.
-	
+
 	* clutter/src/animation.hg:
 	* clutter/src/behaviour-ellipse.hg:
 	* clutter/src/behaviour-rotate.hg:
@@ -27,14 +34,14 @@
 	* clutter/src/stage.hg:
 	* clutter/src/text.hg:
 	* clutter/src/timeline.hg:
-	* clutter/src/types.[hg|ccg]: Added new (clutter 1.2) methods and 
-	removed mentions of clutter funcitons that were removed (probably in clutter 
+	* clutter/src/types.[hg|ccg]: Added new (clutter 1.2) methods and
+	removed mentions of clutter funcitons that were removed (probably in clutter
 	1.0).
 
 2010-04-18  Murray Cumming  <murrayc@murrayc.com>
 
 	Actor: Wrapped new clutter 1.2 API.
-	
+
 	* clutter/src/clutter_enums.defs: Really regenerated with enums.pl
 	* clutter/src/types.hg: Added TextDirection.
 	* clutter/src/actor.[hg|ccg]: Added new methods from clutter 1.2.
@@ -43,7 +50,7 @@
 
 	Regenerated .defs files.
 
-	* clutter/src/clutter_methods.defs: Regenerate with h2defs.py, against 
+	* clutter/src/clutter_methods.defs: Regenerate with h2defs.py, against
 	clutter-1.2.
 	* clutter/src/clutter_enums.defs: Regenerate with enums.pl
 	* clutter/src/clutter_signals.defs: Regenerated with extra_defs_gen.
@@ -55,9 +62,9 @@
 
     * clutter/cluttermm.h
     * clutter/filelist.am
-	* clutter/cluttermm/utility.[h|cc]: Remove the utility.h API because 
+	* clutter/cluttermm/utility.[h|cc]: Remove the utility.h API because
     it only wraps one function that is now deprecated in clutter 1.2.
-    
+
 0.9.5:
 
 2009-10-03  Daniel Elstner  <daniel.kitta@gmail.com>
@@ -158,14 +165,14 @@
 2009-06-25  Murray Cumming  <murrayc@murrayc.com>
 
 	Fix the build by adapting to the latest clutter API.
-	
+
 	* clutter/src/clutter_methods.defs: Regenerated with h2defs.py
 	* clutter/src/clutter_enums.defs: Regenerated with enums.pl
 	* clutter/src/clutter_docs.xml:	Regenerated with docextract_to_xml.py
-	* clutter/src/clutter_vfuncs.defs: 
+	* clutter/src/clutter_vfuncs.defs:
 	* tools/m4/convert_cluttermm.m4: Made changes by hand.
 
-	* clutter/src/actor.[hg|ccg]: 
+	* clutter/src/actor.[hg|ccg]:
 	Use float instead of guint/int or ClutterUnit for most things.
 	Remove the *u() versions of the methods.
 	Remove the focus_in() and focus_out() vfuncs.
@@ -173,8 +180,8 @@
 	* clutter/src/stage.hg: get_actor_at_pos(): Added the pick_mode parameter.
 	* clutter/src/timeline.hg|ccg]: get_delta(): Remove the duration parameter.
 	* clutter/src/types.[hg|ccg]: Remove Clutter::Unit.
-	* clutter/cluttermm/event.[h|cc]: key_event_code(), key_event_symbol(), 
-	key_event_unicode(): Renamed to key_event_get_code(), key_event_get_symbol(), 
+	* clutter/cluttermm/event.[h|cc]: key_event_code(), key_event_symbol(),
+	key_event_unicode(): Renamed to key_event_get_code(), key_event_get_symbol(),
 	key_event_get_unicode().
 	* clutter/cluttermm/main.cc:
 	* clutter/cluttermm/main.h: Removed get/set_motion_events_frequency().
@@ -201,7 +208,7 @@
 
 2009-05-15  Murray Cumming  <murrayc@murrayc.com>
 
-	* clutter/src/actor.[hg|ccg]: animate_with_timeline(), animate_with_alpha(): 
+	* clutter/src/actor.[hg|ccg]: animate_with_timeline(), animate_with_alpha():
 	Rename to animate().
 	* tests/Makefile.am: Fix a typo to fix distcheck.
 
@@ -321,23 +328,23 @@
 	* clutter/cluttermm.h: Adjusted for removed files.
 
 	* clutter/src/types.hg: Added FontFlags.
-	* clutter/cluttermm/main.[h|cc]: Replaced get/set_use_mipmapped_text() 
+	* clutter/cluttermm/main.[h|cc]: Replaced get/set_use_mipmapped_text()
 	with get/set_font_flags().
 
-	* clutter/src/alpha.[hg|ccg]: Added a constructor and create() to take 
+	* clutter/src/alpha.[hg|ccg]: Added a constructor and create() to take
 	the animation mode.
 	* clutter/src/behaviour.hg: Replace some guints with doubles.
 	* clutter/src/clone.hg: Renamed from clone-texture.hg (CloneTexture).
 
-	* clutter/src/media.hg: Remove vfuncs, which have been removed from 
+	* clutter/src/media.hg: Remove vfuncs, which have been removed from
 	the C API.
 
 	* clutter/src/effectstemplate.[hg|ccg|: Removed.
-	* examples/Makefile.am: Remove effects example. We must replace this 
+	* examples/Makefile.am: Remove effects example. We must replace this
 	with an example of the new animation API.
 
 	* examples/test-actors.cc:
-	* tests/test-alpha-creation.cc: Use the AnimationMode instead of 
+	* tests/test-alpha-creation.cc: Use the AnimationMode instead of
 	standard callback functions (now removed).
 
 2009-01-24  Deng Xiyue  <manphiz@gmail.com>
@@ -424,9 +431,9 @@
 
 	* docs/Makefile.am:
 	* docs/Makefile_web.am_fragment:
-	* docs/reference/Makefile.am: Quick-but-kind-of-works upload of 
+	* docs/reference/Makefile.am: Quick-but-kind-of-works upload of
 	the documentation. We really need to get library.gnome.org working for us.
-	There are no inter-links yet, for instance to glibmm - that needs us to 
+	There are no inter-links yet, for instance to glibmm - that needs us to
 	arrange the Doxygen tags as done already elsewhere.
 
 2008-12-29  Daniel Elstner  <danielk@openismus.com>
@@ -647,7 +654,7 @@
 
 2008-11-04  Piotr Rak <piotr.rak@gmail.com>
 
-	* clutter/src/behaviour-depth.hg: Constructor: Rename parameter names, 
+	* clutter/src/behaviour-depth.hg: Constructor: Rename parameter names,
 	so that gmmproc uses the correct GObject property names.
 	Bug #559176
 
@@ -690,7 +697,7 @@
 	* clutter/src/texture.hg:
 	* clutter/src/timeline.ccg:
 	* clutter/src/types.ccg:
-	* clutter/src/types.hg: Include clutter.h instead of individual files, 
+	* clutter/src/types.hg: Include clutter.h instead of individual files,
 	as required by clutter-0.9.
 	Bug #559176
 
@@ -698,9 +705,9 @@ This is is trunk, for cluttermm-0.9. See also the cluttermm-0.8 branch.
 
 2008-11-03   Piotr Rak <piotr.rak@gmail.com>
 
-	* clutter/src/behaviour-path.hg: Remove a parameter name to avoid 
+	* clutter/src/behaviour-path.hg: Remove a parameter name to avoid
 	a g++ warning about the unused parameter.
-	Bug #558873. 
+	Bug #558873.
 
 0.7.4:
 
@@ -709,7 +716,7 @@ This is is trunk, for cluttermm-0.9. See also the cluttermm-0.8 branch.
 	* clutter/cluttermm.h:
 	* clutter/src/Makefile_list_of_hg.am_fragment:
 	* clutter/src/timeout-pool.ccg:
-	* clutter/src/timeout-pool.hg: Removed the TimeoutPool class, 
+	* clutter/src/timeout-pool.hg: Removed the TimeoutPool class,
 	because ClutterTimeoutPool is not real public API
 	according to http://bugzilla.o-hand.com/show_bug.cgi?id=1154 .
 
@@ -718,18 +725,18 @@ This is is trunk, for cluttermm-0.9. See also the cluttermm-0.8 branch.
 	* clutter/src/timeout-pool.ccg:
 	* clutter/src/timeout-pool.hg: Implement the constructor.
 	Bug #553157 (Cristi Posoiu)
-	Added a destructor, though it is not clear how we should free the 
+	Added a destructor, though it is not clear how we should free the
 	C struct. See http://bugzilla.o-hand.com/show_bug.cgi?id=1154
 
 2008-09-23  Murray Cumming  <murrayc@murrayc.com>
 
-	* clutter/src/timeline.hg: Constructor: Rename the msecs parameter 
+	* clutter/src/timeline.hg: Constructor: Rename the msecs parameter
 	to duration so that the implementation uses the correct property name.
 	Bug #553157 (Cristi Posoiu)
 
 2008-08-11  Murray Cumming  <murrayc@murrayc.com>
 
-	* clutter/src/types.hg: Added some default parameter values for 
+	* clutter/src/types.hg: Added some default parameter values for
 	constructors.
 
 0.7.3:
@@ -737,24 +744,24 @@ This is is trunk, for cluttermm-0.9. See also the cluttermm-0.8 branch.
 2008-08-10  Murray Cumming  <murrayc@murrayc.com>
 
 	* clutter/src/container.ccg:
-	* clutter/src/container.hg: get_child_property(), 
-	set_child_property(): Correct the implementation to fix 
+	* clutter/src/container.hg: get_child_property(),
+	set_child_property(): Correct the implementation to fix
 	a compile error when using these templated methods.
 
 2008-08-04  Murray Cumming  <murrayc@murrayc.com>
 
 	* clutter/src/container.ccg:
-	* clutter/src/container.hg: Added get/set_child_property<>() and 
-	get/set_child_property_value(), using the same technique as 
+	* clutter/src/container.hg: Added get/set_child_property<>() and
+	get/set_child_property_value(), using the same technique as
 	Glib::ObjectBase::get/set_property().
 
 2008-07-30  Murray Cumming  <murrayc@murrayc.com>
 
-	* examples/simple-cairo.cc: Removed this. It was not 
+	* examples/simple-cairo.cc: Removed this. It was not
 	being built and it is now in clutter-cairomm anyway.
 	* examples/effect.cc:
 	* examples/test-actors.cc:
-	* examples/test-boxes.cc: Corrected the syntax 
+	* examples/test-boxes.cc: Corrected the syntax
 	formatting.
 
 0.7.2:
@@ -780,9 +787,9 @@ This is is trunk, for cluttermm-0.9. See also the cluttermm-0.8 branch.
 	* tools/extra_defs_gen/Makefile.am:
 	* tools/extra_defs_gen/generate_defs_clutter.cc:
 	* tools/extra_defs_gen/generate_defs_clutter_cairo.cc:
-	Moved clutter-cairomm into a separate module, though we 
-	still depend on cairomm because we depend on pangomm (which depends on 
-	cairomm to wrap pango-cairo sensibly). 
+	Moved clutter-cairomm into a separate module, though we
+	still depend on cairomm because we depend on pangomm (which depends on
+	cairomm to wrap pango-cairo sensibly).
 
 2008-07-14  Murray Cumming  <murrayc@murrayc.com>
 
@@ -791,7 +798,7 @@ This is is trunk, for cluttermm-0.9. See also the cluttermm-0.8 branch.
 	* configure.in:
 	* examples/Makefile.am:
 	* examples/Makefile.am_fragment:
-	* examples/embed-gtk.cc: Moved clutter-gtkmm into a separate module, 
+	* examples/embed-gtk.cc: Moved clutter-gtkmm into a separate module,
 	because someone did not want to use gtkmm.
 	clutter-cairomm is still there, but maybe we should remove that too.
 
@@ -1062,7 +1069,7 @@ This is is trunk, for cluttermm-0.9. See also the cluttermm-0.8 branch.
 2008-06-02   Denis Leroy  <denis@poolshark.org>
 
 	* clutter-cairo/cluttermm-cairo.pc.in:
-	* clutter-gtk/cluttermm-gtk.pc.in: Use API_VER so the correct library 
+	* clutter-gtk/cluttermm-gtk.pc.in: Use API_VER so the correct library
 	names are used. Bug #536181.
 
 0.5.1:
@@ -1071,8 +1078,8 @@ This is is trunk, for cluttermm-0.9. See also the cluttermm-0.8 branch.
 
 	* clutter-cairo/Makefile.am:
 	* clutter-gtk/Makefile.am:
-	* clutter/Makefile.am: Added the generated .pc files to DISTCLEANFILES 
-	to fix distcheck. 
+	* clutter/Makefile.am: Added the generated .pc files to DISTCLEANFILES
+	to fix distcheck.
 
 2008-04-22  Jonathon Jongsma  <jjongsma@gnome.org>
 
@@ -1180,23 +1187,23 @@ This is is trunk, for cluttermm-0.9. See also the cluttermm-0.8 branch.
 	* clutter/src/clutter_methods.defs: Regenereated with h2defs.py.
 
 	* clutter/src/clutter_vfuncs.defs:
-	* clutter/src/stage.hg: Remove set_offscreen() vfunc because it was 
+	* clutter/src/stage.hg: Remove set_offscreen() vfunc because it was
 	removed from clutter.
 
-	* clutter/src/entry.hg: Renamed set_position() to set_cursor_position(), 
+	* clutter/src/entry.hg: Renamed set_position() to set_cursor_position(),
 	to match the change in clutter.
 
 2008-01-26  Murray Cumming  <murrayc@murrayc.com>
 
 	* clutter/src/script.hg:
-	* clutter/src/shader.hg: Do not use _DERIVES_INITIALLY_UNOWNED, because I 
+	* clutter/src/shader.hg: Do not use _DERIVES_INITIALLY_UNOWNED, because I
 	do not think they do.
 
 2008-01-26  Murray Cumming  <murrayc@murrayc.com>
 
-	* clutter/src/score.hg: Do not use _DERIVES_INITIALLY_UNOWNED, because I 
+	* clutter/src/score.hg: Do not use _DERIVES_INITIALLY_UNOWNED, because I
 	do not think it does.
-	get_timeline(): Use refreturn. 
+	get_timeline(): Use refreturn.
 	* clutter/src/script.hg: Wrap clutter_get_script_id() as a static method.
 	* clutter/src/scriptable.hg: Wrap the get_id() vfunc.
 	* clutter/src/shader.ccg:
@@ -1314,32 +1321,32 @@ This is is trunk, for cluttermm-0.9. See also the cluttermm-0.8 branch.
 2007-12-17  Murray Cumming  <murrayc@murrayc.com>
 
 	* clutter/src/Makefile_list_of_hg.am_fragment:
-	Added back container.hg because ClutterContainer was not removed 
+	Added back container.hg because ClutterContainer was not removed
 	from clutter.
 
 2007-11-30  Murray Cumming  <murrayc@murrayc.com>
 
-	* clutter/src/actor.hg: Removed deprecated 
+	* clutter/src/actor.hg: Removed deprecated
 	set_scale_with_gravityx(). Added some new methods.
 
 	* clutter/cluttermm.h:
 	* clutter/src/Makefile_list_of_hg.am_fragment:
 	* examples/Makefile.am:
 	* tools/extra_defs_gen/generate_defs_clutter.cc:
-	Remove use of Box, Container, HBox, VBox, Layout and Margin 
-	because they have been removed from Clutter. We can move these 
-	to a wrapper for the Clutter higher-level library when that 
-	C library exists. 
+	Remove use of Box, Container, HBox, VBox, Layout and Margin
+	because they have been removed from Clutter. We can move these
+	to a wrapper for the Clutter higher-level library when that
+	C library exists.
 
 2007-11-22  Murray Cumming  <murrayc@murrayc.com>
 
 	* clutter/src/alpha.ccg:
 	* clutter/src/behaviour.ccg:
-	* clutter/src/container.ccg: Take a reference with Glib::wrap() 
-	in the slot/callback proxies, because the C callback does not 
-	give us one. Otherwise the RefPtr decreases the refcount in its 
+	* clutter/src/container.ccg: Take a reference with Glib::wrap()
+	in the slot/callback proxies, because the C callback does not
+	give us one. Otherwise the RefPtr decreases the refcount in its
 	destructor.
-	Jonathon, if you copied this code from somewhere, we should check 
+	Jonathon, if you copied this code from somewhere, we should check
 	the code that you copied from too.
 	* clutter/src/timeline.hg: Added =true to set_loop().
 	* tests/Makefile.am: Added a test of the alpha funcs.
@@ -1385,11 +1392,11 @@ This is is trunk, for cluttermm-0.9. See also the cluttermm-0.8 branch.
 2007-11-19  Murray Cumming  <murrayc@murrayc.com>
 
 	* clutter/src/alpha.ccg:
-	* clutter/src/alpha.hg: Added a constructor and create() 
-	that takes a regular ClutterAlphaFunc, because the slot version 
-	seems to have refcount problems. We might want this anyway, so it 
-	is easy for people to use new standard clutter ClutterAlphaFuncs. 
-	* tests/test-alpha-creation.cc: Use the new constructor to show 
+	* clutter/src/alpha.hg: Added a constructor and create()
+	that takes a regular ClutterAlphaFunc, because the slot version
+	seems to have refcount problems. We might want this anyway, so it
+	is easy for people to use new standard clutter ClutterAlphaFuncs.
+	* tests/test-alpha-creation.cc: Use the new constructor to show
 	that this removes the warning.
 
 2007-11-19  Murray Cumming  <murrayc@murrayc.com>
@@ -1397,14 +1404,14 @@ This is is trunk, for cluttermm-0.9. See also the cluttermm-0.8 branch.
 	* Makefile.am:
 	* configure.in:
 	* tests/Makefile.am:
-	* tests/test-alpha-creation.cc: Added a tests directory, with one 
+	* tests/test-alpha-creation.cc: Added a tests directory, with one
 	simple test, though it doesn't show the problem in the example.
 
 2007-11-19  Murray Cumming  <murrayc@murrayc.com>
 
-	* clutter/src/actor.hg: Commented-out the rotate_*() and get_r*_ang*() 
+	* clutter/src/actor.hg: Commented-out the rotate_*() and get_r*_ang*()
 	methods which have been removed from clutter in svn.
-	* examples/test-actors.cc: Used the C functions for now, because I am too 
+	* examples/test-actors.cc: Used the C functions for now, because I am too
 	lazy to regenerate the .defs file.
 
 2007-11-18  Jonathon Jongsma  <jjongsma@gnome.org>
@@ -1490,15 +1497,15 @@ This is is trunk, for cluttermm-0.9. See also the cluttermm-0.8 branch.
 
 2007-11-15  Murray Cumming  <murrayc@murrayc.com>
 
-	* clutter/src/clutter_signals.defs: Corrected the 
+	* clutter/src/clutter_signals.defs: Corrected the
 	Actor::enter-event signal definition.
-	* clutter/src/actor.hg: Added some event signals that were 
+	* clutter/src/actor.hg: Added some event signals that were
 	commented out.
 	* clutter/src/alpha.ccg:
-	* clutter/src/alpha.hg: Added a constructor (and create) 
+	* clutter/src/alpha.hg: Added a constructor (and create)
 	which takes a timeline and alpha callback.
 	* clutter/src/container.ccg:
-	* clutter/src/container.hg: Added foreach() and 
+	* clutter/src/container.hg: Added foreach() and
 	sort_depth_order(), and the foreach() vfunc.
 	* clutter/src/stage.hg: Added stage_event().
 	* clutter/src/timeline.hg: Added clone().
@@ -1507,13 +1514,13 @@ This is is trunk, for cluttermm-0.9. See also the cluttermm-0.8 branch.
 
 	* clutter/src/actor.hg: Wrapped get_scalex().
 	* clutter/src/behaviour.hg: Wrapped get_actors().
-	* tools/m4/convert_cluttermm.m4: Moved the signal conversion into the .hg file, 
+	* tools/m4/convert_cluttermm.m4: Moved the signal conversion into the .hg file,
 	to avoid it being used anywhere else.
 
 2007-11-12  Murray Cumming  <murrayc@murrayc.com>
 
 	* clutter/src/texture.ccg:
-	* clutter/src/texture.hg: Use _WRAP_GERROR() to wrap the 
+	* clutter/src/texture.hg: Use _WRAP_GERROR() to wrap the
 	GError, and use the errthrow parameter with _WRAP_METHOD.
 
 2007-11-12  Murray Cumming  <murrayc@murrayc.com>
@@ -1558,7 +1565,7 @@ This is is trunk, for cluttermm-0.9. See also the cluttermm-0.8 branch.
 	* clutter/src/texture.hg:
 	* clutter/src/timeline.ccg:
 	* clutter/src/timeline.hg: Use Fixed typedefs.
-	Removed unnecessary includes of C headers in our .hg headers - 
+	Removed unnecessary includes of C headers in our .hg headers -
 	adding them to our .ccg files where necessary.
 
 2007-11-11  Jonathon Jongsma  <jjongsma@gnome.org>
@@ -1644,9 +1651,9 @@ This is is trunk, for cluttermm-0.9. See also the cluttermm-0.8 branch.
 
 2007-11-08  Murray Cumming  <murrayc@murrayc.com>
 
-	* clutter/src/actor.hg: Use the new _DERIVES_INITIALLY_UNOWNED 
+	* clutter/src/actor.hg: Use the new _DERIVES_INITIALLY_UNOWNED
 	gmmproc macro from the latest glibmm from svn.
-	* examples/test-boxes.cc: Remove the extra reference() calls. These 
+	* examples/test-boxes.cc: Remove the extra reference() calls. These
 	should no longer be necessary.
 
 2007-11-07  Jonathon Jongsma  <jjongsma@gnome.org>
@@ -1687,15 +1694,15 @@ This is is trunk, for cluttermm-0.9. See also the cluttermm-0.8 branch.
 2007-11-07  Murray Cumming  <murrayc@murrayc.com>
 
 	* clutter/cluttermm/Makefile.am:
-	* clutter/cluttermm/types.h: Added this file. 
+	* clutter/cluttermm/types.h: Added this file.
 	So far it just contains the Unit typedef.
 	* clutter/src/container.hg:
 	* clutter/src/layout.hg:
 	* clutter/src/texture.hg:
-	* tools/m4/convert_cluttermm.m4: Use Unit instead 
+	* tools/m4/convert_cluttermm.m4: Use Unit instead
 	of ClutterUnit in our API.
 	* clutter/src/margin.ccg:
-	* clutter/src/margin.hg: Use _MEMBER_GET() and 
+	* clutter/src/margin.hg: Use _MEMBER_GET() and
 	_MEMBER_SET() instead of hand-coding these.
 
 2007-11-07  Jonathon Jongsma  <jjongsma@gnome.org>
@@ -1893,12 +1900,12 @@ This is is trunk, for cluttermm-0.9. See also the cluttermm-0.8 branch.
 	* clutter/src/color.ccg:
 	* clutter/src/color.hg:
 	* clutter/src/margin.ccg:
-	* clutter/src/margin.hg: Added wrappers for these 
+	* clutter/src/margin.hg: Added wrappers for these
 	two boxed types.
 	* clutter/src/container.ccg:
 	* clutter/src/container.hg: Use the Color and Margin
 	classes.
-	* clutter/src/layout.hg: Moved the conversion for the 
+	* clutter/src/layout.hg: Moved the conversion for the
 	signal to here, and fixed the reference-counting for it.
 	Some other minor const fixes.
 
@@ -1936,4 +1943,3 @@ This is is trunk, for cluttermm-0.9. See also the cluttermm-0.8 branch.
 	* clutter/src/container.hg:
 	* tools/m4/convert_cluttermm.m4: added initial wrapping of the
 	ClutterContainer interface.
-
