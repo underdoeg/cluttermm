@@ -141,7 +141,10 @@ public:
   _WRAP_SIGNAL(void activate(), "activate")
   _WRAP_SIGNAL(void text_changed(), "text_changed")
   _WRAP_SIGNAL(void cursor_event(const Geometry& geometry), "cursor_event")
-
+  //These are action signals, so probably shouldn't be wrapped:
+  //_WRAP_SIGNAL(void insert_text(const char* new_text, int new_text_length, int position), "insert-text", no_default_handler)
+  //_WRAP_SIGNAL(void delete_text(int start_pos, int end_pos), "insert-text", no_default_handler)
+  
   _WRAP_PROPERTY("activatable", bool)
   _WRAP_PROPERTY("attributes", Pango::AttrList)
   _WRAP_PROPERTY("color", Color)
@@ -152,6 +155,7 @@ public:
   _WRAP_PROPERTY("editable", bool)
   _WRAP_PROPERTY("ellipsize", Pango::EllipsizeMode)
   _WRAP_PROPERTY("font-name", Glib::ustring)
+  _WRAP_PROPERTY("font-description", Pango::FontDescription)
   _WRAP_PROPERTY("justify", bool)
   _WRAP_PROPERTY("line-alignment", Pango::Alignment)
   _WRAP_PROPERTY("line-wrap-mode", Pango::WrapMode)

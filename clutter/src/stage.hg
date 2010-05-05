@@ -112,6 +112,7 @@ public:
   _WRAP_SIGNAL(void unfullscreen(), "unfullscreen")
   _WRAP_SIGNAL(void activate(), "activate")
   _WRAP_SIGNAL(void deactivate(), "deactivate")
+  _WRAP_SIGNAL(bool delete_event(ClutterEvent *event), "delete-event")
 
   _WRAP_PROPERTY("color", Color)
   _WRAP_PROPERTY("cursor-visible", bool)

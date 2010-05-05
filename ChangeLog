@@ -1,5 +1,12 @@
 2010-05-05  Murray Cumming  <murrayc@murrayc.com>
 
+	Small API additions.
+	
+	* clutter/src/stage.hg: Added delete_event signal.
+	* clutter/src/text.hg: Added font_description property.
+
+2010-05-05  Murray Cumming  <murrayc@murrayc.com>
+
 	Documentation: Main page improvements.
 
 	* clutter/cluttermm.h: Improve the text slightly and link to Stage, Actor,
