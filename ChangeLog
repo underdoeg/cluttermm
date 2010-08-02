@@ -1,5 +1,13 @@
 2010-08-02  Murray Cumming  <murrayc@murrayc.com>
 
+	Added Effect and related Actor methods.
+
+	* clutter/src/filelist.am:
+	* clutter/src/effect.[hg|ccg]: Added Effect.
+	* clutter/src/actor.hg: Added add_effect(), remove_effect(), get_effect().
+
+2010-08-02  Murray Cumming  <murrayc@murrayc.com>
+
 	Wrapped some new functions.
 
 	* configure.ac: Depend on atkmm, so we can use Atk::Object in the API.
@@ -9,7 +17,7 @@
 	* clutter/src/filelist.am:
 	* clutter/src/actor-meta.[hg|ccg]:
 	* clutter/src/action.[hg|ccg]: Added new ActorMeta and Action classes.
-	* clutter/src/action.[hg|ccg]: Added get/set_clip_to_allocation(), contains(), 
+	* clutter/src/actor.[hg|ccg]: Added get/set_clip_to_allocation(), contains(), 
 	get_has_allocation(), get_accessible(), add_action(), remove_action(), 
 	get_action(), clear_actions().
 	* clutter/src/animation.hg: set_duration(): Correct the parameter type to 

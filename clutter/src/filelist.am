@@ -29,6 +29,7 @@ files_hg =			\
 	clone.hg		\
 	color.hg		\
 	container.hg		\
+	effect.hg \
 	group.hg		\
 	interval.hg		\
 	media.hg		\

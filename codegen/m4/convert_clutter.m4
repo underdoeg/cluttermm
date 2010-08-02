@@ -31,6 +31,12 @@ _CONVERSION(`ClutterAnimation*',`Glib::RefPtr<const Animation>',`Glib::wrap($3)'
 _CONVERSION(`const Glib::RefPtr<Backend>&',`ClutterBackend*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`ClutterBackend*',`Glib::RefPtr<Backend>',`Glib::wrap($3)')
 
+_CONVERSION(`const Glib::RefPtr<Effect>&',`ClutterEffect*',__CONVERT_REFPTR_TO_P)
+_CONVERSION(`const Glib::RefPtr<const Effect>&',`ClutterEffect*',__CONVERT_CONST_REFPTR_TO_P)
+
+_CONVERSION(`ClutterEffect*',`Glib::RefPtr<Effect>',`Glib::wrap($3)')
+_CONVERSION(`ClutterEffect*',`Glib::RefPtr<const Effect>',`Glib::wrap($3)')
+
 _CONVERSION(`const Glib::RefPtr<Interval>&',`ClutterInterval*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`ClutterInterval*',`Glib::RefPtr<Interval>',`Glib::wrap($3)')
 _CONVERSION(`ClutterInterval*',`Glib::RefPtr<const Interval>',`Glib::wrap($3)')
