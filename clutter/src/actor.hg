@@ -18,6 +18,8 @@
 #include <glibmm/object.h>
 #include <pangomm/context.h>
 #include <pangomm/layout.h>
+#include <atkmm/object.h>
+#include <cluttermm/action.h>
 #include <cluttermm/animation.h>
 #include <cluttermm/color.h>
 #include <cluttermm/scriptable.h>
@@ -150,6 +152,8 @@ public:
   _WRAP_METHOD(guint32 get_gid() const, clutter_actor_get_gid)
   _WRAP_METHOD(void set_clip(float xoff, float yoff, float width, float height), clutter_actor_set_clip)
   _WRAP_METHOD(void get_clip(float& xoff, float& yoff, float& width, float& height), clutter_actor_get_clip)
+  _WRAP_METHOD(void set_clip_to_allocation(bool clip_set = true), clutter_actor_set_clip_to_allocation)
+  _WRAP_METHOD(bool get_clip_to_allocation() const, clutter_actor_get_clip_to_allocation)
   _WRAP_METHOD(void remove_clip(), clutter_actor_remove_clip)
   _WRAP_METHOD(bool has_clip() const, clutter_actor_has_clip)
   _WRAP_METHOD(void set_parent(const Glib::RefPtr<Actor>& parent), clutter_actor_set_parent)
@@ -157,6 +161,7 @@ public:
   _WRAP_METHOD(Glib::RefPtr<const Actor> get_parent() const, clutter_actor_get_parent, refreturn, constversion)
   _WRAP_METHOD(void reparent(const Glib::RefPtr<Actor>& new_parent), clutter_actor_reparent)
   _WRAP_METHOD(void unparent(), clutter_actor_unparent)
+  _WRAP_METHOD(bool contains(const Glib::RefPtr<const Actor>& descendant) const, clutter_actor_contains)
   _WRAP_METHOD(void raise(const Glib::RefPtr<Actor>& below), clutter_actor_raise)
   _WRAP_METHOD(void lower(const Glib::RefPtr<Actor>& above), clutter_actor_lower)
   _WRAP_METHOD(void raise_top (), clutter_actor_raise_top)
@@ -259,6 +264,21 @@ public:
 
   _WRAP_METHOD(void push_internal(), clutter_actor_push_internal)
   _WRAP_METHOD(void pop_internal(), clutter_actor_pop_internal)
+  
+  _WRAP_METHOD(bool has_allocation() const, clutter_actor_has_allocation)
+
+  _WRAP_METHOD(Glib::RefPtr<Atk::Object> get_accessible(), clutter_actor_get_accessible, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Atk::Object> get_accessible() const, clutter_actor_get_accessible, refreturn, constversion)
+  
+  _WRAP_METHOD(void add_action(const Glib::RefPtr<Action>& action), clutter_actor_add_action)
+  _WRAP_METHOD(void add_action(const Glib::ustring& name, const Glib::RefPtr<Action>& action), clutter_actor_add_action_with_name)
+  _WRAP_METHOD(void remove_action(const Glib::RefPtr<Action>&action), clutter_actor_remove_action)
+  _WRAP_METHOD(void remove_action(const Glib::ustring& name), clutter_actor_remove_action_by_name)
+  _WRAP_METHOD(Glib::RefPtr<Action> get_action(const Glib::ustring& name), clutter_actor_get_action, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Action> get_action(const Glib::ustring& name) const, clutter_actor_get_action, refreturn)
+  
+//TODO:   _WRAP_METHOD(GLis* get_actions(), clutter_actor_get_actions)
+  _WRAP_METHOD(void clear_actions(), clutter_actor_clear_actions)
 
 // signals
   _WRAP_SIGNAL(bool button_press_event(ButtonEvent* event), "button_press_event")

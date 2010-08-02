@@ -123,6 +123,9 @@ public:
   _WRAP_METHOD(void set_minimum_size(guint width, guint height), clutter_stage_set_minimum_size)
   _WRAP_METHOD(void get_minimum_size(guint& width, guint& height), clutter_stage_get_minimum_size)
 
+  _WRAP_METHOD(void set_no_clear_hint(bool no_clear = true), clutter_stage_set_no_clear_hint)
+  _WRAP_METHOD(bool get_no_clear_hint() const, clutter_stage_get_no_clear_hint)
+  
   _WRAP_SIGNAL(void fullscreen(), "fullscreen")
   _WRAP_SIGNAL(void unfullscreen(), "unfullscreen")
   _WRAP_SIGNAL(void activate(), "activate")

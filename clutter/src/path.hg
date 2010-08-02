@@ -126,6 +126,18 @@ public:
           clutter_path_get_nodes, clutter_path_insert_node, clutter_path_remove_node,
           clutter_path_replace_node)
 
+  typedef void (* ClutterPathCallback) (const ClutterPathNode *node,
+                                      gpointer               data);
+                     
+  /** For instance,
+   * void on_path_foreach(const Clutter::PathNode& node);
+   */                 
+  typedef sigc::slot<void, PathNode> ForEachSlot;
+  
+  //TODO: Documentation.
+  void foreach(const ForEachSlot& slot);
+  _IGNORE(clutter_path_foreach)
+                                                
   _WRAP_METHOD(Glib::ustring get_description() const, clutter_path_get_description)
   _WRAP_METHOD(void set_description(const Glib::ustring& str), clutter_path_set_description)
 

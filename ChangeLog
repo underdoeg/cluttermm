@@ -1,3 +1,23 @@
+2010-08-02  Murray Cumming  <murrayc@murrayc.com>
+
+	Wrapped some new functions.
+
+	* configure.ac: Depend on atkmm, so we can use Atk::Object in the API.
+	(This could be optional at configure time if anybody needs that, as it is 
+	in gtkmm.)
+	* clutter/src/clutter_methods.defs: Regenerated with h2defs.py.
+	* clutter/src/filelist.am:
+	* clutter/src/actor-meta.[hg|ccg]:
+	* clutter/src/action.[hg|ccg]: Added new ActorMeta and Action classes.
+	* clutter/src/action.[hg|ccg]: Added get/set_clip_to_allocation(), contains(), 
+	get_has_allocation(), get_accessible(), add_action(), remove_action(), 
+	get_action(), clear_actions().
+	* clutter/src/animation.hg: set_duration(): Correct the parameter type to 
+	guint, as corrected in the C API.
+	* clutter/src/path.hg: Added foreach().
+	* clutter/src/stage.hg: Addef get/set_no_clear_hint().
+	* clutter/src/texture.hg: Added get/set_pick_with_alpha().
+
 0.9.6:
 
 2010-05-05  Murray Cumming  <murrayc@murrayc-x61>

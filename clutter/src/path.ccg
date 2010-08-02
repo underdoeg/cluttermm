@@ -112,4 +112,21 @@ Path::Nodes::const_iterator::reference Path::Nodes::const_iterator::operator[](d
   return node;
 }
 
+namespace {
+
+static void c_foreach_callback(const ClutterPathNode *node,  gpointer data)
+{
+  Clutter::Path::ForEachSlot* slot = static_cast<Clutter::Path::ForEachSlot*>(data);
+  if(slot)
+    (*slot)(Clutter::PathNode(node));
+}
+
+} //anonymous namespace
+
+void Path::foreach(const ForEachSlot& slot)
+{
+  const void* data = &slot;
+  clutter_path_foreach(gobj(), &c_foreach_callback, const_cast<void*>(data));
+}
+  
 } // namespace Clutter

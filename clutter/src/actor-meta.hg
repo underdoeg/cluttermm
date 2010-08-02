@@ -1,0 +1,54 @@
+/* Copyright (C) 2010 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <glibmm/object.h>
+//#include <cluttermm/actor.h>
+ 
+_DEFS(cluttermm,clutter)
+_PINCLUDE(glibmm/private/object_p.h)
+
+
+namespace Clutter
+{
+
+class Actor;
+
+//TODO: Write a version of the large description from here: http://clutter-project.org/docs/clutter/stable/ClutterActorMeta.html#ClutterActorMetaMeta.description
+class ActorMeta : public Glib::Object
+{
+  _CLASS_GOBJECT(ActorMeta, ClutterActorMeta, CLUTTER_ACTOR_META, Glib::Object, GObject)
+  _DERIVES_INITIALLY_UNOWNED()
+
+protected:
+  _CTOR_DEFAULT()
+
+public:
+  //There is no create() because this is an abstract base class.
+  //_WRAP_CREATE()
+
+  _WRAP_METHOD(void set_name(const Glib::ustring& name), clutter_actor_meta_set_name)
+  _WRAP_METHOD(Glib::ustring get_name() const, clutter_actor_meta_get_name)
+  _WRAP_METHOD(void set_enabled(bool is_enabled = true), clutter_actor_meta_set_enabled)
+  _WRAP_METHOD(bool get_enabled() const, clutter_actor_meta_get_enabled)
+
+  _WRAP_METHOD(Glib::RefPtr<Actor> get_actor(), clutter_actor_meta_get_actor, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Actor> get_actor() const, clutter_actor_meta_get_actor, refreturn, constversion)
+  
+  //TODO: Signals, properties, vfuncs
+};
+
+} // namespace Clutter

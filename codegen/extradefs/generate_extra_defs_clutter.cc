@@ -26,6 +26,8 @@ int main(int argc, char** argv)
 
   std::cout
     << get_defs(CLUTTER_TYPE_ACTOR)
+    << get_defs(CLUTTER_TYPE_ACTOR_META)
+    << get_defs(CLUTTER_TYPE_ACTION)
     << get_defs(CLUTTER_TYPE_ALPHA)
     << get_defs(CLUTTER_TYPE_ANIMATION)
     << get_defs(CLUTTER_TYPE_BACKEND)

@@ -54,7 +54,9 @@
 
 #include <glibmm.h>
 #include <cluttermmconfig.h>
+#include <cluttermm/action.h>
 #include <cluttermm/actor.h>
+#include <cluttermm/actor-meta.h>
 #include <cluttermm/alpha.h>
 #include <cluttermm/animation.h>
 #include <cluttermm/behaviour.h>
