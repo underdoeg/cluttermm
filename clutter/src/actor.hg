@@ -376,6 +376,7 @@ protected:
   // the float* being NULL.
   #m4 _CONVERSION(`float*', `float&', `*($3)')
   #m4 _CONVERSION(`const ClutterActorBox*', `const ActorBox&', `Glib::wrap($3)')
+  _WRAP_VFUNC(void pick(const Color& color), "pick")
   _WRAP_VFUNC(void get_preferred_width(float for_height, float& min_width_p, float& natural_width_p) const, "get_preferred_width")
   _WRAP_VFUNC(void get_preferred_height(float for_width, float& min_height_p, float& natural_height_p) const, "get_preferred_height")
   _WRAP_VFUNC(void allocate(const ActorBox& box, AllocationFlags absolute_origin_changed), "allocate")
