@@ -47,24 +47,6 @@ _WRAP_ENUM(RequestMode, ClutterRequestMode)
 _WRAP_ENUM(FontFlags, ClutterFontFlags)
 _WRAP_ENUM(TextDirection, ClutterTextDirection)
 
-class Knot
-{
-  _CLASS_BOXEDTYPE(Knot, ClutterKnot, NONE, clutter_knot_copy, clutter_knot_free)
-public:
-  Knot(int x, int y);
-
-  _MEMBER_GET(x, x, int, int)
-  void set_x(int x);
-  _MEMBER_GET(y, y, int, int)
-  void set_y(int y);
-  void set_xy(int x, int y);
-
-#m4begin
-  _WRAP_EQUAL(clutter_knot_equal)
-#m4end
-  _IGNORE(clutter_knot_equal)
-};
-
 class Vertex
 {
   _CLASS_BOXEDTYPE_STATIC(Vertex, ClutterVertex)
@@ -96,6 +78,31 @@ public:
   _MEMBER_GET(height, height, unsigned int, guint)
   void set_height(unsigned int height);
   void set_size(unsigned int width, unsigned int height);
+};
+
+class Knot
+{
+  _CLASS_BOXEDTYPE(Knot, ClutterKnot, NONE, clutter_knot_copy, clutter_knot_free)
+  _IGNORE(clutter_knot_copy)
+  _IGNORE(clutter_knot_free)
+public:
+
+  // NOTE: _CUSTOM_DEFAULT_CTOR must be used on the last class definition
+  // as it "falls through" to any following definitions in the same file.
+  _CUSTOM_DEFAULT_CTOR
+  Knot();
+  Knot(int x, int y);
+
+  _MEMBER_GET(x, x, int, int)
+  void set_x(int x);
+  _MEMBER_GET(y, y, int, int)
+  void set_y(int y);
+  void set_xy(int x, int y);
+
+#m4begin
+  _WRAP_EQUAL(clutter_knot_equal)
+#m4end
+  _IGNORE(clutter_knot_equal)
 };
 
 } // namespace Clutter

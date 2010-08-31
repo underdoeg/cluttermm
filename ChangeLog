@@ -1,3 +1,10 @@
+2010-09-02  Chris Kühl  <chrisk@openismus.com>
+
+	Added custom default ctor to Knot class.
+
+	* clutter/src/types.hg: Needed changes to add custom default ctor.
+	* clutter/src/types/ccg: Implementation of custom default ctor.
+
 2010-08-27  Chris Kühl  <chrisk@openismus.com>
 
 	Added previously removed pick_vfunc to Actor class.

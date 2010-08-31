@@ -20,6 +20,12 @@
 namespace Clutter
 {
 
+Knot::Knot()
+{
+  ClutterKnot tmp = {0, 0};
+  gobject_ = clutter_knot_copy(&tmp);
+}
+
 Knot::Knot(int x, int y)
 {
   ClutterKnot tmp = {x, y};
