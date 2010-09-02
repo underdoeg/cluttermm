@@ -1,3 +1,11 @@
+2010-09-02  Murray Cumming  <murrayc@murrayc.com>
+
+	BehaviourEllipse: Fix the constructor.
+
+	* clutter/src/behaviour-ellipse.[hg|ccg]: Correct the constructor, because
+  it tried to use property names that did not exist.
+  This fixes bug #615151 (Jonatan).
+
 2010-09-02  Chris Kühl  <chrisk@openismus.com>
 
 	Added custom default ctor to Knot class.
@@ -24,16 +32,16 @@
 	Wrapped some new functions.
 
 	* configure.ac: Depend on atkmm, so we can use Atk::Object in the API.
-	(This could be optional at configure time if anybody needs that, as it is 
+	(This could be optional at configure time if anybody needs that, as it is
 	in gtkmm.)
 	* clutter/src/clutter_methods.defs: Regenerated with h2defs.py.
 	* clutter/src/filelist.am:
 	* clutter/src/actor-meta.[hg|ccg]:
 	* clutter/src/action.[hg|ccg]: Added new ActorMeta and Action classes.
-	* clutter/src/actor.[hg|ccg]: Added get/set_clip_to_allocation(), contains(), 
-	get_has_allocation(), get_accessible(), add_action(), remove_action(), 
+	* clutter/src/actor.[hg|ccg]: Added get/set_clip_to_allocation(), contains(),
+	get_has_allocation(), get_accessible(), add_action(), remove_action(),
 	get_action(), clear_actions().
-	* clutter/src/animation.hg: set_duration(): Correct the parameter type to 
+	* clutter/src/animation.hg: set_duration(): Correct the parameter type to
 	guint, as corrected in the C API.
 	* clutter/src/path.hg: Added foreach().
 	* clutter/src/stage.hg: Addef get/set_no_clear_hint().
@@ -52,7 +60,7 @@
 2010-05-05  Murray Cumming  <murrayc@murrayc.com>
 
 	Small API additions.
-	
+
 	* clutter/src/stage.hg: Added delete_event signal.
 	* clutter/src/text.hg: Added font_description property.
 

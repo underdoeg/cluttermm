@@ -18,7 +18,7 @@
 #include <cluttermm/behaviour.h>
 #include <cluttermm/alpha.h>
 #include <cluttermm/types.h>
- 
+
 _DEFS(cluttermm,clutter)
 _PINCLUDE(cluttermm/private/behaviour_p.h)
 
@@ -31,7 +31,9 @@ class BehaviourEllipse : public Behaviour
   _CLASS_GOBJECT(BehaviourEllipse, ClutterBehaviourEllipse, CLUTTER_BEHAVIOUR_ELLIPSE, Behaviour, ClutterBehaviour)
 
 protected:
-  _WRAP_CTOR(BehaviourEllipse(const Glib::RefPtr<Alpha>& alpha, int x, int y, int width, int height, RotateDirection direction, double begin, double end), clutter_behaviour_ellipse_new)
+  //Hand-coded because x and y must be combined into one ClutterKnot center parameter.
+  BehaviourEllipse(const Glib::RefPtr<Alpha>& alpha, int x, int y, int width, int height, RotateDirection direction, double angle_start, double angle_end);
+  _IGNORE(clutter_behaviour_ellipse_new)
 
 public:
   _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, int x, int y, int width, int height, RotateDirection direction, double begin, double end)
