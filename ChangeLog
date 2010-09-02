@@ -1,3 +1,11 @@
+2010-09-02  Murray Cumming  <murrayc@murrayc.com>>
+
+	Actor: get_*() methods: Take a reference.
+
+	* clutter/src/actor.hg: get_stage(), get_shader(), get_actor_by_uid(),
+  get_action(), get_animation(): Use the refreturn parameter.
+  This fixed bug #606569 - (Maurice van der Pot).
+
 2010-09-02  Murray Cumming  <murrayc@murrayc.com>
 
 	BehaviourEllipse: Fix the constructor.
