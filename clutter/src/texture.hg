@@ -67,7 +67,7 @@ public:
   _WRAP_METHOD(TextureQuality get_filter_quality() const, clutter_texture_get_filter_quality)
   _WRAP_METHOD(void set_filter_quality(TextureQuality filter_quality), clutter_texture_set_filter_quality)
 
-  _WRAP_METHOD(int get_amx_tile_waste() const, clutter_texture_get_max_tile_waste)
+  _WRAP_METHOD(int get_max_tile_waste() const, clutter_texture_get_max_tile_waste)
   _WRAP_METHOD(void set_max_tile_waste(int max_tile_waste), clutter_texture_set_max_tile_waste)
 
   // TODO: Is there a coglmm we could depend on for this?

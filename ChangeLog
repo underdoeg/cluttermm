@@ -1,3 +1,10 @@
+2010-09-02   Luca Wehrstedt  <lerks@users.sourceforge.net>
+
+	Texture: Rename get_amx_tile_waste() to get_max_tile_waste()
+
+	* clutter/src/texture.hg: Rename get_amx_tile_waste() to get_max_tile_waste(),
+  fixing the typo.
+
 2010-09-02  Murray Cumming  <murrayc@murrayc.com>>
 
 	Actor: get_*() methods: Take a reference.
