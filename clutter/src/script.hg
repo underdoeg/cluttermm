@@ -18,7 +18,7 @@
 #include <glibmm/object.h>
 #include <cluttermm/timeline.h>
 #include <clutter/clutter.h>
- 
+
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)
 
@@ -49,7 +49,7 @@ public:
   _WRAP_METHOD(guint load_from_file(const std::string& filename), clutter_script_load_from_file, errthrow)
 
   _IGNORE(clutter_script_add_search_paths)
-  void add_search_paths(const Glib::ArrayHandle<Glib::ustring>& paths);
+  void add_search_paths(const std::vector<Glib::ustring>& paths);
   _WRAP_METHOD(Glib::ustring lookup_filename(const Glib::ustring& filename), clutter_script_lookup_filename)
   _WRAP_METHOD(Glib::RefPtr<Glib::Object> get_object(const Glib::ustring& name), clutter_script_get_object, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const Glib::Object> get_object(const Glib::ustring& name) const, clutter_script_get_object, refreturn, constverrsion)
@@ -57,18 +57,15 @@ public:
   //clutter_script_get_objects() is a varargs convenience function for C.
   _IGNORE(clutter_script_get_objects)
 
-#m4 _CONVERSION(`GList*', `Glib::ListHandle<Glib::RefPtr<Glib::Object> >', `$2($3, Glib::OWNERSHIP_SHALLOW)')
-#m4 _CONVERSION(`GList*', `Glib::ListHandle<Glib::RefPtr<const Glib::Object> >', `$2($3, Glib::OWNERSHIP_SHALLOW)')
- 
-  _WRAP_METHOD(Glib::ListHandle<Glib::RefPtr<Glib::Object> > list_objects(), clutter_script_list_objects)
-  _WRAP_METHOD(Glib::ListHandle<Glib::RefPtr<const Glib::Object> > list_objects() const, clutter_script_list_objects)
+  std::vector<Glib::RefPtr<Glib::Object> > list_objects();
+  std::vector<Glib::RefPtr<const Glib::Object> > list_objects() const;
 
   _WRAP_METHOD(void unmerge_object(guint merge_id), clutter_script_unmerge_objects)
   _WRAP_METHOD(void ensure_objects(), clutter_script_ensure_objects)
 
   // TODO: connect_signals functions
   // TODO: do we need get_type_from_name()?
-  // clutter_script_connect_signals() and clutter_script_connect_signals_full() seem to be like glade_xml_autoconnect(), 
+  // clutter_script_connect_signals() and clutter_script_connect_signals_full() seem to be like glade_xml_autoconnect(),
   // and I don't see a way to implement them in C++. murrayc.
 
   _WRAP_METHOD(static std::string get_script_id(const Glib::RefPtr<const Glib::Object>& object), clutter_get_script_id)

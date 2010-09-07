@@ -48,12 +48,12 @@ namespace Clutter
 
 void Container::raise_child(const Glib::RefPtr<Actor>& actor)
 {
-  clutter_container_raise_child(gobj(), Glib::unwrap(actor), 0); 
+  clutter_container_raise_child(gobj(), Glib::unwrap(actor), 0);
 }
 
 void Container::lower_child(const Glib::RefPtr<Actor>& actor)
 {
-  clutter_container_lower_child(gobj(), Glib::unwrap(actor), 0); 
+  clutter_container_lower_child(gobj(), Glib::unwrap(actor), 0);
 }
 
 void Container::foreach(const SlotForEach& slot)
@@ -77,6 +77,34 @@ void Container::actor_added(const Glib::RefPtr<Actor>& actor)
 void Container::actor_removed(const Glib::RefPtr<Actor>& actor)
 {
   g_signal_emit_by_name(gobj(), "actor_removed", actor->gobj());
+}
+
+std::vector<Glib::RefPtr<Actor> > Container::get_children()
+{
+  GList* actorList = clutter_container_get_children(gobj());
+  uint actorCount = g_list_length(actorList);
+  std::vector<Glib::RefPtr<Actor> > actorVec(actorCount);
+
+  for(GList* actorNode = actorList; actorNode->next != NULL; actorNode = actorList->next)
+  {
+    actorVec.push_back(Glib::wrap(static_cast<ClutterActor*>(actorNode->data), true));
+  }
+
+  return actorVec;
+}
+
+std::vector<Glib::RefPtr<const Actor> > Container::get_children() const
+{
+  GList* actorList = clutter_container_get_children(const_cast<ClutterContainer*>(gobj()));
+  uint actorCount = g_list_length(actorList);
+  std::vector<Glib::RefPtr<const Actor> > actorVec(actorCount);
+
+  for(GList* actorNode = actorList; actorNode->next != NULL; actorNode = actorList->next)
+  {
+    actorVec.push_back(Glib::wrap(static_cast<ClutterActor*>(actorNode->data), true));
+  }
+
+  return actorVec;
 }
 
 } // namespace Clutter

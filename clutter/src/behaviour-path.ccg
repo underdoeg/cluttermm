@@ -22,7 +22,7 @@ namespace Clutter
 
 // static
 Glib::RefPtr<BehaviourPath> BehaviourPath::create_with_knots(const Glib::RefPtr<Alpha>& alpha,
-                                                             const Glib::ArrayHandle<Knot>& knots)
+                                                             const std::vector<Knot>& knots)
 {
   const Glib::RefPtr<Path> path = Path::create();
   const Knot* data  = knots.data();

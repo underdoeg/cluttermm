@@ -39,9 +39,47 @@ guint Script::load_from_data(const Glib::ustring& data, std::auto_ptr<Glib::Erro
   return result;
 }
 
-void Script::add_search_paths(const Glib::ArrayHandle<Glib::ustring>& paths)
+void Script::add_search_paths(const std::vector<Glib::ustring>& paths)
 {
-  clutter_script_add_search_paths(gobj(), paths.data(), paths.size());
+  const int pathCount = paths.size();
+  const char* searchPaths[pathCount];
+
+  for(uint i = 0; i < paths.size(); ++i)
+  {
+      searchPaths[i] = paths[i].data();
+  }
+
+  clutter_script_add_search_paths(gobj(), searchPaths, paths.size());
+}
+
+std::vector<Glib::RefPtr<Glib::Object> > Script::list_objects()
+{
+  GList* objectList = clutter_script_list_objects(gobj());
+
+  uint objectCount = g_list_length(objectList);
+  std::vector<Glib::RefPtr<Glib::Object> > objectVec(objectCount);
+
+  for(GList* objectNode = objectList; objectNode->next != NULL; objectNode = objectList->next)
+  {
+    objectVec.push_back(Glib::wrap(static_cast<GObject*>(objectNode->data), true));
+  }
+
+  return objectVec;
+}
+
+std::vector<Glib::RefPtr<const Glib::Object> > Script::list_objects() const
+{
+  GList* objectList = clutter_script_list_objects(const_cast<ClutterScript*>(gobj()));
+
+  uint objectCount = g_list_length(objectList);
+  std::vector<Glib::RefPtr<const Glib::Object> > objectVec(objectCount);
+
+  for(GList* objectNode = objectList; objectNode->next != NULL; objectNode = objectList->next)
+  {
+    objectVec.push_back(Glib::wrap(static_cast<GObject*>(objectNode->data), true));
+  }
+
+  return objectVec;
 }
 
 #ifdef GLIBMM_VFUNCS_ENABLED

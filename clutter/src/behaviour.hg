@@ -17,7 +17,7 @@
 
 #include <cluttermm/alpha.h>
 #include <cluttermm/actor.h>
- 
+
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)
 
@@ -41,10 +41,8 @@ public:
   _WRAP_METHOD(void remove_all(), clutter_behaviour_remove_all)
   _WRAP_METHOD(bool is_applied(const Glib::RefPtr<Actor>& actor), clutter_behaviour_is_applied)
 
-#m4 _CONVERSION(`GSList*', `Glib::SListHandle<Glib::RefPtr<Actor> >', `$2($3, Glib::OWNERSHIP_SHALLOW)')
-#m4 _CONVERSION(`GSList*', `Glib::SListHandle<Glib::RefPtr<const Actor> >', `$2($3, Glib::OWNERSHIP_SHALLOW)')
-  _WRAP_METHOD(Glib::SListHandle<Glib::RefPtr<Actor> > get_actors(), clutter_behaviour_get_actors)
-  _WRAP_METHOD(Glib::SListHandle<Glib::RefPtr<const Actor> > get_actors() const, clutter_behaviour_get_actors)
+  std::vector<Glib::RefPtr<Actor> >       get_actors();
+  std::vector<Glib::RefPtr<Actor const> > get_actors() const;
 
   _WRAP_METHOD(int get_n_actors() const, clutter_behaviour_get_n_actors)
 
@@ -58,7 +56,7 @@ public:
 
   // TODO: does this need the 'behaviour' argument, or could that be
   // approximated with an Object-oriented 'this' pointer?
-  /** For instance, 
+  /** For instance,
    * void on_foreach(const Glib::RefPtr<Behaviour>& behaviour, const Glib::RefPtr<Actor>& actor)
    */
   typedef sigc::slot<void, const Glib::RefPtr<Behaviour>&, const Glib::RefPtr<Actor>&> SlotForEach;
@@ -71,9 +69,10 @@ _CONVERSION(`ClutterActor*',`const Glib::RefPtr<Actor>&',`Glib::wrap($3)')
   _WRAP_SIGNAL(void applied(const Glib::RefPtr<Actor>& actor), "applied")
   _WRAP_SIGNAL(void removed(const Glib::RefPtr<Actor>& actor), "removed")
 
+
+
 protected:
   _WRAP_VFUNC(void alpha_notify(double alpha_value), alpha_notify)
-
 };
 
 } // namespace Clutter

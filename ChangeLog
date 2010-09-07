@@ -1,3 +1,21 @@
+2010-09-07  Chris Kühl  <chrisk@openismus.com>
+
+	Replaced use of Glib::*Handle containers with std::vector.
+
+	* clutter/src/behaviour-path.[hg|ccg]: create_with_knots takes std::vector
+					       instead of Glib::ArrayHandle.
+	* clutter/src/behaviour.[hg|ccg]: get_actor returns std::vector instead of
+	                                  Glib::SListHandle.
+	* clutter/src/container.[hg|ccg]: get_children returns std::vector instead of
+	                                  Glib::ListHandle.
+	* clutter/src/score.[hg|ccg]: list_timelines returns std::vector instead of
+	                              Glib::ListHandle.
+	* clutter/src/script.[hg|ccg]: add_search_path takes std::vector
+				       instead of Glib::ArrayHandle.
+	* clutter/src/stage.[hg|ccg]: Removed trailing whitespace.
+	* clutter/src/timeline.[hg|ccg]: list_markers returns std::vector instead of
+	                                 Glib::StringArrayHandle.
+
 2010-09-02   Luca Wehrstedt  <lerks@users.sourceforge.net>
 
 	Texture: Rename get_amx_tile_waste() to get_max_tile_waste()

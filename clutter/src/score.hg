@@ -18,7 +18,7 @@
 #include <glibmm/object.h>
 #include <cluttermm/timeline.h>
 #include <clutter/clutter.h>
- 
+
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)
 
@@ -57,10 +57,8 @@ public:
   _WRAP_METHOD(Glib::RefPtr<Timeline> get_timeline(gulong id), clutter_score_get_timeline, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const Timeline> get_timeline(gulong id) const, clutter_score_get_timeline, , refreturn, constversion)
 
-#m4 _CONVERSION(`GSList*', `Glib::SListHandle<Glib::RefPtr<Timeline> >', `$2(($3), Glib::OWNERSHIP_SHALLOW)')
-#m4 _CONVERSION(`GSList*', `Glib::SListHandle<Glib::RefPtr<const Timeline> >', `$2(($3), Glib::OWNERSHIP_SHALLOW)')
-  _WRAP_METHOD(Glib::SListHandle<Glib::RefPtr<Timeline> > list_timelines(), clutter_score_list_timelines)
-  _WRAP_METHOD(Glib::SListHandle<Glib::RefPtr<const Timeline> > list_timelines() const, clutter_score_list_timelines)
+  std::vector<Glib::RefPtr<Timeline> > list_timelines();
+  std::vector<Glib::RefPtr<const Timeline> > list_timelines() const;
 
   _WRAP_METHOD(void start(), clutter_score_start)
   _WRAP_METHOD(void pause(), clutter_score_pause)

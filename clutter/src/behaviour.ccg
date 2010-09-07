@@ -45,5 +45,37 @@ void Behaviour::actors_foreach(const SlotForEach& slot)
       gobj(),
       &SignalProxy_behaviours_foreach_callback, const_cast<SlotForEach*>(&slot));
 }
+
+std::vector<Glib::RefPtr<Actor> > Behaviour::get_actors()
+{
+  GSList* actorList = clutter_behaviour_get_actors(gobj());
+
+  uint actorCount = g_slist_length(actorList);
+  std::vector<Glib::RefPtr<Actor> > actorVec(actorCount);
+
+  for(GSList* actorNode = actorList; actorNode->next != NULL; actorNode = actorList->next)
+  {
+    actorVec.push_back(Glib::wrap(static_cast<ClutterActor*>(actorNode->data), true));
+  }
+
+  return actorVec;
+}
+
+std::vector<Glib::RefPtr<const Actor> > Behaviour::get_actors() const
+{
+  GSList* actorList = clutter_behaviour_get_actors(const_cast<ClutterBehaviour*>(gobj()));
+
+  uint actorCount = g_slist_length(actorList);
+  std::vector<Glib::RefPtr<const Actor> > actorVec(actorCount);
+
+  for(GSList* actorNode = actorList; actorNode->next != NULL; actorNode = actorList->next)
+  {
+    actorVec.push_back(Glib::wrap(static_cast<ClutterActor*>(actorNode->data), true));
+  }
+
+  return actorVec;
+}
+
+
 } //namespace Clutter
 

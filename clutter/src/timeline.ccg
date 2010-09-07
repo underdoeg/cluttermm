@@ -25,12 +25,19 @@ Timeline::Timeline(guint msecs)
   _CONSTRUCT("duration", msecs)
 {}
 
-Glib::StringArrayHandle Timeline::list_markers(gint frame_num) const
+std::vector<Glib::ustring> Timeline::list_markers(gint frame_num) const
 {
   gsize n_markers = 0;
   gchar** const markers = clutter_timeline_list_markers(const_cast<ClutterTimeline*>(gobj()),
                                                         frame_num, &n_markers);
-  return Glib::StringArrayHandle(markers, n_markers, Glib::OWNERSHIP_DEEP);
+  std::vector<Glib::ustring> markerVec(n_markers);
+
+  for (int i = 0; i < n_markers; ++i)
+  {
+      markerVec.push_back(Glib::ustring(markers[i]));
+  }
+
+  return markerVec;
 }
 
 } // namespace Clutter

@@ -58,7 +58,7 @@ public:
   _WRAP_METHOD(TimelineDirection get_direction() const, clutter_timeline_get_direction)
 
   _WRAP_METHOD_DOCS_ONLY(clutter_timeline_list_markers)
-  Glib::StringArrayHandle list_markers(int frame_num) const;
+  std::vector<Glib::ustring> list_markers(int frame_num) const;
   _WRAP_METHOD(void add_marker_at_time(const Glib::ustring& marker_name, guint msecs), clutter_timeline_add_marker_at_time)
   _WRAP_METHOD(bool has_marker(const Glib::ustring& marker_name), clutter_timeline_has_marker)
   _WRAP_METHOD(void remove_marker(const Glib::ustring& marker_name), clutter_timeline_remove_marker)

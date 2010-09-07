@@ -18,7 +18,7 @@
 #include <cluttermm/group.h>
 #include <cluttermm/color.h>
 #include <clutter/clutter.h> // For ClutterPerspective
- 
+
 _DEFS(cluttermm,clutter)
 _PINCLUDE(cluttermm/private/group_p.h)
 
@@ -49,15 +49,15 @@ public:
 
 /** This is a top level 'window' on which child actors are placed and manipulated.
  *
- * Clutter creates a default stage upon initialization, which can be retrieved using Stage::get_default(). Clutter always 
- * provides the default stage, unless the backend is unable to create one. The stage returned by Stage::get_default() is 
+ * Clutter creates a default stage upon initialization, which can be retrieved using Stage::get_default(). Clutter always
+ * provides the default stage, unless the backend is unable to create one. The stage returned by Stage::get_default() is
  * guaranteed to always be the same.
  *
- * Backends might provide support for multiple stages. The support for this feature can be checked at run-time using the 
- * clutter_feature_available() function and the CLUTTER_FEATURE_STAGE_MULTIPLE flag. If the backend used supports multiple 
+ * Backends might provide support for multiple stages. The support for this feature can be checked at run-time using the
+ * clutter_feature_available() function and the CLUTTER_FEATURE_STAGE_MULTIPLE flag. If the backend used supports multiple
  * stages, new Clutter::Stage instances can be created.
- * 
- * Clutter::Stage is a proxy actor, wrapping the backend-specific implementation of the windowing system. It is possible 
+ *
+ * Clutter::Stage is a proxy actor, wrapping the backend-specific implementation of the windowing system. It is possible
  * to subclass ClutterStage, as long as every overridden virtual function calls the implementation in the base class.
  */
 class Stage :
@@ -106,7 +106,7 @@ public:
 #m4 _CONVERSION(`const Fog&',`ClutterFog*',`const_cast<ClutterFog*>(&($3))')
   _WRAP_METHOD(void set_fog(const Fog& fog), clutter_stage_set_fog)
   _WRAP_METHOD(void get_fog(Fog& fog) const, clutter_stage_get_fog)
-  
+
   _WRAP_METHOD(void stage_event(Event* event), clutter_stage_event)
   _WRAP_METHOD(bool is_default() const, clutter_stage_is_default)
   _WRAP_METHOD(void ensure_current(), clutter_stage_ensure_current)
@@ -125,7 +125,7 @@ public:
 
   _WRAP_METHOD(void set_no_clear_hint(bool no_clear = true), clutter_stage_set_no_clear_hint)
   _WRAP_METHOD(bool get_no_clear_hint() const, clutter_stage_get_no_clear_hint)
-  
+
   _WRAP_SIGNAL(void fullscreen(), "fullscreen")
   _WRAP_SIGNAL(void unfullscreen(), "unfullscreen")
   _WRAP_SIGNAL(void activate(), "activate")
