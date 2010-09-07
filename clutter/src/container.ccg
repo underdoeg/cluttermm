@@ -82,8 +82,9 @@ void Container::actor_removed(const Glib::RefPtr<Actor>& actor)
 std::vector<Glib::RefPtr<Actor> > Container::get_children()
 {
   GList* actorList = clutter_container_get_children(gobj());
-  uint actorCount = g_list_length(actorList);
-  std::vector<Glib::RefPtr<Actor> > actorVec(actorCount);
+  const uint actorCount = g_list_length(actorList);
+  std::vector<Glib::RefPtr<Actor> > actorVec;
+  actorVec.reserve(actorCount);
 
   for(GList* actorNode = actorList; actorNode->next != NULL; actorNode = actorList->next)
   {
@@ -96,8 +97,9 @@ std::vector<Glib::RefPtr<Actor> > Container::get_children()
 std::vector<Glib::RefPtr<const Actor> > Container::get_children() const
 {
   GList* actorList = clutter_container_get_children(const_cast<ClutterContainer*>(gobj()));
-  uint actorCount = g_list_length(actorList);
-  std::vector<Glib::RefPtr<const Actor> > actorVec(actorCount);
+  const uint actorCount = g_list_length(actorList);
+  std::vector<Glib::RefPtr<const Actor> > actorVec;
+  actorVec.reserve(actorCount);
 
   for(GList* actorNode = actorList; actorNode->next != NULL; actorNode = actorList->next)
   {

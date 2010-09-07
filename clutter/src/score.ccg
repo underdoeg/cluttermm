@@ -28,8 +28,9 @@ gulong Score::append(const Glib::RefPtr<Timeline>& timeline)
 std::vector<Glib::RefPtr<Timeline> > Score::list_timelines()
 {
   GSList* timelineList = clutter_score_list_timelines(gobj());
-  uint timelineCount = g_slist_length(timelineList);
-  std::vector<Glib::RefPtr<Timeline> > timelineVec(timelineCount);
+  const uint timelineCount = g_slist_length(timelineList);
+  std::vector<Glib::RefPtr<Timeline> > timelineVec;
+  timelineVec.reserve(timelineCount);
 
   for(GSList* timelineNode = timelineList; timelineNode->next != NULL; timelineNode = timelineList->next)
   {
@@ -42,8 +43,9 @@ std::vector<Glib::RefPtr<Timeline> > Score::list_timelines()
     std::vector<Glib::RefPtr<const Timeline> > Score::list_timelines() const
 {
   GSList* timelineList = clutter_score_list_timelines(const_cast<ClutterScore*>(gobj()));
-  uint timelineCount = g_slist_length(timelineList);
-  std::vector<Glib::RefPtr<const Timeline> > timelineVec(timelineCount);
+  const uint timelineCount = g_slist_length(timelineList);
+  std::vector<Glib::RefPtr<const Timeline> > timelineVec;
+  timelineVec.reserve(timelineCount);
 
   for(GSList* timelineNode = timelineList; timelineNode->next != NULL; timelineNode = timelineList->next)
   {
