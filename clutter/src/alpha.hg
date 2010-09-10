@@ -18,7 +18,7 @@
 #include <glibmm/object.h>
 #include <cluttermm/timeline.h>
 #include <clutter/clutter.h>
- 
+
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)
 
@@ -32,7 +32,7 @@ class Alpha : public Glib::Object
 
 public:
   /** For instance,
-   * guint32 on_alpha(const Glib::RefPtr<Alpha>& alpha);
+   * double on_alpha(const Glib::RefPtr<Alpha>& alpha);
    */
   typedef sigc::slot<double, const Glib::RefPtr<Alpha>&> SlotAlphaFunc;
 

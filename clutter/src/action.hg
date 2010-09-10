@@ -17,7 +17,7 @@
 
 #include <glibmm/object.h>
 #include <cluttermm/actor-meta.h>
- 
+
 _DEFS(cluttermm,clutter)
 _PINCLUDE(cluttermm/private/actor-meta_p.h)
 
