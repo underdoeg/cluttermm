@@ -56,11 +56,11 @@ std::vector<Glib::RefPtr<Glib::Object> > Script::list_objects()
 {
   GList* objectList = clutter_script_list_objects(gobj());
 
-  const uint objectCount = g_list_length(objectList);
+  const guint objectCount = g_list_length(objectList);
   std::vector<Glib::RefPtr<Glib::Object> > objectVec;
   objectVec.reserve(objectCount);
 
-  for(GList* objectNode = objectList; objectNode->next != NULL; objectNode = objectList->next)
+  for(GList* objectNode = objectList; objectNode->next; objectNode = objectList->next)
   {
     objectVec.push_back(Glib::wrap(static_cast<GObject*>(objectNode->data), true));
   }
@@ -72,11 +72,11 @@ std::vector<Glib::RefPtr<const Glib::Object> > Script::list_objects() const
 {
   GList* objectList = clutter_script_list_objects(const_cast<ClutterScript*>(gobj()));
 
-  const uint objectCount = g_list_length(objectList);
+  const guint objectCount = g_list_length(objectList);
   std::vector<Glib::RefPtr<const Glib::Object> > objectVec;
   objectVec.reserve(objectCount);
 
-  for(GList* objectNode = objectList; objectNode->next != NULL; objectNode = objectList->next)
+  for(GList* objectNode = objectList; objectNode->next; objectNode = objectList->next)
   {
     objectVec.push_back(Glib::wrap(static_cast<GObject*>(objectNode->data), true));
   }

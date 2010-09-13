@@ -82,11 +82,11 @@ void Container::actor_removed(const Glib::RefPtr<Actor>& actor)
 std::vector<Glib::RefPtr<Actor> > Container::get_children()
 {
   GList* actorList = clutter_container_get_children(gobj());
-  const uint actorCount = g_list_length(actorList);
+  const guint actorCount = g_list_length(actorList);
   std::vector<Glib::RefPtr<Actor> > actorVec;
   actorVec.reserve(actorCount);
 
-  for(GList* actorNode = actorList; actorNode->next != NULL; actorNode = actorList->next)
+  for(GList* actorNode = actorList; actorNode->next; actorNode = actorList->next)
   {
     actorVec.push_back(Glib::wrap(static_cast<ClutterActor*>(actorNode->data), true));
   }
@@ -97,11 +97,11 @@ std::vector<Glib::RefPtr<Actor> > Container::get_children()
 std::vector<Glib::RefPtr<const Actor> > Container::get_children() const
 {
   GList* actorList = clutter_container_get_children(const_cast<ClutterContainer*>(gobj()));
-  const uint actorCount = g_list_length(actorList);
+  const guint actorCount = g_list_length(actorList);
   std::vector<Glib::RefPtr<const Actor> > actorVec;
   actorVec.reserve(actorCount);
 
-  for(GList* actorNode = actorList; actorNode->next != NULL; actorNode = actorList->next)
+  for(GList* actorNode = actorList; actorNode->next; actorNode = actorList->next)
   {
     actorVec.push_back(Glib::wrap(static_cast<ClutterActor*>(actorNode->data), true));
   }

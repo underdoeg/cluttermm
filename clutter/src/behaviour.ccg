@@ -50,11 +50,11 @@ std::vector<Glib::RefPtr<Actor> > Behaviour::get_actors()
 {
   GSList* actorList = clutter_behaviour_get_actors(gobj());
 
-  const uint actorCount = g_slist_length(actorList);
+  const guint actorCount = g_slist_length(actorList);
   std::vector<Glib::RefPtr<Actor> > actorVec;
   actorVec.reserve(actorCount);
 
-  for(GSList* actorNode = actorList; actorNode->next != NULL; actorNode = actorList->next)
+  for(GSList* actorNode = actorList; actorNode->next; actorNode = actorList->next)
   {
     actorVec.push_back(Glib::wrap(static_cast<ClutterActor*>(actorNode->data), true));
   }
@@ -66,11 +66,11 @@ std::vector<Glib::RefPtr<const Actor> > Behaviour::get_actors() const
 {
   GSList* actorList = clutter_behaviour_get_actors(const_cast<ClutterBehaviour*>(gobj()));
 
-  const uint actorCount = g_slist_length(actorList);
+  const guint actorCount = g_slist_length(actorList);
   std::vector<Glib::RefPtr<const Actor> > actorVec;
   actorVec.reserve(actorCount);
 
-  for(GSList* actorNode = actorList; actorNode->next != NULL; actorNode = actorList->next)
+  for(GSList* actorNode = actorList; actorNode->next; actorNode = actorList->next)
   {
     actorVec.push_back(Glib::wrap(static_cast<ClutterActor*>(actorNode->data), true));
   }
