@@ -33,9 +33,9 @@ std::vector<Glib::ustring> Timeline::list_markers(gint frame_num) const
   std::vector<Glib::ustring> markerVec;
   markerVec.reserve(n_markers);
 
-  for (int i = 0; i < n_markers; ++i)
+  for(gsize i = 0; i < n_markers; ++i)
   {
-      markerVec.push_back(Glib::ustring(markers[i]));
+    markerVec.push_back(Glib::ustring(markers[i]));
   }
 
   return markerVec;
