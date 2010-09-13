@@ -1,5 +1,12 @@
 2010-09-13  Murray Cumming  <murrayc@murrayc.com>
 
+	Remove extra ; to avoid compiler warnings.
+
+	* clutter/src/clone.hg:
+	* clutter/src/rectangle.hg: Remove extra ;s.
+
+2010-09-13  Murray Cumming  <murrayc@murrayc.com>
+
 	Timeline: Fix a compilation warning.
 
 	* clutter/src/timeline.ccg: Use the correct type in the for() loop.

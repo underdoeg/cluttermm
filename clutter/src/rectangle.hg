@@ -17,7 +17,7 @@
 
 #include <cluttermm/actor.h>
 #include <cluttermm/color.h>
- 
+
 _DEFS(cluttermm,clutter)
 _PINCLUDE(cluttermm/private/actor_p.h)
 
@@ -36,7 +36,7 @@ protected:
 
 public:
   _WRAP_CREATE()
-  _WRAP_CREATE(const Color& color);
+  _WRAP_CREATE(const Color& color)
 
 #m4 _CONVERSION(`ClutterActor*',`Glib::RefPtr<Rectangle>',`Glib::wrap((ClutterRectangle*)$3)')
 
