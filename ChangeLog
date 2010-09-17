@@ -1,3 +1,31 @@
+2010-09-17  Chris Kühl  <chrisk@openismus.com>
+
+	Fixed typo in Script::get_object (constverrsion != constversion)
+
+	* clutter/src/script.hg: Fixed typo in get_object.
+
+2010-09-17  Chris Kühl  <chrisk@openismus.com>
+
+	Fixed reference counting issue with Alpha::get_timeline
+
+	* clutter/src/alpha.hg: Added refreturn to get_timeline.
+
+2010-09-15  Chris Kühl  <chrisk@openismus.com>
+
+	Removed use of NULL and changed use of uint to guint.
+
+	* clutter/src/behaviour.ccg: Removed use of NULL and
+	changed uint to guint.
+	* clutter/src/container.ccg:
+	* clutter/src/score.ccg:
+	* clutter/src/script.ccg:
+
+2010-09-15  Chris Kühl  <chrisk@openismus.com>
+
+	Corrected SlotAlphaFunc documentation.
+
+	* clutter/src/alpha.hg: Corrected SlotAlphaFunc documentation.
+
 2010-09-13  Murray Cumming  <murrayc@murrayc.com>
 
 	Remove extra ; to avoid compiler warnings.
