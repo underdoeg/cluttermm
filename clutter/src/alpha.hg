@@ -54,7 +54,8 @@ public:
   _WRAP_CREATE(const Glib::RefPtr<Timeline>& timeline, gulong mode)
 
   _WRAP_METHOD(void set_timeline(const Glib::RefPtr<Timeline>& timeline), clutter_alpha_set_timeline)
-  _WRAP_METHOD(Glib::RefPtr<Timeline> get_timeline() const, clutter_alpha_get_timeline)
+  _WRAP_METHOD(Glib::RefPtr<Timeline> get_timeline(), clutter_alpha_get_timeline, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Timeline> get_timeline() const, clutter_alpha_get_timeline, refreturn, constversion)
   _WRAP_METHOD(double get_alpha() const, clutter_alpha_get_alpha)
 
   _IGNORE(clutter_alpha_set_func)
