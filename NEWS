@@ -1,62 +1,85 @@
-0.9.6:
+1.1.1: (unstable)
 
-* Wrap new API in clutter 1.2: 
+* Increased the version number to show that we target clutter 1.2,
+  though the cluttermm API is still unstable.
+  (Murray Cumming)
+* Actor: get_*() methods: Take a reference.
+  (Murray Cumming)
+* Alpha: get_timeline(): Fixing reference counting.
+  (Chris Kühl)
+* BehaviourEllipse: Fix the constructor.
+  (Murray Cumming)
+* BehaviourPath: create_with_knots(): Take a vector instead of the
+  intermediate SListHandle. This is what gtkmm has decided to do in new
+  APIs and happens to solve a memory problem.
+  (Chris Kühl)
+* Texture: Rename get_amx_tile_waste() to get_max_tile_waste().
+  (Luca Wehrstedt)
+* Documentation:
+  - Corrected SlotAlphaFunc documentation.
+* Build:
+  -Fixed the build with fatal warnings.
+  (Murray Cumming)
+
+0.9.6: (unstable)
+
+* Wrap new API in clutter 1.2:
 * Documentation: Added main page text for doxygen.
   David King, Murray Cumming)
 
-0.9.5:
+0.9.5: (unstable)
 
 * Use clutter-1.0 instead of clutter-0.9.
   (Murray Cumming)
-* Likewise change our pkg-config file to cluttermm-1.0 instead of cluttermm-0.9, 
+* Likewise change our pkg-config file to cluttermm-1.0 instead of cluttermm-0.9,
   so please change your configure.ac checks too.
-  (Daniel Elstner) 
+  (Daniel Elstner)
 * Remove deprecated Actor methods.
   (Milosz Derezynski)
 * Use the mm-common build system.
-  (Daniel Elstner) 
+  (Daniel Elstner)
 
-0.9.4:
+0.9.4: (unstable)
 
-Updated for latest clutter-0.9 API, including use of float in the API instead 
+Updated for latest clutter-0.9 API, including use of float in the API instead
 of guint/gint or ClutterUnit.
 
-0.9.3:
+0.9.3: (unstable)v
 
-Updated for lastest clutter-0.9 API, including the addition of the Animation 
+Updated for lastest clutter-0.9 API, including the addition of the Animation
 and Interval classes.
 (Siavash Safi)
 
-0.9.0:
+0.9.0: (unstable)
 
 * Now wraps clutter-0.9, though we do not wrap much new API yet.
 
-0.7.4:
+0.7.4: (unstable)
 
 * Timeline: Correct the constructor implementation.
   (Murray Cumming) Bug #553157 (Cristi Posoiu)
-* Vertex, Geometry: Added some default parameter values to the 
+* Vertex, Geometry: Added some default parameter values to the
   constructors. (Murray Cumming)
 * Removed TimeoutPool because ClutterTimeoutPool is not really
   public API. (Murray Cumming) Bug #553157 (Cristi Posoiu)
 
-0.7.3:
+0.7.3: (unstable)
 
 * Container: Added set_child_property().
 
-0.7.2:
+0.7.2: (unstable)
 
 * pkg-config .pc file: Add needed dependency on pangomm.
   (Siavash Safi)
 
-0.7.1:
+0.7.1: (unstable)
 
 * Target clutter-0.8 instead of clutter-0.7
-* Remove clutter-cairomm and clutter-gtkmm. We will release bindings 
+* Remove clutter-cairomm and clutter-gtkmm. We will release bindings
   for clutter-cairo-0.8 and clutter-gtk-0.8 when they exist.
   (Murray Cumming)
 
-0.7.0:
+0.7.0: (unstable)
 
 * Update to new clutter-0.7 API
   (Armin Burgmeier, Openismus)
@@ -64,7 +87,7 @@ and Interval classes.
   functions. Coverage is still not 100%, but not much is missing.
   (Armin Burgmeier, Openismus)
 
-0.5.1:
+0.5.1: (unstable)
 
 * Added cluttermm-gtk, wrapping clutter-gtk.
   This provides the Clutter::Gtk::Embed widget.
@@ -72,13 +95,13 @@ and Interval classes.
 * Added cluttermm-cairo, wrapping clutter-cairo.
   This provides Clutter::Cairo::CairoTexture.
   (Jonathon Jongsma)
-* Changed the pkg-config files to use 0.6 in their name, so we can target 
-  specific clutter API versions. For instance, cluttermm-0.6, cluttermm-gtk-0.6, 
+* Changed the pkg-config files to use 0.6 in their name, so we can target
+  specific clutter API versions. For instance, cluttermm-0.6, cluttermm-gtk-0.6,
   and cluttermm-cairo-0.6.
   (Jonathon Jongsma)
 * Actor: add default value of 'true' to Actor::set_reactive().
   (Jonathon Jongsma)
 
-0.5.0:
+0.5.0: (unstable)
 
 Initial version.
