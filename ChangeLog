@@ -1,3 +1,5 @@
+1.3.1:
+
 2010-09-17  Chris Kühl  <chrisk@openismus.com>
 
 	Fixed typo in Script::get_object (constverrsion != constversion)

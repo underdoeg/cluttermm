@@ -1,3 +1,15 @@
+1.3.1: (unstable)
+
+* Added Action, ActorMeta and Effects.
+* Actor:
+  - Added add_effect(), remove_effect(), get_effect().
+  - Added set/set_clip_to_allocation(), contains(),
+	  get_has_allocation(), get_accessible(), add_action(), remove_action(),
+	  get_action(), clear_actions().
+* Stage: Added get/set_no_clear_hint().
+* Texture: Added get/set_pick_with_alpha().
+  (Murray Cumming)
+
 1.1.1: (unstable)
 
 * Increased the version number to show that we target clutter 1.2,
