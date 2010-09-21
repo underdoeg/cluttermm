@@ -15,7 +15,7 @@
 ## You should have received a copy of the GNU Lesser General Public License
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-AC_INIT([cluttermm], [0.9.6],
+AC_INIT([cluttermm], [1.1.1],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=cluttermm],
         [cluttermm], [http://www.gtkmm.org/])
 AC_PREREQ([2.59])
