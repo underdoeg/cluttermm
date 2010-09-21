@@ -41,7 +41,7 @@ AC_DISABLE_STATIC
 AC_LIBTOOL_WIN32_DLL
 AC_PROG_LIBTOOL
 
-AC_SUBST([CLUTTERMM_MODULES], ['clutter-1.0 >= 1.3.8 pangomm-1.4 >= 2.24 atkmm-1.6 >= 2.20'])
+AC_SUBST([CLUTTERMM_MODULES], ['clutter-1.0 >= 1.2.0 pangomm-1.4 >= 2.24'])
 PKG_CHECK_MODULES([CLUTTERMM], [$CLUTTERMM_MODULES])
 MM_PKG_CONFIG_SUBST([GMMPROC_DIR], [--variable=gmmprocdir glibmm-2.4])
 
@@ -51,7 +51,6 @@ MM_ARG_WITH_TAGFILE_DOC([libsigc++-2.0.tag], [sigc++-2.0])
 MM_ARG_WITH_TAGFILE_DOC([glibmm-2.4.tag], [glibmm-2.4])
 MM_ARG_WITH_TAGFILE_DOC([cairomm-1.0.tag], [cairomm-1.0])
 MM_ARG_WITH_TAGFILE_DOC([pangomm-1.4.tag], [pangomm-1.4])
-MM_ARG_WITH_TAGFILE_DOC([atkmm-1.6.tag], [atkmm-1.6])
 
 AC_LANG([C++])
 MM_ARG_ENABLE_WARNINGS([CLUTTERMM_WXXFLAGS],

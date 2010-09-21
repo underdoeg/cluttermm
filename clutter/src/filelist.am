@@ -12,8 +12,6 @@ files_defs =			\
 
 files_hg =			\
 	actor.hg		\
-	actor-meta.hg		\
-	action.hg		\
 	alpha.hg		\
 	animation.hg		\
 	backend.hg		\
@@ -29,7 +27,6 @@ files_hg =			\
 	clone.hg		\
 	color.hg		\
 	container.hg		\
-	effect.hg \
 	group.hg		\
 	interval.hg		\
 	media.hg		\

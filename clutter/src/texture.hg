@@ -18,7 +18,7 @@
 #include <cluttermm/actor.h>
 #include <cluttermm/types.h>
 #include <clutter/clutter.h> // For CoglHandle
- 
+
 _DEFS(cluttermm,clutter)
 _PINCLUDE(cluttermm/private/actor_p.h)
 
@@ -91,9 +91,6 @@ public:
 
   _WRAP_METHOD(bool get_load_data_async() const, clutter_texture_get_load_data_async)
   _WRAP_METHOD(void set_load_data_async(bool load_async=true), clutter_texture_set_load_data_async)
-  
-  _WRAP_METHOD(void set_pick_with_alpha(bool pick_with_alpha = true), clutter_texture_set_pick_with_alpha)
-  _WRAP_METHOD(bool get_pick_with_alpha() const, clutter_texture_get_pick_with_alpha)
 
   // TODO: figure out what to do with this GError parameter
   //_WRAP_SIGNAL(void load_finished(GError* error), "load_finished")

@@ -1,3 +1,9 @@
+2010-09-21  Murray Cumming  <murrayc@murrayc.com>
+
+	Remove use of clutter-1.3/1.4 API so it builds with clutter 1.2.
+
+This is the cluttermm-1.2 branch, using clutter 1.2
+
 2010-09-17  Chris Kühl  <chrisk@openismus.com>
 
 	Fixed typo in Script::get_object (constverrsion != constversion)
