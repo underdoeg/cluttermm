@@ -35,7 +35,7 @@ class Texture : public ::Clutter::Texture
   _IMPLEMENTS_INTERFACE(Scriptable)
 
 protected:
-  _WRAP_CTOR(Texture(guint width, guint height), clutter_cairo_texture_new)
+  _WRAP_CTOR(Texture(guint surface_width, guint surface_height), clutter_cairo_texture_new)
 
 public:
   _WRAP_CREATE(guint width, guint height)
