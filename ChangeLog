@@ -1,5 +1,12 @@
 2010-10-21  Chris Kühl  <chrisk@openismus.com>
 
+	Fixed parameter names in Clutter::Cairo::Texture create function.
+
+        * cairo-texture.hg: Changed create parameters from width and height
+        to surface_width and surface_height, respectively.
+
+2010-10-21  Chris Kühl  <chrisk@openismus.com>
+
 	Fixed parameter names in Clutter::Cairo::Texture ctor.
 
         * cairo-texture.hg: Changed ctor parameters from width and height

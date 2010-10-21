@@ -38,7 +38,7 @@ protected:
   _WRAP_CTOR(Texture(guint surface_width, guint surface_height), clutter_cairo_texture_new)
 
 public:
-  _WRAP_CREATE(guint width, guint height)
+  _WRAP_CREATE(guint surface_width, guint surface_height)
 
   _WRAP_METHOD(void clear(), clutter_cairo_texture_clear)
 
