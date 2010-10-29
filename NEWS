@@ -1,3 +1,8 @@
+1.1.2: (unstable)
+
+* Cairo::Texture: Fixed parameter names in constructor and create method.
+  (Chris Kühl)
+
 1.1.1: (unstable)
 
 * Increased the version number to show that we target clutter 1.2,

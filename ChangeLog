@@ -1,3 +1,5 @@
+1.1.2
+
 2010-10-27  Chris Kühl  <chrisk@openismus.com>
 
 	Fixed parameter names in Clutter::Cairo::Texture create function.
