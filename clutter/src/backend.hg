@@ -50,8 +50,9 @@ public:
   _WRAP_METHOD(Glib::ustring get_font_name() const, clutter_backend_get_font_name)
   _WRAP_METHOD(void set_font_name(const Glib::ustring& font_name), clutter_backend_set_font_name)
 
-  _WRAP_SIGNAL(void font_changed(), "font-changed")
-  _WRAP_SIGNAL(void resolution_changed(), "resolution-changed")
+  //We use no_default_handler because the C class struct is hidden.
+  _WRAP_SIGNAL(void font_changed(), "font-changed", no_default_handler)
+  _WRAP_SIGNAL(void resolution_changed(), "resolution-changed", no_default_handler)
 };
 
 } // namespace Clutter
