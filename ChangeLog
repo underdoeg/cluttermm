@@ -1,16 +1,23 @@
+2010-11-02  Murray Cumming  <murrayc@murrayc.com>
+
+	Fix the build with clutter git master.
+
+	* clutter/src/backend.hg: Use no_default_handler with the signals,
+	because ClutterBackendClass is now hidden.
+
 2010-10-21  Chris Kühl  <chrisk@openismus.com>
 
 	Fixed parameter names in Clutter::Cairo::Texture create function.
 
-        * cairo-texture.hg: Changed create parameters from width and height
-        to surface_width and surface_height, respectively.
+	* cairo-texture.hg: Changed create parameters from width and height
+	to surface_width and surface_height, respectively.
 
 2010-10-21  Chris Kühl  <chrisk@openismus.com>
 
 	Fixed parameter names in Clutter::Cairo::Texture ctor.
 
-        * cairo-texture.hg: Changed ctor parameters from width and height
-        to surface_width and surface_height, respectively.
+	* cairo-texture.hg: Changed ctor parameters from width and height
+	o surface_width and surface_height, respectively.
 
 1.3.1:
 
