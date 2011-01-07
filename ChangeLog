@@ -1,3 +1,12 @@
+2011-01-07  Murray Cumming  <murrayc@murrayc.com>
+
+	Fix the build with the latest glibmm.
+
+	* configure.ac: Get and use the path to the atkmm and pangomm m4 files.
+	* codegen/m4/convert.m4: Include the atkmm and pangomm m4 convert files.
+	
+	This requires the latest atkmm and pangomm.
+
 2010-11-02  Murray Cumming  <murrayc@murrayc.com>
 
 	Fix the build with clutter git master.
