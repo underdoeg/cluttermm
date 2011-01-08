@@ -1,3 +1,12 @@
+2011-01-08  Murray Cumming  <murrayc@murrayc.com>
+
+	Depend on necessary versions of atkmm and pangomm.
+
+	* configure.ac: Depend on the versions of atkmm and pangomm that provide 
+	conversions in .m4 files, now that glibmm does not provide them implicitly.
+	This is only relevant when building from git, however. The older versions 
+	would be OK when building from a tarball.
+
 2011-01-07  Murray Cumming  <murrayc@murrayc.com>
 
 	Fix the build with the latest glibmm.
