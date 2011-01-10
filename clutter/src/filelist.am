@@ -27,8 +27,11 @@ files_hg =			\
 	clone.hg		\
 	color.hg		\
 	container.hg		\
+	effect.hg               \
 	group.hg		\
 	interval.hg		\
+	layoutmeta.hg		\
+	layout-manager.hg	\
 	media.hg		\
 	path.hg			\
 	rectangle.hg		\

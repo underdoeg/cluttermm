@@ -72,6 +72,8 @@
 #include <cluttermm/group.h>
 #include <cluttermm/init.h>
 #include <cluttermm/interval.h>
+#include <cluttermm/layout-manager.h>
+#include <cluttermm/layoutmeta.h>
 #include <cluttermm/main.h>
 #include <cluttermm/media.h>
 #include <cluttermm/path.h>

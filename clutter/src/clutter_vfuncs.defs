@@ -43,6 +43,81 @@
 	)
 )
 
+; ClutterLayoutManager
+
+(define-vfunc get_preferred_width
+	(of-object "ClutterLayoutManager")
+	(return-type "void")
+	(parameters
+		'("ClutterContainer*" "container")
+		'("float" "for_height")
+		'("float*" "minimum_width_p")
+		'("float*" "natural_width_p")
+	)
+)
+
+(define-vfunc get_preferred_height
+	(of-object "ClutterLayoutManager")
+	(return-type "void")
+	(parameters
+		'("ClutterContainer*" "container")
+		'("float" "for_width")
+		'("float*" "minimum_height_p")
+		'("float*" "natural_height_p")
+	)
+)
+
+(define-vfunc allocate
+	(of-object "ClutterLayoutManager")
+	(return-type "void")
+	(parameters
+		'("ClutterContainer*" "container")
+		'("const-ClutterActorBox*" "allocation")
+		'("ClutterAllocationFlags" "flags")
+	)
+)
+
+(define-vfunc set_container
+	(of-object "ClutterLayoutManager")
+	(return-type "void")
+	(parameters
+		'("ClutterContainer*" "container")
+	)
+)
+
+(define-vfunc get_child_meta_type
+	(of-object "ClutterLayoutManager")
+	(return-type "GType")
+)
+
+(define-vfunc create_child_meta
+	(of-object "ClutterLayoutManager")
+	(return-type "ClutterLayouMeta*")
+	(parameters
+		'("ClutterContainer*" "container")
+		'("ClutterActor*" "actorallocation")
+	)
+)
+
+(define-vfunc begin_animation
+	(of-object "ClutterLayoutManager")
+	(return-type "ClutterAlpha*")
+	(parameters
+		'("guint" "duration")
+		'("gulong" "mode")
+	)
+)
+
+(define-vfunc get_animation_progress
+	(of-object "ClutterLayoutManager")
+	(return-type "double")
+)
+
+(define-vfunc end_animation
+	(of-object "ClutterLayoutManager")
+	(return-type "void")
+)
+
 ; ClutterBox
 
 (define-vfunc unpack_child

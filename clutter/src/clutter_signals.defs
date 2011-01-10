@@ -2468,6 +2468,25 @@
   (construct-only #t)
 )
 
+;; From ClutterLayoutManager
+
+(define-signal layout-changed
+  (of-object "ClutterLayoutManager")
+  (return-type "void")
+  (when "last")
+)
+
+;; From ClutterLayoutMeta
+
+(define-property manager
+  (of-object "ClutterLayoutMeta")
+  (prop-type "GParamObject")
+  (docs "The manager that created this data")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
 ;; From ClutterMedia
 
 (define-signal eos
