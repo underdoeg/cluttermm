@@ -41,6 +41,15 @@ _CONVERSION(`const Glib::RefPtr<Interval>&',`ClutterInterval*',__CONVERT_REFPTR_
 _CONVERSION(`ClutterInterval*',`Glib::RefPtr<Interval>',`Glib::wrap($3)')
 _CONVERSION(`ClutterInterval*',`Glib::RefPtr<const Interval>',`Glib::wrap($3)')
 
+_CONVERSION(`const Glib::RefPtr<LayoutManager>&',`ClutterLayoutManager*',__CONVERT_REFPTR_TO_P)
+_CONVERSION(`ClutterLayoutManager*',`Glib::RefPtr<LayoutManager>',`Glib::wrap($3)')
+_CONVERSION(`ClutterLayoutManager*',`Glib::RefPtr<const LayoutManager>',`Glib::wrap($3)')
+
+_CONVERSION(`const Glib::RefPtr<LayoutMeta>&',`ClutterLayoutMeta*',__CONVERT_REFPTR_TO_P)
+_CONVERSION(`Glib::RefPtr<LayoutMeta>',`ClutterLayoutMeta*',__CONVERT_REFPTR_TO_P)
+_CONVERSION(`ClutterLayoutMeta*',`Glib::RefPtr<LayoutMeta>',`Glib::wrap($3)')
+_CONVERSION(`ClutterLayoutMeta*',`Glib::RefPtr<const LayoutMeta>',`Glib::wrap($3)')
+
 _CONVERSION(`const Glib::RefPtr<Texture>&',`ClutterTexture*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`ClutterTexture*',`Glib::RefPtr<Texture>',`Glib::wrap($3)')
 

@@ -1,10 +1,26 @@
+2011-01-10  Chris Kühl  <chrisk@openismus.com>
+
+	Initial wrapping of ClutterLayoutMeta and ClutterLayoutManager.
+
+	* clutter/cluttermm.h: Added header files for new classes.
+	* clutter/src/clutter_signals.defs: Added properties for new classes.
+	* clutter/src/clutter_vfuncs.defs: Added vfunc definitions for
+	LayoutManager.
+	* clutter/src/filelist.am: Added new classes to files_hg list.
+	* clutter/src/layout-manager.*g: Initial wrapping for
+	ClutterLayoutManager.
+	* clutter/src/layoutmeta.*g: Initial wrapping for
+	ClutterLayoutMeta.
+	* codegen/extradefs/generate_extra_defs_clutter.cc: Added new classes.
+	* codegen/m4/convert_clutter.m4: Added conversion for new classes.
+
 2011-01-08  Murray Cumming  <murrayc@murrayc.com>
 
 	Depend on necessary versions of atkmm and pangomm.
 
-	* configure.ac: Depend on the versions of atkmm and pangomm that provide 
+	* configure.ac: Depend on the versions of atkmm and pangomm that provide
 	conversions in .m4 files, now that glibmm does not provide them implicitly.
-	This is only relevant when building from git, however. The older versions 
+	This is only relevant when building from git, however. The older versions
 	would be OK when building from a tarball.
 
 2011-01-07  Murray Cumming  <murrayc@murrayc.com>
@@ -13,7 +29,7 @@
 
 	* configure.ac: Get and use the path to the atkmm and pangomm m4 files.
 	* codegen/m4/convert.m4: Include the atkmm and pangomm m4 convert files.
-	
+
 	This requires the latest atkmm and pangomm.
 
 2010-11-02  Murray Cumming  <murrayc@murrayc.com>
