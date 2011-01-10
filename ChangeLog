@@ -1,5 +1,12 @@
 2011-01-10  Murray Cumming  <murrayc@murrayc.com>
 
+	LayoutMeta: Make the constructor explicit.
+
+	* clutter/src/layoutmeta.hg: Use the explicit keyword on the constructor, 
+	as we do elsewhere in *mm projects.
+
+2011-01-10  Murray Cumming  <murrayc@murrayc.com>
+
 	LayoutManager: Wrap the vfuncs.
 
 	* clutter/src/clutter_vfuncs.defs: Fix a typo.

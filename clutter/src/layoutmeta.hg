@@ -21,15 +21,14 @@
 _DEFS(cluttermm,clutter)
 _PINCLUDE(cluttermm/private/childmeta_p.h)
 
-namespace Clutter{
-
-    //class LayoutManager;
+namespace Clutter
+{
 
 class LayoutMeta : public ChildMeta
 {
     _CLASS_GOBJECT(LayoutMeta, ClutterLayoutMeta, CLUTTER_LAYOUT_META, ChildMeta, ClutterChildMeta)
 protected:
-    LayoutMeta(const Glib::RefPtr<LayoutManager>& layoutManager);
+    explicit LayoutMeta(const Glib::RefPtr<LayoutManager>& layoutManager);
 
 public:
     _WRAP_METHOD(Glib::RefPtr<LayoutManager> get_manager(), clutter_layout_meta_get_manager, refreturn)
