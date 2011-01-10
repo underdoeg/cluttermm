@@ -10,7 +10,7 @@ _CONVERSION(`const Glib::RefPtr<const Action>&',`ClutterAction*',__CONVERT_CONST
 _CONVERSION(`ClutterAction*',`Glib::RefPtr<Action>',`Glib::wrap($3)')
 _CONVERSION(`ClutterAction*',`Glib::RefPtr<const Action>',`Glib::wrap($3)')
 
-_CONVERSION(`const Glib::RefPtr<ActorBox>&',`ClutterActorBox*',__CONVERT_REFPTR_TO_P)
+_CONVERSION(`const ActorBox&', `const ClutterActorBox*',`($3).gobj()')
 
 _CONVERSION(`const Glib::RefPtr<Shader>&',`ClutterShader*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`ClutterShader*',`Glib::RefPtr<Shader>', `Glib::wrap($3)')

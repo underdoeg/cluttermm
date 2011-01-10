@@ -1,3 +1,16 @@
+2011-01-10  Murray Cumming  <murrayc@murrayc.com>
+
+	LayoutManager: Wrap the vfuncs.
+
+	* clutter/src/clutter_vfuncs.defs: Fix a typo.
+	* clutter/src/layout-manager.[hg|ccg]: Uncomment the _WRAP_VFUNC lines and 
+	correct them. But watch out - if I have made refcounting mistakes then this 
+	will cause crashes.
+	
+	* clutter/src/actor.hg: Move a conversion in to convert_clutter.m4 because 
+	it is not specific to the file, or dangerous to use generally.
+	* codegen/m4/convert_clutter.m4: Remove some incorrect conversions.
+
 2011-01-10  Chris Kühl  <chrisk@openismus.com>
 
 	Initial wrapping of ClutterLayoutMeta and ClutterLayoutManager.

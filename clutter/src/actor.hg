@@ -187,7 +187,6 @@ public:
   _WRAP_METHOD_DOCS_ONLY(clutter_actor_get_allocation_box)
   ActorBox get_allocation_box() const;
 
-#m4 _CONVERSION(`const ActorBox&', `const ClutterActorBox*',`($3).gobj()')
   _WRAP_METHOD(void allocate(const ActorBox& box, AllocationFlags absolute_origin_changed = ALLOCATION_NONE), clutter_actor_allocate)
 
   _WRAP_METHOD(void allocate_preferred_size(AllocationFlags absolute_origin_changed = ALLOCATION_NONE), clutter_actor_allocate_preferred_size)

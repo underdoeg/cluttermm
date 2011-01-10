@@ -16,9 +16,11 @@
  */
 
 #include <glibmm/object.h>
-#include <clutter/clutter.h>
 #include <cluttermm/actor.h>
 #include <cluttermm/alpha.h>
+#include <cluttermm/container.h>
+//#include <cluttermm/layoutmeta.h>
+#include <clutter/clutter.h> //TODO: Remove this include?
 
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)
@@ -26,8 +28,7 @@ _PINCLUDE(glibmm/private/object_p.h)
 namespace Clutter
 {
 
-class Container;
-class ActorBox;
+class LayoutMeta;
 
 class LayoutManager : public Glib::Object
 {
@@ -58,25 +59,29 @@ public:
   void get_child_property_value(const Glib::RefPtr<Container>& container, const Glib::RefPtr<const Actor>& actor, const Glib::ustring& property_name, Glib::ValueBase& value) const;
   _IGNORE(clutter_layout_manager_child_get_property)
 
-  // FIXME: Get vfuncs working.
-  // #m4 _CONVERSION(`float*', `float&', `*($3)')
-  // #m4 _CONVERSION(`float&', `float*', `*($3)')
-  // #m4 _CONVERSION(`const ClutterActorBox*', `const ActorBox&', `Glib::wrap($3)')
-  // #m4 _CONVERSION(`const ActorBox&', `const ClutterActorBox*', `Glib::wrap($3)')
-  // #m4 _CONVERSION(`const Container&',`ClutterContainer*',`const_cast<ClutterContainer*>(($3).gobj())')
-  // #m4 _CONVERSION(`ClutterContainer*', `const Container&', `Glib::wrap($3)')
-  // _WRAP_VFUNC(void get_preferred_width(const Container& container, float for_height, float& min_width_p, float& natural_width_p) const, "get_preferred_width")
-  // _WRAP_VFUNC(void get_preferred_height(const Container& container, float for_width, float& min_height_p, float& natural_height_p) const, "get_preferred_height")
-  // _WRAP_VFUNC(void allocate(const Container& container, const ActorBox& box, AllocationFlags absolute_origin_changed), "allocate")
-  // _WRAP_VFUNC(void set_container(const Container& container), "set_container")
-  // // _WRAP_VFUNC(GType get_child_meta_type(Container& container), "get_child_meta_type")
-  // // _WRAP_VFUNC(Glib::RefPtr<LayoutMeta> create_child_meta(Container& container, const Glib::RefPtr<Actor>& actor), "create_child_meta")
+#m4 _CONVERSION(`ClutterContainer*', `const Glib::RefPtr<Container>&', `Glib::wrap($3, true)')
+#m4 _CONVERSION(`float*', `float&', `*($3)')
+#m4 _CONVERSION(`float&', `float*', `&($3)')
+  _WRAP_VFUNC(void get_preferred_width(const Glib::RefPtr<Container>& container, float for_height, float& min_width_p, float& natural_width_p) const, "get_preferred_width")
 
-  // //_WRAP_VFUNC(Glib::RefPtr<Alpha> begin_animation(guint duration, gulong mode), "begin_animation")
-  // _WRAP_VFUNC(double get_animation_progress(), "get_animation_progress")
-  // _WRAP_VFUNC(void end_animation(), "end_animation")
+  _WRAP_VFUNC(void get_preferred_height(const Glib::RefPtr<Container>& container, float for_width, float& min_height_p, float& natural_height_p) const, "get_preferred_height")
+  
+#m4 _CONVERSION(`const ClutterActorBox*', `const ActorBox&', `ActorBox($3)')
+  _WRAP_VFUNC(void allocate(const Glib::RefPtr<Container>& container, const ActorBox& box, AllocationFlags absolute_origin_changed), "allocate")
+  
+  _WRAP_VFUNC(void set_container(const Glib::RefPtr<Container>& container), "set_container")
+  _WRAP_VFUNC(GType get_child_meta_type() const, "get_child_meta_type")
+  
+#m4 _CONVERSION(`ClutterActor*', `const Glib::RefPtr<Actor>&', `Glib::wrap($3, true)')
+  _WRAP_VFUNC(Glib::RefPtr<LayoutMeta> create_child_meta(const Glib::RefPtr<Container>& container, const Glib::RefPtr<Actor>& actor), "create_child_meta")
 
-  _WRAP_SIGNAL(void layout_changed(),"layout-changed")
+#m4 _CONVERSION(`Glib::RefPtr<Alpha>',`ClutterAlpha*',__CONVERT_REFPTR_TO_P)
+  _WRAP_VFUNC(Glib::RefPtr<Alpha> begin_animation(guint duration, gulong mode), "begin_animation")
+
+  _WRAP_VFUNC(double get_animation_progress(), "get_animation_progress")
+  _WRAP_VFUNC(void end_animation(), "end_animation")
+
+  _WRAP_SIGNAL(void layout_changed(), "layout-changed")
 };
 
 template <class PropertyType> inline
