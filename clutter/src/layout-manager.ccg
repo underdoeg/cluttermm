@@ -16,6 +16,7 @@
  */
 
 #include <cluttermm/layout-manager.h>
+#include <cluttermm/layoutmeta.h>
 #include <cluttermm/container.h>
 
 namespace Clutter

@@ -92,7 +92,7 @@
 
 (define-vfunc create_child_meta
 	(of-object "ClutterLayoutManager")
-	(return-type "ClutterLayouMeta*")
+	(return-type "ClutterLayoutMeta*")
 	(parameters
 		'("ClutterContainer*" "container")
 		'("ClutterActor*" "actorallocation")
