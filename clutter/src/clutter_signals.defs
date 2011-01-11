@@ -1035,6 +1035,35 @@
   (construct-only #f)
 )
 
+;; From ClutterBox
+
+(define-property color
+  (of-object "ClutterBox")
+  (prop-type "GParamObject")
+  (docs "The color to be used to paint the background of the ClutterBox. Setting this property will set the 'color-set' property as a side effect")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property color-set
+  (of-object "ClutterBox")
+  (prop-type "GParamObject")
+  (docs "Whether the 'color' property has been set")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property manager
+  (of-object "ClutterBox")
+  (prop-type "GParamObject")
+  (docs "The ClutterLayoutManager used by the ClutterBox")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
 ;; From ClutterCairoTexture
 
 (define-property name
