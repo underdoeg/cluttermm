@@ -1,8 +1,18 @@
+2011-01-12  Chris Kühl  <chrisk@openismus.com>
+
+	Initial wrapping of ClutterBox class.
+
+	* clutter/cluttermm.h: Added header file for new class.
+	* clutter/src/clutter_signals.defs: Added properties for new class.
+	* clutter/src/filelist.am: Added new classes to files_hg list.
+	* clutter/src/box.[hg|ccg]: Initial wrapping for ClutterBox.
+	* codegen/extradefs/generate_extra_defs_clutter.cc: Added new class.
+
 2011-01-10  Murray Cumming  <murrayc@murrayc.com>
 
 	LayoutMeta: Make the constructor explicit.
 
-	* clutter/src/layoutmeta.hg: Use the explicit keyword on the constructor, 
+	* clutter/src/layoutmeta.hg: Use the explicit keyword on the constructor,
 	as we do elsewhere in *mm projects.
 
 2011-01-10  Murray Cumming  <murrayc@murrayc.com>
@@ -10,11 +20,11 @@
 	LayoutManager: Wrap the vfuncs.
 
 	* clutter/src/clutter_vfuncs.defs: Fix a typo.
-	* clutter/src/layout-manager.[hg|ccg]: Uncomment the _WRAP_VFUNC lines and 
-	correct them. But watch out - if I have made refcounting mistakes then this 
+	* clutter/src/layout-manager.[hg|ccg]: Uncomment the _WRAP_VFUNC lines and
+	correct them. But watch out - if I have made refcounting mistakes then this
 	will cause crashes.
-	
-	* clutter/src/actor.hg: Move a conversion in to convert_clutter.m4 because 
+
+	* clutter/src/actor.hg: Move a conversion in to convert_clutter.m4 because
 	it is not specific to the file, or dangerous to use generally.
 	* codegen/m4/convert_clutter.m4: Remove some incorrect conversions.
 
