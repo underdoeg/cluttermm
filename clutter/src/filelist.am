@@ -29,6 +29,7 @@ files_hg =			\
 	color.hg		\
 	container.hg		\
 	effect.hg               \
+	fixed-layout.hg         \
 	group.hg		\
 	interval.hg		\
 	layoutmeta.hg		\
