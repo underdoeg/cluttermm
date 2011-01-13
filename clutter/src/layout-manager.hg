@@ -65,13 +65,13 @@ public:
   _WRAP_VFUNC(void get_preferred_width(const Glib::RefPtr<Container>& container, float for_height, float& min_width_p, float& natural_width_p) const, "get_preferred_width")
 
   _WRAP_VFUNC(void get_preferred_height(const Glib::RefPtr<Container>& container, float for_width, float& min_height_p, float& natural_height_p) const, "get_preferred_height")
-  
+
 #m4 _CONVERSION(`const ClutterActorBox*', `const ActorBox&', `ActorBox($3)')
   _WRAP_VFUNC(void allocate(const Glib::RefPtr<Container>& container, const ActorBox& box, AllocationFlags absolute_origin_changed), "allocate")
-  
+
   _WRAP_VFUNC(void set_container(const Glib::RefPtr<Container>& container), "set_container")
   _WRAP_VFUNC(GType get_child_meta_type() const, "get_child_meta_type")
-  
+
 #m4 _CONVERSION(`ClutterActor*', `const Glib::RefPtr<Actor>&', `Glib::wrap($3, true)')
   _WRAP_VFUNC(Glib::RefPtr<LayoutMeta> create_child_meta(const Glib::RefPtr<Container>& container, const Glib::RefPtr<Actor>& actor), "create_child_meta")
 
