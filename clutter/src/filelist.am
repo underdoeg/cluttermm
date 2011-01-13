@@ -24,6 +24,7 @@ files_hg =			\
 	behaviour-path.hg	\
 	behaviour-rotate.hg	\
 	behaviour-scale.hg	\
+	bin-layout.hg           \
 	box.hg			\
 	cairo-texture.hg	\
 	childmeta.hg		\

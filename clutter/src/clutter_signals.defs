@@ -1064,6 +1064,26 @@
   (construct-only #t)
 )
 
+;; From ClutterBinLayout
+
+(define-property x-align
+  (of-object "ClutterBinLayout")
+  (prop-type "GParamEnum")
+  (docs "Default horizontal alignment for the actors inside the layout manager")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property y-align
+  (of-object "ClutterBinLayout")
+  (prop-type "GParamEnum")
+  (docs "Default vertical alignment for the actors inside the layout manager")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 ;; From ClutterCairoTexture
 
 (define-property name
