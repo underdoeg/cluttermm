@@ -71,8 +71,9 @@
 #include <cluttermm/clone.h>
 #include <cluttermm/color.h>
 #include <cluttermm/event.h>
-#include <cluttermm/frame-source.h>
 #include <cluttermm/fixed-layout.h>
+#include <cluttermm/flow-layout.h>
+#include <cluttermm/frame-source.h>
 #include <cluttermm/group.h>
 #include <cluttermm/init.h>
 #include <cluttermm/interval.h>

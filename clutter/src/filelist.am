@@ -32,6 +32,7 @@ files_hg =			\
 	container.hg		\
 	effect.hg               \
 	fixed-layout.hg         \
+	flow-layout.hg          \
 	group.hg		\
 	interval.hg		\
 	layoutmeta.hg		\
