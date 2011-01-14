@@ -1,5 +1,14 @@
 2011-01-14  Chris Kühl  <chrisk@openismus.com>
 
+	Added homogeneous property and related methods to BoxLayout.
+
+	* clutter/src/box-layout.hg: Added homogeneous property and related
+	methods to BoxLayout.
+	* clutter/src/clutter_signals.defs: Added BoxLayout's homogeneous
+	property.
+
+2011-01-14  Chris Kühl  <chrisk@openismus.com>
+
 	Initial wrapping of ClutterFlowLayout.
 
 	* clutter/cluttermm.h: Added header file for new class.
