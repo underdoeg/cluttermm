@@ -2165,6 +2165,80 @@
 
 ;; From ClutterEvent
 
+;; From FlowLayout
+
+(define-property orientation
+  (of-object "ClutterFlowLayout")
+  (prop-type "GParamEnum")
+  (docs "The orientation of the layout")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property homogeneous
+  (of-object "ClutterFlowLayout")
+  (prop-type "GParamBoolean")
+  (docs "Whether each item should receive the same allocation")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property column-spacing
+  (of-object "ClutterFlowLayout")
+  (prop-type "GParamFloat")
+  (docs "The spacing between columns")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property row-spacing
+  (of-object "ClutterFlowLayout")
+  (prop-type "GParamFloat")
+  (docs "The spacing between rows")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property min-column-width
+  (of-object "ClutterFlowLayout")
+  (prop-type "GParamFloat")
+  (docs "Minimum width for each column")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property max-column-width
+  (of-object "ClutterFlowLayout")
+  (prop-type "GParamFloat")
+  (docs "Maximum width for each column")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property min-row-height
+  (of-object "ClutterFlowLayout")
+  (prop-type "GParamFloat")
+  (docs "Minimum height for each row")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property max-row-height
+  (of-object "ClutterFlowLayout")
+  (prop-type "GParamFloat")
+  (docs "Maximum height for each row")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 ;; From ClutterGroup
 
 (define-property name

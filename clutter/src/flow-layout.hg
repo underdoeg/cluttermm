@@ -1,0 +1,65 @@
+/* Copyright (C) 2011 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <cluttermm/layout-manager.h>
+
+_DEFS(cluttermm,clutter)
+_PINCLUDE(cluttermm/private/layout-manager_p.h)
+
+namespace Clutter
+{
+
+_WRAP_ENUM(FlowOrientation, ClutterFlowOrientation)
+
+class FlowLayout :
+    public LayoutManager
+{
+  _CLASS_GOBJECT(FlowLayout, ClutterFlowLayout, CLUTTER_FLOW_LAYOUT, LayoutManager, ClutterLayoutManager)
+
+protected:
+  _WRAP_CTOR(FlowLayout(FlowOrientation orientation), clutter_flow_layout_new)
+
+public:
+  _WRAP_CREATE(FlowOrientation orientation)
+
+  _WRAP_METHOD(void set_homogeneous(bool homogeneous), clutter_flow_layout_set_homogeneous)
+  _WRAP_METHOD(bool get_homogeneous(), clutter_flow_layout_get_homogeneous)
+
+  _WRAP_METHOD(void set_orientation(FlowOrientation orientation), clutter_flow_layout_set_orientation)
+  _WRAP_METHOD(ClutterFlowOrientation get_orientation(), clutter_flow_layout_get_orientation)
+
+  _WRAP_METHOD(void set_column_spacing(float spacing), clutter_flow_layout_set_column_spacing)
+  _WRAP_METHOD(float get_column_spacing(), clutter_flow_layout_get_column_spacing)
+  _WRAP_METHOD(void set_row_spacing(float spacing), clutter_flow_layout_set_row_spacing)
+  _WRAP_METHOD(float get_row_spacing(), clutter_flow_layout_get_row_spacing)
+  _WRAP_METHOD(void set_column_width(float min_width, float max_width), clutter_flow_layout_set_column_width)
+  _WRAP_METHOD(void get_column_width(float &min_width, float &max_width), clutter_flow_layout_get_column_width)
+  _WRAP_METHOD(void set_row_height(float min_height, float max_height), clutter_flow_layout_set_row_height)
+  _WRAP_METHOD(void get_row_height(float &min_height, float &max_height), clutter_flow_layout_get_row_height)
+
+  _WRAP_PROPERTY("homogeneous", bool)
+  _WRAP_PROPERTY("orientation", FlowOrientation)
+  _WRAP_PROPERTY("column-spacing", float)
+  _WRAP_PROPERTY("row-spacing", float)
+  _WRAP_PROPERTY("min-column-width", float)
+  _WRAP_PROPERTY("max-column-width", float)
+  _WRAP_PROPERTY("min-row-width", float)
+  _WRAP_PROPERTY("max-row-width", float)
+};
+
+} // namespace Clutter
+
