@@ -26,6 +26,7 @@ files_hg =			\
 	behaviour-scale.hg	\
 	bin-layout.hg           \
 	box.hg			\
+	box-layout.hg           \
 	cairo-texture.hg	\
 	childmeta.hg		\
 	clone.hg		\

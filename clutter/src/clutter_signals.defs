@@ -1084,6 +1084,73 @@
   (construct-only #f)
 )
 
+;; From BoxLayout
+
+
+(define-property spacing
+  (of-object "ClutterBoxLayout")
+  (prop-type "GParamUInt")
+  (docs "Spacing between children")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property vertical
+  (of-object "ClutterBoxLayout")
+  (prop-type "GParamBoolean")
+  (docs "Whether the layout should be vertical, rather than horizontal")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; 1.4
+;; (define-property homogeneous
+;;   (of-object "ClutterBoxLayout")
+;;   (prop-type "GParamBoolean")
+;;   (docs "Whether the layout should be homogeneous, i.e. all children get the same size")
+;;   (readable #t)
+;;   (writable #t)
+;;   (construct-only #f)
+;; )
+
+(define-property pack-start
+  (of-object "ClutterBoxLayout")
+  (prop-type "GParamBoolean")
+  (docs "Whether to pack items at the start of the box")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property use-animations
+  (of-object "ClutterBoxLayout")
+  (prop-type "GParamBoolean")
+  (docs "Whether layout changes should be animated")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property easing-mode
+  (of-object "ClutterBoxLayout")
+  (prop-type "GParamULong")
+  (docs "The easing mode of the animations")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property easing-duration
+  (of-object "ClutterBoxLayout")
+  (prop-type "GParamUInt")
+  (docs "The duration of the animations")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 ;; From ClutterCairoTexture
 
 (define-property name

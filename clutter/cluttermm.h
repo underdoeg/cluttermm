@@ -65,9 +65,10 @@
 #include <cluttermm/behaviour-opacity.h>
 #include <cluttermm/behaviour-path.h>
 #include <cluttermm/behaviour-rotate.h>
-#include <cluttermm/bin-layout.h>
 #include <cluttermm/behaviour-scale.h>
+#include <cluttermm/bin-layout.h>
 #include <cluttermm/box.h>
+#include <cluttermm/box-layout.h>
 #include <cluttermm/cairo-texture.h>
 #include <cluttermm/clone.h>
 #include <cluttermm/color.h>
