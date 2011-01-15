@@ -1,3 +1,4 @@
+
 /* Copyright (C) 2007 The cluttermm Development Team
  *
  * This library is free software; you can redistribute it and/or
@@ -18,7 +19,7 @@
 #include <glibmm/interface.h>
 #include <glibmm/ustring.h>
 #include <clutter/clutter.h>
- 
+
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/interface_p.h)
 
@@ -60,6 +61,8 @@ public:
   _WRAP_PROPERTY("progress", double)
   _WRAP_PROPERTY("uri", Glib::ustring)
   _WRAP_PROPERTY("audio-volume", double)
+  _WRAP_PROPERTY("subtitle-font-name", Glib::ustring)
+  _WRAP_PROPERTY("subtitle-uri", Glib::ustring)
 };
 
 } // namespace Clutter

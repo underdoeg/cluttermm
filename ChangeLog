@@ -1,3 +1,9 @@
+2011-01-15  Chris Kühl  <chrisk@openismus.com>
+
+	Added missing properties to ClutterMedia.
+
+	* clutter/src/media.hg Added subtitle-font-name & subtitle-uri properties.
+
 2011-01-14  Chris Kühl  <chrisk@openismus.com>
 
 	Initial wrapping of ClutterFlowLayout.
