@@ -37,7 +37,7 @@ public:
   _WRAP_CREATE(BinAlignment x_align, BinAlignment y_align)
 
   _WRAP_METHOD(void set_alignment(const Glib::RefPtr<Actor>& child, BinAlignment x_align, BinAlignment y_align), clutter_bin_layout_set_alignment)
-  _WRAP_METHOD(void get_alignment(const Glib::RefPtr<Actor>& child, BinAlignment &x_align, BinAlignment &y_align), clutter_bin_layout_get_alignment)
+  _WRAP_METHOD(void get_alignment(const Glib::RefPtr<Actor>& child, BinAlignment &x_align, BinAlignment &y_align) const, clutter_bin_layout_get_alignment)
   _WRAP_METHOD(void add(const Glib::RefPtr<Actor>& child, BinAlignment x_align, BinAlignment y_align), clutter_bin_layout_add)
 
   _WRAP_PROPERTY("x-align", BinAlignment)
