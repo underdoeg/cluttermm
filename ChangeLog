@@ -1,3 +1,9 @@
+2011-01-18  Chris Kühl  <chrisk@openismus.com>
+
+	Added missing properties to Clutter::Stage.
+
+	*clutter/src/stage.hg: Added missing properties.
+
 2011-01-15  Chris Kühl  <chrisk@openismus.com>
 
 	Added constness to *Layout accessor member functions.

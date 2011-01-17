@@ -131,11 +131,15 @@ public:
 
   _WRAP_PROPERTY("color", Color)
   _WRAP_PROPERTY("cursor-visible", bool)
-  _WRAP_PROPERTY("fullscreen", bool)
+  _WRAP_PROPERTY("fullscreen-set", bool)
   _WRAP_PROPERTY("offscreen", bool)
+  _WRAP_PROPERTY("perspective", Perspective)
   _WRAP_PROPERTY("title", Glib::ustring)
   _WRAP_PROPERTY("use-fog", bool)
   _WRAP_PROPERTY("user-resizable", bool)
+  _WRAP_PROPERTY("fog", Fog)
+  _WRAP_PROPERTY("use-alpha", bool)
+  _WRAP_PROPERTY("key-focus", Glib::RefPtr<Actor>)
 
 protected:
   // From the Clutter Docs:
