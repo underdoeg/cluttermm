@@ -1,3 +1,9 @@
+2011-01-19  Chris Kühl  <chrisk@openismus.com>
+
+	Cleaned up include files in LayoutManager.
+
+	*clutter/src/layout-manager.[h|cc]g: Cleaned up includes.
+
 2011-01-18  Chris Kühl  <chrisk@openismus.com>
 
 	Added missing properties to Clutter::Stage.
