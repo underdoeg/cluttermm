@@ -18,6 +18,8 @@
 #include <cluttermm/layout-manager.h>
 #include <cluttermm/layoutmeta.h>
 #include <cluttermm/container.h>
+#include <clutter/clutter.h>
+#include <cluttermm/alpha.h>
 
 namespace Clutter
 {

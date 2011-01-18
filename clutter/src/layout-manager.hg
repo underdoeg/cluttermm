@@ -17,10 +17,6 @@
 
 #include <glibmm/object.h>
 #include <cluttermm/actor.h>
-#include <cluttermm/alpha.h>
-#include <cluttermm/container.h>
-//#include <cluttermm/layoutmeta.h>
-#include <clutter/clutter.h> //TODO: Remove this include?
 
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)
@@ -28,7 +24,9 @@ _PINCLUDE(glibmm/private/object_p.h)
 namespace Clutter
 {
 
+class Container;
 class LayoutMeta;
+class Alpha;
 
 class LayoutManager : public Glib::Object
 {
