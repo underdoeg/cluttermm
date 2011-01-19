@@ -100,7 +100,7 @@ Geometry Actor::get_allocation_geometry() const
 }
 
 Glib::RefPtr<Animation>
-Actor::animate(gulong mode, unsigned int duration, const std::map<std::string, Glib::ValueBase>& properties)
+Actor::animate(gulong mode, guint duration, const std::map<std::string, Glib::ValueBase>& properties)
 {
   gchar* c_properties[properties.size()];
   GValue values[properties.size()];

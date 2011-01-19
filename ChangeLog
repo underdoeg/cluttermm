@@ -1,3 +1,14 @@
+2011-01-20  Chris Kühl  <chrisk@openismus.com>
+
+	Replaced use of unsigned int with guint.
+
+	*clutter/src/actor.[cc|h]g:
+	*clutter/src/box-layout.hg:
+	*clutter/src/path.hg:
+	*clutter/src/rectangle.hg:
+	*clutter/src/text.hg:
+	*clutter/src/types.[cc|h]g:
+
 2011-01-19  Chris Kühl  <chrisk@openismus.com>
 
 	Cleaned up include files in LayoutManager.

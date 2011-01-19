@@ -55,7 +55,7 @@ Vertex::Vertex(float x, float y, float z)
   gobject_.z = z;
 }
 
-Geometry::Geometry(int x, int y, unsigned int width, unsigned int height)
+Geometry::Geometry(int x, int y, guint width, guint height)
 {
   gobject_.x = x;
   gobject_.y = y;
@@ -79,17 +79,17 @@ void Geometry::set_xy(int x, int y)
   gobject_.y = y;
 }
 
-void Geometry::set_width(unsigned int width)
+void Geometry::set_width(guint width)
 {
   gobject_.width = width;
 }
 
-void Geometry::set_height(unsigned int height)
+void Geometry::set_height(guint height)
 {
   gobject_.height = height;
 }
 
-void Geometry::set_size(unsigned int width, unsigned int height)
+void Geometry::set_size(guint width, guint height)
 {
   gobject_.width  = width;
   gobject_.height = height;

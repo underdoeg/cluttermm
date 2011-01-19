@@ -52,7 +52,7 @@ public:
   _WRAP_METHOD(void set_border_width(guint width), clutter_rectangle_set_border_width)
 
   _WRAP_PROPERTY("border-color", Color)
-  _WRAP_PROPERTY("border-width", unsigned int)
+  _WRAP_PROPERTY("border-width", guint)
   _WRAP_PROPERTY("color", Color)
   _WRAP_PROPERTY("has-border", bool)
 };

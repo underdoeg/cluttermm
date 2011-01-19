@@ -42,7 +42,7 @@ class PathNode
 {
   _CLASS_BOXEDTYPE_STATIC(PathNode, ClutterPathNode)
 public:
-  typedef unsigned int  size_type;
+  typedef guint  size_type;
   typedef int           difference_type;
 
   typedef Knot          value_type;
@@ -128,16 +128,16 @@ public:
 
   typedef void (* ClutterPathCallback) (const ClutterPathNode *node,
                                       gpointer               data);
-                     
+
   /** For instance,
    * void on_path_foreach(const Clutter::PathNode& node);
-   */                 
+   */
   typedef sigc::slot<void, PathNode> ForEachSlot;
-  
+
   //TODO: Documentation.
   void foreach(const ForEachSlot& slot);
   _IGNORE(clutter_path_foreach)
-                                                
+
   _WRAP_METHOD(Glib::ustring get_description() const, clutter_path_get_description)
   _WRAP_METHOD(void set_description(const Glib::ustring& str), clutter_path_set_description)
 
@@ -164,7 +164,7 @@ private:
   Nodes& operator=(const Path::Nodes&);
 
 public:
-  typedef unsigned int      size_type;
+  typedef guint      size_type;
   typedef int               difference_type;
   typedef PathNode          value_type;
   typedef const value_type  const_reference;
@@ -180,9 +180,9 @@ public:
     friend class Path::Nodes::const_iterator;
 
     ClutterPath* path_;
-    unsigned int index_;
+    guint index_;
 
-    inline reference(ClutterPath* path, unsigned int index)
+    inline reference(ClutterPath* path, guint index)
       : path_ (path), index_ (index) {}
 
     // disallow the address-of operator
@@ -209,7 +209,7 @@ public:
 
     inline const_iterator() : ref_ (0, 0) {}
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    inline const_iterator(ClutterPath* path, unsigned int index)
+    inline const_iterator(ClutterPath* path, guint index)
       : ref_ (path, index) {}
 
     inline bool equal(const const_iterator& b) const
@@ -231,7 +231,7 @@ public:
 
     inline iterator() {}
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
-    inline iterator(ClutterPath* path, unsigned int index)
+    inline iterator(ClutterPath* path, guint index)
       : const_iterator(path, index) {}
 #endif
     inline reference operator*() const { return ref_; }

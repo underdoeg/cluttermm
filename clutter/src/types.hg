@@ -65,7 +65,7 @@ class Geometry
 {
   _CLASS_BOXEDTYPE_STATIC(Geometry, ClutterGeometry)
 public:
-  Geometry(int x, int y, unsigned int width = 0, unsigned int height = 0);
+  Geometry(int x, int y, guint width = 0, guint height = 0);
 
   _MEMBER_GET(x, x, int, gint)
   void set_x(int x);
@@ -73,11 +73,11 @@ public:
   void set_y(int y);
   void set_xy(int x, int y);
 
-  _MEMBER_GET(width, width, unsigned int, guint)
-  void set_width(unsigned int width);
-  _MEMBER_GET(height, height, unsigned int, guint)
-  void set_height(unsigned int height);
-  void set_size(unsigned int width, unsigned int height);
+  _MEMBER_GET(width, width, guint, guint)
+  void set_width(guint width);
+  _MEMBER_GET(height, height, guint, guint)
+  void set_height(guint height);
+  void set_size(guint width, guint height);
 };
 
 class Knot
