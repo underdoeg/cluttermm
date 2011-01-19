@@ -63,11 +63,11 @@ public:
   _WRAP_METHOD(void set_easing_mode(gulong mode), clutter_box_layout_set_easing_mode)
   _WRAP_METHOD(gulong get_easing_mode() const, clutter_box_layout_get_easing_mode)
 
-  _WRAP_PROPERTY("easing-duration", unsigned int)
+  _WRAP_PROPERTY("easing-duration", guint)
   _WRAP_PROPERTY("easing-mode", unsigned long)
   // 1.4 _WRAP_PROPERTY("homogeneous", bool)
   _WRAP_PROPERTY("pack-start", bool)
-  _WRAP_PROPERTY("spacing", unsigned int)
+  _WRAP_PROPERTY("spacing", guint)
   _WRAP_PROPERTY("use-animations", bool)
   _WRAP_PROPERTY("vertical", bool)
 };
