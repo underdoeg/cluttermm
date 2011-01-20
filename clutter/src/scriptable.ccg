@@ -17,7 +17,6 @@
 
 #include <clutter/clutter.h>
 
-
 namespace Clutter
 {
 } //namespace Clutter

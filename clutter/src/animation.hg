@@ -20,8 +20,7 @@
 #include <cluttermm/actor.h>
 #include <cluttermm/interval.h>
 #include <cluttermm/timeline.h>
-#include <clutter/clutter.h>
- 
+
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)
 
@@ -47,7 +46,7 @@ public:
 
   _WRAP_METHOD(void set_duration(guint msecs), clutter_animation_set_duration)
   _WRAP_METHOD(guint get_duration() const, clutter_animation_get_duration)
-  
+
   _WRAP_METHOD(void set_loop(bool loop=true), clutter_animation_set_loop)
   _WRAP_METHOD(bool get_loop() const, clutter_animation_get_loop)
   _WRAP_METHOD(void set_timeline(const Glib::RefPtr<Timeline>& timeline), clutter_animation_set_timeline)
@@ -57,27 +56,27 @@ public:
   _WRAP_METHOD(void completed(), clutter_animation_completed)
   _WRAP_METHOD(Glib::RefPtr<Animation> bind(const std::string& property_name, const Glib::ValueBase& final), clutter_animation_bind)
    //TODO: Add templated bind().
-   
+
   _WRAP_METHOD(void bind_interval(const std::string& property_name, const Glib::RefPtr<Interval>& interval), clutter_animation_bind_interval)
   _WRAP_METHOD(void update_interval(const std::string& property_name, const Glib::RefPtr<Interval>& interval), clutter_animation_update_interval)
   _WRAP_METHOD(bool has_property(const std::string& property_name) const, clutter_animation_has_property)
-  
+
   _WRAP_METHOD(Glib::RefPtr<Animation> update(const std::string& property_name, const Glib::ValueBase& final), clutter_animation_update)
   //TODO: Add templated update().
-  
+
   _WRAP_METHOD(void unbind_property(const std::string& property_name), clutter_animation_unbind_property)
   _WRAP_METHOD(Glib::RefPtr<Interval> get_interval(const std::string& property_name) const, clutter_animation_get_interval)
 
   _WRAP_SIGNAL(void started(), "started")
   _WRAP_SIGNAL(void completed(), "completed")
-  
+
   _WRAP_PROPERTY("object", Glib::RefPtr<Glib::Object>)
   _WRAP_PROPERTY("mode", gulong)
   _WRAP_PROPERTY("duration", guint)
   _WRAP_PROPERTY("loop", bool)
   _WRAP_PROPERTY("timeline", Glib::RefPtr<Timeline>)
   _WRAP_PROPERTY("alpha", Glib::RefPtr<Alpha>)
-                               
+
 };
 
 } // namespace Clutter
