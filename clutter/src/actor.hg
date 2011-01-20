@@ -26,7 +26,6 @@
 #include <cluttermm/scriptable.h>
 #include <cluttermm/shader.h>
 #include <cluttermm/types.h> // For Event*
-#include <clutter/clutter.h> // For ClutterActorBox
 
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)

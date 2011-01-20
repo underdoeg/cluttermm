@@ -16,11 +16,9 @@
  */
 
 #include <glibmm/object.h>
-//#include <cluttermm/actor.h>
- 
+
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)
-
 
 namespace Clutter
 {
@@ -47,7 +45,7 @@ public:
 
   _WRAP_METHOD(Glib::RefPtr<Actor> get_actor(), clutter_actor_meta_get_actor, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const Actor> get_actor() const, clutter_actor_meta_get_actor, refreturn, constversion)
-  
+
   //TODO: Signals, properties, vfuncs
 };
 

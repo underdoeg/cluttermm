@@ -19,8 +19,7 @@
 #include <cluttermm/childmeta.h>
 #include <glibmm/interface.h>
 #include <glibmm/ustring.h>
-#include <clutter/clutter.h>
- 
+
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/interface_p.h)
 
@@ -46,7 +45,7 @@ public:
   _WRAP_METHOD(Glib::RefPtr<Actor> find_child(const Glib::ustring& child_name), clutter_container_find_child_by_name, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const Actor> find_child(const Glib::ustring& child_name) const, clutter_container_find_child_by_name, constversion)
 
-  /** For instance, 
+  /** For instance,
    * void on_foreach(const Glib::RefPtr<Actor>& actor)
    */
   typedef sigc::slot<void, const Glib::RefPtr<Actor>&> SlotForEach;
@@ -59,7 +58,7 @@ public:
           clutter_container_remove, clutter_container_child_get, clutter_container_child_set,
           clutter_container_class_find_child_property, clutter_container_class_list_child_properties)
 
- 
+
   template <class PropertyType> inline
   void set_child_property(const Glib::RefPtr<Actor>& child, const Glib::ustring& property_name, const PropertyType& value);
 

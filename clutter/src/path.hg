@@ -21,7 +21,7 @@ _DEFS(cluttermm,clutter)
 #include <cluttermm/types.h>
 #include <glibmm/object.h>
 #include <cairomm/context.h>
-#include <clutter/clutter.h>
+
 _PINCLUDE(glibmm/private/object_p.h)
 
 namespace Clutter

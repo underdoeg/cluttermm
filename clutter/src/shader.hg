@@ -16,8 +16,8 @@
  */
 
 #include <glibmm/object.h>
-#include <clutter/clutter.h>
- 
+#include <cogl/cogl.h>
+
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)
 

@@ -18,6 +18,8 @@
 
 #include <cstring>
 
+#include <clutter/clutter.h>
+
 namespace
 {
 
@@ -128,5 +130,5 @@ void Path::foreach(const ForEachSlot& slot)
   const void* data = &slot;
   clutter_path_foreach(gobj(), &c_foreach_callback, const_cast<void*>(data));
 }
-  
+
 } // namespace Clutter

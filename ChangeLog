@@ -1,5 +1,24 @@
 2011-01-20  Chris Kühl  <chrisk@openismus.com>
 
+	Removed unnecessary C headers in .hg files.
+
+	*clutter/src/actor-meta.hg:
+	*clutter/src/actor.hg:
+	*clutter/src/alpha.hg:
+	*clutter/src/animation.hg:
+	*clutter/src/container.hg:
+	*clutter/src/interval.hg:
+	*clutter/src/media.ccg:
+	*clutter/src/path.[h|cc]g:
+	*clutter/src/score.hg:
+	*clutter/src/script.hg:
+	*clutter/src/scriptable.[h|cc]g:
+	*clutter/src/shader.[h|cc]g:
+	*clutter/src/stage.hg:
+	*clutter/src/texture.hg:
+
+2011-01-20  Chris Kühl  <chrisk@openismus.com>
+
 	Replaced use of unsigned int with guint.
 
 	*clutter/src/actor.[cc|h]g:

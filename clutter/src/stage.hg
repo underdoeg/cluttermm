@@ -17,7 +17,6 @@
 
 #include <cluttermm/group.h>
 #include <cluttermm/color.h>
-#include <clutter/clutter.h> // For ClutterPerspective
 
 _DEFS(cluttermm,clutter)
 _PINCLUDE(cluttermm/private/group_p.h)
