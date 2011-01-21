@@ -1,3 +1,14 @@
+2011-01-21  Chris Kühl  <chrisk@openismus.com>
+
+	Initial wrapping of ClutterAnimator.
+
+	* clutter/cluttermm.h: Added header file for new class.
+	* clutter/src/animator.[hg|ccg]: Initial wrapping of ClutterFlowLayout.
+	* clutter/src/clutter_signals.defs: Added properties for new class.
+	* clutter/src/filelist.am: Added new classes to files_hg list.
+	* codegen/extradefs/generate_extra_defs_clutter.cc: Added new class.
+	* codegen/m4/convert_clutter.m4: Added enum conversion for Animator.
+
 2011-01-20  Chris Kühl  <chrisk@openismus.com>
 
 	Removed unnecessary C headers in .hg files.

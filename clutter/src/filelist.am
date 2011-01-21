@@ -16,6 +16,7 @@ files_hg =			\
 	action.hg		\
 	alpha.hg		\
 	animation.hg		\
+	animator.hg		\
 	backend.hg		\
 	behaviour.hg		\
 	behaviour-depth.hg	\

@@ -692,6 +692,26 @@
   (construct-only #f)
 )
 
+;; From ClutterAnimator
+
+(define-property duration
+  (of-object "ClutterAnimator")
+  (prop-type "GParamUInt")
+  (docs "The duration of the animation")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property timeline
+  (of-object "ClutterAnimator")
+  (prop-type "GParamObject")
+  (docs "The timeline of the animation")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 ;; From ClutterBackend
 
 (define-signal resolution-changed
