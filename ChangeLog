@@ -1,5 +1,11 @@
 2011-01-21  Chris Kühl  <chrisk@openismus.com>
 
+	Sorted _EQUAL & _CONV_ENUM entries.
+
+	* codegen/m4/convert_clutter.m4:
+
+2011-01-21  Chris Kühl  <chrisk@openismus.com>
+
 	Initial wrapping of ClutterAnimator.
 
 	* clutter/cluttermm.h: Added header file for new class.
