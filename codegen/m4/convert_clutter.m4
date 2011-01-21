@@ -28,6 +28,10 @@ _CONVERSION(`const Glib::RefPtr<Animation>&',`ClutterAnimation*',__CONVERT_REFPT
 _CONVERSION(`ClutterAnimation*',`Glib::RefPtr<Animation>',`Glib::wrap($3)')
 _CONVERSION(`ClutterAnimation*',`Glib::RefPtr<const Animation>',`Glib::wrap($3)')
 
+_CONVERSION(`const Glib::RefPtr<Animator>&',`ClutterAnimator*',__CONVERT_REFPTR_TO_P)
+_CONVERSION(`ClutterAnimator*',`Glib::RefPtr<Animator>',`Glib::wrap($3)')
+_CONVERSION(`ClutterAnimator*',`Glib::RefPtr<const Animator>',`Glib::wrap($3)')
+
 _CONVERSION(`const Glib::RefPtr<Backend>&',`ClutterBackend*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`ClutterBackend*',`Glib::RefPtr<Backend>',`Glib::wrap($3)')
 
@@ -117,6 +121,7 @@ _EQUAL(ClutterCrossingEvent*,CrossingEvent*)
 _CONV_ENUM(Clutter,ActorFlags)
 _CONV_ENUM(Clutter,AllocationFlags)
 _CONV_ENUM(Clutter,AnimationMode)
+_CONV_ENUM(Clutter,Interpolation)
 _CONV_ENUM(Clutter,BinAlignment)
 _CONV_ENUM(Clutter,BoxAlignment)
 _CONV_ENUM(Clutter,FlowOrientation)
