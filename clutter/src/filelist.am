@@ -37,6 +37,7 @@ files_hg =			\
 	fixed-layout.hg         \
 	flow-layout.hg          \
 	group.hg		\
+	input-device.hg		\
 	interval.hg		\
 	layoutmeta.hg		\
 	layout-manager.hg	\

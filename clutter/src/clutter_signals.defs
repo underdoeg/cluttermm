@@ -2666,6 +2666,35 @@
   (construct-only #f)
 )
 
+;; ClutterInputDevice
+
+(define-property id
+  (of-object "ClutterInputDevice")
+  (prop-type "GParamInt")
+  (docs "Unique identifier of the device")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property device-type
+  (of-object "ClutterInputDevice")
+  (prop-type "GParamEnum")
+  (docs "The type of the device")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property name
+  (of-object "ClutterInputDevice")
+  (prop-type "GParamString")
+  (docs "The name of the device")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
 ;; From ClutterInterval
 
 (define-property value-type

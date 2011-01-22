@@ -59,6 +59,7 @@
 #include <cluttermm/actor-meta.h>
 #include <cluttermm/alpha.h>
 #include <cluttermm/animation.h>
+#include <cluttermm/animator.h>
 #include <cluttermm/behaviour.h>
 #include <cluttermm/behaviour-depth.h>
 #include <cluttermm/behaviour-ellipse.h>
@@ -78,6 +79,7 @@
 #include <cluttermm/frame-source.h>
 #include <cluttermm/group.h>
 #include <cluttermm/init.h>
+#include <cluttermm/input-device.h>
 #include <cluttermm/interval.h>
 #include <cluttermm/layout-manager.h>
 #include <cluttermm/layoutmeta.h>

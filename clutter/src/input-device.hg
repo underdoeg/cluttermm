@@ -1,0 +1,53 @@
+/* Copyright (C) 2011 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <glibmm/object.h>
+
+_DEFS(cluttermm,clutter)
+_PINCLUDE(glibmm/private/object_p.h)
+
+namespace Clutter
+{
+
+_WRAP_ENUM(InputDeviceType, ClutterInputDeviceType)
+
+class Actor;
+class Stage;
+
+class InputDevice : public Glib::Object
+{
+  _CLASS_GOBJECT(InputDevice, ClutterInputDevice, CLUTTER_INPUT_DEVICE, Glib::Object, GObject)
+
+protected:
+  _CTOR_DEFAULT()
+
+public:
+
+  _WRAP_METHOD(int get_device_id() const, clutter_input_device_get_device_id)
+  _WRAP_METHOD(InputDeviceType get_device_type() const, clutter_input_device_get_device_type)
+  _WRAP_METHOD(Glib::ustring get_device_name() const, clutter_input_device_get_device_name)
+  _WRAP_METHOD(void get_device_coords(int &x, int &y) const, clutter_input_device_get_device_coords)
+  _WRAP_METHOD(Glib::RefPtr<Actor> get_pointer_actor() const, clutter_input_device_get_pointer_actor)
+  _WRAP_METHOD(Glib::RefPtr<Stage> get_pointer_stage() const, clutter_input_device_get_pointer_stage)
+  //_WRAP_METHOD(void update_from_event(const Event &event, bool update_stage), clutter_input_device_update_from_event)
+
+  _WRAP_PROPERTY("device-type", InputDeviceType)
+  _WRAP_PROPERTY("id", int)
+  _WRAP_PROPERTY("name", Glib::ustring)
+};
+
+} // namespace Clutter
