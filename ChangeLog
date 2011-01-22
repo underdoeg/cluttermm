@@ -1,3 +1,26 @@
+2011-01-24  Chris Kühl  <chrisk@openismus.com>
+
+	Initial wrapping of ClutterDeviceManager.
+
+	* clutter/cluttermm.h: Added header file for new class.
+	* clutter/src/device-manager.[hg|ccg]: Initial wrapping of ClutterDeviceManager.
+	* clutter/src/clutter_signals.defs: Added properties for new class.
+	* clutter/src/filelist.am: Added new class to files_hg list.
+	* codegen/extradefs/generate_extra_defs_clutter.cc: Added new class.
+	* codegen/m4/convert_clutter.m4: Added DeviceManager & InputDevice conversions.
+
+2011-01-22  Chris Kühl  <chrisk@openismus.com>
+
+	Initial wrapping of ClutterInputDevice.
+
+	* clutter/cluttermm.h: Added header file for new class.
+	* clutter/src/input-device.[hg|ccg]: Initial wrapping of ClutterInputDevice.
+	* clutter/src/clutter_signals.defs: Added properties for new class.
+	* clutter/src/filelist.am: Added new classes to files_hg list.
+	* codegen/extradefs/generate_extra_defs_clutter.cc: Added new class.
+	* codegen/m4/convert_clutter.m4: Added enum conversion for Stage and
+	InputDeviceType.
+
 2011-01-21  Chris Kühl  <chrisk@openismus.com>
 
 	Sorted _EQUAL & _CONV_ENUM entries.
@@ -9,7 +32,7 @@
 	Initial wrapping of ClutterAnimator.
 
 	* clutter/cluttermm.h: Added header file for new class.
-	* clutter/src/animator.[hg|ccg]: Initial wrapping of ClutterFlowLayout.
+	* clutter/src/animator.[hg|ccg]: Initial wrapping of ClutterAnimator.
 	* clutter/src/clutter_signals.defs: Added properties for new class.
 	* clutter/src/filelist.am: Added new classes to files_hg list.
 	* codegen/extradefs/generate_extra_defs_clutter.cc: Added new class.

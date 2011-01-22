@@ -57,6 +57,7 @@
 #include <cluttermm/actor.h>
 #include <cluttermm/alpha.h>
 #include <cluttermm/animation.h>
+#include <cluttermm/animator.h>
 #include <cluttermm/behaviour.h>
 #include <cluttermm/behaviour-depth.h>
 #include <cluttermm/behaviour-ellipse.h>
@@ -70,12 +71,14 @@
 #include <cluttermm/cairo-texture.h>
 #include <cluttermm/clone.h>
 #include <cluttermm/color.h>
+#include <cluttermm/device-manager.h>
 #include <cluttermm/event.h>
 #include <cluttermm/fixed-layout.h>
 #include <cluttermm/flow-layout.h>
 #include <cluttermm/frame-source.h>
 #include <cluttermm/group.h>
 #include <cluttermm/init.h>
+#include <cluttermm/input-device.h>
 #include <cluttermm/interval.h>
 #include <cluttermm/layout-manager.h>
 #include <cluttermm/layoutmeta.h>

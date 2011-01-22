@@ -35,6 +35,13 @@ _CONVERSION(`ClutterAnimator*',`Glib::RefPtr<const Animator>',`Glib::wrap($3)')
 _CONVERSION(`const Glib::RefPtr<Backend>&',`ClutterBackend*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`ClutterBackend*',`Glib::RefPtr<Backend>',`Glib::wrap($3)')
 
+_CONVERSION(`const Glib::RefPtr<InputDevice>&',`ClutterInputDevice*',__CONVERT_REFPTR_TO_P)
+_CONVERSION(`ClutterInputDevice*',`Glib::RefPtr<InputDevice>',`Glib::wrap($3)')
+_CONVERSION(`ClutterInputDevice*',`Glib::RefPtr<const InputDevice>',`Glib::wrap($3)')
+_CONVERSION(`ClutterInputDevice*',`const Glib::RefPtr<InputDevice>&', `Glib::wrap(($3),true)')
+
+_CONVERSION(`ClutterDeviceManager*',`Glib::RefPtr<DeviceManager>',`Glib::wrap($3)')
+
 _CONVERSION(`const Glib::RefPtr<Effect>&',`ClutterEffect*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`const Glib::RefPtr<const Effect>&',`ClutterEffect*',__CONVERT_CONST_REFPTR_TO_P)
 
@@ -73,6 +80,8 @@ _CONVERSION(`ClutterChildMeta*',`Glib::RefPtr<const ChildMeta>',`Glib::wrap($3)'
 _CONVERSION(`Color&',`ClutterColor*',`($3).gobj()')
 _CONVERSION(`const Color&',`const ClutterColor*',`($3).gobj()')
 _CONVERSION(`const Margin&',`const ClutterMargin*',`($3).gobj()')
+
+_CONVERSION(`ClutterStage*',`Glib::RefPtr<Stage>',`Glib::wrap($3)')
 
 _CONVERSION(`ClutterUnit&',`ClutterUnit*',`&($3)')
 _CONVERSION(`ClutterUnit*',`ClutterUnit&',`*($3)')
@@ -125,6 +134,7 @@ _CONV_ENUM(Clutter,BinAlignment)
 _CONV_ENUM(Clutter,BoxAlignment)
 _CONV_ENUM(Clutter,FlowOrientation)
 _CONV_ENUM(Clutter,Gravity)
+_CONV_ENUM(Clutter,InputDeviceType)
 _CONV_ENUM(Clutter,Interpolation)
 _CONV_ENUM(Clutter,LayoutFlags)
 _CONV_ENUM(Clutter,PackType)
