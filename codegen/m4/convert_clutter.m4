@@ -35,6 +35,13 @@ _CONVERSION(`ClutterAnimator*',`Glib::RefPtr<const Animator>',`Glib::wrap($3)')
 _CONVERSION(`const Glib::RefPtr<Backend>&',`ClutterBackend*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`ClutterBackend*',`Glib::RefPtr<Backend>',`Glib::wrap($3)')
 
+_CONVERSION(`const Glib::RefPtr<InputDevice>&',`ClutterInputDevice*',__CONVERT_REFPTR_TO_P)
+_CONVERSION(`ClutterInputDevice*',`Glib::RefPtr<InputDevice>',`Glib::wrap($3)')
+_CONVERSION(`ClutterInputDevice*',`Glib::RefPtr<const InputDevice>',`Glib::wrap($3)')
+_CONVERSION(`ClutterInputDevice*',`const Glib::RefPtr<InputDevice>&', `Glib::wrap(($3),true)')
+
+_CONVERSION(`ClutterDeviceManager*',`Glib::RefPtr<DeviceManager>',`Glib::wrap($3)')
+
 _CONVERSION(`const Glib::RefPtr<Effect>&',`ClutterEffect*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`const Glib::RefPtr<const Effect>&',`ClutterEffect*',__CONVERT_CONST_REFPTR_TO_P)
 

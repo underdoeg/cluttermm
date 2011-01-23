@@ -2182,6 +2182,35 @@
   )
 )
 
+;; From ClutterDeviceManager
+
+(define-signal device-added
+  (of-object "ClutterDeviceManager")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("ClutterInputDevice*" "p0")
+  )
+)
+
+(define-signal device-removed
+  (of-object "ClutterDeviceManager")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("ClutterInputDevice*" "p0")
+  )
+)
+
+(define-property backend
+  (of-object "ClutterDeviceManager")
+  (prop-type "GParamObject")
+  (docs "The ClutterBackend of the device manager")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
 ;; From ClutterEvent
 
 ;; From FlowLayout

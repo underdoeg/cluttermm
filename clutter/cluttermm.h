@@ -73,6 +73,7 @@
 #include <cluttermm/cairo-texture.h>
 #include <cluttermm/clone.h>
 #include <cluttermm/color.h>
+#include <cluttermm/device-manager.h>
 #include <cluttermm/event.h>
 #include <cluttermm/fixed-layout.h>
 #include <cluttermm/flow-layout.h>
