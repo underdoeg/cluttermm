@@ -28,7 +28,7 @@
     <foaf:Person>
       <foaf:name>Chris Kühl</foaf:name>
       <foaf:mbox rdf:resource="mailto:blixtra@gmail.com>" />
-      <gnome:userid>blixtra</gnome:userid>
+      <gnome:userid>chriskuehl</gnome:userid>
     </foaf:Person>
   </maintainer>
 </Project>
