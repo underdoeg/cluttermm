@@ -1,5 +1,11 @@
 2011-01-31  Chris Kühl  <chrisk@openismus.com>
 
+	Wrapped ActorBox's clamp_to_pixel method.
+
+	* clutter/src/actor.hg: Wrapped new method.
+
+2011-01-31  Chris Kühl  <chrisk@openismus.com>
+
 	Wrapped ActorBox's get_[origin|size|area] & contains methods.
 
 	* clutter/src/actor.hg: Wrapped new methods, moved conversion.
