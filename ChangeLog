@@ -1,5 +1,11 @@
 2011-01-31  Chris Kühl  <chrisk@openismus.com>
 
+	Added refreturn & constversions of set_key, start, and get_timeline to Animator.
+
+	* clutter/src/animator.hg:
+
+2011-01-31  Chris Kühl  <chrisk@openismus.com>
+
 	Added refreturn & constversions to get_pointer_[actor|stage] in InputDevice.
 
 	* clutter/src/input-device.hg:

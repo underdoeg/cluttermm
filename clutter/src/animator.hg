@@ -40,15 +40,18 @@ public:
   _WRAP_CREATE()
 
   _IGNORE(clutter_animator_set)
-  _WRAP_METHOD(Glib::RefPtr<Animator> set_key(const Glib::RefPtr<Glib::Object>& object, const Glib::ustring& property_name, guint mode, double progress, const Glib::ValueBase& value), clutter_animator_set_key)
+  _WRAP_METHOD(Glib::RefPtr<Animator> set_key(const Glib::RefPtr<Glib::Object>& object, const Glib::ustring& property_name, guint mode, double progress, const Glib::ValueBase& value), clutter_animator_set_key, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Animator> set_key(const Glib::RefPtr<Glib::Object>& object, const Glib::ustring& property_name, guint mode, double progress, const Glib::ValueBase& value) const, clutter_animator_set_key, refreturn, constversion)
   _WRAP_METHOD(void remove_key(const Glib::RefPtr<Glib::Object>& object, const Glib::ustring& property_name, double progress), clutter_animator_remove_key)
   // TODO: _WRAP_METHOD(std::vector<Glib::RefPtr<Animator> > get_keys(const Glib::RefPtr<Glib::Object>& object, const std::string &property_name, double progress), clutter_animator_get_keys)
   _IGNORE(clutter_animator_get_keys)
-  _WRAP_METHOD(Glib::RefPtr<Timeline> start(), clutter_animator_start)
+  _WRAP_METHOD(Glib::RefPtr<Timeline> start(), clutter_animator_start, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Timeline> start() const, clutter_animator_start, refreturn, constversion)
   _WRAP_METHOD(bool compute_value(const Glib::RefPtr<Glib::Object>& object, const Glib::ustring& property_name, double progress, Glib::ValueBase& value), clutter_animator_compute_value)
 
   _WRAP_METHOD(void set_timeline(const Glib::RefPtr<Timeline>& timeline), clutter_animator_set_timeline)
-  _WRAP_METHOD(Glib::RefPtr<Timeline> get_timeline() const, clutter_animator_get_timeline)
+  _WRAP_METHOD(Glib::RefPtr<Timeline> get_timeline() const, clutter_animator_get_timeline, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Timeline> get_timeline() const, clutter_animator_get_timeline, refreturn, constversion)
   _WRAP_METHOD(void set_duration(guint duration), clutter_animator_set_duration)
   _WRAP_METHOD(guint get_duration() const, clutter_animator_get_duration)
 
