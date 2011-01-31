@@ -45,6 +45,8 @@ public:
   _WRAP_METHOD(float get_area() const, clutter_actor_box_get_area)
   _WRAP_METHOD(bool contains(float x, float y) const, clutter_actor_box_contains)
 
+  _WRAP_METHOD(void clamp_to_pixel(), clutter_actor_box_clamp_to_pixel)
+
   _MEMBER_GET(x1, x1, float, float)
   _MEMBER_SET(x1, x1, float, float)
   _MEMBER_GET(y1, y1, float, float)
