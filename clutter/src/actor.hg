@@ -42,6 +42,12 @@ class ActorBox
 public:
   ActorBox(float x1, float y1, float x2, float y2);
 
+#m4 _CONVERSION(`float&',`float*',`&($3)')
+  _WRAP_METHOD(void get_origin(float& x, float& y) const, clutter_actor_box_get_origin)
+  _WRAP_METHOD(void get_size(float& width, float& height) const, clutter_actor_box_get_size)
+  _WRAP_METHOD(float get_area() const, clutter_actor_box_get_area)
+  _WRAP_METHOD(bool contains(float x, float y) const, clutter_actor_box_contains)
+
   _MEMBER_GET(x1, x1, float, float)
   _MEMBER_SET(x1, x1, float, float)
   _MEMBER_GET(y1, y1, float, float)
@@ -206,7 +212,6 @@ public:
   _WRAP_METHOD(void set_request_mode(RequestMode mode), clutter_actor_set_request_mode)
   _WRAP_METHOD(RequestMode get_request_mode() const, clutter_actor_get_request_mode)
 
-#m4 _CONVERSION(`float&',`float*',`&($3)')
   _WRAP_METHOD(void get_preferred_size(float& min_width_p, float& min_height_p, float& natural_width_p, float& natural_height_p) const, clutter_actor_get_preferred_size)
   _WRAP_METHOD(void get_preferred_width(float for_height, float& min_width_p, float& natural_width_p) const, clutter_actor_get_preferred_width)
   _WRAP_METHOD(void get_preferred_height(float for_width, float& min_height_p, float& natural_height_p) const, clutter_actor_get_preferred_height)
