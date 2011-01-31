@@ -42,8 +42,10 @@ public:
   std::vector<Glib::RefPtr<InputDevice> >       list_devices();
   std::vector<Glib::RefPtr<const InputDevice> > list_devices() const;
 
-  _WRAP_METHOD(Glib::RefPtr<InputDevice> get_device(int device_id), clutter_device_manager_get_device)
-  _WRAP_METHOD(Glib::RefPtr<InputDevice> get_core_device(InputDeviceType device_type), clutter_device_manager_get_core_device)
+  _WRAP_METHOD(Glib::RefPtr<InputDevice> get_device(int device_id), clutter_device_manager_get_device, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const InputDevice> get_device(int device_id) const, clutter_device_manager_get_device, refreturn, constversion)
+  _WRAP_METHOD(Glib::RefPtr<InputDevice> get_core_device(InputDeviceType device_type), clutter_device_manager_get_core_device, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const InputDevice> get_core_device(InputDeviceType device_type) const, clutter_device_manager_get_core_device, refreturn, constversion)
 
   _IGNORE(clutter_get_input_device_for_id)
 
