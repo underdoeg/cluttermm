@@ -41,8 +41,11 @@ public:
   _WRAP_METHOD(InputDeviceType get_device_type() const, clutter_input_device_get_device_type)
   _WRAP_METHOD(Glib::ustring get_device_name() const, clutter_input_device_get_device_name)
   _WRAP_METHOD(void get_device_coords(int &x, int &y) const, clutter_input_device_get_device_coords)
-  _WRAP_METHOD(Glib::RefPtr<Actor> get_pointer_actor() const, clutter_input_device_get_pointer_actor)
-  _WRAP_METHOD(Glib::RefPtr<Stage> get_pointer_stage() const, clutter_input_device_get_pointer_stage)
+  _WRAP_METHOD(Glib::RefPtr<Actor> get_pointer_actor(), clutter_input_device_get_pointer_actor, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Actor> get_pointer_actor() const, clutter_input_device_get_pointer_actor, refreturn, constversion)
+  _WRAP_METHOD(Glib::RefPtr<Stage> get_pointer_stage(), clutter_input_device_get_pointer_stage, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Stage> get_pointer_stage() const, clutter_input_device_get_pointer_stage, refreturn, , constversion)
+
   //_WRAP_METHOD(void update_from_event(const Event &event, bool update_stage), clutter_input_device_update_from_event)
 
   _WRAP_PROPERTY("device-type", InputDeviceType)
