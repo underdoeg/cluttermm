@@ -50,7 +50,7 @@ public:
   _WRAP_METHOD(bool compute_value(const Glib::RefPtr<Glib::Object>& object, const Glib::ustring& property_name, double progress, Glib::ValueBase& value), clutter_animator_compute_value)
 
   _WRAP_METHOD(void set_timeline(const Glib::RefPtr<Timeline>& timeline), clutter_animator_set_timeline)
-  _WRAP_METHOD(Glib::RefPtr<Timeline> get_timeline() const, clutter_animator_get_timeline, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<Timeline> get_timeline(), clutter_animator_get_timeline, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const Timeline> get_timeline() const, clutter_animator_get_timeline, refreturn, constversion)
   _WRAP_METHOD(void set_duration(guint duration), clutter_animator_set_duration)
   _WRAP_METHOD(guint get_duration() const, clutter_animator_get_duration)
