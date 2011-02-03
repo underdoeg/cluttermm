@@ -1,3 +1,24 @@
+1.3.2: (unstable)
+
+* Wrapped ClutterLayoutMeta and ClutterLayoutManager.
+  (Chris Kühl)
+* LayoutManager: Wrap the vfuncs.
+  (Murray Cummings)
+* Wrapped ClutterBox class.
+* Wrapped ClutterFixedLayout class.
+* Wrapped ClutterBinLayout.
+* Wrapped clutter_bin_layout_get_alignment.
+* Wrapped ClutterBoxLayout.
+* Wrapped ClutterFlowLayout.
+* Added missing properties to ClutterMedia.
+* Added missing properties to Clutter::Stage.
+* Removed unnecessary C headers in .hg files.
+* Wrapped ClutterAnimator.
+* Wrapped ClutterInputDevice.
+* Wrapped ActorBox's get_[origin|size|area] & contains methods.
+* Wrapped ActorBox's clamp_to_pixel method.
+  (Chris Kühl)
+
 1.3.1: (unstable)
 
 * Added Action, ActorMeta and Effects.

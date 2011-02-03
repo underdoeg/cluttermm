@@ -1,3 +1,5 @@
+1.3.2
+
 2011-02-01  Chris Kühl  <chrisk@openismus.com>
 
 	Added missing methods for vfuncs in LayoutManager.
