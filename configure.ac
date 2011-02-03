@@ -41,7 +41,7 @@ AC_DISABLE_STATIC
 AC_LIBTOOL_WIN32_DLL
 AC_PROG_LIBTOOL
 
-AC_SUBST([CLUTTERMM_MODULES], ['clutter-1.0 >= 1.3.8 pangomm-1.4 >= 2.27.1 atkmm-1.6 >= 2.22.2'])
+AC_SUBST([CLUTTERMM_MODULES], ['clutter-1.0 >= 1.2.0 pangomm-1.4 >= 2.24 atkmm-1.6 >= 2.20'])
 PKG_CHECK_MODULES([CLUTTERMM], [$CLUTTERMM_MODULES])
 MM_PKG_CONFIG_SUBST([GMMPROC_DIR], [--variable=gmmprocdir glibmm-2.4])
 MM_PKG_CONFIG_SUBST([GMMPROC_EXTRA_M4_DIR], [--variable=gmmprocm4dir pangomm-1.4 atkmm-1.6])

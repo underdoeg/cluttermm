@@ -32,7 +32,6 @@ files_hg =			\
 	color.hg		\
 	container.hg		\
 	device-manager.hg	\
-	effect.hg               \
 	fixed-layout.hg         \
 	flow-layout.hg          \
 	group.hg		\
