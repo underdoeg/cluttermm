@@ -52,7 +52,8 @@ public:
   _IGNORE(clutter_box_packv, clutter_box_pack, clutter_box_pack_before, clutter_box_pack_after, clutter_box_pack_at)
 
   // TODO: Documentation
-  void pack(const Glib::RefPtr<Actor>& actor, const std::map<std::string, Glib::ValueBase>& properties);
+  // FIXME: The std::map with a Glib::ValueBase does not work.
+  // void pack(const Glib::RefPtr<Actor>& actor, const std::map<std::string, Glib::ValueBase>& properties);
 
   _WRAP_PROPERTY("color", Color)
   _WRAP_PROPERTY("color-set", bool)
