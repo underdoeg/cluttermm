@@ -1075,7 +1075,7 @@
   (construct-only #f)
 )
 
-(define-property manager
+(define-property layout-manager
   (of-object "ClutterBox")
   (prop-type "GParamObject")
   (docs "The ClutterLayoutManager used by the ClutterBox")
