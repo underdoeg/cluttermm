@@ -20,17 +20,17 @@
 #include <cluttermm/color.h>
 
 _DEFS(cluttermm,clutter)
-_PINCLUDE(cluttermm/private/layout-manager_p.h)
+_PINCLUDE(cluttermm/private/actor_p.h)
 _PINCLUDE(cluttermm/private/container_p.h)
 
 namespace Clutter
 {
 
 class Box :
-    public LayoutManager,
+    public Actor,
     public Container
 {
-  _CLASS_GOBJECT(Box, ClutterBox, CLUTTER_BOX, LayoutManager, ClutterLayoutManager)
+  _CLASS_GOBJECT(Box, ClutterBox, CLUTTER_BOX, Actor, ClutterActor)
   _IMPLEMENTS_INTERFACE(Container)
 
 protected:
@@ -39,9 +39,10 @@ protected:
 
 public:
   _WRAP_CREATE()
+  _WRAP_CREATE(const Glib::RefPtr<LayoutManager>& layoutManager)
 
-  _WRAP_METHOD(Glib::RefPtr<LayoutManager> get_manager(), clutter_box_get_manager, refreturn)
-  _WRAP_METHOD(Glib::RefPtr<const LayoutManager> get_manager() const, clutter_box_get_manager, refreturn, constversion)
+  _WRAP_METHOD(Glib::RefPtr<LayoutManager> get_layout_manager(), clutter_box_get_layout_manager, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const LayoutManager> get_layout_manager() const, clutter_box_get_layout_manager, refreturn, constversion)
 
   _WRAP_METHOD(void set_color(const Color& color), clutter_box_set_color)
 
@@ -55,8 +56,7 @@ public:
 
   _WRAP_PROPERTY("color", Color)
   _WRAP_PROPERTY("color-set", bool)
-  _WRAP_PROPERTY("manager", Glib::RefPtr<LayoutManager>)
+  _WRAP_PROPERTY("layout-manager", Glib::RefPtr<LayoutManager>)
 };
 
 } // namespace Clutter
-
