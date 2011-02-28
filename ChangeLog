@@ -1,3 +1,12 @@
+2011-02-28  Chris Kühl  <chrisk@openismus.com>
+
+ 	Temporarily remove methods with std::map containing a Glib::ValueBase.
+
+	Committing forgotten *.ccg files from before.
+
+	* clutter/src/actor.ccg:
+	* clutter/src/box.ccg:
+
 2011-02-27  Chris Kühl  <chrisk@openismus.com>
 
 	Added signal name change forgotten from 2 commits ago.
