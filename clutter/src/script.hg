@@ -21,7 +21,6 @@
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)
 
-
 namespace Clutter
 {
 
@@ -53,6 +52,29 @@ public:
   _WRAP_METHOD(Glib::RefPtr<Glib::Object> get_object(const Glib::ustring& name), clutter_script_get_object, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const Glib::Object> get_object(const Glib::ustring& name) const, clutter_script_get_object, refreturn, constversion)
 
+  /** Get a RefPtr to an object from the ClutterScript JSON file.
+   * For instance:
+   * @code
+   * Glib::RefPtr<Clutter::Rectangle> aRectangleRef;
+   * scriptObject->get_object("myRectangle", aRectangleRef);
+   * @endcode
+   * This method prints a warning message to the console if the object
+   * doesn't exist or has the wrong type, so you don't need to check that
+   * manually.
+   *
+   * @param name The name of the object.
+   * @retval derived_object A RefPtr to the object, or <tt>0</tt> on failure.
+   */
+  template <class T_Object> inline
+  void get_object(const Glib::ustring& name, Glib::RefPtr<T_Object>& derived_object)
+  {
+    // The dynamic_cast<> should never fail if geT_Object_checked() succeeded.
+    derived_object = Glib::RefPtr<T_Object>::cast_dynamic(this->get_object_checked(name, T_Object::get_base_type()));
+
+    if(!derived_object)
+      g_critical("Clutter:Script::get_object(): dynamic_cast<> failed.");
+  }
+
   //clutter_script_get_objects() is a varargs convenience function for C.
   _IGNORE(clutter_script_get_objects)
 
@@ -73,6 +95,9 @@ public:
   _WRAP_PROPERTY("filename-set", bool)
 
 protected:
+  Glib::RefPtr<Glib::Object> get_object_checked(const Glib::ustring& name, GType type);
+  GObject* get_cobject(const Glib::ustring& name);
+
 #m4begin
 dnl Custom-coded vfunc:
 dnl
