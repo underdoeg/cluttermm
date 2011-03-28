@@ -1,5 +1,11 @@
 2011-03-28  Chris Kühl  <chrisk@openismus.com>
 
+	Removed obsolete variations of Clutter::Script::get_object methods.
+
+	* clutter/src/script.hg:
+
+2011-03-28  Chris Kühl  <chrisk@openismus.com>
+
 	Updated Clutter::Script example to use Clutter::Script::get_object.
 
 	* example/script.cc: Using Clutter::Script::get_object to avoid an
