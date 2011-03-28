@@ -1,5 +1,12 @@
 2011-03-28  Chris Kühl  <chrisk@openismus.com>
 
+	Updated Clutter::Script example to use Clutter::Script::get_object.
+
+	* example/script.cc: Using Clutter::Script::get_object to avoid an
+	ugly cast.
+
+2011-03-28  Chris Kühl  <chrisk@openismus.com>
+
 	Added get_object convienience method.
 
 	* clutter/src/script.[h|cc]g: Added get_object and helper functions.
