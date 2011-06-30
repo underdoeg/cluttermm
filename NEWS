@@ -1,3 +1,13 @@
+1.3.3: (unstable)
+
+* Use tar-ustar instead of tar-pax to ensure OpenBSD compatibility
+  (Olav Vitters)
+* Added example for Clutter::Script
+* Added get_object convienience method to Clutter::Script.
+* Remove methods with std::map containing a Glib::ValueBase.
+* Fixed inheritance and layout-manager issues in box.hg.
+  (Chris Kühl)
+
 1.3.2: (unstable)
 
 * Wrapped ClutterLayoutMeta and ClutterLayoutManager.

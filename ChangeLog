@@ -1,3 +1,5 @@
+1.3.3
+
 2011-03-28  Chris Kühl  <chrisk@openismus.com>
 
 	Removed obsolete variations of Clutter::Script::get_object methods.
