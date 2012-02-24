@@ -71,6 +71,7 @@
 #include <cluttermm/box.h>
 #include <cluttermm/box-layout.h>
 #include <cluttermm/cairo-texture.h>
+#include <cluttermm/childmeta.h>
 #include <cluttermm/clone.h>
 #include <cluttermm/color.h>
 #include <cluttermm/device-manager.h>
