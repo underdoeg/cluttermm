@@ -31,6 +31,7 @@ namespace Cairo
 
 class Texture : public ::Clutter::Texture
 {
+  _GMMPROC_EXTRA_NAMESPACE(Cairo)
   _CLASS_GOBJECT(Texture, ClutterCairoTexture, CLUTTER_CAIRO_TEXTURE, ::Clutter::Texture, ClutterTexture)
   _IMPLEMENTS_INTERFACE(Scriptable)
 
