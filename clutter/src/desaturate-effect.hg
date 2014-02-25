@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 The cluttermm Development Team
+/* Copyright (C) 2011 The cluttermm Development Team
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -15,12 +15,29 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <cluttermm/actor-meta.h>
-#include <clutter/clutter.h>
-#include <cluttermm/types.h>
+#include <cluttermm/offscreen-effect.h>
+
+_DEFS(cluttermm,clutter)
+_PINCLUDE(cluttermm/private/offscreen-effect_p.h)
 
 namespace Clutter
 {
 
+class DesaturateEffect : public OffscreenEffect
+{
+  _CLASS_GOBJECT(DesaturateEffect, ClutterDesaturateEffect, CLUTTER_DESATURATE_EFFECT, Clutter::OffscreenEffect, ClutterOffscreenEffect)
 
-} //namespace Clutter
+protected:
+  _WRAP_CTOR(DesaturateEffect(double factor), clutter_desaturate_effect_new)
+
+public:
+  _WRAP_CREATE(double factor)
+  _WRAP_METHOD(void set_factor(double factor), clutter_desaturate_effect_set_factor)
+
+  _WRAP_METHOD(double get_factor() const, clutter_desaturate_effect_get_factor)
+
+protected:
+  _WRAP_PROPERTY("factor", double)
+};
+
+}//namespace Clutter

@@ -1,0 +1,47 @@
+/* Copyright (C) 2011 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <cluttermm/deform-effect.h>
+
+_DEFS(cluttermm,clutter)
+_PINCLUDE(cluttermm/private/deform-effect_p.h)
+
+namespace Clutter
+{
+
+class PageTurnEffect :  public Clutter::DeformEffect
+{
+  _CLASS_GOBJECT(PageTurnEffect, ClutterPageTurnEffect, CLUTTER_PAGE_TURN_EFFECT, Clutter::DeformEffect, ClutterDeformEffect)
+protected:
+  _WRAP_CTOR(PageTurnEffect(double period, double angle, float radius), clutter_page_turn_effect_new)
+
+public:
+  _WRAP_CREATE(double period, double angle, float radius)
+
+  _WRAP_METHOD(void set_period(double period), clutter_page_turn_effect_set_period )
+  _WRAP_METHOD(double get_period() const, clutter_page_turn_effect_get_period )
+  _WRAP_METHOD(void set_angle(double angle), clutter_page_turn_effect_set_angle)
+  _WRAP_METHOD(double get_angle() const, clutter_page_turn_effect_get_angle)
+  _WRAP_METHOD(void set_radius(float radius), clutter_page_turn_effect_set_radius)
+  _WRAP_METHOD(float get_radius() const, clutter_page_turn_effect_get_radius)
+
+  _WRAP_PROPERTY("angle", double)
+  _WRAP_PROPERTY("period", double)
+  _WRAP_PROPERTY("radius", float)
+};
+
+}//namespace Clutter

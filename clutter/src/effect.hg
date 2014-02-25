@@ -17,13 +17,18 @@
 
 #include <glibmm/object.h>
 #include <cluttermm/actor-meta.h>
- 
+
 _DEFS(cluttermm,clutter)
 _PINCLUDE(cluttermm/private/actor-meta_p.h)
 
+// TODO IM: added in 1.4 ???
 
 namespace Clutter
 {
+
+//TODO IM: wrap this class and enable the vfunc.
+// class PaintVolume;
+//_WRAP_ENUM(EffectPaintFlags, ClutterEffectPaintFlags)
 
 //TODO: Write a version of the large description from here: http://clutter-project.org/docs/clutter/stable/ClutterEffect.html#ClutterEffect.description
 class Effect : public ActorMeta
@@ -38,9 +43,16 @@ public:
   //There is no create() because this is an abstract base class.
   //_WRAP_CREATE()
 
-  //There are no functions.
+  _WRAP_METHOD(void queue_repaint(), clutter_effect_queue_repaint)
 
-  //TODO: Signals, properties, vfuncs
+protected:
+   //TODO: Signals, properties, vfuncs
+  _WRAP_VFUNC(void paint(EffectPaintFlags flags), paint)
+  _WRAP_VFUNC(void pick(EffectPaintFlags flags), pick)
+  _WRAP_VFUNC(void pre_paint(EffectPaintFlags flags), pre_paint, deprecated)
+  _WRAP_VFUNC(void post_paint(EffectPaintFlags flags), post_paint, deprecated)
+
+  _WRAP_VFUNC(bool get_paint_volume(PaintVolume volume), get_paint_volume)
 };
 
 } // namespace Clutter

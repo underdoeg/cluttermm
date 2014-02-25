@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 The cluttermm Development Team
+/* Copyright (C) 2009 The cluttermm Development Team
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -15,12 +15,10 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <cluttermm/actor-meta.h>
 #include <clutter/clutter.h>
 #include <cluttermm/types.h>
 
 namespace Clutter
 {
-
 
 } //namespace Clutter

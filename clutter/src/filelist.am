@@ -30,13 +30,18 @@ files_hg =			\
 	bin-layout.hg           \
 	box.hg			\
 	box-layout.hg           \
+	blur-effect.hg          \
+	brightness-contrast-effect.hg \
 	cairo-texture.hg	\
 	childmeta.hg		\
 	clone.hg		\
 	color.hg		\
+	colorize-effect.hg \
 	container.hg		\
 	content.hg		\
+	deform-effect.hg \
 	device-manager.hg	\
+	desaturate-effect.hg \
 	effect.hg               \
 	fixed-layout.hg         \
 	flow-layout.hg          \
@@ -47,12 +52,15 @@ files_hg =			\
 	layoutmeta.hg		\
 	layout-manager.hg	\
 	media.hg		\
+	offscreen-effect.hg \
+	page-turn-effect.hg \
 	path.hg			\
 	rectangle.hg		\
 	score.hg		\
 	script.hg		\
 	scriptable.hg		\
 	shader.hg		\
+	shader-effect.hg \
 	size.hg			\
 	stage.hg		\
 	text.hg			\

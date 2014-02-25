@@ -1,0 +1,50 @@
+/* Copyright (C) 2013 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <cluttermm/offscreen-effect.h>
+
+_DEFS(cluttermm,clutter)
+_PINCLUDE(cluttermm/private/offscreen-effect_p.h)
+
+namespace Clutter
+{
+
+class Color;
+
+class BrightnessContrastEffect :
+  public OffscreenEffect
+{
+  _CLASS_GOBJECT(BrightnessContrastEffect, ClutterBrightnessContrastEffect, CLUTTER_BRIGHTNESS_CONTRAST_EFFECT, OffscreenEffect, ClutterOffscreenEffect)
+protected:
+  _CTOR_DEFAULT
+
+public:
+  _WRAP_CREATE()
+
+  _WRAP_METHOD(void set_brightness(float brightness), clutter_brightness_contrast_effect_set_brightness)
+  _WRAP_METHOD(void set_brightness(float red, float green, float blue), clutter_brightness_contrast_effect_set_brightness_full)
+  _WRAP_METHOD(void get_brightness(float& red, float& green, float& blue) const, clutter_brightness_contrast_effect_get_brightness)
+
+  _WRAP_METHOD(void set_contrast(float contrast), clutter_brightness_contrast_effect_set_contrast)
+  _WRAP_METHOD(void set_contrast(float red, float green, float blue), clutter_brightness_contrast_effect_set_contrast_full)
+  _WRAP_METHOD(void get_contrast(float& red, float& green, float& blue) const, clutter_brightness_contrast_effect_get_contrast)
+
+  _WRAP_PROPERTY("brightness", Color)
+  _WRAP_PROPERTY("contrast", Color)
+};
+
+}//namespace Clutter

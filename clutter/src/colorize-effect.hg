@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 The cluttermm Development Team
+/* Copyright (C) 2011 The cluttermm Development Team
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -15,12 +15,31 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <cluttermm/actor-meta.h>
-#include <clutter/clutter.h>
-#include <cluttermm/types.h>
+#include <cluttermm/offscreen-effect.h>
+#include <cluttermm/color.h>
+
+
+_DEFS(cluttermm,clutter)
+_PINCLUDE(cluttermm/private/offscreen-effect_p.h)
 
 namespace Clutter
 {
+class ColorizeEffect : public Clutter::OffscreenEffect
+{
+  _CLASS_GOBJECT(ColorizeEffect, ClutterColorizeEffect, CLUTTER_COLORIZE_EFFECT, Clutter::OffscreenEffect, ClutterOffscreenEffect)
+protected:
+  _WRAP_CTOR(ColorizeEffect(const Color& tint), clutter_colorize_effect_new)
 
+public:
 
-} //namespace Clutter
+  _WRAP_CREATE(const Color& tint)
+
+  _WRAP_METHOD(void set_tint(const Color& tint), clutter_colorize_effect_set_tint)
+
+  _WRAP_METHOD_DOCS_ONLY(clutter_colorize_effect_get_tint)
+  Color get_tint() const;
+
+  _WRAP_PROPERTY("tint", Color)
+};
+
+}//namespace Clutter

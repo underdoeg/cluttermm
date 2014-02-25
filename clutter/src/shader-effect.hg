@@ -1,0 +1,63 @@
+/* Copyright (C) 2011 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <cluttermm/offscreen-effect.h>
+#include <cluttermm/types.h>
+#include <glibmm/value.h>
+#include <glibmm/object.h>
+#include <cogl/cogl.h>
+
+_DEFS(cluttermm,clutter)
+_PINCLUDE(cluttermm/private/offscreen-effect_p.h)
+_PINCLUDE(glibmm/private/object_p.h)
+
+namespace Clutter
+{
+
+_WRAP_ENUM(ShaderType, ClutterShaderType)
+
+class ShaderEffect :
+  public Clutter::OffscreenEffect
+{
+  _CLASS_GOBJECT(ShaderEffect, ClutterShaderEffect, CLUTTER_SHADER_EFFECT, Clutter::OffscreenEffect, ClutterOffscreenEffect)
+
+protected:
+  _WRAP_CTOR(ShaderEffect(ShaderType shader_type), clutter_shader_effect_new)
+
+public:
+  _WRAP_CREATE(ShaderType shader_type)
+
+  //TODO:   #m4 _CONVERSION(`const GValue*',`const Glib::Value&',`Glib::wrap($3)')
+  // #m4 _CONVERSION(`const Glib::ValueBase&',`const GValue*',__CONVERT_REFPTR_TO_P)
+  // _WRAP_METHOD(void set_uniform_value(const Glib::ustring& name, const Glib::ValueBase& value), clutter_shader_effect_set_uniform_value)
+
+  _WRAP_METHOD(bool set_shader_source(const Glib::ustring& source), clutter_shader_effect_set_shader_source)
+
+  //TODO: Should these be const?
+  _WRAP_METHOD(CoglHandle get_program(), clutter_shader_effect_get_program)
+  _WRAP_METHOD(CoglHandle get_shader(), clutter_shader_effect_get_shader )
+
+  // Write only and construct-only property:
+  //_WRAP_PROPERTY("shader-type", ShaderType)
+
+protected:
+  _WRAP_VFUNC(Glib::ustring get_static_shader_source() const, get_static_shader_source)
+};
+
+
+
+}//namespace Clutter
