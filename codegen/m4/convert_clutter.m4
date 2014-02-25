@@ -1,3 +1,6 @@
+_CONVERSION(`const Glib::Bytes&',`GBytes*',`const_cast<GBytes*>(($3).gobj())')
+
+
 _CONVERSION(`const Glib::RefPtr<Action>&',`ClutterAction*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`const Glib::RefPtr<const Action>&',`ClutterAction*',__CONVERT_CONST_REFPTR_TO_P)
 

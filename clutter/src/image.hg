@@ -1,0 +1,65 @@
+/* Copyright (C) 2014 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <glibmm/object.h>
+#include <cogl/cogl.h>
+#include <cluttermm/content.h>
+#include <cluttermm/types.h>
+
+_DEFS(cluttermm,clutter)
+_PINCLUDE(glibmm/private/object_p.h)
+_PINCLUDE(cluttermm/private/content_p.h)
+
+namespace Clutter
+{
+
+_WRAP_ENUM(ImageError, ClutterImageError)
+
+class Image
+  : public Glib::Object,
+    public Content
+{
+  _CLASS_GOBJECT(Image, ClutterImage, CLUTTER_IMAGE, Glib::Object, GObject)
+  _DERIVES_INITIALLY_UNOWNED()
+  _IMPLEMENTS_INTERFACE(Content)
+
+protected:
+  _WRAP_CTOR(Image(), clutter_image_new)
+
+public:
+
+  _WRAP_CREATE()
+  //_WRAP_METHOD(CoglTexture* get_texture(), clutter_image_get_texture)
+
+  _WRAP_METHOD(bool set(const guint8* data, CoglPixelFormat pixel_format, guint width, guint height, guint row_stride), clutter_image_set_data, errthrow)
+
+  _WRAP_METHOD(bool set(const Glib::Bytes& data, CoglPixelFormat pixel_format, guint width, guint height, guint row_stride), clutter_image_set_bytes, errthrow)
+
+
+  //TODO IM: Not sure how to wrap the Cogl::Rectangle, seeing as Cogl isn't wrapped.
+
+  //~ bool set_area(const int data, Cogl::PixelFormat pixel_format, int width, int height, int row_stride);
+
+  // TODO IM: from Pango::Coverage:
+  //** Convert the coverage map into a flat binary format.
+   //* @return An array of bytes representing the coverage map.
+   //*/
+  //Glib::ArrayHandle<unsigned char> to_bytes() const;
+
+};
+
+} // namespace Clutter

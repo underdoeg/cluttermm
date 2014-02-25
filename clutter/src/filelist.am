@@ -35,11 +35,13 @@ files_hg =			\
 	clone.hg		\
 	color.hg		\
 	container.hg		\
+	content.hg		\
 	device-manager.hg	\
 	effect.hg               \
 	fixed-layout.hg         \
 	flow-layout.hg          \
 	group.hg		\
+	image.hg		\
 	input-device.hg		\
 	interval.hg		\
 	layoutmeta.hg		\
