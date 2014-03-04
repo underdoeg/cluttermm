@@ -24,10 +24,16 @@ _PINCLUDE(glibmm/private/object_p.h)
 namespace Clutter
 {
 
+/**
+ * @deprecated For newly written code, it is recommended to use the
+ * "progress-mode" property of Clutter::Timeline, or the 
+ * Clutter::Timeline::set_progress_func() method instead of Clutter::Alpha.
+ */
 class Alpha : public Glib::Object
 {
   _CLASS_GOBJECT(Alpha, ClutterAlpha, CLUTTER_ALPHA, Glib::Object, GObject)
   _DERIVES_INITIALLY_UNOWNED()
+  _IS_DEPRECATED
 
 public:
   /** For instance,
