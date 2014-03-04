@@ -247,7 +247,7 @@ public:
   _WRAP_METHOD(void apply_transform_to_point(const Vertex& point, Vertex& vertex) const, clutter_actor_apply_transform_to_point)
   _WRAP_METHOD(void transform_stage_point(float x, float y, float& x_out, float& y_out) const, clutter_actor_transform_stage_point)
 
-  _WRAP_METHOD(bool event(ClutterEvent* event, bool capture), clutter_actor_event)
+  _WRAP_METHOD(bool event(const ClutterEvent* event, bool capture), clutter_actor_event)
   _WRAP_METHOD(static Glib::RefPtr<Actor> get_actor_by_gid(guint32 id), clutter_get_actor_by_gid, refreturn)
 
   _WRAP_METHOD(void set_anchor_point(float anchor_x, float anchor_y), clutter_actor_set_anchor_point)
