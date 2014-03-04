@@ -1,115 +1,48 @@
-;; From clutter-actor.h
+;; From clutter-actor-private.h
 
 ;; Original typedef:
 ;; typedef enum
 ;; {
-;;   CLUTTER_ACTOR_MAPPED    = 1 << 1,
-;;   CLUTTER_ACTOR_REALIZED  = 1 << 2,
-;;   CLUTTER_ACTOR_REACTIVE  = 1 << 3,
-;;   CLUTTER_ACTOR_VISIBLE   = 1 << 4,
-;;   CLUTTER_ACTOR_NO_LAYOUT = 1 << 5
-;; } ClutterActorFlags;
-
-(define-flags-extended ActorFlags
-  (in-module "Clutter")
-  (c-name "ClutterActorFlags")
-  (values
-    '("mapped" "CLUTTER_ACTOR_MAPPED" "1 << 1")
-    '("realized" "CLUTTER_ACTOR_REALIZED" "1 << 2")
-    '("reactive" "CLUTTER_ACTOR_REACTIVE" "1 << 3")
-    '("visible" "CLUTTER_ACTOR_VISIBLE" "1 << 4")
-    '("no-layout" "CLUTTER_ACTOR_NO_LAYOUT" "1 << 5")
-  )
-)
-
-;; Original typedef:
-;; typedef enum
-;; {
-;;   CLUTTER_ALLOCATION_NONE         = 0,
-;;   CLUTTER_ABSOLUTE_ORIGIN_CHANGED = 1 << 1
-;; } ClutterAllocationFlags;
-
-(define-flags-extended AllocationFlags
-  (in-module "Clutter")
-  (c-name "ClutterAllocationFlags")
-  (values
-    '("allocation-none" "CLUTTER_ALLOCATION_NONE" "0x0")
-    '("absolute-origin-changed" "CLUTTER_ABSOLUTE_ORIGIN_CHANGED" "1 << 1")
-  )
-)
-
-;; Original typedef:
-;; typedef enum
-;; {
-;;   CLUTTER_REDRAW_CLIPPED_TO_BOX         = 0,
-;;   CLUTTER_REDRAW_CLIPPED_TO_ALLOCATION  = 1 << 1
+;;   CLUTTER_REDRAW_CLIPPED_TO_ALLOCATION  = 1 << 0
 ;; } ClutterRedrawFlags;
 
 (define-flags-extended RedrawFlags
   (in-module "Clutter")
   (c-name "ClutterRedrawFlags")
   (values
-    '("box" "CLUTTER_REDRAW_CLIPPED_TO_BOX" "0x0")
-    '("allocation" "CLUTTER_REDRAW_CLIPPED_TO_ALLOCATION" "1 << 1")
+    '("clipped-to-allocation" "CLUTTER_REDRAW_CLIPPED_TO_ALLOCATION" "1 << 0")
   )
 )
 
-;; From clutter-animator.h
-
 ;; Original typedef:
 ;; typedef enum {
-;;   CLUTTER_INTERPOLATION_LINEAR,
-;;   CLUTTER_INTERPOLATION_CUBIC
-;; } ClutterInterpolation;
+;;   CLUTTER_ACTOR_TRAVERSE_DEPTH_FIRST   = 1L<<0,
+;;   CLUTTER_ACTOR_TRAVERSE_BREADTH_FIRST = 1L<<1
+;; } ClutterActorTraverseFlags;
 
-(define-enum-extended Interpolation
+(define-flags-extended ActorTraverseFlags
   (in-module "Clutter")
-  (c-name "ClutterInterpolation")
+  (c-name "ClutterActorTraverseFlags")
   (values
-    '("linear" "CLUTTER_INTERPOLATION_LINEAR" "0")
-    '("cubic" "CLUTTER_INTERPOLATION_CUBIC" "1")
+    '("depth-first" "CLUTTER_ACTOR_TRAVERSE_DEPTH_FIRST" "1L<<0")
+    '("breadth-first" "CLUTTER_ACTOR_TRAVERSE_BREADTH_FIRST" "1L<<1")
   )
 )
 
-;; From clutter-bin-layout.h
-
 ;; Original typedef:
 ;; typedef enum {
-;;   CLUTTER_BIN_ALIGNMENT_FIXED,
-;;   CLUTTER_BIN_ALIGNMENT_FILL,
-;;   CLUTTER_BIN_ALIGNMENT_START,
-;;   CLUTTER_BIN_ALIGNMENT_END,
-;;   CLUTTER_BIN_ALIGNMENT_CENTER
-;; } ClutterBinAlignment;
+;;   CLUTTER_ACTOR_TRAVERSE_VISIT_CONTINUE       = 1L<<0,
+;;   CLUTTER_ACTOR_TRAVERSE_VISIT_SKIP_CHILDREN  = 1L<<1,
+;;   CLUTTER_ACTOR_TRAVERSE_VISIT_BREAK          = 1L<<2
+;; } ClutterActorTraverseVisitFlags;
 
-(define-enum-extended BinAlignment
+(define-flags-extended ActorTraverseVisitFlags
   (in-module "Clutter")
-  (c-name "ClutterBinAlignment")
+  (c-name "ClutterActorTraverseVisitFlags")
   (values
-    '("fixed" "CLUTTER_BIN_ALIGNMENT_FIXED" "0")
-    '("fill" "CLUTTER_BIN_ALIGNMENT_FILL" "1")
-    '("start" "CLUTTER_BIN_ALIGNMENT_START" "2")
-    '("end" "CLUTTER_BIN_ALIGNMENT_END" "3")
-    '("center" "CLUTTER_BIN_ALIGNMENT_CENTER" "4")
-  )
-)
-
-;; From clutter-box-layout.h
-
-;; Original typedef:
-;; typedef enum {
-;;   CLUTTER_BOX_ALIGNMENT_START,
-;;   CLUTTER_BOX_ALIGNMENT_END,
-;;   CLUTTER_BOX_ALIGNMENT_CENTER
-;; } ClutterBoxAlignment;
-
-(define-enum-extended BoxAlignment
-  (in-module "Clutter")
-  (c-name "ClutterBoxAlignment")
-  (values
-    '("start" "CLUTTER_BOX_ALIGNMENT_START" "0")
-    '("end" "CLUTTER_BOX_ALIGNMENT_END" "1")
-    '("center" "CLUTTER_BOX_ALIGNMENT_CENTER" "2")
+    '("continue" "CLUTTER_ACTOR_TRAVERSE_VISIT_CONTINUE" "1L<<0")
+    '("skip-children" "CLUTTER_ACTOR_TRAVERSE_VISIT_SKIP_CHILDREN" "1L<<1")
+    '("break" "CLUTTER_ACTOR_TRAVERSE_VISIT_BREAK" "1L<<2")
   )
 )
 
@@ -122,17 +55,18 @@
 ;;   CLUTTER_DEBUG_TEXTURE             = 1 << 2,
 ;;   CLUTTER_DEBUG_EVENT               = 1 << 3,
 ;;   CLUTTER_DEBUG_PAINT               = 1 << 4,
-;;   CLUTTER_DEBUG_GL                  = 1 << 5,
-;;   CLUTTER_DEBUG_ALPHA               = 1 << 6,
-;;   CLUTTER_DEBUG_BEHAVIOUR           = 1 << 7,
-;;   CLUTTER_DEBUG_PANGO               = 1 << 8,
-;;   CLUTTER_DEBUG_BACKEND             = 1 << 9,
-;;   CLUTTER_DEBUG_SCHEDULER           = 1 << 10,
-;;   CLUTTER_DEBUG_SCRIPT              = 1 << 11,
-;;   CLUTTER_DEBUG_SHADER              = 1 << 12,
-;;   CLUTTER_DEBUG_MULTISTAGE          = 1 << 13,
-;;   CLUTTER_DEBUG_ANIMATION           = 1 << 14,
-;;   CLUTTER_DEBUG_LAYOUT              = 1 << 15
+;;   CLUTTER_DEBUG_PANGO               = 1 << 5,
+;;   CLUTTER_DEBUG_BACKEND             = 1 << 6,
+;;   CLUTTER_DEBUG_SCHEDULER           = 1 << 7,
+;;   CLUTTER_DEBUG_SCRIPT              = 1 << 8,
+;;   CLUTTER_DEBUG_SHADER              = 1 << 9,
+;;   CLUTTER_DEBUG_MULTISTAGE          = 1 << 10,
+;;   CLUTTER_DEBUG_ANIMATION           = 1 << 11,
+;;   CLUTTER_DEBUG_LAYOUT              = 1 << 12,
+;;   CLUTTER_DEBUG_PICK                = 1 << 13,
+;;   CLUTTER_DEBUG_EVENTLOOP           = 1 << 14,
+;;   CLUTTER_DEBUG_CLIPPING            = 1 << 15,
+;;   CLUTTER_DEBUG_OOB_TRANSFORMS      = 1 << 16
 ;; } ClutterDebugFlag;
 
 (define-flags-extended DebugFlag
@@ -144,17 +78,18 @@
     '("texture" "CLUTTER_DEBUG_TEXTURE" "1 << 2")
     '("event" "CLUTTER_DEBUG_EVENT" "1 << 3")
     '("paint" "CLUTTER_DEBUG_PAINT" "1 << 4")
-    '("gl" "CLUTTER_DEBUG_GL" "1 << 5")
-    '("alpha" "CLUTTER_DEBUG_ALPHA" "1 << 6")
-    '("behaviour" "CLUTTER_DEBUG_BEHAVIOUR" "1 << 7")
-    '("pango" "CLUTTER_DEBUG_PANGO" "1 << 8")
-    '("backend" "CLUTTER_DEBUG_BACKEND" "1 << 9")
-    '("scheduler" "CLUTTER_DEBUG_SCHEDULER" "1 << 10")
-    '("script" "CLUTTER_DEBUG_SCRIPT" "1 << 11")
-    '("shader" "CLUTTER_DEBUG_SHADER" "1 << 12")
-    '("multistage" "CLUTTER_DEBUG_MULTISTAGE" "1 << 13")
-    '("animation" "CLUTTER_DEBUG_ANIMATION" "1 << 14")
-    '("layout" "CLUTTER_DEBUG_LAYOUT" "1 << 15")
+    '("pango" "CLUTTER_DEBUG_PANGO" "1 << 5")
+    '("backend" "CLUTTER_DEBUG_BACKEND" "1 << 6")
+    '("scheduler" "CLUTTER_DEBUG_SCHEDULER" "1 << 7")
+    '("script" "CLUTTER_DEBUG_SCRIPT" "1 << 8")
+    '("shader" "CLUTTER_DEBUG_SHADER" "1 << 9")
+    '("multistage" "CLUTTER_DEBUG_MULTISTAGE" "1 << 10")
+    '("animation" "CLUTTER_DEBUG_ANIMATION" "1 << 11")
+    '("layout" "CLUTTER_DEBUG_LAYOUT" "1 << 12")
+    '("pick" "CLUTTER_DEBUG_PICK" "1 << 13")
+    '("eventloop" "CLUTTER_DEBUG_EVENTLOOP" "1 << 14")
+    '("clipping" "CLUTTER_DEBUG_CLIPPING" "1 << 15")
+    '("oob-transforms" "CLUTTER_DEBUG_OOB_TRANSFORMS" "1 << 16")
   )
 )
 
@@ -177,7 +112,12 @@
 ;; typedef enum {
 ;;   CLUTTER_DEBUG_DISABLE_SWAP_EVENTS     = 1 << 0,
 ;;   CLUTTER_DEBUG_DISABLE_CLIPPED_REDRAWS = 1 << 1,
-;;   CLUTTER_DEBUG_REDRAWS                 = 1 << 2
+;;   CLUTTER_DEBUG_REDRAWS                 = 1 << 2,
+;;   CLUTTER_DEBUG_PAINT_VOLUMES           = 1 << 3,
+;;   CLUTTER_DEBUG_DISABLE_CULLING         = 1 << 4,
+;;   CLUTTER_DEBUG_DISABLE_OFFSCREEN_REDIRECT = 1 << 5,
+;;   CLUTTER_DEBUG_CONTINUOUS_REDRAW       = 1 << 6,
+;;   CLUTTER_DEBUG_PAINT_DEFORM_TILES      = 1 << 7
 ;; } ClutterDrawDebugFlag;
 
 (define-flags-extended DrawDebugFlag
@@ -187,476 +127,15 @@
     '("disable-swap-events" "CLUTTER_DEBUG_DISABLE_SWAP_EVENTS" "1 << 0")
     '("disable-clipped-redraws" "CLUTTER_DEBUG_DISABLE_CLIPPED_REDRAWS" "1 << 1")
     '("redraws" "CLUTTER_DEBUG_REDRAWS" "1 << 2")
+    '("paint-volumes" "CLUTTER_DEBUG_PAINT_VOLUMES" "1 << 3")
+    '("disable-culling" "CLUTTER_DEBUG_DISABLE_CULLING" "1 << 4")
+    '("disable-offscreen-redirect" "CLUTTER_DEBUG_DISABLE_OFFSCREEN_REDIRECT" "1 << 5")
+    '("continuous-redraw" "CLUTTER_DEBUG_CONTINUOUS_REDRAW" "1 << 6")
+    '("paint-deform-tiles" "CLUTTER_DEBUG_PAINT_DEFORM_TILES" "1 << 7")
   )
 )
 
-;; From clutter-event.h
-
-;; Original typedef:
-;; typedef enum {
-;;   CLUTTER_SHIFT_MASK    = 1 << 0,
-;;   CLUTTER_LOCK_MASK     = 1 << 1,
-;;   CLUTTER_CONTROL_MASK  = 1 << 2,
-;;   CLUTTER_MOD1_MASK     = 1 << 3,
-;;   CLUTTER_MOD2_MASK     = 1 << 4,
-;;   CLUTTER_MOD3_MASK     = 1 << 5,
-;;   CLUTTER_MOD4_MASK     = 1 << 6,
-;;   CLUTTER_MOD5_MASK     = 1 << 7,
-;;   CLUTTER_BUTTON1_MASK  = 1 << 8,
-;;   CLUTTER_BUTTON2_MASK  = 1 << 9,
-;;   CLUTTER_BUTTON3_MASK  = 1 << 10,
-;;   CLUTTER_BUTTON4_MASK  = 1 << 11,
-;;   CLUTTER_BUTTON5_MASK  = 1 << 12,
-;; 
-;;   /* bits 15 to 25 are currently unused; bit 29 is used internally */
-;; 
-;;   CLUTTER_SUPER_MASK    = 1 << 26,
-;;   CLUTTER_HYPER_MASK    = 1 << 27,
-;;   CLUTTER_META_MASK     = 1 << 28,
-;; 
-;;   CLUTTER_RELEASE_MASK  = 1 << 30,
-;; 
-;;   CLUTTER_MODIFIER_MASK = 0x5c001fff
-;; } ClutterModifierType;
-
-(define-flags-extended ModifierType
-  (in-module "Clutter")
-  (c-name "ClutterModifierType")
-  (values
-    '("shift-mask" "CLUTTER_SHIFT_MASK" "1 << 0")
-    '("lock-mask" "CLUTTER_LOCK_MASK" "1 << 1")
-    '("control-mask" "CLUTTER_CONTROL_MASK" "1 << 2")
-    '("mod1-mask" "CLUTTER_MOD1_MASK" "1 << 3")
-    '("mod2-mask" "CLUTTER_MOD2_MASK" "1 << 4")
-    '("mod3-mask" "CLUTTER_MOD3_MASK" "1 << 5")
-    '("mod4-mask" "CLUTTER_MOD4_MASK" "1 << 6")
-    '("mod5-mask" "CLUTTER_MOD5_MASK" "1 << 7")
-    '("button1-mask" "CLUTTER_BUTTON1_MASK" "1 << 8")
-    '("button2-mask" "CLUTTER_BUTTON2_MASK" "1 << 9")
-    '("button3-mask" "CLUTTER_BUTTON3_MASK" "1 << 10")
-    '("button4-mask" "CLUTTER_BUTTON4_MASK" "1 << 11")
-    '("button5-mask" "CLUTTER_BUTTON5_MASK" "1 << 12")
-    '("super-mask" "CLUTTER_SUPER_MASK" "1 << 26")
-    '("hyper-mask" "CLUTTER_HYPER_MASK" "1 << 27")
-    '("meta-mask" "CLUTTER_META_MASK" "1 << 28")
-    '("release-mask" "CLUTTER_RELEASE_MASK" "1 << 30")
-    '("modifier-mask" "CLUTTER_MODIFIER_MASK" "0x5c001fff")
-  )
-)
-
-;; Original typedef:
-;; typedef enum {
-;;   CLUTTER_EVENT_NONE           = 0,
-;;   CLUTTER_EVENT_FLAG_SYNTHETIC = 1 << 0,
-;; } ClutterEventFlags;
-
-(define-flags-extended EventFlags
-  (in-module "Clutter")
-  (c-name "ClutterEventFlags")
-  (values
-    '("none" "CLUTTER_EVENT_NONE" "0x0")
-    '("flag-synthetic" "CLUTTER_EVENT_FLAG_SYNTHETIC" "1 << 0")
-  )
-)
-
-;; Original typedef:
-;; typedef enum 
-;; {
-;;   CLUTTER_NOTHING = 0,
-;;   CLUTTER_KEY_PRESS,
-;;   CLUTTER_KEY_RELEASE,
-;;   CLUTTER_MOTION,
-;;   CLUTTER_ENTER,
-;;   CLUTTER_LEAVE,
-;;   CLUTTER_BUTTON_PRESS,
-;;   CLUTTER_BUTTON_RELEASE,
-;;   CLUTTER_SCROLL,
-;;   CLUTTER_STAGE_STATE,
-;;   CLUTTER_DESTROY_NOTIFY,
-;;   CLUTTER_CLIENT_MESSAGE,
-;;   CLUTTER_DELETE
-;; } ClutterEventType;
-
-(define-enum-extended EventType
-  (in-module "Clutter")
-  (c-name "ClutterEventType")
-  (values
-    '("nothing" "CLUTTER_NOTHING" "0")
-    '("key-press" "CLUTTER_KEY_PRESS" "1")
-    '("key-release" "CLUTTER_KEY_RELEASE" "2")
-    '("motion" "CLUTTER_MOTION" "3")
-    '("enter" "CLUTTER_ENTER" "4")
-    '("leave" "CLUTTER_LEAVE" "5")
-    '("button-press" "CLUTTER_BUTTON_PRESS" "6")
-    '("button-release" "CLUTTER_BUTTON_RELEASE" "7")
-    '("scroll" "CLUTTER_SCROLL" "8")
-    '("stage-state" "CLUTTER_STAGE_STATE" "9")
-    '("destroy-notify" "CLUTTER_DESTROY_NOTIFY" "10")
-    '("client-message" "CLUTTER_CLIENT_MESSAGE" "11")
-    '("delete" "CLUTTER_DELETE" "12")
-  )
-)
-
-;; Original typedef:
-;; typedef enum
-;; {
-;;   CLUTTER_SCROLL_UP,
-;;   CLUTTER_SCROLL_DOWN,
-;;   CLUTTER_SCROLL_LEFT,
-;;   CLUTTER_SCROLL_RIGHT
-;; } ClutterScrollDirection;
-
-(define-enum-extended ScrollDirection
-  (in-module "Clutter")
-  (c-name "ClutterScrollDirection")
-  (values
-    '("up" "CLUTTER_SCROLL_UP" "0")
-    '("down" "CLUTTER_SCROLL_DOWN" "1")
-    '("left" "CLUTTER_SCROLL_LEFT" "2")
-    '("right" "CLUTTER_SCROLL_RIGHT" "3")
-  )
-)
-
-;; Original typedef:
-;; typedef enum
-;; {
-;;   CLUTTER_STAGE_STATE_FULLSCREEN       = (1<<1),
-;;   CLUTTER_STAGE_STATE_OFFSCREEN        = (1<<2),
-;;   CLUTTER_STAGE_STATE_ACTIVATED        = (1<<3)
-;; } ClutterStageState;
-
-(define-flags-extended StageState
-  (in-module "Clutter")
-  (c-name "ClutterStageState")
-  (values
-    '("fullscreen" "CLUTTER_STAGE_STATE_FULLSCREEN" "(1<<1)")
-    '("offscreen" "CLUTTER_STAGE_STATE_OFFSCREEN" "(1<<2)")
-    '("activated" "CLUTTER_STAGE_STATE_ACTIVATED" "(1<<3)")
-  )
-)
-
-;; From clutter-feature.h
-
-;; Original typedef:
-;; typedef enum 
-;; {
-;;   CLUTTER_FEATURE_TEXTURE_NPOT           = (1 << 2),
-;;   CLUTTER_FEATURE_SYNC_TO_VBLANK         = (1 << 3),
-;;   CLUTTER_FEATURE_TEXTURE_YUV            = (1 << 4),
-;;   CLUTTER_FEATURE_TEXTURE_READ_PIXELS    = (1 << 5),
-;;   CLUTTER_FEATURE_STAGE_STATIC           = (1 << 6),
-;;   CLUTTER_FEATURE_STAGE_USER_RESIZE      = (1 << 7),
-;;   CLUTTER_FEATURE_STAGE_CURSOR           = (1 << 8),
-;;   CLUTTER_FEATURE_SHADERS_GLSL           = (1 << 9),
-;;   CLUTTER_FEATURE_OFFSCREEN              = (1 << 10),
-;;   CLUTTER_FEATURE_STAGE_MULTIPLE         = (1 << 11),
-;;   CLUTTER_FEATURE_SWAP_EVENTS            = (1 << 12)
-;; } ClutterFeatureFlags;
-
-(define-flags-extended FeatureFlags
-  (in-module "Clutter")
-  (c-name "ClutterFeatureFlags")
-  (values
-    '("texture-npot" "CLUTTER_FEATURE_TEXTURE_NPOT" "(1 << 2)")
-    '("sync-to-vblank" "CLUTTER_FEATURE_SYNC_TO_VBLANK" "(1 << 3)")
-    '("texture-yuv" "CLUTTER_FEATURE_TEXTURE_YUV" "(1 << 4)")
-    '("texture-read-pixels" "CLUTTER_FEATURE_TEXTURE_READ_PIXELS" "(1 << 5)")
-    '("stage-static" "CLUTTER_FEATURE_STAGE_STATIC" "(1 << 6)")
-    '("stage-user-resize" "CLUTTER_FEATURE_STAGE_USER_RESIZE" "(1 << 7)")
-    '("stage-cursor" "CLUTTER_FEATURE_STAGE_CURSOR" "(1 << 8)")
-    '("shaders-glsl" "CLUTTER_FEATURE_SHADERS_GLSL" "(1 << 9)")
-    '("offscreen" "CLUTTER_FEATURE_OFFSCREEN" "(1 << 10)")
-    '("stage-multiple" "CLUTTER_FEATURE_STAGE_MULTIPLE" "(1 << 11)")
-    '("swap-events" "CLUTTER_FEATURE_SWAP_EVENTS" "(1 << 12)")
-  )
-)
-
-;; From clutter-flow-layout.h
-
-;; Original typedef:
-;; typedef enum { /*< prefix=CLUTTER_FLOW >*/
-;;   CLUTTER_FLOW_HORIZONTAL,
-;;   CLUTTER_FLOW_VERTICAL
-;; } ClutterFlowOrientation;
-
-(define-enum-extended FlowOrientation
-  (in-module "Clutter")
-  (c-name "ClutterFlowOrientation")
-  (values
-    '("horizontal" "CLUTTER_FLOW_HORIZONTAL" "0")
-    '("vertical" "CLUTTER_FLOW_VERTICAL" "1")
-  )
-)
-
-;; From clutter-input-device.h
-
-;; Original typedef:
-;; typedef enum {
-;;   CLUTTER_POINTER_DEVICE,
-;;   CLUTTER_KEYBOARD_DEVICE,
-;;   CLUTTER_EXTENSION_DEVICE,
-;; 
-;;   CLUTTER_N_DEVICE_TYPES
-;; } ClutterInputDeviceType;
-
-(define-enum-extended InputDeviceType
-  (in-module "Clutter")
-  (c-name "ClutterInputDeviceType")
-  (values
-    '("pointer-device" "CLUTTER_POINTER_DEVICE" "0")
-    '("keyboard-device" "CLUTTER_KEYBOARD_DEVICE" "1")
-    '("extension-device" "CLUTTER_EXTENSION_DEVICE" "2")
-    '("n-device-types" "CLUTTER_N_DEVICE_TYPES" "3")
-  )
-)
-
-;; From clutter-main.h
-
-;; Original typedef:
-;; typedef enum {
-;;   CLUTTER_INIT_SUCCESS        =  1,
-;;   CLUTTER_INIT_ERROR_UNKNOWN  =  0,
-;;   CLUTTER_INIT_ERROR_THREADS  = -1,
-;;   CLUTTER_INIT_ERROR_BACKEND  = -2,
-;;   CLUTTER_INIT_ERROR_INTERNAL = -3
-;; } ClutterInitError;
-
-(define-enum-extended InitError
-  (in-module "Clutter")
-  (c-name "ClutterInitError")
-  (values
-    '("success" "CLUTTER_INIT_SUCCESS" "1")
-    '("error-unknown" "CLUTTER_INIT_ERROR_UNKNOWN" "0")
-    '("error-threads" "CLUTTER_INIT_ERROR_THREADS" "-1")
-    '("error-backend" "CLUTTER_INIT_ERROR_BACKEND" "-2")
-    '("error-internal" "CLUTTER_INIT_ERROR_INTERNAL" "-3")
-  )
-)
-
-;; From clutter-path.h
-
-;; Original typedef:
-;; typedef enum {
-;;   CLUTTER_PATH_MOVE_TO      = 0,
-;;   CLUTTER_PATH_LINE_TO      = 1,
-;;   CLUTTER_PATH_CURVE_TO     = 2,
-;;   CLUTTER_PATH_CLOSE        = 3,
-;; 
-;;   CLUTTER_PATH_REL_MOVE_TO  = CLUTTER_PATH_MOVE_TO | CLUTTER_PATH_RELATIVE,
-;;   CLUTTER_PATH_REL_LINE_TO  = CLUTTER_PATH_LINE_TO | CLUTTER_PATH_RELATIVE,
-;;   CLUTTER_PATH_REL_CURVE_TO = CLUTTER_PATH_CURVE_TO | CLUTTER_PATH_RELATIVE
-;; } ClutterPathNodeType;
-
-(define-flags-extended PathNodeType
-  (in-module "Clutter")
-  (c-name "ClutterPathNodeType")
-  (values
-    '("move-to" "CLUTTER_PATH_MOVE_TO" "0x0")
-    '("line-to" "CLUTTER_PATH_LINE_TO" "0x1")
-    '("curve-to" "CLUTTER_PATH_CURVE_TO" "0x2")
-    '("close" "CLUTTER_PATH_CLOSE" "0x3")
-    '("rel-move-to" "CLUTTER_PATH_REL_MOVE_TO" "0 | CLUTTER_PATH_RELATIVE")
-    '("rel-line-to" "CLUTTER_PATH_REL_LINE_TO" "1 | CLUTTER_PATH_RELATIVE")
-    '("rel-curve-to" "CLUTTER_PATH_REL_CURVE_TO" "2 | CLUTTER_PATH_RELATIVE")
-  )
-)
-
-;; From clutter-private.h
-
-;; Original typedef:
-;; typedef enum {
-;;   CLUTTER_ACTOR_UNUSED_FLAG    = 0,
-;; 
-;;   CLUTTER_ACTOR_IN_DESTRUCTION = 1 << 0,
-;;   CLUTTER_ACTOR_IS_TOPLEVEL    = 1 << 1,
-;;   CLUTTER_ACTOR_IN_REPARENT    = 1 << 2,
-;; 
-;;   /* Used by the stage to indicate GL viewport / perspective etc needs
-;;    * (re)setting.
-;;    */
-;;   CLUTTER_ACTOR_SYNC_MATRICES  = 1 << 3,
-;; 
-;;   /* Used to avoid recursion */
-;;   CLUTTER_ACTOR_IN_PAINT       = 1 << 4,
-;; 
-;;   /* Used to avoid recursion */
-;;   CLUTTER_ACTOR_IN_RELAYOUT    = 1 << 5,
-;; 
-;;   /* Used by the stage if resizing is an asynchronous operation (like on
-;;    * X11) to delay queueing relayouts until we got a notification from the
-;;    * event handling
-;;    */
-;;   CLUTTER_STAGE_IN_RESIZE      = 1 << 6,
-;; 
-;;   /* a flag for internal children of Containers */
-;;   CLUTTER_ACTOR_INTERNAL_CHILD = 1 << 7
-;; } ClutterPrivateFlags;
-
-(define-flags-extended PrivateFlags
-  (in-module "Clutter")
-  (c-name "ClutterPrivateFlags")
-  (values
-    '("actor-unused-flag" "CLUTTER_ACTOR_UNUSED_FLAG" "0x0")
-    '("actor-in-destruction" "CLUTTER_ACTOR_IN_DESTRUCTION" "1 << 0")
-    '("actor-is-toplevel" "CLUTTER_ACTOR_IS_TOPLEVEL" "1 << 1")
-    '("actor-in-reparent" "CLUTTER_ACTOR_IN_REPARENT" "1 << 2")
-    '("actor-sync-matrices" "CLUTTER_ACTOR_SYNC_MATRICES" "1 << 3")
-    '("actor-in-paint" "CLUTTER_ACTOR_IN_PAINT" "1 << 4")
-    '("actor-in-relayout" "CLUTTER_ACTOR_IN_RELAYOUT" "1 << 5")
-    '("stage-in-resize" "CLUTTER_STAGE_IN_RESIZE" "1 << 6")
-    '("actor-internal-child" "CLUTTER_ACTOR_INTERNAL_CHILD" "1 << 7")
-  )
-)
-
-;; From clutter-profile.h
-
-;; Original typedef:
-;; typedef enum {
-;;   CLUTTER_PROFILE_PICKING_ONLY    = 1 << 0,
-;;   CLUTTER_PROFILE_DISABLE_REPORT  = 1 << 1
-;; } ClutterProfileFlag;
-
-(define-flags-extended ProfileFlag
-  (in-module "Clutter")
-  (c-name "ClutterProfileFlag")
-  (values
-    '("picking-only" "CLUTTER_PROFILE_PICKING_ONLY" "1 << 0")
-    '("disable-report" "CLUTTER_PROFILE_DISABLE_REPORT" "1 << 1")
-  )
-)
-
-;; From clutter-script.h
-
-;; Original typedef:
-;; typedef enum {
-;;   CLUTTER_SCRIPT_ERROR_INVALID_TYPE_FUNCTION,
-;;   CLUTTER_SCRIPT_ERROR_INVALID_PROPERTY,
-;;   CLUTTER_SCRIPT_ERROR_INVALID_VALUE
-;; } ClutterScriptError;
-
-(define-enum-extended ScriptError
-  (in-module "Clutter")
-  (c-name "ClutterScriptError")
-  (values
-    '("type-function" "CLUTTER_SCRIPT_ERROR_INVALID_TYPE_FUNCTION" "0")
-    '("property" "CLUTTER_SCRIPT_ERROR_INVALID_PROPERTY" "1")
-    '("value" "CLUTTER_SCRIPT_ERROR_INVALID_VALUE" "2")
-  )
-)
-
-;; From clutter-shader.h
-
-;; Original typedef:
-;; typedef enum {
-;;   CLUTTER_SHADER_ERROR_NO_ASM,
-;;   CLUTTER_SHADER_ERROR_NO_GLSL,
-;;   CLUTTER_SHADER_ERROR_COMPILE
-;; } ClutterShaderError;
-
-(define-enum-extended ShaderError
-  (in-module "Clutter")
-  (c-name "ClutterShaderError")
-  (values
-    '("no-asm" "CLUTTER_SHADER_ERROR_NO_ASM" "0")
-    '("no-glsl" "CLUTTER_SHADER_ERROR_NO_GLSL" "1")
-    '("compile" "CLUTTER_SHADER_ERROR_COMPILE" "2")
-  )
-)
-
-;; From clutter-stage.h
-
-;; Original typedef:
-;; typedef enum {
-;;   CLUTTER_PICK_NONE = 0,
-;;   CLUTTER_PICK_REACTIVE,
-;;   CLUTTER_PICK_ALL
-;; } ClutterPickMode;
-
-(define-enum-extended PickMode
-  (in-module "Clutter")
-  (c-name "ClutterPickMode")
-  (values
-    '("none" "CLUTTER_PICK_NONE" "0")
-    '("reactive" "CLUTTER_PICK_REACTIVE" "1")
-    '("all" "CLUTTER_PICK_ALL" "2")
-  )
-)
-
-;; From clutter-texture.h
-
-;; Original typedef:
-;; typedef enum {
-;;   CLUTTER_TEXTURE_ERROR_OUT_OF_MEMORY,
-;;   CLUTTER_TEXTURE_ERROR_NO_YUV,
-;;   CLUTTER_TEXTURE_ERROR_BAD_FORMAT
-;; } ClutterTextureError;
-
-(define-enum-extended TextureError
-  (in-module "Clutter")
-  (c-name "ClutterTextureError")
-  (values
-    '("out-of-memory" "CLUTTER_TEXTURE_ERROR_OUT_OF_MEMORY" "0")
-    '("no-yuv" "CLUTTER_TEXTURE_ERROR_NO_YUV" "1")
-    '("bad-format" "CLUTTER_TEXTURE_ERROR_BAD_FORMAT" "2")
-  )
-)
-
-;; Original typedef:
-;; typedef enum { /*< prefix=CLUTTER_TEXTURE >*/
-;;   CLUTTER_TEXTURE_NONE             = 0,
-;;   CLUTTER_TEXTURE_RGB_FLAG_BGR     = 1 << 1,
-;;   CLUTTER_TEXTURE_RGB_FLAG_PREMULT = 1 << 2, /* FIXME: not handled */
-;;   CLUTTER_TEXTURE_YUV_FLAG_YUV2    = 1 << 3
-;; 
-;;   /* FIXME: add compressed types ? */
-;; } ClutterTextureFlags;
-
-(define-flags-extended TextureFlags
-  (in-module "Clutter")
-  (c-name "ClutterTextureFlags")
-  (values
-    '("none" "CLUTTER_TEXTURE_NONE" "0x0")
-    '("rgb-flag-bgr" "CLUTTER_TEXTURE_RGB_FLAG_BGR" "1 << 1")
-    '("rgb-flag-premult" "CLUTTER_TEXTURE_RGB_FLAG_PREMULT" "1 << 2")
-    '("yuv-flag-yuv2" "CLUTTER_TEXTURE_YUV_FLAG_YUV2" "1 << 3")
-  )
-)
-
-;; Original typedef:
-;; typedef enum { /*< prefix=CLUTTER_TEXTURE_QUALITY >*/
-;;   CLUTTER_TEXTURE_QUALITY_LOW,
-;;   CLUTTER_TEXTURE_QUALITY_MEDIUM,
-;;   CLUTTER_TEXTURE_QUALITY_HIGH
-;; } ClutterTextureQuality;
-
-(define-enum-extended TextureQuality
-  (in-module "Clutter")
-  (c-name "ClutterTextureQuality")
-  (values
-    '("low" "CLUTTER_TEXTURE_QUALITY_LOW" "0")
-    '("medium" "CLUTTER_TEXTURE_QUALITY_MEDIUM" "1")
-    '("high" "CLUTTER_TEXTURE_QUALITY_HIGH" "2")
-  )
-)
-
-;; From clutter-timeline.h
-
-;; Original typedef:
-;; typedef enum {
-;;   CLUTTER_TIMELINE_FORWARD,
-;;   CLUTTER_TIMELINE_BACKWARD
-;; } ClutterTimelineDirection;
-
-(define-enum-extended TimelineDirection
-  (in-module "Clutter")
-  (c-name "ClutterTimelineDirection")
-  (values
-    '("forward" "CLUTTER_TIMELINE_FORWARD" "0")
-    '("backward" "CLUTTER_TIMELINE_BACKWARD" "1")
-  )
-)
-
-;; From clutter-types.h
+;; From clutter-enums.h
 
 ;; Original typedef:
 ;; typedef enum { /*< prefix=CLUTTER_GRAVITY >*/
@@ -722,7 +201,7 @@
 )
 
 ;; Original typedef:
-;; typedef enum {
+;; typedef enum { /*< prefix=CLUTTER_REQUEST >*/
 ;;   CLUTTER_REQUEST_HEIGHT_FOR_WIDTH,
 ;;   CLUTTER_REQUEST_WIDTH_FOR_HEIGHT
 ;; } ClutterRequestMode;
@@ -793,6 +272,18 @@
 ;;   CLUTTER_EASE_OUT_BOUNCE,
 ;;   CLUTTER_EASE_IN_OUT_BOUNCE,
 ;; 
+;;   /* step functions (see css3-transitions) */
+;;   CLUTTER_STEPS,
+;;   CLUTTER_STEP_START, /* steps(1, start) */
+;;   CLUTTER_STEP_END, /* steps(1, end) */
+;; 
+;;   /* cubic bezier (see css3-transitions) */
+;;   CLUTTER_CUBIC_BEZIER,
+;;   CLUTTER_EASE,
+;;   CLUTTER_EASE_IN,
+;;   CLUTTER_EASE_OUT,
+;;   CLUTTER_EASE_IN_OUT,
+;; 
 ;;   /* guard, before registered alpha functions */
 ;;   CLUTTER_ANIMATION_LAST
 ;; } ClutterAnimationMode;
@@ -833,15 +324,22 @@
     '("ease-in-bounce" "CLUTTER_EASE_IN_BOUNCE" "29")
     '("ease-out-bounce" "CLUTTER_EASE_OUT_BOUNCE" "30")
     '("ease-in-out-bounce" "CLUTTER_EASE_IN_OUT_BOUNCE" "31")
-    '("animation-last" "CLUTTER_ANIMATION_LAST" "32")
+    '("steps" "CLUTTER_STEPS" "32")
+    '("step-start" "CLUTTER_STEP_START" "33")
+    '("step-end" "CLUTTER_STEP_END" "34")
+    '("cubic-bezier" "CLUTTER_CUBIC_BEZIER" "35")
+    '("ease" "CLUTTER_EASE" "36")
+    '("ease-in" "CLUTTER_EASE_IN" "37")
+    '("ease-out" "CLUTTER_EASE_OUT" "38")
+    '("ease-in-out" "CLUTTER_EASE_IN_OUT" "39")
+    '("animation-last" "CLUTTER_ANIMATION_LAST" "40")
   )
 )
 
 ;; Original typedef:
-;; typedef enum
-;; {
+;; typedef enum { /*< prefix=CLUTTER_FONT >*/
 ;;   CLUTTER_FONT_MIPMAPPING = (1 << 0),
-;;   CLUTTER_FONT_HINTING    = (1 << 1),
+;;   CLUTTER_FONT_HINTING    = (1 << 1)
 ;; } ClutterFontFlags;
 
 (define-flags-extended FontFlags
@@ -870,10 +368,786 @@
   )
 )
 
-;; From clutter-units.h
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_VERTEX_SHADER,
+;;   CLUTTER_FRAGMENT_SHADER
+;; } ClutterShaderType;
+
+(define-enum-extended ShaderType
+  (in-module "Clutter")
+  (c-name "ClutterShaderType")
+  (values
+    '("vertex-shader" "CLUTTER_VERTEX_SHADER" "0")
+    '("fragment-shader" "CLUTTER_FRAGMENT_SHADER" "1")
+  )
+)
 
 ;; Original typedef:
 ;; typedef enum {
+;;   CLUTTER_SHIFT_MASK    = 1 << 0,
+;;   CLUTTER_LOCK_MASK     = 1 << 1,
+;;   CLUTTER_CONTROL_MASK  = 1 << 2,
+;;   CLUTTER_MOD1_MASK     = 1 << 3,
+;;   CLUTTER_MOD2_MASK     = 1 << 4,
+;;   CLUTTER_MOD3_MASK     = 1 << 5,
+;;   CLUTTER_MOD4_MASK     = 1 << 6,
+;;   CLUTTER_MOD5_MASK     = 1 << 7,
+;;   CLUTTER_BUTTON1_MASK  = 1 << 8,
+;;   CLUTTER_BUTTON2_MASK  = 1 << 9,
+;;   CLUTTER_BUTTON3_MASK  = 1 << 10,
+;;   CLUTTER_BUTTON4_MASK  = 1 << 11,
+;;   CLUTTER_BUTTON5_MASK  = 1 << 12,
+;; 
+;; #ifndef __GTK_DOC_IGNORE__
+;;   CLUTTER_MODIFIER_RESERVED_13_MASK  = 1 << 13,
+;;   CLUTTER_MODIFIER_RESERVED_14_MASK  = 1 << 14,
+;;   CLUTTER_MODIFIER_RESERVED_15_MASK  = 1 << 15,
+;;   CLUTTER_MODIFIER_RESERVED_16_MASK  = 1 << 16,
+;;   CLUTTER_MODIFIER_RESERVED_17_MASK  = 1 << 17,
+;;   CLUTTER_MODIFIER_RESERVED_18_MASK  = 1 << 18,
+;;   CLUTTER_MODIFIER_RESERVED_19_MASK  = 1 << 19,
+;;   CLUTTER_MODIFIER_RESERVED_20_MASK  = 1 << 20,
+;;   CLUTTER_MODIFIER_RESERVED_21_MASK  = 1 << 21,
+;;   CLUTTER_MODIFIER_RESERVED_22_MASK  = 1 << 22,
+;;   CLUTTER_MODIFIER_RESERVED_23_MASK  = 1 << 23,
+;;   CLUTTER_MODIFIER_RESERVED_24_MASK  = 1 << 24,
+;;   CLUTTER_MODIFIER_RESERVED_25_MASK  = 1 << 25,
+;; #endif
+;; 
+;;   CLUTTER_SUPER_MASK    = 1 << 26,
+;;   CLUTTER_HYPER_MASK    = 1 << 27,
+;;   CLUTTER_META_MASK     = 1 << 28,
+;; 
+;; #ifndef __GTK_DOC_IGNORE__
+;;   CLUTTER_MODIFIER_RESERVED_29_MASK  = 1 << 29,
+;; #endif
+;; 
+;;   CLUTTER_RELEASE_MASK  = 1 << 30,
+;; 
+;;   /* Combination of CLUTTER_SHIFT_MASK..CLUTTER_BUTTON5_MASK + CLUTTER_SUPER_MASK
+;;      + CLUTTER_HYPER_MASK + CLUTTER_META_MASK + CLUTTER_RELEASE_MASK */
+;;   CLUTTER_MODIFIER_MASK = 0x5c001fff
+;; } ClutterModifierType;
+
+(define-flags-extended ModifierType
+  (in-module "Clutter")
+  (c-name "ClutterModifierType")
+  (values
+    '("shift-mask" "CLUTTER_SHIFT_MASK" "1 << 0")
+    '("lock-mask" "CLUTTER_LOCK_MASK" "1 << 1")
+    '("control-mask" "CLUTTER_CONTROL_MASK" "1 << 2")
+    '("mod1-mask" "CLUTTER_MOD1_MASK" "1 << 3")
+    '("mod2-mask" "CLUTTER_MOD2_MASK" "1 << 4")
+    '("mod3-mask" "CLUTTER_MOD3_MASK" "1 << 5")
+    '("mod4-mask" "CLUTTER_MOD4_MASK" "1 << 6")
+    '("mod5-mask" "CLUTTER_MOD5_MASK" "1 << 7")
+    '("button1-mask" "CLUTTER_BUTTON1_MASK" "1 << 8")
+    '("button2-mask" "CLUTTER_BUTTON2_MASK" "1 << 9")
+    '("button3-mask" "CLUTTER_BUTTON3_MASK" "1 << 10")
+    '("button4-mask" "CLUTTER_BUTTON4_MASK" "1 << 11")
+    '("button5-mask" "CLUTTER_BUTTON5_MASK" "1 << 12")
+    '("modifier-reserved-13-mask" "CLUTTER_MODIFIER_RESERVED_13_MASK" "1 << 13")
+    '("modifier-reserved-14-mask" "CLUTTER_MODIFIER_RESERVED_14_MASK" "1 << 14")
+    '("modifier-reserved-15-mask" "CLUTTER_MODIFIER_RESERVED_15_MASK" "1 << 15")
+    '("modifier-reserved-16-mask" "CLUTTER_MODIFIER_RESERVED_16_MASK" "1 << 16")
+    '("modifier-reserved-17-mask" "CLUTTER_MODIFIER_RESERVED_17_MASK" "1 << 17")
+    '("modifier-reserved-18-mask" "CLUTTER_MODIFIER_RESERVED_18_MASK" "1 << 18")
+    '("modifier-reserved-19-mask" "CLUTTER_MODIFIER_RESERVED_19_MASK" "1 << 19")
+    '("modifier-reserved-20-mask" "CLUTTER_MODIFIER_RESERVED_20_MASK" "1 << 20")
+    '("modifier-reserved-21-mask" "CLUTTER_MODIFIER_RESERVED_21_MASK" "1 << 21")
+    '("modifier-reserved-22-mask" "CLUTTER_MODIFIER_RESERVED_22_MASK" "1 << 22")
+    '("modifier-reserved-23-mask" "CLUTTER_MODIFIER_RESERVED_23_MASK" "1 << 23")
+    '("modifier-reserved-24-mask" "CLUTTER_MODIFIER_RESERVED_24_MASK" "1 << 24")
+    '("modifier-reserved-25-mask" "CLUTTER_MODIFIER_RESERVED_25_MASK" "1 << 25")
+    '("super-mask" "CLUTTER_SUPER_MASK" "1 << 26")
+    '("hyper-mask" "CLUTTER_HYPER_MASK" "1 << 27")
+    '("meta-mask" "CLUTTER_META_MASK" "1 << 28")
+    '("modifier-reserved-29-mask" "CLUTTER_MODIFIER_RESERVED_29_MASK" "1 << 29")
+    '("release-mask" "CLUTTER_RELEASE_MASK" "1 << 30")
+    '("modifier-mask" "CLUTTER_MODIFIER_MASK" "0x5c001fff")
+  )
+)
+
+;; Original typedef:
+;; typedef enum { /*< prefix=CLUTTER_ACTOR >*/
+;;   CLUTTER_ACTOR_MAPPED    = 1 << 1,
+;;   CLUTTER_ACTOR_REALIZED  = 1 << 2,
+;;   CLUTTER_ACTOR_REACTIVE  = 1 << 3,
+;;   CLUTTER_ACTOR_VISIBLE   = 1 << 4,
+;;   CLUTTER_ACTOR_NO_LAYOUT = 1 << 5
+;; } ClutterActorFlags;
+
+(define-flags-extended ActorFlags
+  (in-module "Clutter")
+  (c-name "ClutterActorFlags")
+  (values
+    '("mapped" "CLUTTER_ACTOR_MAPPED" "1 << 1")
+    '("realized" "CLUTTER_ACTOR_REALIZED" "1 << 2")
+    '("reactive" "CLUTTER_ACTOR_REACTIVE" "1 << 3")
+    '("visible" "CLUTTER_ACTOR_VISIBLE" "1 << 4")
+    '("no-layout" "CLUTTER_ACTOR_NO_LAYOUT" "1 << 5")
+  )
+)
+
+;; Original typedef:
+;; typedef enum { /*< prefix=CLUTTER_OFFSCREEN_REDIRECT >*/
+;;   CLUTTER_OFFSCREEN_REDIRECT_AUTOMATIC_FOR_OPACITY = 1<<0,
+;;   CLUTTER_OFFSCREEN_REDIRECT_ALWAYS = 1<<1
+;; } ClutterOffscreenRedirect;
+
+(define-flags-extended OffscreenRedirect
+  (in-module "Clutter")
+  (c-name "ClutterOffscreenRedirect")
+  (values
+    '("automatic-for-opacity" "CLUTTER_OFFSCREEN_REDIRECT_AUTOMATIC_FOR_OPACITY" "1<<0")
+    '("always" "CLUTTER_OFFSCREEN_REDIRECT_ALWAYS" "1<<1")
+  )
+)
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_ALLOCATION_NONE         = 0,
+;;   CLUTTER_ABSOLUTE_ORIGIN_CHANGED = 1 << 1,
+;;   CLUTTER_DELEGATE_LAYOUT         = 1 << 2
+;; } ClutterAllocationFlags;
+
+(define-flags-extended AllocationFlags
+  (in-module "Clutter")
+  (c-name "ClutterAllocationFlags")
+  (values
+    '("allocation-none" "CLUTTER_ALLOCATION_NONE" "0x0")
+    '("absolute-origin-changed" "CLUTTER_ABSOLUTE_ORIGIN_CHANGED" "1 << 1")
+    '("delegate-layout" "CLUTTER_DELEGATE_LAYOUT" "1 << 2")
+  )
+)
+
+;; Original typedef:
+;; typedef enum { /*< prefix=CLUTTER_ALIGN >*/
+;;   CLUTTER_ALIGN_X_AXIS,
+;;   CLUTTER_ALIGN_Y_AXIS,
+;;   CLUTTER_ALIGN_BOTH
+;; } ClutterAlignAxis;
+
+(define-enum-extended AlignAxis
+  (in-module "Clutter")
+  (c-name "ClutterAlignAxis")
+  (values
+    '("x-axis" "CLUTTER_ALIGN_X_AXIS" "0")
+    '("y-axis" "CLUTTER_ALIGN_Y_AXIS" "1")
+    '("both" "CLUTTER_ALIGN_BOTH" "2")
+  )
+)
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_INTERPOLATION_LINEAR,
+;;   CLUTTER_INTERPOLATION_CUBIC
+;; } ClutterInterpolation;
+
+(define-enum-extended Interpolation
+  (in-module "Clutter")
+  (c-name "ClutterInterpolation")
+  (values
+    '("linear" "CLUTTER_INTERPOLATION_LINEAR" "0")
+    '("cubic" "CLUTTER_INTERPOLATION_CUBIC" "1")
+  )
+)
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_BIN_ALIGNMENT_FIXED,
+;;   CLUTTER_BIN_ALIGNMENT_FILL,
+;;   CLUTTER_BIN_ALIGNMENT_START,
+;;   CLUTTER_BIN_ALIGNMENT_END,
+;;   CLUTTER_BIN_ALIGNMENT_CENTER
+;; } ClutterBinAlignment;
+
+(define-enum-extended BinAlignment
+  (in-module "Clutter")
+  (c-name "ClutterBinAlignment")
+  (values
+    '("fixed" "CLUTTER_BIN_ALIGNMENT_FIXED" "0")
+    '("fill" "CLUTTER_BIN_ALIGNMENT_FILL" "1")
+    '("start" "CLUTTER_BIN_ALIGNMENT_START" "2")
+    '("end" "CLUTTER_BIN_ALIGNMENT_END" "3")
+    '("center" "CLUTTER_BIN_ALIGNMENT_CENTER" "4")
+  )
+)
+
+;; Original typedef:
+;; typedef enum { /*< prefix=CLUTTER_BIND >*/
+;;   CLUTTER_BIND_X,
+;;   CLUTTER_BIND_Y,
+;;   CLUTTER_BIND_WIDTH,
+;;   CLUTTER_BIND_HEIGHT,
+;;   CLUTTER_BIND_POSITION,
+;;   CLUTTER_BIND_SIZE,
+;;   CLUTTER_BIND_ALL
+;; } ClutterBindCoordinate;
+
+(define-enum-extended BindCoordinate
+  (in-module "Clutter")
+  (c-name "ClutterBindCoordinate")
+  (values
+    '("x" "CLUTTER_BIND_X" "0")
+    '("y" "CLUTTER_BIND_Y" "1")
+    '("width" "CLUTTER_BIND_WIDTH" "2")
+    '("height" "CLUTTER_BIND_HEIGHT" "3")
+    '("position" "CLUTTER_BIND_POSITION" "4")
+    '("size" "CLUTTER_BIND_SIZE" "5")
+    '("all" "CLUTTER_BIND_ALL" "6")
+  )
+)
+
+;; Original typedef:
+;; typedef enum { /*< prefix=CLUTTER_EFFECT_PAINT >*/
+;;   CLUTTER_EFFECT_PAINT_ACTOR_DIRTY = (1 << 0)
+;; } ClutterEffectPaintFlags;
+
+(define-flags-extended EffectPaintFlags
+  (in-module "Clutter")
+  (c-name "ClutterEffectPaintFlags")
+  (values
+    '("actor-dirty" "CLUTTER_EFFECT_PAINT_ACTOR_DIRTY" "(1 << 0)")
+  )
+)
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_BOX_ALIGNMENT_START,
+;;   CLUTTER_BOX_ALIGNMENT_END,
+;;   CLUTTER_BOX_ALIGNMENT_CENTER
+;; } ClutterBoxAlignment;
+
+(define-enum-extended BoxAlignment
+  (in-module "Clutter")
+  (c-name "ClutterBoxAlignment")
+  (values
+    '("start" "CLUTTER_BOX_ALIGNMENT_START" "0")
+    '("end" "CLUTTER_BOX_ALIGNMENT_END" "1")
+    '("center" "CLUTTER_BOX_ALIGNMENT_CENTER" "2")
+  )
+)
+
+;; Original typedef:
+;; typedef enum { /*< prefix=CLUTTER_LONG_PRESS >*/
+;;   CLUTTER_LONG_PRESS_QUERY,
+;;   CLUTTER_LONG_PRESS_ACTIVATE,
+;;   CLUTTER_LONG_PRESS_CANCEL
+;; } ClutterLongPressState;
+
+(define-enum-extended LongPressState
+  (in-module "Clutter")
+  (c-name "ClutterLongPressState")
+  (values
+    '("query" "CLUTTER_LONG_PRESS_QUERY" "0")
+    '("activate" "CLUTTER_LONG_PRESS_ACTIVATE" "1")
+    '("cancel" "CLUTTER_LONG_PRESS_CANCEL" "2")
+  )
+)
+
+;; Original typedef:
+;; typedef enum { /*< prefix=CLUTTER_COLOR >*/
+;;   /* CGA/EGA-like palette */
+;;   CLUTTER_COLOR_WHITE           = 0,
+;;   CLUTTER_COLOR_BLACK,
+;;   CLUTTER_COLOR_RED,
+;;   CLUTTER_COLOR_DARK_RED,
+;;   CLUTTER_COLOR_GREEN,
+;;   CLUTTER_COLOR_DARK_GREEN,
+;;   CLUTTER_COLOR_BLUE,
+;;   CLUTTER_COLOR_DARK_BLUE,
+;;   CLUTTER_COLOR_CYAN,
+;;   CLUTTER_COLOR_DARK_CYAN,
+;;   CLUTTER_COLOR_MAGENTA,
+;;   CLUTTER_COLOR_DARK_MAGENTA,
+;;   CLUTTER_COLOR_YELLOW,
+;;   CLUTTER_COLOR_DARK_YELLOW,
+;;   CLUTTER_COLOR_GRAY,
+;;   CLUTTER_COLOR_DARK_GRAY,
+;;   CLUTTER_COLOR_LIGHT_GRAY,
+;; 
+;;   /* Tango icon palette */
+;;   CLUTTER_COLOR_BUTTER,
+;;   CLUTTER_COLOR_BUTTER_LIGHT,
+;;   CLUTTER_COLOR_BUTTER_DARK,
+;;   CLUTTER_COLOR_ORANGE,
+;;   CLUTTER_COLOR_ORANGE_LIGHT,
+;;   CLUTTER_COLOR_ORANGE_DARK,
+;;   CLUTTER_COLOR_CHOCOLATE,
+;;   CLUTTER_COLOR_CHOCOLATE_LIGHT,
+;;   CLUTTER_COLOR_CHOCOLATE_DARK,
+;;   CLUTTER_COLOR_CHAMELEON,
+;;   CLUTTER_COLOR_CHAMELEON_LIGHT,
+;;   CLUTTER_COLOR_CHAMELEON_DARK,
+;;   CLUTTER_COLOR_SKY_BLUE,
+;;   CLUTTER_COLOR_SKY_BLUE_LIGHT,
+;;   CLUTTER_COLOR_SKY_BLUE_DARK,
+;;   CLUTTER_COLOR_PLUM,
+;;   CLUTTER_COLOR_PLUM_LIGHT,
+;;   CLUTTER_COLOR_PLUM_DARK,
+;;   CLUTTER_COLOR_SCARLET_RED,
+;;   CLUTTER_COLOR_SCARLET_RED_LIGHT,
+;;   CLUTTER_COLOR_SCARLET_RED_DARK,
+;;   CLUTTER_COLOR_ALUMINIUM_1,
+;;   CLUTTER_COLOR_ALUMINIUM_2,
+;;   CLUTTER_COLOR_ALUMINIUM_3,
+;;   CLUTTER_COLOR_ALUMINIUM_4,
+;;   CLUTTER_COLOR_ALUMINIUM_5,
+;;   CLUTTER_COLOR_ALUMINIUM_6,
+;; 
+;;   /* Fully transparent black */
+;;   CLUTTER_COLOR_TRANSPARENT
+;; } ClutterStaticColor;
+
+(define-enum-extended StaticColor
+  (in-module "Clutter")
+  (c-name "ClutterStaticColor")
+  (values
+    '("white" "CLUTTER_COLOR_WHITE" "0")
+    '("black" "CLUTTER_COLOR_BLACK" "1")
+    '("red" "CLUTTER_COLOR_RED" "2")
+    '("dark-red" "CLUTTER_COLOR_DARK_RED" "3")
+    '("green" "CLUTTER_COLOR_GREEN" "4")
+    '("dark-green" "CLUTTER_COLOR_DARK_GREEN" "5")
+    '("blue" "CLUTTER_COLOR_BLUE" "6")
+    '("dark-blue" "CLUTTER_COLOR_DARK_BLUE" "7")
+    '("cyan" "CLUTTER_COLOR_CYAN" "8")
+    '("dark-cyan" "CLUTTER_COLOR_DARK_CYAN" "9")
+    '("magenta" "CLUTTER_COLOR_MAGENTA" "10")
+    '("dark-magenta" "CLUTTER_COLOR_DARK_MAGENTA" "11")
+    '("yellow" "CLUTTER_COLOR_YELLOW" "12")
+    '("dark-yellow" "CLUTTER_COLOR_DARK_YELLOW" "13")
+    '("gray" "CLUTTER_COLOR_GRAY" "14")
+    '("dark-gray" "CLUTTER_COLOR_DARK_GRAY" "15")
+    '("light-gray" "CLUTTER_COLOR_LIGHT_GRAY" "16")
+    '("butter" "CLUTTER_COLOR_BUTTER" "17")
+    '("butter-light" "CLUTTER_COLOR_BUTTER_LIGHT" "18")
+    '("butter-dark" "CLUTTER_COLOR_BUTTER_DARK" "19")
+    '("orange" "CLUTTER_COLOR_ORANGE" "20")
+    '("orange-light" "CLUTTER_COLOR_ORANGE_LIGHT" "21")
+    '("orange-dark" "CLUTTER_COLOR_ORANGE_DARK" "22")
+    '("chocolate" "CLUTTER_COLOR_CHOCOLATE" "23")
+    '("chocolate-light" "CLUTTER_COLOR_CHOCOLATE_LIGHT" "24")
+    '("chocolate-dark" "CLUTTER_COLOR_CHOCOLATE_DARK" "25")
+    '("chameleon" "CLUTTER_COLOR_CHAMELEON" "26")
+    '("chameleon-light" "CLUTTER_COLOR_CHAMELEON_LIGHT" "27")
+    '("chameleon-dark" "CLUTTER_COLOR_CHAMELEON_DARK" "28")
+    '("sky-blue" "CLUTTER_COLOR_SKY_BLUE" "29")
+    '("sky-blue-light" "CLUTTER_COLOR_SKY_BLUE_LIGHT" "30")
+    '("sky-blue-dark" "CLUTTER_COLOR_SKY_BLUE_DARK" "31")
+    '("plum" "CLUTTER_COLOR_PLUM" "32")
+    '("plum-light" "CLUTTER_COLOR_PLUM_LIGHT" "33")
+    '("plum-dark" "CLUTTER_COLOR_PLUM_DARK" "34")
+    '("scarlet-red" "CLUTTER_COLOR_SCARLET_RED" "35")
+    '("scarlet-red-light" "CLUTTER_COLOR_SCARLET_RED_LIGHT" "36")
+    '("scarlet-red-dark" "CLUTTER_COLOR_SCARLET_RED_DARK" "37")
+    '("aluminium-1" "CLUTTER_COLOR_ALUMINIUM_1" "38")
+    '("aluminium-2" "CLUTTER_COLOR_ALUMINIUM_2" "39")
+    '("aluminium-3" "CLUTTER_COLOR_ALUMINIUM_3" "40")
+    '("aluminium-4" "CLUTTER_COLOR_ALUMINIUM_4" "41")
+    '("aluminium-5" "CLUTTER_COLOR_ALUMINIUM_5" "42")
+    '("aluminium-6" "CLUTTER_COLOR_ALUMINIUM_6" "43")
+    '("transparent" "CLUTTER_COLOR_TRANSPARENT" "44")
+  )
+)
+
+;; Original typedef:
+;; typedef enum { /*< prefix=CLUTTER_DRAG >*/
+;;   CLUTTER_DRAG_AXIS_NONE = 0,
+;; 
+;;   CLUTTER_DRAG_X_AXIS,
+;;   CLUTTER_DRAG_Y_AXIS
+;; } ClutterDragAxis;
+
+(define-enum-extended DragAxis
+  (in-module "Clutter")
+  (c-name "ClutterDragAxis")
+  (values
+    '("axis-none" "CLUTTER_DRAG_AXIS_NONE" "0")
+    '("x-axis" "CLUTTER_DRAG_X_AXIS" "1")
+    '("y-axis" "CLUTTER_DRAG_Y_AXIS" "2")
+  )
+)
+
+;; Original typedef:
+;; typedef enum { /*< flags prefix=CLUTTER_EVENT >*/
+;;   CLUTTER_EVENT_NONE           = 0,
+;;   CLUTTER_EVENT_FLAG_SYNTHETIC = 1 << 0
+;; } ClutterEventFlags;
+
+(define-flags-extended EventFlags
+  (in-module "Clutter")
+  (c-name "ClutterEventFlags")
+  (values
+    '("none" "CLUTTER_EVENT_NONE" "0x0")
+    '("flag-synthetic" "CLUTTER_EVENT_FLAG_SYNTHETIC" "1 << 0")
+  )
+)
+
+;; Original typedef:
+;; typedef enum { /*< prefix=CLUTTER >*/
+;;   CLUTTER_NOTHING = 0,
+;;   CLUTTER_KEY_PRESS,
+;;   CLUTTER_KEY_RELEASE,
+;;   CLUTTER_MOTION,
+;;   CLUTTER_ENTER,
+;;   CLUTTER_LEAVE,
+;;   CLUTTER_BUTTON_PRESS,
+;;   CLUTTER_BUTTON_RELEASE,
+;;   CLUTTER_SCROLL,
+;;   CLUTTER_STAGE_STATE,
+;;   CLUTTER_DESTROY_NOTIFY,
+;;   CLUTTER_CLIENT_MESSAGE,
+;;   CLUTTER_DELETE,
+;;   CLUTTER_TOUCH_BEGIN,
+;;   CLUTTER_TOUCH_UPDATE,
+;;   CLUTTER_TOUCH_END,
+;;   CLUTTER_TOUCH_CANCEL,
+;; 
+;;   CLUTTER_EVENT_LAST            /* helper */
+;; } ClutterEventType;
+
+(define-enum-extended EventType
+  (in-module "Clutter")
+  (c-name "ClutterEventType")
+  (values
+    '("nothing" "CLUTTER_NOTHING" "0")
+    '("key-press" "CLUTTER_KEY_PRESS" "1")
+    '("key-release" "CLUTTER_KEY_RELEASE" "2")
+    '("motion" "CLUTTER_MOTION" "3")
+    '("enter" "CLUTTER_ENTER" "4")
+    '("leave" "CLUTTER_LEAVE" "5")
+    '("button-press" "CLUTTER_BUTTON_PRESS" "6")
+    '("button-release" "CLUTTER_BUTTON_RELEASE" "7")
+    '("scroll" "CLUTTER_SCROLL" "8")
+    '("stage-state" "CLUTTER_STAGE_STATE" "9")
+    '("destroy-notify" "CLUTTER_DESTROY_NOTIFY" "10")
+    '("client-message" "CLUTTER_CLIENT_MESSAGE" "11")
+    '("delete" "CLUTTER_DELETE" "12")
+    '("touch-begin" "CLUTTER_TOUCH_BEGIN" "13")
+    '("touch-update" "CLUTTER_TOUCH_UPDATE" "14")
+    '("touch-end" "CLUTTER_TOUCH_END" "15")
+    '("touch-cancel" "CLUTTER_TOUCH_CANCEL" "16")
+    '("event-last" "CLUTTER_EVENT_LAST" "17")
+  )
+)
+
+;; Original typedef:
+;; typedef enum { /*< prefix=CLUTTER_SCROLL >*/
+;;   CLUTTER_SCROLL_UP,
+;;   CLUTTER_SCROLL_DOWN,
+;;   CLUTTER_SCROLL_LEFT,
+;;   CLUTTER_SCROLL_RIGHT,
+;;   CLUTTER_SCROLL_SMOOTH
+;; } ClutterScrollDirection;
+
+(define-enum-extended ScrollDirection
+  (in-module "Clutter")
+  (c-name "ClutterScrollDirection")
+  (values
+    '("up" "CLUTTER_SCROLL_UP" "0")
+    '("down" "CLUTTER_SCROLL_DOWN" "1")
+    '("left" "CLUTTER_SCROLL_LEFT" "2")
+    '("right" "CLUTTER_SCROLL_RIGHT" "3")
+    '("smooth" "CLUTTER_SCROLL_SMOOTH" "4")
+  )
+)
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_STAGE_STATE_FULLSCREEN       = (1 << 1),
+;;   CLUTTER_STAGE_STATE_OFFSCREEN        = (1 << 2),
+;;   CLUTTER_STAGE_STATE_ACTIVATED        = (1 << 3)
+;; } ClutterStageState;
+
+(define-flags-extended StageState
+  (in-module "Clutter")
+  (c-name "ClutterStageState")
+  (values
+    '("fullscreen" "CLUTTER_STAGE_STATE_FULLSCREEN" "(1 << 1)")
+    '("offscreen" "CLUTTER_STAGE_STATE_OFFSCREEN" "(1 << 2)")
+    '("activated" "CLUTTER_STAGE_STATE_ACTIVATED" "(1 << 3)")
+  )
+)
+
+;; Original typedef:
+;; typedef enum
+;; {
+;;   CLUTTER_FEATURE_TEXTURE_NPOT           = (1 << 2),
+;;   CLUTTER_FEATURE_SYNC_TO_VBLANK         = (1 << 3),
+;;   CLUTTER_FEATURE_TEXTURE_YUV            = (1 << 4),
+;;   CLUTTER_FEATURE_TEXTURE_READ_PIXELS    = (1 << 5),
+;;   CLUTTER_FEATURE_STAGE_STATIC           = (1 << 6),
+;;   CLUTTER_FEATURE_STAGE_USER_RESIZE      = (1 << 7),
+;;   CLUTTER_FEATURE_STAGE_CURSOR           = (1 << 8),
+;;   CLUTTER_FEATURE_SHADERS_GLSL           = (1 << 9),
+;;   CLUTTER_FEATURE_OFFSCREEN              = (1 << 10),
+;;   CLUTTER_FEATURE_STAGE_MULTIPLE         = (1 << 11),
+;;   CLUTTER_FEATURE_SWAP_EVENTS            = (1 << 12)
+;; } ClutterFeatureFlags;
+
+(define-flags-extended FeatureFlags
+  (in-module "Clutter")
+  (c-name "ClutterFeatureFlags")
+  (values
+    '("texture-npot" "CLUTTER_FEATURE_TEXTURE_NPOT" "(1 << 2)")
+    '("sync-to-vblank" "CLUTTER_FEATURE_SYNC_TO_VBLANK" "(1 << 3)")
+    '("texture-yuv" "CLUTTER_FEATURE_TEXTURE_YUV" "(1 << 4)")
+    '("texture-read-pixels" "CLUTTER_FEATURE_TEXTURE_READ_PIXELS" "(1 << 5)")
+    '("stage-static" "CLUTTER_FEATURE_STAGE_STATIC" "(1 << 6)")
+    '("stage-user-resize" "CLUTTER_FEATURE_STAGE_USER_RESIZE" "(1 << 7)")
+    '("stage-cursor" "CLUTTER_FEATURE_STAGE_CURSOR" "(1 << 8)")
+    '("shaders-glsl" "CLUTTER_FEATURE_SHADERS_GLSL" "(1 << 9)")
+    '("offscreen" "CLUTTER_FEATURE_OFFSCREEN" "(1 << 10)")
+    '("stage-multiple" "CLUTTER_FEATURE_STAGE_MULTIPLE" "(1 << 11)")
+    '("swap-events" "CLUTTER_FEATURE_SWAP_EVENTS" "(1 << 12)")
+  )
+)
+
+;; Original typedef:
+;; typedef enum { /*< prefix=CLUTTER_FLOW >*/
+;;   CLUTTER_FLOW_HORIZONTAL,
+;;   CLUTTER_FLOW_VERTICAL
+;; } ClutterFlowOrientation;
+
+(define-enum-extended FlowOrientation
+  (in-module "Clutter")
+  (c-name "ClutterFlowOrientation")
+  (values
+    '("horizontal" "CLUTTER_FLOW_HORIZONTAL" "0")
+    '("vertical" "CLUTTER_FLOW_VERTICAL" "1")
+  )
+)
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_POINTER_DEVICE,
+;;   CLUTTER_KEYBOARD_DEVICE,
+;;   CLUTTER_EXTENSION_DEVICE,
+;;   CLUTTER_JOYSTICK_DEVICE,
+;;   CLUTTER_TABLET_DEVICE,
+;;   CLUTTER_TOUCHPAD_DEVICE,
+;;   CLUTTER_TOUCHSCREEN_DEVICE,
+;;   CLUTTER_PEN_DEVICE,
+;;   CLUTTER_ERASER_DEVICE,
+;;   CLUTTER_CURSOR_DEVICE,
+;; 
+;;   CLUTTER_N_DEVICE_TYPES
+;; } ClutterInputDeviceType;
+
+(define-enum-extended InputDeviceType
+  (in-module "Clutter")
+  (c-name "ClutterInputDeviceType")
+  (values
+    '("pointer-device" "CLUTTER_POINTER_DEVICE" "0")
+    '("keyboard-device" "CLUTTER_KEYBOARD_DEVICE" "1")
+    '("extension-device" "CLUTTER_EXTENSION_DEVICE" "2")
+    '("joystick-device" "CLUTTER_JOYSTICK_DEVICE" "3")
+    '("tablet-device" "CLUTTER_TABLET_DEVICE" "4")
+    '("touchpad-device" "CLUTTER_TOUCHPAD_DEVICE" "5")
+    '("touchscreen-device" "CLUTTER_TOUCHSCREEN_DEVICE" "6")
+    '("pen-device" "CLUTTER_PEN_DEVICE" "7")
+    '("eraser-device" "CLUTTER_ERASER_DEVICE" "8")
+    '("cursor-device" "CLUTTER_CURSOR_DEVICE" "9")
+    '("n-device-types" "CLUTTER_N_DEVICE_TYPES" "10")
+  )
+)
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_INPUT_MODE_MASTER,
+;;   CLUTTER_INPUT_MODE_SLAVE,
+;;   CLUTTER_INPUT_MODE_FLOATING
+;; } ClutterInputMode;
+
+(define-enum-extended InputMode
+  (in-module "Clutter")
+  (c-name "ClutterInputMode")
+  (values
+    '("master" "CLUTTER_INPUT_MODE_MASTER" "0")
+    '("slave" "CLUTTER_INPUT_MODE_SLAVE" "1")
+    '("floating" "CLUTTER_INPUT_MODE_FLOATING" "2")
+  )
+)
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_INPUT_AXIS_IGNORE,
+;; 
+;;   CLUTTER_INPUT_AXIS_X,
+;;   CLUTTER_INPUT_AXIS_Y,
+;;   CLUTTER_INPUT_AXIS_PRESSURE,
+;;   CLUTTER_INPUT_AXIS_XTILT,
+;;   CLUTTER_INPUT_AXIS_YTILT,
+;;   CLUTTER_INPUT_AXIS_WHEEL,
+;;   CLUTTER_INPUT_AXIS_DISTANCE,
+;; 
+;;   CLUTTER_INPUT_AXIS_LAST
+;; } ClutterInputAxis;
+
+(define-enum-extended InputAxis
+  (in-module "Clutter")
+  (c-name "ClutterInputAxis")
+  (values
+    '("ignore" "CLUTTER_INPUT_AXIS_IGNORE" "0")
+    '("x" "CLUTTER_INPUT_AXIS_X" "1")
+    '("y" "CLUTTER_INPUT_AXIS_Y" "2")
+    '("pressure" "CLUTTER_INPUT_AXIS_PRESSURE" "3")
+    '("xtilt" "CLUTTER_INPUT_AXIS_XTILT" "4")
+    '("ytilt" "CLUTTER_INPUT_AXIS_YTILT" "5")
+    '("wheel" "CLUTTER_INPUT_AXIS_WHEEL" "6")
+    '("distance" "CLUTTER_INPUT_AXIS_DISTANCE" "7")
+    '("last" "CLUTTER_INPUT_AXIS_LAST" "8")
+  )
+)
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_SNAP_EDGE_TOP,
+;;   CLUTTER_SNAP_EDGE_RIGHT,
+;;   CLUTTER_SNAP_EDGE_BOTTOM,
+;;   CLUTTER_SNAP_EDGE_LEFT
+;; } ClutterSnapEdge;
+
+(define-enum-extended SnapEdge
+  (in-module "Clutter")
+  (c-name "ClutterSnapEdge")
+  (values
+    '("top" "CLUTTER_SNAP_EDGE_TOP" "0")
+    '("right" "CLUTTER_SNAP_EDGE_RIGHT" "1")
+    '("bottom" "CLUTTER_SNAP_EDGE_BOTTOM" "2")
+    '("left" "CLUTTER_SNAP_EDGE_LEFT" "3")
+  )
+)
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_PICK_NONE = 0,
+;;   CLUTTER_PICK_REACTIVE,
+;;   CLUTTER_PICK_ALL
+;; } ClutterPickMode;
+
+(define-enum-extended PickMode
+  (in-module "Clutter")
+  (c-name "ClutterPickMode")
+  (values
+    '("none" "CLUTTER_PICK_NONE" "0")
+    '("reactive" "CLUTTER_PICK_REACTIVE" "1")
+    '("all" "CLUTTER_PICK_ALL" "2")
+  )
+)
+
+;; Original typedef:
+;; typedef enum { /*< prefix=CLUTTER_SWIPE_DIRECTION >*/
+;;   CLUTTER_SWIPE_DIRECTION_UP    = 1 << 0,
+;;   CLUTTER_SWIPE_DIRECTION_DOWN  = 1 << 1,
+;;   CLUTTER_SWIPE_DIRECTION_LEFT  = 1 << 2,
+;;   CLUTTER_SWIPE_DIRECTION_RIGHT = 1 << 3
+;; } ClutterSwipeDirection;
+
+(define-flags-extended SwipeDirection
+  (in-module "Clutter")
+  (c-name "ClutterSwipeDirection")
+  (values
+    '("up" "CLUTTER_SWIPE_DIRECTION_UP" "1 << 0")
+    '("down" "CLUTTER_SWIPE_DIRECTION_DOWN" "1 << 1")
+    '("left" "CLUTTER_SWIPE_DIRECTION_LEFT" "1 << 2")
+    '("right" "CLUTTER_SWIPE_DIRECTION_RIGHT" "1 << 3")
+  )
+)
+
+;; Original typedef:
+;; typedef enum { /*< prefix=CLUTTER_PAN >*/
+;;   CLUTTER_PAN_AXIS_NONE = 0,
+;; 
+;;   CLUTTER_PAN_X_AXIS,
+;;   CLUTTER_PAN_Y_AXIS
+;; } ClutterPanAxis;
+
+(define-enum-extended PanAxis
+  (in-module "Clutter")
+  (c-name "ClutterPanAxis")
+  (values
+    '("axis-none" "CLUTTER_PAN_AXIS_NONE" "0")
+    '("x-axis" "CLUTTER_PAN_X_AXIS" "1")
+    '("y-axis" "CLUTTER_PAN_Y_AXIS" "2")
+  )
+)
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_TABLE_ALIGNMENT_START,
+;;   CLUTTER_TABLE_ALIGNMENT_CENTER,
+;;   CLUTTER_TABLE_ALIGNMENT_END
+;; } ClutterTableAlignment;
+
+(define-enum-extended TableAlignment
+  (in-module "Clutter")
+  (c-name "ClutterTableAlignment")
+  (values
+    '("start" "CLUTTER_TABLE_ALIGNMENT_START" "0")
+    '("center" "CLUTTER_TABLE_ALIGNMENT_CENTER" "1")
+    '("end" "CLUTTER_TABLE_ALIGNMENT_END" "2")
+  )
+)
+
+;; Original typedef:
+;; typedef enum { /*< prefix=CLUTTER_TEXTURE >*/
+;;   CLUTTER_TEXTURE_NONE             = 0,
+;;   CLUTTER_TEXTURE_RGB_FLAG_BGR     = 1 << 1,
+;;   CLUTTER_TEXTURE_RGB_FLAG_PREMULT = 1 << 2, /* FIXME: not handled */
+;;   CLUTTER_TEXTURE_YUV_FLAG_YUV2    = 1 << 3
+;; 
+;;   /* FIXME: add compressed types ? */
+;; } ClutterTextureFlags;
+
+(define-flags-extended TextureFlags
+  (in-module "Clutter")
+  (c-name "ClutterTextureFlags")
+  (values
+    '("none" "CLUTTER_TEXTURE_NONE" "0x0")
+    '("rgb-flag-bgr" "CLUTTER_TEXTURE_RGB_FLAG_BGR" "1 << 1")
+    '("rgb-flag-premult" "CLUTTER_TEXTURE_RGB_FLAG_PREMULT" "1 << 2")
+    '("yuv-flag-yuv2" "CLUTTER_TEXTURE_YUV_FLAG_YUV2" "1 << 3")
+  )
+)
+
+;; Original typedef:
+;; typedef enum { /*< prefix=CLUTTER_TEXTURE_QUALITY >*/
+;;   CLUTTER_TEXTURE_QUALITY_LOW,
+;;   CLUTTER_TEXTURE_QUALITY_MEDIUM,
+;;   CLUTTER_TEXTURE_QUALITY_HIGH
+;; } ClutterTextureQuality;
+
+(define-enum-extended TextureQuality
+  (in-module "Clutter")
+  (c-name "ClutterTextureQuality")
+  (values
+    '("low" "CLUTTER_TEXTURE_QUALITY_LOW" "0")
+    '("medium" "CLUTTER_TEXTURE_QUALITY_MEDIUM" "1")
+    '("high" "CLUTTER_TEXTURE_QUALITY_HIGH" "2")
+  )
+)
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_TIMELINE_FORWARD,
+;;   CLUTTER_TIMELINE_BACKWARD
+;; } ClutterTimelineDirection;
+
+(define-enum-extended TimelineDirection
+  (in-module "Clutter")
+  (c-name "ClutterTimelineDirection")
+  (values
+    '("forward" "CLUTTER_TIMELINE_FORWARD" "0")
+    '("backward" "CLUTTER_TIMELINE_BACKWARD" "1")
+  )
+)
+
+;; Original typedef:
+;; typedef enum { /*< prefix=CLUTTER_UNIT >*/
 ;;   CLUTTER_UNIT_PIXEL,
 ;;   CLUTTER_UNIT_EM,
 ;;   CLUTTER_UNIT_MM,
@@ -890,6 +1164,438 @@
     '("mm" "CLUTTER_UNIT_MM" "2")
     '("point" "CLUTTER_UNIT_POINT" "3")
     '("cm" "CLUTTER_UNIT_CM" "4")
+  )
+)
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_PATH_MOVE_TO      = 0,
+;;   CLUTTER_PATH_LINE_TO      = 1,
+;;   CLUTTER_PATH_CURVE_TO     = 2,
+;;   CLUTTER_PATH_CLOSE        = 3,
+;; 
+;;   CLUTTER_PATH_REL_MOVE_TO  = CLUTTER_PATH_MOVE_TO | CLUTTER_PATH_RELATIVE,
+;;   CLUTTER_PATH_REL_LINE_TO  = CLUTTER_PATH_LINE_TO | CLUTTER_PATH_RELATIVE,
+;;   CLUTTER_PATH_REL_CURVE_TO = CLUTTER_PATH_CURVE_TO | CLUTTER_PATH_RELATIVE
+;; } ClutterPathNodeType;
+
+(define-flags-extended PathNodeType
+  (in-module "Clutter")
+  (c-name "ClutterPathNodeType")
+  (values
+    '("move-to" "CLUTTER_PATH_MOVE_TO" "0x0")
+    '("line-to" "CLUTTER_PATH_LINE_TO" "0x1")
+    '("curve-to" "CLUTTER_PATH_CURVE_TO" "0x2")
+    '("close" "CLUTTER_PATH_CLOSE" "0x3")
+    '("rel-move-to" "CLUTTER_PATH_REL_MOVE_TO" "0 | CLUTTER_PATH_RELATIVE")
+    '("rel-line-to" "CLUTTER_PATH_REL_LINE_TO" "1 | CLUTTER_PATH_RELATIVE")
+    '("rel-curve-to" "CLUTTER_PATH_REL_CURVE_TO" "2 | CLUTTER_PATH_RELATIVE")
+  )
+)
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_ACTOR_ALIGN_FILL,
+;;   CLUTTER_ACTOR_ALIGN_START,
+;;   CLUTTER_ACTOR_ALIGN_CENTER,
+;;   CLUTTER_ACTOR_ALIGN_END
+;; } ClutterActorAlign;
+
+(define-enum-extended ActorAlign
+  (in-module "Clutter")
+  (c-name "ClutterActorAlign")
+  (values
+    '("fill" "CLUTTER_ACTOR_ALIGN_FILL" "0")
+    '("start" "CLUTTER_ACTOR_ALIGN_START" "1")
+    '("center" "CLUTTER_ACTOR_ALIGN_CENTER" "2")
+    '("end" "CLUTTER_ACTOR_ALIGN_END" "3")
+  )
+)
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_REPAINT_FLAGS_PRE_PAINT = 1 << 0,
+;;   CLUTTER_REPAINT_FLAGS_POST_PAINT = 1 << 1,
+;;   CLUTTER_REPAINT_FLAGS_QUEUE_REDRAW_ON_ADD = 1 << 2
+;; } ClutterRepaintFlags;
+
+(define-flags-extended RepaintFlags
+  (in-module "Clutter")
+  (c-name "ClutterRepaintFlags")
+  (values
+    '("pre-paint" "CLUTTER_REPAINT_FLAGS_PRE_PAINT" "1 << 0")
+    '("post-paint" "CLUTTER_REPAINT_FLAGS_POST_PAINT" "1 << 1")
+    '("queue-redraw-on-add" "CLUTTER_REPAINT_FLAGS_QUEUE_REDRAW_ON_ADD" "1 << 2")
+  )
+)
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_CONTENT_GRAVITY_TOP_LEFT,
+;;   CLUTTER_CONTENT_GRAVITY_TOP,
+;;   CLUTTER_CONTENT_GRAVITY_TOP_RIGHT,
+;; 
+;;   CLUTTER_CONTENT_GRAVITY_LEFT,
+;;   CLUTTER_CONTENT_GRAVITY_CENTER,
+;;   CLUTTER_CONTENT_GRAVITY_RIGHT,
+;; 
+;;   CLUTTER_CONTENT_GRAVITY_BOTTOM_LEFT,
+;;   CLUTTER_CONTENT_GRAVITY_BOTTOM,
+;;   CLUTTER_CONTENT_GRAVITY_BOTTOM_RIGHT,
+;; 
+;;   CLUTTER_CONTENT_GRAVITY_RESIZE_FILL,
+;;   CLUTTER_CONTENT_GRAVITY_RESIZE_ASPECT
+;; } ClutterContentGravity;
+
+(define-enum-extended ContentGravity
+  (in-module "Clutter")
+  (c-name "ClutterContentGravity")
+  (values
+    '("top-left" "CLUTTER_CONTENT_GRAVITY_TOP_LEFT" "0")
+    '("top" "CLUTTER_CONTENT_GRAVITY_TOP" "1")
+    '("top-right" "CLUTTER_CONTENT_GRAVITY_TOP_RIGHT" "2")
+    '("left" "CLUTTER_CONTENT_GRAVITY_LEFT" "3")
+    '("center" "CLUTTER_CONTENT_GRAVITY_CENTER" "4")
+    '("right" "CLUTTER_CONTENT_GRAVITY_RIGHT" "5")
+    '("bottom-left" "CLUTTER_CONTENT_GRAVITY_BOTTOM_LEFT" "6")
+    '("bottom" "CLUTTER_CONTENT_GRAVITY_BOTTOM" "7")
+    '("bottom-right" "CLUTTER_CONTENT_GRAVITY_BOTTOM_RIGHT" "8")
+    '("resize-fill" "CLUTTER_CONTENT_GRAVITY_RESIZE_FILL" "9")
+    '("resize-aspect" "CLUTTER_CONTENT_GRAVITY_RESIZE_ASPECT" "10")
+  )
+)
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_SCALING_FILTER_LINEAR,
+;;   CLUTTER_SCALING_FILTER_NEAREST,
+;;   CLUTTER_SCALING_FILTER_TRILINEAR
+;; } ClutterScalingFilter;
+
+(define-enum-extended ScalingFilter
+  (in-module "Clutter")
+  (c-name "ClutterScalingFilter")
+  (values
+    '("linear" "CLUTTER_SCALING_FILTER_LINEAR" "0")
+    '("nearest" "CLUTTER_SCALING_FILTER_NEAREST" "1")
+    '("trilinear" "CLUTTER_SCALING_FILTER_TRILINEAR" "2")
+  )
+)
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_ORIENTATION_HORIZONTAL,
+;;   CLUTTER_ORIENTATION_VERTICAL
+;; } ClutterOrientation;
+
+(define-enum-extended Orientation
+  (in-module "Clutter")
+  (c-name "ClutterOrientation")
+  (values
+    '("horizontal" "CLUTTER_ORIENTATION_HORIZONTAL" "0")
+    '("vertical" "CLUTTER_ORIENTATION_VERTICAL" "1")
+  )
+)
+
+;; Original typedef:
+;; typedef enum { /*< prefix=CLUTTER_SCROLL >*/
+;;   CLUTTER_SCROLL_NONE         = 0,
+;; 
+;;   CLUTTER_SCROLL_HORIZONTALLY = 1 << 0,
+;;   CLUTTER_SCROLL_VERTICALLY   = 1 << 1,
+;; 
+;;   CLUTTER_SCROLL_BOTH         = CLUTTER_SCROLL_HORIZONTALLY | CLUTTER_SCROLL_VERTICALLY
+;; } ClutterScrollMode;
+
+(define-flags-extended ScrollMode
+  (in-module "Clutter")
+  (c-name "ClutterScrollMode")
+  (values
+    '("none" "CLUTTER_SCROLL_NONE" "0x0")
+    '("horizontally" "CLUTTER_SCROLL_HORIZONTALLY" "1 << 0")
+    '("vertically" "CLUTTER_SCROLL_VERTICALLY" "1 << 1")
+    '("both" "CLUTTER_SCROLL_BOTH" "0x3")
+  )
+)
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_GRID_POSITION_LEFT,
+;;   CLUTTER_GRID_POSITION_RIGHT,
+;;   CLUTTER_GRID_POSITION_TOP,
+;;   CLUTTER_GRID_POSITION_BOTTOM
+;; } ClutterGridPosition;
+
+(define-enum-extended GridPosition
+  (in-module "Clutter")
+  (c-name "ClutterGridPosition")
+  (values
+    '("left" "CLUTTER_GRID_POSITION_LEFT" "0")
+    '("right" "CLUTTER_GRID_POSITION_RIGHT" "1")
+    '("top" "CLUTTER_GRID_POSITION_TOP" "2")
+    '("bottom" "CLUTTER_GRID_POSITION_BOTTOM" "3")
+  )
+)
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_REPEAT_NONE   = 0,
+;;   CLUTTER_REPEAT_X_AXIS = 1 << 0,
+;;   CLUTTER_REPEAT_Y_AXIS = 1 << 1,
+;;   CLUTTER_REPEAT_BOTH   = CLUTTER_REPEAT_X_AXIS | CLUTTER_REPEAT_Y_AXIS
+;; } ClutterContentRepeat;
+
+(define-flags-extended ContentRepeat
+  (in-module "Clutter")
+  (c-name "ClutterContentRepeat")
+  (values
+    '("none" "CLUTTER_REPEAT_NONE" "0x0")
+    '("x-axis" "CLUTTER_REPEAT_X_AXIS" "1 << 0")
+    '("y-axis" "CLUTTER_REPEAT_Y_AXIS" "1 << 1")
+    '("both" "CLUTTER_REPEAT_BOTH" "0x3")
+  )
+)
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_STEP_MODE_START,
+;;   CLUTTER_STEP_MODE_END
+;; } ClutterStepMode;
+
+(define-enum-extended StepMode
+  (in-module "Clutter")
+  (c-name "ClutterStepMode")
+  (values
+    '("start" "CLUTTER_STEP_MODE_START" "0")
+    '("end" "CLUTTER_STEP_MODE_END" "1")
+  )
+)
+
+;; Original typedef:
+;; typedef enum { /*< prefix=CLUTTER_ZOOM >*/
+;;   CLUTTER_ZOOM_X_AXIS,
+;;   CLUTTER_ZOOM_Y_AXIS,
+;;   CLUTTER_ZOOM_BOTH
+;; } ClutterZoomAxis;
+
+(define-enum-extended ZoomAxis
+  (in-module "Clutter")
+  (c-name "ClutterZoomAxis")
+  (values
+    '("x-axis" "CLUTTER_ZOOM_X_AXIS" "0")
+    '("y-axis" "CLUTTER_ZOOM_Y_AXIS" "1")
+    '("both" "CLUTTER_ZOOM_BOTH" "2")
+  )
+)
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_GESTURE_TRIGGER_EDGE_NONE  = 0,
+;;   CLUTTER_GESTURE_TRIGGER_EDGE_AFTER,
+;;   CLUTTER_GESTURE_TRIGGER_EDGE_BEFORE
+;; } ClutterGestureTriggerEdge;
+
+(define-enum-extended GestureTriggerEdge
+  (in-module "Clutter")
+  (c-name "ClutterGestureTriggerEdge")
+  (values
+    '("none" "CLUTTER_GESTURE_TRIGGER_EDGE_NONE" "0")
+    '("after" "CLUTTER_GESTURE_TRIGGER_EDGE_AFTER" "1")
+    '("before" "CLUTTER_GESTURE_TRIGGER_EDGE_BEFORE" "2")
+  )
+)
+
+;; From clutter-event-translator.h
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_TRANSLATE_CONTINUE,
+;;   CLUTTER_TRANSLATE_REMOVE,
+;;   CLUTTER_TRANSLATE_QUEUE
+;; } ClutterTranslateReturn;
+
+(define-enum-extended TranslateReturn
+  (in-module "Clutter")
+  (c-name "ClutterTranslateReturn")
+  (values
+    '("continue" "CLUTTER_TRANSLATE_CONTINUE" "0")
+    '("remove" "CLUTTER_TRANSLATE_REMOVE" "1")
+    '("queue" "CLUTTER_TRANSLATE_QUEUE" "2")
+  )
+)
+
+;; From clutter-image.h
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_IMAGE_ERROR_INVALID_DATA
+;; } ClutterImageError;
+
+(define-enum-extended ImageError
+  (in-module "Clutter")
+  (c-name "ClutterImageError")
+  (values
+    '("invalid-data" "CLUTTER_IMAGE_ERROR_INVALID_DATA" "0")
+  )
+)
+
+;; From clutter-main.h
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_INIT_SUCCESS        =  1,
+;;   CLUTTER_INIT_ERROR_UNKNOWN  =  0,
+;;   CLUTTER_INIT_ERROR_THREADS  = -1,
+;;   CLUTTER_INIT_ERROR_BACKEND  = -2,
+;;   CLUTTER_INIT_ERROR_INTERNAL = -3
+;; } ClutterInitError;
+
+(define-enum-extended InitError
+  (in-module "Clutter")
+  (c-name "ClutterInitError")
+  (values
+    '("success" "CLUTTER_INIT_SUCCESS" "1")
+    '("error-unknown" "CLUTTER_INIT_ERROR_UNKNOWN" "0")
+    '("error-threads" "CLUTTER_INIT_ERROR_THREADS" "-1")
+    '("error-backend" "CLUTTER_INIT_ERROR_BACKEND" "-2")
+    '("error-internal" "CLUTTER_INIT_ERROR_INTERNAL" "-3")
+  )
+)
+
+;; From clutter-paint-node-private.h
+
+;; Original typedef:
+;; typedef enum {
+;;   PAINT_OP_INVALID = 0,
+;;   PAINT_OP_TEX_RECT,
+;;   PAINT_OP_PATH,
+;;   PAINT_OP_PRIMITIVE
+;; } PaintOpCode;
+
+(define-enum-extended PaintOpCode
+  (in-module "Clutter")
+  (c-name "PaintOpCode")
+  (values
+    '("invalid" "PAINT_OP_INVALID" "0")
+    '("tex-rect" "PAINT_OP_TEX_RECT" "1")
+    '("path" "PAINT_OP_PATH" "2")
+    '("primitive" "PAINT_OP_PRIMITIVE" "3")
+  )
+)
+
+;; From clutter-private.h
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_ACTOR_UNUSED_FLAG = 0,
+;; 
+;;   CLUTTER_IN_DESTRUCTION = 1 << 0,
+;;   CLUTTER_IS_TOPLEVEL    = 1 << 1,
+;;   CLUTTER_IN_REPARENT    = 1 << 2,
+;; 
+;;   /* Used to avoid recursion */
+;;   CLUTTER_IN_PAINT       = 1 << 3,
+;; 
+;;   /* Used to avoid recursion */
+;;   CLUTTER_IN_RELAYOUT    = 1 << 4,
+;; 
+;;   /* Used by the stage if resizing is an asynchronous operation (like on
+;;    * X11) to delay queueing relayouts until we got a notification from the
+;;    * event handling
+;;    */
+;;   CLUTTER_IN_RESIZE      = 1 << 5,
+;; 
+;;   /* a flag for internal children of Containers */
+;;   CLUTTER_INTERNAL_CHILD = 1 << 6
+;; } ClutterPrivateFlags;
+
+(define-flags-extended PrivateFlags
+  (in-module "Clutter")
+  (c-name "ClutterPrivateFlags")
+  (values
+    '("actor-unused-flag" "CLUTTER_ACTOR_UNUSED_FLAG" "0x0")
+    '("in-destruction" "CLUTTER_IN_DESTRUCTION" "1 << 0")
+    '("is-toplevel" "CLUTTER_IS_TOPLEVEL" "1 << 1")
+    '("in-reparent" "CLUTTER_IN_REPARENT" "1 << 2")
+    '("in-paint" "CLUTTER_IN_PAINT" "1 << 3")
+    '("in-relayout" "CLUTTER_IN_RELAYOUT" "1 << 4")
+    '("in-resize" "CLUTTER_IN_RESIZE" "1 << 5")
+    '("internal-child" "CLUTTER_INTERNAL_CHILD" "1 << 6")
+  )
+)
+
+;; Original typedef:
+;; typedef enum _ClutterCullResult
+;; {
+;;   CLUTTER_CULL_RESULT_UNKNOWN,
+;;   CLUTTER_CULL_RESULT_IN,
+;;   CLUTTER_CULL_RESULT_OUT,
+;;   CLUTTER_CULL_RESULT_PARTIAL
+;; } ClutterCullResult;
+
+(define-enum-extended CullResult
+  (in-module "Clutter")
+  (c-name "ClutterCullResult")
+  (values
+    '("unknown" "CLUTTER_CULL_RESULT_UNKNOWN" "0")
+    '("in" "CLUTTER_CULL_RESULT_IN" "1")
+    '("out" "CLUTTER_CULL_RESULT_OUT" "2")
+    '("partial" "CLUTTER_CULL_RESULT_PARTIAL" "3")
+  )
+)
+
+;; From clutter-profile.h
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_PROFILE_PICKING_ONLY    = 1 << 0,
+;;   CLUTTER_PROFILE_DISABLE_REPORT  = 1 << 1
+;; } ClutterProfileFlag;
+
+(define-flags-extended ProfileFlag
+  (in-module "Clutter")
+  (c-name "ClutterProfileFlag")
+  (values
+    '("picking-only" "CLUTTER_PROFILE_PICKING_ONLY" "1 << 0")
+    '("disable-report" "CLUTTER_PROFILE_DISABLE_REPORT" "1 << 1")
+  )
+)
+
+;; From clutter-script.h
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_SCRIPT_ERROR_INVALID_TYPE_FUNCTION,
+;;   CLUTTER_SCRIPT_ERROR_INVALID_PROPERTY,
+;;   CLUTTER_SCRIPT_ERROR_INVALID_VALUE
+;; } ClutterScriptError;
+
+(define-enum-extended ScriptError
+  (in-module "Clutter")
+  (c-name "ClutterScriptError")
+  (values
+    '("type-function" "CLUTTER_SCRIPT_ERROR_INVALID_TYPE_FUNCTION" "0")
+    '("property" "CLUTTER_SCRIPT_ERROR_INVALID_PROPERTY" "1")
+    '("value" "CLUTTER_SCRIPT_ERROR_INVALID_VALUE" "2")
+  )
+)
+
+;; From clutter-texture.h
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_TEXTURE_ERROR_OUT_OF_MEMORY,
+;;   CLUTTER_TEXTURE_ERROR_NO_YUV,
+;;   CLUTTER_TEXTURE_ERROR_BAD_FORMAT
+;; } ClutterTextureError;
+
+(define-enum-extended TextureError
+  (in-module "Clutter")
+  (c-name "ClutterTextureError")
+  (values
+    '("out-of-memory" "CLUTTER_TEXTURE_ERROR_OUT_OF_MEMORY" "0")
+    '("no-yuv" "CLUTTER_TEXTURE_ERROR_NO_YUV" "1")
+    '("bad-format" "CLUTTER_TEXTURE_ERROR_BAD_FORMAT" "2")
   )
 )
 
