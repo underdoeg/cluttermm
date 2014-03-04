@@ -117,8 +117,8 @@ public:
   _WRAP_METHOD(Glib::RefPtr<Pango::Layout> create_pango_layout(const Glib::ustring& text),
                clutter_actor_create_pango_layout)
 
-  //TODO: Wrap CoglMatrix
-  _WRAP_METHOD(void get_transformation_matrix(CoglMatrix* matrix), clutter_actor_get_transformation_matrix)
+  //TODO: Wrap ClutterMatrix
+  _WRAP_METHOD(void get_transformation_matrix(ClutterMatrix* matrix), clutter_actor_get_transformation_matrix)
 
   _WRAP_METHOD(bool is_in_clone_paint() const, clutter_actor_is_in_clone_paint)
   _WRAP_METHOD(bool has_pointer() const, clutter_actor_has_pointer)
