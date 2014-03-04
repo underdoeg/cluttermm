@@ -11628,6 +11628,17 @@
   (return-type "GType")
 )
 
+(define-function clutter_behaviour_depth_new
+  (c-name "clutter_behaviour_depth_new")
+  (is-constructor-of "ClutterBehaviourDepth")
+  (return-type "ClutterBehaviour*")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("gint" "depth_start")
+    '("gint" "depth_end")
+  )
+)
+
 (define-method set_bounds
   (of-object "ClutterBehaviourDepth")
   (c-name "clutter_behaviour_depth_set_bounds")
@@ -11906,6 +11917,17 @@
   (return-type "GType")
 )
 
+(define-function clutter_behaviour_opacity_new
+  (c-name "clutter_behaviour_opacity_new")
+  (is-constructor-of "ClutterBehaviourOpacity")
+  (return-type "ClutterBehaviour*")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("guint8" "opacity_start")
+    '("guint8" "opacity_end")
+  )
+)
+
 (define-method set_bounds
   (of-object "ClutterBehaviourOpacity")
   (c-name "clutter_behaviour_opacity_set_bounds")
@@ -12080,6 +12102,19 @@
 (define-function clutter_behaviour_scale_get_type
   (c-name "clutter_behaviour_scale_get_type")
   (return-type "GType")
+)
+
+(define-function clutter_behaviour_scale_new
+  (c-name "clutter_behaviour_scale_new")
+  (is-constructor-of "ClutterBehaviourScale")
+  (return-type "ClutterBehaviour*")
+  (parameters
+    '("ClutterAlpha*" "alpha")
+    '("gdouble" "x_scale_start")
+    '("gdouble" "y_scale_start")
+    '("gdouble" "x_scale_end")
+    '("gdouble" "y_scale_end")
+  )
 )
 
 (define-method set_bounds
