@@ -50,58 +50,63 @@
     '("ClutterEvent*" "p0")
   )
 )
-
+;; Hand-edited to use more specific event type
 (define-signal button-press-event
   (of-object "ClutterActor")
   (return-type "gboolean")
   (when "last")
   (parameters
-    '("ClutterEvent*" "p0")
+    '("ClutterButtonEvent*" "p0")
   )
 )
 
+;; Hand-edited to use more specific event type
 (define-signal button-release-event
   (of-object "ClutterActor")
   (return-type "gboolean")
   (when "last")
   (parameters
-    '("ClutterEvent*" "p0")
+    '("ClutterButtonEvent*" "p0")
   )
 )
 
+;; Hand-edited to use more specific event type
 (define-signal scroll-event
   (of-object "ClutterActor")
   (return-type "gboolean")
   (when "last")
   (parameters
-    '("ClutterEvent*" "p0")
+    '("ClutterScrollEvent*" "p0")
   )
 )
 
+;; Hand-edited to use more specific event type
 (define-signal key-press-event
   (of-object "ClutterActor")
   (return-type "gboolean")
   (when "last")
   (parameters
-    '("ClutterEvent*" "p0")
+    '("ClutterKeyEvent*" "p0")
   )
 )
 
+;; Hand-edited to use more specific event type
 (define-signal key-release-event
   (of-object "ClutterActor")
   (return-type "gboolean")
   (when "last")
   (parameters
-    '("ClutterEvent*" "p0")
+    '("ClutterKeyEvent*" "p0")
   )
 )
 
+;; Hand-edited to use more specific event type
 (define-signal motion-event
   (of-object "ClutterActor")
   (return-type "gboolean")
   (when "last")
   (parameters
-    '("ClutterEvent*" "p0")
+    '("ClutterMotionEvent*" "p0")
   )
 )
 
@@ -117,21 +122,23 @@
   (when "last")
 )
 
+;; Hand-edited to use more specific event type
 (define-signal enter-event
   (of-object "ClutterActor")
   (return-type "gboolean")
   (when "last")
   (parameters
-    '("ClutterEvent*" "p0")
+    '("ClutterCrossingEvent*" "p0")
   )
 )
 
+;; Hand-edited to use more specific event type
 (define-signal leave-event
   (of-object "ClutterActor")
   (return-type "gboolean")
   (when "last")
   (parameters
-    '("ClutterEvent*" "p0")
+    '("ClutterCrossingEvent*" "p0")
   )
 )
 
@@ -2935,4 +2942,3 @@
   (writable #t)
   (construct-only #f)
 )
-
