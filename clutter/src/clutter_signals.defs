@@ -2283,12 +2283,13 @@
   )
 )
 
+; We add the const- manually:
 (define-signal cursor-event
   (of-object "ClutterText")
   (return-type "void")
   (when "last")
   (parameters
-    '("ClutterGeometry*" "p0")
+    '("const-ClutterGeometry*" "p0")
   )
 )
 
