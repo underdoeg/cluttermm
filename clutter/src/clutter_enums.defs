@@ -1599,3 +1599,22 @@
   )
 )
 
+;; From clutter-shader.h
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_SHADER_ERROR_NO_ASM,
+;;   CLUTTER_SHADER_ERROR_NO_GLSL,
+;;   CLUTTER_SHADER_ERROR_COMPILE
+;; } ClutterShaderError;
+
+(define-enum-extended ShaderError
+  (in-module "Clutter")
+  (c-name "ClutterShaderError")
+  (values
+    '("no-asm" "CLUTTER_SHADER_ERROR_NO_ASM" "0")
+    '("no-glsl" "CLUTTER_SHADER_ERROR_NO_GLSL" "1")
+    '("compile" "CLUTTER_SHADER_ERROR_COMPILE" "2")
+  )
+)
+
