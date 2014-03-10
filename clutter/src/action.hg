@@ -25,7 +25,18 @@ _PINCLUDE(cluttermm/private/actor-meta_p.h)
 namespace Clutter
 {
 
-//TODO: Write a version of the large description from here: http://clutter-project.org/docs/clutter/stable/ClutterAction.html#ClutterAction.description
+/** Abstract Action (Base class for all actions)
+ *
+ * This is the base class of all actions.  It is an abstract class that
+ * can not be instantiated.
+ *
+ * Implementations of Clutter::Action are associated with an actor and can
+ * provide behavioral changes when dealing with user input - for instance
+ * drag and drop capabilities, or scrolling, or panning - by using the
+ * various event-related signals provided by ClutterActor itself.
+ *
+ * ClutterAction is available since Clutter 1.4
+ * */
 class Action : public ActorMeta
 {
   _CLASS_GOBJECT(Action, ClutterAction, CLUTTER_ACTION, ActorMeta, ClutterActorMeta)
@@ -40,7 +51,7 @@ public:
 
   //There are no functions.
 
-  //TODO: Signals, properties, vfuncs
+  //there are no signals, properties, vfuncs
 };
 
 } // namespace Clutter
