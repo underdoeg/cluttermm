@@ -95,4 +95,25 @@ void Geometry::set_size(guint width, guint height)
   gobject_.height = height;
 }
 
+Point::Point(float x, float y)
+{
+  ClutterPoint* point = clutter_point_alloc();
+  point = clutter_point_init(point, x, y);
+  gobject_ = clutter_point_copy(point);
+}
+
+Point::Point(int x, int y)
+{
+  ClutterPoint* point = clutter_point_alloc();
+  point = clutter_point_init(point, x, y);
+  gobject_ = clutter_point_copy(point);
+}
+
+Point::Point(double x, double y)
+{
+  ClutterPoint* point = clutter_point_alloc();
+  point = clutter_point_init(point, x, y);
+  gobject_ = clutter_point_copy(point);
+}
+
 } // namespace Clutter

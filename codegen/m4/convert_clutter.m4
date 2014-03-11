@@ -105,12 +105,19 @@ _CONVERSION(`const Geometry&',`const ClutterGeometry*',`($3).gobj()')
 _CONVERSION(`ClutterGeometry*',`const Geometry&',`Geometry($3)')
 _CONVERSION(`const ClutterGeometry*',`const Geometry&',`Geometry($3)')
 
+_CONVERSION(`const Point&',`const ClutterPoint*',`($3).gobj()')
+
 _EQUAL(`guint8',`guchar')
 _EQUAL(`guint8*',`guchar*')
 _EQUAL(`const guint8*',`const guchar*')
 
 _CONVERSION(`guint8&',`guint8*',`&($3)')
 _CONVERSION(`guint8*',`guint8&',`*($3)')
+
+_EQUAL(`float&',`gfloat')
+
+_CONVERSION(`float&', `gfloat*', `&($3)')
+_CONVERSION(`float&', `float*', `&($3)')
 
 _EQUAL(ClutterUnit,Unit)
 _CONVERSION(`Unit&',`ClutterUnit*',`&($3)')

@@ -80,6 +80,38 @@ public:
   void set_size(guint width, guint height);
 };
 
+class Point
+/** A Clutter::Point is a 2D point in space.
+ *
+ * It is used to return points, either in absolute coordinates or relative,
+ * depending on the method.
+ */
+{
+  _CLASS_BOXEDTYPE(Point, ClutterPoint,  NONE, clutter_point_copy, clutter_point_free)
+  _IGNORE(clutter_point_init, clutter_point_copy, clutter_point_free)
+
+public:
+  /** Constructor.
+  */
+  explicit Point(float x, float y);
+  /**
+   * Overloaded constructor to prevent collision with Point(ClutterPoint*, bool)
+   * constructor
+   */
+  explicit Point(int x, int y);
+  explicit Point(double x, double y);
+
+  _WRAP_EQUAL(clutter_point_equals)
+
+  _WRAP_METHOD(float distance(const Point& b, float& x_distance, float& y_distance) const, clutter_point_distance)
+
+  _MEMBER_GET(x, x, float, gfloat)
+  _MEMBER_GET(y, y, float, gfloat)
+  _MEMBER_SET(x, x, float, gfloat)
+  _MEMBER_SET(y, y, float, gfloat)
+
+};
+
 class Knot
 {
   _CLASS_BOXEDTYPE(Knot, ClutterKnot, NONE, clutter_knot_copy, clutter_knot_free)
