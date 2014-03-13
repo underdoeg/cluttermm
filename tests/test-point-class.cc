@@ -8,7 +8,7 @@ int main(int argc, char** argv)
 
   std::cout << "Creating Clutter::Point with (int) values: 8, 15" << std::endl;
 
-  Clutter::Point point0(0, 0);
+  Clutter::Point point0;
   Clutter::Point point1(8, 15);
 
   std::cout << "Initialisation: point0 = " << point0.get_x() <<

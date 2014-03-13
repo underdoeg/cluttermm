@@ -92,9 +92,13 @@ class Point
 
 public:
 
+  //We do not want the normal generated constructor
+  //because that creates an unusable object.
+  _CUSTOM_DEFAULT_CTOR
+
   /** Constructor.
    */
-  Point(float x, float y);
+  explicit Point(float x = 0, float y = 0);
 
   // This constructor is just here to prevent calls to Point(int, int) being ambiguous 
   // between Point(float, float) and Point(ClutterPoint*, bool).
