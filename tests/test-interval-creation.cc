@@ -62,11 +62,13 @@ int main(int argc, char** argv)
     errorval += 100;
   }
 
-  interval2->compute_value( 0.7, compute2 );
-  double compval = dub_a + ( ( dub_b - dub_a ) / 2 );
+  double compute_fraction = 0.7;
+
+  interval2->compute_value( compute_fraction, compute2 );
+  double compval =  dub_a + ( ( dub_b - dub_a ) * compute_fraction );
   if( compute2.get() != compval )
   {
-    std::cerr << "Error computing a value with factor = 0.7: " << compute2.get() << "; correct value is "<< compval << std::endl;
+    std::cout << "Error computing a value with factor = " << compute_fraction << ": " << compute2.get() << "; correct value is "<< compval << std::endl;
     errorval += 1000;
   }
 
