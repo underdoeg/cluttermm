@@ -15,7 +15,7 @@
 ## You should have received a copy of the GNU Lesser General Public License
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-check_PROGRAMS = actors
+check_PROGRAMS = actors stage
 
 dist_noinst_DATA = actor.png test-boxes.cc
 
@@ -27,3 +27,4 @@ AM_CXXFLAGS = $(CLUTTERMM_WXXFLAGS)
 LDADD = $(CLUTTERMM_LIBS) $(local_libs)
 
 actors_SOURCES = test-actors.cc
+stage_SOURCES = example-stage.cc
