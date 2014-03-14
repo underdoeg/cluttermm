@@ -4,6 +4,10 @@ _CONVERSION(`const Glib::RefPtr<const Actor>&',`ClutterActor*',__CONVERT_CONST_R
 _CONVERSION(`ClutterActor*',`Glib::RefPtr<Actor>',`Glib::wrap($3)')
 _CONVERSION(`ClutterActor*',`Glib::RefPtr<const Actor>',`Glib::wrap($3)')
 
+dnl ValueBase
+_CONVERSION(`Glib::ValueBase&',`GValue*',`($3).gobj()')
+_CONVERSION(`const Glib::ValueBase&',`const GValue*',`($3).gobj()')
+
 _CONVERSION(`const Glib::RefPtr<Action>&',`ClutterAction*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`const Glib::RefPtr<const Action>&',`ClutterAction*',__CONVERT_CONST_REFPTR_TO_P)
 
@@ -49,6 +53,7 @@ _CONVERSION(`ClutterEffect*',`Glib::RefPtr<Effect>',`Glib::wrap($3)')
 _CONVERSION(`ClutterEffect*',`Glib::RefPtr<const Effect>',`Glib::wrap($3)')
 
 _CONVERSION(`const Glib::RefPtr<Interval>&',`ClutterInterval*',__CONVERT_REFPTR_TO_P)
+_CONVERSION(`Glib::RefPtr<Interval>&',`ClutterInterval*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`ClutterInterval*',`Glib::RefPtr<Interval>',`Glib::wrap($3)')
 _CONVERSION(`ClutterInterval*',`Glib::RefPtr<const Interval>',`Glib::wrap($3)')
 

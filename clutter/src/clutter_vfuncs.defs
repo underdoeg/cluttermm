@@ -1,3 +1,42 @@
+;ClutterAnimatable
+
+(define-vfunc find_property
+  (of-object "ClutterAnimatable")
+  (return-type "GParamSpec*")
+  (parameters
+    '("const-gchar*" "property_name")
+  )
+)
+
+(define-vfunc get_initial_state
+  (of-object "ClutterAnimatable")
+  (return-type "void")
+	(parameters
+    '("const-gchar*" "property_name")
+		'("GValue*"  "value")
+  )
+)
+
+(define-vfunc set_final_state
+  (of-object "ClutterAnimatable")
+  (return-type "void")
+	(parameters
+    '("const-gchar*" "property_name")
+		'("const-GValue*"  "value")
+  )
+)
+
+(define-vfunc interpolate_value
+  (of-object "ClutterAnimatable")
+  (return-type "gboolean")
+	(parameters
+    '("const gchar*" "property_name")
+    '("ClutterInterval*" "interval")
+    '("gdouble" "progress")
+    '("GValue*" "value")
+  )
+)
+
 ; ClutterLayout
 
 (define-vfunc get_layout_flags

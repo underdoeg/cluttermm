@@ -15,6 +15,7 @@ files_hg =			\
 	actor-meta.hg		\
 	action.hg		\
 	alpha.hg		\
+	animatable.hg		\
 	animation.hg		\
 	animator.hg		\
 	backend.hg		\
