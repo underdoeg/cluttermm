@@ -9,9 +9,10 @@ int main(int argc, char** argv)
   //an error return value to add information to make check:
   int errorval(0);
 
-  int p1x(8), p1y(15);
+  const int p1x(8);
+  const int p1y(15);
   Clutter::Point point0;
-  Clutter::Point point1(8, 15);
+  Clutter::Point point1(p1x, p1y);
 
   if( ( point0.get_x() != 0) || ( point0.get_y() != 0 ) ||
     ( point1.get_x() != p1x ) || ( point1.get_y() != p1y ) )
@@ -25,7 +26,8 @@ int main(int argc, char** argv)
   float x_dist(0);
   float y_dist(0);
   float dist = point0.distance(point1, x_dist, y_dist);
-  if(dist != 17) {
+  if(dist != 17)
+  {
     std::cout << "Distance between the two ( should be 17 ) is "<< dist <<
     " with x and y distances " << x_dist << "/ " << y_dist << std::endl;
     errorval += 10;
@@ -39,7 +41,8 @@ int main(int argc, char** argv)
   point1.set_y(10);
 
   dist = point0.distance(point1, x_dist, y_dist);
-  if(dist != 5) {
+  if(dist != 5)
+  {
     std::cout << "Distance between the two is "<< dist <<
     " with x and y distances " << x_dist << "/ " << y_dist << std::endl;
     errorval += 20;
@@ -54,22 +57,25 @@ int main(int argc, char** argv)
   point1.set_y(6);
 
   dist = point0.distance(point1, x_dist, y_dist);
-  if(dist != 5) {
+  if(dist != 5)
+  {
     std::cout << "Distance between the two is "<< dist <<
     " with x and y distances " << x_dist << "/ " << y_dist << std::endl;
     errorval += 30;
   }
 
   //point equality function check:
-  Clutter::Point comp_point(7.0 ,6.0);
-  if(comp_point != point1){
+  const Clutter::Point comp_point(7.0 ,6.0);
+  if(comp_point != point1)
+  {
     std::cerr << "double Point unequal to equivalent double point." << std::endl;
     errorval += 100;
   }
 
   //point equality function check for integer values:
-  Clutter::Point comp2_point(7 ,6);
-  if(comp2_point != point1){
+  const Clutter::Point comp2_point(7 ,6);
+  if(comp2_point != point1)
+  {
     std::cerr << "int Point unequal to equivalent double point." << std::endl;
     errorval += 200;
   }
