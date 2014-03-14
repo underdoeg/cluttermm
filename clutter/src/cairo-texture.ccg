@@ -23,7 +23,7 @@ namespace Clutter
 namespace Cairo
 {
 
-void set_source_color(Glib::RefPtr< ::Cairo::Context >& context, ::Clutter::Color color)
+void set_source_color(::Cairo::RefPtr< ::Cairo::Context >& context, ::Clutter::Color color)
 {
   clutter_cairo_set_source_color(context->cobj(), color.gobj());
 }

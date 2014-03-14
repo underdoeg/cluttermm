@@ -141,8 +141,8 @@ public:
   _WRAP_METHOD(Glib::ustring get_description() const, clutter_path_get_description)
   _WRAP_METHOD(void set_description(const Glib::ustring& str), clutter_path_set_description)
 
-  _WRAP_METHOD(void add_cairo_path(const Glib::RefPtr<Cairo::Path>& path), clutter_path_add_cairo_path)
-  _WRAP_METHOD(void to_cairo_path(Glib::RefPtr<Cairo::Context>& context) const, clutter_path_to_cairo_path)
+  _WRAP_METHOD(void add_cairo_path(const ::Cairo::RefPtr<Cairo::Path>& path), clutter_path_add_cairo_path)
+  _WRAP_METHOD(void to_cairo_path(::Cairo::RefPtr<Cairo::Context>& context) const, clutter_path_to_cairo_path)
 
   _WRAP_METHOD(void clear(), clutter_path_clear)
   _WRAP_METHOD(guint get_position(double progress, Knot& position), clutter_path_get_position)
