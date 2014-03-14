@@ -9,8 +9,8 @@ int main(int argc, char** argv)
   //a return value to allow make check to output a useful summary:
   int errorval(0);
 
-  int int_a(10);
-  int int_b(20);
+  const int int_a(10);
+  const int int_b(20);
 
   Glib::RefPtr<Clutter::Interval> interval1 = Clutter::Interval::create(10, 20);
   Glib::Value<int> initial1, final1, compute1;
@@ -19,12 +19,11 @@ int main(int argc, char** argv)
   compute1.init(compute1.value_type());
 
   interval1->get_interval(initial1, final1);
-   if(  (int(initial1.get()) != int_a) || ( int(final1.get()) != int_b) )
+  if(  (int(initial1.get()) != int_a) || ( int(final1.get()) != int_b) )
   {
     errorval++;
-    std::cout << "Getting incorrect values from created interval: " <<
-                    initial1.get() << ", " << final1.get() << std::endl;
-
+    std::cerr << "Getting incorrect values from created interval: " <<
+      initial1.get() << ", " << final1.get() << std::endl;
   }
 
   interval1->compute_value(0.5, compute1);
@@ -32,13 +31,13 @@ int main(int argc, char** argv)
                   compute1.get() << std::endl << std::endl;
   if( compute1.get() != (int_a + int_b ) /2 )
   {
-    std::cout << "Computing incorrect value with factor = 0.5: " <<
+    std::cerr << "Computed incorrect value with factor = 0.5: " <<
                   compute1.get() << std::endl << std::endl;
     errorval += 10;
   }
 
-  double dub_a(10.35);
-  double dub_b(20.73);
+  const double dub_a(10.35);
+  const double dub_b(20.73);
 
   Glib::Value<double> initial2, final2, compute2;
   initial2.init(initial2.value_type());
@@ -58,19 +57,18 @@ int main(int argc, char** argv)
   interval2->get_interval(initial2, final2);
   if( ( dub_a != initial2.get() ) || ( dub_b != final2.get() ) )
   {
-    std::cout << "Getting incorrect values from created interval: " <<
+    std::cerr << "Getting incorrect values from created interval: " <<
               initial2.get() << ", " << final2.get() << std::endl;
     errorval += 100;
   }
 
   interval2->compute_value( 0.7, compute2 );
-  double compval =  dub_a + ( ( dub_b - dub_a ) /2 );
+  double compval = dub_a + ( ( dub_b - dub_a ) / 2 );
   if( compute2.get() != compval )
   {
-    std::cout << "Error computing a value with factor = 0.7: " << compute2.get() << "; correct value is "<< compval << std::endl;
+    std::cerr << "Error computing a value with factor = 0.7: " << compute2.get() << "; correct value is "<< compval << std::endl;
     errorval += 1000;
   }
 
   return errorval;
-
 }
