@@ -67,20 +67,21 @@ class Stage :
   // Implements Container and Scriptable via Group.
 
 protected:
-/**
-* Creates a new stage. Every Clutter::Actor must be placed on a stage, and the
-* stage first created automatically occupies the window generated when
-*  Clutter::main() is run.
-*
-* Clutter can support more than one stage at once; however the ability to
-* support multiple stages depends on the current backend. Use
-* feature_available() and CLUTTER::FEATURE_STAGE_MULTIPLE to check at runtime
-* whether a backend supports multiple stages.
 
-* @return a new stage.
-*
-* @newin{0.8}
-*/
+  /**
+   * Creates a new stage. Every Clutter::Actor must be placed on a stage, and the
+   * stage first created automatically occupies the window generated when
+   *  Clutter::maiAdded new properties and functions to wrap clutter 1.7.6n() is run.
+   *
+   * Clutter can support more than one stage at once; however the ability to
+   * support multiple stages depends on the current backend. Use
+   * feature_available() and CLUTTER::FEATURE_STAGE_MULTIPLE to check at runtime
+   * whether a backend supports multiple stages.
+   *
+   * @return a new stage.
+   *
+   * @newin{0.8}
+   */
   _CTOR_DEFAULT()
 
 public:
@@ -140,6 +141,7 @@ public:
 
   _WRAP_METHOD(void set_minimum_size(guint width, guint height), clutter_stage_set_minimum_size)
   _WRAP_METHOD(void get_minimum_size(guint& width, guint& height), clutter_stage_get_minimum_size)
+
   /**
   * Returns the minimum size for the stage.  The Point contains the x_minimum and y minimum.
   *
