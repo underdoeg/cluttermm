@@ -32,19 +32,20 @@ class Perspective
 {
   _CLASS_BOXEDTYPE_STATIC(Perspective, ClutterPerspective)
 public:
-  Perspective(Cogl::Fixed fovy, Cogl::Fixed aspect, Cogl::Fixed z_near, Cogl::Fixed z_far);
+  Perspective(float fovy, float aspect, float z_near, float z_far);
 
-  _MEMBER_GET(fovy, fovy, Cogl::Fixed, CoglFixed)
-  _MEMBER_SET(fovy, fovy, Cogl::Fixed, CoglFixed)
-  _MEMBER_GET(aspect, aspect, Cogl::Fixed, CoglFixed)
-  _MEMBER_SET(aspect, aspect, Cogl::Fixed, CoglFixed)
-  _MEMBER_GET(z_near, z_near, Cogl::Fixed, CoglFixed)
-  _MEMBER_SET(z_near, z_near, Cogl::Fixed, CoglFixed)
-  _MEMBER_GET(z_far, z_far, Cogl::Fixed, CoglFixed)
-  _MEMBER_SET(z_far, z_far, Cogl::Fixed, CoglFixed)
+  _MEMBER_GET(fovy, fovy, float, gfloat)
+  _MEMBER_SET(fovy, fovy, float, gfloat)
+  _MEMBER_GET(aspect, aspect, float, gfloat)
+  _MEMBER_SET(aspect, aspect, float, gfloat)
+  _MEMBER_GET(z_near, z_near, float, gfloat)
+  _MEMBER_SET(z_near, z_near, float, gfloat)
+  _MEMBER_GET(z_far, z_far, float, gfloat)
+  _MEMBER_SET(z_far, z_far, float, gfloat)
 };
 
 //TODO: Wrap clutter_feature_available(), as mentioned in the class comment.
+  class Actor;
 
 /** This is a top level 'window' on which child actors are placed and manipulated.
  *
@@ -63,14 +64,30 @@ class Stage :
   public Group
 {
   _CLASS_GOBJECT(Stage, ClutterStage, CLUTTER_STAGE, Group, ClutterGroup)
+  // Implements Container and Scriptable via Group.
 
 protected:
+/**
+* Creates a new stage. Every Clutter::Actor must be placed on a stage, and the
+* stage first created automatically occupies the window generated when
+*  Clutter::main() is run.
+*
+* Clutter can support more than one stage at once; however the ability to
+* support multiple stages depends on the current backend. Use
+* feature_available() and CLUTTER::FEATURE_STAGE_MULTIPLE to check at runtime
+* whether a backend supports multiple stages.
+
+* @return a new stage.
+*
+* @newin{0.8}
+*/
   _CTOR_DEFAULT()
 
 public:
+  _WRAP_CREATE()
 #m4 _CONVERSION(`ClutterActor*',`Glib::RefPtr<Stage>',`Glib::wrap((ClutterStage*)$3)')
-  _WRAP_METHOD(static Glib::RefPtr<Stage> get_default(), clutter_stage_get_default, refreturn)
-  _WRAP_METHOD(void set_color(const Color& color), clutter_stage_set_color)
+  _WRAP_METHOD(static Glib::RefPtr<Stage> get_default(), clutter_stage_get_default, refreturn, deprecated "Use Stage::create() instead, and keep track of the Glib::RefPtr returned.")
+  _WRAP_METHOD(void set_color(const Color& color), clutter_stage_set_color, deprecated "Use Actor::set_background_color() instead.")
   _WRAP_METHOD_DOCS_ONLY(clutter_stage_get_color)
   Color get_color() const;
 
@@ -85,8 +102,10 @@ public:
   _WRAP_METHOD(void hide_cursor(), clutter_stage_hide_cursor)
   _WRAP_METHOD(Glib::ustring get_title() const, clutter_stage_get_title)
   _WRAP_METHOD(void set_title(const Glib::ustring& title), clutter_stage_set_title)
-  _WRAP_METHOD(void set_user_resizable(bool value), clutter_stage_set_user_resizable)
+  _WRAP_METHOD(void set_user_resizable(bool value = true), clutter_stage_set_user_resizable)
   _WRAP_METHOD(bool get_user_resizable() const, clutter_stage_get_user_resizable)
+  _WRAP_METHOD(void set_accept_focus(bool value = true), clutter_stage_set_accept_focus)
+  _WRAP_METHOD(bool get_accept_focus() const, clutter_stage_get_accept_focus)
 
   _WRAP_METHOD(Glib::RefPtr<Actor> get_actor_at_pos(PickMode pick_mode, int x, int y), clutter_stage_get_actor_at_pos, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const Actor> get_actor_at_pos(PickMode pick_mode, int x, int y) const, clutter_stage_get_actor_at_pos, refreturn, constversion)
@@ -100,11 +119,11 @@ public:
   // TODO: Should we rather wrap this as std::string, or
   // as std::vector<unsigned char>, or Glib::ArrayHandle<guchar>?
   _WRAP_METHOD(guchar* read_pixels(int x, int y, int width, int height) const, clutter_stage_read_pixels)
-  _WRAP_METHOD(bool get_use_fog() const, clutter_stage_get_use_fog)
-  _WRAP_METHOD(void set_use_fog(bool fog = true), clutter_stage_set_use_fog)
+  _WRAP_METHOD(bool get_use_fog() const, clutter_stage_get_use_fog, deprecated "This method will always return false.")
+  _WRAP_METHOD(void set_use_fog(bool fog = true), clutter_stage_set_use_fog, deprecated "This method has no visible effect.")
 #m4 _CONVERSION(`const Fog&',`ClutterFog*',`const_cast<ClutterFog*>(&($3))')
-  _WRAP_METHOD(void set_fog(const Fog& fog), clutter_stage_set_fog)
-  _WRAP_METHOD(void get_fog(Fog& fog) const, clutter_stage_get_fog)
+  _WRAP_METHOD(void set_fog(const Fog& fog), clutter_stage_set_fog, deprecated "Fog settings are ignored.")
+  _WRAP_METHOD(void get_fog(Fog& fog) const, clutter_stage_get_fog, deprecated "This function will always return default values.")
 
   _WRAP_METHOD(void stage_event(Event* event), clutter_stage_event)
   _WRAP_METHOD(bool is_default() const, clutter_stage_is_default)
@@ -121,9 +140,22 @@ public:
 
   _WRAP_METHOD(void set_minimum_size(guint width, guint height), clutter_stage_set_minimum_size)
   _WRAP_METHOD(void get_minimum_size(guint& width, guint& height), clutter_stage_get_minimum_size)
+  /**
+  * Returns the minimum size for the stage.  The Point contains the x_minimum and y minimum.
+  *
+  * @return a point with the minimum sizes set as its parameters.
+  */
+  Point get_minimum_size() const;
 
   _WRAP_METHOD(void set_no_clear_hint(bool no_clear = true), clutter_stage_set_no_clear_hint)
   _WRAP_METHOD(bool get_no_clear_hint() const, clutter_stage_get_no_clear_hint)
+  //TODO: wrap
+  _IGNORE(clutter_stage_get_redraw_clip_bounds)
+  _WRAP_METHOD(void set_motion_events(bool enabled = true), clutter_stage_set_motion_events_enabled)
+  _WRAP_METHOD(bool get_motion_events() const, clutter_stage_get_motion_events_enabled)
+  _IGNORE(clutter_stage_set_paint_callback)
+
+  //signals:
 
   _WRAP_SIGNAL(void fullscreen(), "fullscreen")
   _WRAP_SIGNAL(void unfullscreen(), "unfullscreen")
@@ -131,15 +163,20 @@ public:
   _WRAP_SIGNAL(void deactivate(), "deactivate")
   _WRAP_SIGNAL(bool delete_event(ClutterEvent *event), "delete-event")
 
-  _WRAP_PROPERTY("color", Color)
+  //There are no vfuncs.
+
+  //properties:
+  _WRAP_PROPERTY("accept-focus", bool)
+  _WRAP_PROPERTY("color", Color)// deprecated; use background-color.
   _WRAP_PROPERTY("cursor-visible", bool)
   _WRAP_PROPERTY("fullscreen-set", bool)
-  _WRAP_PROPERTY("offscreen", bool)
+  _WRAP_PROPERTY("no-clear-hint", bool)
+  _WRAP_PROPERTY("offscreen", bool) //deprecated, does not do anything.
   _WRAP_PROPERTY("perspective", Perspective)
   _WRAP_PROPERTY("title", Glib::ustring)
-  _WRAP_PROPERTY("use-fog", bool)
+  _WRAP_PROPERTY("use-fog", bool) //deprecated, does not do anything.
   _WRAP_PROPERTY("user-resizable", bool)
-  _WRAP_PROPERTY("fog", Fog)
+  _WRAP_PROPERTY("fog", Fog) //deprecated, does not do anything.
   _WRAP_PROPERTY("use-alpha", bool)
   _WRAP_PROPERTY("key-focus", Glib::RefPtr<Actor>)
 

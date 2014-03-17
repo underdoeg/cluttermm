@@ -20,7 +20,7 @@
 namespace Clutter
 {
 
-Perspective::Perspective(Cogl::Fixed fovy, Cogl::Fixed aspect, Cogl::Fixed z_near, Cogl::Fixed z_far)
+Perspective::Perspective(float fovy, float aspect, float z_near, float z_far)
 {
   gobject_.fovy = fovy;
   gobject_.aspect = aspect;
@@ -40,5 +40,16 @@ void Stage::set_key_focus()
   clutter_stage_set_key_focus(gobj(), NULL);
 }
 
-} //namespace Clutter
+Point Stage::get_minimum_size() const
+{
+	guint x(0);
+	guint y(0);
 
+	guint* px = &x;
+	guint* py = &y;
+	clutter_stage_get_minimum_size(const_cast<ClutterStage*>(gobj()), px, py);
+
+
+	return Point(int(*px), int(*py));
+}
+} //namespace Clutter
