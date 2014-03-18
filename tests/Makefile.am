@@ -15,8 +15,9 @@
 ## You should have received a copy of the GNU Lesser General Public License
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-check_PROGRAMS = test-alpha-creation test-alpha-func test-interval-creation \
-test-point-class
+check_PROGRAMS = \
+test-alpha-creation test-alpha-func \
+test-interval-creation test-point-class
 
 local_includes = -I$(top_builddir)/clutter $(if $(srcdir:.=),-I$(top_srcdir)/clutter)
 local_libs = $(top_builddir)/clutter/cluttermm/libcluttermm-$(CLUTTERMM_API_VERSION).la
@@ -29,3 +30,8 @@ test_alpha_creation_SOURCES    = test-alpha-creation.cc
 test_alpha_func_SOURCES        = test-alpha-func.cc
 test_interval_creation_SOURCES = test-interval-creation.cc
 test_point_class_SOURCES    = test-point-class.cc
+
+# Only tests that don't require user input are added here, as they will
+# run automatically on building:
+
+TESTS = test-interval-creation test-point-class
