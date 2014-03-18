@@ -25,6 +25,6 @@ stamp-h?
 /doc/reference/cluttermm-*.tag
 /doc/reference/html/
 /examples/actors
-/tests/test-alpha-creation
-/tests/test-alpha-func
-/tests/test-interval-creation
+/tests/*
+!/tests/*.cc
+!/tests/*.Makefile.am
