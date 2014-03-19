@@ -102,7 +102,7 @@ template <class ValueType>
   glibmm_g_value.init(Glib::Value<ValueType>::value_type());
   glibmm_g_value.set(gvalue);
 
-  set_final_state(property_name, glibmm_g_value);
+  set_final_state_value(property_name, glibmm_g_value);
 
   return;
 }
