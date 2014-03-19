@@ -91,7 +91,6 @@ void Animatable::get_initial_state(const Glib::ustring& property_name, ValueType
 
   get_initial_state(property_name, glibmm_g_value);
   value = glibmm_g_value.get();
-  return;
 }
 
 template <class ValueType>
@@ -103,8 +102,6 @@ template <class ValueType>
   glibmm_g_value.set(gvalue);
 
   set_final_state_value(property_name, glibmm_g_value);
-
-  return;
 }
 
 template <class ValueType>
