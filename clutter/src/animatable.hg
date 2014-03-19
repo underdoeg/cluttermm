@@ -64,10 +64,10 @@ public:
    * Sets the final state for an animation.
    *
    * @param property_name the name of the animatable property to set.
-   * @param gvalue a value of the appropriate type.
+   * @param value a value of the appropriate type.
    */
   template <class ValueType>
-  void set_final_state(const Glib::ustring& property_name, const ValueType& gvalue);
+  void set_final_state(const Glib::ustring& property_name, const ValueType& value);
 
 
   //TODO: Documentation
@@ -75,7 +75,7 @@ public:
   bool interpolate(const Glib::ustring& property_name,
     const Glib::RefPtr<const Interval>& interval,
     double progress,
-    ValueType& gvalue);
+    ValueType& value);
 
 protected:
 
@@ -101,11 +101,11 @@ void Animatable::get_initial_state(const Glib::ustring& property_name, ValueType
 }
 
 template <class ValueType>
-void Animatable::set_final_state(const Glib::ustring& property_name, const ValueType& gvalue)
+void Animatable::set_final_state(const Glib::ustring& property_name, const ValueType& value)
 {
   Glib::Value<ValueType> glibmm_g_value;
   glibmm_g_value.init(Glib::Value<ValueType>::value_type());
-  glibmm_g_value.set(gvalue);
+  glibmm_g_value.set(value);
 
   set_final_state_value(property_name, glibmm_g_value);
 }
@@ -114,11 +114,11 @@ template <class ValueType>
 bool Animatable::interpolate(const Glib::ustring& property_name,
   const Glib::RefPtr<const Interval>& interval,
   double progress,
-  ValueType& gvalue)
+  ValueType& value)
 {
   Glib::Value<ValueType> glibmm_g_value;
   glibmm_g_value.init(Glib::Value<ValueType>::value_type());
-  glibmm_g_value.set(gvalue);
+  glibmm_g_value.set(value);
 
   const bool out = interpolate_value_value(
     gobj(),
@@ -127,7 +127,7 @@ bool Animatable::interpolate(const Glib::ustring& property_name,
     progress,
     glibmm_g_value);
 
-  gvalue = glibmm_g_value.get();
+  value = glibmm_g_value.get();
   return out;
 }
 
