@@ -53,7 +53,7 @@ _CONVERSION(`ClutterEffect*',`Glib::RefPtr<Effect>',`Glib::wrap($3)')
 _CONVERSION(`ClutterEffect*',`Glib::RefPtr<const Effect>',`Glib::wrap($3)')
 
 _CONVERSION(`const Glib::RefPtr<Interval>&',`ClutterInterval*',__CONVERT_REFPTR_TO_P)
-_CONVERSION(`Glib::RefPtr<Interval>&',`ClutterInterval*',__CONVERT_REFPTR_TO_P)
+_CONVERSION(`const Glib::RefPtr<const Interval>&',`ClutterInterval*',__CONVERT_CONST_REFPTR_TO_P)
 _CONVERSION(`ClutterInterval*',`Glib::RefPtr<Interval>',`Glib::wrap($3)')
 _CONVERSION(`ClutterInterval*',`Glib::RefPtr<const Interval>',`Glib::wrap($3)')
 

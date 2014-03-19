@@ -33,6 +33,7 @@ typedef struct _ClutterAnimatableIface ClutterAnimatableIface;
 
 namespace Clutter
 {
+
 class Interval;
 
 class Animatable : public Glib::Interface
@@ -47,7 +48,8 @@ public:
 
   _WRAP_METHOD(void get_initial_state_value(const Glib::ustring& property_name, Glib::ValueBase& value) const, clutter_animatable_get_initial_state, constversion)
   _WRAP_METHOD(void set_final_state_value(const Glib::ustring& property_name, const Glib::ValueBase& value), clutter_animatable_set_final_state)
-  //_WRAP_METHOD(void interpolate_value(const Glib::ustring& property_name, Glib::RefPtr<Interval>& interval, double progress, Glib::ValueBase& value), clutter_animatable_interpolate_value)
+
+  _WRAP_METHOD(void interpolate_value_value(const Glib::ustring& property_name, const Glib::RefPtr<const Interval>& interval, double progress, Glib::ValueBase& value), clutter_animatable_interpolate_value)
 
   /**
    * Gets the initial state of an animation
@@ -71,7 +73,7 @@ public:
   //TODO: Documentation
   template <class ValueType>
   bool interpolate(const Glib::ustring& property_name,
-    Glib::RefPtr<Interval>& interval,
+    const Glib::RefPtr<const Interval>& interval,
     double progress,
     ValueType& gvalue);
 
@@ -84,7 +86,7 @@ protected:
   _WRAP_VFUNC(void set_final_state(const Glib::ustring& property_name, const Glib::ValueBase& value), set_final_state)
 
   //TODO: this function doesn't wrap.  removed from build for the present.
-  //_WRAP_VFUNC(bool interpolate_value(const Glib::ustring& property_name, Glib::RefPtr<Interval> interval, double progress, Glib::ValueBase& value), interpolate_value)
+  //_WRAP_VFUNC(bool interpolate_value(const Glib::ustring& property_name, const Glib::RefPtr<const Interval>& interval, double progress, Glib::ValueBase& value), interpolate_value)
 };
 
 
@@ -110,7 +112,7 @@ void Animatable::set_final_state(const Glib::ustring& property_name, const Value
 
 template <class ValueType>
 bool Animatable::interpolate(const Glib::ustring& property_name,
-  Glib::RefPtr<Interval>& interval,
+  const Glib::RefPtr<const Interval>& interval,
   double progress,
   ValueType& gvalue)
 {
@@ -118,12 +120,12 @@ bool Animatable::interpolate(const Glib::ustring& property_name,
   glibmm_g_value.init(Glib::Value<ValueType>::value_type());
   glibmm_g_value.set(gvalue);
 
-  const bool out = clutter_animatable_interpolate_value(
-    const_cast<ClutterAnimatable*>(gobj()),
-    property_name.c_str(),
-    interval->gobj(),
+  const bool out = interpolate_value_value(
+    gobj(),
+    property_name,
+    interval,
     progress,
-    glibmm_g_value.gobj());
+    glibmm_g_value);
 
   gvalue = glibmm_g_value.get();
   return out;

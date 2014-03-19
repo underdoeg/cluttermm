@@ -65,6 +65,8 @@ public:
   //TODO: Add templated update().
 
   _WRAP_METHOD(void unbind_property(const std::string& property_name), clutter_animation_unbind_property)
+
+  //This needs at least a comment about the constness, though this is deprecated anyway.
   _WRAP_METHOD(Glib::RefPtr<Interval> get_interval(const std::string& property_name) const, clutter_animation_get_interval)
 
   _WRAP_SIGNAL(void started(), "started")
