@@ -17,7 +17,7 @@
 
 check_PROGRAMS = \
 test-alpha-creation test-alpha-func \
-test-interval-creation test-point-class test-actor-box
+test-interval-creation test-point-class test-actor-box test-size
 
 local_includes = -I$(top_builddir)/clutter $(if $(srcdir:.=),-I$(top_srcdir)/clutter)
 local_libs = $(top_builddir)/clutter/cluttermm/libcluttermm-$(CLUTTERMM_API_VERSION).la
@@ -31,8 +31,9 @@ test_alpha_func_SOURCES        = test-alpha-func.cc
 test_interval_creation_SOURCES = test-interval-creation.cc
 test_point_class_SOURCES    = test-point-class.cc
 test_actor_box_SOURCES      = test-actor-box.cc
+test_size_SOURCES           = test-size-class.cc
 
 # Only tests that don't require user input are added here, as they will
 # run automatically on building:
 
-TESTS = test-interval-creation test-point-class test-actor-box
+TESTS = test-interval-creation test-point-class test-actor-box test-size
