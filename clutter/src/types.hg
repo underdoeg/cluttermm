@@ -118,6 +118,35 @@ public:
   _MEMBER_SET(y, y, float, gfloat)
 };
 
+/**
+ * A size in 2D space.
+ */
+class Size
+{
+  _CLASS_BOXEDTYPE_STATIC(Size, ClutterSize,  clutter_size_alloc, clutter_size_copy, clutter_size_free)
+public:
+  explicit Size(float width = 0, float height = 0);
+
+  //Prevents ambiguous calls to Size(ClutterSize*, bool)
+  Size(int width, int height);
+
+  /**
+   * Prevents calls to Size(double, double) being ambiguous.
+   * N.B. this will convert the input to floats, and rounding
+   * errors are possible.
+   */
+  Size(double width, double height);
+
+  _IGNORE(clutter_size_init, clutter_size_alloc, clutter_size_copy, clutter_size_free)
+
+  _WRAP_EQUAL(clutter_size_equals)
+  _MEMBER_GET(width, width, float, float)
+  _MEMBER_GET(height, height, float, float)
+  _MEMBER_SET(width, width, float, float)
+  _MEMBER_SET(height, height, float, float)
+
+};
+
 class Knot
 {
   _CLASS_BOXEDTYPE(Knot, ClutterKnot, NONE, clutter_knot_copy, clutter_knot_free)
