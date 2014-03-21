@@ -51,6 +51,7 @@ files_hg =			\
 	script.hg		\
 	scriptable.hg		\
 	shader.hg		\
+	size.hg			\
 	stage.hg		\
 	text.hg			\
 	texture.hg		\

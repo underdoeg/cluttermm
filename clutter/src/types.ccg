@@ -116,22 +116,4 @@ Point::Point(double x, double y)
   gobject_ = clutter_point_copy(point);
 }
 
-Size::Size(float width, float height)
-{
-  gobject_.width = width;
-  gobject_.height = height;
-}
-
-Size::Size(int width, int height)
-{
-  gobject_.width = width;
-  gobject_.height = height;
-}
-
-Size::Size(double width, double height)
-{
-  gobject_.width = width;
-  gobject_.height = height;
-}
-
 } // namespace Clutter
