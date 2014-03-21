@@ -1,3 +1,8 @@
+# wildcard patterns
+*.[ao]
+*.l[ao]
+*~
+
 .deps/
 .dirstamp
 .libs/
