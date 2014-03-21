@@ -12,6 +12,7 @@ files_defs =			\
 
 files_hg =			\
 	actor.hg		\
+	actor-box.hg		\
 	actor-meta.hg		\
 	action.hg		\
 	alpha.hg		\

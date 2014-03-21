@@ -1,0 +1,71 @@
+/* Copyright (C) 2007 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <glibmm/object.h>
+#include <cluttermm/types.h> // For Event*
+
+_DEFS(cluttermm,clutter)
+_PINCLUDE(glibmm/private/object_p.h)
+
+
+namespace Clutter
+{
+
+class ActorBox
+{
+  _CLASS_BOXEDTYPE_STATIC(ActorBox, ClutterActorBox, NONE, clutter_actor_box_copy, clutter_actor_box_free)
+  _IGNORE(clutter_actor_box_init, clutter_actor_box_copy, clutter_actor_box_free)
+public:
+  _CUSTOM_DEFAULT_CTOR
+
+  //hand-coded constructor to allow default values:
+  explicit ActorBox(float x1 = 0, float y1 = 0, float x2 = 0, float y2 = 0);
+
+  // Convenience constructor that would be difficult to wrap - it's got 4
+  // floats (origin x and y and the width and height) so will conflict with the
+  // other constructor.
+  _IGNORE(clutter_actor_box_init_rect)
+
+  _WRAP_EQUAL(clutter_actor_box_equal)
+
+  _WRAP_METHOD(float get_x() const, clutter_actor_box_get_x)
+  _WRAP_METHOD(float get_y() const, clutter_actor_box_get_y)
+  _WRAP_METHOD(float get_width() const, clutter_actor_box_get_width)
+  _WRAP_METHOD(float get_height() const, clutter_actor_box_get_height)
+  _WRAP_METHOD(void set_origin(float x, float y), clutter_actor_box_set_origin)
+
+  #m4 _INITIALIZATION(`float&',`gfloat',`&($3)')
+  _WRAP_METHOD(void get_origin(float& x, float& y) const, clutter_actor_box_get_origin)
+  _WRAP_METHOD(void set_size(float width, float height), clutter_actor_box_set_size)
+  _WRAP_METHOD(void get_size(float& width, float& height) const, clutter_actor_box_get_size)
+
+  _WRAP_METHOD(float get_area() const, clutter_actor_box_get_area)
+  _WRAP_METHOD(bool contains(float x, float y) const, clutter_actor_box_contains)
+
+  // wrap if need be- what would be the use case?
+  _IGNORE(clutter_actor_box_from_vertices)
+  //_WRAP_METHOD(bool from_vertices(const ClutterVertex verts[]) const, clutter_actor_box_from_vertices
+  _WRAP_METHOD(void clamp_to_pixel(), clutter_actor_box_clamp_to_pixel)
+
+#m4 _INITIALIZATION(`ActorBox&',`ClutterActorBox', `$3 = Glib::wrap(&($4))')
+  _WRAP_METHOD(void interpolate(const ActorBox& final_, double progress, ActorBox& result{>>}), clutter_actor_box_interpolate)
+
+  _WRAP_METHOD(void unite(const ActorBox& b, ActorBox& result{>>}), clutter_actor_box_union)
+
+};
+
+} // namespace Clutter
