@@ -30,6 +30,7 @@ class Size
 {
   _CLASS_BOXEDTYPE_STATIC(Size, ClutterSize,  clutter_size_alloc, clutter_size_copy, clutter_size_free)
 public:
+  _CUSTOM_DEFAULT_CTOR
   explicit Size(float width = 0, float height = 0);
 
   //Prevents ambiguous calls to Size(ClutterSize*, bool)
