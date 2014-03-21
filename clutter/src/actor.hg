@@ -44,7 +44,7 @@ public:
   _CUSTOM_DEFAULT_CTOR
 
   //hand-coded constructor to allow default values:
-  ActorBox(float x1 = 0, float y1 = 0, float x2 = 0, float y2 = 0);
+  explicit ActorBox(float x1 = 0, float y1 = 0, float x2 = 0, float y2 = 0);
 
   // Convenience constructor that would be difficult to wrap - it's got 4
   // floats (origin x and y and the width and height) so will conflict with the
