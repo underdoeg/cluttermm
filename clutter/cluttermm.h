@@ -56,6 +56,7 @@
 #include <cluttermmconfig.h>
 #include <cluttermm/action.h>
 #include <cluttermm/actor.h>
+#include <cluttermm/actor-box.h>
 #include <cluttermm/actor-meta.h>
 #include <cluttermm/alpha.h>
 #include <cluttermm/animatable.h>
@@ -93,6 +94,7 @@
 #include <cluttermm/score.h>
 #include <cluttermm/script.h>
 #include <cluttermm/shader.h>
+#include <cluttermm/size.h>
 #include <cluttermm/stage.h>
 #include <cluttermm/text.h>
 #include <cluttermm/texture.h>
