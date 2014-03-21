@@ -24,7 +24,9 @@ stamp-h?
 /doc/reference/cluttermm-*.devhelp2
 /doc/reference/cluttermm-*.tag
 /doc/reference/html/
-/examples/actors
+/examples/*
+!/examples/*.cc
+!/examples/*.Makefile.am
 /tests/*
 !/tests/*.cc
 !/tests/*.Makefile.am
