@@ -22,13 +22,22 @@
 _DEFS(cluttermm,clutter)
 _PINCLUDE(cluttermm/private/behaviour_p.h)
 
+#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+#m4 _POP()
 
 namespace Clutter
 {
 
+/**
+ * @deprecated Use the Actor rotation properties and
+ * Actor::animate(), or Animator, or State
+ * instead.
+ */
 class BehaviourRotate : public Behaviour
 {
   _CLASS_GOBJECT(BehaviourRotate, ClutterBehaviourRotate, CLUTTER_BEHAVIOUR_ROTATE, Behaviour, ClutterBehaviour)
+  _IS_DEPRECATED
 
 protected:
   _WRAP_CTOR(BehaviourRotate(const Glib::RefPtr<Alpha>& alpha, RotateAxis axis, RotateDirection direction, double angle_begin, double angle_end), clutter_behaviour_rotate_new)

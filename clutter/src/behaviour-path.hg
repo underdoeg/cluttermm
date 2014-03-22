@@ -1,3 +1,4 @@
+
 /* Copyright (C) 2007 The cluttermm Development Team
  *
  * This library is free software; you can redistribute it and/or
@@ -24,14 +25,22 @@
 _DEFS(cluttermm,clutter)
 _PINCLUDE(cluttermm/private/behaviour_p.h)
 
+#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+#m4 _POP()
+
 namespace Clutter
 {
 
+/**
+ * @deprecated Use Path and PathConstraint with Actor::animate() instead.
+ */
 class BehaviourPath
 : public Behaviour,
   public Scriptable
 {
   _CLASS_GOBJECT(BehaviourPath, ClutterBehaviourPath, CLUTTER_BEHAVIOUR_PATH, Behaviour, ClutterBehaviour)
+  _IS_DEPRECATED
   _IMPLEMENTS_INTERFACE(Scriptable)
 
 protected:

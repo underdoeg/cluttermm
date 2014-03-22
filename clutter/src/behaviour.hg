@@ -21,13 +21,21 @@
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)
 
+#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+#m4 _POP()
 
 namespace Clutter
 {
 
+/**
+ * @deprecated Behaviour and its sub-classes have been deprecated since Clutter
+ * 1.6, in favour of the animation framework API.
+ */
 class Behaviour : public Glib::Object
 {
   _CLASS_GOBJECT(Behaviour, ClutterBehaviour, CLUTTER_BEHAVIOUR, Glib::Object, GObject)
+  _IS_DEPRECATED
 
 protected:
   _CTOR_DEFAULT()

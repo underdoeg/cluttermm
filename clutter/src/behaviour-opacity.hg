@@ -22,13 +22,22 @@
 _DEFS(cluttermm,clutter)
 _PINCLUDE(cluttermm/private/behaviour_p.h)
 
+#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+#m4 _POP()
 
 namespace Clutter
 {
 
+//TODO: Wrap state.
+/**
+ * @deprecated Use Actor::animate() with the Actor's opacity property,
+ * or Animator, or State instead.
+ */
 class BehaviourOpacity : public Behaviour
 {
   _CLASS_GOBJECT(BehaviourOpacity, ClutterBehaviourOpacity, CLUTTER_BEHAVIOUR_OPACITY, Behaviour, ClutterBehaviour)
+  _IS_DEPRECATED
 
 protected:
   _WRAP_CTOR(BehaviourOpacity(const Glib::RefPtr<Alpha>& alpha, guint8 opacity_start, guint8 opacity_end), clutter_behaviour_opacity_new)

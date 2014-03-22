@@ -21,13 +21,21 @@
 _DEFS(cluttermm,clutter)
 _PINCLUDE(cluttermm/private/behaviour_p.h)
 
+#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+#m4 _POP()
 
 namespace Clutter
 {
 
+/**
+ * @deprecated Use Actor::animate() with the Actor's depth
+ * property instead.
+ */
 class BehaviourDepth : public Behaviour
 {
   _CLASS_GOBJECT(BehaviourDepth, ClutterBehaviourDepth, CLUTTER_BEHAVIOUR_DEPTH, Behaviour, ClutterBehaviour)
+  _IS_DEPRECATED
 
 protected:
   _WRAP_CTOR(BehaviourDepth(const Glib::RefPtr<Alpha>& alpha, int depth_start, int depth_end), clutter_behaviour_depth_new)

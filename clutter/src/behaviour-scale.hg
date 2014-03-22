@@ -22,13 +22,21 @@
 _DEFS(cluttermm,clutter)
 _PINCLUDE(cluttermm/private/behaviour_p.h)
 
+#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+#m4 _POP()
 
 namespace Clutter
 {
 
+/**
+ * @deprecated Use the Actor's scale-x and scale-y  properties, with Actor::animate(),
+ * or Animator or State instead.
+ */
 class BehaviourScale : public Behaviour
 {
   _CLASS_GOBJECT(BehaviourScale, ClutterBehaviourScale, CLUTTER_BEHAVIOUR_SCALE, Behaviour, ClutterBehaviour)
+  _IS_DEPRECATED
 
 protected:
   _WRAP_CTOR(BehaviourScale(const Glib::RefPtr<Alpha>& alpha, double x_scale_start, double y_scale_start, double x_scale_end, double y_scale_end), clutter_behaviour_scale_new)

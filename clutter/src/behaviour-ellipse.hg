@@ -22,13 +22,21 @@
 _DEFS(cluttermm,clutter)
 _PINCLUDE(cluttermm/private/behaviour_p.h)
 
+#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+#m4 _POP()
 
 namespace Clutter
 {
 
+/**
+ * @deprecated Behaviour and its sub-classes have been deprecated since Clutter
+ * 1.6, in favour of the animation framework API.
+ */
 class BehaviourEllipse : public Behaviour
 {
   _CLASS_GOBJECT(BehaviourEllipse, ClutterBehaviourEllipse, CLUTTER_BEHAVIOUR_ELLIPSE, Behaviour, ClutterBehaviour)
+  _IS_DEPRECATED
 
 protected:
   //Hand-coded because x and y must be combined into one ClutterKnot center parameter.
