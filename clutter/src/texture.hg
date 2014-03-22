@@ -21,6 +21,9 @@
 _DEFS(cluttermm,clutter)
 _PINCLUDE(cluttermm/private/actor_p.h)
 
+#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+#m4 _POP()
 
 namespace Clutter
 {
@@ -32,9 +35,13 @@ _WRAP_ENUM(TextureQuality, ClutterTextureQuality)
  */
 _WRAP_GERROR(TextureError, ClutterTextureError, CLUTTER_TEXTURE_ERROR)
 
+/**
+ * @deprecated Use Image instead.
+ */
 class Texture : public Actor
 {
   _CLASS_GOBJECT(Texture, ClutterTexture, CLUTTER_TEXTURE, Actor, ClutterActor)
+  _IS_DEPRECATED
 
 protected:
   _CTOR_DEFAULT()
