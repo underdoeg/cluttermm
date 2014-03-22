@@ -29,8 +29,8 @@
 (define-vfunc interpolate_value
   (of-object "ClutterAnimatable")
   (return-type "gboolean")
-	(parameters
-    '("const gchar*" "property_name")
+  (parameters
+    '("const-gchar*" "property_name")
     '("ClutterInterval*" "interval")
     '("gdouble" "progress")
     '("GValue*" "value")
