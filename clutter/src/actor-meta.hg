@@ -25,7 +25,17 @@ namespace Clutter
 
 class Actor;
 
-//TODO: Write a version of the large description from here: http://clutter-project.org/docs/clutter/stable/ClutterActorMeta.html#ClutterActorMetaMeta.description
+/**
+ * Clutter::ActorMeta is an abstract class providing a common API for modifiers
+ *  of Clutter::Actor activity, appearance or layout.
+ *
+ * A Clutter::ActorMeta can only be owned by a single Clutter::Actor at any time.
+ *
+ * Every sub-class of Clutter::ActorMeta should check if the “enabled” property
+ * is set to true before applying any kind of modification.
+ *
+ * Clutter::ActorMeta is available since Clutter 1.4
+ */
 class ActorMeta : public Glib::Object
 {
   _CLASS_GOBJECT(ActorMeta, ClutterActorMeta, CLUTTER_ACTOR_META, Glib::Object, GObject)
@@ -46,7 +56,15 @@ public:
   _WRAP_METHOD(Glib::RefPtr<Actor> get_actor(), clutter_actor_meta_get_actor, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const Actor> get_actor() const, clutter_actor_meta_get_actor, refreturn, constversion)
 
-  //TODO: Signals, properties, vfuncs
+protected:
+ //vfuncs:
+ //
+  //_WRAP_VFUNC(void set_actor(const Glib::RefPtr<const Actor>& actor), set_actor)
+
+  //properties:
+  _WRAP_PROPERTY("actor", Glib::RefPtr<Actor>)
+  _WRAP_PROPERTY("enabled", bool)
+  _WRAP_PROPERTY("name", Glib::ustring)
 };
 
 } // namespace Clutter

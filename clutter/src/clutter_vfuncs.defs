@@ -1,3 +1,13 @@
+; ClutterActorMeta
+
+(define-vfunc set_actor
+  (of-object "ClutterActorMeta")
+  (return-type "void")
+  (parameters
+    '("ClutterActor*" "actor")
+  )
+)
+
 ;ClutterAnimatable
 
 (define-vfunc find_property
