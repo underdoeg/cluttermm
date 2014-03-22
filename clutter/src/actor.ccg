@@ -41,12 +41,14 @@ bool Actor::is_reactive() const
   return (CLUTTER_ACTOR_IS_REACTIVE(gobj()) != 0);
 }
 
+_DEPRECATE_IFDEF_START
 Geometry Actor::get_geometry() const
 {
   Geometry geom;
   clutter_actor_get_geometry(const_cast<ClutterActor*>(gobj()), geom.gobj());
   return geom;
 }
+_DEPRECATE_IFDEF_END
 
 #if 0
 ActorBox Actor::get_paint_area() const
@@ -84,12 +86,14 @@ void Actor::apply_relative_transform_to_point(const Vertex& point, Vertex& verte
   clutter_actor_apply_relative_transform_to_point(const_cast<ClutterActor*>(gobj()), NULL, const_cast<ClutterVertex*>(point.gobj()), vertex.gobj());
 }
 
+_DEPRECATE_IFDEF_START
 Geometry Actor::get_allocation_geometry() const
 {
   Geometry geom;
   clutter_actor_get_allocation_geometry(const_cast<ClutterActor*>(gobj()), geom.gobj());
   return geom;
 }
+_DEPRECATE_IFDEF_END
 
 // Glib::RefPtr<Animation>
 // Actor::animate(gulong mode, guint duration, const std::map<std::string, Glib::ValueBase>& properties)
