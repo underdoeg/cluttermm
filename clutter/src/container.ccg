@@ -17,6 +17,7 @@
 
 #include <clutter/clutter.h>
 
+_DEPRECATE_IFDEF_START
 namespace
 {
 extern "C"
@@ -42,10 +43,13 @@ static void SignalProxy_Container_foreach_callback(ClutterActor *actor, gpointer
 }
 } // extern "C"
 } // anonymous namespace
+_DEPRECATE_IFDEF_END
 
 namespace Clutter
 {
 
+
+_DEPRECATE_IFDEF_START
 void Container::raise_child(const Glib::RefPtr<Actor>& actor)
 {
   clutter_container_raise_child(gobj(), Glib::unwrap(actor), 0);
@@ -61,6 +65,7 @@ void Container::foreach(const SlotForEach& slot)
   clutter_container_foreach(gobj(),
       &SignalProxy_Container_foreach_callback, const_cast<SlotForEach*>(&slot));
 }
+_DEPRECATE_IFDEF_END
 
 void Container::get_child_property_value(const Glib::RefPtr<const Actor>& child,
                      const Glib::ustring& property_name, Glib::ValueBase& value) const
@@ -79,6 +84,7 @@ void Container::actor_removed(const Glib::RefPtr<Actor>& actor)
   g_signal_emit_by_name(gobj(), "actor_removed", actor->gobj());
 }
 
+_DEPRECATE_IFDEF_START
 std::vector<Glib::RefPtr<Actor> > Container::get_children()
 {
   GList* actorList = clutter_container_get_children(gobj());
@@ -108,5 +114,6 @@ std::vector<Glib::RefPtr<const Actor> > Container::get_children() const
 
   return actorVec;
 }
+_DEPRECATE_IFDEF_END
 
 } // namespace Clutter
