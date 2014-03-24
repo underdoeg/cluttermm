@@ -22,6 +22,7 @@
 #include <cluttermm/action.h>
 #include <cluttermm/actor-box.h>
 #include <cluttermm/animation.h>
+#include <cluttermm/animatable.h>
 #include <cluttermm/color.h>
 #include <cluttermm/effect.h>
 #include <cluttermm/scriptable.h>
@@ -46,24 +47,26 @@ _WRAP_ENUM(AllocationFlags, ClutterAllocationFlags)
 _WRAP_ENUM(Orientation, ClutterOrientation)
 
 //TODO: Write a version of the large description from here: http://clutter-project.org/docs/clutter/stable/ClutterActor.html#ClutterActor.description
-class Actor : public Glib::Object, public Scriptable
+class Actor : public Glib::Object, public Scriptable, public Animatable
 {
   _CLASS_GOBJECT(Actor, ClutterActor, CLUTTER_ACTOR, Glib::Object, GObject)
   _DERIVES_INITIALLY_UNOWNED()
   _IMPLEMENTS_INTERFACE(Scriptable)
+  _IMPLEMENTS_INTERFACE(Animatable)
 
 protected:
   _CTOR_DEFAULT()
 
 public:
-  //There is no create() because this is an abstract base class.
-  //_WRAP_CREATE()
+
+  _WRAP_CREATE()
 
   _WRAP_METHOD(void set_flags(ActorFlags flags), clutter_actor_set_flags)
   _WRAP_METHOD(void unset_flags(ActorFlags flags), clutter_actor_unset_flags)
   _WRAP_METHOD(ActorFlags get_flags() const, clutter_actor_get_flags)
 
   //TODO: Remove these now that there are properties instead?
+  // Not at present; there are no accessors available.
   bool is_mapped() const;
   bool is_realized() const;
   bool is_visible() const;
@@ -80,14 +83,21 @@ public:
   _WRAP_METHOD(void map(), clutter_actor_map)
   _WRAP_METHOD(void unmap(), clutter_actor_unmap)
   _WRAP_METHOD(void paint(), clutter_actor_paint)
+  _WRAP_METHOD(void continue_paint(), clutter_actor_continue_paint)
   _WRAP_METHOD(void queue_redraw(), clutter_actor_queue_redraw)
   _WRAP_METHOD(void queue_relayout(), clutter_actor_queue_relayout)
+  _IGNORE(clutter_actor_queue_redraw_with_clip) //internal.
+  _IGNORE(clutter_actor_queue_relayout) //not for application code.
+  _IGNORE(clutter_actor_should_pick_paint ) //not for application code.
+
+  _WRAP_METHOD(bool has_overlaps(), clutter_actor_has_overlaps )
 
 #m4 dnl // Those are varargs convenience functions for C coders
   _IGNORE(clutter_actor_animate, clutter_actor_animate_with_alpha, clutter_actor_animate_with_timeline)
 
   //TODO: Check that we don't want to wrap this: _WRAP_METHOD(void destroy(), clutter_actor_destroy)
   //_IGNORE(clutter_actor_destroy)
+  _WRAP_METHOD(void destroy(), clutter_actor_destroy)
 
   _WRAP_METHOD(Glib::RefPtr<Pango::Context> get_pango_context(),
                clutter_actor_get_pango_context, refreturn)
@@ -208,7 +218,7 @@ _DEPRECATE_IFDEF_END
   _WRAP_METHOD(void allocate(const ActorBox& box, AllocationFlags absolute_origin_changed = ALLOCATION_NONE), clutter_actor_allocate)
 
   _WRAP_METHOD(void allocate_preferred_size(AllocationFlags absolute_origin_changed = ALLOCATION_NONE), clutter_actor_allocate_preferred_size)
-    _WRAP_METHOD(void allocate_available_size(float x, float y, float available_width, float                 available_height, AllocationFlags flags = ALLOCATION_NONE), clutter_actor_allocate_available_size)
+    _WRAP_METHOD(void allocate_available_size(float x, float y, float available_width, float available_height, AllocationFlags flags = ALLOCATION_NONE), clutter_actor_allocate_available_size)
 
 #m4 _CONVERSION(`const Vertex&',`ClutterVertex*',`const_cast<ClutterVertex*>(($3).gobj())')
 #m4 _CONVERSION(`Vertex&',`ClutterVertex*',`($3).gobj()')
