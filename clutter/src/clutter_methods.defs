@@ -10777,13 +10777,6 @@
   )
 )
 
-(define-function clutter_actor_add_child
-  (c-name "clutter_actor_add_child")
-  (return-type "and")
-  (parameters
-  )
-)
-
 (define-method set_parent
   (of-object "ClutterActor")
   (c-name "clutter_actor_set_parent")
