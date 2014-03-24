@@ -237,6 +237,25 @@ _DEPRECATE_IFDEF_END
   _WRAP_METHOD(void move_anchor_point_from_gravity(Gravity gravity), clutter_actor_move_anchor_point_from_gravity, deprecated "Use “pivot-point” instead.")
   _WRAP_METHOD(void move_anchor_point(float anchor_x, float anchor_y), clutter_actor_move_anchor_point, deprecated "Use “pivot-point” instead.")
 
+// IM: ClutterMargin.
+  _IGNORE(clutter_actor_set_margin, clutter_actor_get_margin)
+  _WRAP_METHOD(void set_margin_top(float margin), clutter_actor_set_margin_top)
+  _WRAP_METHOD(float get_margin_top() const, clutter_actor_get_margin_top)
+  _WRAP_METHOD(void set_margin_bottom(float margin), clutter_actor_set_margin_bottom)
+  _WRAP_METHOD(float get_margin_bottom() const, clutter_actor_get_margin_bottom)
+  _WRAP_METHOD(void set_margin_left(float margin), clutter_actor_set_margin_left)
+  _WRAP_METHOD(float get_margin_left() const, clutter_actor_get_margin_left)
+  _WRAP_METHOD(void set_margin_right(float margin), clutter_actor_set_margin_right)
+  _WRAP_METHOD(float get_margin_right() const, clutter_actor_get_margin_right)
+  /**
+  * Convenience method for setting all margins at once.
+  *
+  * @param top The top margin
+  * @param left the left margin
+  * @param bottom The bottom margin
+  * @param right The right margin.
+  * */
+  void set_margins(float top, float left, float bottom, float right);
 
   _WRAP_METHOD(bool get_fixed_position_set() const, clutter_actor_get_fixed_position_set)
   _WRAP_METHOD(void set_fixed_position_set(bool is_set), clutter_actor_set_fixed_position_set)

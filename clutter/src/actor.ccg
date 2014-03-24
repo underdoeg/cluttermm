@@ -95,6 +95,14 @@ Geometry Actor::get_allocation_geometry() const
 }
 _DEPRECATE_IFDEF_END
 
+void Actor::set_margins(float top, float left, float bottom, float right)
+{
+  set_margin_top(top);
+  set_margin_left(left);
+  set_margin_bottom(bottom);
+  set_margin_right(right);
+}
+
 // Glib::RefPtr<Animation>
 // Actor::animate(gulong mode, guint duration, const std::map<std::string, Glib::ValueBase>& properties)
 // {
@@ -201,4 +209,3 @@ void Actor::get_paint_area_vfunc(ActorBox& box) const
 #endif
 
 } //namespace Clutter
-
