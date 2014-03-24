@@ -23,17 +23,25 @@
 _DEFS(cluttermm,clutter)
 _PINCLUDE(cluttermm/private/texture_p.h)
 
+#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+#m4 _POP()
+
 namespace Clutter
 {
 
 namespace Cairo
 {
 
+/**
+ * @deprecated Use Canvas instead.
+ */
 class Texture : public ::Clutter::Texture
 {
   _GMMPROC_EXTRA_NAMESPACE(Cairo)
   _CLASS_GOBJECT(Texture, ClutterCairoTexture, CLUTTER_CAIRO_TEXTURE, ::Clutter::Texture, ClutterTexture)
   _IMPLEMENTS_INTERFACE(Scriptable)
+  _IS_DEPRECATED
 
 protected:
   _WRAP_CTOR(Texture(guint surface_width, guint surface_height), clutter_cairo_texture_new)
