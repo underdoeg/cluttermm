@@ -17,8 +17,12 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+
 #include <cluttermm/threads.h>
 #include <clutter/clutter.h>
+
+#ifndef CLUTTERMM_DISABLE_DEPRECATED
 
 namespace
 {
@@ -102,8 +106,12 @@ gboolean source_callback(void* data)
 
 } // anonymous namespace
 
+#endif //CLUTTERMM_DISABLE_DEPRECATED
+
 namespace Clutter
 {
+
+#ifndef CLUTTERMM_DISABLE_DEPRECATED
 
 void threads_init()
 {
@@ -119,6 +127,7 @@ void threads_leave()
 {
   clutter_threads_leave();
 }
+#endif //CLUTTERMM_DISABLE_DEPRECATED
 
 // TODO: This is unlikely to be thread-safe because of the returned connection
 // object.  It's the same problem as with the glibmm idle source.
@@ -144,6 +153,9 @@ sigc::connection threads_add_timeout(const sigc::slot<bool>& callback,
   return connection;
 }
 
+
+#ifndef CLUTTERMM_DISABLE_DEPRECATED
+
 sigc::connection threads_add_frame_source(const sigc::slot<bool>& callback,
                                           guint interval, int priority)
 {
@@ -155,5 +167,8 @@ sigc::connection threads_add_frame_source(const sigc::slot<bool>& callback,
       &SourceConnectionNode::destroy_notify_callback));
   return connection;
 }
+
+#endif //CLUTTERMM_DISABLE_DEPRECATED
+
 
 } // namespace Clutter

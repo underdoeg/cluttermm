@@ -26,6 +26,8 @@ namespace Clutter
 
 // TODO: clutter_threads_set_lock_functions ()?
 
+#ifndef CLUTTERMM_DISABLE_DEPRECATED
+
 /** Initialises the Clutter threading mechanism, so that Clutter API can be 
  * called by multiple threads, using threads_enter() and
  * threads_leave() to mark the critical sections.
@@ -33,16 +35,25 @@ namespace Clutter
  * You must call Glib::thread_init() before this function. 
  *
  * This function must be called before init().
+ *
+ * @deprecated This function does not do anything. Threading support is initialized when Clutter is initialized.
  */
 void threads_init();
 
 /** Locks the Clutter thread lock.
+ *
+ * @deprecated This function should not be used by application code. Marking critical sections is not portable on various platforms. Instead of acquiring the Clutter lock, schedule UI updates from the main loop using threads_add_idle() or threads_add_timeout().
  */
 void threads_enter();
 
 /** Unlocks the Clutter thread lock.
+ *
+ * @deprecated This function should not be used by application code. Marking critical sections is not portable on various platforms. Instead of acquiring the Clutter lock, schedule UI updates from the main loop using threads_add_idle() or threads_add_timeout().
  */
 void threads_leave();
+
+#endif //CLUTTERMM_DISABLE_DEPRECATED
+
 
 // TODO: Should there be a SignalSomething class for these, so the
 // sigc::connection makes more semantical sense?
@@ -86,6 +97,9 @@ sigc::connection threads_add_idle(const sigc::slot<bool>& callback, int priority
  */
 sigc::connection threads_add_timeout(const sigc::slot<bool>& callback, guint interval, gint priority = Glib::PRIORITY_DEFAULT);
 
+
+#ifndef CLUTTERMM_DISABLE_DEPRECATED
+
 /** Sets a function to be called at regular intervals holding the Clutter
  * lock, with the given priority. The function is called repeatedly until it
  * returns false, at which point the timeout is automatically destroyed and
@@ -108,8 +122,12 @@ sigc::connection threads_add_timeout(const sigc::slot<bool>& callback, guint int
  * @param interval the time between calls to the function, in milliseconds
  * @param the priority of the timeout source. Typically this will be in the range between Glib::PRIORITY_DEFAULT and Glib::PRIORITY_HIGH.
  * @return A sigc::connection that can be used to disconnect the callback from the timeout source.
+ *
+ * @deprecated This function is no longer useful.
  */
 sigc::connection threads_add_frame_source(const sigc::slot<bool>& callback, guint interval, gint priority = Glib::PRIORITY_DEFAULT);
+
+#endif //CLUTTERMM_DISABLE_DEPRECATED
 
 } //namespace Clutter
 
