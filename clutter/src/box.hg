@@ -23,15 +23,23 @@ _DEFS(cluttermm,clutter)
 _PINCLUDE(cluttermm/private/actor_p.h)
 _PINCLUDE(cluttermm/private/container_p.h)
 
+#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+#m4 _POP()
+
 namespace Clutter
 {
 
+/**
+ * @deprecated Use Actor instead.
+ */
 class Box :
     public Actor,
     public Container
 {
   _CLASS_GOBJECT(Box, ClutterBox, CLUTTER_BOX, Actor, ClutterActor)
   _IMPLEMENTS_INTERFACE(Container)
+  _IS_DEPRECATED
 
 protected:
   _CTOR_DEFAULT()
