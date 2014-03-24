@@ -21,6 +21,10 @@
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)
 
+#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+#m4 _POP()
+
 namespace Clutter
 {
 
@@ -36,16 +40,22 @@ protected:
 
 public:
   _WRAP_CREATE(guint msecs)
-  _WRAP_METHOD(Glib::RefPtr<Timeline> clone() const, clutter_timeline_clone)
+  _WRAP_METHOD(Glib::RefPtr<Timeline> clone() const, clutter_timeline_clone, deprecated "Use create() instead.")
 
   _WRAP_METHOD(void set_duration(guint msecs), clutter_timeline_set_duration)
   _WRAP_METHOD(guint get_duration() const, clutter_timeline_get_duration)
   _WRAP_METHOD(void start(), clutter_timeline_start)
   _WRAP_METHOD(void pause(), clutter_timeline_pause)
   _WRAP_METHOD(void stop(), clutter_timeline_stop)
+
+  _WRAP_METHOD(void set_auto_reverse(bool reverse = true), clutter_timeline_set_auto_reverse)
+  _WRAP_METHOD(bool get_auto_reverse() const, clutter_timeline_get_auto_reverse)
+  _WRAP_METHOD(void set_repeat_count(int count), clutter_timeline_set_repeat_count)
+  _WRAP_METHOD(int get_repeat_count() const, clutter_timeline_get_repeat_count)
+
   _WRAP_METHOD(void rewind(), clutter_timeline_rewind)
-  _WRAP_METHOD(void set_loop(bool loop = true), clutter_timeline_set_loop)
-  _WRAP_METHOD(bool get_loop() const, clutter_timeline_get_loop)
+  _WRAP_METHOD(void set_loop(bool loop = true), clutter_timeline_set_loop, deprecated "Use set_repeat_count() instead.")
+  _WRAP_METHOD(bool get_loop() const, clutter_timeline_get_loop, deprecated "Use get_repeat_count() instead.")
   _WRAP_METHOD(void skip(guint n_frames), clutter_timeline_skip)
   _WRAP_METHOD(void advance(guint frame_num), clutter_timeline_advance)
   _WRAP_METHOD(guint get_delta() const, clutter_timeline_get_delta)
@@ -64,13 +74,19 @@ public:
   _WRAP_METHOD(void remove_marker(const Glib::ustring& marker_name), clutter_timeline_remove_marker)
   _WRAP_METHOD(void advance_to_marker(const Glib::ustring& marker_name), clutter_timeline_advance_to_marker)
 
+  _WRAP_METHOD(void set_progress_mode(AnimationMode mode), clutter_timeline_set_progress_mode)
+  _WRAP_METHOD(AnimationMode get_progress_mode() const, clutter_timeline_get_progress_mode)
+
   //clutter_timeline_do_tick() is marked as private in the header.
   _IGNORE(clutter_timeline_do_tick)
 
   _WRAP_PROPERTY("delay", guint)
   _WRAP_PROPERTY("direction", TimelineDirection)
   _WRAP_PROPERTY("duration", guint)
-  _WRAP_PROPERTY("loop", bool)
+  _WRAP_PROPERTY("loop", bool, deprecated "Use the “repeat-count” property instead.")
+  _WRAP_PROPERTY("auto-reverse", bool)
+  _WRAP_PROPERTY("repeat-count", int)
+  _WRAP_PROPERTY("progress-mode", AnimationMode)
 
   _WRAP_SIGNAL(void completed(), "completed")
   _WRAP_SIGNAL(void new_frame(int fram_num), "new-frame")
