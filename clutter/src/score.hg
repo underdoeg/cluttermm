@@ -28,9 +28,11 @@ _PINCLUDE(glibmm/private/object_p.h)
 namespace Clutter
 {
 
+//Note: The ClutterScore deprecation warning recommends using ClutterAnimator or
+//ClutterState, but they are also now also deprecated in favour of ClutterKeyframeTransition.
+
 /**
- * @deprecated Use Animator or State to create
- * complex animations involving multiple timelines.
+ * @deprecated Use KeyFrameTransition instead.
  */
 class Score : public Glib::Object
 {
