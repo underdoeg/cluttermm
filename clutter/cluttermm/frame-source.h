@@ -19,6 +19,8 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
+#ifndef CLUTTERMM_DISABLE_DEPRECATED
+
 #include <glibmm.h>
 
 namespace Clutter
@@ -43,10 +45,14 @@ namespace Clutter
  * @param interval the time between calls to the function, in milliseconds
  * @param the priority of the timeout source. Typically this will be in the range between Glib::PRIORITY_DEFAULT and Glib::PRIORITY_HIGH.
  * @return A sigc::connection that can be used to disconnect the callback from the timeout source.
+ *
+ * @deprecated This method is no longer useful.
  */
 sigc::connection frame_source_add(const sigc::slot<bool>& callback, guint interval,
                                   int priority = Glib::PRIORITY_DEFAULT);
 
 } // namespace Clutter
+
+#endif //CLUTTERMM_DISABLE_DEPRECATED
 
 #endif /* !_LIBCLUTTERMM_FRAME_SOURCE_H */

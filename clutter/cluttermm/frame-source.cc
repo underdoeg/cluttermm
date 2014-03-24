@@ -17,6 +17,10 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
+#ifndef CLUTTERMM_DISABLE_DEPRECATED
+
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+
 #include <cluttermm/frame-source.h>
 #include <clutter/clutter.h>
 
@@ -117,5 +121,7 @@ sigc::connection frame_source_add(const sigc::slot<bool>& callback, guint interv
                                                    &SourceConnectionNode::destroy_notify_callback));
   return connection;
 }
+
+#endif //CLUTTERMM_DISABLE_DEPRECATED
 
 } // namespace Clutter
