@@ -21,13 +21,16 @@
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)
 
+#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+#m4 _POP()
+
 namespace Clutter
 {
 
 /**
- * @deprecated For newly written code, it is recommended to use the
- * "progress-mode" property of Clutter::Timeline, or the 
- * Clutter::Timeline::set_progress_func() method instead of Clutter::Alpha.
+ * @deprecated Use the "progress-mode" property of Clutter::Timeline, or the 
+ * Clutter::Timeline::set_progress_func() method instead.
  */
 class Alpha : public Glib::Object
 {
