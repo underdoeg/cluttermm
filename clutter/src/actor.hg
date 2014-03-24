@@ -40,8 +40,10 @@ namespace Clutter
 
 class Animation;
 
+_WRAP_ENUM(ActorAlign, ClutterActorAlign)
 _WRAP_ENUM(ActorFlags, ClutterActorFlags)
 _WRAP_ENUM(AllocationFlags, ClutterAllocationFlags)
+_WRAP_ENUM(Orientation, ClutterOrientation)
 
 //TODO: Write a version of the large description from here: http://clutter-project.org/docs/clutter/stable/ClutterActor.html#ClutterActor.description
 class Actor : public Glib::Object, public Scriptable
@@ -134,6 +136,17 @@ _DEPRECATE_IFDEF_END
   _WRAP_METHOD(float get_x() const, clutter_actor_get_x)
   _WRAP_METHOD(void set_y(float y), clutter_actor_set_y)
   _WRAP_METHOD(float get_y() const, clutter_actor_get_y)
+
+ _WRAP_METHOD(void set_x_align(ActorAlign x_align), clutter_actor_set_x_align)
+ _WRAP_METHOD(ActorAlign get_x_align() const, clutter_actor_get_x_align)
+ _WRAP_METHOD(void set_y_align(ActorAlign y_align), clutter_actor_set_y_align)
+ _WRAP_METHOD(ActorAlign get_y_align() const,clutter_actor_get_y_align)
+
+  _WRAP_METHOD(bool get_x_expand() const, clutter_actor_get_x_expand)
+  _WRAP_METHOD(void set_x_expand(bool expand = true), clutter_actor_set_x_expand)
+  _WRAP_METHOD(bool get_y_expand() const, clutter_actor_get_y_expand)
+  _WRAP_METHOD(void set_y_expand(bool expand = true), clutter_actor_set_y_expand)
+
   _WRAP_METHOD(void set_reactive(bool reactive = true), clutter_actor_set_reactive)
   _WRAP_METHOD(bool get_reactive() const, clutter_actor_get_reactive)
 
@@ -367,7 +380,11 @@ _DEPRECATE_IFDEF_END
   _WRAP_PROPERTY("visible", bool)
   _WRAP_PROPERTY("width", float)
   _WRAP_PROPERTY("x", float)
+  _WRAP_PROPERTY("x-align", ActorAlign )
+  _WRAP_PROPERTY("x-expand", bool)
   _WRAP_PROPERTY("y", float)
+  _WRAP_PROPERTY("y-align", ActorAlign )
+  _WRAP_PROPERTY("y-expand", bool)
 
 protected:
   //TODO: Wrap ClutterShaderEffect.
