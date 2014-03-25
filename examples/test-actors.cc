@@ -4,13 +4,14 @@
 namespace
 {
 
+Glib::RefPtr<Clutter::Stage> stage;
 const unsigned int TRAILS = 0;
 const unsigned int N_ACTORS = 6;
 
-unsigned int get_radius(unsigned int num_actors)
+unsigned int get_radius(const Glib::RefPtr<Clutter::Stage>& stage, unsigned int num_actors)
 {
-  return (Clutter::Stage::get_default()->get_height()
-    + Clutter::Stage::get_default()->get_height()) / num_actors;
+  return (stage
+    + stage) / num_actors;
 }
 
 class SuperOH
@@ -18,7 +19,7 @@ class SuperOH
 public:
   std::vector<Glib::RefPtr<Clutter::Actor> > hands;
   Glib::RefPtr<Clutter::Actor> bgtex;
-  Glib::RefPtr<Clutter::Group> group;
+  Glib::RefPtr<Clutter::Actor> group;
 };
 
 bool on_button_press(Clutter::ButtonEvent *event, const Glib::RefPtr<Clutter::Stage>& stage)
@@ -48,11 +49,11 @@ bool on_key_release(Clutter::KeyEvent *event)
 void on_new_frame(int frame_num, SuperOH* oh)
 {
   // Rotate everything clockwise about stage center
-  oh->group->set_rotation(Clutter::Z_AXIS,
-    frame_num,
-    Clutter::Stage::get_default()->get_width() / 2,
-    Clutter::Stage::get_default()->get_height() / 2,
-    0);
+  oh->group->set_rotation_angle(Clutter::Z_AXIS,
+    frame_num);
+  oh->group->set_pivot_point(
+    stage->get_width() / 2,
+    stage->get_height() / 2);
 
   for(unsigned int i = 0; i < oh->hands.size(); i++)
   {
@@ -66,8 +67,9 @@ void on_new_frame(int frame_num, SuperOH* oh)
      * TODO: scaling causes drift so disabled for now. Need rotation
      * unit based functions to fix.
      */
-    oh->hands[i]->set_rotation(Clutter::Z_AXIS,
-      - 6.0 * frame_num, 0, 0, 0);
+    oh->hands[i]->set_rotation_angle(Clutter::Z_AXIS,
+      - 6.0 * frame_num);
+    oh->hands[i]->set_pivot_point(0, 0);
   }
 }
 
@@ -103,18 +105,18 @@ int main(int argc, char *argv[])
   }
 
   Clutter::Color stage_color(0x61, 0x64, 0x8c, 0xff);
-  Glib::RefPtr<Clutter::Stage> stage = Clutter::Stage::get_default();
+  stage = Clutter::Stage::create();
   stage->set_size(800, 600);
 
   stage->set_title("Actors Test");
-  stage->set_color(stage_color);
+  stage->set_background_color(stage_color);
 
   SuperOH oh;
 
   // Create a timeline to manage animation
   Glib::RefPtr<Clutter::Timeline> timeline =
     Clutter::Timeline::create(6000); // milliseconds
-  timeline->set_loop(true); // have it loop
+  timeline->set_repeat_count(-1); // have it loop
 
   // fire a callback for frame change
   timeline->signal_new_frame().connect
@@ -141,12 +143,12 @@ int main(int argc, char *argv[])
       0.5, 0.5);
 
   // create a new group to hold multiple actors in a group
-  oh.group = Clutter::Group::create();
+  oh.group = Clutter::Actor::create();
 
   oh.hands.reserve(num_actors);
   for(int i = 0; i < num_actors; i++)
   {
-    int radius = get_radius(num_actors);
+    int radius = get_radius(stage, num_actors);
 
     // Create a texture from file, then clone it to save resources
     if(i == 0)
@@ -174,11 +176,11 @@ int main(int argc, char *argv[])
     int w = oh.hands[0]->get_width();
     int h = oh.hands[0]->get_height();
 
-    int x = Clutter::Stage::get_default()->get_width() / 2 
+    int x = stage->get_width() / 2 
       + radius
       * cos(i * M_PI / (num_actors / 2))
       - w / 2;
-    int y = Clutter::Stage::get_default()->get_height() / 2 
+    int y = stage->get_height() / 2 
       + radius
       * sin(i * M_PI / (num_actors / 2))
       - h / 2;
@@ -187,7 +189,7 @@ int main(int argc, char *argv[])
     oh.hands[i]->move_anchor_point_from_gravity(Clutter::GRAVITY_CENTER);
 
     // Add to our group group
-    oh.group->add_actor(oh.hands[i]);
+    oh.group->add_child(oh.hands[i]);
 
 #if 1 /* TODO: disabled as causes drift - see comment above */
     if(i % 2)
@@ -197,13 +199,8 @@ int main(int argc, char *argv[])
 #endif
   }
 
-  oh.group->show_all();
-
   // Add the group to the stage
-  stage->add_actor(oh.group);
-
-  // Show everying ( and map window )
-  stage->show_all();
+  stage->add_child(oh.group);
 
   stage->signal_button_press_event().connect(sigc::bind(sigc::ptr_fun
       (on_button_press), stage));

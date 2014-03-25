@@ -5,7 +5,7 @@ int main(int argc, char** argv)
   // initialize the C++ wrapper types
   Clutter::init(&argc, &argv);
 
-  Glib::RefPtr<Clutter::Stage> stage = Clutter::Stage::get_default();
+  Glib::RefPtr<Clutter::Stage> stage = Clutter::Stage::create();
 
   // Create a timeline to manage animation
   Glib::RefPtr<Clutter::Timeline> timeline =

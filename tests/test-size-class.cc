@@ -20,8 +20,8 @@
 
 std::ostream& operator<<(std::ostream& out, Clutter::Size size)
 {
-	out << size.get_width() << "/ " << size.get_height();
-	return out;
+  out << size.get_width() << "/ " << size.get_height();
+  return out;
 }
 
 int main(int argc, char** argv)

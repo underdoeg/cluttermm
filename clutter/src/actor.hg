@@ -160,7 +160,7 @@ _DEPRECATE_IFDEF_END
   _WRAP_METHOD(void set_reactive(bool reactive = true), clutter_actor_set_reactive)
   _WRAP_METHOD(bool get_reactive() const, clutter_actor_get_reactive)
 
-  _WRAP_METHOD(void set_rotation(RotateAxis axis, double angle, float x, float y, float z), clutter_actor_set_rotation, deprecated "Use set_rotation_angle() and cset_pivot_point() instead.")
+  _WRAP_METHOD(void set_rotation(RotateAxis axis, double angle, float x, float y, float z), clutter_actor_set_rotation, deprecated "Use set_rotation_angle() and set_pivot_point() instead.")
   _WRAP_METHOD(void set_z_rotation_from_gravity(double angle, Gravity gravity), clutter_actor_set_z_rotation_from_gravity, deprecated "Use set_rotation_angle() and set_pivot_point() instead.")
   _WRAP_METHOD(double get_rotation(RotateAxis axis, float& x, float& y, float& z) const, clutter_actor_get_rotation, deprecated "Use get_rotation_angle() and get_pivot_point() instead.")
   _WRAP_METHOD(Gravity get_z_rotation_gravity() const, clutter_actor_get_z_rotation_gravity, deprecated "Use the “pivot-point” instead of a Gravity.")

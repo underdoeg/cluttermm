@@ -43,9 +43,9 @@ main(int argc, char* argv[])
 
   Clutter::init(&argc, &argv);
 
-  stage = Clutter::Stage::get_default();
+  stage = Clutter::Stage::create();
   stage->set_size(800, 600);
-  stage->set_color(stage_color);
+  stage->set_background_color(stage_color);
 
   stage->signal_button_press_event().connect(
       sigc::bind(sigc::ptr_fun(&on_button_press_cb), stage));
@@ -55,7 +55,7 @@ main(int argc, char* argv[])
 
   vbox->set_default_padding(10, 0, 10, 0);
   vbox->set_position(100, 100);
-  stage->add_actor(vbox);
+  stage->add_child(vbox);
   vbox->show();
 
   for(int i = 0; i < 3; i++)
@@ -98,8 +98,6 @@ main(int argc, char* argv[])
       hbox->get_height());
 
   }
-
-  stage->show_all();
 
   g_print("vbox     - (x:%3d, y:%3d, w:%3d, h:%3d)\n",
     vbox->get_x(),
