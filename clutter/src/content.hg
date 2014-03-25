@@ -43,18 +43,18 @@ class Content : public Glib::Interface
   _CLASS_INTERFACE(Content, ClutterContent, CLUTTER_CONTENT, ClutterContentIface)
 public:
 
+  _WRAP_METHOD(bool get_preferred_size(float& width, float& height) const, clutter_content_get_preferred_size)
 
 protected:
   _WRAP_METHOD(void invalidate(), clutter_content_invalidate)
 
-
-  #m4 _CONVERSION(`float&',`gfloat*',`&($3)')
-  #m4 _INITIALIZATION(`float&',`gfloat',`&($3)')
-  _WRAP_VFUNC(bool get_preferred_size(float& width{>>}, float& height{>>}) const, clutter_content_get_preferred_size)
+#m4 _CONVERSION(`gfloat*',`float&',`*($3)')
+  _WRAP_VFUNC(bool get_preferred_size(float& width, float& height) const, get_preferred_size)
 
   //TODO: Wrap ClutterPaintNode? _WRAP_VFUNC(void paint_content(const Glib::RefPtr<Actor>& actor, ClutterPaintNode* node), paint_content)
 
-  _WRAP_VFUNC(void attached(const Glib::RefPtr<Actor>& actor), detached)
+#m4 _CONVERSION(`ClutterActor*',`const Glib::RefPtr<Actor>&',`Glib::wrap($3, true)')
+  _WRAP_VFUNC(void attached(const Glib::RefPtr<Actor>& actor), attached)
   _WRAP_VFUNC(void detached(const Glib::RefPtr<Actor>& actor), detached)
   _WRAP_VFUNC(void invalidate(), invalidate)
 };

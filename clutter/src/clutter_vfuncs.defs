@@ -47,6 +47,47 @@
   )
 )
 
+; ClutterContent
+
+(define-vfunc get_preferred_size
+  (of-object "ClutterContent")
+  (return-type "gboolean")
+  (parameters
+    '("gfloat*" "width")
+    '("gfloat*" "height")
+  )
+)
+
+(define-vfunc paint_content
+  (of-object "ClutterContent")
+  (return-type "void")
+  (parameters
+    '("ClutterActor*" "actor")
+    '("ClutterPaintNode*" "node")
+  )
+)
+
+(define-vfunc attached
+  (of-object "ClutterContent")
+  (return-type "void")
+  (parameters
+    '("ClutterActor*" "actor")
+  )
+)
+
+(define-vfunc detached
+  (of-object "ClutterContent")
+  (return-type "void")
+  (parameters
+    '("ClutterActor*" "actor")
+  )
+)
+
+(define-vfunc invalidate
+  (of-object "ClutterContent")
+  (return-type "void")
+)
+
 ; ClutterLayout
 
 (define-vfunc get_layout_flags
