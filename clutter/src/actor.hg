@@ -305,15 +305,8 @@ _DEPRECATE_IFDEF_END
   _WRAP_METHOD(void remove_child(const Glib::RefPtr<Actor>& child), clutter_actor_remove_child )
   _WRAP_METHOD(void remove_all_children(), clutter_actor_remove_all_children )
 
-// Animation API
-  // Hand coded to use std::map instead of the 3 arguments used by C API
-  _IGNORE(clutter_actor_animatev, clutter_actor_animate_with_timelinev, clutter_actor_animate_with_alphav)
-
-  //TODO: Documentation.
-  // FIXME: The std::map with a Glib::ValueBase does not work.
-  // Glib::RefPtr<Animation> animate(gulong mode, guint duration, const std::map<std::string, Glib::ValueBase>& properties);
-  // Glib::RefPtr<Animation> animate(gulong mode, const Glib::RefPtr<Timeline>& timeline, const std::map<std::string, Glib::ValueBase>& properties);
-  // Glib::RefPtr<Animation> animate(const Glib::RefPtr<Alpha>& alpha, const std::map<std::string, Glib::ValueBase>& properties);
+   //deprecated
+  _IGNORE(clutter_actor_animate, clutter_actor_animatev, clutter_actor_animate_with_timelinev, clutter_actor_animate_with_alphav)
 
   _WRAP_METHOD(Glib::RefPtr<Animation> get_animation(), clutter_actor_get_animation, refreturn, deprecated "Use the implicit transition for animatable properties in ClutterActor instead, and clutter_actor_get_transition() to retrieve the transition.")
   _WRAP_METHOD(Glib::RefPtr<const Animation> get_animation() const, clutter_actor_get_animation, refreturn, constversion, deprecated "Use the implicit transition for animatable properties in ClutterActor instead, and clutter_actor_get_transition() to retrieve the transition.")
