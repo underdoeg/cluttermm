@@ -34,4 +34,11 @@ Color Text::get_selection_color() const
   return color;
 }
 
+Color Text::get_cursor_color() const
+{
+  Color color;
+  clutter_text_get_cursor_color(const_cast<ClutterText*>(gobj()), color.gobj());
+  return color;
+}
+
 } // namespace Clutter

@@ -52,6 +52,7 @@ public:
   _WRAP_METHOD(Pango::AttrList get_attributes(), clutter_text_get_attributes)
 
   _WRAP_METHOD(void set_color(const Color& color), clutter_text_set_color)
+
   _WRAP_METHOD_DOCS_ONLY(clutter_text_get_color)
   Color get_color() const;
   _IGNORE(clutter_text_get_color)
@@ -97,9 +98,10 @@ public:
   _WRAP_METHOD(int get_selection_bound() const, clutter_text_get_selection_bound)
 
   _WRAP_METHOD(void set_selection_color(const Color& color), clutter_text_set_selection_color)
+
   _WRAP_METHOD_DOCS_ONLY(clutter_text_get_selection_color)
   Color get_selection_color() const;
-  _IGNORE(clutter_text_get_color)
+  _IGNORE(clutter_text_get_selectino_color)
 
   _WRAP_METHOD(void set_single_line_mode(bool single_line=true), clutter_text_set_single_line_mode)
   _WRAP_METHOD(bool get_single_line_mode() const, clutter_text_get_single_line_mode)
@@ -120,7 +122,11 @@ public:
   _WRAP_METHOD(Glib::ustring get_chars(gssize start_pos, gssize end_pos) const, clutter_text_get_chars)
 
   _WRAP_METHOD(void set_cursor_color(const Color& color), clutter_text_set_cursor_color)
-  _WRAP_METHOD(void get_cursor_color(Color& color) const, clutter_text_get_cursor_color)
+
+  /** Retrieves the color.
+   */
+  Color get_cursor_color() const;
+  _IGNORE(clutter_text_get_cursor_color)
 
   _WRAP_METHOD(void set_cursor_position(int position), clutter_text_set_cursor_position)
   _WRAP_METHOD(int get_cursor_position() const, clutter_text_get_cursor_position)
