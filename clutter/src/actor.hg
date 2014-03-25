@@ -148,6 +148,8 @@ _DEPRECATE_IFDEF_END
   _WRAP_METHOD(float get_x() const, clutter_actor_get_x)
   _WRAP_METHOD(void set_y(float y), clutter_actor_set_y)
   _WRAP_METHOD(float get_y() const, clutter_actor_get_y)
+  _WRAP_METHOD(void set_z_position(float z_position), clutter_actor_set_z_position)
+  _WRAP_METHOD(float get_z_position() const, clutter_actor_get_z_position)
 
  _WRAP_METHOD(void set_x_align(ActorAlign x_align), clutter_actor_set_x_align)
  _WRAP_METHOD(ActorAlign get_x_align() const, clutter_actor_get_x_align)
