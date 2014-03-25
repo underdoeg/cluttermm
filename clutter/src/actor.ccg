@@ -15,6 +15,7 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
+#include <cluttermm/layout-manager.h>
 #include <clutter/clutter.h>
 #include <iterator>
 
@@ -110,7 +111,10 @@ Color Actor::get_background_color() const
   return result;
 }
 
-  _IGNORE(clutter_actor_get_background_color)
+void Actor::unset_layout_manager()
+{
+  clutter_actor_set_layout_manager(gobj(), 0);
+}
 
 // Glib::RefPtr<Animation>
 // Actor::animate(gulong mode, guint duration, const std::map<std::string, Glib::ValueBase>& properties)

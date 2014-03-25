@@ -25,6 +25,7 @@
 #include <cluttermm/animatable.h>
 #include <cluttermm/color.h>
 #include <cluttermm/effect.h>
+//#include <cluttermm/layout-manager.h>
 #include <cluttermm/scriptable.h>
 #include <cluttermm/shader.h>
 #include <cluttermm/types.h> // For Event*
@@ -40,6 +41,7 @@ namespace Clutter
 {
 
 class Animation;
+class LayoutManager;
 
 _WRAP_ENUM(ActorAlign, ClutterActorAlign)
 _WRAP_ENUM(ActorFlags, ClutterActorFlags)
@@ -156,6 +158,16 @@ _DEPRECATE_IFDEF_END
   _WRAP_METHOD(void set_x_expand(bool expand = true), clutter_actor_set_x_expand)
   _WRAP_METHOD(bool get_y_expand() const, clutter_actor_get_y_expand)
   _WRAP_METHOD(void set_y_expand(bool expand = true), clutter_actor_set_y_expand)
+  _WRAP_METHOD(bool needs_expand(Orientation orientation) const, clutter_actor_needs_expand)
+
+  _WRAP_METHOD(void set_layout_manager(const Glib::RefPtr<LayoutManager>& manager), clutter_actor_set_layout_manager)
+
+  /** Unset the layout manager.
+   */
+  void unset_layout_manager();
+
+  _WRAP_METHOD(Glib::RefPtr<LayoutManager> get_layout_manager(), clutter_actor_get_layout_manager, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const LayoutManager> get_layout_manager() const, clutter_actor_get_layout_manager, refreturn, constversion)
 
   _WRAP_METHOD(void set_reactive(bool reactive = true), clutter_actor_set_reactive)
   _WRAP_METHOD(bool get_reactive() const, clutter_actor_get_reactive)
