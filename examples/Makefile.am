@@ -23,7 +23,9 @@ local_includes = -I$(top_builddir)/clutter $(if $(srcdir:.=),-I$(top_srcdir)/clu
 local_libs = $(top_builddir)/clutter/cluttermm/libcluttermm-$(CLUTTERMM_API_VERSION).la
 
 AM_CPPFLAGS = -I$(top_builddir) $(local_includes) $(CLUTTERMM_CFLAGS)
-AM_CXXFLAGS = $(CLUTTERMM_WXXFLAGS)
+AM_CXXFLAGS = $(CLUTTERMM_WXXFLAGS) \
+  -DGLIBMM_DISABLE_DEPRECATED -DGIOMM_DISABLE_DEPRECATED -DGTKMM_DISABLE_DEPRECATED -DGDKMM_DISABLE_DEPRECATED \
+  -DCLUTTERMM_DISABLE_DEPRECATED
 LDADD = $(CLUTTERMM_LIBS) $(local_libs)
 
 actors_SOURCES = test-actors.cc
