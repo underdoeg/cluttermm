@@ -190,11 +190,13 @@ _DEPRECATE_IFDEF_END
   _WRAP_METHOD(Glib::RefPtr<const Shader> get_shader() const, clutter_actor_get_shader, refreturn, constversion, deprecated "Use get_effect() instead.")
   _WRAP_METHOD(void set_shader(const Glib::RefPtr<Shader>& shader), clutter_actor_set_shader, deprecated "Use add_effect() instead.")
 
+_DEPRECATE_IFDEF_START
   _WRAP_METHOD_DOCS_ONLY(clutter_actor_set_shader_param)
   /**
    * @deprecated Use ShaderEffect::set_uniform_value() instead."
    */
   template <class ParamType> void set_shader_param(const Glib::ustring& param, const ParamType& value);
+_DEPRECATE_IFDEF_END
   _IGNORE(clutter_actor_set_shader_param_int, clutter_actor_set_shader_param_float)
 
   //_WRAP_METHOD_DOCS_ONLY(clutter_actor_get_paint_area)
@@ -437,6 +439,7 @@ protected:
 
 };
 
+_DEPRECATE_IFDEF_START
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 template <class ParamType>
 void Actor::set_shader_param(const Glib::ustring& param, const ParamType& value)
@@ -448,5 +451,6 @@ void Actor::set_shader_param(const Glib::ustring& param, const ParamType& value)
   this->set_shader_param_value(param, param_value);
 }
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
+_DEPRECATE_IFDEF_END
 
 } // namespace Clutter
