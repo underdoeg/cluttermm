@@ -103,6 +103,15 @@ void Actor::set_margins(float top, float left, float bottom, float right)
   set_margin_right(right);
 }
 
+Color Actor::get_background_color() const
+{
+  Color result;
+  clutter_actor_get_background_color(const_cast<ClutterActor*>(gobj()), result.gobj());
+  return result;
+}
+
+  _IGNORE(clutter_actor_get_background_color)
+
 // Glib::RefPtr<Animation>
 // Actor::animate(gulong mode, guint duration, const std::map<std::string, Glib::ValueBase>& properties)
 // {

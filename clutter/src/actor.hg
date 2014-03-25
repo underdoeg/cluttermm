@@ -166,6 +166,14 @@ _DEPRECATE_IFDEF_END
   _WRAP_METHOD(Gravity get_z_rotation_gravity() const, clutter_actor_get_z_rotation_gravity, deprecated "Use the “pivot-point” instead of a Gravity.")
   _WRAP_METHOD(void set_opacity(guint8 opacity), clutter_actor_set_opacity)
   _WRAP_METHOD(guint8 get_opacity() const, clutter_actor_get_opacity)
+
+  _WRAP_METHOD(void set_background_color(const Color& color), clutter_actor_set_background_color)
+
+  /** Retrieves the color set using set_background_color().
+   */
+  Color get_background_color() const;
+  _IGNORE(clutter_actor_get_background_color)
+
   _WRAP_METHOD(void set_name(const gchar *name), clutter_actor_set_name)
   _WRAP_METHOD(Glib::ustring get_name() const, clutter_actor_get_name)
   _WRAP_METHOD(guint32 get_gid() const, clutter_actor_get_gid)
