@@ -203,6 +203,17 @@ _DEPRECATE_IFDEF_END
   //ActorBox get_paint_area() const;
   _WRAP_METHOD(bool is_rotated() const, clutter_actor_is_rotated)
   _WRAP_METHOD(bool is_scaled() const, clutter_actor_is_scaled)
+
+  _WRAP_METHOD(void set_pivot_point(float x, float y), clutter_actor_set_pivot_point)
+  _WRAP_METHOD(void get_pivot_point(float& pivot_x, float& pivot_y) const, clutter_actor_get_pivot_point)
+  _WRAP_METHOD(void set_pivot_point_z(float pivot_z), clutter_actor_set_pivot_point_z)
+  _WRAP_METHOD(float get_pivot_point_z() const, clutter_actor_get_pivot_point_z)
+  _WRAP_METHOD(void set_rotation_angle(RotateAxis axis, double angle), clutter_actor_set_rotation_angle)
+  _WRAP_METHOD(double get_rotation_angle(RotateAxis axis) const, clutter_actor_get_rotation_angle)
+
+  _WRAP_METHOD(void set_translation(float translate_x, float translate_y, float translate_z), clutter_actor_set_translation)
+  _WRAP_METHOD(void get_translation(float& translate_x, float& translate_y, float& translate_z) const, clutter_actor_get_translation)
+
   _WRAP_METHOD(bool should_pick_paint() const, clutter_actor_should_pick_paint)
 
   _WRAP_METHOD_DOCS_ONLY(clutter_actor_get_allocation_vertices)
@@ -275,9 +286,11 @@ _DEPRECATE_IFDEF_END
   _WRAP_METHOD(void set_depth(float depth), clutter_actor_set_depth, deprecated "Use set_z_position() instead.)
   _WRAP_METHOD(float get_depth() const, clutter_actor_get_depth, deprecated "Use get_z_position() instead.")
   _WRAP_METHOD(void set_scale(double scale_x, double scale_y), clutter_actor_set_scale)
-  _WRAP_METHOD(void set_scale_full(double scale_x, double scale_y, float center_x, float center_y), clutter_actor_set_scale_full)
-  _WRAP_METHOD(void set_scale_with_gravity(double scale_x, double scale_y, Gravity gravity), clutter_actor_set_scale_with_gravity)
+  _WRAP_METHOD(void set_scale_z(double scale_z), clutter_actor_set_scale_z)
+  _WRAP_METHOD(void set_scale_full(double scale_x, double scale_y, float center_x, float center_y), clutter_actor_set_scale_full, deprecated "Use set_pivot_point() to control the scale center.")
+  _WRAP_METHOD(void set_scale_with_gravity(double scale_x, double scale_y, Gravity gravity), clutter_actor_set_scale_with_gravity, deprecated "Use clutter_actor_set_pivot_point() to set the scale center using normalized coordinates instead.")
   _WRAP_METHOD(void get_scale(double& scale_x, double& scale_y) const, clutter_actor_get_scale)
+  _WRAP_METHOD(double get_scale_z() const, clutter_actor_get_scale_z)
   _WRAP_METHOD(void get_scale_center(float& center_x, float& center_y) const, clutter_actor_get_scale_center, deprecated "Use get_pivot_point() instead.")
   _WRAP_METHOD(Gravity get_scale_gravity() const, clutter_actor_get_scale_gravity, deprecated "Use get_pivot_point() instead.")
 
