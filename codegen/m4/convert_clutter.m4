@@ -95,6 +95,11 @@ _CONVERSION(`ClutterPath*',`Glib::RefPtr<Path>',`Glib::wrap($3)')
 _CONVERSION(`ClutterPath*',`Glib::RefPtr<const Path>',`Glib::wrap($3)')
 
 _CONVERSION(`const Point&',`const ClutterPoint*',`($3).gobj()')
+_CONVERSION(`const Point&',`ClutterPoint*',`const_cast<ClutterPoint*>(($3).gobj())')
+
+#_CONVERSION(`ClutterRect*',`Rect&',`Rect($3)')
+_CONVERSION(`ClutterRect*',`Rect',`Glib::wrap($3)')
+_CONVERSION(`const Rect&',`ClutterRect*',`const_cast<ClutterRect*>(($3).gobj())')
 
 _CONVERSION(`const Glib::RefPtr<Shader>&',`ClutterShader*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`ClutterShader*',`Glib::RefPtr<Shader>', `Glib::wrap($3)')

@@ -118,6 +118,56 @@ public:
   _MEMBER_SET(y, y, float, gfloat)
 };
 
+//This has replaced Clutter::Geometry in new code.
+//Note: ClutterRect normalizes the rects in each call, even get_x(),
+//and should not be accessed directly via its struct fields,
+//so we consider several methods to be const even though they actually
+//change the internal struct field values.
+//TODO: Put this in its own file.
+class Rect
+{
+  _CLASS_BOXEDTYPE(Rect, ClutterRect,  NONE , clutter_rect_copy, clutter_rect_free)
+  _IGNORE(clutter_rect_alloc, clutter_rect_copy, clutter_rect_free)
+
+public:
+  _CUSTOM_DEFAULT_CTOR
+
+  /**
+   * Create a new Rect object, optionally specifying its dimensions.
+   */
+  explicit Rect(float x = 0, float y = 0, float width = 0, float height = 0);
+
+  _WRAP_EQUAL(cluttermm_rect_equals)
+
+  _WRAP_METHOD(Rect normalise(), clutter_rect_normalize)
+
+  /** Retrieves the center of the rect and returns a rect with the correct coordinates.
+   */
+  Point get_centre() const;
+  _IGNORE(clutter_rect_get_center)
+
+  _WRAP_METHOD(bool contains_point(const Point& point) const, clutter_rect_contains_point)
+  _WRAP_METHOD(bool contains_rect(const Rect& b) const, clutter_rect_contains_rect)
+
+  //We can't call this union() because it's a reserved word. 
+  /**
+   * Computes the smallest possible rectangle capable of fully containing both this rect and @a b, and returns it.
+   */
+  Rect rect_union(const Rect& b) const;
+  _IGNORE(clutter_rect_union)
+
+#m4 _INITIALIZATION(`Rect&',`ClutterRect', `$3 = Glib::wrap(&($4))') 
+  _WRAP_METHOD(bool intersection(const Rect& b, Rect& res{>>}) const, clutter_rect_intersection)
+
+  _WRAP_METHOD(void offset(float d_x, float d_y), clutter_rect_offset)
+  _WRAP_METHOD(void inset(float d_x, float d_y), clutter_rect_inset)
+  _WRAP_METHOD(void clamp_to_pixel(), clutter_rect_clamp_to_pixel )
+  _WRAP_METHOD(float get_x() const, clutter_rect_get_x)
+  _WRAP_METHOD(float get_y() const, clutter_rect_get_y)
+  _WRAP_METHOD(float get_width() const, clutter_rect_get_width)
+  _WRAP_METHOD(float get_height() const, clutter_rect_get_height)
+};
+
 
 class Knot
 {

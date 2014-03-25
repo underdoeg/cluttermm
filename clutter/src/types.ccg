@@ -95,6 +95,33 @@ void Geometry::set_size(guint width, guint height)
   gobject_.height = height;
 }
 
+Rect::Rect(float x, float y, float width, float height)
+{
+  ClutterRect* rect = clutter_rect_alloc();
+  rect =clutter_rect_init(rect, x, y, width, height);
+  gobject_ = clutter_rect_copy(rect);
+}
+
+static gboolean cluttermm_rect_equals(const ClutterRect* a, const ClutterRect* b)
+{
+  return clutter_rect_equals(const_cast<ClutterRect*>(a), const_cast<ClutterRect*>(b));
+}
+
+Point Rect::get_centre() const
+{
+  ClutterPoint* p = 0;
+  clutter_rect_get_center(const_cast<ClutterRect*>(gobj()), p);
+  return Glib::wrap(p);
+}
+
+Rect Rect::rect_union(const Rect& b) const
+{
+  ClutterRect* crect = 0;
+  clutter_rect_union(const_cast<ClutterRect*>(gobj()), const_cast<ClutterRect*>(b.gobj()), crect);
+  return Glib::wrap(crect);
+}
+
+
 Point::Point(float x, float y)
 {
   ClutterPoint* point = clutter_point_alloc();
