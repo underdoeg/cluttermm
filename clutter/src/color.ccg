@@ -53,6 +53,16 @@ Color::Color(guint32 pixel)
   set_from_pixel(pixel);
 }
 
+Color::Color(StaticColor color)
+{
+  //ClutterColor tmp = { 0, 0, 0, 255 };
+  ClutterStaticColor c= static_cast<ClutterStaticColor> (color);
+  const ClutterColor* tmp = clutter_color_get_static(c);
+  // that obtained a const colour;
+    gobject_ = clutter_color_copy(tmp);
+
+}
+
 void Color::set_from_string(const Glib::ustring& color)
 {
   clutter_color_from_string(this->gobj(), color.c_str());
@@ -107,5 +117,3 @@ Color operator-(const Color& color1, const Color& color2)
 }
 
 } //namespace Clutter
-
-

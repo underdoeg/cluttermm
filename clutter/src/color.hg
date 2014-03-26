@@ -17,17 +17,21 @@
 
 #include <glibmm/ustring.h>
 #include <cluttermm/types.h>
- 
+
 _DEFS(cluttermm,clutter)
 
 namespace Clutter
 {
+
+_WRAP_ENUM(StaticColor, ClutterStaticColor)
 
 class Color
 {
   _CLASS_BOXEDTYPE(Color, ClutterColor, NONE, clutter_color_copy, clutter_color_free)
   _IGNORE(clutter_color_copy)
   _IGNORE(clutter_color_free)
+  _IGNORE(clutter_color_alloc, clutter_color_node_new, clutter_color_init)
+
 public:
 
 
@@ -48,6 +52,10 @@ public:
 
   // TODO: this could fail, just return a 'default' color or throw an exception?
   explicit Color(const Glib::ustring& color);
+#m4 _CONVERSION(`StaticColor',`ClutterStaticColor',`($2)($3)')
+#m4 _INITIALIZATION(`Clutter::StaticColor',`ClutterStaticColor',`($2)($3)')
+
+  explicit Color(StaticColor color);
 
   void set_from_rgb(guint8 red, guint8 blue, guint8 green);
   void set_from_string(const Glib::ustring& color);
@@ -87,6 +95,13 @@ public:
   void shade(double shade);
   _IGNORE(clutter_color_shade)
 
+  #m4 _INITIALIZATION(`Glib::RefPtr<Color>',`ClutterColor',`&($3).gobj()')
+  #m4 _INITIALIZATION(`Color&',`ClutterColor',`($2)')
+  _WRAP_METHOD(void interpolate(const Color& final, double progress, Color& result), clutter_color_interpolate)
+
+  //TODO IM: ParamSpec.  'nuff said.  Not wrapped until I have to.
+  _IGNORE(clutter_param_spec_color, clutter_value_set_color, clutter_value_get_color)
+
   // provide accessors/mutators to modify the individual members like you could
   // do in C by directly modifying the struct members
   _MEMBER_GET(red, red, guint8, guint8)
@@ -98,10 +113,8 @@ public:
   _MEMBER_GET(alpha, alpha, guint8, guint8)
   _MEMBER_SET(alpha, alpha, guint8, guint8)
 
-#m4begin
+
   _WRAP_EQUAL(clutter_color_equal)
-#m4end
-  _IGNORE(clutter_color_equal)
 };
 
 /** @relates Clutter::Color
@@ -115,4 +128,3 @@ Color operator+(const Color& color1, const Color& color2);
 Color operator-(const Color& color1, const Color& color2);
 
 } // namespace Clutter
-
