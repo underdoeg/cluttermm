@@ -102,6 +102,13 @@ void Color::lighten()
     clutter_color_lighten(this->gobj(), this->gobj());
 }
 
+Color Color::interpolate(const Color& final, double progress) const
+{
+  Color result;
+  clutter_color_interpolate(const_cast<ClutterColor*>(gobj()), final.gobj(), progress, result.gobj());
+  return result;
+}
+
 Color operator+(const Color& color1, const Color& color2)
 {
   Color result;

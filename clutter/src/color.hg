@@ -42,6 +42,7 @@ public:
   // or have an odd signature that takes a guint8 as the last parameter
   _CUSTOM_DEFAULT_CTOR
   Color();
+
   /** Create a new Color object by specifying its value in RGB(A)
    */
   Color(guint8 red, guint8 green, guint8 blue, guint8 alpha=255);
@@ -52,8 +53,6 @@ public:
 
   // TODO: this could fail, just return a 'default' color or throw an exception?
   explicit Color(const Glib::ustring& color);
-#m4 _CONVERSION(`StaticColor',`ClutterStaticColor',`($2)($3)')
-#m4 _INITIALIZATION(`Clutter::StaticColor',`ClutterStaticColor',`($2)($3)')
 
   explicit Color(StaticColor color);
 
@@ -87,6 +86,7 @@ public:
   _WRAP_METHOD_DOCS_ONLY(clutter_color_darken)
   void darken();
   _IGNORE(clutter_color_darken)
+
   _WRAP_METHOD_DOCS_ONLY(clutter_color_lighten)
   void lighten();
   _IGNORE(clutter_color_lighten)
@@ -95,15 +95,14 @@ public:
   void shade(double shade);
   _IGNORE(clutter_color_shade)
 
-  #m4 _INITIALIZATION(`Glib::RefPtr<Color>',`ClutterColor',`&($3).gobj()')
-  #m4 _INITIALIZATION(`Color&',`ClutterColor',`($2)')
-  _WRAP_METHOD(void interpolate(const Color& final, double progress, Color& result), clutter_color_interpolate)
+  /** Interpolates between this initial color and a @a final color.
+   * @param The interpolation progress.
+   */
+  Color interpolate(const Color& final, double progress) const;
+  _IGNORE(clutter_color_interpolate)
 
-  //TODO IM: ParamSpec.  'nuff said.  Not wrapped until I have to.
   _IGNORE(clutter_param_spec_color, clutter_value_set_color, clutter_value_get_color)
 
-  // provide accessors/mutators to modify the individual members like you could
-  // do in C by directly modifying the struct members
   _MEMBER_GET(red, red, guint8, guint8)
   _MEMBER_SET(red, red, guint8, guint8)
   _MEMBER_GET(green, green, guint8, guint8)
