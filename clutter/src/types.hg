@@ -139,6 +139,8 @@ public:
 
   _WRAP_EQUAL(cluttermm_rect_equals)
 
+  //TODO: Is this useful? And should it be const?
+  //All methods normalise the rect anyway.
   _WRAP_METHOD(Rect normalise(), clutter_rect_normalize)
 
   /** Retrieves the center of the rect and returns a rect with the correct coordinates.
