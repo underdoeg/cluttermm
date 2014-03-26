@@ -16,7 +16,6 @@
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 check_PROGRAMS = \
-test-alpha-creation test-alpha-func \
 test-interval-creation test-point-class test-actor-box test-size
 
 local_includes = -I$(top_builddir)/clutter $(if $(srcdir:.=),-I$(top_srcdir)/clutter)
@@ -28,8 +27,6 @@ AM_CXXFLAGS = $(CLUTTERMM_WXXFLAGS) \
   -DCLUTTERMM_DISABLE_DEPRECATED
 LDADD = $(CLUTTERMM_LIBS) $(local_libs)
 
-test_alpha_creation_SOURCES    = test-alpha-creation.cc
-test_alpha_func_SOURCES        = test-alpha-func.cc
 test_interval_creation_SOURCES = test-interval-creation.cc
 test_point_class_SOURCES    = test-point-class.cc
 test_actor_box_SOURCES      = test-actor-box.cc
