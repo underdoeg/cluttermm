@@ -45,6 +45,7 @@ _WRAP_ENUM(RotateAxis, ClutterRotateAxis)
 _WRAP_ENUM(Gravity, ClutterGravity)
 _WRAP_ENUM(RequestMode, ClutterRequestMode)
 _WRAP_ENUM(FontFlags, ClutterFontFlags)
+_WRAP_ENUM(ScalingFilter, ClutterScalingFilter)
 _WRAP_ENUM(TextDirection, ClutterTextDirection)
 
 class Vertex

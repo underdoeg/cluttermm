@@ -24,6 +24,7 @@
 #include <cluttermm/animation.h>
 #include <cluttermm/animatable.h>
 #include <cluttermm/color.h>
+//#include <cluttermm/content.h>
 #include <cluttermm/effect.h>
 //#include <cluttermm/layout-manager.h>
 #include <cluttermm/scriptable.h>
@@ -41,11 +42,14 @@ namespace Clutter
 {
 
 class Animation;
+class Content;
 class LayoutManager;
 
 _WRAP_ENUM(ActorAlign, ClutterActorAlign)
 _WRAP_ENUM(ActorFlags, ClutterActorFlags)
 _WRAP_ENUM(AllocationFlags, ClutterAllocationFlags)
+_WRAP_ENUM(ContentRepeat, ClutterContentRepeat)
+_WRAP_ENUM(ContentGravity, ClutterContentGravity)
 _WRAP_ENUM(Orientation, ClutterOrientation)
 
 //TODO: Write a version of the large description from here: http://clutter-project.org/docs/clutter/stable/ClutterActor.html#ClutterActor.description
@@ -92,7 +96,25 @@ public:
   _IGNORE(clutter_actor_queue_relayout) //not for application code.
   _IGNORE(clutter_actor_should_pick_paint ) //not for application code.
 
-  _WRAP_METHOD(bool has_overlaps(), clutter_actor_has_overlaps )
+  _WRAP_METHOD(bool has_overlaps(), clutter_actor_has_overlaps)
+
+  _WRAP_METHOD(void set_content(const Glib::RefPtr<Content>& content), clutter_actor_set_content)
+
+  _WRAP_METHOD(Glib::RefPtr<Content> get_content(), clutter_actor_get_content, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Content> get_content() const, clutter_actor_get_content, refreturn, constversion)
+
+  _WRAP_METHOD(void set_content_gravity(ContentGravity gravity), clutter_actor_set_content_gravity)
+
+  _WRAP_METHOD(ContentGravity get_content_gravity() const, clutter_actor_get_content_gravity)
+
+  _WRAP_METHOD(void set_content_scaling_filters(ScalingFilter min_filter, ScalingFilter mag_filter), clutter_actor_set_content_scaling_filters)
+
+#m4 _CONVERSION(`ScalingFilter&', `ClutterScalingFilter*', `(($2)&($3))')
+  _WRAP_METHOD(void get_content_scaling_filters(ScalingFilter& min_filter, ScalingFilter& mag_filter), clutter_actor_get_content_scaling_filters)
+
+  _WRAP_METHOD(void set_content_repeat(ContentRepeat repeat), clutter_actor_set_content_repeat)
+  _WRAP_METHOD(ContentRepeat get_content_repeat() const, clutter_actor_get_content_repeat)
+
 
 #m4 dnl // Those are varargs convenience functions for C coders
   _IGNORE(clutter_actor_animate, clutter_actor_animate_with_alpha, clutter_actor_animate_with_timeline)
