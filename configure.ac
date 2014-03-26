@@ -46,6 +46,8 @@ PKG_CHECK_MODULES([CLUTTERMM], [$CLUTTERMM_MODULES])
 MM_PKG_CONFIG_SUBST([GMMPROC_DIR], [--variable=gmmprocdir glibmm-2.4])
 MM_PKG_CONFIG_SUBST([GMMPROC_EXTRA_M4_DIR], [--variable=gmmprocm4dir pangomm-1.4 atkmm-1.6])
 
+PKG_CHECK_MODULES([CLUTTERMM_EXAMPLES], [$CLUTTERMM_MODULES] gtkmm-3.0 >= 3.10)
+
 MM_ARG_ENABLE_DOCUMENTATION
 MM_ARG_WITH_TAGFILE_DOC([libstdc++.tag], [mm-common-libstdc++])
 MM_ARG_WITH_TAGFILE_DOC([libsigc++-2.0.tag], [sigc++-2.0])

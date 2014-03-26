@@ -1,4 +1,6 @@
 #include <cluttermm.h>
+#include <gdkmm/wrap_init.h>
+#include <gdkmm/pixbuf.h>
 #include <iostream>
 
 namespace
@@ -77,6 +79,9 @@ void on_new_frame(int frame_num, SuperOH* oh)
 
 int main(int argc, char *argv[])
 {
+  Glib::init(); //Otherwise Gdk::wrap_init() will fail.
+  Gdk::wrap_init(); //TODO: Add a Gdk::init() in gtkmm?
+
   Glib::OptionEntry entry;
   entry.set_short_name('n');
   entry.set_long_name("num-actors");
@@ -129,6 +134,7 @@ int main(int argc, char *argv[])
   // Perhaps that's clutter bug #856.
 
   // Set up some behaviours to handle scaling
+/* TODO:
   Glib::RefPtr<Clutter::Alpha> alpha =
     Clutter::Alpha::create(timeline, Clutter::EASE_IN_SINE);
 
@@ -141,6 +147,7 @@ int main(int argc, char *argv[])
     Clutter::BehaviourScale::create(alpha,
       1.0, 1.0,
       0.5, 0.5);
+*/
 
   // create a new group to hold multiple actors in a group
   oh.group = Clutter::Actor::create();
@@ -150,26 +157,39 @@ int main(int argc, char *argv[])
   {
     int radius = get_radius(stage, num_actors);
 
-    // Create a texture from file, then clone it to save resources
+    // Create an image from a file, then clone it to save resources
     if(i == 0)
     {
+      Glib::RefPtr<Gdk::Pixbuf> pixbuf;
       try
       {
-        Glib::RefPtr<Clutter::Texture> texture(Clutter::Texture::create());
-        texture->set_from_file("actor.png");
-        oh.hands.push_back(texture);
+        pixbuf = Gdk::Pixbuf::create_from_file("actor.png");
+
+        Glib::RefPtr<Clutter::Image> image = Clutter::Image::create();
+        image->set(pixbuf->get_pixels(),
+          (pixbuf->get_has_alpha() ? COGL_PIXEL_FORMAT_RGBA_8888 : COGL_PIXEL_FORMAT_RGB_888),
+          pixbuf->get_width(),
+          pixbuf->get_height(),
+          pixbuf->get_rowstride());
+        Glib::RefPtr<Clutter::Actor> actor = Clutter::Actor::create();
+        actor->set_content(image);
+
+        actor->set_content_scaling_filters(Clutter::SCALING_FILTER_TRILINEAR,
+          Clutter::SCALING_FILTER_LINEAR);
+        //TODO?: actor->set_content_gravity();
+
+        oh.hands.push_back(actor);
       }
       catch(const Glib::Exception& ex)
       {
-        std::cerr << "Could not load texture: " << ex.what() << std::endl;
+        std::cerr << "Could not load pixbuf: " << ex.what() << std::endl;
 	return -1;
       }
     }
     else
     {
       oh.hands.push_back(Clutter::Clone::create
-        (Glib::RefPtr<Clutter::Texture>::cast_dynamic
-          (oh.hands[0])));
+        (oh.hands[0]));
     }
 
     // Place around a circle
@@ -186,12 +206,12 @@ int main(int argc, char *argv[])
       - h / 2;
 
     oh.hands[i]->set_position(x, y);
-    oh.hands[i]->move_anchor_point_from_gravity(Clutter::GRAVITY_CENTER);
+    //TODO? oh.hands[i]->move_anchor_point_from_gravity(Clutter::GRAVITY_CENTER);
 
     // Add to our group group
     oh.group->add_child(oh.hands[i]);
 
-#if 1 /* TODO: disabled as causes drift - see comment above */
+#if 0 /* TODO: disabled as causes drift - see comment above */
     if(i % 2)
       scaler_1->apply(oh.hands[i]);
     else

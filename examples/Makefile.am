@@ -22,11 +22,11 @@ dist_noinst_DATA = actor.png test-boxes.cc
 local_includes = -I$(top_builddir)/clutter $(if $(srcdir:.=),-I$(top_srcdir)/clutter)
 local_libs = $(top_builddir)/clutter/cluttermm/libcluttermm-$(CLUTTERMM_API_VERSION).la
 
-AM_CPPFLAGS = -I$(top_builddir) $(local_includes) $(CLUTTERMM_CFLAGS)
+AM_CPPFLAGS = -I$(top_builddir) $(local_includes) $(CLUTTERMM_EXAMPLES_CFLAGS)
 AM_CXXFLAGS = $(CLUTTERMM_WXXFLAGS) \
   -DGLIBMM_DISABLE_DEPRECATED -DGIOMM_DISABLE_DEPRECATED -DGTKMM_DISABLE_DEPRECATED -DGDKMM_DISABLE_DEPRECATED \
   -DCLUTTERMM_DISABLE_DEPRECATED
-LDADD = $(CLUTTERMM_LIBS) $(local_libs)
+LDADD = $(CLUTTERMM_EXAMPLES_LIBS) $(local_libs)
 
 actors_SOURCES = test-actors.cc
 stage_SOURCES = example-stage.cc
