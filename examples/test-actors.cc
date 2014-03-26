@@ -222,6 +222,8 @@ int main(int argc, char *argv[])
   // Add the group to the stage
   stage->add_child(oh.group);
 
+  stage->show();
+
   stage->signal_button_press_event().connect(sigc::bind(sigc::ptr_fun
       (on_button_press), stage));
 
