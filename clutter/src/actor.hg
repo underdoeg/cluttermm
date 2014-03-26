@@ -400,6 +400,16 @@ _DEPRECATE_IFDEF_END
   _WRAP_METHOD(Glib::RefPtr<const Effect> get_effect(const Glib::ustring& name) const, clutter_actor_get_effect, refreturn, constversion)
   _WRAP_METHOD(void clear_effects(), clutter_actor_clear_effects)
 
+  //Animation Framework.  The Easing state is used for basic animations.
+
+  _WRAP_METHOD(void save_easing_state(), clutter_actor_save_easing_state)
+  _WRAP_METHOD(void restore_easing_state(), clutter_actor_restore_easing_state)
+  _WRAP_METHOD(void set_easing_duration(guint msecs), clutter_actor_set_easing_duration)
+  _WRAP_METHOD(guint get_easing_duration() const, clutter_actor_get_easing_duration)
+  _WRAP_METHOD(AnimationMode get_easing_mode() const, clutter_actor_get_easing_mode)
+  _WRAP_METHOD(void set_easing_mode(AnimationMode mode), clutter_actor_set_easing_mode)
+  _WRAP_METHOD(guint get_easing_delay() const, clutter_actor_get_easing_delay)
+  _WRAP_METHOD(void set_easing_delay(guint msecs), clutter_actor_set_easing_delay)
 
 
 // signals
