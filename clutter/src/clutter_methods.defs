@@ -2998,6 +2998,7 @@
 )
 
 (define-method set_source
+  (of-object "ClutterBindConstraint")
   (c-name "clutter_bind_constraint_set_source")
   (return-type "none")
   (parameters
@@ -3006,6 +3007,7 @@
 )
 
 (define-method get_source
+  (of-object "ClutterBindConstraint")
   (c-name "clutter_bind_constraint_get_source")
   (return-type "ClutterActor*")
   (parameters
@@ -3013,6 +3015,7 @@
 )
 
 (define-method set_coordinate
+  (of-object "ClutterBindConstraint")
   (c-name "clutter_bind_constraint_set_coordinate")
   (return-type "none")
   (parameters
@@ -3021,6 +3024,7 @@
 )
 
 (define-method get_coordinate
+  (of-object "ClutterBindConstraint")
   (c-name "clutter_bind_constraint_get_coordinate")
   (return-type "ClutterBindCoordinate")
   (parameters
@@ -3028,6 +3032,7 @@
 )
 
 (define-method set_offset
+  (of-object "ClutterBindConstraint")
   (c-name "clutter_bind_constraint_set_offset")
   (return-type "none")
   (parameters
@@ -3036,6 +3041,7 @@
 )
 
 (define-method get_offset
+  (of-object "ClutterBindConstraint")
   (c-name "clutter_bind_constraint_get_offset")
   (return-type "gfloat")
   (parameters
@@ -7425,7 +7431,8 @@
   )
 )
 
-(define-function clutter_path_constraint_set_path
+(define-method set_path
+  (of-object "ClutterPathConstraint")
   (c-name "clutter_path_constraint_set_path")
   (return-type "none")
   (parameters
@@ -7433,14 +7440,16 @@
   )
 )
 
-(define-function clutter_path_constraint_get_path
+(define-method get_path
+  (of-object "ClutterPathConstraint")
   (c-name "clutter_path_constraint_get_path")
   (return-type "ClutterPath*")
   (parameters
   )
 )
 
-(define-function clutter_path_constraint_set_offset
+(define-method set_offset
+  (of-object "ClutterPathConstraint")
   (c-name "clutter_path_constraint_set_offset")
   (return-type "none")
   (parameters
@@ -7448,7 +7457,8 @@
   )
 )
 
-(define-function clutter_path_constraint_get_offset
+(define-method clutter_path_constraint_get_offset
+  (of-object "ClutterPathConstraint")
   (c-name "clutter_path_constraint_get_offset")
   (return-type "gfloat")
   (parameters

@@ -102,6 +102,7 @@
 #include <cluttermm/offscreen-effect.h>
 #include <cluttermm/page-turn-effect.h>
 #include <cluttermm/path.h>
+#include <cluttermm/path-constraint.h>
 #include <cluttermm/property-transition.h>
 #include <cluttermm/rectangle.h>
 #include <cluttermm/score.h>

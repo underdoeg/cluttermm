@@ -57,6 +57,7 @@ files_hg =			\
 	offscreen-effect.hg \
 	page-turn-effect.hg \
 	path.hg			\
+  path-constraint.hg \
 	property-transition.hg  \
 	rectangle.hg		\
 	score.hg		\

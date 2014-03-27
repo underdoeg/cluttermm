@@ -1,0 +1,67 @@
+/* Copyright (C) 2014 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+#include <glibmm/object.h>
+#include <cluttermm/constraint.h>
+
+_DEFS(cluttermm,clutter)
+_PINCLUDE(cluttermm/private/constraint_p.h)
+_PINCLUDE(glibmm/private/object_p.h)
+
+
+namespace Clutter
+{
+
+class Actor;
+class Path;
+
+/** PathConstraint is a simple constraint that modifies the allocation of
+ * the Actor to which it has been applied using a ClutterPath.
+ *
+ * By setting the “offset” property it is possible to control how far along the
+ * path the Actor should be.
+ *
+ * @newin{1,6}
+ */
+class PathConstraint : public Constraint
+{
+  _CLASS_GOBJECT(PathConstraint, ClutterPathConstraint, CLUTTER_PATH_CONSTRAINT, Constraint, ClutterConstraint)
+  _DERIVES_INITIALLY_UNOWNED()
+
+protected:
+
+  _WRAP_CTOR(PathConstraint(const Glib::RefPtr<Path>& path, float offset), clutter_path_constraint_new)
+
+public:
+
+  _WRAP_CREATE(const Glib::RefPtr<Path>& path, float offset)
+
+  _WRAP_METHOD(void set_path(const Glib::RefPtr<Path>& path), clutter_path_constraint_set_path)
+
+  _WRAP_METHOD(Glib::RefPtr<Path> get_path(), clutter_path_constraint_get_path, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Path> get_path() const, clutter_path_constraint_get_path, refreturn, constversion)
+
+  _WRAP_METHOD(void set_offset(float offset), clutter_path_constraint_set_offset)
+
+  _WRAP_METHOD(float get_offset() const, clutter_path_constraint_get_offset)
+
+  _WRAP_PROPERTY("offset", float)
+  _WRAP_PROPERTY("path", Glib::RefPtr<Path>)
+
+  _WRAP_SIGNAL(void node_reached(const Glib::RefPtr<Actor> actor, int index), "node-reached")
+};
+
+} // namespace Clutter
