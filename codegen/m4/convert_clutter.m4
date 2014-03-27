@@ -120,6 +120,10 @@ _CONVERSION(`const Glib::RefPtr<Timeline>&',`ClutterTimeline*',__CONVERT_REFPTR_
 _CONVERSION(`ClutterTimeline*',`Glib::RefPtr<Timeline>',`Glib::wrap($3)')
 _CONVERSION(`ClutterTimeline*',`Glib::RefPtr<const Timeline>',`Glib::wrap($3)')
 
+_CONVERSION(`ClutterTransition*',`Glib::RefPtr<Transition>',`Glib::wrap($3)')
+_CONVERSION(`ClutterTransition*',`Glib::RefPtr<const Transition>',`Glib::wrap($3)')
+_CONVERSION(`const Glib::RefPtr<Transition>&',`ClutterTransition*',__CONVERT_REFPTR_TO_P)
+
 _EQUAL(ClutterUnit,Unit)
 _CONVERSION(`Unit&',`ClutterUnit*',`&($3)')
 _CONVERSION(`ClutterUnit&',`ClutterUnit*',`&($3)')

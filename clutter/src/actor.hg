@@ -29,6 +29,7 @@
 //#include <cluttermm/layout-manager.h>
 #include <cluttermm/scriptable.h>
 #include <cluttermm/shader.h>
+#include <cluttermm/transition.h>
 #include <cluttermm/types.h> // For Event*
 
 _DEFS(cluttermm,clutter)
@@ -428,6 +429,13 @@ _DEPRECATE_IFDEF_END
   _WRAP_METHOD(guint get_easing_delay() const, clutter_actor_get_easing_delay)
   _WRAP_METHOD(void set_easing_delay(guint msecs), clutter_actor_set_easing_delay)
 
+  // Transitions.  Used for more complex animation handling.
+  _WRAP_METHOD(Glib::RefPtr<Transition> get_transition(const Glib::ustring& name), clutter_actor_get_transition)
+  _WRAP_METHOD(Glib::RefPtr<const Transition> get_transition(const Glib::ustring& name) const, clutter_actor_get_transition)
+
+  _WRAP_METHOD(void add_transition(const Glib::ustring& name, const Glib::RefPtr<Transition>& transition),  clutter_actor_add_transition)
+  _WRAP_METHOD(void remove_transition(const Glib::ustring& name), clutter_actor_remove_transition)
+  _WRAP_METHOD(void remove_all_transitions(), clutter_actor_remove_all_transitions)
 
 // signals
   _WRAP_SIGNAL(bool button_press_event(ButtonEvent* event), "button_press_event")
