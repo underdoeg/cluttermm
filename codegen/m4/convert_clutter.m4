@@ -38,7 +38,6 @@ _CONVERSION(`const Glib::RefPtr<Backend>&',`ClutterBackend*',__CONVERT_REFPTR_TO
 _CONVERSION(`ClutterBackend*',`Glib::RefPtr<Backend>',`Glib::wrap($3)')
 
 _CONVERSION(`const Glib::RefPtr<ChildMeta>&',`ClutterChildMeta*',__CONVERT_REFPTR_TO_P)
-_CONVERSION(`Glib::RefPtr<ChildMeta>',`ClutterChildMeta*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`ClutterChildMeta*',`Glib::RefPtr<ChildMeta>',`Glib::wrap($3)')
 _CONVERSION(`ClutterChildMeta*',`Glib::RefPtr<const ChildMeta>',`Glib::wrap($3)')
 
@@ -88,7 +87,6 @@ _CONVERSION(`ClutterLayoutManager*',`Glib::RefPtr<LayoutManager>',`Glib::wrap($3
 _CONVERSION(`ClutterLayoutManager*',`Glib::RefPtr<const LayoutManager>',`Glib::wrap($3)')
 
 _CONVERSION(`const Glib::RefPtr<LayoutMeta>&',`ClutterLayoutMeta*',__CONVERT_REFPTR_TO_P)
-_CONVERSION(`Glib::RefPtr<LayoutMeta>',`ClutterLayoutMeta*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`ClutterLayoutMeta*',`Glib::RefPtr<LayoutMeta>',`Glib::wrap($3)')
 _CONVERSION(`ClutterLayoutMeta*',`Glib::RefPtr<const LayoutMeta>',`Glib::wrap($3)')
 

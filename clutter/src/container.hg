@@ -139,6 +139,8 @@ protected:
 
   _WRAP_VFUNC(void create_child_meta(const Glib::RefPtr<Actor>& actor), create_child_meta)
   _WRAP_VFUNC(void destroy_child_meta(const Glib::RefPtr<Actor>& actor), destroy_child_meta)
+
+#m4 _CONVERSION(`Glib::RefPtr<ChildMeta>',`ClutterChildMeta*',__CONVERT_REFPTR_TO_P)
   _WRAP_VFUNC(Glib::RefPtr<ChildMeta> get_child_meta(const Glib::RefPtr<Actor>& actor), get_child_meta)
 };
 

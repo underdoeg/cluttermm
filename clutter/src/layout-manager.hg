@@ -89,6 +89,7 @@ public:
   _WRAP_VFUNC(void set_container(const Glib::RefPtr<Container>& container), "set_container")
   _WRAP_VFUNC(GType get_child_meta_type() const, "get_child_meta_type")
 
+#m4 _CONVERSION(`Glib::RefPtr<LayoutMeta>',`ClutterLayoutMeta*',__CONVERT_REFPTR_TO_P)
   _WRAP_VFUNC(Glib::RefPtr<LayoutMeta> create_child_meta(const Glib::RefPtr<Container>& container, const Glib::RefPtr<Actor>& actor), "create_child_meta")
 
   _WRAP_VFUNC(Glib::RefPtr<Alpha> begin_animation(guint duration, gulong mode), "begin_animation")
