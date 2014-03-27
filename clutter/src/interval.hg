@@ -41,11 +41,44 @@ public:
 
   _WRAP_METHOD(Glib::RefPtr<Interval> clone() const, clutter_interval_clone)
   _WRAP_METHOD(GType get_value_type() const, clutter_interval_get_value_type)
-  _WRAP_METHOD(void set_initial_value(const Glib::ValueBase& value), clutter_interval_set_initial_value)
-  _WRAP_METHOD(void get_initial_value(Glib::ValueBase& value) const, clutter_interval_get_initial_value)
+  _WRAP_METHOD(void set_initial_glib_value(const Glib::ValueBase& value), clutter_interval_set_initial_value)
+  /**
+  * Sets the initial value.
+  *
+  * @param value the value to set to.
+  */
+  template <typename ValueType>
+  void set_initial_value(const ValueType& value);
+
+  _WRAP_METHOD(void get_initial_glib_value(Glib::ValueBase& value) const, clutter_interval_get_initial_value)
+  /**
+  * Retrieves the final value.
+  *
+  * @param value a location to return the value in.
+  */
+  template <typename ValueType>
+  void get_initial_value(ValueType& value) const;
+
+  //TODO: Does this have any use?
   _WRAP_METHOD(GValue* peek_initial_value(), clutter_interval_peek_initial_value)
-  _WRAP_METHOD(void set_final_value(const Glib::ValueBase& value), clutter_interval_set_final_value)
-  _WRAP_METHOD(void get_final_value(Glib::ValueBase& value) const, clutter_interval_get_final_value)
+  _WRAP_METHOD(void set_final_glib_value(const Glib::ValueBase& value), clutter_interval_set_final_value)
+  /**
+  * Sets the final value.
+  *
+  * @param value the value to set to.
+  */
+  template <typename ValueType>
+  void set_final_value(const ValueType& value);
+
+  _WRAP_METHOD(void get_final_glib_value(Glib::ValueBase& value) const, clutter_interval_get_final_value)
+  /**
+  * Retrieves the final value.
+  *
+  * @param value a location to return the value in.
+  */
+  template <typename ValueType>
+  void get_final_value(ValueType& value) const;
+  //TODO: Does this have any use?
   _WRAP_METHOD(GValue* peek_final_value(), clutter_interval_peek_final_value)
 
   void set_interval(const Glib::ValueBase& initial, const Glib::ValueBase& final);
@@ -76,5 +109,45 @@ Glib::RefPtr<Interval> Interval::create_with_values(const Glib::Value<ValueType>
 {
   return Glib::RefPtr<Interval>( new Interval(initial.value_type(), initial, final) );
 }
+
+template <typename ValueType>
+void Interval::set_initial_value(const ValueType& value)
+{
+  Glib::Value<ValueType> initial_val;
+  //Create the GType based on what type the Interval holds:
+  initial_val.init(get_value_type());
+  initial_val.set(value);
+  set_initial_glib_value(initial_val);
+}
+
+template <typename ValueType>
+void Interval::get_initial_value(ValueType& value) const
+{
+  Glib::Value<ValueType> initial_val;
+  initial_val.init(get_value_type());
+  get_initial_glib_value(initial_val);
+
+  value = initial_val.get();
+}
+
+template <typename ValueType>
+void Interval::set_final_value(const ValueType& value)
+{
+  Glib::Value<ValueType> final_val;
+  final_val.init(get_value_type());
+  final_val.set(value);
+  set_final_glib_value(final_val);
+}
+
+template <typename ValueType>
+void Interval::get_final_value(ValueType& value) const
+{
+  Glib::Value<ValueType> final_val;
+  final_val.init(get_value_type());
+  get_final_glib_value(final_val);
+
+  value = final_val.get();
+}
+
 #endif /* DOXYGEN_SHOULD_SKIP_THIS */
 } // namespace Clutter

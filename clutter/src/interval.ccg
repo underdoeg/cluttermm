@@ -32,15 +32,14 @@ Interval::Interval(GType type, const Glib::ValueBase& initial, const Glib::Value
 
 void Interval::set_interval(const Glib::ValueBase& initial, const Glib::ValueBase& final)
 {
-  set_initial_value(initial);
-  set_final_value(final);
+  set_initial_glib_value(initial);
+  set_final_glib_value(final);
 }
 
 void Interval::get_interval(Glib::ValueBase& initial, Glib::ValueBase& final)
 {
-  get_initial_value(initial);
-  get_final_value(final);
+  get_initial_glib_value(initial);
+  get_final_glib_value(final);
 }
 
 } //namespace Clutter
-
