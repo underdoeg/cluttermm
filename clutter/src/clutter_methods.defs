@@ -3697,6 +3697,7 @@
   (c-name "clutter_actor_add_constraint")
   (return-type "none")
   (parameters
+    '("ClutterConstraint*" "constraint")
   )
 )
 
@@ -3714,6 +3715,7 @@
   (c-name "clutter_actor_remove_constraint")
   (return-type "none")
   (parameters
+    '("ClutterConstraint*" "constraint")
   )
 )
 
@@ -3723,6 +3725,7 @@
   (return-type "none")
   (parameters
     '("const-gchar*" "name")
+    '("ClutterConstraint*" "constraint")
   )
 )
 
