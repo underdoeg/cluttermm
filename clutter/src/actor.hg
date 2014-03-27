@@ -117,6 +117,8 @@ public:
   _WRAP_METHOD(void set_content_repeat(ContentRepeat repeat), clutter_actor_set_content_repeat)
   _WRAP_METHOD(ContentRepeat get_content_repeat() const, clutter_actor_get_content_repeat)
 
+  ActorBox get_content_box() const;
+  _IGNORE(clutter_actor_get_content_box)
 
 #m4 dnl // Those are varargs convenience functions for C coders
   _IGNORE(clutter_actor_animate, clutter_actor_animate_with_alpha, clutter_actor_animate_with_timeline)

@@ -83,6 +83,13 @@ ActorBox Actor::get_allocation_box() const
   return box;
 }
 
+ActorBox Actor::get_content_box() const
+{
+  ActorBox box;
+  clutter_actor_get_content_box(const_cast<ClutterActor*>(gobj()), box.gobj());
+  return box;
+}
+
 void Actor::apply_relative_transform_to_point(const Vertex& point, Vertex& vertex) const
 {
   clutter_actor_apply_relative_transform_to_point(const_cast<ClutterActor*>(gobj()), NULL, const_cast<ClutterVertex*>(point.gobj()), vertex.gobj());
