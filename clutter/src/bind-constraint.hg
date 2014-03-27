@@ -1,0 +1,71 @@
+/* Copyright (C) 2013 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <glibmm/object.h>
+#include <cluttermm/constraint.h>
+
+_DEFS(cluttermm,clutter)
+_PINCLUDE(cluttermm/private/constraint_p.h)
+_PINCLUDE(glibmm/private/object_p.h)
+
+
+namespace Clutter
+{
+
+class Actor;
+
+_WRAP_ENUM(BindCoordinate, ClutterBindCoordinate)
+
+//TODO: rewrite the example code.
+/**
+ * BindConstraint is a Constraint that binds the position or the size of the
+ * Actor to which it is applied to the the position or the size of another
+ * Actor, or "source".
+ *
+ * An offset can be applied to the constraint, to avoid overlapping. The offset
+ * can also be animated.
+ */
+class BindConstraint : public Constraint
+{
+  _CLASS_GOBJECT(BindConstraint, ClutterBindConstraint, CLUTTER_BIND_CONSTRAINT, Constraint, ClutterConstraint)
+  _DERIVES_INITIALLY_UNOWNED()
+
+protected:
+  _WRAP_CTOR(BindConstraint(const Glib::RefPtr<Actor>& source, BindCoordinate coordinate, float offset), clutter_bind_constraint_new)
+
+public:
+  _WRAP_CREATE(const Glib::RefPtr<Actor>& source, BindCoordinate coordinate, float offset)
+
+  _WRAP_METHOD(void set_source(const Glib::RefPtr<Actor>& source), clutter_bind_constraint_set_source)
+
+  _WRAP_METHOD(Glib::RefPtr<Actor> get_source(), clutter_bind_constraint_get_source, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Actor> get_source() const, clutter_bind_constraint_get_source, refreturn, constversion)
+
+  _WRAP_METHOD(void set_coordinate(BindCoordinate coordinate), clutter_bind_constraint_set_coordinate)
+  _WRAP_METHOD(BindCoordinate get_coordinate() const, clutter_bind_constraint_get_coordinate)
+
+  _WRAP_METHOD(void set_offset(float offset), clutter_bind_constraint_set_offset)
+  _WRAP_METHOD(float get_offset() const, clutter_bind_constraint_get_offset )
+
+protected:
+  _WRAP_PROPERTY("coordinate", BindCoordinate)
+  _WRAP_PROPERTY("offset", float)
+  _WRAP_PROPERTY("source", Glib::RefPtr<Actor>)
+
+};
+
+} // namespace Clutter

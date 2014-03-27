@@ -28,6 +28,7 @@ files_hg =			\
 	behaviour-rotate.hg	\
 	behaviour-scale.hg	\
 	bin-layout.hg           \
+  bind-constraint.hg \
 	box.hg			\
 	box-layout.hg           \
 	blur-effect.hg          \

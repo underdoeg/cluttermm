@@ -70,6 +70,7 @@
 #include <cluttermm/behaviour-rotate.h>
 #include <cluttermm/behaviour-scale.h>
 #include <cluttermm/bin-layout.h>
+#include <cluttermm/bind-constraint.h>
 #include <cluttermm/box.h>
 #include <cluttermm/box-layout.h>
 #include <cluttermm/blur-effect.h>

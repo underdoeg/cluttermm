@@ -2997,7 +2997,7 @@
   )
 )
 
-(define-function clutter_bind_constraint_set_source
+(define-method set_source
   (c-name "clutter_bind_constraint_set_source")
   (return-type "none")
   (parameters
@@ -3005,14 +3005,14 @@
   )
 )
 
-(define-function clutter_bind_constraint_get_source
+(define-method get_source
   (c-name "clutter_bind_constraint_get_source")
   (return-type "ClutterActor*")
   (parameters
   )
 )
 
-(define-function clutter_bind_constraint_set_coordinate
+(define-method set_coordinate
   (c-name "clutter_bind_constraint_set_coordinate")
   (return-type "none")
   (parameters
@@ -3020,14 +3020,14 @@
   )
 )
 
-(define-function clutter_bind_constraint_get_coordinate
+(define-method get_coordinate
   (c-name "clutter_bind_constraint_get_coordinate")
   (return-type "ClutterBindCoordinate")
   (parameters
   )
 )
 
-(define-function clutter_bind_constraint_set_offset
+(define-method set_offset
   (c-name "clutter_bind_constraint_set_offset")
   (return-type "none")
   (parameters
@@ -3035,7 +3035,7 @@
   )
 )
 
-(define-function clutter_bind_constraint_get_offset
+(define-method get_offset
   (c-name "clutter_bind_constraint_get_offset")
   (return-type "gfloat")
   (parameters
