@@ -66,6 +66,7 @@ files_hg =			\
 	shader.hg		\
 	shader-effect.hg \
 	size.hg			\
+  snap-constraint.hg \
 	stage.hg		\
 	text.hg			\
 	texture.hg		\

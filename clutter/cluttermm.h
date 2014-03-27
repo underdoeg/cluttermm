@@ -110,6 +110,7 @@
 #include <cluttermm/shader.h>
 #include <cluttermm/shader-effect.h>
 #include <cluttermm/size.h>
+#include <cluttermm/snap-constraint.h>
 #include <cluttermm/stage.h>
 #include <cluttermm/text.h>
 #include <cluttermm/texture.h>

@@ -8191,7 +8191,8 @@
   )
 )
 
-(define-function clutter_snap_constraint_set_source
+(define-method set_source
+  (of-object "ClutterSnapConstraint")
   (c-name "clutter_snap_constraint_set_source")
   (return-type "none")
   (parameters
@@ -8199,14 +8200,16 @@
   )
 )
 
-(define-function clutter_snap_constraint_get_source
+(define-method get_source
+  (of-object "ClutterSnapConstraint")
   (c-name "clutter_snap_constraint_get_source")
   (return-type "ClutterActor*")
   (parameters
   )
 )
 
-(define-function clutter_snap_constraint_set_edges
+(define-method set_edges
+  (of-object "ClutterSnapConstraint")
   (c-name "clutter_snap_constraint_set_edges")
   (return-type "none")
   (parameters
@@ -8215,7 +8218,8 @@
   )
 )
 
-(define-function clutter_snap_constraint_get_edges
+(define-method get_edges
+  (of-object "ClutterSnapConstraint")
   (c-name "clutter_snap_constraint_get_edges")
   (return-type "none")
   (parameters
@@ -8224,7 +8228,8 @@
   )
 )
 
-(define-function clutter_snap_constraint_set_offset
+(define-method set_offset
+  (of-object "ClutterSnapConstraint")
   (c-name "clutter_snap_constraint_set_offset")
   (return-type "none")
   (parameters
@@ -8232,7 +8237,8 @@
   )
 )
 
-(define-function clutter_snap_constraint_get_offset
+(define-method get_offset
+  (of-object "ClutterSnapConstraint")
   (c-name "clutter_snap_constraint_get_offset")
   (return-type "gfloat")
   (parameters
