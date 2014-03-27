@@ -15,6 +15,7 @@ files_hg =			\
 	actor-box.hg		\
 	actor-meta.hg		\
 	action.hg		\
+	align-constraint.hg \
 	alpha.hg		\
 	animatable.hg		\
 	animation.hg		\

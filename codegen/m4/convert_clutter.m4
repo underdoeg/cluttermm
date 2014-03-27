@@ -166,6 +166,7 @@ _EQUAL(ClutterScrollEvent*,ScrollEvent*)
 
 _CONV_ENUM(Clutter,ActorAlign)
 _CONV_ENUM(Clutter,ActorFlags)
+_CONV_ENUM(Clutter,AlignAxis)
 _CONV_ENUM(Clutter,AllocationFlags)
 _CONV_ENUM(Clutter,AnimationMode)
 _CONV_ENUM(Clutter,BinAlignment)

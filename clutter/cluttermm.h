@@ -58,6 +58,7 @@
 #include <cluttermm/actor.h>
 #include <cluttermm/actor-box.h>
 #include <cluttermm/actor-meta.h>
+#include <cluttermm/align-constraint.h>
 #include <cluttermm/alpha.h>
 #include <cluttermm/animatable.h>
 #include <cluttermm/animation.h>
