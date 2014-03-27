@@ -79,6 +79,7 @@
 #include <cluttermm/clone.h>
 #include <cluttermm/color.h>
 #include <cluttermm/colorize-effect.h>
+#include <cluttermm/content.h>
 #include <cluttermm/deform-effect.h>
 #include <cluttermm/device-manager.h>
 #include <cluttermm/desaturate-effect.h>
