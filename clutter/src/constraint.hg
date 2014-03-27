@@ -52,7 +52,7 @@ public:
   //_WRAP_CREATE()
 
 protected:
-   _WRAP_VFUNC(void update_allocation(Glib::RefPtr<Actor>& actor, ActorBox& allocation), update_allocation)
+   _WRAP_VFUNC(void update_allocation(const Glib::RefPtr<Actor>& actor, ActorBox& allocation), update_allocation)
 };
 
 }
