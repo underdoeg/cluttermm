@@ -52,6 +52,7 @@ _WRAP_ENUM(ActorFlags, ClutterActorFlags)
 _WRAP_ENUM(AllocationFlags, ClutterAllocationFlags)
 _WRAP_ENUM(ContentRepeat, ClutterContentRepeat)
 _WRAP_ENUM(ContentGravity, ClutterContentGravity)
+_WRAP_ENUM(OffscreenRedirect, ClutterOffscreenRedirect)
 _WRAP_ENUM(Orientation, ClutterOrientation)
 
 //TODO: Write a version of the large description from here: http://clutter-project.org/docs/clutter/stable/ClutterActor.html#ClutterActor.description
@@ -214,6 +215,9 @@ _DEPRECATE_IFDEF_END
   _WRAP_METHOD(Gravity get_z_rotation_gravity() const, clutter_actor_get_z_rotation_gravity, deprecated "Use the “pivot-point” instead of a Gravity.")
   _WRAP_METHOD(void set_opacity(guint8 opacity), clutter_actor_set_opacity)
   _WRAP_METHOD(guint8 get_opacity() const, clutter_actor_get_opacity)
+
+  _WRAP_METHOD(void set_offscreen_redirect(OffscreenRedirect redirect) const,clutter_actor_set_offscreen_redirect)
+  _WRAP_METHOD(OffscreenRedirect get_offscreen_redirect(), clutter_actor_get_offscreen_redirect)
 
   _WRAP_METHOD(void set_background_color(const Color& color), clutter_actor_set_background_color)
 
