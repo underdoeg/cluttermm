@@ -66,6 +66,7 @@ files_hg =			\
 	text.hg			\
 	texture.hg		\
 	timeline.hg		\
+	transition.hg \
 	types.hg
 
 files_ccg = $(files_hg:.hg=.ccg)

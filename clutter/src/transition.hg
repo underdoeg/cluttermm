@@ -1,0 +1,119 @@
+/* Copyright (C) 2014 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <glibmm/object.h>
+#include <glibmm/ustring.h>
+#include <glibmm/value.h>
+#include <cluttermm/types.h>
+#include <cluttermm/timeline.h>
+#include <cluttermm/animatable.h>
+#include <cluttermm/interval.h>
+
+
+_DEFS(cluttermm,clutter)
+_PINCLUDE(cluttermm/private/timeline_p.h)
+
+namespace Clutter
+{
+
+/** Transition is an abstract subclass of Timeline that computes the
+ * interpolation between two values, stored by an Interval.
+ */
+class Transition
+  : public Timeline,
+    public Animatable
+{
+  _CLASS_GOBJECT(Transition, ClutterTransition, CLUTTER_TRANSITION, Timeline, ClutterTimeline)
+
+protected:
+  _CTOR_DEFAULT()
+
+public:
+  _WRAP_CREATE()
+
+  _WRAP_METHOD(void set_from_value(const Glib::ValueBase& value), clutter_transition_set_from_value)
+  _WRAP_METHOD(void set_to_value(const Glib::ValueBase& value), clutter_transition_set_to_value)
+
+  /**  Set the initial value of the transition.
+   *
+   * This is a convenience function that doesn't require creating a
+   * GValue to hold the value first.
+   * @param value the value to set the initial value to.
+   * @newin{1,12}
+   */
+  template <class ValueType>
+  void set_from(const ValueType& value);
+
+  /** Set the final value of the transition.
+   *
+   * This is a convenience function that doesn't require creating a
+   * GValue to hold the value first.
+   *
+   * @param value the value to set the final value to.
+   * @newin{1,12}
+   */
+  template <class ValueType>
+  void set_to(const ValueType& value);
+
+  _WRAP_METHOD(void set_interval(const Glib::RefPtr<Interval>& interval), clutter_transition_set_interval)
+
+  _WRAP_METHOD(Glib::RefPtr<Interval> get_interval(), clutter_transition_get_interval, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Interval> get_interval() const, clutter_transition_get_interval, refreturn, constversion)
+
+  _WRAP_METHOD(void set_animatable(const Glib::RefPtr<Animatable>& animatable), clutter_transition_set_animatable)
+
+  _WRAP_METHOD(Glib::RefPtr<Animatable> get_animatable(), clutter_transition_get_animatable)
+  _WRAP_METHOD(Glib::RefPtr<const Animatable> get_animatable() const, clutter_transition_get_animatable)
+
+  _WRAP_METHOD(void set_remove_on_complete(bool remove_complete = true), clutter_transition_set_remove_on_complete)
+  _WRAP_METHOD(bool get_remove_on_complete() const, clutter_transition_get_remove_on_complete)
+
+  //Properties:
+  _WRAP_PROPERTY("animatable", Glib::RefPtr<Animatable>)
+  _WRAP_PROPERTY("interval", Glib::RefPtr<Interval>)
+  _WRAP_PROPERTY("remove-on-complete", bool)
+
+  //vfuncs:
+  _WRAP_VFUNC(void attached(const Glib::RefPtr<Animatable>& animatable), attached)
+  _WRAP_VFUNC(void detached(const Glib::RefPtr<Animatable>& animatable), detached)
+  _WRAP_VFUNC(void compute_value(const Glib::RefPtr<Animatable>& animatable, const Glib::RefPtr<Interval>& interval, double progress), compute_value)
+
+
+};
+
+template <class ValueType>
+void Transition::set_from(const ValueType& value)
+{
+  GType gtypeval = Glib::Value<ValueType>::value_type();
+  Glib::Value< ValueType > set_val;
+  set_val.init(gtypeval);
+
+  clutter_transition_set_from_value(gobj(), set_val.gobj());
+}
+
+
+template <class ValueType>
+void Transition::set_to(const ValueType& value)
+{
+  GType gtypeval = Glib::Value<ValueType>::value_type();
+  Glib::Value< ValueType > to_val;
+  to_val.init(gtypeval);
+
+  clutter_transition_set_to_value(this->gobj(), to_val.gobj());
+}
+
+} // namespace Clutter

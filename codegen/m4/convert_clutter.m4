@@ -22,6 +22,10 @@ _CONVERSION(`const Glib::RefPtr<Alpha>&',`ClutterAlpha*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`ClutterAlpha*',`Glib::RefPtr<Alpha>',`Glib::wrap($3)')
 _CONVERSION(`ClutterAlpha*',`Glib::RefPtr<const Alpha>',`Glib::wrap($3)')
 
+_CONVERSION(`const Glib::RefPtr<Animatable>&',`ClutterAnimatable*',__CONVERT_REFPTR_TO_P)
+_CONVERSION(`ClutterAnimatable*',`Glib::RefPtr<Animatable>',`Glib::wrap($3)')
+_CONVERSION(`ClutterAnimatable*',`Glib::RefPtr<const Animatable>',`Glib::wrap($3)')
+
 _CONVERSION(`const Glib::RefPtr<Animation>&',`ClutterAnimation*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`ClutterAnimation*',`Glib::RefPtr<Animation>',`Glib::wrap($3)')
 _CONVERSION(`ClutterAnimation*',`Glib::RefPtr<const Animation>',`Glib::wrap($3)')
