@@ -37,6 +37,7 @@ files_hg =			\
 	clone.hg		\
 	color.hg		\
 	colorize-effect.hg \
+	constraint.hg		\
 	container.hg		\
 	content.hg		\
 	deform-effect.hg \

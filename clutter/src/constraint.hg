@@ -1,0 +1,58 @@
+/* Copyright (C) 2014 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <glibmm/object.h>
+#include <cluttermm/actor-meta.h>
+
+_DEFS(cluttermm,clutter)
+_PINCLUDE(glibmm/private/object_p.h)
+_PINCLUDE(cluttermm/private/actor-meta_p.h)
+
+
+namespace Clutter
+{
+class Actor;
+
+// TODO: fill this out once the examples are built.
+/**
+ * Constraint is a base abstract class for modifiers of an Actor position or size.
+ *
+ * A Constraint sub-class should contain the logic for modifying the position or
+ * size of the Actor to which it is applied, by updating the actor's
+ * allocation. Each Constraint can change the allocation of the actor to which
+ * they are applied by overriding the Constraint::update_allocation_vfunc() virtual
+ * function.
+ *
+ * @newin{1,4}
+ */
+class Constraint : public Clutter::ActorMeta
+{
+  _CLASS_GOBJECT(Constraint, ClutterConstraint, CLUTTER_CONSTRAINT, ActorMeta, ClutterActorMeta)
+  _DERIVES_INITIALLY_UNOWNED()
+
+protected:
+  _CTOR_DEFAULT()
+
+public:
+  //There is no create() because this is an abstract base class.
+  //_WRAP_CREATE()
+
+protected:
+   _WRAP_VFUNC(void update_allocation(Glib::RefPtr<Actor>& actor, ActorBox& allocation), update_allocation)
+};
+
+}
