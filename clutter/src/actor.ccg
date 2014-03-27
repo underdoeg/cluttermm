@@ -117,6 +117,14 @@ void Actor::unset_layout_manager()
   clutter_actor_set_layout_manager(gobj(), 0);
 }
 
+
+Matrix Actor::get_transform () const
+{
+  Matrix matrix;
+  clutter_actor_get_transform(const_cast<ClutterActor*>(this->gobj()), &matrix);
+  return matrix;
+}
+
 // Glib::RefPtr<Animation>
 // Actor::animate(gulong mode, guint duration, const std::map<std::string, Glib::ValueBase>& properties)
 // {

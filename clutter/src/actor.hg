@@ -41,6 +41,8 @@ _PINCLUDE(glibmm/private/object_p.h)
 namespace Clutter
 {
 
+typedef ClutterMatrix Matrix;
+
 class Animation;
 class Content;
 class LayoutManager;
@@ -133,8 +135,16 @@ public:
   _WRAP_METHOD(Glib::RefPtr<Pango::Layout> create_pango_layout(const Glib::ustring& text),
                clutter_actor_create_pango_layout)
 
-  //TODO: Wrap ClutterMatrix
+  _IGNORE( clutter_actor_get_transform) //handcoded to allow returning the Matrix.
+
+  /**
+   * Returns the transformation matrix being used by the actor.
+   * */
+  Matrix get_transform() const;
+
   _WRAP_METHOD(void get_transformation_matrix(ClutterMatrix* matrix), clutter_actor_get_transformation_matrix, deprecated "Use get_transform() instead")
+  _WRAP_METHOD(void set_transform(const Matrix& transform), clutter_actor_set_transform)
+  _WRAP_METHOD(void set_child_transform(const Matrix& transform), clutter_actor_set_child_transform)
 
   _WRAP_METHOD(bool is_in_clone_paint() const, clutter_actor_is_in_clone_paint)
   _WRAP_METHOD(bool has_pointer() const, clutter_actor_has_pointer)
@@ -274,14 +284,20 @@ _DEPRECATE_IFDEF_END
 
   _WRAP_METHOD(void allocate(const ActorBox& box, AllocationFlags absolute_origin_changed = ALLOCATION_NONE), clutter_actor_allocate)
 
+  //TODO: Make this protected?
   _WRAP_METHOD(void allocate_preferred_size(AllocationFlags absolute_origin_changed = ALLOCATION_NONE), clutter_actor_allocate_preferred_size)
-    _WRAP_METHOD(void allocate_available_size(float x, float y, float available_width, float available_height, AllocationFlags flags = ALLOCATION_NONE), clutter_actor_allocate_available_size)
 
+  _WRAP_METHOD(void allocate_available_size(float x, float y, float available_width, float available_height, AllocationFlags flags = ALLOCATION_NONE), clutter_actor_allocate_available_size)
+
+  _WRAP_METHOD(void apply_transform_to_point(const Vertex& point, Vertex& vertex) const, clutter_actor_apply_transform_to_point)
+  _WRAP_METHOD(void transform_stage_point(float x, float y, float& x_out, float& y_out) const, clutter_actor_transform_stage_point)
 #m4 _CONVERSION(`const Vertex&',`ClutterVertex*',`const_cast<ClutterVertex*>(($3).gobj())')
 #m4 _CONVERSION(`Vertex&',`ClutterVertex*',`($3).gobj()')
   _WRAP_METHOD(void apply_relative_transform_to_point(const Glib::RefPtr<Actor>& ancestor, const Vertex& point, Vertex& vertex) const, clutter_actor_apply_relative_transform_to_point)
   _WRAP_METHOD_DOCS_ONLY(clutter_actor_get_allocation_vertices)
   void apply_relative_transform_to_point(const Vertex& point, Vertex& vertex) const;
+  _WRAP_METHOD(void get_transformed_position(float& x, float& y) const, clutter_actor_get_transformed_position)
+  _WRAP_METHOD(void get_transformed_size(float& width, float& height) const, clutter_actor_get_transformed_size)
 
   _WRAP_METHOD(void set_request_mode(RequestMode mode), clutter_actor_set_request_mode)
   _WRAP_METHOD(RequestMode get_request_mode() const, clutter_actor_get_request_mode)
@@ -316,8 +332,6 @@ _DEPRECATE_IFDEF_END
 
   _WRAP_METHOD(bool get_fixed_position_set() const, clutter_actor_get_fixed_position_set)
   _WRAP_METHOD(void set_fixed_position_set(bool is_set), clutter_actor_set_fixed_position_set)
-  _WRAP_METHOD(void get_transformed_position(float& x, float& y) const, clutter_actor_get_transformed_position)
-  _WRAP_METHOD(void get_transformed_size(float& width, float& height) const, clutter_actor_get_transformed_size)
 
 _DEPRECATE_IFDEF_START
   _WRAP_METHOD_DOCS_ONLY(clutter_actor_get_allocation_geometry)
@@ -341,9 +355,6 @@ _DEPRECATE_IFDEF_END
   //_WRAP_METHOD(void get_abs_size(float& width, float& height) const, clutter_actor_get_abs_size)
   _WRAP_METHOD(void get_size(float& width, float& height) const, clutter_actor_get_size)
   _WRAP_METHOD(void move_by(float dx, float dy), clutter_actor_move_by)
-
-  _WRAP_METHOD(void apply_transform_to_point(const Vertex& point, Vertex& vertex) const, clutter_actor_apply_transform_to_point)
-  _WRAP_METHOD(void transform_stage_point(float x, float y, float& x_out, float& y_out) const, clutter_actor_transform_stage_point)
 
   _WRAP_METHOD(bool event(const ClutterEvent* event, bool capture), clutter_actor_event)
   _WRAP_METHOD(static Glib::RefPtr<Actor> get_actor_by_gid(guint32 id), clutter_get_actor_by_gid, refreturn, deprecated "The ID is no longer used.")
