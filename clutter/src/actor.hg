@@ -45,6 +45,7 @@ namespace Clutter
 typedef ClutterMatrix Matrix;
 
 class Animation;
+class Constraint;
 class Content;
 class LayoutManager;
 
@@ -437,6 +438,23 @@ _DEPRECATE_IFDEF_END
   _WRAP_METHOD(void remove_transition(const Glib::ustring& name), clutter_actor_remove_transition)
   _WRAP_METHOD(void remove_all_transitions(), clutter_actor_remove_all_transitions)
 
+  //Constraints.
+  _WRAP_METHOD(void add_constraint(const Glib::RefPtr<Constraint>& constraint), clutter_actor_add_constraint)
+  _WRAP_METHOD(void add_constraint(const Glib::ustring& name, const Glib::RefPtr<Constraint>& constraint), clutter_actor_add_constraint_with_name )
+  _WRAP_METHOD(void remove_constraint(const Glib::RefPtr<Constraint>& constraint), clutter_actor_remove_constraint)
+  _WRAP_METHOD(void remove_constraint(const Glib::ustring& name), clutter_actor_remove_constraint_by_name)
+  _WRAP_METHOD(bool has_constraints() const,  clutter_actor_has_constraints)
+
+  // Clutter docs: Use g_list_free() when done.
+  #m4 _CONVERSION(`GList*',`std::vector< Glib::RefPtr<Clutter::Constraint> >',`Glib::ListHandler< Glib::RefPtr<Clutter::Constraint> >::list_to_vector($3, Glib::OWNERSHIP_SHALLOW)')
+  _WRAP_METHOD( std::vector< Glib::RefPtr<Clutter::Constraint> > get_constraints(), clutter_actor_get_constraints )
+  #m4 _CONVERSION(`GList*',`std::vector< Glib::RefPtr< const Clutter::Constraint > >',`Glib::ListHandler< Glib::RefPtr< const Clutter::Constraint > >::list_to_vector($3, Glib::OWNERSHIP_SHALLOW)')
+  _WRAP_METHOD( std::vector< Glib::RefPtr< const Clutter::Constraint > > get_constraints() const, clutter_actor_get_constraints)
+
+  _WRAP_METHOD(Glib::RefPtr<const Constraint> get_constraint(const Glib::ustring& name) const, clutter_actor_get_constraint, refreturn, constversion)
+  _WRAP_METHOD(Glib::RefPtr< Constraint > get_constraint(const Glib::ustring& name), clutter_actor_get_constraint, refreturn)
+  _WRAP_METHOD(void clear_constraints(), clutter_actor_clear_constraints)
+
 // signals
   _WRAP_SIGNAL(bool button_press_event(ButtonEvent* event), "button_press_event")
   _WRAP_SIGNAL(bool button_release_event(ButtonEvent* event), "button_release_event")
@@ -473,6 +491,8 @@ _DEPRECATE_IFDEF_END
   _WRAP_PROPERTY("anchor-gravity", Gravity)
   _WRAP_PROPERTY("clip", Geometry)
   _WRAP_PROPERTY("clip-to-allocation", bool)
+  // This property is not wrapped: documented in Clutter as adding a Constraint when set.
+  //_WRAP_PROPERTY("constraints", Glib::RefPtr<Constraint>)
   _WRAP_PROPERTY("depth", float)
   _WRAP_PROPERTY("fixed-position-set", bool)
   _WRAP_PROPERTY("fixed-x", float)

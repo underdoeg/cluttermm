@@ -44,6 +44,10 @@ _CONVERSION(`ClutterChildMeta*',`Glib::RefPtr<const ChildMeta>',`Glib::wrap($3)'
 _CONVERSION(`const Color&',`ClutterColor*',`($3).gobj()')
 _CONVERSION(`const Color&',`const ClutterColor*',`($3).gobj()')
 
+_CONVERSION(`ClutterConstraint*',`Glib::RefPtr<const Constraint>',`Glib::wrap($3)')
+_CONVERSION(`ClutterConstraint*',`Glib::RefPtr< Constraint >',`Glib::wrap($3)')
+_CONVERSION(`const Glib::RefPtr<Constraint>&',`ClutterConstraint*',__CONVERT_REFPTR_TO_P)
+
 _CONVERSION(`const Glib::RefPtr<Container>&',`ClutterContainer*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`ClutterContainer*',`Glib::RefPtr<Container>',`Glib::wrap($3)')
 _CONVERSION(`ClutterContainer*',`Glib::RefPtr<const Container>',`Glib::wrap($3)')
