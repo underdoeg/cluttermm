@@ -2530,6 +2530,21 @@
   (return-type "ClutterActor*")
 )
 
+(define-method reparent
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_reparent")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "new_parent")
+  )
+)
+
+(define-method unparent
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_unparent")
+  (return-type "none")
+)
+
 (define-method contains
   (of-object "ClutterActor")
   (c-name "clutter_actor_contains")
