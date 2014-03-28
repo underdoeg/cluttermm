@@ -61,7 +61,8 @@ public:
   _WRAP_PROPERTY("offset", float)
   _WRAP_PROPERTY("path", Glib::RefPtr<Path>)
 
-  _WRAP_SIGNAL(void node_reached(const Glib::RefPtr<Actor> actor, int index), "node-reached")
+  //We use NO_DEFAULT_HANDLER because the ClutterPathConstraint struct definition is hidden.
+  _WRAP_SIGNAL(void node_reached(const Glib::RefPtr<Actor> actor, guint index), "node-reached", no_default_handler)
 };
 
 } // namespace Clutter
