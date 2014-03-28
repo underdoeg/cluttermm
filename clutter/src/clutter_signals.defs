@@ -982,6 +982,35 @@
 
 ;; From ClutterAction
 
+;; From ClutterAlignConstraint
+
+(define-property source
+  (of-object "ClutterAlignConstraint")
+  (prop-type "GParamObject")
+  (docs "The source of the alignment")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property align-axis
+  (of-object "ClutterAlignConstraint")
+  (prop-type "GParamEnum")
+  (docs "The axis to align the position to")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property factor
+  (of-object "ClutterAlignConstraint")
+  (prop-type "GParamFloat")
+  (docs "The alignment factor, between 0.0 and 1.0")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 ;; From ClutterAlpha
 
 (define-property timeline
@@ -1010,6 +1039,8 @@
   (writable #t)
   (construct-only #f)
 )
+
+;; From ClutterAnimatable
 
 ;; From ClutterAnimation
 
@@ -1414,6 +1445,35 @@
   (construct-only #f)
 )
 
+;; From ClutterBindConstraint
+
+(define-property source
+  (of-object "ClutterBindConstraint")
+  (prop-type "GParamObject")
+  (docs "The source of the binding")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property coordinate
+  (of-object "ClutterBindConstraint")
+  (prop-type "GParamEnum")
+  (docs "The coordinate to bind")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property offset
+  (of-object "ClutterBindConstraint")
+  (prop-type "GParamFloat")
+  (docs "The offset in pixels to apply to the binding")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 ;; From ClutterBox
 
 (define-property color
@@ -1588,6 +1648,28 @@
 )
 
 ;; From ClutterColor
+
+;; From ClutterConstraint
+
+;; From ClutterContent
+
+(define-signal attached
+  (of-object "ClutterContent")
+  (return-type "void")
+  (when "first")
+  (parameters
+    '("ClutterActor*" "p0")
+  )
+)
+
+(define-signal detached
+  (of-object "ClutterContent")
+  (return-type "void")
+  (when "first")
+  (parameters
+    '("ClutterActor*" "p0")
+  )
+)
 
 ;; From ClutterContainer
 
@@ -1988,6 +2070,47 @@
   (construct-only #f)
 )
 
+;; From ClutterPathConstraint
+
+(define-signal node-reached
+  (of-object "ClutterPathConstraint")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("ClutterActor*" "p0")
+    '("guint" "p1")
+  )
+)
+
+(define-property path
+  (of-object "ClutterPathConstraint")
+  (prop-type "GParamObject")
+  (docs "The path used to constrain an actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property offset
+  (of-object "ClutterPathConstraint")
+  (prop-type "GParamFloat")
+  (docs "The offset along the path, between -1.0 and 2.0")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From ClutterPropertyTransition
+
+(define-property property-name
+  (of-object "ClutterPropertyTransition")
+  (prop-type "GParamString")
+  (docs "The name of the property to animate")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 ;; From ClutterRectangle
 
 (define-property color
@@ -2097,6 +2220,44 @@
   (of-object "ClutterScript")
   (prop-type "GParamString")
   (docs "The translation domain used to localize string")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From ClutterSnapConstraint
+
+(define-property source
+  (of-object "ClutterSnapConstraint")
+  (prop-type "GParamObject")
+  (docs "The source of the constraint")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property from-edge
+  (of-object "ClutterSnapConstraint")
+  (prop-type "GParamEnum")
+  (docs "The edge of the actor that should be snapped")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property to-edge
+  (of-object "ClutterSnapConstraint")
+  (prop-type "GParamEnum")
+  (docs "The edge of the source that should be snapped")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property offset
+  (of-object "ClutterSnapConstraint")
+  (prop-type "GParamFloat")
+  (docs "The offset in pixels to apply to the constraint")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2830,6 +2991,35 @@
   (construct-only #f)
 )
 
+;; From ClutterTransition
+
+(define-property interval
+  (of-object "ClutterTransition")
+  (prop-type "GParamObject")
+  (docs "The interval of values to transition")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property animatable
+  (of-object "ClutterTransition")
+  (prop-type "GParamObject")
+  (docs "The animatable object")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property remove-on-complete
+  (of-object "ClutterTransition")
+  (prop-type "GParamBoolean")
+  (docs "Detach the transition when completed")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 ;; From ClutterScore
 
 (define-signal timeline-started
@@ -2943,3 +3133,4 @@
   (writable #t)
   (construct-only #f)
 )
+
