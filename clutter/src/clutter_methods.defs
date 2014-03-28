@@ -48,6 +48,13 @@
   (gtype-id "CLUTTER_TYPE_ANIMATOR")
 )
 
+(define-object Backend
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterBackend")
+  (gtype-id "CLUTTER_TYPE_BACKEND")
+)
+
 (define-object Behaviour
   (in-module "Clutter")
   (parent "GObject")
@@ -179,6 +186,12 @@
   (gtype-id "CLUTTER_TYPE_EFFECT")
 )
 
+(define-object EventTranslator
+  (in-module "Clutter")
+  (c-name "ClutterEventTranslator")
+  (gtype-id "CLUTTER_TYPE_EVENT_TRANSLATOR")
+)
+
 (define-object GestureAction
   (in-module "Clutter")
   (parent "ClutterAction")
@@ -198,6 +211,13 @@
   (parent "GObject")
   (c-name "ClutterImage")
   (gtype-id "CLUTTER_TYPE_IMAGE")
+)
+
+(define-object InputDevice
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterInputDevice")
+  (gtype-id "CLUTTER_TYPE_INPUT_DEVICE")
 )
 
 (define-object Interval
@@ -262,6 +282,13 @@
   (gtype-id "CLUTTER_TYPE_MEDIA")
 )
 
+(define-object MetaGroup
+  (in-module "Clutter")
+  (parent "GObject")
+  (c-name "ClutterMetaGroup")
+  (gtype-id "CLUTTER_TYPE_META_GROUP")
+)
+
 (define-object Model
   (in-module "Clutter")
   (parent "GObject")
@@ -288,6 +315,13 @@
   (parent "ClutterEffect")
   (c-name "ClutterOffscreenEffect")
   (gtype-id "CLUTTER_TYPE_OFFSCREEN_EFFECT")
+)
+
+(define-object FlattenEffect
+  (in-module "Clutter")
+  (parent "ClutterOffscreenEffect")
+  (c-name "ClutterFlattenEffect")
+  (gtype-id "CLUTTER_TYPE_FLATTEN_EFFECT")
 )
 
 (define-object DeformEffect
@@ -371,6 +405,12 @@
   (parent "ClutterGroup")
   (c-name "ClutterStage")
   (gtype-id "CLUTTER_TYPE_STAGE")
+)
+
+(define-object StageWindow
+  (in-module "Clutter")
+  (c-name "ClutterStageWindow")
+  (gtype-id "CLUTTER_TYPE_STAGE_WINDOW")
 )
 
 (define-object State
@@ -472,6 +512,87 @@
 )
 
 ;; Enumerations and flags ...
+
+(define-flags RedrawFlags
+  (in-module "Clutter")
+  (c-name "ClutterRedrawFlags")
+  (gtype-id "CLUTTER_TYPE_REDRAW_FLAGS")
+  (values
+    '("allocation" "CLUTTER_REDRAW_CLIPPED_TO_ALLOCATION")
+  )
+)
+
+(define-flags ActorTraverseFlags
+  (in-module "Clutter")
+  (c-name "ClutterActorTraverseFlags")
+  (gtype-id "CLUTTER_TYPE_ACTOR_TRAVERSE_FLAGS")
+  (values
+    '("depth-first" "CLUTTER_ACTOR_TRAVERSE_DEPTH_FIRST")
+    '("breadth-first" "CLUTTER_ACTOR_TRAVERSE_BREADTH_FIRST")
+  )
+)
+
+(define-flags ActorTraverseVisitFlags
+  (in-module "Clutter")
+  (c-name "ClutterActorTraverseVisitFlags")
+  (gtype-id "CLUTTER_TYPE_ACTOR_TRAVERSE_VISIT_FLAGS")
+  (values
+    '("continue" "CLUTTER_ACTOR_TRAVERSE_VISIT_CONTINUE")
+    '("skip-children" "CLUTTER_ACTOR_TRAVERSE_VISIT_SKIP_CHILDREN")
+    '("break" "CLUTTER_ACTOR_TRAVERSE_VISIT_BREAK")
+  )
+)
+
+(define-flags DebugFlag
+  (in-module "Clutter")
+  (c-name "ClutterDebugFlag")
+  (gtype-id "CLUTTER_TYPE_DEBUG_FLAG")
+  (values
+    '("misc" "CLUTTER_DEBUG_MISC")
+    '("actor" "CLUTTER_DEBUG_ACTOR")
+    '("texture" "CLUTTER_DEBUG_TEXTURE")
+    '("event" "CLUTTER_DEBUG_EVENT")
+    '("paint" "CLUTTER_DEBUG_PAINT")
+    '("pango" "CLUTTER_DEBUG_PANGO")
+    '("backend" "CLUTTER_DEBUG_BACKEND")
+    '("scheduler" "CLUTTER_DEBUG_SCHEDULER")
+    '("script" "CLUTTER_DEBUG_SCRIPT")
+    '("shader" "CLUTTER_DEBUG_SHADER")
+    '("multistage" "CLUTTER_DEBUG_MULTISTAGE")
+    '("animation" "CLUTTER_DEBUG_ANIMATION")
+    '("layout" "CLUTTER_DEBUG_LAYOUT")
+    '("pick" "CLUTTER_DEBUG_PICK")
+    '("eventloop" "CLUTTER_DEBUG_EVENTLOOP")
+    '("clipping" "CLUTTER_DEBUG_CLIPPING")
+    '("oob-transforms" "CLUTTER_DEBUG_OOB_TRANSFORMS")
+  )
+)
+
+(define-flags PickDebugFlag
+  (in-module "Clutter")
+  (c-name "ClutterPickDebugFlag")
+  (gtype-id "CLUTTER_TYPE_PICK_DEBUG_FLAG")
+  (values
+    '("nop-picking" "CLUTTER_DEBUG_NOP_PICKING")
+    '("dump-pick-buffers" "CLUTTER_DEBUG_DUMP_PICK_BUFFERS")
+  )
+)
+
+(define-flags DrawDebugFlag
+  (in-module "Clutter")
+  (c-name "ClutterDrawDebugFlag")
+  (gtype-id "CLUTTER_TYPE_DRAW_DEBUG_FLAG")
+  (values
+    '("disable-swap-events" "CLUTTER_DEBUG_DISABLE_SWAP_EVENTS")
+    '("disable-clipped-redraws" "CLUTTER_DEBUG_DISABLE_CLIPPED_REDRAWS")
+    '("redraws" "CLUTTER_DEBUG_REDRAWS")
+    '("paint-volumes" "CLUTTER_DEBUG_PAINT_VOLUMES")
+    '("disable-culling" "CLUTTER_DEBUG_DISABLE_CULLING")
+    '("disable-offscreen-redirect" "CLUTTER_DEBUG_DISABLE_OFFSCREEN_REDIRECT")
+    '("continuous-redraw" "CLUTTER_DEBUG_CONTINUOUS_REDRAW")
+    '("paint-deform-tiles" "CLUTTER_DEBUG_PAINT_DEFORM_TILES")
+  )
+)
 
 (define-enum Gravity
   (in-module "Clutter")
@@ -1205,6 +1326,17 @@
   )
 )
 
+(define-enum TranslateReturn
+  (in-module "Clutter")
+  (c-name "ClutterTranslateReturn")
+  (gtype-id "CLUTTER_TYPE_TRANSLATE_RETURN")
+  (values
+    '("continue" "CLUTTER_TRANSLATE_CONTINUE")
+    '("remove" "CLUTTER_TRANSLATE_REMOVE")
+    '("queue" "CLUTTER_TRANSLATE_QUEUE")
+  )
+)
+
 (define-enum ImageError
   (in-module "Clutter")
   (c-name "ClutterImageError")
@@ -1224,6 +1356,44 @@
     '("error-threads" "CLUTTER_INIT_ERROR_THREADS")
     '("error-backend" "CLUTTER_INIT_ERROR_BACKEND")
     '("error-internal" "CLUTTER_INIT_ERROR_INTERNAL")
+  )
+)
+
+(define-enum OpCode
+  (in-module "Paint")
+  (c-name "PaintOpCode")
+  (gtype-id "PAINT_TYPE_OP_CODE")
+  (values
+    '("invalid" "PAINT_OP_INVALID")
+    '("tex-rect" "PAINT_OP_TEX_RECT")
+    '("path" "PAINT_OP_PATH")
+    '("primitive" "PAINT_OP_PRIMITIVE")
+  )
+)
+
+(define-flags PrivateFlags
+  (in-module "Clutter")
+  (c-name "ClutterPrivateFlags")
+  (gtype-id "CLUTTER_TYPE_PRIVATE_FLAGS")
+  (values
+    '("actor-unused-flag" "CLUTTER_ACTOR_UNUSED_FLAG")
+    '("in-destruction" "CLUTTER_IN_DESTRUCTION")
+    '("is-toplevel" "CLUTTER_IS_TOPLEVEL")
+    '("in-reparent" "CLUTTER_IN_REPARENT")
+    '("in-paint" "CLUTTER_IN_PAINT")
+    '("in-relayout" "CLUTTER_IN_RELAYOUT")
+    '("in-resize" "CLUTTER_IN_RESIZE")
+    '("internal-child" "CLUTTER_INTERNAL_CHILD")
+  )
+)
+
+(define-flags ProfileFlag
+  (in-module "Clutter")
+  (c-name "ClutterProfileFlag")
+  (gtype-id "CLUTTER_TYPE_PROFILE_FLAG")
+  (values
+    '("picking-only" "CLUTTER_PROFILE_PICKING_ONLY")
+    '("disable-report" "CLUTTER_PROFILE_DISABLE_REPORT")
   )
 )
 
@@ -2815,6 +2985,14 @@
 
 
 
+;; From clutter-actor-meta-private.h
+
+
+
+;; From clutter-actor-private.h
+
+
+
 ;; From clutter-align-constraint.h
 
 (define-function clutter_align_constraint_get_type
@@ -2976,6 +3154,14 @@
   (c-name "clutter_backend_get_cogl_context")
   (return-type "CoglContext*")
 )
+
+
+
+;; From clutter-backend-private.h
+
+
+
+;; From clutter-bezier.h
 
 
 
@@ -4141,6 +4327,14 @@
 
 
 
+;; From clutter-content-private.h
+
+
+
+;; From clutter-debug.h
+
+
+
 ;; From clutter-deform-effect.h
 
 (define-function clutter_deform_effect_get_type
@@ -4272,6 +4466,10 @@
 
 
 
+;; From clutter-device-manager-private.h
+
+
+
 ;; From clutter-drag-action.h
 
 (define-function clutter_drag_action_get_type
@@ -4390,6 +4588,10 @@
 
 
 
+;; From clutter-easing.h
+
+
+
 ;; From clutter-effect.h
 
 (define-function clutter_effect_get_type
@@ -4466,6 +4668,10 @@
   (c-name "clutter_actor_has_effects")
   (return-type "gboolean")
 )
+
+
+
+;; From clutter-effect-private.h
 
 
 
@@ -5190,6 +5396,14 @@
 
 
 
+;; From clutter-event-private.h
+
+
+
+;; From clutter-event-translator.h
+
+
+
 ;; From clutter-feature.h
 
 (define-function clutter_feature_available
@@ -5219,6 +5433,10 @@
   (is-constructor-of "ClutterFixedLayout")
   (return-type "ClutterLayoutManager*")
 )
+
+
+
+;; From clutter-flatten-effect.h
 
 
 
@@ -5514,6 +5732,10 @@
 
 
 
+;; From clutter-gesture-action-private.h
+
+
+
 ;; From clutter-grid-layout.h
 
 (define-function clutter_grid_layout_get_type
@@ -5678,6 +5900,10 @@
 
 
 ;; From clutter.h
+
+
+
+;; From clutter-id-pool.h
 
 
 
@@ -6643,9 +6869,31 @@
   (return-type "guint")
 )
 
+(define-function clutter_check_version
+  (c-name "clutter_check_version")
+  (return-type "gboolean")
+  (parameters
+    '("guint" "major")
+    '("guint" "minor")
+    '("guint" "micro")
+  )
+)
+
+(define-function clutter_check_windowing_backend
+  (c-name "clutter_check_windowing_backend")
+  (return-type "gboolean")
+  (parameters
+    '("const-char*" "backend_type")
+  )
+)
+
 
 
 ;; From clutter-marshal.h
+
+
+
+;; From clutter-master-clock.h
 
 
 
@@ -6992,6 +7240,10 @@
 
 
 
+;; From clutter-model-private.h
+
+
+
 ;; From clutter-offscreen-effect.h
 
 (define-function clutter_offscreen_effect_get_type
@@ -7045,6 +7297,10 @@
     '("ClutterRect*" "rect")
   )
 )
+
+
+
+;; From clutter-offscreen-effect-private.h
 
 
 
@@ -7226,6 +7482,10 @@
 
 
 
+;; From clutter-paint-node-private.h
+
+
+
 ;; From clutter-paint-nodes.h
 
 (define-function clutter_color_node_get_type
@@ -7295,6 +7555,10 @@
     '("const-ClutterColor*" "color")
   )
 )
+
+
+
+;; From clutter-paint-volume-private.h
 
 
 
@@ -7698,6 +7962,14 @@
 
 
 
+;; From clutter-private.h
+
+
+
+;; From clutter-profile.h
+
+
+
 ;; From clutter-property-transition.h
 
 (define-function clutter_property_transition_get_type
@@ -7973,6 +8245,26 @@
 
 
 
+;; From clutter-script-private.h
+
+(define-function object_info_free
+  (c-name "object_info_free")
+  (return-type "none")
+  (parameters
+    '("gpointer" "data")
+  )
+)
+
+(define-function property_info_free
+  (c-name "property_info_free")
+  (return-type "none")
+  (parameters
+    '("gpointer" "data")
+  )
+)
+
+
+
 ;; From clutter-scroll-actor.h
 
 (define-function clutter_scroll_actor_get_type
@@ -8032,6 +8324,10 @@
   (c-name "clutter_settings_get_default")
   (return-type "ClutterSettings*")
 )
+
+
+
+;; From clutter-settings-private.h
 
 
 
@@ -8571,6 +8867,18 @@
   (c-name "clutter_stage_manager_peek_stages")
   (return-type "const-GSList*")
 )
+
+
+
+;; From clutter-stage-manager-private.h
+
+
+
+;; From clutter-stage-private.h
+
+
+
+;; From clutter-stage-window.h
 
 
 
@@ -10756,6 +11064,10 @@
     '("ClutterPoint*" "point")
   )
 )
+
+
+
+;; From config.h
 
 
 
@@ -13984,6 +14296,10 @@
   (c-name "clutter_timeline_get_loop")
   (return-type "gboolean")
 )
+
+
+
+;; From clutter-timeout-interval.h
 
 
 
