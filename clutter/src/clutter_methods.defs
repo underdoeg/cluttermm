@@ -2711,6 +2711,29 @@
   )
 )
 
+(define-method set_scale_full
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_scale_full")
+  (return-type "none")
+  (parameters
+    '("gdouble" "scale_x")
+    '("gdouble" "scale_y")
+    '("gfloat" "center_x")
+    '("gfloat" "center_y")
+  )
+)
+
+(define-method set_scale_with_gravity
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_scale_with_gravity")
+  (return-type "none")
+  (parameters
+    '("gdouble" "scale_x")
+    '("gdouble" "scale_y")
+    '("ClutterGravity" "gravity")
+  )
+)
+
 (define-method get_scale
   (of-object "ClutterActor")
   (c-name "clutter_actor_get_scale")
@@ -11153,6 +11176,19 @@
   )
 )
 
+
+(define-method raise_top
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_raise_top")
+  (return-type "none")
+)
+
+(define-method lower_bottom
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_lower_bottom")
+  (return-type "none")
+)
+
 (define-method push_internal
   (of-object "ClutterActor")
   (c-name "clutter_actor_push_internal")
@@ -11202,6 +11238,16 @@
     '("gfloat" "x")
     '("gfloat" "y")
     '("gfloat" "z")
+  )
+)
+
+(define-method set_z_rotation_from_gravity
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_z_rotation_from_gravity")
+  (return-type "none")
+  (parameters
+    '("gdouble" "angle")
+    '("ClutterGravity" "gravity")
   )
 )
 
