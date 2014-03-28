@@ -26,8 +26,8 @@ if [ $# -eq 0 ]
 then
   # Without LC_ALL=C documentation (docs "xxx") may be translated in the .defs file.
   LC_ALL=C "$GEN_DIR"/generate_extra_defs > "$OUT_DEFS_FILE"
-  #PATCH_OPTIONS="--backup --version-control=simple --suffix=.orig"
-  #patch $PATCH_OPTIONS "$OUT_DEFS_FILE" "$OUT_DEFS_FILE".patch
+  PATCH_OPTIONS="--backup --version-control=simple --suffix=.orig"
+  patch $PATCH_OPTIONS "$OUT_DEFS_FILE" "$OUT_DEFS_FILE".patch
 elif [ "$1" = "--make-patch" ]
 then
   diff --unified=10 "$OUT_DEFS_FILE".orig "$OUT_DEFS_FILE" > "$OUT_DEFS_FILE".patch

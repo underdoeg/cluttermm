@@ -1,0 +1,150 @@
+--- ./../../clutter/src/clutter_signals.defs.orig	2014-03-28 09:43:55.674529132 +0100
++++ ./../../clutter/src/clutter_signals.defs	2014-03-28 09:45:15.750527612 +0100
+@@ -43,102 +43,109 @@
+ )
+ 
+ (define-signal event
+   (of-object "ClutterActor")
+   (return-type "gboolean")
+   (when "last")
+   (parameters
+     '("ClutterEvent*" "p0")
+   )
+ )
+-
++;; Hand-edited to use more specific event type
+ (define-signal button-press-event
+   (of-object "ClutterActor")
+   (return-type "gboolean")
+   (when "last")
+   (parameters
+-    '("ClutterEvent*" "p0")
++    '("ClutterButtonEvent*" "p0")
+   )
+ )
+ 
++;; Hand-edited to use more specific event type
+ (define-signal button-release-event
+   (of-object "ClutterActor")
+   (return-type "gboolean")
+   (when "last")
+   (parameters
+-    '("ClutterEvent*" "p0")
++    '("ClutterButtonEvent*" "p0")
+   )
+ )
+ 
++;; Hand-edited to use more specific event type
+ (define-signal scroll-event
+   (of-object "ClutterActor")
+   (return-type "gboolean")
+   (when "last")
+   (parameters
+-    '("ClutterEvent*" "p0")
++    '("ClutterScrollEvent*" "p0")
+   )
+ )
+ 
++;; Hand-edited to use more specific event type
+ (define-signal key-press-event
+   (of-object "ClutterActor")
+   (return-type "gboolean")
+   (when "last")
+   (parameters
+-    '("ClutterEvent*" "p0")
++    '("ClutterKeyEvent*" "p0")
+   )
+ )
+ 
++;; Hand-edited to use more specific event type
+ (define-signal key-release-event
+   (of-object "ClutterActor")
+   (return-type "gboolean")
+   (when "last")
+   (parameters
+-    '("ClutterEvent*" "p0")
++    '("ClutterKeyEvent*" "p0")
+   )
+ )
+ 
++;; Hand-edited to use more specific event type
+ (define-signal motion-event
+   (of-object "ClutterActor")
+   (return-type "gboolean")
+   (when "last")
+   (parameters
+-    '("ClutterEvent*" "p0")
++    '("ClutterMotionEvent*" "p0")
+   )
+ )
+ 
+ (define-signal key-focus-in
+   (of-object "ClutterActor")
+   (return-type "void")
+   (when "last")
+ )
+ 
+ (define-signal key-focus-out
+   (of-object "ClutterActor")
+   (return-type "void")
+   (when "last")
+ )
+ 
++;; Hand-edited to use more specific event type
+ (define-signal enter-event
+   (of-object "ClutterActor")
+   (return-type "gboolean")
+   (when "last")
+   (parameters
+-    '("ClutterEvent*" "p0")
++    '("ClutterCrossingEvent*" "p0")
+   )
+ )
+ 
++;; Hand-edited to use more specific event type
+ (define-signal leave-event
+   (of-object "ClutterActor")
+   (return-type "gboolean")
+   (when "last")
+   (parameters
+-    '("ClutterEvent*" "p0")
++    '("ClutterCrossingEvent*" "p0")
+   )
+ )
+ 
+ (define-signal captured-event
+   (of-object "ClutterActor")
+   (return-type "gboolean")
+   (when "last")
+   (parameters
+     '("ClutterEvent*" "p0")
+   )
+@@ -2430,26 +2437,27 @@
+ (define-signal delete-text
+   (of-object "ClutterText")
+   (return-type "void")
+   (when "last")
+   (parameters
+     '("gint" "p0")
+     '("gint" "p1")
+   )
+ )
+ 
++; We add the const- manually:
+ (define-signal cursor-event
+   (of-object "ClutterText")
+   (return-type "void")
+   (when "last")
+   (parameters
+-    '("ClutterGeometry*" "p0")
++    '("const-ClutterGeometry*" "p0")
+   )
+ )
+ 
+ (define-signal cursor-changed
+   (of-object "ClutterText")
+   (return-type "void")
+   (when "last")
+ )
+ 
+ (define-signal activate
