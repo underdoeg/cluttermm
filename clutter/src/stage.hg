@@ -21,11 +21,18 @@
 _DEFS(cluttermm,clutter)
 _PINCLUDE(cluttermm/private/group_p.h)
 
+#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+#m4 _POP()
+
 namespace Clutter
 {
 
 _WRAP_ENUM(PickMode, ClutterPickMode)
 
+/**
+ * @deprecated Fog settings are ignored.
+ */
 typedef ClutterFog Fog;
 
 class Perspective
@@ -127,7 +134,7 @@ public:
   _WRAP_METHOD(void get_fog(Fog& fog) const, clutter_stage_get_fog, deprecated "This function will always return default values.")
 
   _WRAP_METHOD(void stage_event(Event* event), clutter_stage_event)
-  _WRAP_METHOD(bool is_default() const, clutter_stage_is_default)
+  _WRAP_METHOD(bool is_default() const, clutter_stage_is_default, deprecated "Track the stage pointer inside your application code, or use Actor::get_stage() to retrieve the stage for a given actor.")
   _WRAP_METHOD(void ensure_current(), clutter_stage_ensure_current)
   _WRAP_METHOD(void ensure_viewport(), clutter_stage_ensure_viewport)
 
