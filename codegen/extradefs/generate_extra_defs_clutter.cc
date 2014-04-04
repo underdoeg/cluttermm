@@ -28,7 +28,10 @@
 
 int main(int argc, char** argv)
 {
-  clutter_init(&argc, &argv);
+  if(clutter_init(&argc, &argv) != CLUTTER_INIT_SUCCESS)
+  {
+    std::cerr << G_STRFUNC << ": clutter_init() failed." << std::endl;
+  }
 
   std::cout
     << get_defs(CLUTTER_TYPE_ACTOR)
