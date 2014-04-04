@@ -16,6 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+// We always need to generate the .defs for all types because the code
+// using deprecated API is generated unconditionally and only disabled
+// at compile time.
+#undef CLUTTER_DISABLE_DEPRECATED
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+
 #include <glibmm_generate_extra_defs/generate_extra_defs.h>
 #include <clutter/clutter.h>
 #include <iostream>
