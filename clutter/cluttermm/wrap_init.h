@@ -3,7 +3,7 @@
 
 /* wrap_init.h
  *
- * Copyright (C) 2002-2003 The cluttermm Development Team
+ * Copyright (C) 2002-2014 The cluttermm Development Team
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -24,6 +24,10 @@
 
 namespace Clutter
 {
+
+// TODO: This is needed in wrap_init.cc, but to get it there in a better way than
+// putting it here requires a change in generate_wrap_init.pl.
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
 
 void wrap_init();
 
