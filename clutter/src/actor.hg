@@ -447,12 +447,12 @@ _DEPRECATE_IFDEF_END
 
   // Clutter docs: Use g_list_free() when done.
   #m4 _CONVERSION(`GList*',`std::vector< Glib::RefPtr<Clutter::Constraint> >',`Glib::ListHandler< Glib::RefPtr<Clutter::Constraint> >::list_to_vector($3, Glib::OWNERSHIP_SHALLOW)')
-  _WRAP_METHOD( std::vector< Glib::RefPtr<Clutter::Constraint> > get_constraints(), clutter_actor_get_constraints )
-  #m4 _CONVERSION(`GList*',`std::vector< Glib::RefPtr< const Clutter::Constraint > >',`Glib::ListHandler< Glib::RefPtr< const Clutter::Constraint > >::list_to_vector($3, Glib::OWNERSHIP_SHALLOW)')
-  _WRAP_METHOD( std::vector< Glib::RefPtr< const Clutter::Constraint > > get_constraints() const, clutter_actor_get_constraints)
+  _WRAP_METHOD(std::vector< Glib::RefPtr<Clutter::Constraint> > get_constraints(), clutter_actor_get_constraints )
+  #m4 _CONVERSION(`GList*',`std::vector< Glib::RefPtr<const Clutter::Constraint> >',`Glib::ListHandler< Glib::RefPtr<const Clutter::Constraint> >::list_to_vector($3, Glib::OWNERSHIP_SHALLOW)')
+  _WRAP_METHOD(std::vector< Glib::RefPtr<const Clutter::Constraint> > get_constraints() const, clutter_actor_get_constraints)
 
   _WRAP_METHOD(Glib::RefPtr<const Constraint> get_constraint(const Glib::ustring& name) const, clutter_actor_get_constraint, refreturn, constversion)
-  _WRAP_METHOD(Glib::RefPtr< Constraint > get_constraint(const Glib::ustring& name), clutter_actor_get_constraint, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<Constraint> get_constraint(const Glib::ustring& name), clutter_actor_get_constraint, refreturn)
   _WRAP_METHOD(void clear_constraints(), clutter_actor_clear_constraints)
 
 // signals
@@ -491,8 +491,10 @@ _DEPRECATE_IFDEF_END
   _WRAP_PROPERTY("anchor-gravity", Gravity)
   _WRAP_PROPERTY("clip", Geometry)
   _WRAP_PROPERTY("clip-to-allocation", bool)
-  // This property is not wrapped: documented in Clutter as adding a Constraint when set.
+
+  // This property is not wrapped because it is documented in Clutter as adding, instead of just setting, a Constraint.
   //_WRAP_PROPERTY("constraints", Glib::RefPtr<Constraint>)
+
   _WRAP_PROPERTY("depth", float)
   _WRAP_PROPERTY("fixed-position-set", bool)
   _WRAP_PROPERTY("fixed-x", float)
