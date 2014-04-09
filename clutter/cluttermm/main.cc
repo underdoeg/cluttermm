@@ -17,6 +17,8 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+
 #include <cluttermm/main.h>
 #include <clutter/clutter.h>
 
@@ -38,6 +40,7 @@ int main_level()
   return clutter_main_level();
 }
 
+#ifndef CLUTTERMM_DISABLE_DEPRECATED
 bool get_debug_enabled()
 {
   return clutter_get_debug_enabled();
@@ -92,6 +95,8 @@ FontFlags get_font_flags()
 {
   return (FontFlags)clutter_get_font_flags();
 }
+#endif //CLUTTERMM_DISABLE_DEPRECATED
+
 
 Glib::RefPtr<Pango::FontMap> get_font_map()
 {
@@ -128,6 +133,7 @@ void ungrab_pointer()
   clutter_ungrab_pointer();
 }
 
+#ifndef CLUTTERMM_DISABLE_DEPRECATED
 void grab_pointer_for_device(const Glib::RefPtr<Actor>& actor, int id)
 {
   clutter_grab_pointer_for_device(actor->gobj(), id);
@@ -137,5 +143,7 @@ void ungrab_pointer_for_device(int id)
 {
   clutter_ungrab_pointer_for_device(id);
 }
+#endif //CLUTTERMM_DISABLE_DEPRECATED
+
 
 } //namespace Clutter
