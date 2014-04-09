@@ -23,13 +23,20 @@
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/interface_p.h)
 
+#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+#m4 _POP()
 
 namespace Clutter
 {
 
+/**
+ * @deprecated
+ */
 class Media : public Glib::Interface
 {
   _CLASS_INTERFACE(Media, ClutterMedia, CLUTTER_MEDIA, ClutterMediaIface)
+  _IS_DEPRECATED
 
 public:
 
