@@ -40,8 +40,12 @@ void init(int* argc, gchar **argv[])
 {
   common_init();
   GError* error = NULL;
-  clutter_init_with_args(argc, argv, NULL, NULL, NULL, &error);
-  if(error != NULL) Glib::Error::throw_exception(error);
+  const ClutterInitError result = clutter_init_with_args(argc, argv, NULL, NULL, NULL, &error);
+  if(error)
+    Glib::Error::throw_exception(error);
+
+  if(result != CLUTTER_INIT_SUCCESS)
+    throw Glib::Error(); //This should never happen. The GError should always be set.
 }
 
 void init(int& argc, gchar**& argv)
