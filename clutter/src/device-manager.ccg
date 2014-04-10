@@ -15,48 +15,12 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <cluttermm/backend.h>
+//#include <cluttermm/backend.h>
 #include <clutter/clutter.h>
+#include <cluttermm/input-device.h>
 
 namespace Clutter
 {
 
-
-Glib::RefPtr<DeviceManager> DeviceManager::get_default()
-{
-  return Glib::wrap(clutter_device_manager_get_default());
-}
-
-std::vector<Glib::RefPtr<InputDevice> > DeviceManager::list_devices()
-{
-  GSList* deviceList = clutter_device_manager_list_devices(gobj());
-
-  const guint deviceCount = g_slist_length(deviceList);
-  std::vector<Glib::RefPtr<InputDevice> > deviceVec;
-  deviceVec.reserve(deviceCount);
-
-  for(GSList* deviceNode = deviceList; deviceNode->next; deviceNode = deviceList->next)
-  {
-    deviceVec.push_back(Glib::wrap(static_cast<ClutterInputDevice*>(deviceNode->data), true));
-  }
-
-  return deviceVec;
-}
-
-std::vector<Glib::RefPtr<const InputDevice> > DeviceManager::list_devices() const
-{
-  GSList* deviceList = clutter_device_manager_list_devices(const_cast<ClutterDeviceManager*>(gobj()));
-
-  const guint deviceCount = g_slist_length(deviceList);
-  std::vector<Glib::RefPtr<const InputDevice> > deviceVec;
-  deviceVec.reserve(deviceCount);
-
-  for(GSList* deviceNode = deviceList; deviceNode->next; deviceNode = deviceList->next)
-  {
-    deviceVec.push_back(Glib::wrap(static_cast<ClutterInputDevice*>(deviceNode->data), true));
-  }
-
-  return deviceVec;
-}
-
 } // namespace Clutter
+

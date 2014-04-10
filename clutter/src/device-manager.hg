@@ -15,7 +15,8 @@
  * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <glibmm/object.h>
+#include <cluttermm/types.h>
+#include <cluttermm/backend.h>
 #include <cluttermm/input-device.h>
 
 _DEFS(cluttermm,clutter)
@@ -24,30 +25,30 @@ _PINCLUDE(glibmm/private/object_p.h)
 namespace Clutter
 {
 
-class Backend;
-
 class DeviceManager : public Glib::Object
 {
   _CLASS_GOBJECT(DeviceManager, ClutterDeviceManager, CLUTTER_DEVICE_MANAGER, Glib::Object, GObject)
-
+  _DERIVES_INITIALLY_UNOWNED()
 protected:
   _CTOR_DEFAULT()
 
 public:
 
-  Glib::RefPtr<DeviceManager> get_default();
+  _WRAP_METHOD(static Glib::RefPtr<DeviceManager> get_default(), clutter_device_manager_get_default, refreturn)
 
-  _IGNORE(clutter_device_manager_peek_devices, clutter_device_manager_list_devices)
-  _WRAP_METHOD_DOCS_ONLY(clutter_device_manager_list_devices)
-  std::vector<Glib::RefPtr<InputDevice> >       list_devices();
-  std::vector<Glib::RefPtr<const InputDevice> > list_devices() const;
+#m4 _CONVERSION(`GSList*',`std::vector< Glib::RefPtr<InputDevice> >',`Glib::SListHandler< Glib::RefPtr<InputDevice> >::slist_to_vector($3, Glib::OWNERSHIP_SHALLOW)')
+  _WRAP_METHOD(std::vector< Glib::RefPtr<InputDevice> > list_devices(), clutter_device_manager_list_devices)
+
+#m4 _CONVERSION(`const GSList*',`std::vector< Glib::RefPtr<const InputDevice> >',`Glib::SListHandler< Glib::RefPtr<const InputDevice> >::slist_to_vector(const_cast<GSList*>($3), Glib::OWNERSHIP_SHALLOW)')
+  _WRAP_METHOD(std::vector< Glib::RefPtr<const InputDevice> > list_devices() const, clutter_device_manager_peek_devices)
 
   _WRAP_METHOD(Glib::RefPtr<InputDevice> get_device(int device_id), clutter_device_manager_get_device, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const InputDevice> get_device(int device_id) const, clutter_device_manager_get_device, refreturn, constversion)
+
   _WRAP_METHOD(Glib::RefPtr<InputDevice> get_core_device(InputDeviceType device_type), clutter_device_manager_get_core_device, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const InputDevice> get_core_device(InputDeviceType device_type) const, clutter_device_manager_get_core_device, refreturn, constversion)
 
-  _IGNORE(clutter_get_input_device_for_id)
+  _IGNORE(clutter_get_input_device_for_id)// deprecated.
 
   _WRAP_PROPERTY("backend", Glib::RefPtr<Backend>)
 };
