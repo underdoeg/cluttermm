@@ -113,6 +113,7 @@
 #include <cluttermm/rectangle.h>
 #include <cluttermm/score.h>
 #include <cluttermm/script.h>
+#include <cluttermm/scroll-actor.h>
 #include <cluttermm/shader.h>
 #include <cluttermm/shader-effect.h>
 #include <cluttermm/size.h>

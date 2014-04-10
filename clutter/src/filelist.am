@@ -67,6 +67,7 @@ files_hg =			\
 	path-constraint.hg \
 	property-transition.hg  \
 	rectangle.hg		\
+	scroll-actor.hg		\
 	score.hg		\
 	script.hg		\
 	scriptable.hg		\
