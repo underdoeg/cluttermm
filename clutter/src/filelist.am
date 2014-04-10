@@ -7,6 +7,7 @@ files_defs =			\
 	clutter_others.defs	\
 	clutter_signals.defs	\
 	clutter_vfuncs.defs	\
+	clutter_extra_objects.defs \
 	clutter_docs.xml	\
 	clutter_docs_override.xml
 

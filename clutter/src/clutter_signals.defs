@@ -2099,6 +2099,35 @@
   (construct-only #f)
 )
 
+;; From ClutterPageTurnEffect
+
+(define-property period
+  (of-object "ClutterPageTurnEffect")
+  (prop-type "GParamDouble")
+  (docs "The period of the page turn")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property angle
+  (of-object "ClutterPageTurnEffect")
+  (prop-type "GParamDouble")
+  (docs "The angle of the page rotation, in degrees")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property radius
+  (of-object "ClutterPageTurnEffect")
+  (prop-type "GParamFloat")
+  (docs "The radius of the page curl")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 ;; From ClutterPath
 
 (define-property description

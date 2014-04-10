@@ -3,3 +3,4 @@
 (include clutter_vfuncs.defs)
 (include clutter_enums.defs)
 (include clutter_others.defs)
+(include clutter_extra_objects.defs)
