@@ -29,6 +29,7 @@ class FlowLayout :
     public LayoutManager
 {
   _CLASS_GOBJECT(FlowLayout, ClutterFlowLayout, CLUTTER_FLOW_LAYOUT, LayoutManager, ClutterLayoutManager)
+  _DERIVES_INITIALLY_UNOWNED()
 
 protected:
   _WRAP_CTOR(FlowLayout(FlowOrientation orientation), clutter_flow_layout_new)
@@ -37,19 +38,22 @@ public:
   _WRAP_CREATE(FlowOrientation orientation)
 
   _WRAP_METHOD(void set_homogeneous(bool homogeneous), clutter_flow_layout_set_homogeneous)
-  _WRAP_METHOD(bool get_homogeneous(), clutter_flow_layout_get_homogeneous)
+  _WRAP_METHOD(bool get_homogeneous() const, clutter_flow_layout_get_homogeneous)
 
   _WRAP_METHOD(void set_orientation(FlowOrientation orientation), clutter_flow_layout_set_orientation)
-  _WRAP_METHOD(ClutterFlowOrientation get_orientation(), clutter_flow_layout_get_orientation)
+  _WRAP_METHOD(FlowOrientation get_orientation() const, clutter_flow_layout_get_orientation)
+  _WRAP_METHOD(void set_snap_to_grid(bool snap_to_grid), clutter_flow_layout_set_snap_to_grid)
+  _WRAP_METHOD(bool get_snap_to_grid() const, clutter_flow_layout_get_snap_to_grid)
 
   _WRAP_METHOD(void set_column_spacing(float spacing), clutter_flow_layout_set_column_spacing)
-  _WRAP_METHOD(float get_column_spacing(), clutter_flow_layout_get_column_spacing)
+  _WRAP_METHOD(float get_column_spacing() const, clutter_flow_layout_get_column_spacing)
   _WRAP_METHOD(void set_row_spacing(float spacing), clutter_flow_layout_set_row_spacing)
-  _WRAP_METHOD(float get_row_spacing(), clutter_flow_layout_get_row_spacing)
+  _WRAP_METHOD(float get_row_spacing() const, clutter_flow_layout_get_row_spacing)
   _WRAP_METHOD(void set_column_width(float min_width, float max_width), clutter_flow_layout_set_column_width)
-  _WRAP_METHOD(void get_column_width(float &min_width, float &max_width), clutter_flow_layout_get_column_width)
+
+  _WRAP_METHOD(void get_column_width(float& min_width, float& max_width) const, clutter_flow_layout_get_column_width)
   _WRAP_METHOD(void set_row_height(float min_height, float max_height), clutter_flow_layout_set_row_height)
-  _WRAP_METHOD(void get_row_height(float &min_height, float &max_height), clutter_flow_layout_get_row_height)
+  _WRAP_METHOD(void get_row_height(float &min_height, float &max_height) const, clutter_flow_layout_get_row_height)
 
   _WRAP_PROPERTY("homogeneous", bool)
   _WRAP_PROPERTY("orientation", FlowOrientation)
@@ -57,9 +61,9 @@ public:
   _WRAP_PROPERTY("row-spacing", float)
   _WRAP_PROPERTY("min-column-width", float)
   _WRAP_PROPERTY("max-column-width", float)
-  _WRAP_PROPERTY("min-row-width", float)
-  _WRAP_PROPERTY("max-row-width", float)
+  _WRAP_PROPERTY("min-row-height", float)
+  _WRAP_PROPERTY("max-row-height", float)
+  _WRAP_PROPERTY("snap-to-grid", bool)
 };
 
 } // namespace Clutter
-
