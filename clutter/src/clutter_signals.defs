@@ -1,3 +1,5 @@
+;; From ClutterAction
+
 ;; From ClutterActor
 
 (define-signal destroy
@@ -1011,6 +1013,8 @@
   (construct-only #f)
 )
 
+;; From ClutterAnimatable
+
 ;; From ClutterAlpha
 
 (define-property timeline
@@ -1474,6 +1478,8 @@
   (construct-only #f)
 )
 
+;; From ClutterBlurEffect
+
 ;; From ClutterBox
 
 (define-property color
@@ -1563,6 +1569,26 @@
   (of-object "ClutterBoxLayout")
   (prop-type "GParamEnum")
   (docs "The orientation of the layout")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From ClutterBrightnessContrastEffect
+
+(define-property brightness
+  (of-object "ClutterBrightnessContrastEffect")
+  (prop-type "ClutterParamSpecColor")
+  (docs "The brightness change to apply")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property contrast
+  (of-object "ClutterBrightnessContrastEffect")
+  (prop-type "ClutterParamSpecColor")
+  (docs "The contrast change to apply")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -1685,6 +1711,63 @@
   (construct-only #t)
 )
 
+;; From ClutterClickAction
+
+(define-signal clicked
+  (of-object "ClutterClickAction")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("ClutterActor*" "p0")
+  )
+)
+
+(define-signal long-press
+  (of-object "ClutterClickAction")
+  (return-type "gboolean")
+  (when "last")
+  (parameters
+    '("ClutterActor*" "p0")
+    '("ClutterLongPressState" "p1")
+  )
+)
+
+(define-property held
+  (of-object "ClutterClickAction")
+  (prop-type "GParamBoolean")
+  (docs "Whether the clickable has a grab")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property pressed
+  (of-object "ClutterClickAction")
+  (prop-type "GParamBoolean")
+  (docs "Whether the clickable should be in pressed state")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property long-press-threshold
+  (of-object "ClutterClickAction")
+  (prop-type "GParamInt")
+  (docs "The maximum threshold before a long press is cancelled")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property long-press-duration
+  (of-object "ClutterClickAction")
+  (prop-type "GParamInt")
+  (docs "The minimum duration of a long press to recognize the gesture")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 ;; From ClutterClone
 
 (define-property source
@@ -1697,6 +1780,17 @@
 )
 
 ;; ClutterColor is neither a GObject nor a GInterface. Not checked for signals and properties.
+
+;; From ClutterColorizeEffect
+
+(define-property tint
+  (of-object "ClutterColorizeEffect")
+  (prop-type "ClutterParamSpecColor")
+  (docs "The tint to apply")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
 
 ;; From ClutterConstraint
 
@@ -1750,6 +1844,55 @@
   )
 )
 
+;; From ClutterContent
+
+(define-signal attached
+  (of-object "ClutterContent")
+  (return-type "void")
+  (when "first")
+  (parameters
+    '("ClutterActor*" "p0")
+  )
+)
+
+(define-signal detached
+  (of-object "ClutterContent")
+  (return-type "void")
+  (when "first")
+  (parameters
+    '("ClutterActor*" "p0")
+  )
+)
+
+;; From ClutterDeformEffect
+
+(define-property x-tiles
+  (of-object "ClutterDeformEffect")
+  (prop-type "GParamUInt")
+  (docs "The number of horizontal tiles")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property y-tiles
+  (of-object "ClutterDeformEffect")
+  (prop-type "GParamUInt")
+  (docs "The number of vertical tiles")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property back-material
+  (of-object "ClutterDeformEffect")
+  (prop-type "GParamBoxed")
+  (docs "The material to be used when painting the back of the actor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 ;; From ClutterDeviceManager
 
 (define-signal device-added
@@ -1777,6 +1920,172 @@
   (readable #t)
   (writable #t)
   (construct-only #t)
+)
+
+;; From ClutterDesaturateEffect
+
+(define-property factor
+  (of-object "ClutterDesaturateEffect")
+  (prop-type "GParamDouble")
+  (docs "The desaturation factor")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From ClutterDragAction
+
+(define-signal drag-begin
+  (of-object "ClutterDragAction")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("ClutterActor*" "p0")
+    '("gfloat" "p1")
+    '("gfloat" "p2")
+    '("ClutterModifierType" "p3")
+  )
+)
+
+(define-signal drag-progress
+  (of-object "ClutterDragAction")
+  (return-type "gboolean")
+  (when "last")
+  (parameters
+    '("ClutterActor*" "p0")
+    '("gfloat" "p1")
+    '("gfloat" "p2")
+  )
+)
+
+(define-signal drag-motion
+  (of-object "ClutterDragAction")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("ClutterActor*" "p0")
+    '("gfloat" "p1")
+    '("gfloat" "p2")
+  )
+)
+
+(define-signal drag-end
+  (of-object "ClutterDragAction")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("ClutterActor*" "p0")
+    '("gfloat" "p1")
+    '("gfloat" "p2")
+    '("ClutterModifierType" "p3")
+  )
+)
+
+(define-property x-drag-threshold
+  (of-object "ClutterDragAction")
+  (prop-type "GParamInt")
+  (docs "The horizontal amount of pixels required to start dragging")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property y-drag-threshold
+  (of-object "ClutterDragAction")
+  (prop-type "GParamInt")
+  (docs "The vertical amount of pixels required to start dragging")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property drag-handle
+  (of-object "ClutterDragAction")
+  (prop-type "GParamObject")
+  (docs "The actor that is being dragged")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property drag-axis
+  (of-object "ClutterDragAction")
+  (prop-type "GParamEnum")
+  (docs "Constraints the dragging to an axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property drag-area
+  (of-object "ClutterDragAction")
+  (prop-type "GParamBoxed")
+  (docs "Constrains the dragging to a rectangle")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property drag-area-set
+  (of-object "ClutterDragAction")
+  (prop-type "GParamBoolean")
+  (docs "Whether the drag area is set")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+;; From ClutterDropAction
+
+(define-signal can-drop
+  (of-object "ClutterDropAction")
+  (return-type "gboolean")
+  (when "last")
+  (parameters
+    '("ClutterActor*" "p0")
+    '("gfloat" "p1")
+    '("gfloat" "p2")
+  )
+)
+
+(define-signal over-in
+  (of-object "ClutterDropAction")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("ClutterActor*" "p0")
+  )
+)
+
+(define-signal over-out
+  (of-object "ClutterDropAction")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("ClutterActor*" "p0")
+  )
+)
+
+(define-signal drop
+  (of-object "ClutterDropAction")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("ClutterActor*" "p0")
+    '("gfloat" "p1")
+    '("gfloat" "p2")
+  )
+)
+
+(define-signal drop-cancel
+  (of-object "ClutterDropAction")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("ClutterActor*" "p0")
+    '("gfloat" "p1")
+    '("gfloat" "p2")
+  )
 )
 
 ;; From ClutterEffect
@@ -1868,6 +2177,127 @@
   (construct-only #f)
 )
 
+;; From ClutterGestureAction
+
+(define-signal gesture-begin
+  (of-object "ClutterGestureAction")
+  (return-type "gboolean")
+  (when "last")
+  (parameters
+    '("ClutterActor*" "p0")
+  )
+)
+
+(define-signal gesture-progress
+  (of-object "ClutterGestureAction")
+  (return-type "gboolean")
+  (when "last")
+  (parameters
+    '("ClutterActor*" "p0")
+  )
+)
+
+(define-signal gesture-end
+  (of-object "ClutterGestureAction")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("ClutterActor*" "p0")
+  )
+)
+
+(define-signal gesture-cancel
+  (of-object "ClutterGestureAction")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("ClutterActor*" "p0")
+  )
+)
+
+(define-property n-touch-points
+  (of-object "ClutterGestureAction")
+  (prop-type "GParamInt")
+  (docs "Number of touch points")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property threshold-trigger-edge
+  (of-object "ClutterGestureAction")
+  (prop-type "GParamEnum")
+  (docs "The trigger edge used by the action")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property threshold-trigger-distance-x
+  (of-object "ClutterGestureAction")
+  (prop-type "GParamFloat")
+  (docs "The horizontal trigger distance used by the action")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property threshold-trigger-distance-y
+  (of-object "ClutterGestureAction")
+  (prop-type "GParamFloat")
+  (docs "The vertical trigger distance used by the action")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+;; From ClutterGridLayout
+
+(define-property orientation
+  (of-object "ClutterGridLayout")
+  (prop-type "GParamEnum")
+  (docs "The orientation of the layout")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property row-spacing
+  (of-object "ClutterGridLayout")
+  (prop-type "GParamUInt")
+  (docs "The amount of space between two consecutive rows")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property column-spacing
+  (of-object "ClutterGridLayout")
+  (prop-type "GParamUInt")
+  (docs "The amount of space between two consecutive columns")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property row-homogeneous
+  (of-object "ClutterGridLayout")
+  (prop-type "GParamBoolean")
+  (docs "If TRUE, the rows are all the same height")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property column-homogeneous
+  (of-object "ClutterGridLayout")
+  (prop-type "GParamBoolean")
+  (docs "If TRUE, the columns are all the same width")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 ;; From ClutterGroup
 
 ;; From ClutterInterval
@@ -1898,6 +2328,8 @@
   (writable #t)
   (construct-only #f)
 )
+
+;; From ClutterImage
 
 ;; From ClutterInputDevice
 
@@ -1982,6 +2414,37 @@
   (construct-only #f)
 )
 
+;; From ClutterInterval
+
+(define-property value-type
+  (of-object "ClutterInterval")
+  (prop-type "GParamGType")
+  (docs "The type of the values in the interval")
+  (readable #t)
+  (writable #t)
+  (construct-only #t)
+)
+
+(define-property initial
+  (of-object "ClutterInterval")
+  (prop-type "GParamBoxed")
+  (docs "Initial value of the interval")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property final
+  (of-object "ClutterInterval")
+  (prop-type "GParamBoxed")
+  (docs "Final value of the interval")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From ClutterKeyframeTransition
+
 ;; From ClutterLayoutManager
 
 (define-signal layout-changed
@@ -2000,6 +2463,8 @@
   (writable #t)
   (construct-only #t)
 )
+
+;; From ClutterListModel
 
 ;; From ClutterMedia
 
@@ -2099,6 +2564,58 @@
   (construct-only #f)
 )
 
+;; From ClutterModel
+
+(define-signal row-added
+  (of-object "ClutterModel")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("ClutterModelIter*" "p0")
+  )
+)
+
+(define-signal row-removed
+  (of-object "ClutterModel")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("ClutterModelIter*" "p0")
+  )
+)
+
+(define-signal row-changed
+  (of-object "ClutterModel")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("ClutterModelIter*" "p0")
+  )
+)
+
+(define-signal sort-changed
+  (of-object "ClutterModel")
+  (return-type "void")
+  (when "last")
+)
+
+(define-signal filter-changed
+  (of-object "ClutterModel")
+  (return-type "void")
+  (when "last")
+)
+
+(define-property filter-set
+  (of-object "ClutterModel")
+  (prop-type "GParamBoolean")
+  (docs "Whether the model has a filter")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+;; From ClutterOffscreenEffect
+
 ;; From ClutterPageTurnEffect
 
 (define-property period
@@ -2123,6 +2640,65 @@
   (of-object "ClutterPageTurnEffect")
   (prop-type "GParamFloat")
   (docs "The radius of the page curl")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; ClutterPaintNode is neither a GObject nor a GInterface. Not checked for signals and properties.
+
+;; From ClutterPanAction
+
+(define-signal pan
+  (of-object "ClutterPanAction")
+  (return-type "gboolean")
+  (when "last")
+  (parameters
+    '("ClutterActor*" "p0")
+    '("gboolean" "p1")
+  )
+)
+
+(define-signal pan-stopped
+  (of-object "ClutterPanAction")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("ClutterActor*" "p0")
+  )
+)
+
+(define-property pan-axis
+  (of-object "ClutterPanAction")
+  (prop-type "GParamEnum")
+  (docs "Constraints the panning to an axis")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property interpolate
+  (of-object "ClutterPanAction")
+  (prop-type "GParamBoolean")
+  (docs "Whether interpolated events emission is enabled.")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property deceleration
+  (of-object "ClutterPanAction")
+  (prop-type "GParamDouble")
+  (docs "Rate at which the interpolated panning will decelerate in")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property acceleration-factor
+  (of-object "ClutterPanAction")
+  (prop-type "GParamDouble")
+  (docs "Factor applied to the momentum when starting the interpolated phase")
   (readable #t)
   (writable #t)
   (construct-only #f)
@@ -2227,25 +2803,19 @@
   (construct-only #f)
 )
 
+;; From ClutterRotateAction
+
+(define-signal rotate
+  (of-object "ClutterRotateAction")
+  (return-type "gboolean")
+  (when "last")
+  (parameters
+    '("ClutterActor*" "p0")
+    '("gdouble" "p1")
+  )
+)
+
 ;; From ClutterScore
-
-(define-signal timeline-started
-  (of-object "ClutterScore")
-  (return-type "void")
-  (when "last")
-  (parameters
-    '("ClutterTimeline*" "p0")
-  )
-)
-
-(define-signal timeline-completed
-  (of-object "ClutterScore")
-  (return-type "void")
-  (when "last")
-  (parameters
-    '("ClutterTimeline*" "p0")
-  )
-)
 
 (define-signal completed
   (of-object "ClutterScore")
@@ -2263,6 +2833,24 @@
   (of-object "ClutterScore")
   (return-type "void")
   (when "last")
+)
+
+(define-signal timeline-started
+  (of-object "ClutterScore")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("ClutterTimeline*" "p0")
+  )
+)
+
+(define-signal timeline-completed
+  (of-object "ClutterScore")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("ClutterTimeline*" "p0")
+  )
 )
 
 (define-property loop
@@ -2301,6 +2889,68 @@
   (readable #t)
   (writable #t)
   (construct-only #f)
+)
+
+;; From ClutterScriptable
+
+;; From ClutterScrollActor
+
+(define-property scroll-mode
+  (of-object "ClutterScrollActor")
+  (prop-type "GParamFlags")
+  (docs "The scrolling direction")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From ClutterShader
+
+(define-property vertex-source
+  (of-object "ClutterShader")
+  (prop-type "GParamString")
+  (docs "Source of vertex shader")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property fragment-source
+  (of-object "ClutterShader")
+  (prop-type "GParamString")
+  (docs "Source of fragment shader")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property compiled
+  (of-object "ClutterShader")
+  (prop-type "GParamBoolean")
+  (docs "Whether the shader is compiled and linked")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property enabled
+  (of-object "ClutterShader")
+  (prop-type "GParamBoolean")
+  (docs "Whether the shader is enabled")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From ClutterShaderEffect
+
+(define-property shader-type
+  (of-object "ClutterShaderEffect")
+  (prop-type "GParamEnum")
+  (docs "The type of shader used")
+  (readable #f)
+  (writable #t)
+  (construct-only #t)
 )
 
 ;; From ClutterSnapConstraint
@@ -2491,6 +3141,115 @@
   (readable #t)
   (writable #t)
   (construct-only #f)
+)
+
+;; From ClutterStageManager
+
+(define-signal stage-added
+  (of-object "ClutterStageManager")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("ClutterStage*" "p0")
+  )
+)
+
+(define-signal stage-removed
+  (of-object "ClutterStageManager")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("ClutterStage*" "p0")
+  )
+)
+
+(define-property default-stage
+  (of-object "ClutterStageManager")
+  (prop-type "GParamObject")
+  (docs "The default stage")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+;; From ClutterSwipeAction
+
+(define-signal swept
+  (of-object "ClutterSwipeAction")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("ClutterActor*" "p0")
+    '("ClutterSwipeDirection" "p1")
+  )
+)
+
+(define-signal swipe
+  (of-object "ClutterSwipeAction")
+  (return-type "gboolean")
+  (when "last")
+  (parameters
+    '("ClutterActor*" "p0")
+    '("ClutterSwipeDirection" "p1")
+  )
+)
+
+;; From ClutterTableLayout
+
+(define-property row-spacing
+  (of-object "ClutterTableLayout")
+  (prop-type "GParamUInt")
+  (docs "Spacing between rows")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property column-spacing
+  (of-object "ClutterTableLayout")
+  (prop-type "GParamUInt")
+  (docs "Spacing between columns")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property use-animations
+  (of-object "ClutterTableLayout")
+  (prop-type "GParamBoolean")
+  (docs "Whether layout changes should be animated")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property easing-mode
+  (of-object "ClutterTableLayout")
+  (prop-type "GParamULong")
+  (docs "The easing mode of the animations")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property easing-duration
+  (of-object "ClutterTableLayout")
+  (prop-type "GParamUInt")
+  (docs "The duration of the animations")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+;; From ClutterTapAction
+
+(define-signal tap
+  (of-object "ClutterTapAction")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("ClutterActor*" "p0")
+  )
 )
 
 ;; From ClutterText
@@ -2958,7 +3717,66 @@
   (construct-only #f)
 )
 
+;; From ClutterTextBuffer
+
+(define-signal inserted-text
+  (of-object "ClutterTextBuffer")
+  (return-type "void")
+  (when "first")
+  (parameters
+    '("guint" "p0")
+    '("const-gchar*" "p1")
+    '("guint" "p2")
+  )
+)
+
+(define-signal deleted-text
+  (of-object "ClutterTextBuffer")
+  (return-type "void")
+  (when "first")
+  (parameters
+    '("guint" "p0")
+    '("guint" "p1")
+  )
+)
+
+(define-property text
+  (of-object "ClutterTextBuffer")
+  (prop-type "GParamString")
+  (docs "The contents of the buffer")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property length
+  (of-object "ClutterTextBuffer")
+  (prop-type "GParamUInt")
+  (docs "Length of the text currently in the buffer")
+  (readable #t)
+  (writable #f)
+  (construct-only #f)
+)
+
+(define-property max-length
+  (of-object "ClutterTextBuffer")
+  (prop-type "GParamInt")
+  (docs "Maximum number of characters for this entry. Zero if no maximum")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
 ;; From ClutterTimeline
+
+(define-signal new-frame
+  (of-object "ClutterTimeline")
+  (return-type "void")
+  (when "last")
+  (parameters
+    '("gint" "p0")
+  )
+)
 
 (define-signal completed
   (of-object "ClutterTimeline")
@@ -2976,15 +3794,6 @@
   (of-object "ClutterTimeline")
   (return-type "void")
   (when "last")
-)
-
-(define-signal new-frame
-  (of-object "ClutterTimeline")
-  (return-type "void")
-  (when "last")
-  (parameters
-    '("gint" "p0")
-  )
 )
 
 (define-signal marker-reached
@@ -3098,115 +3907,25 @@
   (construct-only #f)
 )
 
-;; From ClutterScore
+;; From ClutterTransitionGroup
 
-(define-signal timeline-started
-  (of-object "ClutterScore")
-  (return-type "void")
+;; From ClutterZoomAction
+
+(define-signal zoom
+  (of-object "ClutterZoomAction")
+  (return-type "gboolean")
   (when "last")
   (parameters
-    '("ClutterTimeline*" "p0")
+    '("ClutterActor*" "p0")
+    '("ClutterPoint*" "p1")
+    '("gdouble" "p2")
   )
 )
 
-(define-signal timeline-completed
-  (of-object "ClutterScore")
-  (return-type "void")
-  (when "last")
-  (parameters
-    '("ClutterTimeline*" "p0")
-  )
-)
-
-(define-signal completed
-  (of-object "ClutterScore")
-  (return-type "void")
-  (when "last")
-)
-
-(define-signal started
-  (of-object "ClutterScore")
-  (return-type "void")
-  (when "last")
-)
-
-(define-signal paused
-  (of-object "ClutterScore")
-  (return-type "void")
-  (when "last")
-)
-
-(define-property loop
-  (of-object "ClutterScore")
-  (prop-type "GParamBoolean")
-  (docs "Whether the score should restart once finished")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-;; From ClutterShader
-
-(define-property vertex-source
-  (of-object "ClutterShader")
-  (prop-type "GParamString")
-  (docs "Source of vertex shader")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property fragment-source
-  (of-object "ClutterShader")
-  (prop-type "GParamString")
-  (docs "Source of fragment shader")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-(define-property compiled
-  (of-object "ClutterShader")
-  (prop-type "GParamBoolean")
-  (docs "Whether the shader is compiled and linked")
-  (readable #t)
-  (writable #f)
-  (construct-only #f)
-)
-
-(define-property enabled
-  (of-object "ClutterShader")
-  (prop-type "GParamBoolean")
-  (docs "Whether the shader is enabled")
-  (readable #t)
-  (writable #t)
-  (construct-only #f)
-)
-
-;; From ClutterScript
-
-(define-property filename-set
-  (of-object "ClutterScript")
-  (prop-type "GParamBoolean")
-  (docs "Whether the :filename property is set")
-  (readable #t)
-  (writable #f)
-  (construct-only #f)
-)
-
-(define-property filename
-  (of-object "ClutterScript")
-  (prop-type "GParamString")
-  (docs "The path of the currently parsed file")
-  (readable #t)
-  (writable #f)
-  (construct-only #f)
-)
-
-(define-property translation-domain
-  (of-object "ClutterScript")
-  (prop-type "GParamString")
-  (docs "The translation domain used to localize string")
+(define-property zoom-axis
+  (of-object "ClutterZoomAction")
+  (prop-type "GParamEnum")
+  (docs "Constraints the zoom to an axis")
   (readable #t)
   (writable #t)
   (construct-only #f)
