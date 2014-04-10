@@ -64,6 +64,8 @@ _CONVERSION(`const Glib::RefPtr<const Effect>&',`ClutterEffect*',__CONVERT_CONST
 _CONVERSION(`ClutterEffect*',`Glib::RefPtr<Effect>',`Glib::wrap($3)')
 _CONVERSION(`ClutterEffect*',`Glib::RefPtr<const Effect>',`Glib::wrap($3)')
 
+_CONVERSION(`const Glib::RefPtr<Event>&', `ClutterEvent*',__CONVERT_REFPTR_TO_P)
+
 _CONVERSION(`Geometry&',`Clutter::Geometry*',`($3).gobj()')
 _CONVERSION(`const Geometry&',`ClutterGeometry*',`const_cast<ClutterGeometry*>(($3).gobj())')
 _CONVERSION(`const Geometry&',`const ClutterGeometry*',`($3).gobj()')
@@ -192,7 +194,9 @@ _CONV_ENUM(Clutter,ContentRepeat)
 _CONV_ENUM(Clutter,FlowOrientation)
 _CONV_ENUM(Clutter,Gravity)
 _CONV_ENUM(Clutter,GridPosition)
+_CONV_ENUM(Clutter,InputAxis)
 _CONV_ENUM(Clutter,InputDeviceType)
+_CONV_ENUM(Clutter,InputMode)
 _CONV_ENUM(Clutter,Interpolation)
 _CONV_ENUM(Clutter,LayoutFlags)
 _CONV_ENUM(Clutter,ModifierType)

@@ -31,15 +31,20 @@ typedef struct _ClutterEventSequence            ClutterEventSequence;
 namespace Clutter
 {
 
+_WRAP_ENUM(InputAxis, ClutterInputAxis)
+_WRAP_ENUM(InputMode, ClutterInputMode)
 _WRAP_ENUM(InputDeviceType, ClutterInputDeviceType)
 _WRAP_ENUM(ModifierType, ClutterModifierType)
 
 class Actor;
+class Backend;
 class Stage;
+class DeviceManager;
 
 class InputDevice : public Glib::Object
 {
   _CLASS_GOBJECT(InputDevice, ClutterInputDevice, CLUTTER_INPUT_DEVICE, Glib::Object, GObject)
+  _DERIVES_INITIALLY_UNOWNED()
 
 protected:
   _CTOR_DEFAULT()
@@ -57,15 +62,43 @@ public:
   _WRAP_METHOD(InputDeviceType get_device_type() const, clutter_input_device_get_device_type)
   _WRAP_METHOD(Glib::ustring get_device_name() const, clutter_input_device_get_device_name)
   _WRAP_METHOD(void get_device_coords(int &x, int &y) const, clutter_input_device_get_device_coords, deprecated "Use get_coords() instead.")
+
+  _WRAP_METHOD(InputMode get_device_mode() const, clutter_input_device_get_device_mode)
+  _WRAP_METHOD(bool get_has_cursor() const, clutter_input_device_get_has_cursor)
+  _WRAP_METHOD(void set_enabled(bool enabled = true), clutter_input_device_set_enabled)
+  _WRAP_METHOD(bool get_enabled() const, clutter_input_device_get_enabled)
+
+  _WRAP_METHOD(Glib::RefPtr<InputDevice> get_associated_device(), clutter_input_device_get_associated_device, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const InputDevice> get_associated_device() const, clutter_input_device_get_associated_device, refreturn, constversion)
+
+  _WRAP_METHOD(bool keycode_to_evdev(guint hardware_keycode, guint& evdev_keycode) const, clutter_input_device_keycode_to_evdev)
+  _WRAP_METHOD(bool get_n_keys() const, clutter_input_device_get_n_keys)
+  _WRAP_METHOD(void set_key(guint index, guint keyval, ModifierType modifiers), clutter_input_device_set_key)
+
+  #m4 _CONVERSION(`ModifierType&', `ClutterModifierType*', `($2)(&($3))')
+  _WRAP_METHOD(bool get_key(guint index, guint& keyval, ModifierType& modifiers) const, clutter_input_device_get_key)
+
+  _WRAP_METHOD(guint get_n_axes(), clutter_input_device_get_n_axes)
+  _WRAP_METHOD(InputAxis get_axis(guint index_), clutter_input_device_get_axis)
+
   _WRAP_METHOD(Glib::RefPtr<Actor> get_pointer_actor(), clutter_input_device_get_pointer_actor, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const Actor> get_pointer_actor() const, clutter_input_device_get_pointer_actor, refreturn, constversion)
   _WRAP_METHOD(Glib::RefPtr<Stage> get_pointer_stage(), clutter_input_device_get_pointer_stage, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const Stage> get_pointer_stage() const, clutter_input_device_get_pointer_stage, refreturn, , constversion)
 
-  //_WRAP_METHOD(void update_from_event(const Event &event, bool update_stage), clutter_input_device_update_from_event)
+  _WRAP_METHOD(void grab(const Glib::RefPtr<const Actor>& actor), clutter_input_device_grab)
+  _WRAP_METHOD(void ungrab(), clutter_input_device_ungrab)
 
+  //TODO: _WRAP_METHOD(void update_from_event(const Glib::RefPtr<Event>& event, bool update_stage), clutter_input_device_update_from_event)
+
+  _WRAP_PROPERTY("backend", Glib::RefPtr<Backend>)
+  _WRAP_PROPERTY("device-manager", Glib::RefPtr<DeviceManager>)
+  _WRAP_PROPERTY("device-mode", InputMode)
   _WRAP_PROPERTY("device-type", InputDeviceType)
+  _WRAP_PROPERTY("enabled", bool)
+  _WRAP_PROPERTY("has-cursor", bool)
   _WRAP_PROPERTY("id", int)
+  _WRAP_PROPERTY("n-axes", int)
   _WRAP_PROPERTY("name", Glib::ustring)
 };
 

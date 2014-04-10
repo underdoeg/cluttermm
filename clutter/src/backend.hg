@@ -42,8 +42,6 @@ public:
   _WRAP_METHOD(double get_resolution() const, clutter_backend_get_resolution, deprecated "Use Settings's front-dpi property instead.")
   _WRAP_METHOD(void set_resolution(double dpi), clutter_backend_set_resolution, deprecated "Use Settings's front-dpi property instead.")
 
-  _WRAP_METHOD(static Glib::RefPtr<Backend> get_default_backend(), clutter_get_default_backend, refreturn)
-
   _WRAP_METHOD(guint get_double_click_time() const, clutter_backend_get_double_click_time, deprecated "Use Settings's double-click-time property instead.")
   _WRAP_METHOD(void set_double_click_time(guint msec), clutter_backend_set_double_click_time, deprecated "Use Settings's double-click-time property instead.")
 
