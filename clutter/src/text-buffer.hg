@@ -1,0 +1,72 @@
+/* Copyright (C) 2013 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <glibmm/object.h>
+#include <glibmm/ustring.h>
+
+
+_DEFS(cluttermm,clutter)
+_PINCLUDE(glibmm/private/object_p.h)
+
+
+namespace Clutter
+{
+
+class TextBuffer: public Glib::Object
+{
+  _CLASS_GOBJECT(TextBuffer, ClutterTextBuffer, CLUTTER_TEXT_BUFFER, Glib::Object, GObject)
+  _DERIVES_INITIALLY_UNOWNED()
+
+protected:
+  _WRAP_CTOR(TextBuffer(), clutter_text_buffer_new)
+
+  _WRAP_METHOD_DOCS_ONLY(clutter_text_buffer_new_with_text)
+  explicit TextBuffer(const Glib::ustring& text);
+
+public:
+
+  _WRAP_CREATE()
+
+
+  /**
+   * sets the text in the buffer.
+   * */
+  void set_text(const Glib::ustring& text);
+  _IGNORE(clutter_text_buffer_set_text)
+
+
+  _WRAP_METHOD(Glib::ustring get_text() const, clutter_text_buffer_get_text)
+  _WRAP_METHOD(gsize get_bytes() const,clutter_text_buffer_get_bytes )
+  _WRAP_METHOD(guint get_length() const, clutter_text_buffer_get_length)
+  _WRAP_METHOD(void set_max_length(int max_length),clutter_text_buffer_set_max_length)
+  _WRAP_METHOD(int get_max_length() const, clutter_text_buffer_get_max_length)
+
+
+  _WRAP_METHOD(guint insert_text(guint position, const Glib::ustring& chars, int n_chars), clutter_text_buffer_insert_text)
+  _WRAP_METHOD(guint delete_text(guint position, int n_chars), clutter_text_buffer_delete_text)
+  _WRAP_METHOD(void emit_inserted_text(guint position, const Glib::ustring& chars, guint n_chars), clutter_text_buffer_emit_inserted_text)
+  _WRAP_METHOD(void emit_deleted_text(guint position, guint n_chars), clutter_text_buffer_emit_deleted_text)
+
+  _WRAP_SIGNAL(void deleted_text(guint position, guint n_chars), deleted_text)
+  _WRAP_SIGNAL(void inserted_text(guint position, const Glib::ustring& chars, guint n_chars), inserted_text)
+
+  _WRAP_PROPERTY("length", guint)
+  _WRAP_PROPERTY("max-length", int)
+  _WRAP_PROPERTY("text", Glib::ustring)
+};
+
+} // namespace Clutter

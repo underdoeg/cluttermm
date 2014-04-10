@@ -124,6 +124,9 @@ _CONVERSION(`ClutterShader*',`Glib::RefPtr<const Shader>', `Glib::wrap($3)')
 
 _CONVERSION(`ClutterStage*',`Glib::RefPtr<Stage>',`Glib::wrap($3)')
 
+_CONVERSION(`const Glib::RefPtr<TextBuffer>&',`ClutterTextBuffer*',__CONVERT_REFPTR_TO_P)
+_CONVERSION(`ClutterTextBuffer*',`Glib::RefPtr<TextBuffer>',`Glib::wrap($3)')
+
 _CONVERSION(`const Glib::RefPtr<Texture>&',`ClutterTexture*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`ClutterTexture*',`Glib::RefPtr<Texture>',`Glib::wrap($3)')
 

@@ -118,6 +118,7 @@
 #include <cluttermm/snap-constraint.h>
 #include <cluttermm/stage.h>
 #include <cluttermm/text.h>
+#include <cluttermm/text-buffer.h>
 #include <cluttermm/texture.h>
 #include <cluttermm/threads.h>
 #include <cluttermm/timeline.h>

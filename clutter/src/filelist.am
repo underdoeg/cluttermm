@@ -63,7 +63,7 @@ files_hg =			\
 	offscreen-effect.hg \
 	page-turn-effect.hg \
 	path.hg			\
-  path-constraint.hg \
+	path-constraint.hg \
 	property-transition.hg  \
 	rectangle.hg		\
 	score.hg		\
@@ -72,9 +72,10 @@ files_hg =			\
 	shader.hg		\
 	shader-effect.hg \
 	size.hg			\
-  snap-constraint.hg \
+	snap-constraint.hg \
 	stage.hg		\
 	text.hg			\
+	text-buffer.hg			\
 	texture.hg		\
 	timeline.hg		\
 	transition.hg \

@@ -16,6 +16,8 @@
  */
 
 #include <clutter/clutter.h>
+#include <cluttermm/color.h>
+#include <cluttermm/text-buffer.h>
 
 namespace Clutter
 {
@@ -40,5 +42,20 @@ Color Text::get_cursor_color() const
   clutter_text_get_cursor_color(const_cast<ClutterText*>(gobj()), color.gobj());
   return color;
 }
+
+Color Text::get_selected_text_color() const
+{
+  Color color;
+  clutter_text_get_selected_text_color(const_cast<ClutterText*>(gobj()), color.gobj());
+  return color;
+}
+
+Rect Text::get_cursor_rect() const
+{
+  Rect rect;
+  clutter_text_get_cursor_rect(const_cast<ClutterText*>(gobj()), rect.gobj());
+  return rect;
+}
+
 
 } // namespace Clutter
