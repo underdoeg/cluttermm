@@ -96,6 +96,11 @@ _CONVERSION(`ClutterLayoutMeta*',`Glib::RefPtr<const LayoutMeta>',`Glib::wrap($3
 
 _CONVERSION(`const Margin&',`const ClutterMargin*',`($3).gobj()')
 
+_CONVERSION(`ClutterModel*', `Glib::RefPtr<Model>', `Glib::wrap($3)')
+
+_CONVERSION(`ClutterModelIter*', `Glib::RefPtr<ModelIter>', `Glib::wrap($3)')
+_CONVERSION(`const Glib::RefPtr<ModelIter>&', `ClutterModelIter*',__CONVERT_REFPTR_TO_P)
+
 _CONVERSION(`Padding&',`ClutterPadding*',`&($3)')
 _CONVERSION(`const Padding&',`const ClutterPadding*',`&($3)')
 _CONVERSION(`ClutterPadding*',`Padding&',`*($3)')

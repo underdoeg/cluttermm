@@ -1,0 +1,54 @@
+/* Copyright (C) 2014 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <glibmm/object.h>
+
+_DEFS(cluttermm,clutter)
+_PINCLUDE(glibmm/private/object_p.h)
+
+namespace Clutter
+{
+
+class Model;
+
+class ModelIter: public Glib::Object
+{
+  _CLASS_GOBJECT(ModelIter, ClutterModelIter, CLUTTER_MODEL_ITER, Glib::Object, GObject)
+  _DERIVES_INITIALLY_UNOWNED()
+
+protected:
+  _CTOR_DEFAULT()
+
+public:
+  //_WRAP_CREATE()
+  //_WRAP_METHOD(void get_valist(va_list args), clutter_model_iter_get_valist)
+
+  _WRAP_METHOD(void get_value(guint column, const Glib::ValueBase& value), clutter_model_iter_get_value)
+  _WRAP_METHOD(void set_valist(va_list args),  clutter_model_iter_set_valist)
+  _WRAP_METHOD(void set_value(guint column, const Glib::ValueBase& value), clutter_model_iter_set_value)
+  _WRAP_METHOD(bool is_first() const, clutter_model_iter_is_first)
+  _WRAP_METHOD(bool is_last() const, clutter_model_iter_is_last)
+  _WRAP_METHOD(Glib::RefPtr<ModelIter> next(), clutter_model_iter_next, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<ModelIter> prev(), clutter_model_iter_prev, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<Model> get_model(), clutter_model_iter_get_model, refreturn)
+  _WRAP_METHOD(guint get_row() const, clutter_model_iter_get_row)
+
+   _WRAP_PROPERTY("model", Glib::RefPtr<Model>)
+   _WRAP_PROPERTY("row", int)
+};
+
+} // namespace Clutter

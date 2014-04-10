@@ -1,0 +1,82 @@
+/* Copyright (C) 2014 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <glibmm/object.h>
+#include <cluttermm/model-iter.h>
+
+_DEFS(cluttermm,clutter)
+_PINCLUDE(glibmm/private/object_p.h)
+
+namespace Clutter
+{
+
+//TODO: Write a version of the large description from here: http://clutter-project.org/docs/clutter/stable/ClutterModel.html#ClutterModel.description
+class Model : public Glib::Object
+{
+  _CLASS_GOBJECT(Model, ClutterModel, CLUTTER_MODEL, Glib::Object, GObject)
+
+protected:
+  _CTOR_DEFAULT()
+
+public:
+  //There is no create() because this is an abstract base class.
+  //_WRAP_CREATE()
+
+  //_WRAP_METHOD(GType get_type(), clutter_model_get_type)
+  //TODO: _WRAP_METHOD(void set_types(guint n_columns, GType* types), clutter_model_set_types)
+
+  _IGNORE(clutter_model_append, clutter_model_prepend, clutter_model_insert)
+  // TODO IM: Template these to get rid of the GValues:
+
+  //TODO: Value is a templated type and the n_columns parameter is superfluous:
+  //_WRAP_METHOD(void append(int n_columns, const std::vector<int>& columns, const std::vector<Glib::Value>& values), clutter_model_appendv)
+  //_WRAP_METHOD(void prepend(int n_columns, const std::vector<int>&  columns, std::vector<Glib::Value>  values), clutter_model_prependv)
+  //_WRAP_METHOD(void insert(int row, int n_columns, const std::vector<int>&  columns, const std::vector<GLib::Value>& values), clutter_model_insertv)
+
+  //TODO: Rename ths to insert_value() and add a templated insert()?
+  _WRAP_METHOD(void insert(guint row, guint column, const Glib::ValueBase& value), clutter_model_insert_value)
+
+  _WRAP_METHOD(void remove(guint row), clutter_model_remove)
+  _WRAP_METHOD(guint get_n_rows() const, clutter_model_get_n_rows)
+  _WRAP_METHOD(guint get_n_columns() const, clutter_model_get_n_columns)
+  _WRAP_METHOD(Glib::ustring get_column_name(guint column) const,  clutter_model_get_column_name)
+  _WRAP_METHOD(GType get_column_type(guint column) const, clutter_model_get_column_type)
+  //~ _WRAP_METHOD(Glib::RefPtr<ModelIter> get_first_iter(), clutter_model_get_first_iter )
+  //~ _WRAP_METHOD(Glib::RefPtr<ModelIter> get_last_iter(), clutter_model_get_last_iter )
+  //~ _WRAP_METHOD(Glib::RefPtr<ModelIter> get_iter_at_row(guint row), clutter_model_get_iter_at_row )
+
+
+#m4 _CONVERSION(`ClutterModelIter*', `const Glib::RefPtr<ModelIter>&', `Glib::wrap(($3), true)')
+  _WRAP_SIGNAL(void row_added(const Glib::RefPtr<ModelIter>& iter), "row_added")
+  _WRAP_SIGNAL(void row_removed(const Glib::RefPtr<ModelIter>& iter), "row_removed")
+  _WRAP_SIGNAL(void row_changed(const Glib::RefPtr<ModelIter>& iter), "row_changed")
+
+  _WRAP_SIGNAL(void sort_changed(), "sort_changed")
+  _WRAP_SIGNAL(void filter_changed(), "filter_changed")
+
+
+  _WRAP_VFUNC(guint get_n_rows() const, get_n_rows)
+  _WRAP_VFUNC(guint get_n_columns() const, get_n_columns)
+  _WRAP_VFUNC(Glib::ustring get_column_name(guint column) const, get_column_name)
+  _WRAP_VFUNC(GType get_column_type(guint column) const, get_column_type)
+  _WRAP_VFUNC(Glib::RefPtr<ModelIter> insert_row(guint index_), insert_row)
+  _WRAP_VFUNC(void remove_row(guint row), remove_row)
+  _WRAP_VFUNC(Glib::RefPtr<ModelIter> get_iter_at_row(guint row), get_iter_at_row)
+  //TODO? _WRAP_VFUNC(void resort(ClutterModelSortFunc func, Glib::Pointer data), resort)
+};
+
+} // namespace Clutter

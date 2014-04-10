@@ -57,6 +57,8 @@ files_hg =			\
 	layoutmeta.hg		\
 	layout-manager.hg	\
 	media.hg		\
+	model.hg \
+	model-iter.hg \
 	offscreen-effect.hg \
 	page-turn-effect.hg \
 	path.hg			\

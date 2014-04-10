@@ -101,6 +101,8 @@
 #include <cluttermm/layoutmeta.h>
 #include <cluttermm/main.h>
 #include <cluttermm/media.h>
+#include <cluttermm/model.h>
+#include <cluttermm/model-iter.h>
 #include <cluttermm/offscreen-effect.h>
 #include <cluttermm/page-turn-effect.h>
 #include <cluttermm/path.h>
