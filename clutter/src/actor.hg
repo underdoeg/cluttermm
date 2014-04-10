@@ -485,6 +485,13 @@ _DEPRECATE_IFDEF_END
 #m4 _CONVERSION(`ClutterActorBox*', `const ActorBox&', `ActorBox(const_cast<ClutterActorBox*>($3))')
   _WRAP_SIGNAL(void allocation_changed(const ActorBox& box, AllocationFlags flags), "allocation-changed", no_default_handler)
 
+  //TODO: Wrap ClutterTouchEvent?
+  _WRAP_SIGNAL(bool touch_event(ClutterTouchEvent* event), "touch-event")
+
+  //TODO: There might be a default handler when clutter breaks ABI:
+  _WRAP_SIGNAL(void transitions_completed(), "transitions-completed", no_default_handler)
+  _WRAP_SIGNAL(void transition_stopped(const Glib::ustring& name, bool is_finished), "transition-stopped", no_default_handler)
+
   _WRAP_PROPERTY("allocation", ActorBox)
   _WRAP_PROPERTY("anchor-x", float)
   _WRAP_PROPERTY("anchor-y", float)

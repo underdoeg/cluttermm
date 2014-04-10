@@ -209,7 +209,7 @@
   (return-type "gboolean")
   (when "last")
   (parameters
-    '("ClutterEvent*" "p0")
+    '("ClutterTouchEvent*" "p0")
   )
 )
 
