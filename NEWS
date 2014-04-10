@@ -1,3 +1,11 @@
+1.17.1: (unstable)
+
+* Huge amounts of new API added to wrap new API in Clutter,
+  with huge amounts of API being deprecated.
+  (Ian Martin, Murray Cumming) Bug #725125
+* Fix the build by using _GMMPROC_EXTRA_NAMESPACE.
+  (Krzesimir Nowak)
+
 1.3.3: (unstable)
 
 * Use tar-ustar instead of tar-pax to ensure OpenBSD compatibility
