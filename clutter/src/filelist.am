@@ -50,6 +50,7 @@ files_hg =			\
 	effect.hg               \
 	fixed-layout.hg         \
 	flow-layout.hg          \
+	grid-layout.hg		\
 	group.hg		\
 	image.hg		\
 	input-device.hg		\

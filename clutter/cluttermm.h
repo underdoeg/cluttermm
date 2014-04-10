@@ -92,6 +92,7 @@
 #include <cluttermm/fixed-layout.h>
 #include <cluttermm/flow-layout.h>
 #include <cluttermm/frame-source.h>
+#include <cluttermm/grid-layout.h>
 #include <cluttermm/group.h>
 #include <cluttermm/image.h>
 #include <cluttermm/init.h>
