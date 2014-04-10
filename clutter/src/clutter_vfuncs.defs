@@ -1,3 +1,79 @@
+; ClutterActor
+
+(define-vfunc map
+  (of-object "ClutterActor")
+  (return-type "void")
+)
+
+(define-vfunc unmap
+  (of-object "ClutterActor")
+  (return-type "void")
+)
+
+(define-vfunc paint
+  (of-object "ClutterActor")
+  (return-type "void")
+)
+
+(define-vfunc get_preferred_width
+  (of-object "ClutterActor")
+  (return-type "void")
+  (parameters
+    '("gfloat" "for_height")
+    '("gfloat*" "min_width_p")
+    '("gfloat*" "natural_width_p")
+  )
+)
+
+(define-vfunc get_preferred_height
+  (of-object "ClutterActor")
+  (return-type "void")
+  (parameters
+    '("gfloat" "for_width")
+    '("gfloat*" "min_height_p")
+    '("gfloat*" "natural_height_p")
+  )
+)
+
+(define-vfunc allocate
+  (of-object "ClutterActor")
+  (return-type "void")
+  (parameters
+    '("ClutterActorBox*" "box")
+    '("ClutterAllocationFlags" "absolute_origin_changed")
+  )
+)
+
+(define-vfunc pick
+  (of-object "ClutterActor")
+  (return-type "void")
+  (parameters
+    '("ClutterColor*" "color")
+  )
+)
+
+(define-vfunc get_paint_volume
+  (of-object "ClutterActor")
+  (return-type "gboolean")
+  (parameters
+    '("ClutterPaintVolume*" "volume")
+  )
+)
+
+(define-vfunc has_overlaps
+  (of-object "ClutterActor")
+  (return-type "gboolean")
+)
+
+(define-vfunc paint_node
+  (of-object "ClutterActor")
+  (return-type "void")
+  (parameters
+    '("ClutterPaintNode*" "root")
+  )
+)
+
+
 ; ClutterActorMeta
 
 (define-vfunc set_actor

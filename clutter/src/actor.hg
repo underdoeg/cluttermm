@@ -538,19 +538,34 @@ protected:
   _WRAP_METHOD(void set_shader_param_value(const Glib::ustring& param, const Glib::ValueBase& value),
                clutter_actor_set_shader_param, deprecated "Use ShaderEffect::set_uniform_value() instead.")
 
-  //TODO: Add new vfuncs.
-  _WRAP_VFUNC(void show_all(), "show_all")
-  _WRAP_VFUNC(void hide_all(), "hide_all")
+  //TODO: These are deprecated. Remove them when we can break ABI:
+  _WRAP_VFUNC(void show_all(), show_all)
+  _WRAP_VFUNC(void hide_all(), hide_all)
+
+  //The realize and unrealize vfuncs are deprecated.
+
+  _WRAP_VFUNC(void map(), map)
+  _WRAP_VFUNC(void unmap(), unmap)
+  _WRAP_VFUNC(void paint(), paint)
 
   // TODO: I think we need to hand-code the vfuncs if we need to handle
   // the float* being NULL.
   #m4 _CONVERSION(`float*', `float&', `*($3)')
   #m4 _CONVERSION(`const ClutterActorBox*', `const ActorBox&', `Glib::wrap($3)')
-  _WRAP_VFUNC(void pick(const Color& color), "pick")
-  _WRAP_VFUNC(void get_preferred_width(float for_height, float& min_width_p, float& natural_width_p) const, "get_preferred_width")
-  _WRAP_VFUNC(void get_preferred_height(float for_width, float& min_height_p, float& natural_height_p) const, "get_preferred_height")
-  _WRAP_VFUNC(void allocate(const ActorBox& box, AllocationFlags absolute_origin_changed), "allocate")
+  _WRAP_VFUNC(void get_preferred_width(float for_height, float& min_width_p, float& natural_width_p) const, get_preferred_width)
+  _WRAP_VFUNC(void get_preferred_height(float for_width, float& min_height_p, float& natural_height_p) const, get_preferred_height)
+  _WRAP_VFUNC(void allocate(const ActorBox& box, AllocationFlags absolute_origin_changed), allocate)
 
+  _WRAP_VFUNC(void pick(const Color& color), pick)
+
+  //TODO: _WRAP_VFUNC(Glib::RefPtr<Gtk::Object> get_accessible(), get_accessible)
+  //TODO: Wrap ClutterPaintVolume?
+  _WRAP_VFUNC(bool get_paint_volume(ClutterPaintVolume* volume), get_paint_volume)
+
+  _WRAP_VFUNC(bool has_overlaps() const, has_overlaps)
+
+  //TODO: Wrap ClutterPaintNode*?
+  _WRAP_VFUNC(void paint_node(ClutterPaintNode* root), paint_node)
 };
 
 _DEPRECATE_IFDEF_START
