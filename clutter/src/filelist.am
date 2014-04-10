@@ -54,6 +54,7 @@ files_hg =			\
 	image.hg		\
 	input-device.hg		\
 	interval.hg		\
+	keyframe-transition.hg \
 	layoutmeta.hg		\
 	layout-manager.hg	\
 	media.hg		\

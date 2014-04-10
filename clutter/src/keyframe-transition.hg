@@ -1,0 +1,107 @@
+/* Copyright (C) 2013 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <vector>
+#include <glibmm/ustring.h>
+#include <cluttermm/property-transition.h>
+#include <cluttermm/actor.h>
+
+
+_DEFS(cluttermm,clutter)
+_PINCLUDE(cluttermm/private/property-transition_p.h)
+
+namespace Clutter
+{
+
+class KeyFrameTransition :
+    public PropertyTransition
+{
+  _CLASS_GOBJECT(KeyFrameTransition, ClutterKeyframeTransition, CLUTTER_KEYFRAME_TRANSITION, PropertyTransition, ClutterPropertyTransition)
+
+protected:
+
+  _WRAP_CTOR(KeyFrameTransition(const Glib::ustring& property_name),  clutter_keyframe_transition_new)
+
+  //TODO: This class is a problem.  C uses a variadic template.
+  //There is no way of adding keyframes to a Transition, unless you wipe all the existing ones and start over.
+
+public:
+  _WRAP_CREATE(const Glib::ustring& property_name)
+
+  _IGNORE(clutter_keyframe_transition_set)
+
+  _WRAP_METHOD(void set_key_frames(guint index, const double* key_points), clutter_keyframe_transition_set_key_frames)
+
+  _WRAP_METHOD_DOCS_ONLY(clutter_keyframe_transition_set_modes)
+  void set_modes(const std::vector<AnimationMode>& modes);
+  _IGNORE(clutter_keyframe_transition_set_modes)
+
+
+  //Because the keyframe transition is only for one parameter of the object,
+  //we only need to know the GType once. All the values will be of the same
+  //type.
+  _WRAP_METHOD_DOCS_ONLY(clutter_keyframe_transition_set_values)
+  template <typename ValueType>
+  void set_values(const std::vector<ValueType>& values);
+  _IGNORE(clutter_keyframe_transition_set_values)
+
+  _WRAP_METHOD(guint get_n_key_frames() const, clutter_keyframe_transition_get_n_key_frames)
+
+  _WRAP_METHOD(void set_key_frame(guint index_, double key, AnimationMode mode, const Glib::ValueBase& value), clutter_keyframe_transition_set_key_frame)
+
+  //TODO: clutter_keyframe_transition_get_key_frame
+
+  _WRAP_METHOD(void clear(), clutter_keyframe_transition_clear)
+
+
+  _WRAP_PROPERTY("max-row-height", float)
+  _WRAP_PROPERTY("snap-to-grid", bool)
+};
+
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+template <typename ValueType>
+void KeyFrameTransition::set_values(const std::vector<ValueType>& values)
+{
+  double valuearray[values.size()];
+
+  for(int i = 0; i != values.size(); i++)
+  {
+    Glib::Value<ValueType> val;
+    val.init( Glib::Value<ValueType>::value_type() );
+
+    val.set(values.at(i));
+    valuearray[i] = val;
+  }
+
+  clutter_keyframe_transition_set_values(gobj(), valuearray.size(), valuearray);
+}
+
+/* TODO:
+template <class PropertyType>
+void Container::set_child_property(const Glib::RefPtr<Actor>& child, const Glib::ustring& property_name, const PropertyType& value)
+{
+  Glib::Value<PropertyType> property_value;
+  property_value.init(Glib::Value<PropertyType>::value_type());
+
+  property_value.set(value);
+  this->set_child_property_value(child, property_name.c_str(), property_value);
+}
+*/
+
+#endif //DOXYGEN_SHOULD_SKIP_THIS
+
+} // namespace Clutter

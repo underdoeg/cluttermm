@@ -97,6 +97,7 @@
 #include <cluttermm/init.h>
 #include <cluttermm/input-device.h>
 #include <cluttermm/interval.h>
+#include <cluttermm/keyframe-transition.h>
 #include <cluttermm/layout-manager.h>
 #include <cluttermm/layoutmeta.h>
 #include <cluttermm/main.h>
