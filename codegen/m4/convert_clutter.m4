@@ -100,6 +100,8 @@ _CONVERSION(`Padding&',`ClutterPadding*',`&($3)')
 _CONVERSION(`const Padding&',`const ClutterPadding*',`&($3)')
 _CONVERSION(`ClutterPadding*',`Padding&',`*($3)')
 
+_CONVERSION(`const ClutterPaintVolume*',`const PaintVolume*',`($3)')
+
 _CONVERSION(`const Glib::RefPtr<Path>&',`ClutterPath*',__CONVERT_REFPTR_TO_P)
 _CONVERSION(`ClutterPath*',`Glib::RefPtr<Path>',`Glib::wrap($3)')
 _CONVERSION(`ClutterPath*',`Glib::RefPtr<const Path>',`Glib::wrap($3)')

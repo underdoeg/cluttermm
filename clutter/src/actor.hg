@@ -43,6 +43,7 @@ namespace Clutter
 {
 
 typedef ClutterMatrix Matrix;
+typedef ClutterPaintVolume PaintVolume;
 
 class Animation;
 class Constraint;
@@ -152,6 +153,10 @@ public:
   _WRAP_METHOD(void set_child_transform(const Matrix& transform), clutter_actor_set_child_transform)
 
   _WRAP_METHOD(bool is_in_clone_paint() const, clutter_actor_is_in_clone_paint)
+
+#m4 _INITIALIZATION(`ActorBox&',`ClutterActorBox', `$3 = Glib::wrap(&($4))')
+  _WRAP_METHOD(bool get_paint_box(ActorBox& box{>>}), clutter_actor_get_paint_box)
+
   _WRAP_METHOD(bool has_pointer() const, clutter_actor_has_pointer)
   _WRAP_METHOD(void set_text_direction(TextDirection text_dir), clutter_actor_set_text_direction)
   _WRAP_METHOD(TextDirection get_text_direction() const, clutter_actor_get_text_direction)
@@ -159,6 +164,10 @@ public:
 
   _WRAP_METHOD(Glib::RefPtr<Actor> get_stage(), clutter_actor_get_stage, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const Actor> get_stage() const, clutter_actor_get_stage, refreturn, constversion)
+
+  _WRAP_METHOD(void set_child_below_sibling(const Glib::RefPtr<Actor>& child, const Glib::RefPtr<Actor>& sibling), clutter_actor_set_child_below_sibling)
+  _WRAP_METHOD(void set_child_above_sibling(const Glib::RefPtr<Actor>& child, const Glib::RefPtr<Actor>& sibling), clutter_actor_set_child_above_sibling)
+  _WRAP_METHOD(void set_child_at_index(const Glib::RefPtr<Actor>& child, int index), clutter_actor_set_child_at_index)
 
 #m4 _CONVERSION(`const Geometry&', `const ClutterGeometry*', `($3).gobj()')
   _WRAP_METHOD(void set_geometry(const Geometry& geometry), clutter_actor_set_geometry, deprecated "Use set_position() and set_size() instead.")
@@ -210,6 +219,8 @@ _DEPRECATE_IFDEF_END
 
   _WRAP_METHOD(void set_reactive(bool reactive = true), clutter_actor_set_reactive)
   _WRAP_METHOD(bool get_reactive() const, clutter_actor_get_reactive)
+  _WRAP_METHOD(bool has_key_focus() const, clutter_actor_has_key_focus)
+
 
   _WRAP_METHOD(void set_rotation(RotateAxis axis, double angle, float x, float y, float z), clutter_actor_set_rotation, deprecated "Use set_rotation_angle() and set_pivot_point() instead.")
   _WRAP_METHOD(void set_z_rotation_from_gravity(double angle, Gravity gravity), clutter_actor_set_z_rotation_from_gravity, deprecated "Use set_rotation_angle() and set_pivot_point() instead.")
@@ -228,6 +239,11 @@ _DEPRECATE_IFDEF_END
   Color get_background_color() const;
   _IGNORE(clutter_actor_get_background_color)
 
+  _WRAP_METHOD(const PaintVolume* get_paint_volume() const, clutter_actor_get_paint_volume)
+  _WRAP_METHOD(const PaintVolume* get_transformed_paint_volume(const Glib::RefPtr<Actor>& relative_to_ancestor{?}) const, clutter_actor_get_transformed_paint_volume)
+  _WRAP_METHOD(const PaintVolume* get_default_paint_volume() const, clutter_actor_get_default_paint_volume)
+
+
   _WRAP_METHOD(void set_name(const gchar *name), clutter_actor_set_name)
   _WRAP_METHOD(Glib::ustring get_name() const, clutter_actor_get_name)
   _WRAP_METHOD(guint32 get_gid() const, clutter_actor_get_gid)
@@ -237,6 +253,30 @@ _DEPRECATE_IFDEF_END
   _WRAP_METHOD(bool get_clip_to_allocation() const, clutter_actor_get_clip_to_allocation)
   _WRAP_METHOD(void remove_clip(), clutter_actor_remove_clip)
   _WRAP_METHOD(bool has_clip() const, clutter_actor_has_clip)
+
+  #m4 _CONVERSION(`GList*',`std::vector< Glib::RefPtr<Effect> >',`Glib::ListHandler< Glib::RefPtr<Effect> >::list_to_vector($3, Glib::OWNERSHIP_SHALLOW)')
+  _WRAP_METHOD(std::vector< Glib::RefPtr<Effect> > get_children(), clutter_actor_get_children)
+
+  #m4 _CONVERSION(`GList*',`std::vector< Glib::RefPtr<const Effect> >',`Glib::ListHandler< Glib::RefPtr<const Effect> >::list_to_vector($3, Glib::OWNERSHIP_SHALLOW)')
+  _WRAP_METHOD(std::vector< Glib::RefPtr<const Effect> > get_children() const, clutter_actor_get_children)
+
+  _WRAP_METHOD(int get_n_children() const, clutter_actor_get_n_children)
+
+  _WRAP_METHOD(Glib::RefPtr<Actor> get_child_at_index(int index), clutter_actor_get_child_at_index, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Actor> get_child_at_index(int index) const, clutter_actor_get_child_at_index, refreturn, constversion)
+
+  _WRAP_METHOD(Glib::RefPtr<Actor> get_previous_sibling(), clutter_actor_get_previous_sibling, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Actor> get_previous_sibling() const, clutter_actor_get_previous_sibling, refreturn, constversion)
+
+  _WRAP_METHOD(Glib::RefPtr<Actor> get_next_sibling(), clutter_actor_get_next_sibling, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Actor> get_next_sibling() const, clutter_actor_get_next_sibling, refreturn, constversion)
+
+  _WRAP_METHOD(Glib::RefPtr<Actor> get_first_child(), clutter_actor_get_first_child, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Actor> get_first_child() const, clutter_actor_get_first_child, refreturn, constversion)
+
+  _WRAP_METHOD(Glib::RefPtr<Actor> get_last_child(), clutter_actor_get_last_child, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Actor> get_last_child() const, clutter_actor_get_last_child, refreturn, constversion)
+
   _WRAP_METHOD(void set_parent(const Glib::RefPtr<Actor>& parent), clutter_actor_set_parent, deprecated "Use clutter_actor_add_child() instead.")
   _WRAP_METHOD(Glib::RefPtr<Actor> get_parent(), clutter_actor_get_parent, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const Actor> get_parent() const, clutter_actor_get_parent, refreturn, constversion)
@@ -287,6 +327,10 @@ _DEPRECATE_IFDEF_END
   _WRAP_METHOD_DOCS_ONLY(clutter_actor_get_abs_allocation_vertices)
   void get_abs_allocation_vertices(Vertex vertices[4]) const;
 
+  _WRAP_METHOD(void allocate_align_fill(const ActorBox& box,gdouble x_align, double y_align, bool x_fill, bool y_fill, AllocationFlags flags), clutter_actor_allocate_align_fill)
+
+  _WRAP_METHOD(void set_allocation(const ActorBox& box, AllocationFlags flags), clutter_actor_set_allocation)
+
   _WRAP_METHOD_DOCS_ONLY(clutter_actor_get_allocation_box)
   ActorBox get_allocation_box() const;
 
@@ -305,6 +349,10 @@ _DEPRECATE_IFDEF_END
   _WRAP_METHOD_DOCS_ONLY(clutter_actor_get_allocation_vertices)
   void apply_relative_transform_to_point(const Vertex& point, Vertex& vertex) const;
   _WRAP_METHOD(void get_transformed_position(float& x, float& y) const, clutter_actor_get_transformed_position)
+
+  Matrix get_child_transform() const;
+  _IGNORE(clutter_actor_get_child_transform)
+
   _WRAP_METHOD(void get_transformed_size(float& width, float& height) const, clutter_actor_get_transformed_size)
 
   _WRAP_METHOD(void set_request_mode(RequestMode mode), clutter_actor_set_request_mode)
@@ -389,6 +437,9 @@ _DEPRECATE_IFDEF_END
   _WRAP_METHOD(Glib::RefPtr<Animation> get_animation(), clutter_actor_get_animation, refreturn, deprecated "Use the implicit transition for animatable properties in ClutterActor instead, and clutter_actor_get_transition() to retrieve the transition.")
   _WRAP_METHOD(Glib::RefPtr<const Animation> get_animation() const, clutter_actor_get_animation, refreturn, constversion, deprecated "Use the implicit transition for animatable properties in ClutterActor instead, and clutter_actor_get_transition() to retrieve the transition.")
 
+  _WRAP_METHOD(void detach_animation(), clutter_actor_detach_animation)
+
+
   _WRAP_METHOD(void push_internal(), clutter_actor_push_internal, deprecated "All children of an actor are accessible through the ClutterActor API, and ClutterActor implements the ClutterContainer interface, so this function is only useful for legacy containers overriding the default implementation.")
   _WRAP_METHOD(void pop_internal(), clutter_actor_pop_internal, deprecated "All children of an actor are accessible through the ClutterActor API. This function is only useful for legacy containers overriding the default implementation of the ClutterContainer interface.")
 
@@ -405,19 +456,32 @@ _DEPRECATE_IFDEF_END
   _WRAP_METHOD(Glib::RefPtr<Action> get_action(const Glib::ustring& name), clutter_actor_get_action, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const Action> get_action(const Glib::ustring& name) const, clutter_actor_get_action, refreturn, constversion)
 
-//TODO:   _WRAP_METHOD(GLis* get_actions(), clutter_actor_get_actions)
   _WRAP_METHOD(void clear_actions(), clutter_actor_clear_actions)
 
+  #m4 _CONVERSION(`GList*',`std::vector< Glib::RefPtr<Action> >',`Glib::ListHandler< Glib::RefPtr<Action> >::list_to_vector($3, Glib::OWNERSHIP_SHALLOW)')
+  _WRAP_METHOD(std::vector< Glib::RefPtr<Action> > get_actions(), clutter_actor_get_actions)
+
+  #m4 _CONVERSION(`GList*',`std::vector< Glib::RefPtr<const Action> >',`Glib::ListHandler< Glib::RefPtr<const Action> >::list_to_vector($3, Glib::OWNERSHIP_SHALLOW)')
+  _WRAP_METHOD(std::vector< Glib::RefPtr<const Action> > get_actions() const, clutter_actor_get_actions)
+
+  _WRAP_METHOD(bool has_actions() const, clutter_actor_has_actions)
 
   _WRAP_METHOD(void add_effect(const Glib::RefPtr<Effect>& effect), clutter_actor_add_effect)
-  _WRAP_METHOD(void add_effect_with_name(const Glib::ustring& name,
-                                                    const Glib::RefPtr<Effect>& effect), clutter_actor_add_effect_with_name)
+  _WRAP_METHOD(void add_effect_with_name(const Glib::ustring& name, const Glib::RefPtr<Effect>& effect), clutter_actor_add_effect_with_name)
   _WRAP_METHOD(void remove_effect(const Glib::RefPtr<Effect>& effect), clutter_actor_remove_effect)
   _WRAP_METHOD(void remove_effect(const Glib::ustring& name), clutter_actor_remove_effect_by_name )
-  //TODO: GList *        clutter_actor_get_effects           (ClutterActor  *self);
+
+  #m4 _CONVERSION(`GList*',`std::vector< Glib::RefPtr<Effect> >',`Glib::ListHandler< Glib::RefPtr<Effect> >::list_to_vector($3, Glib::OWNERSHIP_SHALLOW)')
+  _WRAP_METHOD(std::vector< Glib::RefPtr<Effect> > get_effects(), clutter_actor_get_effects)
+
+  #m4 _CONVERSION(`GList*',`std::vector< Glib::RefPtr<const Effect> >',`Glib::ListHandler< Glib::RefPtr<const Effect> >::list_to_vector($3, Glib::OWNERSHIP_SHALLOW)')
+  _WRAP_METHOD(std::vector< Glib::RefPtr<const Effect> > get_effects() const, clutter_actor_get_effects)
+
   _WRAP_METHOD(Glib::RefPtr<Effect> get_effect(const Glib::ustring& name), clutter_actor_get_effect, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const Effect> get_effect(const Glib::ustring& name) const, clutter_actor_get_effect, refreturn, constversion)
   _WRAP_METHOD(void clear_effects(), clutter_actor_clear_effects)
+  _WRAP_METHOD(bool has_effects() const, clutter_actor_has_effects)
+
 
   //Animation Framework.  The Easing state is used for basic animations.
 
@@ -454,6 +518,8 @@ _DEPRECATE_IFDEF_END
   _WRAP_METHOD(Glib::RefPtr<const Constraint> get_constraint(const Glib::ustring& name) const, clutter_actor_get_constraint, refreturn, constversion)
   _WRAP_METHOD(Glib::RefPtr<Constraint> get_constraint(const Glib::ustring& name), clutter_actor_get_constraint, refreturn)
   _WRAP_METHOD(void clear_constraints(), clutter_actor_clear_constraints)
+
+
 
 // signals
   _WRAP_SIGNAL(bool button_press_event(ButtonEvent* event), "button_press_event")

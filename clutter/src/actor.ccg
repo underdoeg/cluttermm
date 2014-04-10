@@ -126,10 +126,17 @@ void Actor::unset_layout_manager()
 }
 
 
-Matrix Actor::get_transform () const
+Matrix Actor::get_transform() const
 {
   Matrix matrix;
   clutter_actor_get_transform(const_cast<ClutterActor*>(this->gobj()), &matrix);
+  return matrix;
+}
+
+Matrix Actor::get_child_transform() const
+{
+  Matrix matrix;
+  clutter_actor_get_child_transform(const_cast<ClutterActor*>(this->gobj()), &matrix);
   return matrix;
 }
 
