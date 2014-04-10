@@ -77,6 +77,7 @@
 #include <cluttermm/blur-effect.h>
 #include <cluttermm/brightness-contrast-effect.h>
 #include <cluttermm/cairo-texture.h>
+#include <cluttermm/canvas.h>
 #include <cluttermm/childmeta.h>
 #include <cluttermm/clone.h>
 #include <cluttermm/color.h>

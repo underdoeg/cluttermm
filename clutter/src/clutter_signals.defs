@@ -1570,6 +1570,15 @@
 
 ;; From ClutterCairoTexture
 
+(define-signal draw
+  (of-object "ClutterCairoTexture")
+  (return-type "gboolean")
+  (when "last")
+  (parameters
+    '("cairo_t*" "p0")
+  )
+)
+
 (define-signal create-surface
   (of-object "ClutterCairoTexture")
   (return-type "CairoSurface*")
@@ -1577,15 +1586,6 @@
   (parameters
     '("guint" "p0")
     '("guint" "p1")
-  )
-)
-
-(define-signal draw
-  (of-object "ClutterCairoTexture")
-  (return-type "gboolean")
-  (when "last")
-  (parameters
-    '("CairoContext*" "p0")
   )
 )
 
@@ -1613,6 +1613,55 @@
   (docs "Whether the surface should match the allocation")
   (readable #t)
   (writable #t)
+  (construct-only #f)
+)
+
+;; From ClutterCanvas
+
+(define-signal draw
+  (of-object "ClutterCanvas")
+  (return-type "gboolean")
+  (when "last")
+  (parameters
+    '("cairo_t*" "p0")
+    '("gint" "p1")
+    '("gint" "p2")
+  )
+)
+
+(define-property width
+  (of-object "ClutterCanvas")
+  (prop-type "GParamInt")
+  (docs "The width of the canvas")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property height
+  (of-object "ClutterCanvas")
+  (prop-type "GParamInt")
+  (docs "The height of the canvas")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property scale-factor
+  (of-object "ClutterCanvas")
+  (prop-type "GParamInt")
+  (docs "The scaling factor for the surface")
+  (readable #t)
+  (writable #t)
+  (construct-only #f)
+)
+
+(define-property scale-factor-set
+  (of-object "ClutterCanvas")
+  (prop-type "GParamBoolean")
+  (docs "Whether the scale-factor property is set")
+  (readable #t)
+  (writable #f)
   (construct-only #f)
 )
 
@@ -1647,7 +1696,7 @@
   (construct-only #f)
 )
 
-;; From ClutterColor
+;; ClutterColor is neither a GObject nor a GInterface. Not checked for signals and properties.
 
 ;; From ClutterConstraint
 
@@ -1732,7 +1781,7 @@
 
 ;; From ClutterEffect
 
-;; From ClutterEvent
+;; ClutterEvent is neither a GObject nor a GInterface. Not checked for signals and properties.
 
 ;; From ClutterFixedLayout
 

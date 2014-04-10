@@ -209,3 +209,5 @@ _CONVERSION(`BinAlignment&',`ClutterBinAlignment*',`(($2) &($3))')
 _CONVERSION(`BoxAlignment&',`ClutterBoxAlignment*',`(($2) &($3))')
 
 _CONVERSION(`PangoContext*',`Glib::RefPtr<const Pango::Context>',Glib::wrap($3))
+
+_CONVERSION(`const ::Cairo::RefPtr< ::Cairo::Context>&', `cairo_t*', `($3)->cobj()')
