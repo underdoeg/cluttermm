@@ -160,8 +160,8 @@ public:
   _WRAP_METHOD(bool get_no_clear_hint() const, clutter_stage_get_no_clear_hint)
   //TODO: wrap
   _IGNORE(clutter_stage_get_redraw_clip_bounds)
-  _WRAP_METHOD(void set_motion_events(bool enabled = true), clutter_stage_set_motion_events_enabled)
-  _WRAP_METHOD(bool get_motion_events() const, clutter_stage_get_motion_events_enabled)
+  _WRAP_METHOD(void set_motion_events_enabled(bool enabled = true), clutter_stage_set_motion_events_enabled)
+  _WRAP_METHOD(bool get_motion_events_enabled() const, clutter_stage_get_motion_events_enabled)
   _IGNORE(clutter_stage_set_paint_callback)
 
   //signals:
