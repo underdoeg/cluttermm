@@ -56,7 +56,7 @@ public:
   void add_search_paths(const std::vector<std::string>& paths);
   _IGNORE(clutter_script_add_search_paths)
 
-  _WRAP_METHOD(Glib::ustring lookup_filename(const Glib::ustring& filename), clutter_script_lookup_filename)
+  _WRAP_METHOD(std::string lookup_filename(const std::string& filename), clutter_script_lookup_filename)
 
   /** Get a RefPtr to an object from the ClutterScript JSON file.
    * For instance:
