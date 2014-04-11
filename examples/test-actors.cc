@@ -41,7 +41,7 @@ bool on_key_release(Clutter::KeyEvent *event)
   g_print("*** key press event (key:%c) ***\n",
     Clutter::key_event_get_symbol(event));
 
-  if(Clutter::key_event_get_symbol(event) == CLUTTER_q)
+  if(Clutter::key_event_get_symbol(event) == CLUTTER_KEY_q)
     Clutter::main_quit();
 
   return false;
