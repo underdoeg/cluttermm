@@ -1,4 +1,4 @@
-## Copyright (c) 2009  Openismus GmbH <http://www.openismus.com/>
+## Copyright (c) 2009-2014  Openismus GmbH <http://www.openismus.com/>
 ##
 ## This file is part of cluttermm.
 ##
@@ -25,13 +25,18 @@ AC_CONFIG_AUX_DIR([build])
 AC_CONFIG_MACRO_DIR([build])
 AC_CONFIG_HEADERS([build/config.h clutter/cluttermmconfig.h])
 
-AM_INIT_AUTOMAKE([1.9 -Wno-portability check-news dist-bzip2 no-define nostdinc tar-ustar])
+AM_INIT_AUTOMAKE([1.9 -Wno-portability check-news no-dist-gzip dist-xz tar-ustar no-define nostdinc])
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES])
 AM_MAINTAINER_MODE
 AC_ARG_VAR([ACLOCAL_FLAGS], [aclocal flags, e.g. -I <macro dir>])
 
 MM_PREREQ([0.8])
 MM_INIT_MODULE([cluttermm-1.0])
+
+# Copy the mm-common .pl scripts into docs/,
+# and use them from there,
+# so we can dist them to avoid a tarball-build dependency.
+MM_CONFIG_DOCTOOL_DIR([doc])
 
 # http://www.gnu.org/software/libtool/manual/html_node/Updating-version-info.html
 AC_SUBST([CLUTTERMM_SO_VERSION], [1:0:0])
@@ -59,8 +64,8 @@ MM_ARG_WITH_TAGFILE_DOC([atkmm-1.6.tag], [atkmm-1.6])
 AC_LANG([C++])
 MM_ARG_ENABLE_WARNINGS([CLUTTERMM_WXXFLAGS],
                        [-Wall],
-                       [-Wall -Wextra],
-                       [G PANGO])
+                       [-pedantic -Wall -Wextra -Wformat-security -Wno-long-long -DGSEAL_ENABLE],
+                       [G PANGO ATK GDK GDK_PIXBUF CLUTTER GLIBMM ATKMM PANGOMM CAIROMM SIGCXX])
 
 AC_CONFIG_FILES([Makefile
                  codegen/Makefile
