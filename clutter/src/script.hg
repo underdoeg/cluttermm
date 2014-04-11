@@ -46,6 +46,11 @@ public:
 #endif
   _WRAP_METHOD(guint load_from_file(const std::string& filename), clutter_script_load_from_file, errthrow)
 
+  _WRAP_METHOD(guint load_from_resource(const std::string& resource_path), clutter_script_load_from_resource, errthrow)
+
+  _WRAP_METHOD(Glib::RefPtr<Glib::Object> get_object(const Glib::ustring& name), clutter_script_get_object, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Glib::Object> get_object(const Glib::ustring& name) const, clutter_script_get_object, refreturn, constversion)
+
   /** Adds paths to the list of search paths held by the Script .
    * The search paths are used by lookup_filename(), which can be used to define
    * search paths for the textures source file name or other custom, file-based
@@ -84,11 +89,21 @@ public:
   //clutter_script_get_objects() is a varargs convenience function for C.
   _IGNORE(clutter_script_get_objects)
 
+  //TODO: Use _WRAP_METHOD() for this?
   std::vector<Glib::RefPtr<Glib::Object> > list_objects();
   std::vector<Glib::RefPtr<const Glib::Object> > list_objects() const;
 
   _WRAP_METHOD(void unmerge_object(guint merge_id), clutter_script_unmerge_objects)
   _WRAP_METHOD(void ensure_objects(), clutter_script_ensure_objects)
+
+  //TODO: _WRAP_METHOD(void add_states(const Glib::ustring& name, const Glib::RefPtr<State>& state), clutter_script_add_states)
+
+  //TODO: _WRAP_METHOD(Glib::RefPtr<State> clutter_script_get_states(const Glib::ustring& name), clutter_script_get_states, refreturn)
+  //_WRAP_METHOD(Glib::RefPtr<const State> clutter_script_get_states(const Glib::ustring& name), clutter_script_get_states, refreturn, constversion)
+
+  _WRAP_METHOD(void set_translation_domain(const Glib::ustring& domain), clutter_script_set_translation_domain)
+  _WRAP_METHOD(Glib::ustring get_translation_domain() const, clutter_script_get_translation_domain)
+
 
   // TODO: connect_signals functions
   // TODO: do we need get_type_from_name()?
