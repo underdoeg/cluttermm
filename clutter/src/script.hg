@@ -46,8 +46,16 @@ public:
 #endif
   _WRAP_METHOD(guint load_from_file(const std::string& filename), clutter_script_load_from_file, errthrow)
 
+  /** Adds paths to the list of search paths held by the Script .
+   * The search paths are used by lookup_filename(), which can be used to define
+   * search paths for the textures source file name or other custom, file-based
+   * properties.
+   *
+   * @param Search paths.
+   */
+  void add_search_paths(const std::vector<std::string>& paths);
   _IGNORE(clutter_script_add_search_paths)
-  void add_search_paths(const std::vector<Glib::ustring>& paths);
+
   _WRAP_METHOD(Glib::ustring lookup_filename(const Glib::ustring& filename), clutter_script_lookup_filename)
 
   /** Get a RefPtr to an object from the ClutterScript JSON file.

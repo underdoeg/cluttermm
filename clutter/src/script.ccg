@@ -16,6 +16,7 @@
  */
 
 #include <clutter/clutter.h>
+#include <glibmm/vectorutils.h>
 
 namespace Clutter
 {
@@ -39,17 +40,10 @@ guint Script::load_from_data(const Glib::ustring& data, std::auto_ptr<Glib::Erro
   return result;
 }
 
-void Script::add_search_paths(const std::vector<Glib::ustring>& paths)
+void Script::add_search_paths(const std::vector<std::string>& paths)
 {
-  const int pathCount = paths.size();
-  const char* searchPaths[pathCount];
-
-  for(uint i = 0; i < paths.size(); ++i)
-  {
-      searchPaths[i] = paths[i].data();
-  }
-
-  clutter_script_add_search_paths(gobj(), searchPaths, paths.size());
+  clutter_script_add_search_paths(gobj(),
+    Glib::ArrayHandler<std::string>::vector_to_array(paths).data(), paths.size());
 }
 
 std::vector<Glib::RefPtr<Glib::Object> > Script::list_objects()
