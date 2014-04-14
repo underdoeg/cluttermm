@@ -254,11 +254,11 @@ _DEPRECATE_IFDEF_END
   _WRAP_METHOD(void remove_clip(), clutter_actor_remove_clip)
   _WRAP_METHOD(bool has_clip() const, clutter_actor_has_clip)
 
-  #m4 _CONVERSION(`GList*',`std::vector< Glib::RefPtr<Effect> >',`Glib::ListHandler< Glib::RefPtr<Effect> >::list_to_vector($3, Glib::OWNERSHIP_SHALLOW)')
-  _WRAP_METHOD(std::vector< Glib::RefPtr<Effect> > get_children(), clutter_actor_get_children)
+  #m4 _CONVERSION(`GList*',`std::vector< Glib::RefPtr<Actor> >',`Glib::ListHandler< Glib::RefPtr<Actor> >::list_to_vector($3, Glib::OWNERSHIP_SHALLOW)')
+  _WRAP_METHOD(std::vector< Glib::RefPtr<Actor> > get_children(), clutter_actor_get_children)
 
-  #m4 _CONVERSION(`GList*',`std::vector< Glib::RefPtr<const Effect> >',`Glib::ListHandler< Glib::RefPtr<const Effect> >::list_to_vector($3, Glib::OWNERSHIP_SHALLOW)')
-  _WRAP_METHOD(std::vector< Glib::RefPtr<const Effect> > get_children() const, clutter_actor_get_children)
+  #m4 _CONVERSION(`GList*',`std::vector< Glib::RefPtr<const Actor> >',`Glib::ListHandler< Glib::RefPtr<const Actor> >::list_to_vector($3, Glib::OWNERSHIP_SHALLOW)')
+  _WRAP_METHOD(std::vector< Glib::RefPtr<const Actor> > get_children() const, clutter_actor_get_children)
 
   _WRAP_METHOD(int get_n_children() const, clutter_actor_get_n_children)
 
