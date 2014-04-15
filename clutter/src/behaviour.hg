@@ -62,6 +62,8 @@ public:
 
   _WRAP_METHOD(void set_alpha(const Glib::RefPtr<Alpha>& alpha), clutter_behaviour_set_alpha)
 
+  _IGNORE(clutter_behaviour_get_actors) //deprecated
+
   // TODO: does this need the 'behaviour' argument, or could that be
   // approximated with an Object-oriented 'this' pointer?
   /** For instance,
