@@ -51,6 +51,8 @@ public:
 
   _WRAP_METHOD(void interpolate_value_value(const Glib::ustring& property_name, const Glib::RefPtr<const Interval>& interval, double progress, Glib::ValueBase& value), clutter_animatable_interpolate_value)
 
+  _IGNORE(clutter_animatable_animate_property)
+
   /**
    * Gets the initial state of an animation
    *

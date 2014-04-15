@@ -58,7 +58,10 @@ public:
   _WRAP_METHOD(::Cairo::RefPtr< ::Cairo::Context > create_context_region(int x_offset, int y_offset, int width, int height), clutter_cairo_texture_create_region)
 };
 
-void set_source_color(::Cairo::RefPtr< ::Cairo::Context >& context, ::Clutter::Color color);
+  void set_source_color(::Cairo::RefPtr< ::Cairo::Context >& context, ::Clutter::Color color);
+
+  _IGNORE(clutter_cairo_texture_invalidate_rectangle, clutter_cairo_texture_invalidate, clutter_cairo_texture_get_auto_resize, clutter_cairo_texture_set_auto_resize)
+
 
 } // namespace Cairo
 
