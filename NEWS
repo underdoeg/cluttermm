@@ -1,3 +1,30 @@
+1.17.2: (unstable)
+
+* Actor:
+  - Correct the get_children() return type.
+  (Ian Martin) Bug #728206.
+  - Add several properties.
+  (Murray Cumming)
+* BoxLayout: Add orientation property.
+  (Murray Cumming)
+* DeformEffect: Add get_back_material().
+  (Murray Cumming)
+* LayoutManager: Add get_child_meta() and layout_changed().
+  (Murray Cumming)
+* Media: Use std::string for filenames.
+  (Murray Cumming)
+* Script:
+  - Add load_from_resource(), get_object(),
+  and set/get_translation_domain().
+  (Murray Cumming)
+  - Use std::string for filenames.
+  (Murray Cumming)
+* Stage: Rename get/set_motion_events() to get/set_motion_events_enabled().
+  (Murray Cumming) 
+* examples/test-actors: Use CLUTTER_KEY_q instead of CLUTTER_q.
+  (Murray Cumming) 
+
+
 1.17.1: (unstable)
 
 * Huge amounts of new API added to wrap new API in Clutter,
