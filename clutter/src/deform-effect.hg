@@ -37,12 +37,8 @@ public:
   //TODO IM: Cant see anywhere the Cogl stuff is wrapped.
   _WRAP_METHOD(void set_back_material(CoglHandle material), clutter_deform_effect_set_back_material)
 
-  //TODO IM: compile error
-  /*deform-effect.cc: In member function 'void* Clutter::DeformEffect::get_back_material()':
-  error: 'CoglHandle {aka void*}' is not a pointer-to-object type
-     retvalue->reference(); //The function does not do a ref for us.
- */
-  //_WRAP_METHOD(CoglHandle get_back_material(),
+  //TODO: Wrap Cogl?
+  _WRAP_METHOD(CoglHandle get_back_material(), clutter_deform_effect_get_back_material)
 
   _WRAP_METHOD(void set_n_tiles(guint x_tiles, guint y_tiles), clutter_deform_effect_set_n_tiles)
   _WRAP_METHOD(void get_n_tiles(guint&  x_tiles, guint& y_tiles) const, clutter_deform_effect_get_n_tiles)
