@@ -29,7 +29,6 @@ _PINCLUDE(cluttermm/private/behaviour_p.h)
 namespace Clutter
 {
 
-//TODO: Wrap state.
 /**
  * @deprecated Use Actor::animate() with the Actor's opacity property,
  * or Animator, or State instead.
