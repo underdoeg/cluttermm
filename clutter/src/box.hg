@@ -52,6 +52,8 @@ public:
   _WRAP_METHOD(Glib::RefPtr<LayoutManager> get_layout_manager(), clutter_box_get_layout_manager, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const LayoutManager> get_layout_manager() const, clutter_box_get_layout_manager, refreturn, constversion)
 
+  _IGNORE(clutter_box_set_layout_manager) //deprecated
+
   _WRAP_METHOD(void set_color(const Color& color), clutter_box_set_color)
 
   _WRAP_METHOD_DOCS_ONLY(clutter_box_get_color)
@@ -65,7 +67,6 @@ public:
 
   _WRAP_PROPERTY("color", Color)
   _WRAP_PROPERTY("color-set", bool)
-  _WRAP_PROPERTY("layout-manager", Glib::RefPtr<LayoutManager>)
 };
 
 } // namespace Clutter
