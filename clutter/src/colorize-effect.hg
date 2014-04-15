@@ -27,6 +27,7 @@ namespace Clutter
 class ColorizeEffect : public Clutter::OffscreenEffect
 {
   _CLASS_GOBJECT(ColorizeEffect, ClutterColorizeEffect, CLUTTER_COLORIZE_EFFECT, Clutter::OffscreenEffect, ClutterOffscreenEffect)
+  _IGNORE(clutter_colorize_effect_new)
 protected:
   _WRAP_CTOR(ColorizeEffect(const Color& tint), clutter_colorize_effect_new)
 
