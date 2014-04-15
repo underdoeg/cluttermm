@@ -21,19 +21,11 @@
 _DEFS(cluttermm,clutter)
 _PINCLUDE(cluttermm/private/group_p.h)
 
-#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
-#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
-#m4 _POP()
-
 namespace Clutter
 {
 
 _WRAP_ENUM(PickMode, ClutterPickMode)
 
-/**
- * @deprecated Fog settings are ignored.
- */
-typedef ClutterFog Fog;
 
 class Perspective
 {
@@ -93,11 +85,6 @@ protected:
 
 public:
   _WRAP_CREATE()
-#m4 _CONVERSION(`ClutterActor*',`Glib::RefPtr<Stage>',`Glib::wrap((ClutterStage*)$3)')
-  _WRAP_METHOD(static Glib::RefPtr<Stage> get_default(), clutter_stage_get_default, refreturn, deprecated "Use Stage::create() instead, and keep track of the Glib::RefPtr returned.")
-  _WRAP_METHOD(void set_color(const Color& color), clutter_stage_set_color, deprecated "Use Actor::set_background_color() instead.")
-  _WRAP_METHOD_DOCS_ONLY(clutter_stage_get_color)
-  Color get_color() const;
 
 #m4 _CONVERSION(`const Perspective&', `ClutterPerspective*',`const_cast<$2>(($3).gobj())')
 #m4 _CONVERSION(`Perspective&', `ClutterPerspective*',`const_cast<$2>(($3).gobj())')
@@ -127,14 +114,9 @@ public:
   // TODO: Should we rather wrap this as std::string, or
   // as std::vector<unsigned char>, or Glib::ArrayHandle<guchar>?
   _WRAP_METHOD(guchar* read_pixels(int x, int y, int width, int height) const, clutter_stage_read_pixels)
-  _WRAP_METHOD(bool get_use_fog() const, clutter_stage_get_use_fog, deprecated "This method will always return false.")
-  _WRAP_METHOD(void set_use_fog(bool fog = true), clutter_stage_set_use_fog, deprecated "This method has no visible effect.")
-#m4 _CONVERSION(`const Fog&',`ClutterFog*',`const_cast<ClutterFog*>(&($3))')
-  _WRAP_METHOD(void set_fog(const Fog& fog), clutter_stage_set_fog, deprecated "Fog settings are ignored.")
-  _WRAP_METHOD(void get_fog(Fog& fog) const, clutter_stage_get_fog, deprecated "This function will always return default values.")
+ values.")
 
   _WRAP_METHOD(void stage_event(Event* event), clutter_stage_event)
-  _WRAP_METHOD(bool is_default() const, clutter_stage_is_default, deprecated "Track the stage pointer inside your application code, or use Actor::get_stage() to retrieve the stage for a given actor.")
   _WRAP_METHOD(void ensure_current(), clutter_stage_ensure_current)
   _WRAP_METHOD(void ensure_viewport(), clutter_stage_ensure_viewport)
 
@@ -176,16 +158,16 @@ public:
 
   //properties:
   _WRAP_PROPERTY("accept-focus", bool)
-  _WRAP_PROPERTY("color", Color)// deprecated; use background-color.
+
   _WRAP_PROPERTY("cursor-visible", bool)
   _WRAP_PROPERTY("fullscreen-set", bool)
   _WRAP_PROPERTY("no-clear-hint", bool)
-  _WRAP_PROPERTY("offscreen", bool) //deprecated, does not do anything.
+
   _WRAP_PROPERTY("perspective", Perspective)
   _WRAP_PROPERTY("title", Glib::ustring)
-  _WRAP_PROPERTY("use-fog", bool) //deprecated, does not do anything.
+
   _WRAP_PROPERTY("user-resizable", bool)
-  _WRAP_PROPERTY("fog", Fog) //deprecated, does not do anything.
+
   _WRAP_PROPERTY("use-alpha", bool)
   _WRAP_PROPERTY("key-focus", Glib::RefPtr<Actor>)
 

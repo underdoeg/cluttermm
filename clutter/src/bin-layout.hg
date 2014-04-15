@@ -20,17 +20,8 @@
 _DEFS(cluttermm,clutter)
 _PINCLUDE(cluttermm/private/layout-manager_p.h)
 
-#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
-#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
-#m4 _POP()
-
 namespace Clutter
 {
-
-/**
- * @deprecated Use ActorAlign and the Actor API instead.
- */
-_WRAP_ENUM(BinAlignment, ClutterBinAlignment)
 
 class BinLayout :
     public LayoutManager
@@ -43,12 +34,6 @@ protected:
 public:
   _WRAP_CREATE(BinAlignment x_align, BinAlignment y_align)
 
-  _WRAP_METHOD(void set_alignment(const Glib::RefPtr<Actor>& child, BinAlignment x_align, BinAlignment y_align), clutter_bin_layout_set_alignment, deprecated "Use the x-align and y-align properties of Actor instead.")
-  _WRAP_METHOD(void get_alignment(const Glib::RefPtr<Actor>& child, BinAlignment& x_align, BinAlignment& y_align) const, clutter_bin_layout_get_alignment, deprecated "Use the x-align and y-align properties of Actor instead.")
-  _WRAP_METHOD(void add(const Glib::RefPtr<Actor>& child, BinAlignment x_align, BinAlignment y_align), clutter_bin_layout_add, deprecated "Use Actor::add_child() instead.")
-
-  _WRAP_PROPERTY("x-align", BinAlignment, deprecated "Use the x-align and y-align properties of Actor instead.")
-  _WRAP_PROPERTY("y-align", BinAlignment, deprecated "Use the x-align and y-align properties of Actor instead.")
 };
 
 } // namespace Clutter

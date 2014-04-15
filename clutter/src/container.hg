@@ -23,10 +23,6 @@
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/interface_p.h)
 
-#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
-#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
-#m4 _POP()
-
 namespace Clutter
 {
 
@@ -35,57 +31,11 @@ class Container : public Glib::Interface
   _CLASS_INTERFACE(Container, ClutterContainer, CLUTTER_CONTAINER, ClutterContainerIface)
 
 public:
-  _WRAP_METHOD(void add_actor(const Glib::RefPtr<Actor>& actor), clutter_container_add_actor, deprecated "Use Actor::add_child() instead.")
-  _WRAP_METHOD(void remove_actor(const Glib::RefPtr<Actor>& actor), clutter_container_remove_actor, deprecated "Use Actor::remove_child() instead.")
-
-_DEPRECATE_IFDEF_START
-  /**
-   * @deprecated Use Actor::get_children() instead.
-   */
-  std::vector<Glib::RefPtr<Actor> >       get_children();
-
-  /**
-   * @deprecated Use Actor::get_children() instead.
-   */
-  std::vector<Glib::RefPtr<const Actor> > get_children() const;
-
-  _WRAP_METHOD(void lower_child(const Glib::RefPtr<Actor>& actor, const Glib::RefPtr<Actor>& sibling), clutter_container_lower_child, deprecated "Use set_child_below_sibling() instead.")
 
 
-  /**
-   * @deprecated "Use set_child_below_sibling() instead.
-   */
-  void lower_child(const Glib::RefPtr<Actor>& actor);
-_DEPRECATE_IFDEF_END
-
-  _WRAP_METHOD(void raise_child(const Glib::RefPtr<Actor>& actor, const Glib::RefPtr<Actor>& sibling), clutter_container_raise_child, deprecated "Use set_child_above_sibling() instead.")
-
-
-_DEPRECATE_IFDEF_START
-  /**
-   * @deprecated "Use set_child_above_sibling() instead.
-   */
-  void raise_child(const Glib::RefPtr<Actor>& actor);
-_DEPRECATE_IFDEF_END
 
   _WRAP_METHOD(Glib::RefPtr<Actor> find_child(const Glib::ustring& child_name), clutter_container_find_child_by_name, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const Actor> find_child(const Glib::ustring& child_name) const, clutter_container_find_child_by_name, constversion)
-
-_DEPRECATE_IFDEF_START
-  /** For instance,
-   * void on_foreach(const Glib::RefPtr<Actor>& actor)
-   * @deprecated See foreach().
-   */
-  typedef sigc::slot<void, const Glib::RefPtr<Actor>&> SlotForEach;
-
-  /**
-   * @deprecated Use Actor::get_first_child() or Actor::get_last_child()
-   * to retrieve the beginning of the list of children, and Actor::get_next_sibling()
-   * and Actor::get_previous_sibling() to iterate over it. Alternatively, use the ActorIter API.
-   */
-  void foreach(const SlotForEach& slot);
-_DEPRECATE_IFDEF_END
-  _IGNORE(clutter_container_foreach)
 
   // not sure the valist stuff is good to wrap in C++
   _IGNORE(clutter_container_add_valist, clutter_container_remove_valist, clutter_container_add,
@@ -118,7 +68,7 @@ _DEPRECATE_IFDEF_END
 protected:
 
   // Only useful as a protected method for derived implementations.
-  _WRAP_METHOD(void sort_depth_order(), clutter_container_sort_depth_order, deprecated "This no longer does anything.")
+
 
   _WRAP_VFUNC(void add(const Glib::RefPtr<Actor>& actor), add)
   _WRAP_VFUNC(void remove(const Glib::RefPtr<Actor>& actor), remove)

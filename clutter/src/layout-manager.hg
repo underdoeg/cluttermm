@@ -21,10 +21,6 @@
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)
 
-#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
-#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
-#m4 _POP()
-
 namespace Clutter
 {
 
@@ -80,13 +76,6 @@ public:
 
   _WRAP_METHOD(Glib::RefPtr<LayoutMeta> get_child_meta(const Glib::RefPtr<Container>& container, const Glib::RefPtr<Actor>& actor), clutter_layout_manager_get_child_meta, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const LayoutMeta> get_child_meta(const Glib::RefPtr<Container>& container, const Glib::RefPtr<Actor>& actor) const, clutter_layout_manager_get_child_meta, refreturn, constversion)
-
-#m4 _CONVERSION(`Glib::RefPtr<Alpha>',`ClutterAlpha*',__CONVERT_REFPTR_TO_P)
-  _WRAP_METHOD(Glib::RefPtr<Alpha> begin_animation(guint duration, gulong mode), clutter_layout_manager_begin_animation, refreturn, deprecated)
-  _WRAP_METHOD(Glib::RefPtr<const Alpha> begin_animation(guint duration, gulong mode) const, clutter_layout_manager_begin_animation, refreturn, constversion, deprecated)
-
-  _WRAP_METHOD(double get_animation_progress(), clutter_layout_manager_get_animation_progress, deprecated)
-  _WRAP_METHOD(void end_animation(), clutter_layout_manager_end_animation, deprecated)
 
   _WRAP_VFUNC(void get_preferred_width(const Glib::RefPtr<Container>& container, float for_height, float& min_width_p, float& natural_width_p) const, "get_preferred_width")
 
