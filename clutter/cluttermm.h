@@ -25,7 +25,7 @@
  *
  * cluttermm is a C++ wrapper for <a href="http://www.clutter-project.org/">Clutter</a>.
  * See Clutter::Stage and Clutter::Actor, for instance, and see the
- * <a href="http://www.openismus.com/documents/cluttermm_tutorial/1.0/docs/tutorial/html/">Programming with cluttermm</a> tutorial.
+ * <a href="http://www.openismus.com/documents/cluttermm_tutorial/2.0/docs/tutorial/html/">Programming with cluttermm</a> tutorial.
  *
  * @section basics Basic Usage
  *
@@ -37,12 +37,12 @@
  *
  * If your source file is @c program.cc, you can compile it with:
  * @code
- * g++ program.cc -o program `pkg-config --cflags --libs cluttermm-1.0`
+ * g++ program.cc -o program `pkg-config --cflags --libs cluttermm-2.0`
  * @endcode
  *
  * Alternatively, if using autoconf, use the following in @c configure.ac:
  * @code
- * PKG_CHECK_MODULES([CLUTTERMM], [cluttermm-1.0])
+ * PKG_CHECK_MODULES([CLUTTERMM], [cluttermm-2.0])
  * @endcode
  * Then use the generated @c CLUTTERMM_CFLAGS and @c CLUTTERMM_LIBS variables
  * in the project @c Makefile.am files. For example:
@@ -59,24 +59,12 @@
 #include <cluttermm/actor-box.h>
 #include <cluttermm/actor-meta.h>
 #include <cluttermm/align-constraint.h>
-#include <cluttermm/alpha.h>
 #include <cluttermm/animatable.h>
-#include <cluttermm/animation.h>
-#include <cluttermm/animator.h>
-#include <cluttermm/behaviour.h>
-#include <cluttermm/behaviour-depth.h>
-#include <cluttermm/behaviour-ellipse.h>
-#include <cluttermm/behaviour-opacity.h>
-#include <cluttermm/behaviour-path.h>
-#include <cluttermm/behaviour-rotate.h>
-#include <cluttermm/behaviour-scale.h>
 #include <cluttermm/bin-layout.h>
 #include <cluttermm/bind-constraint.h>
-#include <cluttermm/box.h>
 #include <cluttermm/box-layout.h>
 #include <cluttermm/blur-effect.h>
 #include <cluttermm/brightness-contrast-effect.h>
-#include <cluttermm/cairo-texture.h>
 #include <cluttermm/canvas.h>
 #include <cluttermm/childmeta.h>
 #include <cluttermm/clone.h>
@@ -93,7 +81,6 @@
 #include <cluttermm/flow-layout.h>
 #include <cluttermm/frame-source.h>
 #include <cluttermm/grid-layout.h>
-#include <cluttermm/group.h>
 #include <cluttermm/image.h>
 #include <cluttermm/init.h>
 #include <cluttermm/input-device.h>
@@ -102,7 +89,6 @@
 #include <cluttermm/layout-manager.h>
 #include <cluttermm/layoutmeta.h>
 #include <cluttermm/main.h>
-#include <cluttermm/media.h>
 #include <cluttermm/model.h>
 #include <cluttermm/model-iter.h>
 #include <cluttermm/offscreen-effect.h>
@@ -110,18 +96,14 @@
 #include <cluttermm/path.h>
 #include <cluttermm/path-constraint.h>
 #include <cluttermm/property-transition.h>
-#include <cluttermm/rectangle.h>
-#include <cluttermm/score.h>
 #include <cluttermm/script.h>
 #include <cluttermm/scroll-actor.h>
-#include <cluttermm/shader.h>
 #include <cluttermm/shader-effect.h>
 #include <cluttermm/size.h>
 #include <cluttermm/snap-constraint.h>
 #include <cluttermm/stage.h>
 #include <cluttermm/text.h>
 #include <cluttermm/text-buffer.h>
-#include <cluttermm/texture.h>
 #include <cluttermm/threads.h>
 #include <cluttermm/timeline.h>
 #include <cluttermm/transition.h>
