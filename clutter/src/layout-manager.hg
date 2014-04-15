@@ -71,11 +71,15 @@ public:
   _WRAP_METHOD(void allocate(const Glib::RefPtr<Container>& container, const ActorBox& box, AllocationFlags absolute_origin_changed), clutter_layout_manager_allocate)
 
   _WRAP_METHOD(void set_container(const Glib::RefPtr<Container>& container), clutter_layout_manager_set_container)
+  _WRAP_METHOD(void layout_changed(), clutter_layout_manager_layout_changed)
   _WRAP_METHOD(GType get_child_meta_type() const, clutter_layout_manager_get_child_meta_type)
 
 #m4 _CONVERSION(`ClutterActor*', `const Glib::RefPtr<Actor>&', `Glib::wrap($3, true)')
   _WRAP_METHOD(Glib::RefPtr<LayoutMeta> create_child_meta(const Glib::RefPtr<Container>& container, const Glib::RefPtr<Actor>& actor), clutter_layout_manager_create_child_meta, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const LayoutMeta> create_child_meta(const Glib::RefPtr<Container>& container, const Glib::RefPtr<Actor>& actor) const, clutter_layout_manager_create_child_meta, refreturn, constversion)
+
+  _WRAP_METHOD(Glib::RefPtr<LayoutMeta> get_child_meta(const Glib::RefPtr<Container>& container, const Glib::RefPtr<Actor>& actor), clutter_layout_manager_get_child_meta, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const LayoutMeta> get_child_meta(const Glib::RefPtr<Container>& container, const Glib::RefPtr<Actor>& actor) const, clutter_layout_manager_get_child_meta, refreturn, constversion)
 
 #m4 _CONVERSION(`Glib::RefPtr<Alpha>',`ClutterAlpha*',__CONVERT_REFPTR_TO_P)
   _WRAP_METHOD(Glib::RefPtr<Alpha> begin_animation(guint duration, gulong mode), clutter_layout_manager_begin_animation, refreturn, deprecated)
