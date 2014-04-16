@@ -88,6 +88,7 @@ void set_default_frame_rate(guint frames_per_sec);
 guint get_default_frame_rate();
 
 #ifndef CLUTTERMM_DISABLE_DEPRECATED
+
 /** Sets whether per-actor motion events should be enabled or not
  * (the default is to enable them).
  *
@@ -118,19 +119,9 @@ bool get_motion_events_enabled();
  *
  * @deprecated Use get_font_map() and cogl_pango_font_map_clear_glyph_cache() instead.
  */
+
+
 void clear_glyph_cache();
-
-//TODO: Documentation:
-
-/**
- * @deprecated Use Backend::set_font_options() and the cairo_font_option_t API.
- */
-void set_font_flags(FontFlags flags);
-
-/**
- * @deprecated Use Backend::get_font_options() and the cairo_font_option_t API.
- */
-FontFlags get_font_flags();
 #endif //CLUTTERMM_DISABLE_DEPRECATED
 
 Glib::RefPtr<Pango::FontMap> get_font_map();
@@ -207,4 +198,3 @@ void do_event(Event* event);
 } //namespace Clutter
 
 #endif //_LIBCLUTTERMM_MAIN_H
-

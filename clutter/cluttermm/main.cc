@@ -85,16 +85,6 @@ void clear_glyph_cache()
 {
   clutter_clear_glyph_cache();
 }
-
-void set_font_flags(FontFlags flags)
-{
-  clutter_set_font_flags((ClutterFontFlags)flags);
-}
-
-FontFlags get_font_flags()
-{
-  return (FontFlags)clutter_get_font_flags();
-}
 #endif //CLUTTERMM_DISABLE_DEPRECATED
 
 
