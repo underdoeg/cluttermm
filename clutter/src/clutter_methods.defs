@@ -2899,12 +2899,13 @@
 
 ;; From clutter-bind-constraint.h
 
-(define-function clutter_bind_constraint_get_type
+(define-method clutter_bind_constraint_get_type
+  (of-object "ClutterBindConstraint")
   (c-name "clutter_bind_constraint_get_type")
   (return-type "GType")
 )
 
-(define-function clutter_bind_constraint_new
+(define-method clutter_bind_constraint_new
   (c-name "clutter_bind_constraint_new")
   (is-constructor-of "ClutterBindConstraint")
   (return-type "ClutterConstraint*")
@@ -2915,7 +2916,8 @@
   )
 )
 
-(define-function clutter_bind_constraint_set_source
+(define-method clutter_bind_constraint_set_source
+  (of-object "ClutterBindConstraint")
   (c-name "clutter_bind_constraint_set_source")
   (return-type "none")
   (parameters
@@ -2923,14 +2925,16 @@
   )
 )
 
-(define-function clutter_bind_constraint_get_source
+(define-method clutter_bind_constraint_get_source
+  (of-object "ClutterBindConstraint")
   (c-name "clutter_bind_constraint_get_source")
   (return-type "ClutterActor*")
   (parameters
   )
 )
 
-(define-function clutter_bind_constraint_set_coordinate
+(define-method clutter_bind_constraint_set_coordinate
+  (of-object "ClutterBindConstraint")
   (c-name "clutter_bind_constraint_set_coordinate")
   (return-type "none")
   (parameters
@@ -2938,14 +2942,16 @@
   )
 )
 
-(define-function clutter_bind_constraint_get_coordinate
+(define-method clutter_bind_constraint_get_coordinate
+  (of-object "ClutterBindConstraint")
   (c-name "clutter_bind_constraint_get_coordinate")
   (return-type "ClutterBindCoordinate")
   (parameters
   )
 )
 
-(define-function clutter_bind_constraint_set_offset
+(define-method clutter_bind_constraint_set_offset
+  (of-object "ClutterBindConstraint")
   (c-name "clutter_bind_constraint_set_offset")
   (return-type "none")
   (parameters
@@ -2953,7 +2959,8 @@
   )
 )
 
-(define-function clutter_bind_constraint_get_offset
+(define-method clutter_bind_constraint_get_offset
+  (of-object "ClutterBindConstraint")
   (c-name "clutter_bind_constraint_get_offset")
   (return-type "gfloat")
   (parameters
@@ -3707,6 +3714,7 @@
   (return-type "none")
   (parameters
     '("const-gchar*" "name")
+    '("ClutterConstraint*" "constraint")
   )
 )
 
@@ -3725,7 +3733,6 @@
   (return-type "none")
   (parameters
     '("const-gchar*" "name")
-    '("ClutterConstraint*" "constraint")
   )
 )
 
@@ -7061,16 +7068,17 @@
   (return-type "GType")
 )
 
-(define-method constraint_new
-  (of-object "ClutterPath")
+(define-function clutter_path_constraint_new
   (c-name "clutter_path_constraint_new")
-  (return-type "ClutterConstraint*")
+  (is-constructor-of "ClutterPathConstraint*")
   (parameters
+    '("ClutterPath*" "path")
     '("gfloat" "offset")
   )
 )
 
-(define-function clutter_path_constraint_set_path
+(define-method clutter_path_constraint_set_path
+  (of-object "ClutterPathConstraint")
   (c-name "clutter_path_constraint_set_path")
   (return-type "none")
   (parameters
@@ -7078,14 +7086,16 @@
   )
 )
 
-(define-function clutter_path_constraint_get_path
+(define-method clutter_path_constraint_get_path
+  (of-object "ClutterPathConstraint")
   (c-name "clutter_path_constraint_get_path")
   (return-type "ClutterPath*")
   (parameters
   )
 )
 
-(define-function clutter_path_constraint_set_offset
+(define-method clutter_path_constraint_set_offset
+  (of-object "ClutterPathConstraint")
   (c-name "clutter_path_constraint_set_offset")
   (return-type "none")
   (parameters
@@ -7093,7 +7103,8 @@
   )
 )
 
-(define-function clutter_path_constraint_get_offset
+(define-method clutter_path_constraint_get_offset
+  (of-object "ClutterPathConstraint")
   (c-name "clutter_path_constraint_get_offset")
   (return-type "gfloat")
   (parameters
@@ -7839,7 +7850,8 @@
   )
 )
 
-(define-function clutter_snap_constraint_set_source
+(define-method clutter_snap_constraint_set_source
+  (of-object "ClutterSnapConstraint")
   (c-name "clutter_snap_constraint_set_source")
   (return-type "none")
   (parameters
@@ -7847,14 +7859,16 @@
   )
 )
 
-(define-function clutter_snap_constraint_get_source
+(define-method clutter_snap_constraint_get_source
+  (of-object "ClutterSnapConstraint")
   (c-name "clutter_snap_constraint_get_source")
   (return-type "ClutterActor*")
   (parameters
   )
 )
 
-(define-function clutter_snap_constraint_set_edges
+(define-method clutter_snap_constraint_set_edges
+  (of-object "ClutterSnapConstraint")
   (c-name "clutter_snap_constraint_set_edges")
   (return-type "none")
   (parameters
@@ -7863,7 +7877,8 @@
   )
 )
 
-(define-function clutter_snap_constraint_get_edges
+(define-method clutter_snap_constraint_get_edges
+  (of-object "ClutterSnapConstraint")
   (c-name "clutter_snap_constraint_get_edges")
   (return-type "none")
   (parameters
@@ -7872,7 +7887,8 @@
   )
 )
 
-(define-function clutter_snap_constraint_set_offset
+(define-method clutter_snap_constraint_set_offset
+  (of-object "ClutterSnapConstraint")
   (c-name "clutter_snap_constraint_set_offset")
   (return-type "none")
   (parameters
@@ -7880,7 +7896,8 @@
   )
 )
 
-(define-function clutter_snap_constraint_get_offset
+(define-method clutter_snap_constraint_get_offset
+  (of-object "ClutterSnapConstraint")
   (c-name "clutter_snap_constraint_get_offset")
   (return-type "gfloat")
   (parameters
@@ -10349,5 +10366,3 @@
 
 
 ;; From config.h
-
-
