@@ -44,10 +44,6 @@ void init(int* argc, gchar** argv[]);
  */
 void init(int& argc, gchar**& argv);
 
-// TODO: This does not work yet because because of clutter bug #1033. It has
-// already been fixed in trunk but there was no release since. We can
-// uncomment this as soon as clutter with that fix has been released.
-#if 0
 /** It will initialise everything needed to operate with Clutter and parses
  * some standard command line options and the options specified in your
  * @a option_context. Add a Glib::OptionGroup to the Glib::OptionContext to
@@ -71,7 +67,6 @@ void init(int* argc, char** argv[], Glib::OptionContext& option_context);
  * @throws InitError, Glib::OptionError
  */
 void init(int& argc, char**& argv, Glib::OptionContext& option_context);
-#endif
 
 /** Adds a Glib::OptionGroup for the command line arguments recognized by
  * Clutter to the given context. This is useful if you are using
