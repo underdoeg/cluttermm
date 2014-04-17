@@ -541,7 +541,11 @@ _DEPRECATE_IFDEF_END
   _WRAP_SIGNAL(bool scroll_event(ScrollEvent* event), "scroll_event")
   _WRAP_SIGNAL(bool key_press_event(KeyEvent* event), "key_press_event")
   _WRAP_SIGNAL(bool captured_event(Event* event), "captured_event")
-  _WRAP_SIGNAL(void paint(), "paint")
+
+  //We have to actually ignore this signal so we can replace its default signal handler with the vfunc.
+  _IGNORE_SIGNAL("paint")
+  //_WRAP_SIGNAL(void paint(), "paint", deprecated "Override the paint_func(), use a Clutter::Content implementation, or a Clutter::Effect instead of connecting to this signal.")
+
   _WRAP_SIGNAL(void queue_redaw(const Glib::RefPtr<Actor>& origin), "queue_redraw")
   _WRAP_SIGNAL(void queue_relayout(), "queue_relayout")
   _WRAP_SIGNAL(void realize(), "realize")
