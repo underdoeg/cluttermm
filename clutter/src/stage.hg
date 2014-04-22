@@ -78,7 +78,7 @@ protected:
   /**
    * Creates a new stage. Every Clutter::Actor must be placed on a stage, and the
    * stage first created automatically occupies the window generated when
-   *  Clutter::maiAdded new properties and functions to wrap clutter 1.7.6n() is run.
+   *  Clutter::main() is run.
    *
    * Clutter can support more than one stage at once; however the ability to
    * support multiple stages depends on the current backend. Use
