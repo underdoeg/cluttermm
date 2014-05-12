@@ -1,3 +1,14 @@
+1.17.3: (unstable)
+
+* Add an init() overload that takes an OptionContext and use it
+  in the actors example.
+  (Murray Cumming)
+* Actor: Remove the (deprecated) paint signal to avoid clashing with the
+  paint vfunc.
+* BoxLayout: Deprecates the pack(). Use Actor methods instead.
+  (Ian Martin)
+
+
 1.17.2: (unstable)
 
 * Actor:
