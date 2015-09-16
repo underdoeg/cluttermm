@@ -36,7 +36,9 @@ class Timeline;
 /**
  * @deprecated Use KeyframeTransition instead.
  */
-class Animator : public Glib::Object
+class Animator
+: public Glib::Object,
+  public Scriptable
 {
   _CLASS_GOBJECT(Animator, ClutterAnimator, CLUTTER_ANIMATOR, Glib::Object, GObject)
   _IMPLEMENTS_INTERFACE(Scriptable)
