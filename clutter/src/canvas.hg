@@ -28,7 +28,9 @@ namespace Clutter
 {
 
 
-class Canvas : public Glib::Object
+class Canvas
+: public Glib::Object,
+  public Content
 {
   _CLASS_GOBJECT(Canvas, ClutterCanvas, CLUTTER_CANVAS, Glib::Object, GObject)
   _IMPLEMENTS_INTERFACE(Content)
