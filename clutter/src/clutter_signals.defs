@@ -1611,7 +1611,7 @@
   (return-type "gboolean")
   (when "last")
   (parameters
-    '("CairoContext*" "p0")
+    '("cairo_t*" "p0")
   )
 )
 
@@ -1649,7 +1649,7 @@
   (return-type "gboolean")
   (when "last")
   (parameters
-    '("CairoContext*" "p0")
+    '("cairo_t*" "p0")
     '("gint" "p1")
     '("gint" "p2")
   )
