@@ -51,19 +51,6 @@ public:
   _WRAP_METHOD(int get_n_children() const, clutter_group_get_n_children, deprecated "Use Actor::get_n_children() instead.")
   _WRAP_METHOD(Glib::RefPtr<Actor> get_nth_child(int index), clutter_group_get_nth_child, refreturn, deprecated "Use Actor::get_child_at_index() instead.")
   _WRAP_METHOD(Glib::RefPtr<const Actor> get_nth_child(int index) const, clutter_group_get_nth_child, constversion, deprecated "Use Actor::get_child_at_index() instead.")
-
-
-  // these functions were deprecated in favor of their Container counterparts
-  _IGNORE(clutter_group_add)
-  _IGNORE(clutter_group_add_many)
-  _IGNORE(clutter_group_add_many_valist)
-  _IGNORE(clutter_group_remove)
-  _IGNORE(clutter_group_find_child_by_id)
-  _IGNORE(clutter_group_raise)
-  _IGNORE(clutter_group_lower)
-  _IGNORE(clutter_group_sort_depth_order)
-  _IGNORE_SIGNAL("add")
-  _IGNORE_SIGNAL("remove")
 };
 
 } // namespace Clutter
