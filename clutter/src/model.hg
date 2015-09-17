@@ -21,13 +21,20 @@
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)
 
+#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+#m4 _POP()
+
 namespace Clutter
 {
 
-//TODO: Write a version of the large description from here: http://clutter-project.org/docs/clutter/stable/ClutterModel.html#ClutterModel.description
+/**
+ * @deprecated Use Glib::ListModel instead.
+ */
 class Model : public Glib::Object
 {
   _CLASS_GOBJECT(Model, ClutterModel, CLUTTER_MODEL, Glib::Object, GObject)
+  _IS_DEPRECATED
 
 protected:
   _CTOR_DEFAULT()
