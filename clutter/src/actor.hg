@@ -423,7 +423,7 @@ _DEPRECATE_IFDEF_END
 
   _WRAP_METHOD(void add_child(const Glib::RefPtr<Actor>& child), clutter_actor_add_child)
   _WRAP_METHOD(void insert_child_above(const Glib::RefPtr<Actor>& child, const Glib::RefPtr<Actor>& sibling), clutter_actor_insert_child_above)
-  _WRAP_METHOD(void insert_child_at_index(const Glib::RefPtr<Actor>& child, int index{?}), clutter_actor_insert_child_at_index)
+  _WRAP_METHOD(void insert_child_at_index(const Glib::RefPtr<Actor>& child, int index), clutter_actor_insert_child_at_index)
   _WRAP_METHOD(void insert_child_below(const Glib::RefPtr<Actor>& child, const Glib::RefPtr<Actor>& sibling), clutter_actor_insert_child_below)
   _WRAP_METHOD(void replace_child(const Glib::RefPtr<Actor>& old_child, const Glib::RefPtr<Actor>& new_child), clutter_actor_replace_child)
 
@@ -528,7 +528,7 @@ _DEPRECATE_IFDEF_END
   _WRAP_SIGNAL(void show(), "show")
   _WRAP_SIGNAL(void hide(), "hide")
 
-  //We ignore the destroy signal because it would just encourage strange memory management. 
+  //We ignore the destroy signal because it would just encourage strange memory management.
   _IGNORE_SIGNAL(void destroy(), "destroy")
 
   _WRAP_SIGNAL(bool key_release_event(KeyEvent* event), "key_release_event")
