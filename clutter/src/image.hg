@@ -45,7 +45,7 @@ public:
   _WRAP_CREATE()
   //_WRAP_METHOD(CoglTexture* get_texture(), clutter_image_get_texture)
 
-  _WRAP_METHOD(bool set(const guint8* data, CoglPixelFormat pixel_format, guint width, guint height, guint row_stride), clutter_image_set_data, errthrow)
+  _WRAP_METHOD(bool set_data(const guint8* data, CoglPixelFormat pixel_format, guint width, guint height, guint row_stride), clutter_image_set_data, errthrow)
 
   _WRAP_METHOD(bool set(const Glib::Bytes& data, CoglPixelFormat pixel_format, guint width, guint height, guint row_stride), clutter_image_set_bytes, errthrow)
 
