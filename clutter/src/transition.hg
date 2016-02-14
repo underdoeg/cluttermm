@@ -38,6 +38,7 @@ class Transition
     public Animatable
 {
   _CLASS_GOBJECT(Transition, ClutterTransition, CLUTTER_TRANSITION, Timeline, ClutterTimeline)
+  _IMPLEMENTS_INTERFACE(Animatable)
 
 protected:
   _CTOR_DEFAULT()
@@ -101,6 +102,7 @@ void Transition::set_from(const ValueType& value)
   GType gtypeval = Glib::Value<ValueType>::value_type();
   Glib::Value< ValueType > set_val;
   set_val.init(gtypeval);
+  set_val.set(value);
 
   clutter_transition_set_from_value(gobj(), set_val.gobj());
 }
@@ -112,6 +114,7 @@ void Transition::set_to(const ValueType& value)
   GType gtypeval = Glib::Value<ValueType>::value_type();
   Glib::Value< ValueType > to_val;
   to_val.init(gtypeval);
+  to_val.set(value);
 
   clutter_transition_set_to_value(this->gobj(), to_val.gobj());
 }
