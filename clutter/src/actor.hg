@@ -58,7 +58,283 @@ _WRAP_ENUM(ContentGravity, ClutterContentGravity)
 _WRAP_ENUM(OffscreenRedirect, ClutterOffscreenRedirect)
 _WRAP_ENUM(Orientation, ClutterOrientation)
 
-//TODO: Write a version of the large description from here: http://clutter-project.org/docs/clutter/stable/ClutterActor.html#ClutterActor.description
+
+/** Actor is the main display class in Clutter, and all objects displayed on the
+ * screen are actors - including the stage that they are displayed on.  The
+ * underlying basis of Clutter is that all actors are part of a scene graph, and
+ * so are all children of a parent actor up to the Clutter::Stage they are
+ * shown on.
+ *
+ * ## Actor Transformations ##
+ * All objects have a position, size, and various transformations, which are
+ * manipulated via methods in this class.  The transformations occur in a defined
+ * order which is hard coded into Clutter:
+ *
+ *    1. translation by the origin of the “allocation” property
+ *
+ *    2. translation by the actor's “z-position” property
+ *
+ *    3. translation by the actor's “pivot-point” property
+ *
+ *    4. scaling by the “scale-x” and “scale-y” factors
+ *
+ *    5. rotation around the “rotation-angle-x” and “rotation-center-x”
+ *
+ *    6. rotation around the “rotation-angle-y” and “rotation-center-y”
+ *
+ *    7. rotation around the “rotation-angle-z” and “rotation-center-z”
+ *
+ *    8. negative translation by the “anchor-x” and “anchor-y” point.
+ *
+ *    9. negative translation by the actor's “pivot-point”
+ *
+ * ## Modifying an actor's geometry ##
+
+ * Each actor has a bounding box or “allocation” which is either set by its parent
+ * or explicitly through the set_position() and set_size() methods.
+ * Each actor also has an implicit preferred size.
+
+ * An actor’s preferred size can be defined by any subclass by overriding the
+ * get_preferred_width() and the get_preferred_height() virtual functions,
+ * or it can be explicitly set by using set_width() and set_height().
+
+ * An actor’s position can be set explicitly by using set_x() and set_y();
+ * the coordinates are relative to the origin of the actor’s parent.
+ *
+ * ## Managing actor children ##
+
+ * Each actor can have multiple children, by calling add_child() to add a
+ * new child actor, and remove_child() to remove an existing child.
+ * Clutter::Actor will hold a reference on each child actor, which will be
+ * released when the child is removed from its parent, or destroyed using destroy().
+ *
+ * When drawing children, the order they are added is the order they are drawn.
+ * Use set_child_below_sibling(), set_child_above_sibling(), or set_child_at_index()
+ * to put one actor above another.  It is also possible to retrieve a list of children
+ * by using get_children(),
+ * If you need to track additions of children to an Actor, use the “actor-added” signal;
+ * similarly, to track removals of children from an Actor, use the “actor-removed” signal.
+ *
+ * There is still some legacy API in Cluttermm that indicates the previous method
+ * of managing children; this required a separate Container to hold the actors in.
+ * Since the Actor now is able to contain children, this is no longer required
+ * and should not be used.
+ *
+ * ## Painting an actor ##
+ *
+ * There are four ways to paint an actor:
+ *
+ *    -   Fill in the actor with set_background_color()
+ *
+ *    -   Set a delegate Content as the value for the “content” property of the actor.
+ *
+ *    -   Override the paint_node() virtual function.
+ *
+ *    -   Override the paint() virtual function.
+ *
+ * Applying a Clutter::Color with set_background_color() will paint the colour
+ * given over the rectangular allocation area for that actor.  If you
+ * require a rectangular shape, this is sufficient.
+ *
+ * A Clutter::Content is a delegate object that takes over the painting operations of
+ * one, or more actors. The Content painting will be performed on top of
+ * the “background-color” of the actor, and before calling the actor's own
+ * implementation of the paint_node() virtual function.  It keeps the Actor's
+ * rectangular background, whether the entire background is drawn on or not.  The
+ * two Content implementations available are Image (to paint an image loaded from
+ * elsewhere) or Context, which provides a Cairo::Context to draw on.
+
+ * The paint_node_vfunc() virtual function is invoked whenever an actor needs to be
+ * painted. The implementation of the virtual function must only paint the contents
+ * of the actor itself, and not the contents of its children, if the actor has any.
+ * Overriding the paint_node_vfunc() virtual function and the pick_vfunc() virtual function
+ * is the preferred method for creating an actor with a non-rectangular shape;
+ * the paint_node() method paints the Actor, while the pick() method is used to
+ * identify when an event signal ( e.g. signal_button_press_event) should be
+ * passed to the actor.
+
+ * The PaintNode passed to the paint_node() virtual function is the local root of the
+ * render tree; any node added to it will be rendered at the correct position,
+ * as defined by the actor's “allocation”.
+ *
+ * Overriding the paint() virtual function has previously been the best method
+ * of creating a custom image on the actor surface.  This is now deprecated and
+ * the paint() method should not be used.  Use the paint_node() method instead.
+ *
+ * ## Handling events on an Actor ##
+ *
+ * An Actor can receive and handle input device events, for instance
+ * pointer events and key events, as long as its “reactive” property is set to TRUE.
+ *
+ * Once an actor has been determined to be the source of an event, Clutter will
+ * traverse the scene graph from the top-level actor towards the event source,
+ * emitting the “captured-event” signal on each ancestor until it reaches the
+ * source; this phase is also called the "capture" phase. If the event propagation
+ *  was not stopped, the graph is walked backwards, from the source actor to the
+ * top-level, and the “event” signal is emitted, alongside eventual event-specific
+ * signals like “button-press-event” or “motion-event”; this phase is also
+ * called the "bubble" phase.
+ *
+ * At any point of the signal emission, signal handlers can stop the propagation
+ *  through the scene graph by returning true; otherwise, they can continue the
+ * propagation by returning false.
+ *
+ * ## Animation ##
+ *
+ * Animation is a core concept of modern user interfaces; Clutter provides a
+ * complete and powerful animation framework that automatically tweens the
+ * actor's state without requiring direct, frame by frame manipulation from your
+ *  application code. You have two models at your disposal:
+ *
+ *    -   an implicit animation model
+ *
+ *    -   an explicit animation model
+ *
+ * The implicit animation model of Clutter assumes that all the changes in an
+ * actor state should be gradual and asynchronous; Clutter will automatically
+ * transition an actor's property change between the current state and the desired
+ * one without manual intervention, if the property is defined to be animatable
+ * in its documentation.
+ *
+ * By default, in the 1.0 API series, the transition happens with a duration of
+ * zero milliseconds.  Implicit animation is an opt in feature to retain
+ * backwards compatibility.
+ *
+ * Implicit animations depend on the current easing state; in order to use the
+ * new default easing state for an actor you should call save_easing_state().
+ * Implicit animations use a default duration of 250 milliseconds, and a default
+ * easing mode of Clutter::EASE_OUT_CUBIC, unless you call set_easing_mode() and
+ * set_easing_duration() after changing the easing state of the actor.
+ *
+ * @code
+ *
+ * 		// assume that the actor is currently positioned at (100, 100)
+ * 		// store the current easing state and reset the new easing state to its default values
+ *
+ * 		actor->save_easing_state ();
+ *
+ * 		// change the actor's position
+ *
+ * 		actor->set_position ( 500, 500);
+ *
+ * 		// restore the previously saved easing state
+ *
+ * 		actor->restore_easing_state ();
+ * @endcode
+ *
+ * The example above will trigger an implicit animation of the actor between its
+ * current position to a new position.
+ *
+ * It is possible to animate multiple properties of an actor at the same time,
+ * and you can animate multiple actors at the same time as well, for instance:
+ *
+ * @code
+ * 		actor->save_easing_state ();
+ *
+ * 		// animate the actor's opacity and depth
+ * 		actor->set_opacity ( 0);
+ * 		actor->set_depth (-100);
+ *
+ * 		actor->restore_easing_state ();
+ *
+ * 		another_actor->save_easing_state ();
+ *
+ * 		// animate another actor's opacity
+ * 		another_actor->set_opacity ( 255);
+ * 		another_actor->set_depth (100);
+ *
+ * 		another_actor->restore_easing_state ();
+ * @endcode
+ *
+ * Changing the easing state will affect all the following property transitions,
+ * but will not affect existing transitions.
+ *
+ * It is important to note that if you modify the state on an animatable property
+ * while a transition is in flight, the transition's final value will be updated,
+ * as well as its duration and progress mode by using the current easing state;
+ * for instance, in the following example:
+ *
+ * @code
+ * 		actor->save_easing_state();
+ *
+ * 		actor->set_easing_duration(1000);
+ *
+ * 		actor->set_x(200);
+ *
+ * 		actor->restore_easing_state();
+ *
+ *
+ * 		actor->save_easing_state();
+ *
+ * 		actor->set_easing_duration(500);
+ *
+ * 		actor->set_x(100);
+ *
+ * 		actor->restore_easing_state();
+ *
+ * @endcode
+ *
+ * the first call to actor->set_x() will begin a transition of the “x” property
+ * from the current value to the value of 200 over a duration of one second; the
+ * second call to actor->set_x() will change the transition's final value to 100
+ * and the duration to 500 milliseconds.
+ *
+ * It is possible to receive a notification of the completion of an implicit
+ * transition by using the “transition-stopped” signal, decorated with the
+ * name of the property. In case you want to know when all the currently in
+ * flight transitions are complete, use the “transitions-completed” signal instead.
+ *
+ * It is possible to retrieve the Transition used by the animatable
+ * properties by using clutter_actor_get_transition() and using the property name
+ * as the transition name.
+ *
+ * The explicit animation model :
+ *
+ * This model requires that you create a Transition object, and optionally set
+ * the initial and final values.  The transition will not start unless you add
+ * it to the Actor.
+ *
+ * @code
+ *
+ * 		auto transition = Clutter::PropertyTransition::create("opacity");
+ *
+ * 		transition->set_duration (3000);
+ *
+ * 		transition->set_repeat_count ( 2);
+ *
+ * 		transition->set_auto_reverse ( true );
+ *
+ * 		// this is required so that the correct parameter type can be deduced in the
+ *
+ * 		// set_from method:
+ *
+ * 		int from(255);
+ *
+ * 		transition->set_from (from);
+ *
+ * 		int to(0);
+ *
+ * 		transition->set_to(0);
+ *
+ * 		actor->add_transition("animate-opacity", transition);
+ * @endcode
+ *
+ * The example above will animate the “opacity” property of an actor between fully
+ * opaque and fully transparent, and back, over a span of 3 seconds. The animation
+ * does not begin until it is added to the actor.
+ *
+ * The explicit animation API applies to all GObject properties, as well as the
+ * custom properties defined through the ClutterAnimatable interface, regardless
+ * of whether they are defined as implicitly animatable or not.
+ *
+ * The explicit animation API should also be used when using custom animatable
+ * properties for Clutter::Action, Clutter::Constraint, and Clutter::Effect
+ * instances associated to an actor.
+ *
+ * Finally, explicit animations are useful for creating animations that run
+ * continuously.
+ */
+
 class Actor : public Glib::Object, public Scriptable, public Animatable
 {
   _CLASS_GOBJECT(Actor, ClutterActor, CLUTTER_ACTOR, Glib::Object, GObject)
