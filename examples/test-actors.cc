@@ -163,7 +163,7 @@ int main(int argc, char *argv[])
         pixbuf = Gdk::Pixbuf::create_from_file("actor.png");
 
         Glib::RefPtr<Clutter::Image> image = Clutter::Image::create();
-        image->set_data(pixbuf->get_pixels(),
+        image->set(pixbuf->get_pixels(),
           (pixbuf->get_has_alpha() ? COGL_PIXEL_FORMAT_RGBA_8888 : COGL_PIXEL_FORMAT_RGB_888),
           pixbuf->get_width(),
           pixbuf->get_height(),
