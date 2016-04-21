@@ -946,13 +946,21 @@ protected:
   #m4 _CONVERSION(`const ClutterActorBox*', `const ActorBox&', `Glib::wrap($3)')
   _WRAP_VFUNC(void get_preferred_width(float for_height, float& min_width_p, float& natural_width_p) const, get_preferred_width)
   _WRAP_VFUNC(void get_preferred_height(float for_width, float& min_height_p, float& natural_height_p) const, get_preferred_height)
-  _WRAP_VFUNC(void allocate(const ActorBox& box, AllocationFlags absolute_origin_changed), allocate)
 
-  _WRAP_VFUNC(void pick(const Color& color), pick)
+  //TODO: Wrap this when clutter doesn't inappropriately compare function pointers:
+  //See https://bugzilla.gnome.org/show_bug.cgi?id=763073#c6
+  //_WRAP_VFUNC(void allocate(const ActorBox& box, AllocationFlags absolute_origin_changed), allocate)
+
+  //TODO: Wrap this when clutter doesn't inappropriately compare function pointers:
+  //See https://bugzilla.gnome.org/show_bug.cgi?id=763073#c6
+  //_WRAP_VFUNC(void pick(const Color& color), pick)
 
   //TODO: _WRAP_VFUNC(Glib::RefPtr<Gtk::Object> get_accessible(), get_accessible)
   //TODO: Wrap ClutterPaintVolume?
-  _WRAP_VFUNC(bool get_paint_volume(ClutterPaintVolume* volume), get_paint_volume)
+
+  //TODO: Wrap this when clutter doesn't inappropriately compare function pointers:
+  //See https://bugzilla.gnome.org/show_bug.cgi?id=763073#c6
+  //_WRAP_VFUNC(bool get_paint_volume(ClutterPaintVolume* volume), get_paint_volume)
 
   _WRAP_VFUNC(bool has_overlaps() const, has_overlaps)
 
