@@ -12,8 +12,11 @@ const unsigned int N_ACTORS = 6;
 
 unsigned int get_radius(const Glib::RefPtr<Clutter::Stage>& stage, unsigned int num_actors)
 {
-  return (stage
-    + stage) / num_actors;
+  if (!stage) {
+    return 0;
+  }
+
+  return (stage->get_height() + stage->get_height()) / num_actors;
 }
 
 class SuperOH
