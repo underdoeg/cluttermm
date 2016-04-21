@@ -930,9 +930,9 @@ protected:
   _WRAP_METHOD(void set_shader_param_value(const Glib::ustring& param, const Glib::ValueBase& value),
                clutter_actor_set_shader_param, deprecated "Use ShaderEffect::set_uniform_value() instead.")
 
-  //TODO: These are deprecated. Remove them when we can break ABI:
-  _WRAP_VFUNC(void show_all(), show_all)
-  _WRAP_VFUNC(void hide_all(), hide_all)
+  //The show_all and hide_all vfuncs are deprecated.
+  //_WRAP_VFUNC(void show_all(), show_all)
+  //_WRAP_VFUNC(void hide_all(), hide_all)
 
   //The realize and unrealize vfuncs are deprecated.
 
