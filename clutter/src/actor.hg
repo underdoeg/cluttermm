@@ -828,7 +828,7 @@ _DEPRECATE_IFDEF_END
   _WRAP_SIGNAL(void unrealize(), "unrealize")
 
 #m4 _CONVERSION(`const ClutterColor*', `const Color&', `Color(const_cast<ClutterColor*>($3), true)')
-  _WRAP_SIGNAL(void pick(const Color& color), "pick")
+  _IGNORE_SIGNAL(void pick(const Color& color), "pick")
 
 #m4 _CONVERSION(`ClutterActorBox*', `const ActorBox&', `ActorBox(const_cast<ClutterActorBox*>($3))')
   _WRAP_SIGNAL(void allocation_changed(const ActorBox& box, AllocationFlags flags), "allocation-changed", no_default_handler)
