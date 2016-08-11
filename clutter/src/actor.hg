@@ -31,6 +31,7 @@
 #include <cluttermm/shader.h>
 #include <cluttermm/transition.h>
 #include <cluttermm/types.h> // For Event*
+#include <cluttermm/container.h> 
 
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)
@@ -335,12 +336,13 @@ _WRAP_ENUM(Orientation, ClutterOrientation)
  * continuously.
  */
 
-class Actor : public Glib::Object, public Scriptable, public Animatable
+class Actor : public Glib::Object, public Scriptable, public Animatable, public Container
 {
   _CLASS_GOBJECT(Actor, ClutterActor, CLUTTER_ACTOR, Glib::Object, GObject)
   _DERIVES_INITIALLY_UNOWNED()
   _IMPLEMENTS_INTERFACE(Scriptable)
   _IMPLEMENTS_INTERFACE(Animatable)
+  _IMPLEMENTS_INTERFACE(Container)
 
 protected:
   _CTOR_DEFAULT()
