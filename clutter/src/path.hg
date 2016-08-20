@@ -110,13 +110,13 @@ public:
   inline Nodes nodes();
   inline const Nodes nodes() const;
 
-  _WRAP_METHOD(void add_move_to(float x, float y), clutter_path_add_move_to)
-  _WRAP_METHOD(void add_rel_move_to(float x, float y), clutter_path_add_rel_move_to)
-  _WRAP_METHOD(void add_line_to(float x, float y), clutter_path_add_line_to)
-  _WRAP_METHOD(void add_rel_line_to(float x, float y), clutter_path_add_rel_line_to)
-  _WRAP_METHOD(void add_curve_to(float x1, float y1, float x2, float y2, float x3, float y3),
+  _WRAP_METHOD(void add_move_to(int x, int y), clutter_path_add_move_to)
+  _WRAP_METHOD(void add_rel_move_to(int x, int y), clutter_path_add_rel_move_to)
+  _WRAP_METHOD(void add_line_to(int x, int y), clutter_path_add_line_to)
+  _WRAP_METHOD(void add_rel_line_to(int x, int y), clutter_path_add_rel_line_to)
+  _WRAP_METHOD(void add_curve_to(int x1, int y1, int x2, int y2, int x3, int y3),
                clutter_path_add_curve_to)
-  _WRAP_METHOD(void add_rel_curve_to(float x1, float y1, float x2, float y2, float x3, float y3),
+  _WRAP_METHOD(void add_rel_curve_to(int x1, int y1, int x2, int y2, int x3, int y3),
                clutter_path_add_rel_curve_to)
   _WRAP_METHOD(void add_close(), clutter_path_add_close)
   _WRAP_METHOD(bool add_string(const Glib::ustring& str), clutter_path_add_string)
@@ -145,12 +145,7 @@ public:
   _WRAP_METHOD(void to_cairo_path(::Cairo::RefPtr<Cairo::Context>& context) const, clutter_path_to_cairo_path)
 
   _WRAP_METHOD(void clear(), clutter_path_clear)
-
-  // This should return a Knot, but that's deprecated.
-
-  //#m4 _INITIALIZATION(`ClutterPoint',`Point&',`Point($3)')
-  //#m4 _INITIALIZATION(`Point&',`ClutterPoint',`($3).gobj()')
-  //_WRAP_METHOD(guint get_position(double progress, Point& position{>>}), clutter_path_get_position)
+  _WRAP_METHOD(guint get_position(double progress, Knot& position), clutter_path_get_position)
   _WRAP_METHOD(guint get_length() const, clutter_path_get_length)
 
   _WRAP_PROPERTY("description", Glib::ustring)
