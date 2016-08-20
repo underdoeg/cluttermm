@@ -276,6 +276,12 @@
   (gtype-id "CLUTTER_TYPE_LAYOUT_META")
 )
 
+(define-object MasterClock
+  (in-module "Clutter")
+  (c-name "ClutterMasterClock")
+  (gtype-id "CLUTTER_TYPE_MASTER_CLOCK")
+)
+
 (define-object Media
   (in-module "Clutter")
   (c-name "ClutterMedia")
@@ -640,6 +646,7 @@
   (values
     '("height-for-width" "CLUTTER_REQUEST_HEIGHT_FOR_WIDTH")
     '("width-for-height" "CLUTTER_REQUEST_WIDTH_FOR_HEIGHT")
+    '("content-size" "CLUTTER_REQUEST_CONTENT_SIZE")
   )
 )
 
@@ -973,6 +980,8 @@
     '("touch-update" "CLUTTER_TOUCH_UPDATE")
     '("touch-end" "CLUTTER_TOUCH_END")
     '("touch-cancel" "CLUTTER_TOUCH_CANCEL")
+    '("touchpad-pinch" "CLUTTER_TOUCHPAD_PINCH")
+    '("touchpad-swipe" "CLUTTER_TOUCHPAD_SWIPE")
     '("event-last" "CLUTTER_EVENT_LAST")
   )
 )
@@ -1120,6 +1129,7 @@
     '("axis-none" "CLUTTER_PAN_AXIS_NONE")
     '("x-axis" "CLUTTER_PAN_X_AXIS")
     '("y-axis" "CLUTTER_PAN_Y_AXIS")
+    '("axis-auto" "CLUTTER_PAN_AXIS_AUTO")
   )
 )
 
@@ -1326,6 +1336,18 @@
   )
 )
 
+(define-enum TouchpadGesturePhase
+  (in-module "Clutter")
+  (c-name "ClutterTouchpadGesturePhase")
+  (gtype-id "CLUTTER_TYPE_TOUCHPAD_GESTURE_PHASE")
+  (values
+    '("begin" "CLUTTER_TOUCHPAD_GESTURE_PHASE_BEGIN")
+    '("update" "CLUTTER_TOUCHPAD_GESTURE_PHASE_UPDATE")
+    '("end" "CLUTTER_TOUCHPAD_GESTURE_PHASE_END")
+    '("cancel" "CLUTTER_TOUCHPAD_GESTURE_PHASE_CANCEL")
+  )
+)
+
 (define-enum TranslateReturn
   (in-module "Clutter")
   (c-name "ClutterTranslateReturn")
@@ -1382,18 +1404,7 @@
     '("in-reparent" "CLUTTER_IN_REPARENT")
     '("in-paint" "CLUTTER_IN_PAINT")
     '("in-relayout" "CLUTTER_IN_RELAYOUT")
-    '("in-resize" "CLUTTER_IN_RESIZE")
     '("internal-child" "CLUTTER_INTERNAL_CHILD")
-  )
-)
-
-(define-flags ProfileFlag
-  (in-module "Clutter")
-  (c-name "ClutterProfileFlag")
-  (gtype-id "CLUTTER_TYPE_PROFILE_FLAG")
-  (values
-    '("picking-only" "CLUTTER_PROFILE_PICKING_ONLY")
-    '("disable-report" "CLUTTER_PROFILE_DISABLE_REPORT")
   )
 )
 
@@ -1505,27 +1516,6 @@
 
 
 ;; From clutter-actor.h
-
-(define-function CLUTTER_PRIVATE_FIELD
-  (c-name "CLUTTER_PRIVATE_FIELD")
-  (return-type "gpointer")
-  (parameters
-  )
-)
-
-(define-function CLUTTER_PRIVATE_FIELD
-  (c-name "CLUTTER_PRIVATE_FIELD")
-  (return-type "gpointer")
-  (parameters
-  )
-)
-
-(define-function CLUTTER_PRIVATE_FIELD
-  (c-name "CLUTTER_PRIVATE_FIELD")
-  (return-type "gint")
-  (parameters
-  )
-)
 
 (define-function CLUTTER_PRIVATE_FIELD
   (c-name "CLUTTER_PRIVATE_FIELD")
@@ -1663,6 +1653,24 @@
   (of-object "ClutterActor")
   (c-name "clutter_actor_get_accessible")
   (return-type "AtkObject*")
+)
+
+(define-method is_visible
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_is_visible")
+  (return-type "gboolean")
+)
+
+(define-method is_mapped
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_is_mapped")
+  (return-type "gboolean")
+)
+
+(define-method is_realized
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_is_realized")
+  (return-type "gboolean")
 )
 
 (define-method set_request_mode
@@ -2530,21 +2538,6 @@
   (return-type "ClutterActor*")
 )
 
-(define-method reparent
-  (of-object "ClutterActor")
-  (c-name "clutter_actor_reparent")
-  (return-type "none")
-  (parameters
-    '("ClutterActor*" "new_parent")
-  )
-)
-
-(define-method unparent
-  (of-object "ClutterActor")
-  (c-name "clutter_actor_unparent")
-  (return-type "none")
-)
-
 (define-method contains
   (of-object "ClutterActor")
   (c-name "clutter_actor_contains")
@@ -2708,29 +2701,6 @@
   (parameters
     '("gdouble" "scale_x")
     '("gdouble" "scale_y")
-  )
-)
-
-(define-method set_scale_full
-  (of-object "ClutterActor")
-  (c-name "clutter_actor_set_scale_full")
-  (return-type "none")
-  (parameters
-    '("gdouble" "scale_x")
-    '("gdouble" "scale_y")
-    '("gfloat" "center_x")
-    '("gfloat" "center_y")
-  )
-)
-
-(define-method set_scale_with_gravity
-  (of-object "ClutterActor")
-  (c-name "clutter_actor_set_scale_with_gravity")
-  (return-type "none")
-  (parameters
-    '("gdouble" "scale_x")
-    '("gdouble" "scale_y")
-    '("ClutterGravity" "gravity")
   )
 )
 
@@ -2976,6 +2946,45 @@
   (return-type "gboolean")
 )
 
+(define-method set_opacity_override
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_opacity_override")
+  (return-type "none")
+  (parameters
+    '("gint" "opacity")
+  )
+)
+
+(define-method get_opacity_override
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_get_opacity_override")
+  (return-type "gint")
+)
+
+(define-method bind_model
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_bind_model")
+  (return-type "none")
+  (parameters
+    '("GListModel*" "model")
+    '("ClutterActorCreateChildFunc" "create_child_func")
+    '("gpointer" "user_data")
+    '("GDestroyNotify" "notify")
+  )
+)
+
+(define-method bind_model_with_properties
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_bind_model_with_properties")
+  (return-type "none")
+  (parameters
+    '("GListModel*" "model")
+    '("GType" "child_type")
+    '("const-char*" "first_model_property")
+  )
+  (varargs #t)
+)
+
 
 
 ;; From clutter-actor-meta.h
@@ -3028,6 +3037,15 @@
 
 
 ;; From clutter-actor-private.h
+
+(define-method create_texture_paint_node
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_create_texture_paint_node")
+  (return-type "ClutterPaintNode*")
+  (parameters
+    '("CoglTexture*" "texture")
+  )
+)
 
 
 
@@ -3146,6 +3164,10 @@
 
 
 
+;; From clutter-autocleanups.h
+
+
+
 ;; From clutter-backend.h
 
 (define-function clutter_backend_get_type
@@ -3221,8 +3243,7 @@
   )
 )
 
-(define-method set_source
-  (of-object "ClutterBindConstraint")
+(define-method clutter_bind_constraint_set_source
   (c-name "clutter_bind_constraint_set_source")
   (return-type "none")
   (parameters
@@ -3230,16 +3251,14 @@
   )
 )
 
-(define-method get_source
-  (of-object "ClutterBindConstraint")
+(define-method clutter_bind_constraint_get_source
   (c-name "clutter_bind_constraint_get_source")
   (return-type "ClutterActor*")
   (parameters
   )
 )
 
-(define-method set_coordinate
-  (of-object "ClutterBindConstraint")
+(define-method clutter_bind_constraint_set_coordinate
   (c-name "clutter_bind_constraint_set_coordinate")
   (return-type "none")
   (parameters
@@ -3247,16 +3266,14 @@
   )
 )
 
-(define-method get_coordinate
-  (of-object "ClutterBindConstraint")
+(define-method clutter_bind_constraint_get_coordinate
   (c-name "clutter_bind_constraint_get_coordinate")
   (return-type "ClutterBindCoordinate")
   (parameters
   )
 )
 
-(define-method set_offset
-  (of-object "ClutterBindConstraint")
+(define-method clutter_bind_constraint_set_offset
   (c-name "clutter_bind_constraint_set_offset")
   (return-type "none")
   (parameters
@@ -3264,8 +3281,7 @@
   )
 )
 
-(define-method get_offset
-  (of-object "ClutterBindConstraint")
+(define-method clutter_bind_constraint_get_offset
   (c-name "clutter_bind_constraint_get_offset")
   (return-type "gfloat")
   (parameters
@@ -4226,6 +4242,31 @@
 
 
 
+;; From clutter-constraint-private.h
+
+(define-function clutter_constraint_update_allocation
+  (c-name "clutter_constraint_update_allocation")
+  (return-type "gboolean")
+  (parameters
+    '("ClutterActor*" "actor")
+    '("ClutterActorBox*" "allocation")
+  )
+)
+
+(define-function clutter_constraint_update_preferred_size
+  (c-name "clutter_constraint_update_preferred_size")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "actor")
+    '("ClutterOrientation" "direction")
+    '("float" "for_size")
+    '("float*" "minimum_size")
+    '("float*" "natural_size")
+  )
+)
+
+
+
 ;; From clutter-container.h
 
 (define-function clutter_container_get_type
@@ -4977,6 +5018,11 @@
   (return-type "GType")
 )
 
+(define-function clutter_touchpad_gesture_phase_get_type
+  (c-name "clutter_touchpad_gesture_phase_get_type")
+  (return-type "GType")
+)
+
 (define-function clutter_image_error_get_type
   (c-name "clutter_image_error_get_type")
   (return-type "GType")
@@ -4997,13 +5043,8 @@
   (return-type "GType")
 )
 
-(define-function clutter_x11_filter_return_get_type
-  (c-name "clutter_x11_filter_return_get_type")
-  (return-type "GType")
-)
-
-(define-function clutter_x11_xinput_event_types_get_type
-  (c-name "clutter_x11_xinput_event_types_get_type")
+(define-function clutter_shader_error_get_type
+  (c-name "clutter_shader_error_get_type")
   (return-type "GType")
 )
 
@@ -5013,6 +5054,11 @@
 
 (define-function clutter_event_get_type
   (c-name "clutter_event_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_event_sequence_get_type
+  (c-name "clutter_event_sequence_get_type")
   (return-type "GType")
 )
 
@@ -5435,6 +5481,40 @@
   (return-type "const-ClutterEvent*")
 )
 
+(define-method get_gesture_swipe_finger_count
+  (of-object "ClutterEvent")
+  (c-name "clutter_event_get_gesture_swipe_finger_count")
+  (return-type "guint")
+)
+
+(define-method get_gesture_pinch_angle_delta
+  (of-object "ClutterEvent")
+  (c-name "clutter_event_get_gesture_pinch_angle_delta")
+  (return-type "gdouble")
+)
+
+(define-method get_gesture_pinch_scale
+  (of-object "ClutterEvent")
+  (c-name "clutter_event_get_gesture_pinch_scale")
+  (return-type "gdouble")
+)
+
+(define-method get_gesture_phase
+  (of-object "ClutterEvent")
+  (c-name "clutter_event_get_gesture_phase")
+  (return-type "ClutterTouchpadGesturePhase")
+)
+
+(define-method get_gesture_motion_delta
+  (of-object "ClutterEvent")
+  (c-name "clutter_event_get_gesture_motion_delta")
+  (return-type "none")
+  (parameters
+    '("gdouble*" "dx")
+    '("gdouble*" "dy")
+  )
+)
+
 
 
 ;; From clutter-event-private.h
@@ -5748,6 +5828,12 @@
 (define-method get_threshold_trigger_egde
   (of-object "ClutterGestureAction")
   (c-name "clutter_gesture_action_get_threshold_trigger_egde")
+  (return-type "ClutterGestureTriggerEdge")
+)
+
+(define-method get_threshold_trigger_edge
+  (of-object "ClutterGestureAction")
+  (c-name "clutter_gesture_action_get_threshold_trigger_edge")
   (return-type "ClutterGestureTriggerEdge")
 )
 
@@ -6230,6 +6316,18 @@
   )
 )
 
+(define-method get_vendor_id
+  (of-object "ClutterInputDevice")
+  (c-name "clutter_input_device_get_vendor_id")
+  (return-type "const-gchar*")
+)
+
+(define-method get_product_id
+  (of-object "ClutterInputDevice")
+  (c-name "clutter_input_device_get_product_id")
+  (return-type "const-gchar*")
+)
+
 
 
 ;; From clutter-interval.h
@@ -6669,35 +6767,6 @@
 
 
 
-;; From clutter-list-model.h
-
-(define-function clutter_list_model_get_type
-  (c-name "clutter_list_model_get_type")
-  (return-type "GType")
-)
-
-(define-function clutter_list_model_new
-  (c-name "clutter_list_model_new")
-  (is-constructor-of "ClutterListModel")
-  (return-type "ClutterModel*")
-  (parameters
-    '("guint" "n_columns")
-  )
-  (varargs #t)
-)
-
-(define-function clutter_list_model_newv
-  (c-name "clutter_list_model_newv")
-  (return-type "ClutterModel*")
-  (parameters
-    '("guint" "n_columns")
-    '("GType*" "types")
-    '("const-gchar*-const[]" "names")
-  )
-)
-
-
-
 ;; From clutter-macros.h
 
 
@@ -6934,354 +7003,11 @@
 
 
 
+;; From clutter-master-clock-default.h
+
+
+
 ;; From clutter-master-clock.h
-
-
-
-;; From clutter-model.h
-
-(define-function clutter_model_get_type
-  (c-name "clutter_model_get_type")
-  (return-type "GType")
-)
-
-(define-method set_types
-  (of-object "ClutterModel")
-  (c-name "clutter_model_set_types")
-  (return-type "none")
-  (parameters
-    '("guint" "n_columns")
-    '("GType*" "types")
-  )
-)
-
-(define-method set_names
-  (of-object "ClutterModel")
-  (c-name "clutter_model_set_names")
-  (return-type "none")
-  (parameters
-    '("guint" "n_columns")
-    '("const-gchar*-const[]" "names")
-  )
-)
-
-(define-method append
-  (of-object "ClutterModel")
-  (c-name "clutter_model_append")
-  (return-type "none")
-  (parameters
-  )
-  (varargs #t)
-)
-
-(define-method appendv
-  (of-object "ClutterModel")
-  (c-name "clutter_model_appendv")
-  (return-type "none")
-  (parameters
-    '("guint" "n_columns")
-    '("guint*" "columns")
-    '("GValue*" "values")
-  )
-)
-
-(define-method prepend
-  (of-object "ClutterModel")
-  (c-name "clutter_model_prepend")
-  (return-type "none")
-  (parameters
-  )
-  (varargs #t)
-)
-
-(define-method prependv
-  (of-object "ClutterModel")
-  (c-name "clutter_model_prependv")
-  (return-type "none")
-  (parameters
-    '("guint" "n_columns")
-    '("guint*" "columns")
-    '("GValue*" "values")
-  )
-)
-
-(define-method insert
-  (of-object "ClutterModel")
-  (c-name "clutter_model_insert")
-  (return-type "none")
-  (parameters
-    '("guint" "row")
-  )
-  (varargs #t)
-)
-
-(define-method insertv
-  (of-object "ClutterModel")
-  (c-name "clutter_model_insertv")
-  (return-type "none")
-  (parameters
-    '("guint" "row")
-    '("guint" "n_columns")
-    '("guint*" "columns")
-    '("GValue*" "values")
-  )
-)
-
-(define-method insert_value
-  (of-object "ClutterModel")
-  (c-name "clutter_model_insert_value")
-  (return-type "none")
-  (parameters
-    '("guint" "row")
-    '("guint" "column")
-    '("const-GValue*" "value")
-  )
-)
-
-(define-method remove
-  (of-object "ClutterModel")
-  (c-name "clutter_model_remove")
-  (return-type "none")
-  (parameters
-    '("guint" "row")
-  )
-)
-
-(define-method get_n_rows
-  (of-object "ClutterModel")
-  (c-name "clutter_model_get_n_rows")
-  (return-type "guint")
-)
-
-(define-method get_n_columns
-  (of-object "ClutterModel")
-  (c-name "clutter_model_get_n_columns")
-  (return-type "guint")
-)
-
-(define-method get_column_name
-  (of-object "ClutterModel")
-  (c-name "clutter_model_get_column_name")
-  (return-type "const-gchar*")
-  (parameters
-    '("guint" "column")
-  )
-)
-
-(define-method get_column_type
-  (of-object "ClutterModel")
-  (c-name "clutter_model_get_column_type")
-  (return-type "GType")
-  (parameters
-    '("guint" "column")
-  )
-)
-
-(define-method get_first_iter
-  (of-object "ClutterModel")
-  (c-name "clutter_model_get_first_iter")
-  (return-type "ClutterModelIter*")
-)
-
-(define-method get_last_iter
-  (of-object "ClutterModel")
-  (c-name "clutter_model_get_last_iter")
-  (return-type "ClutterModelIter*")
-)
-
-(define-method get_iter_at_row
-  (of-object "ClutterModel")
-  (c-name "clutter_model_get_iter_at_row")
-  (return-type "ClutterModelIter*")
-  (parameters
-    '("guint" "row")
-  )
-)
-
-(define-method set_sorting_column
-  (of-object "ClutterModel")
-  (c-name "clutter_model_set_sorting_column")
-  (return-type "none")
-  (parameters
-    '("gint" "column")
-  )
-)
-
-(define-method get_sorting_column
-  (of-object "ClutterModel")
-  (c-name "clutter_model_get_sorting_column")
-  (return-type "gint")
-)
-
-(define-method foreach
-  (of-object "ClutterModel")
-  (c-name "clutter_model_foreach")
-  (return-type "none")
-  (parameters
-    '("ClutterModelForeachFunc" "func")
-    '("gpointer" "user_data")
-  )
-)
-
-(define-method set_sort
-  (of-object "ClutterModel")
-  (c-name "clutter_model_set_sort")
-  (return-type "none")
-  (parameters
-    '("gint" "column")
-    '("ClutterModelSortFunc" "func")
-    '("gpointer" "user_data")
-    '("GDestroyNotify" "notify")
-  )
-)
-
-(define-method set_filter
-  (of-object "ClutterModel")
-  (c-name "clutter_model_set_filter")
-  (return-type "none")
-  (parameters
-    '("ClutterModelFilterFunc" "func")
-    '("gpointer" "user_data")
-    '("GDestroyNotify" "notify")
-  )
-)
-
-(define-method get_filter_set
-  (of-object "ClutterModel")
-  (c-name "clutter_model_get_filter_set")
-  (return-type "gboolean")
-)
-
-(define-method resort
-  (of-object "ClutterModel")
-  (c-name "clutter_model_resort")
-  (return-type "none")
-)
-
-(define-method filter_row
-  (of-object "ClutterModel")
-  (c-name "clutter_model_filter_row")
-  (return-type "gboolean")
-  (parameters
-    '("guint" "row")
-  )
-)
-
-(define-method filter_iter
-  (of-object "ClutterModel")
-  (c-name "clutter_model_filter_iter")
-  (return-type "gboolean")
-  (parameters
-    '("ClutterModelIter*" "iter")
-  )
-)
-
-(define-function clutter_model_iter_get_type
-  (c-name "clutter_model_iter_get_type")
-  (return-type "GType")
-)
-
-(define-method get
-  (of-object "ClutterModelIter")
-  (c-name "clutter_model_iter_get")
-  (return-type "none")
-  (parameters
-  )
-  (varargs #t)
-)
-
-(define-method get_valist
-  (of-object "ClutterModelIter")
-  (c-name "clutter_model_iter_get_valist")
-  (return-type "none")
-  (parameters
-    '("va_list" "args")
-  )
-)
-
-(define-method get_value
-  (of-object "ClutterModelIter")
-  (c-name "clutter_model_iter_get_value")
-  (return-type "none")
-  (parameters
-    '("guint" "column")
-    '("GValue*" "value")
-  )
-)
-
-(define-method set
-  (of-object "ClutterModelIter")
-  (c-name "clutter_model_iter_set")
-  (return-type "none")
-  (parameters
-  )
-  (varargs #t)
-)
-
-(define-method set_valist
-  (of-object "ClutterModelIter")
-  (c-name "clutter_model_iter_set_valist")
-  (return-type "none")
-  (parameters
-    '("va_list" "args")
-  )
-)
-
-(define-method set_value
-  (of-object "ClutterModelIter")
-  (c-name "clutter_model_iter_set_value")
-  (return-type "none")
-  (parameters
-    '("guint" "column")
-    '("const-GValue*" "value")
-  )
-)
-
-(define-method is_first
-  (of-object "ClutterModelIter")
-  (c-name "clutter_model_iter_is_first")
-  (return-type "gboolean")
-)
-
-(define-method is_last
-  (of-object "ClutterModelIter")
-  (c-name "clutter_model_iter_is_last")
-  (return-type "gboolean")
-)
-
-(define-method next
-  (of-object "ClutterModelIter")
-  (c-name "clutter_model_iter_next")
-  (return-type "ClutterModelIter*")
-)
-
-(define-method prev
-  (of-object "ClutterModelIter")
-  (c-name "clutter_model_iter_prev")
-  (return-type "ClutterModelIter*")
-)
-
-(define-method get_model
-  (of-object "ClutterModelIter")
-  (c-name "clutter_model_iter_get_model")
-  (return-type "ClutterModel*")
-)
-
-(define-method get_row
-  (of-object "ClutterModelIter")
-  (c-name "clutter_model_iter_get_row")
-  (return-type "guint")
-)
-
-(define-method copy
-  (of-object "ClutterModelIter")
-  (c-name "clutter_model_iter_copy")
-  (return-type "ClutterModelIter*")
-)
-
-
-
-;; From clutter-model-private.h
 
 
 
@@ -7718,6 +7444,17 @@
   )
 )
 
+(define-method get_constrained_motion_delta
+  (of-object "ClutterPanAction")
+  (c-name "clutter_pan_action_get_constrained_motion_delta")
+  (return-type "gfloat")
+  (parameters
+    '("guint" "point")
+    '("gfloat*" "delta_x")
+    '("gfloat*" "delta_y")
+  )
+)
+
 
 
 ;; From clutter-path-constraint.h
@@ -7727,17 +7464,17 @@
   (return-type "GType")
 )
 
-(define-method constraint_new
+(define-function constraint_new
   (of-object "ClutterPath")
   (c-name "clutter_path_constraint_new")
   (return-type "ClutterConstraint*")
   (parameters
+    '("ClutterPath*" "path")
     '("gfloat" "offset")
   )
 )
 
-(define-method set_path
-  (of-object "ClutterPathConstraint")
+(define-method clutter_path_constraint_set_path
   (c-name "clutter_path_constraint_set_path")
   (return-type "none")
   (parameters
@@ -7745,16 +7482,14 @@
   )
 )
 
-(define-method get_path
-  (of-object "ClutterPathConstraint")
+(define-method clutter_path_constraint_get_path
   (c-name "clutter_path_constraint_get_path")
   (return-type "ClutterPath*")
   (parameters
   )
 )
 
-(define-method set_offset
-  (of-object "ClutterPathConstraint")
+(define-method clutter_path_constraint_set_offset
   (c-name "clutter_path_constraint_set_offset")
   (return-type "none")
   (parameters
@@ -7763,7 +7498,6 @@
 )
 
 (define-method clutter_path_constraint_get_offset
-  (of-object "ClutterPathConstraint")
   (c-name "clutter_path_constraint_get_offset")
   (return-type "gfloat")
   (parameters
@@ -8004,10 +7738,6 @@
 
 
 ;; From clutter-private.h
-
-
-
-;; From clutter-profile.h
 
 
 
@@ -8370,6 +8100,16 @@
 
 ;; From clutter-settings-private.h
 
+(define-method set_property_internal
+  (of-object "ClutterSettings")
+  (c-name "clutter_settings_set_property_internal")
+  (return-type "none")
+  (parameters
+    '("const-char*" "property")
+    '("GValue*" "value")
+  )
+)
+
 
 
 ;; From clutter-shader-effect.h
@@ -8528,8 +8268,7 @@
   )
 )
 
-(define-method set_source
-  (of-object "ClutterSnapConstraint")
+(define-method clutter_snap_constraint_set_source
   (c-name "clutter_snap_constraint_set_source")
   (return-type "none")
   (parameters
@@ -8537,16 +8276,14 @@
   )
 )
 
-(define-method get_source
-  (of-object "ClutterSnapConstraint")
+(define-method clutter_snap_constraint_get_source
   (c-name "clutter_snap_constraint_get_source")
   (return-type "ClutterActor*")
   (parameters
   )
 )
 
-(define-method set_edges
-  (of-object "ClutterSnapConstraint")
+(define-method clutter_snap_constraint_set_edges
   (c-name "clutter_snap_constraint_set_edges")
   (return-type "none")
   (parameters
@@ -8555,8 +8292,7 @@
   )
 )
 
-(define-method get_edges
-  (of-object "ClutterSnapConstraint")
+(define-method clutter_snap_constraint_get_edges
   (c-name "clutter_snap_constraint_get_edges")
   (return-type "none")
   (parameters
@@ -8565,8 +8301,7 @@
   )
 )
 
-(define-method set_offset
-  (of-object "ClutterSnapConstraint")
+(define-method clutter_snap_constraint_set_offset
   (c-name "clutter_snap_constraint_set_offset")
   (return-type "none")
   (parameters
@@ -8574,8 +8309,7 @@
   )
 )
 
-(define-method get_offset
-  (of-object "ClutterSnapConstraint")
+(define-method clutter_snap_constraint_get_offset
   (c-name "clutter_snap_constraint_get_offset")
   (return-type "gfloat")
   (parameters
@@ -8864,17 +8598,6 @@
   (of-object "ClutterStage")
   (c-name "clutter_stage_skip_sync_delay")
   (return-type "none")
-)
-
-(define-method set_paint_callback
-  (of-object "ClutterStage")
-  (c-name "clutter_stage_set_paint_callback")
-  (return-type "none")
-  (parameters
-    '("ClutterStagePaintFunc" "callback")
-    '("gpointer" "data")
-    '("GDestroyNotify" "notify")
-  )
 )
 
 
@@ -11040,24 +10763,6 @@
 
 ;; From clutter-version.h
 
-(define-function clutter_check_version
-  (c-name "clutter_check_version")
-  (return-type "gboolean")
-  (parameters
-    '("guint" "major")
-    '("guint" "minor")
-    '("guint" "micro")
-  )
-)
-
-(define-function clutter_check_windowing_backend
-  (c-name "clutter_check_windowing_backend")
-  (return-type "gboolean")
-  (parameters
-    '("const-char*" "backend_type")
-  )
-)
-
 
 
 ;; From clutter-zoom-action.h
@@ -11146,6 +10851,15 @@
   )
 )
 
+(define-method reparent
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_reparent")
+  (return-type "none")
+  (parameters
+    '("ClutterActor*" "new_parent")
+  )
+)
+
 (define-method set_parent
   (of-object "ClutterActor")
   (c-name "clutter_actor_set_parent")
@@ -11178,7 +10892,6 @@
     '("ClutterActor*" "above")
   )
 )
-
 
 (define-method raise_top
   (of-object "ClutterActor")
@@ -11270,6 +10983,29 @@
   (of-object "ClutterActor")
   (c-name "clutter_actor_get_z_rotation_gravity")
   (return-type "ClutterGravity")
+)
+
+(define-method set_scale_full
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_scale_full")
+  (return-type "none")
+  (parameters
+    '("gdouble" "scale_x")
+    '("gdouble" "scale_y")
+    '("gfloat" "center_x")
+    '("gfloat" "center_y")
+  )
+)
+
+(define-method set_scale_with_gravity
+  (of-object "ClutterActor")
+  (c-name "clutter_actor_set_scale_with_gravity")
+  (return-type "none")
+  (parameters
+    '("gdouble" "scale_x")
+    '("gdouble" "scale_y")
+    '("ClutterGravity" "gravity")
+  )
 )
 
 (define-method get_scale_center
@@ -12997,6 +12733,35 @@
 
 
 
+;; From clutter-list-model.h
+
+(define-function clutter_list_model_get_type
+  (c-name "clutter_list_model_get_type")
+  (return-type "GType")
+)
+
+(define-function clutter_list_model_new
+  (c-name "clutter_list_model_new")
+  (is-constructor-of "ClutterListModel")
+  (return-type "ClutterModel*")
+  (parameters
+    '("guint" "n_columns")
+  )
+  (varargs #t)
+)
+
+(define-function clutter_list_model_newv
+  (c-name "clutter_list_model_newv")
+  (return-type "ClutterModel*")
+  (parameters
+    '("guint" "n_columns")
+    '("GType*" "types")
+    '("const-gchar*-const[]" "names")
+  )
+)
+
+
+
 ;; From clutter-main.h
 
 (define-function clutter_threads_init
@@ -13248,6 +13013,353 @@
   (c-name "clutter_media_get_duration")
   (return-type "gdouble")
 )
+
+
+
+;; From clutter-model.h
+
+(define-function clutter_model_get_type
+  (c-name "clutter_model_get_type")
+  (return-type "GType")
+)
+
+(define-method set_types
+  (of-object "ClutterModel")
+  (c-name "clutter_model_set_types")
+  (return-type "none")
+  (parameters
+    '("guint" "n_columns")
+    '("GType*" "types")
+  )
+)
+
+(define-method set_names
+  (of-object "ClutterModel")
+  (c-name "clutter_model_set_names")
+  (return-type "none")
+  (parameters
+    '("guint" "n_columns")
+    '("const-gchar*-const[]" "names")
+  )
+)
+
+(define-method append
+  (of-object "ClutterModel")
+  (c-name "clutter_model_append")
+  (return-type "none")
+  (parameters
+  )
+  (varargs #t)
+)
+
+(define-method appendv
+  (of-object "ClutterModel")
+  (c-name "clutter_model_appendv")
+  (return-type "none")
+  (parameters
+    '("guint" "n_columns")
+    '("guint*" "columns")
+    '("GValue*" "values")
+  )
+)
+
+(define-method prepend
+  (of-object "ClutterModel")
+  (c-name "clutter_model_prepend")
+  (return-type "none")
+  (parameters
+  )
+  (varargs #t)
+)
+
+(define-method prependv
+  (of-object "ClutterModel")
+  (c-name "clutter_model_prependv")
+  (return-type "none")
+  (parameters
+    '("guint" "n_columns")
+    '("guint*" "columns")
+    '("GValue*" "values")
+  )
+)
+
+(define-method insert
+  (of-object "ClutterModel")
+  (c-name "clutter_model_insert")
+  (return-type "none")
+  (parameters
+    '("guint" "row")
+  )
+  (varargs #t)
+)
+
+(define-method insertv
+  (of-object "ClutterModel")
+  (c-name "clutter_model_insertv")
+  (return-type "none")
+  (parameters
+    '("guint" "row")
+    '("guint" "n_columns")
+    '("guint*" "columns")
+    '("GValue*" "values")
+  )
+)
+
+(define-method insert_value
+  (of-object "ClutterModel")
+  (c-name "clutter_model_insert_value")
+  (return-type "none")
+  (parameters
+    '("guint" "row")
+    '("guint" "column")
+    '("const-GValue*" "value")
+  )
+)
+
+(define-method remove
+  (of-object "ClutterModel")
+  (c-name "clutter_model_remove")
+  (return-type "none")
+  (parameters
+    '("guint" "row")
+  )
+)
+
+(define-method get_n_rows
+  (of-object "ClutterModel")
+  (c-name "clutter_model_get_n_rows")
+  (return-type "guint")
+)
+
+(define-method get_n_columns
+  (of-object "ClutterModel")
+  (c-name "clutter_model_get_n_columns")
+  (return-type "guint")
+)
+
+(define-method get_column_name
+  (of-object "ClutterModel")
+  (c-name "clutter_model_get_column_name")
+  (return-type "const-gchar*")
+  (parameters
+    '("guint" "column")
+  )
+)
+
+(define-method get_column_type
+  (of-object "ClutterModel")
+  (c-name "clutter_model_get_column_type")
+  (return-type "GType")
+  (parameters
+    '("guint" "column")
+  )
+)
+
+(define-method get_first_iter
+  (of-object "ClutterModel")
+  (c-name "clutter_model_get_first_iter")
+  (return-type "ClutterModelIter*")
+)
+
+(define-method get_last_iter
+  (of-object "ClutterModel")
+  (c-name "clutter_model_get_last_iter")
+  (return-type "ClutterModelIter*")
+)
+
+(define-method get_iter_at_row
+  (of-object "ClutterModel")
+  (c-name "clutter_model_get_iter_at_row")
+  (return-type "ClutterModelIter*")
+  (parameters
+    '("guint" "row")
+  )
+)
+
+(define-method set_sorting_column
+  (of-object "ClutterModel")
+  (c-name "clutter_model_set_sorting_column")
+  (return-type "none")
+  (parameters
+    '("gint" "column")
+  )
+)
+
+(define-method get_sorting_column
+  (of-object "ClutterModel")
+  (c-name "clutter_model_get_sorting_column")
+  (return-type "gint")
+)
+
+(define-method foreach
+  (of-object "ClutterModel")
+  (c-name "clutter_model_foreach")
+  (return-type "none")
+  (parameters
+    '("ClutterModelForeachFunc" "func")
+    '("gpointer" "user_data")
+  )
+)
+
+(define-method set_sort
+  (of-object "ClutterModel")
+  (c-name "clutter_model_set_sort")
+  (return-type "none")
+  (parameters
+    '("gint" "column")
+    '("ClutterModelSortFunc" "func")
+    '("gpointer" "user_data")
+    '("GDestroyNotify" "notify")
+  )
+)
+
+(define-method set_filter
+  (of-object "ClutterModel")
+  (c-name "clutter_model_set_filter")
+  (return-type "none")
+  (parameters
+    '("ClutterModelFilterFunc" "func")
+    '("gpointer" "user_data")
+    '("GDestroyNotify" "notify")
+  )
+)
+
+(define-method get_filter_set
+  (of-object "ClutterModel")
+  (c-name "clutter_model_get_filter_set")
+  (return-type "gboolean")
+)
+
+(define-method resort
+  (of-object "ClutterModel")
+  (c-name "clutter_model_resort")
+  (return-type "none")
+)
+
+(define-method filter_row
+  (of-object "ClutterModel")
+  (c-name "clutter_model_filter_row")
+  (return-type "gboolean")
+  (parameters
+    '("guint" "row")
+  )
+)
+
+(define-method filter_iter
+  (of-object "ClutterModel")
+  (c-name "clutter_model_filter_iter")
+  (return-type "gboolean")
+  (parameters
+    '("ClutterModelIter*" "iter")
+  )
+)
+
+(define-function clutter_model_iter_get_type
+  (c-name "clutter_model_iter_get_type")
+  (return-type "GType")
+)
+
+(define-method get
+  (of-object "ClutterModelIter")
+  (c-name "clutter_model_iter_get")
+  (return-type "none")
+  (parameters
+  )
+  (varargs #t)
+)
+
+(define-method get_valist
+  (of-object "ClutterModelIter")
+  (c-name "clutter_model_iter_get_valist")
+  (return-type "none")
+  (parameters
+    '("va_list" "args")
+  )
+)
+
+(define-method get_value
+  (of-object "ClutterModelIter")
+  (c-name "clutter_model_iter_get_value")
+  (return-type "none")
+  (parameters
+    '("guint" "column")
+    '("GValue*" "value")
+  )
+)
+
+(define-method set
+  (of-object "ClutterModelIter")
+  (c-name "clutter_model_iter_set")
+  (return-type "none")
+  (parameters
+  )
+  (varargs #t)
+)
+
+(define-method set_valist
+  (of-object "ClutterModelIter")
+  (c-name "clutter_model_iter_set_valist")
+  (return-type "none")
+  (parameters
+    '("va_list" "args")
+  )
+)
+
+(define-method set_value
+  (of-object "ClutterModelIter")
+  (c-name "clutter_model_iter_set_value")
+  (return-type "none")
+  (parameters
+    '("guint" "column")
+    '("const-GValue*" "value")
+  )
+)
+
+(define-method is_first
+  (of-object "ClutterModelIter")
+  (c-name "clutter_model_iter_is_first")
+  (return-type "gboolean")
+)
+
+(define-method is_last
+  (of-object "ClutterModelIter")
+  (c-name "clutter_model_iter_is_last")
+  (return-type "gboolean")
+)
+
+(define-method next
+  (of-object "ClutterModelIter")
+  (c-name "clutter_model_iter_next")
+  (return-type "ClutterModelIter*")
+)
+
+(define-method prev
+  (of-object "ClutterModelIter")
+  (c-name "clutter_model_iter_prev")
+  (return-type "ClutterModelIter*")
+)
+
+(define-method get_model
+  (of-object "ClutterModelIter")
+  (c-name "clutter_model_iter_get_model")
+  (return-type "ClutterModel*")
+)
+
+(define-method get_row
+  (of-object "ClutterModelIter")
+  (c-name "clutter_model_iter_get_row")
+  (return-type "guint")
+)
+
+(define-method copy
+  (of-object "ClutterModelIter")
+  (c-name "clutter_model_iter_copy")
+  (return-type "ClutterModelIter*")
+)
+
+
+
+;; From clutter-model-private.h
 
 
 

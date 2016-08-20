@@ -15,7 +15,7 @@
 ## You should have received a copy of the GNU Lesser General Public License
 ## along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-AC_INIT([cluttermm], [1.17.3],
+AC_INIT([cluttermm], [1.23.1],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=cluttermm],
         [cluttermm], [http://www.gtkmm.org/])
 AC_PREREQ([2.59])
@@ -48,7 +48,7 @@ AC_DISABLE_STATIC
 AC_LIBTOOL_WIN32_DLL
 AC_PROG_LIBTOOL
 
-AC_SUBST([CLUTTERMM_MODULES], ['clutter-1.0 >= 1.18.0 pangomm-1.4 >= 2.37.2 atkmm-1.6 >= 2.23.3'])
+AC_SUBST([CLUTTERMM_MODULES], ['clutter-1.0 >= 1.24.0 pangomm-1.4 >= 2.37.2 atkmm-1.6 >= 2.23.3'])
 PKG_CHECK_MODULES([CLUTTERMM], [$CLUTTERMM_MODULES])
 MM_PKG_CONFIG_SUBST([GMMPROC_DIR], [--variable=gmmprocdir glibmm-2.4])
 MM_PKG_CONFIG_SUBST([GMMPROC_EXTRA_M4_DIR], [--variable=gmmprocm4dir pangomm-1.4 atkmm-1.6])
