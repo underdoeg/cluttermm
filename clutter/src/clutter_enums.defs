@@ -138,6 +138,37 @@
 ;; From clutter-enums.h
 
 ;; Original typedef:
+;; typedef enum { /*< prefix=CLUTTER_GRAVITY >*/
+;;   CLUTTER_GRAVITY_NONE       = 0,
+;;   CLUTTER_GRAVITY_NORTH,
+;;   CLUTTER_GRAVITY_NORTH_EAST,
+;;   CLUTTER_GRAVITY_EAST,
+;;   CLUTTER_GRAVITY_SOUTH_EAST,
+;;   CLUTTER_GRAVITY_SOUTH,
+;;   CLUTTER_GRAVITY_SOUTH_WEST,
+;;   CLUTTER_GRAVITY_WEST,
+;;   CLUTTER_GRAVITY_NORTH_WEST,
+;;   CLUTTER_GRAVITY_CENTER
+;; } ClutterGravity;
+
+(define-enum-extended Gravity
+  (in-module "Clutter")
+  (c-name "ClutterGravity")
+  (values
+    '("none" "CLUTTER_GRAVITY_NONE" "0")
+    '("north" "CLUTTER_GRAVITY_NORTH" "1")
+    '("north-east" "CLUTTER_GRAVITY_NORTH_EAST" "2")
+    '("east" "CLUTTER_GRAVITY_EAST" "3")
+    '("south-east" "CLUTTER_GRAVITY_SOUTH_EAST" "4")
+    '("south" "CLUTTER_GRAVITY_SOUTH" "5")
+    '("south-west" "CLUTTER_GRAVITY_SOUTH_WEST" "6")
+    '("west" "CLUTTER_GRAVITY_WEST" "7")
+    '("north-west" "CLUTTER_GRAVITY_NORTH_WEST" "8")
+    '("center" "CLUTTER_GRAVITY_CENTER" "9")
+  )
+)
+
+;; Original typedef:
 ;; typedef enum { /*< prefix=CLUTTER >*/
 ;;   CLUTTER_X_AXIS,
 ;;   CLUTTER_Y_AXIS,
@@ -151,6 +182,21 @@
     '("x-axis" "CLUTTER_X_AXIS" "0")
     '("y-axis" "CLUTTER_Y_AXIS" "1")
     '("z-axis" "CLUTTER_Z_AXIS" "2")
+  )
+)
+
+;; Original typedef:
+;; typedef enum { /*< prefix=CLUTTER_ROTATE >*/
+;;   CLUTTER_ROTATE_CW,
+;;   CLUTTER_ROTATE_CCW
+;; } ClutterRotateDirection;
+
+(define-enum-extended RotateDirection
+  (in-module "Clutter")
+  (c-name "ClutterRotateDirection")
+  (values
+    '("cw" "CLUTTER_ROTATE_CW" "0")
+    '("ccw" "CLUTTER_ROTATE_CCW" "1")
   )
 )
 
@@ -238,7 +284,7 @@
 ;;   CLUTTER_EASE_OUT,
 ;;   CLUTTER_EASE_IN_OUT,
 ;; 
-;;   /* guard */
+;;   /* guard, before registered alpha functions */
 ;;   CLUTTER_ANIMATION_LAST
 ;; } ClutterAnimationMode;
 
@@ -287,6 +333,21 @@
     '("ease-out" "CLUTTER_EASE_OUT" "38")
     '("ease-in-out" "CLUTTER_EASE_IN_OUT" "39")
     '("animation-last" "CLUTTER_ANIMATION_LAST" "40")
+  )
+)
+
+;; Original typedef:
+;; typedef enum { /*< prefix=CLUTTER_FONT >*/
+;;   CLUTTER_FONT_MIPMAPPING = (1 << 0),
+;;   CLUTTER_FONT_HINTING    = (1 << 1)
+;; } ClutterFontFlags;
+
+(define-flags-extended FontFlags
+  (in-module "Clutter")
+  (c-name "ClutterFontFlags")
+  (values
+    '("mipmapping" "CLUTTER_FONT_MIPMAPPING" "(1 << 0)")
+    '("hinting" "CLUTTER_FONT_HINTING" "(1 << 1)")
   )
 )
 
@@ -479,6 +540,42 @@
 )
 
 ;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_INTERPOLATION_LINEAR,
+;;   CLUTTER_INTERPOLATION_CUBIC
+;; } ClutterInterpolation;
+
+(define-enum-extended Interpolation
+  (in-module "Clutter")
+  (c-name "ClutterInterpolation")
+  (values
+    '("linear" "CLUTTER_INTERPOLATION_LINEAR" "0")
+    '("cubic" "CLUTTER_INTERPOLATION_CUBIC" "1")
+  )
+)
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_BIN_ALIGNMENT_FIXED,
+;;   CLUTTER_BIN_ALIGNMENT_FILL,
+;;   CLUTTER_BIN_ALIGNMENT_START,
+;;   CLUTTER_BIN_ALIGNMENT_END,
+;;   CLUTTER_BIN_ALIGNMENT_CENTER
+;; } ClutterBinAlignment;
+
+(define-enum-extended BinAlignment
+  (in-module "Clutter")
+  (c-name "ClutterBinAlignment")
+  (values
+    '("fixed" "CLUTTER_BIN_ALIGNMENT_FIXED" "0")
+    '("fill" "CLUTTER_BIN_ALIGNMENT_FILL" "1")
+    '("start" "CLUTTER_BIN_ALIGNMENT_START" "2")
+    '("end" "CLUTTER_BIN_ALIGNMENT_END" "3")
+    '("center" "CLUTTER_BIN_ALIGNMENT_CENTER" "4")
+  )
+)
+
+;; Original typedef:
 ;; typedef enum { /*< prefix=CLUTTER_BIND >*/
 ;;   CLUTTER_BIND_X,
 ;;   CLUTTER_BIND_Y,
@@ -513,6 +610,23 @@
   (c-name "ClutterEffectPaintFlags")
   (values
     '("actor-dirty" "CLUTTER_EFFECT_PAINT_ACTOR_DIRTY" "(1 << 0)")
+  )
+)
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_BOX_ALIGNMENT_START,
+;;   CLUTTER_BOX_ALIGNMENT_END,
+;;   CLUTTER_BOX_ALIGNMENT_CENTER
+;; } ClutterBoxAlignment;
+
+(define-enum-extended BoxAlignment
+  (in-module "Clutter")
+  (c-name "ClutterBoxAlignment")
+  (values
+    '("start" "CLUTTER_BOX_ALIGNMENT_START" "0")
+    '("end" "CLUTTER_BOX_ALIGNMENT_END" "1")
+    '("center" "CLUTTER_BOX_ALIGNMENT_CENTER" "2")
   )
 )
 
@@ -964,6 +1078,61 @@
 
 ;; Original typedef:
 ;; typedef enum {
+;;   CLUTTER_TABLE_ALIGNMENT_START,
+;;   CLUTTER_TABLE_ALIGNMENT_CENTER,
+;;   CLUTTER_TABLE_ALIGNMENT_END
+;; } ClutterTableAlignment;
+
+(define-enum-extended TableAlignment
+  (in-module "Clutter")
+  (c-name "ClutterTableAlignment")
+  (values
+    '("start" "CLUTTER_TABLE_ALIGNMENT_START" "0")
+    '("center" "CLUTTER_TABLE_ALIGNMENT_CENTER" "1")
+    '("end" "CLUTTER_TABLE_ALIGNMENT_END" "2")
+  )
+)
+
+;; Original typedef:
+;; typedef enum { /*< prefix=CLUTTER_TEXTURE >*/
+;;   CLUTTER_TEXTURE_NONE             = 0,
+;;   CLUTTER_TEXTURE_RGB_FLAG_BGR     = 1 << 1,
+;;   CLUTTER_TEXTURE_RGB_FLAG_PREMULT = 1 << 2, /* FIXME: not handled */
+;;   CLUTTER_TEXTURE_YUV_FLAG_YUV2    = 1 << 3
+;; 
+;;   /* FIXME: add compressed types ? */
+;; } ClutterTextureFlags;
+
+(define-flags-extended TextureFlags
+  (in-module "Clutter")
+  (c-name "ClutterTextureFlags")
+  (values
+    '("none" "CLUTTER_TEXTURE_NONE" "0x0")
+    '("rgb-flag-bgr" "CLUTTER_TEXTURE_RGB_FLAG_BGR" "1 << 1")
+    '("rgb-flag-premult" "CLUTTER_TEXTURE_RGB_FLAG_PREMULT" "1 << 2")
+    '("yuv-flag-yuv2" "CLUTTER_TEXTURE_YUV_FLAG_YUV2" "1 << 3")
+  )
+)
+
+;; Original typedef:
+;; typedef enum { /*< prefix=CLUTTER_TEXTURE_QUALITY >*/
+;;   CLUTTER_TEXTURE_QUALITY_LOW,
+;;   CLUTTER_TEXTURE_QUALITY_MEDIUM,
+;;   CLUTTER_TEXTURE_QUALITY_HIGH
+;; } ClutterTextureQuality;
+
+(define-enum-extended TextureQuality
+  (in-module "Clutter")
+  (c-name "ClutterTextureQuality")
+  (values
+    '("low" "CLUTTER_TEXTURE_QUALITY_LOW" "0")
+    '("medium" "CLUTTER_TEXTURE_QUALITY_MEDIUM" "1")
+    '("high" "CLUTTER_TEXTURE_QUALITY_HIGH" "2")
+  )
+)
+
+;; Original typedef:
+;; typedef enum {
 ;;   CLUTTER_TIMELINE_FORWARD,
 ;;   CLUTTER_TIMELINE_BACKWARD
 ;; } ClutterTimelineDirection;
@@ -1219,6 +1388,23 @@
   )
 )
 
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_GESTURE_TRIGGER_EDGE_NONE  = 0,
+;;   CLUTTER_GESTURE_TRIGGER_EDGE_AFTER,
+;;   CLUTTER_GESTURE_TRIGGER_EDGE_BEFORE
+;; } ClutterGestureTriggerEdge;
+
+(define-enum-extended GestureTriggerEdge
+  (in-module "Clutter")
+  (c-name "ClutterGestureTriggerEdge")
+  (values
+    '("none" "CLUTTER_GESTURE_TRIGGER_EDGE_NONE" "0")
+    '("after" "CLUTTER_GESTURE_TRIGGER_EDGE_AFTER" "1")
+    '("before" "CLUTTER_GESTURE_TRIGGER_EDGE_BEFORE" "2")
+  )
+)
+
 ;; From clutter-event-translator.h
 
 ;; Original typedef:
@@ -1235,26 +1421,6 @@
     '("continue" "CLUTTER_TRANSLATE_CONTINUE" "0")
     '("remove" "CLUTTER_TRANSLATE_REMOVE" "1")
     '("queue" "CLUTTER_TRANSLATE_QUEUE" "2")
-  )
-)
-
-;; From clutter-gesture-action-private.h
-
-;; Original typedef:
-;; typedef enum
-;; {
-;;   CLUTTER_GESTURE_TRIGGER_EDGE_NONE  = 0,
-;;   CLUTTER_GESTURE_TRIGGER_EDGE_AFTER,
-;;   CLUTTER_GESTURE_TRIGGER_EDGE_BEFORE
-;; } ClutterGestureTriggerEdge;
-
-(define-enum-extended GestureTriggerEdge
-  (in-module "Clutter")
-  (c-name "ClutterGestureTriggerEdge")
-  (values
-    '("none" "CLUTTER_GESTURE_TRIGGER_EDGE_NONE" "0")
-    '("after" "CLUTTER_GESTURE_TRIGGER_EDGE_AFTER" "1")
-    '("before" "CLUTTER_GESTURE_TRIGGER_EDGE_BEFORE" "2")
   )
 )
 
@@ -1411,6 +1577,44 @@
     '("type-function" "CLUTTER_SCRIPT_ERROR_INVALID_TYPE_FUNCTION" "0")
     '("property" "CLUTTER_SCRIPT_ERROR_INVALID_PROPERTY" "1")
     '("value" "CLUTTER_SCRIPT_ERROR_INVALID_VALUE" "2")
+  )
+)
+
+;; From clutter-texture.h
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_TEXTURE_ERROR_OUT_OF_MEMORY,
+;;   CLUTTER_TEXTURE_ERROR_NO_YUV,
+;;   CLUTTER_TEXTURE_ERROR_BAD_FORMAT
+;; } ClutterTextureError;
+
+(define-enum-extended TextureError
+  (in-module "Clutter")
+  (c-name "ClutterTextureError")
+  (values
+    '("out-of-memory" "CLUTTER_TEXTURE_ERROR_OUT_OF_MEMORY" "0")
+    '("no-yuv" "CLUTTER_TEXTURE_ERROR_NO_YUV" "1")
+    '("bad-format" "CLUTTER_TEXTURE_ERROR_BAD_FORMAT" "2")
+  )
+)
+
+;; From clutter-shader.h
+
+;; Original typedef:
+;; typedef enum {
+;;   CLUTTER_SHADER_ERROR_NO_ASM,
+;;   CLUTTER_SHADER_ERROR_NO_GLSL,
+;;   CLUTTER_SHADER_ERROR_COMPILE
+;; } ClutterShaderError;
+
+(define-enum-extended ShaderError
+  (in-module "Clutter")
+  (c-name "ClutterShaderError")
+  (values
+    '("no-asm" "CLUTTER_SHADER_ERROR_NO_ASM" "0")
+    '("no-glsl" "CLUTTER_SHADER_ERROR_NO_GLSL" "1")
+    '("compile" "CLUTTER_SHADER_ERROR_COMPILE" "2")
   )
 )
 
