@@ -1,0 +1,54 @@
+/* Copyright (C) 2007 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <cluttermm/behaviour.h>
+#include <cluttermm/alpha.h>
+ 
+_DEFS(cluttermm,clutter)
+_PINCLUDE(cluttermm/private/behaviour_p.h)
+
+#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+#m4 _POP()
+
+namespace Clutter
+{
+
+/**
+ * @deprecated Use Actor::animate() with the Actor's depth
+ * property instead.
+ */
+class BehaviourDepth : public Behaviour
+{
+  _CLASS_GOBJECT(BehaviourDepth, ClutterBehaviourDepth, CLUTTER_BEHAVIOUR_DEPTH, Behaviour, ClutterBehaviour)
+  _IS_DEPRECATED
+
+protected:
+  _WRAP_CTOR(BehaviourDepth(const Glib::RefPtr<Alpha>& alpha, int depth_start, int depth_end), clutter_behaviour_depth_new)
+
+public:
+  _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, int start_depth, int end_depth)
+
+  _WRAP_METHOD(void set_bounds(int depth_start, int depth_end), clutter_behaviour_depth_set_bounds)
+  _WRAP_METHOD(void get_bounds(int& depth_start, int& depth_end), clutter_behaviour_depth_get_bounds)
+
+  _WRAP_PROPERTY("depth-end", int)
+  _WRAP_PROPERTY("depth-start", int)
+
+};
+
+} // namespace Clutter

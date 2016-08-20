@@ -1,0 +1,85 @@
+/* Copyright (C) 2011 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <glibmm/object.h>
+#include <cluttermm/scriptable.h>
+
+_DEFS(cluttermm,clutter)
+_PINCLUDE(glibmm/private/object_p.h)
+
+
+#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+#m4 _POP()
+
+namespace Clutter
+{
+
+_WRAP_ENUM(Interpolation, ClutterInterpolation)
+
+class Timeline;
+
+/**
+ * @deprecated Use KeyframeTransition instead.
+ */
+class Animator : public Glib::Object
+{
+  _CLASS_GOBJECT(Animator, ClutterAnimator, CLUTTER_ANIMATOR, Glib::Object, GObject)
+  _IMPLEMENTS_INTERFACE(Scriptable)
+  _IS_DEPRECATED
+
+protected:
+  _CTOR_DEFAULT()
+
+public:
+  _WRAP_CREATE()
+
+  _IGNORE(clutter_animator_set)
+  _WRAP_METHOD(Glib::RefPtr<Animator> set_key(const Glib::RefPtr<Glib::Object>& object, const Glib::ustring& property_name, guint mode, double progress, const Glib::ValueBase& value), clutter_animator_set_key, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Animator> set_key(const Glib::RefPtr<Glib::Object>& object, const Glib::ustring& property_name, guint mode, double progress, const Glib::ValueBase& value) const, clutter_animator_set_key, refreturn, constversion)
+  _WRAP_METHOD(void remove_key(const Glib::RefPtr<Glib::Object>& object, const Glib::ustring& property_name, double progress), clutter_animator_remove_key)
+  // TODO: _WRAP_METHOD(std::vector<Glib::RefPtr<Animator> > get_keys(const Glib::RefPtr<Glib::Object>& object, const std::string &property_name, double progress), clutter_animator_get_keys)
+  _IGNORE(clutter_animator_get_keys)
+  _WRAP_METHOD(Glib::RefPtr<Timeline> start(), clutter_animator_start, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Timeline> start() const, clutter_animator_start, refreturn, constversion)
+  _WRAP_METHOD(bool compute_value(const Glib::RefPtr<Glib::Object>& object, const Glib::ustring& property_name, double progress, Glib::ValueBase& value), clutter_animator_compute_value)
+
+  _WRAP_METHOD(void set_timeline(const Glib::RefPtr<Timeline>& timeline), clutter_animator_set_timeline)
+  _WRAP_METHOD(Glib::RefPtr<Timeline> get_timeline(), clutter_animator_get_timeline, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Timeline> get_timeline() const, clutter_animator_get_timeline, refreturn, constversion)
+  _WRAP_METHOD(void set_duration(guint duration), clutter_animator_set_duration)
+  _WRAP_METHOD(guint get_duration() const, clutter_animator_get_duration)
+
+  _WRAP_METHOD(void property_set_ease_in(const Glib::RefPtr<Glib::Object>& object, const Glib::ustring& property_name, bool ease_in), clutter_animator_property_set_ease_in)
+  _WRAP_METHOD(bool property_get_ease_in(const Glib::RefPtr<Glib::Object>& object, const Glib::ustring& property_name), clutter_animator_property_get_ease_in)
+
+  _WRAP_METHOD(void property_set_interpolation(const Glib::RefPtr<Glib::Object>& object, const Glib::ustring& property_name, Interpolation interpolation), clutter_animator_property_set_interpolation)
+  _WRAP_METHOD(Interpolation property_get_interpolation(const Glib::RefPtr<Glib::Object>& object, const Glib::ustring& property_name), clutter_animator_property_get_interpolation)
+
+  // TODO: Decide if these are needed.
+  // _WRAP_METHOD(Glib::RefPtr<Glib::Object> get_object() const, clutter_animator_key_get_objec)
+  // _WRAP_METHOD(Glib::ustring get_property_name() const, clutter_animator_key_get_property_name)
+  // _WRAP_METHOD(GType get_property_type() const, clutter_animator_key_get_property_type)
+  // _WRAP_METHOD(gulong get_mode() const, clutter_animator_key_get_mod)
+  // _WRAP_METHOD(double get_progress() const , clutter_animator_key_get_progres)
+  // _WRAP_METHOD(bool get_value(GValue *value) const, clutter_animator_key_get_value)
+
+  _WRAP_PROPERTY("duration", guint)
+  _WRAP_PROPERTY("timeline", Glib::RefPtr<Timeline>)
+};
+
+} // namespace Clutter

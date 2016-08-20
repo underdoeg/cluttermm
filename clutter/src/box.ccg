@@ -1,0 +1,46 @@
+/* Copyright (C) 2011 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <clutter/clutter.h>
+
+namespace Clutter
+{
+
+Color Box::get_color() const
+{
+  Color color;
+  clutter_box_get_color(const_cast<ClutterBox*>(gobj()), color.gobj());
+  return color;
+}
+
+// void Box::pack(const Glib::RefPtr<Actor>& actor, const std::map<std::string, Glib::ValueBase>& properties)
+// {
+//   gchar* c_properties[properties.size()];
+//   GValue values[properties.size()];
+
+//   for(std::map<std::string, Glib::ValueBase>::const_iterator iter = properties.begin(); iter != properties.end(); ++iter)
+//   {
+//     c_properties[std::distance(properties.begin(), iter)] = g_strdup(iter->first.c_str());
+//     g_value_copy(iter->second.gobj(), &values[std::distance(properties.begin(), iter)]);
+//   }
+
+//   clutter_box_packv(gobj(), actor->gobj(), properties.size(), c_properties, values);
+
+// }
+
+} //namespace Clutter
+

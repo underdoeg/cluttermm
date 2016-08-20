@@ -1,0 +1,80 @@
+/* Copyright (C) 2007 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <glibmm/object.h>
+#include <cogl/cogl.h>
+
+_DEFS(cluttermm,clutter)
+_PINCLUDE(glibmm/private/object_p.h)
+
+#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+#m4 _POP()
+
+namespace Clutter
+{
+
+/**
+ * @deprecated Use ShaderEffect instead.
+ */
+class Shader : public Glib::Object
+{
+  _CLASS_GOBJECT(Shader, ClutterShader, CLUTTER_SHADER, Glib::Object, GObject)
+  _IS_DEPRECATED
+
+protected:
+  _CTOR_DEFAULT()
+
+public:
+  _WRAP_CREATE()
+
+  /** Sets the GLSL source code to be used by a Shader for the vertex program.
+   * @param source_code The GLSL source code.
+   */
+  void set_vertex_source(const std::string& source_code);
+  _IGNORE(clutter_shader_set_vertex_source)
+
+  _WRAP_METHOD(std::string get_vertex_source() const, clutter_shader_get_vertex_source)
+
+    //TODO: Documentation:
+  /** Sets the GLSL source code to be used by a Shader for the fragment
+   * program.
+   * @param source_code The GLSL source code.
+   */
+  void set_fragment_source(const std::string& source_code);
+  _IGNORE(clutter_shader_set_fragment_source)
+
+  _WRAP_METHOD(std::string get_fragment_source() const, clutter_shader_get_fragment_source)
+
+  _WRAP_METHOD(bool compile(), clutter_shader_compile, errthrow)
+  _WRAP_METHOD(bool is_compiled() const, clutter_shader_is_compiled)
+  _WRAP_METHOD(void release(), clutter_shader_release)
+  _WRAP_METHOD(void set_is_enabled(bool enabled = true), clutter_shader_set_is_enabled)
+  _WRAP_METHOD(bool get_is_enabled() const, clutter_shader_get_is_enabled)
+  _WRAP_METHOD(void set_uniform(const Glib::ustring& name, const Glib::ValueBase& value), clutter_shader_set_uniform)
+  _WRAP_METHOD(CoglHandle get_cogl_program() const, clutter_shader_get_cogl_program)
+  _WRAP_METHOD(CoglHandle get_cogl_vertex_shader() const, clutter_shader_get_cogl_vertex_shader)
+  _WRAP_METHOD(CoglHandle get_cogl_fragment_shader() const, clutter_shader_get_cogl_fragment_shader)
+
+  _WRAP_PROPERTY("compiled", bool)
+  _WRAP_PROPERTY("enabled", bool)
+  _WRAP_PROPERTY("fragment-source", std::string)
+  _WRAP_PROPERTY("vertex-source", std::string)
+};
+
+} // namespace Clutter
+// vim:ts=2,sw=2

@@ -1,0 +1,70 @@
+/* Copyright (C) 2007 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <cluttermm/actor.h>
+#include <cluttermm/container.h>
+ 
+_DEFS(cluttermm,clutter)
+_PINCLUDE(cluttermm/private/actor_p.h)
+_PINCLUDE(cluttermm/private/container_p.h)
+
+#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+#m4 _POP()
+
+namespace Clutter
+{
+
+/**
+ * @deprecated Use Actor instead.
+ */
+class Group :
+    public Actor,
+    public Container
+{
+  _CLASS_GOBJECT(Group, ClutterGroup, CLUTTER_GROUP, Actor, ClutterActor)
+  _IMPLEMENTS_INTERFACE(Container)
+  //We don't want this in ifdef because Stage still derives from Group: _IS_DEPRECATED
+  //TODO: Remove Group from Stage's heirarchy when clutter does that, when it breaks ABI.
+
+protected:
+  _CTOR_DEFAULT()
+
+public:
+  _WRAP_CREATE()
+
+  _WRAP_METHOD(void remove_all(), clutter_group_remove_all, deprecated "Use Actor::remove_all_children() instead.")
+  _WRAP_METHOD(int get_n_children() const, clutter_group_get_n_children, deprecated "Use Actor::get_n_children() instead.")
+  _WRAP_METHOD(Glib::RefPtr<Actor> get_nth_child(int index), clutter_group_get_nth_child, refreturn, deprecated "Use Actor::get_child_at_index() instead.")
+  _WRAP_METHOD(Glib::RefPtr<const Actor> get_nth_child(int index) const, clutter_group_get_nth_child, constversion, deprecated "Use Actor::get_child_at_index() instead.")
+
+
+  // these functions were deprecated in favor of their Container counterparts
+  _IGNORE(clutter_group_add)
+  _IGNORE(clutter_group_add_many)
+  _IGNORE(clutter_group_add_many_valist)
+  _IGNORE(clutter_group_remove)
+  _IGNORE(clutter_group_find_child_by_id)
+  _IGNORE(clutter_group_raise)
+  _IGNORE(clutter_group_lower)
+  _IGNORE(clutter_group_sort_depth_order)
+  _IGNORE_SIGNAL("add")
+  _IGNORE_SIGNAL("remove")
+};
+
+} // namespace Clutter
+

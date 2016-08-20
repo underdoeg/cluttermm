@@ -15,7 +15,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
-// c++ -Wall -g `pkg-config --cflags --libs cluttermm-2.0` -o stage example-stage.cc
+// c++ -Wall -g `pkg-config --cflags --libs cluttermm-1.0` -o stage example-stage.cc
 
 /**A simple ClutterStage. */
 #include <cluttermm.h>

@@ -1,0 +1,68 @@
+
+/* Copyright (C) 2007 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <cluttermm/behaviour.h>
+#include <cluttermm/scriptable.h>
+#include <cluttermm/alpha.h>
+#include <cluttermm/path.h>
+#include <cluttermm/types.h>
+
+_DEFS(cluttermm,clutter)
+_PINCLUDE(cluttermm/private/behaviour_p.h)
+
+#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+#m4 _POP()
+
+namespace Clutter
+{
+
+/**
+ * @deprecated Use Path and PathConstraint with Actor::animate() instead.
+ */
+class BehaviourPath
+: public Behaviour,
+  public Scriptable
+{
+  _CLASS_GOBJECT(BehaviourPath, ClutterBehaviourPath, CLUTTER_BEHAVIOUR_PATH, Behaviour, ClutterBehaviour)
+  _IS_DEPRECATED
+  _IMPLEMENTS_INTERFACE(Scriptable)
+
+protected:
+  _WRAP_CTOR(BehaviourPath(const Glib::RefPtr<Alpha>& alpha, const Glib::RefPtr<Path>& path),
+             clutter_behaviour_path_new)
+
+public:
+  _WRAP_CREATE(const Glib::RefPtr<Alpha>& alpha, const Glib::RefPtr<Path>& path)
+  _IGNORE(clutter_behaviour_path_new_with_knots,
+          clutter_behaviour_path_new_with_description)
+  static Glib::RefPtr<BehaviourPath> create_with_knots(const Glib::RefPtr<Alpha>& alpha,
+                                                       const std::vector<Knot>& knots);
+  static Glib::RefPtr<BehaviourPath> create_with_description(const Glib::RefPtr<Alpha>& alpha,
+                                                             const Glib::ustring& description);
+
+  _WRAP_METHOD(void set_path(const Glib::RefPtr<Path>& path), clutter_behaviour_path_set_path)
+  _WRAP_METHOD(Glib::RefPtr<Path> get_path(), clutter_behaviour_path_get_path, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Path> get_path() const, clutter_behaviour_path_get_path, refreturn, constversion)
+
+  _WRAP_PROPERTY("path", Glib::RefPtr<Path>)
+
+  _WRAP_SIGNAL(void knot_reached(guint knot_num), "knot_reached")
+};
+
+} // namespace Clutter

@@ -1,0 +1,91 @@
+/* Copyright (C) 2009 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <glibmm/object.h>
+#include <cluttermm/alpha.h>
+#include <cluttermm/actor.h>
+#include <cluttermm/interval.h>
+#include <cluttermm/timeline.h>
+
+_DEFS(cluttermm,clutter)
+_PINCLUDE(glibmm/private/object_p.h)
+
+#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+#m4 _POP()
+
+namespace Clutter
+{
+
+/**
+ * @deprecated Use PropertyTransition instead.
+ */
+class Animation : public Glib::Object
+{
+  _CLASS_GOBJECT(Animation, ClutterAnimation, CLUTTER_ANIMATION, Glib::Object, GObject)
+  _IS_DEPRECATED
+
+protected:
+  _CTOR_DEFAULT()
+
+public:
+  _WRAP_CREATE()
+
+  _WRAP_METHOD(void set_object(const Glib::RefPtr<Glib::Object>& object), clutter_animation_set_object, deprecated "Use PropertyTransition instead.")
+  _WRAP_METHOD(Glib::RefPtr<Glib::Object> get_object(), clutter_animation_get_objec, deprecated "Use PropertyTransition instead.")
+  _WRAP_METHOD(Glib::RefPtr<const Glib::Object> get_object() const, clutter_animation_get_object, deprecated "Use PropertyTransition instead.")
+  _WRAP_METHOD(void set_mode(gulong mode), clutter_animation_set_mode, deprecated "Use PropertyTransition instead.")
+  _WRAP_METHOD(gulong get_mode() const, clutter_animation_get_mode, deprecated "Use PropertyTransition instead.")
+
+  _WRAP_METHOD(void set_duration(guint msecs), clutter_animation_set_duration, deprecated "Use PropertyTransition instead.")
+  _WRAP_METHOD(guint get_duration() const, clutter_animation_get_duration, deprecated "Use PropertyTransition instead.")
+
+  _WRAP_METHOD(void set_loop(bool loop = true), clutter_animation_set_loop, deprecated "Use PropertyTransition instead.")
+  _WRAP_METHOD(bool get_loop() const, clutter_animation_get_loop, deprecated "Use PropertyTransition instead.")
+  _WRAP_METHOD(void set_timeline(const Glib::RefPtr<Timeline>& timeline), clutter_animation_set_timeline, deprecated "Use PropertyTransition instead.")
+  _WRAP_METHOD(Glib::RefPtr<Timeline> get_timeline() const, clutter_animation_get_timeline, deprecated "Use PropertyTransition instead.")
+  _WRAP_METHOD(void set_alpha(const Glib::RefPtr<Alpha>& alpha), clutter_animation_set_alpha, deprecated "Use get_timeline() and set_progress_mode() instead.")
+  _WRAP_METHOD(Glib::RefPtr<Alpha> get_alpha() const, clutter_animation_get_alpha, deprecated "Use get_timeline() and set_progress_mode() instead.")
+  _WRAP_METHOD(void completed(), clutter_animation_completed, deprecated "Use PropertyTransition instead.")
+  _WRAP_METHOD(Glib::RefPtr<Animation> bind(const std::string& property_name, const Glib::ValueBase& final), clutter_animation_bind, deprecated "Use PropertyTransition instead.")
+   //TODO: Add templated bind().
+
+  _WRAP_METHOD(void bind_interval(const std::string& property_name, const Glib::RefPtr<Interval>& interval), clutter_animation_bind_interval, deprecated "Use PropertyTransition instead.")
+  _WRAP_METHOD(void update_interval(const std::string& property_name, const Glib::RefPtr<Interval>& interval), clutter_animation_update_interval, deprecated "Use PropertyTransition instead.")
+  _WRAP_METHOD(bool has_property(const std::string& property_name) const, clutter_animation_has_property, deprecated "Use PropertyTransition instead.")
+
+  _WRAP_METHOD(Glib::RefPtr<Animation> update(const std::string& property_name, const Glib::ValueBase& final), clutter_animation_update, deprecated "Use PropertyTransition instead.")
+  //TODO: Add templated update().
+
+  _WRAP_METHOD(void unbind_property(const std::string& property_name), clutter_animation_unbind_property, deprecated "Use PropertyTransition instead.")
+
+  //This needs at least a comment about the constness, though this is deprecated anyway.
+  _WRAP_METHOD(Glib::RefPtr<Interval> get_interval(const std::string& property_name) const, clutter_animation_get_interval, deprecated "Use PropertyTransition instead.")
+
+  _WRAP_SIGNAL(void started(), "started", deprecated "Use PropertyTransition instead.")
+  _WRAP_SIGNAL(void completed(), "completed", deprecated "Use PropertyTransition instead.")
+
+  _WRAP_PROPERTY("object", Glib::RefPtr<Glib::Object>)
+  _WRAP_PROPERTY("mode", gulong)
+  _WRAP_PROPERTY("duration", guint)
+  _WRAP_PROPERTY("loop", bool)
+  _WRAP_PROPERTY("timeline", Glib::RefPtr<Timeline>)
+  _WRAP_PROPERTY("alpha", Glib::RefPtr<Alpha>)
+
+};
+
+} // namespace Clutter

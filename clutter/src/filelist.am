@@ -17,13 +17,25 @@ files_hg =			\
 	actor-meta.hg		\
 	action.hg		\
 	align-constraint.hg \
+	alpha.hg		\
 	animatable.hg		\
+	animation.hg		\
+	animator.hg		\
 	backend.hg		\
+	behaviour.hg		\
+	behaviour-depth.hg	\
+	behaviour-ellipse.hg	\
+	behaviour-opacity.hg	\
+	behaviour-path.hg	\
+	behaviour-rotate.hg	\
+	behaviour-scale.hg	\
 	bin-layout.hg           \
 	bind-constraint.hg \
+	box.hg			\
 	box-layout.hg           \
 	blur-effect.hg          \
 	brightness-contrast-effect.hg \
+	cairo-texture.hg	\
 	canvas.hg		\
 	childmeta.hg		\
 	clone.hg		\
@@ -39,12 +51,14 @@ files_hg =			\
 	fixed-layout.hg         \
 	flow-layout.hg          \
 	grid-layout.hg		\
+	group.hg		\
 	image.hg		\
 	input-device.hg		\
 	interval.hg		\
 	keyframe-transition.hg \
 	layoutmeta.hg		\
 	layout-manager.hg	\
+	media.hg		\
 	model.hg \
 	model-iter.hg \
 	offscreen-effect.hg \
@@ -52,13 +66,19 @@ files_hg =			\
 	path.hg			\
 	path-constraint.hg \
 	property-transition.hg  \
+	rectangle.hg		\
 	scroll-actor.hg		\
+	score.hg		\
 	script.hg		\
 	scriptable.hg		\
+	shader.hg		\
 	shader-effect.hg \
 	size.hg			\
 	snap-constraint.hg \
 	stage.hg		\
+	text.hg			\
+	text-buffer.hg			\
+	texture.hg		\
 	timeline.hg		\
 	transition.hg \
 	types.hg

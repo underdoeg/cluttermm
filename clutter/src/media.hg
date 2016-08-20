@@ -1,0 +1,76 @@
+
+/* Copyright (C) 2007 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <glibmm/interface.h>
+#include <glibmm/ustring.h>
+#include <clutter/clutter.h>
+
+_DEFS(cluttermm,clutter)
+_PINCLUDE(glibmm/private/interface_p.h)
+
+#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+#m4 _POP()
+
+namespace Clutter
+{
+
+/**
+ * @deprecated
+ */
+class Media : public Glib::Interface
+{
+  _CLASS_INTERFACE(Media, ClutterMedia, CLUTTER_MEDIA, ClutterMediaIface)
+  _IS_DEPRECATED
+
+public:
+
+  _WRAP_METHOD(void set_uri(const Glib::ustring& uri), clutter_media_set_uri)
+  _WRAP_METHOD(Glib::ustring get_uri() const, clutter_media_get_uri)
+  _WRAP_METHOD(void set_playing(bool playing=true), clutter_media_set_playing)
+  _WRAP_METHOD(bool get_playing() const, clutter_media_get_playing)
+  _WRAP_METHOD(void set_progress(double progress), clutter_media_set_progress)
+  _WRAP_METHOD(double get_progress() const, clutter_media_get_progress)
+  _WRAP_METHOD(void set_subtitle_uri(const gchar  *uri), clutter_media_set_subtitle_uri)
+  _WRAP_METHOD(std::string get_subtitle_uri() const, clutter_media_get_subtitle_uri)
+  _WRAP_METHOD(void set_subtitle_font_name(const std::string& font_name), clutter_media_set_subtitle_font_name)
+  _WRAP_METHOD(std::string get_subtitle_font_name() const, clutter_media_get_subtitle_font_name)
+  _WRAP_METHOD(void set_audio_volume(double volume), clutter_media_set_audio_volume)
+  _WRAP_METHOD(double get_audio_volume() const, clutter_media_get_audio_volume)
+  _WRAP_METHOD(double get_buffer_percent() const, clutter_media_get_buffer_fill)
+  _WRAP_METHOD(void set_filename(const std::string& filename), clutter_media_set_filename)
+  _WRAP_METHOD(bool get_can_seek() const, clutter_media_get_can_seek)
+  _WRAP_METHOD(double get_duration() const, clutter_media_get_duration)
+
+  _WRAP_SIGNAL(void eos(), "eos")
+  // TODO: figure out what to do with this GError parameter
+  //_WRAP_SIGNAL(void error(GError* error), "error")
+
+  _WRAP_PROPERTY("buffer-fill", double)
+  _WRAP_PROPERTY("can-seek", bool)
+  _WRAP_PROPERTY("duration", guint)
+  _WRAP_PROPERTY("playing", bool)
+  _WRAP_PROPERTY("progress", double)
+  _WRAP_PROPERTY("uri", Glib::ustring)
+  _WRAP_PROPERTY("audio-volume", double)
+  _WRAP_PROPERTY("subtitle-font-name", Glib::ustring)
+  _WRAP_PROPERTY("subtitle-uri", Glib::ustring)
+};
+
+} // namespace Clutter
+//vim: ts=2,sw=2

@@ -1,0 +1,83 @@
+/* Copyright (C) 2007 The cluttermm Development Team
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free
+ * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <glibmm/object.h>
+#include <cluttermm/timeline.h>
+
+_DEFS(cluttermm,clutter)
+_PINCLUDE(glibmm/private/object_p.h)
+
+#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+#m4 _POP()
+
+namespace Clutter
+{
+
+/**
+ * @deprecated Use the "progress-mode" property of Clutter::Timeline, or the 
+ * Clutter::Timeline::set_progress_func() method instead.
+ */
+class Alpha : public Glib::Object
+{
+  _CLASS_GOBJECT(Alpha, ClutterAlpha, CLUTTER_ALPHA, Glib::Object, GObject)
+  _DERIVES_INITIALLY_UNOWNED()
+  _IS_DEPRECATED
+
+public:
+  /** For instance,
+   * double on_alpha(const Glib::RefPtr<Alpha>& alpha);
+   */
+  typedef sigc::slot<double, const Glib::RefPtr<Alpha>&> SlotAlphaFunc;
+
+protected:
+  _CTOR_DEFAULT()
+  _WRAP_CTOR(Alpha(const Glib::RefPtr<Timeline>& timeline, gulong mode), clutter_alpha_new_full)
+
+  /** Creates a new Alpha instance and sets the timeline and the alpha function.
+   * @param timeline Timeline.
+   * @param slot Alpha function.
+   */
+  Alpha(const Glib::RefPtr<Timeline>& timeline, const SlotAlphaFunc& slot);
+
+public:
+  enum { MAX_ALPHA = 0xFFFF };
+
+  _WRAP_CREATE()
+  _WRAP_CREATE(const Glib::RefPtr<Timeline>& timeline, const SlotAlphaFunc& slot)
+  _WRAP_CREATE(const Glib::RefPtr<Timeline>& timeline, gulong mode)
+
+  _WRAP_METHOD(void set_timeline(const Glib::RefPtr<Timeline>& timeline), clutter_alpha_set_timeline)
+  _WRAP_METHOD(Glib::RefPtr<Timeline> get_timeline(), clutter_alpha_get_timeline, refreturn)
+  _WRAP_METHOD(Glib::RefPtr<const Timeline> get_timeline() const, clutter_alpha_get_timeline, refreturn, constversion)
+  _WRAP_METHOD(double get_alpha() const, clutter_alpha_get_alpha)
+
+  _IGNORE(clutter_alpha_set_func)
+  void set_func(const SlotAlphaFunc& slot);
+
+  //TODO: Special methods that take AnimationMode?
+  _WRAP_METHOD(void set_mode(gulong mode), clutter_alpha_set_mode)
+  _WRAP_METHOD(gulong get_mode() const, clutter_alpha_get_mode)
+
+  _WRAP_PROPERTY("alpha", double)
+  _WRAP_PROPERTY("timeline", Glib::RefPtr<Timeline>)
+
+  // We don't need the GClosure stuff in C++:
+  _IGNORE(clutter_alpha_set_closure)
+};
+
+} // namespace Clutter
