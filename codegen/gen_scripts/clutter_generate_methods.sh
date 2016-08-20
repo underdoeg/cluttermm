@@ -14,4 +14,4 @@ ROOT_DIR="$(dirname "$0")/../.."
 OUT_DIR="$ROOT_DIR/clutter/src"
 
 H2DEF_PY="$JHBUILD_SOURCES/glibmm/tools/defs_gen/h2def.py"
-$H2DEF_PY "$PREFIX"/clutter/*.h > "$OUT_DIR"/clutter_methods.defs
+$H2DEF_PY "$PREFIX"/clutter/*.h "$PREFIX"/clutter/deprecated/*.h > "$OUT_DIR"/clutter_methods.defs
