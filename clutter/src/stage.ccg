@@ -28,6 +28,13 @@ Perspective::Perspective(float fovy, float aspect, float z_near, float z_far)
   gobject_.z_far = z_far;
 }
 
+Color Stage::get_color() const
+{
+  Color color;
+  clutter_stage_get_color(const_cast<ClutterStage*>(gobj()), color.gobj());
+  return color;
+}
+
 void Stage::set_key_focus()
 {
   clutter_stage_set_key_focus(gobj(), NULL);

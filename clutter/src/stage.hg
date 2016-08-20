@@ -70,7 +70,7 @@ protected:
   /**
    * Creates a new stage. Every Clutter::Actor must be placed on a stage, and the
    * stage first created automatically occupies the window generated when
-   *  Clutter::main() is run.
+   *  Clutter::maiAdded new properties and functions to wrap clutter 1.7.6n() is run.
    *
    * Clutter can support more than one stage at once; however the ability to
    * support multiple stages depends on the current backend. Use
@@ -114,6 +114,7 @@ public:
   // TODO: Should we rather wrap this as std::string, or
   // as std::vector<unsigned char>, or Glib::ArrayHandle<guchar>?
   _WRAP_METHOD(guchar* read_pixels(int x, int y, int width, int height) const, clutter_stage_read_pixels)
+ values.")
 
   _WRAP_METHOD(void stage_event(Event* event), clutter_stage_event)
   _WRAP_METHOD(void ensure_current(), clutter_stage_ensure_current)
