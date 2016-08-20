@@ -123,8 +123,9 @@ public:
 #m4 dnl // Those are varargs convenience functions for C coders
   _IGNORE(clutter_actor_animate, clutter_actor_animate_with_alpha, clutter_actor_animate_with_timeline)
 
-  //We ignore clutter_actor_destroy because it would break any existing RefPtr.
-  _IGNORE(clutter_actor_destroy)
+  //TODO: Check that we don't want to wrap this: _WRAP_METHOD(void destroy(), clutter_actor_destroy)
+  //_IGNORE(clutter_actor_destroy)
+  _WRAP_METHOD(void destroy(), clutter_actor_destroy)
 
   _WRAP_METHOD(Glib::RefPtr<Pango::Context> get_pango_context(),
                clutter_actor_get_pango_context, refreturn)
@@ -490,10 +491,7 @@ public:
   _WRAP_SIGNAL(bool leave_event(CrossingEvent* event), "leave_event")
   _WRAP_SIGNAL(void show(), "show")
   _WRAP_SIGNAL(void hide(), "hide")
-
-  //We ignore the destroy signal because it would just encourage strange memory management. 
-  _IGNORE_SIGNAL(void destroy(), "destroy")
-
+  _WRAP_SIGNAL(void destroy(), "destroy")
   _WRAP_SIGNAL(bool key_release_event(KeyEvent* event), "key_release_event")
   _WRAP_SIGNAL(bool enter_event(CrossingEvent* event), "enter_event")
   _WRAP_SIGNAL(bool event(Event* event), "event")
