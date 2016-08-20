@@ -35,6 +35,10 @@
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)
 
+#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+#m4 _POP()
+
 namespace Clutter
 {
 
@@ -83,9 +87,9 @@ public:
   _IGNORE(clutter_actor_destroy)
 
   _WRAP_METHOD(void show(), clutter_actor_show)
-
+  _WRAP_METHOD(void show_all(), clutter_actor_show_all, deprecated "Actors are visible by default.")
   _WRAP_METHOD(void hide(), clutter_actor_hide)
-
+  _WRAP_METHOD(void hide_all(), clutter_actor_hide_all, deprecated "Using hide() on the actor will now prevent its children from being painted as well.")
   _WRAP_METHOD(void realize(), clutter_actor_realize)
   _WRAP_METHOD(void unrealize(), clutter_actor_unrealize)
   _WRAP_METHOD(void map(), clutter_actor_map)
@@ -144,7 +148,7 @@ public:
    * */
   Matrix get_transform() const;
 
-
+  _WRAP_METHOD(void get_transformation_matrix(ClutterMatrix* matrix), clutter_actor_get_transformation_matrix, deprecated "Use get_transform() instead")
   _WRAP_METHOD(void set_transform(const Matrix& transform), clutter_actor_set_transform)
   _WRAP_METHOD(void set_child_transform(const Matrix& transform), clutter_actor_set_child_transform)
 
@@ -164,6 +168,17 @@ public:
   _WRAP_METHOD(void set_child_below_sibling(const Glib::RefPtr<Actor>& child, const Glib::RefPtr<Actor>& sibling), clutter_actor_set_child_below_sibling)
   _WRAP_METHOD(void set_child_above_sibling(const Glib::RefPtr<Actor>& child, const Glib::RefPtr<Actor>& sibling), clutter_actor_set_child_above_sibling)
   _WRAP_METHOD(void set_child_at_index(const Glib::RefPtr<Actor>& child, int index), clutter_actor_set_child_at_index)
+
+#m4 _CONVERSION(`const Geometry&', `const ClutterGeometry*', `($3).gobj()')
+  _WRAP_METHOD(void set_geometry(const Geometry& geometry), clutter_actor_set_geometry, deprecated "Use set_position() and set_size() instead.")
+
+_DEPRECATE_IFDEF_START
+  _WRAP_METHOD_DOCS_ONLY(clutter_actor_get_geometry)
+  /**
+   * @deprecated Use get_position() and get_size(), or get_allocation_geometry() instead.
+   */
+  Geometry get_geometry() const;
+_DEPRECATE_IFDEF_END
 
   //_WRAP_METHOD(void get_coords(float *x_1, float *y_1, float *x_2, float *y_2) const, clutter_actor_get_coords)
   _WRAP_METHOD(void set_size(float width, float height), clutter_actor_set_size)
@@ -207,10 +222,10 @@ public:
   _WRAP_METHOD(bool has_key_focus() const, clutter_actor_has_key_focus)
 
 
-
-
-
-
+  _WRAP_METHOD(void set_rotation(RotateAxis axis, double angle, float x, float y, float z), clutter_actor_set_rotation, deprecated "Use set_rotation_angle() and set_pivot_point() instead.")
+  _WRAP_METHOD(void set_z_rotation_from_gravity(double angle, Gravity gravity), clutter_actor_set_z_rotation_from_gravity, deprecated "Use set_rotation_angle() and set_pivot_point() instead.")
+  _WRAP_METHOD(double get_rotation(RotateAxis axis, float& x, float& y, float& z) const, clutter_actor_get_rotation, deprecated "Use get_rotation_angle() and get_pivot_point() instead.")
+  _WRAP_METHOD(Gravity get_z_rotation_gravity() const, clutter_actor_get_z_rotation_gravity, deprecated "Use the “pivot-point” instead of a Gravity.")
   _WRAP_METHOD(void set_opacity(guint8 opacity), clutter_actor_set_opacity)
   _WRAP_METHOD(guint8 get_opacity() const, clutter_actor_get_opacity)
 
@@ -262,17 +277,29 @@ public:
   _WRAP_METHOD(Glib::RefPtr<Actor> get_last_child(), clutter_actor_get_last_child, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const Actor> get_last_child() const, clutter_actor_get_last_child, refreturn, constversion)
 
-
+  _WRAP_METHOD(void set_parent(const Glib::RefPtr<Actor>& parent), clutter_actor_set_parent, deprecated "Use add_child() instead.")
   _WRAP_METHOD(Glib::RefPtr<Actor> get_parent(), clutter_actor_get_parent, refreturn)
   _WRAP_METHOD(Glib::RefPtr<const Actor> get_parent() const, clutter_actor_get_parent, refreturn, constversion)
-
-
+  _WRAP_METHOD(void reparent(const Glib::RefPtr<Actor>& new_parent), clutter_actor_reparent, deprecated "Use remove_child() and add_child() instead.")
+  _WRAP_METHOD(void unparent(), clutter_actor_unparent, deprecated "Use remove_child() instead.")
   _WRAP_METHOD(bool contains(const Glib::RefPtr<const Actor>& descendant) const, clutter_actor_contains)
-
-
+  _WRAP_METHOD(void raise(const Glib::RefPtr<Actor>& below), clutter_actor_raise, deprecated "Use set_child_above_sibling() instead.")
+  _WRAP_METHOD(void lower(const Glib::RefPtr<Actor>& above), clutter_actor_lower, deprecated "Use set_child_below_sibling() instead")
   _WRAP_METHOD(void raise_top (), clutter_actor_raise_top)
   _WRAP_METHOD(void lower_bottom(), clutter_actor_lower_bottom)
 
+  _WRAP_METHOD(Glib::RefPtr<Shader> get_shader(), clutter_actor_get_shader, refreturn, deprecated "Use get_effect() instead.")
+  _WRAP_METHOD(Glib::RefPtr<const Shader> get_shader() const, clutter_actor_get_shader, refreturn, constversion, deprecated "Use get_effect() instead.")
+  _WRAP_METHOD(void set_shader(const Glib::RefPtr<Shader>& shader), clutter_actor_set_shader, deprecated "Use add_effect() instead.")
+
+_DEPRECATE_IFDEF_START
+  _WRAP_METHOD_DOCS_ONLY(clutter_actor_set_shader_param)
+  /**
+   * @deprecated Use ShaderEffect::set_uniform_value() instead."
+   */
+  template <class ParamType> void set_shader_param(const Glib::ustring& param, const ParamType& value);
+_DEPRECATE_IFDEF_END
+  _IGNORE(clutter_actor_set_shader_param_int, clutter_actor_set_shader_param_float)
 
   //_WRAP_METHOD_DOCS_ONLY(clutter_actor_get_paint_area)
   //ActorBox get_paint_area() const;
@@ -336,8 +363,8 @@ public:
   _WRAP_METHOD(void get_preferred_height(float for_width, float& min_height_p, float& natural_height_p) const, clutter_actor_get_preferred_height)
   _WRAP_METHOD(guint8 get_paint_opacity() const, clutter_actor_get_paint_opacity)
   _WRAP_METHOD(bool get_paint_visibility() const, clutter_actor_get_paint_visibility)
-
-
+  _WRAP_METHOD(void move_anchor_point_from_gravity(Gravity gravity), clutter_actor_move_anchor_point_from_gravity, deprecated "Use “pivot-point” instead.")
+  _WRAP_METHOD(void move_anchor_point(float anchor_x, float anchor_y), clutter_actor_move_anchor_point, deprecated "Use “pivot-point” instead.")
 
 // IM: ClutterMargin.
   _IGNORE(clutter_actor_set_margin, clutter_actor_get_margin)
@@ -362,29 +389,36 @@ public:
   _WRAP_METHOD(bool get_fixed_position_set() const, clutter_actor_get_fixed_position_set)
   _WRAP_METHOD(void set_fixed_position_set(bool is_set), clutter_actor_set_fixed_position_set)
 
+_DEPRECATE_IFDEF_START
+  _WRAP_METHOD_DOCS_ONLY(clutter_actor_get_allocation_geometry)
+  /**
+   * @deprecated Use get_allocation_box() instead.
+   */
+  Geometry get_allocation_geometry() const;
+_DEPRECATE_IFDEF_END
 
-
-
+  _WRAP_METHOD(void set_depth(float depth), clutter_actor_set_depth, deprecated "Use set_z_position() instead.)
+  _WRAP_METHOD(float get_depth() const, clutter_actor_get_depth, deprecated "Use get_z_position() instead.")
   _WRAP_METHOD(void set_scale(double scale_x, double scale_y), clutter_actor_set_scale)
   _WRAP_METHOD(void set_scale_z(double scale_z), clutter_actor_set_scale_z)
-
-
+  _WRAP_METHOD(void set_scale_full(double scale_x, double scale_y, float center_x, float center_y), clutter_actor_set_scale_full, deprecated "Use set_pivot_point() to control the scale center.")
+  _WRAP_METHOD(void set_scale_with_gravity(double scale_x, double scale_y, Gravity gravity), clutter_actor_set_scale_with_gravity, deprecated "Use set_pivot_point() to set the scale center using normalized coordinates instead.")
   _WRAP_METHOD(void get_scale(double& scale_x, double& scale_y) const, clutter_actor_get_scale)
   _WRAP_METHOD(double get_scale_z() const, clutter_actor_get_scale_z)
-
-
+  _WRAP_METHOD(void get_scale_center(float& center_x, float& center_y) const, clutter_actor_get_scale_center, deprecated "Use get_pivot_point() instead.")
+  _WRAP_METHOD(Gravity get_scale_gravity() const, clutter_actor_get_scale_gravity, deprecated "Use get_pivot_point() instead.")
 
   //_WRAP_METHOD(void get_abs_size(float& width, float& height) const, clutter_actor_get_abs_size)
   _WRAP_METHOD(void get_size(float& width, float& height) const, clutter_actor_get_size)
   _WRAP_METHOD(void move_by(float dx, float dy), clutter_actor_move_by)
 
   _WRAP_METHOD(bool event(const ClutterEvent* event, bool capture), clutter_actor_event)
+  _WRAP_METHOD(static Glib::RefPtr<Actor> get_actor_by_gid(guint32 id), clutter_get_actor_by_gid, refreturn, deprecated "The ID is no longer used.")
 
-
-
-
-
-
+  _WRAP_METHOD(void set_anchor_point(float anchor_x, float anchor_y), clutter_actor_set_anchor_point, deprecated "Use “pivot-point” instead.")
+  _WRAP_METHOD(void get_anchor_point(float& anchor_x, float& anchor_y) const, clutter_actor_get_anchor_point, deprecated "Use “pivot-point” instead.")
+  _WRAP_METHOD(void set_anchor_point_from_gravity(ClutterGravity gravity), clutter_actor_set_anchor_point_from_gravity, deprecated "Use “pivot-point” instead.")
+  _WRAP_METHOD(Gravity get_anchor_point_gravity(), clutter_actor_get_anchor_point_gravity, deprecated "Use “pivot-point” instead.")
 
   _WRAP_METHOD(void grab_key_focus(), clutter_actor_grab_key_focus)
 
@@ -397,14 +431,17 @@ public:
   _WRAP_METHOD(void remove_child(const Glib::RefPtr<Actor>& child), clutter_actor_remove_child )
   _WRAP_METHOD(void remove_all_children(), clutter_actor_remove_all_children )
 
+   //deprecated
+  _IGNORE(clutter_actor_animate, clutter_actor_animatev, clutter_actor_animate_with_timelinev, clutter_actor_animate_with_alphav)
 
-
+  _WRAP_METHOD(Glib::RefPtr<Animation> get_animation(), clutter_actor_get_animation, refreturn, deprecated "Use the implicit transition for animatable properties in ClutterActor instead, and clutter_actor_get_transition() to retrieve the transition.")
+  _WRAP_METHOD(Glib::RefPtr<const Animation> get_animation() const, clutter_actor_get_animation, refreturn, constversion, deprecated "Use the implicit transition for animatable properties in ClutterActor instead, and clutter_actor_get_transition() to retrieve the transition.")
 
   _WRAP_METHOD(void detach_animation(), clutter_actor_detach_animation)
 
 
-
-
+  _WRAP_METHOD(void push_internal(), clutter_actor_push_internal, deprecated "All children of an actor are accessible through the ClutterActor API, and ClutterActor implements the ClutterContainer interface, so this function is only useful for legacy containers overriding the default implementation.")
+  _WRAP_METHOD(void pop_internal(), clutter_actor_pop_internal, deprecated "All children of an actor are accessible through the ClutterActor API. This function is only useful for legacy containers overriding the default implementation of the ClutterContainer interface.")
 
   _WRAP_METHOD(bool has_allocation() const, clutter_actor_has_allocation)
 
@@ -608,6 +645,14 @@ public:
 
 protected:
   //TODO: Wrap ClutterShaderEffect.
+  _WRAP_METHOD(void set_shader_param_value(const Glib::ustring& param, const Glib::ValueBase& value),
+               clutter_actor_set_shader_param, deprecated "Use ShaderEffect::set_uniform_value() instead.")
+
+  //TODO: These are deprecated. Remove them when we can break ABI:
+  _WRAP_VFUNC(void show_all(), show_all)
+  _WRAP_VFUNC(void hide_all(), hide_all)
+
+  //The realize and unrealize vfuncs are deprecated.
 
   _WRAP_VFUNC(void map(), map)
   _WRAP_VFUNC(void unmap(), unmap)
@@ -632,5 +677,19 @@ protected:
   //TODO: Wrap ClutterPaintNode*?
   _WRAP_VFUNC(void paint_node(ClutterPaintNode* root), paint_node)
 };
+
+_DEPRECATE_IFDEF_START
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+template <class ParamType>
+void Actor::set_shader_param(const Glib::ustring& param, const ParamType& value)
+{
+  Glib::Value<ParamType> param_value;
+  param_value.init(Glib::Value<ParamType>::value_type());
+
+  param_value.set(value);
+  this->set_shader_param_value(param, param_value);
+}
+#endif /* DOXYGEN_SHOULD_SKIP_THIS */
+_DEPRECATE_IFDEF_END
 
 } // namespace Clutter

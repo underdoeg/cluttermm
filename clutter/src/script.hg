@@ -96,6 +96,9 @@ public:
   _WRAP_METHOD(void unmerge_object(guint merge_id), clutter_script_unmerge_objects)
   _WRAP_METHOD(void ensure_objects(), clutter_script_ensure_objects)
 
+  //Ignore deprecated API that uses State.
+  _IGNORE(clutter_script_add_states, clutter_script_get_states)
+
   _WRAP_METHOD(void set_translation_domain(const Glib::ustring& domain), clutter_script_set_translation_domain)
   _WRAP_METHOD(Glib::ustring get_translation_domain() const, clutter_script_get_translation_domain)
 

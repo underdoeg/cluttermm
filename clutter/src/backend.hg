@@ -21,6 +21,10 @@
 _DEFS(cluttermm,clutter)
 _PINCLUDE(glibmm/private/object_p.h)
 
+#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+#m4 _POP()
+
 namespace Clutter
 {
 
@@ -35,20 +39,20 @@ protected:
 public:
   _WRAP_METHOD(static Glib::RefPtr<Backend> get_default(), clutter_get_default_backend, refreturn)
 
+  _WRAP_METHOD(double get_resolution() const, clutter_backend_get_resolution, deprecated "Use Settings's front-dpi property instead.")
+  _WRAP_METHOD(void set_resolution(double dpi), clutter_backend_set_resolution, deprecated "Use Settings's front-dpi property instead.")
 
+  _WRAP_METHOD(guint get_double_click_time() const, clutter_backend_get_double_click_time, deprecated "Use Settings's double-click-time property instead.")
+  _WRAP_METHOD(void set_double_click_time(guint msec), clutter_backend_set_double_click_time, deprecated "Use Settings's double-click-time property instead.")
 
-
-
-
-
-
-
+  _WRAP_METHOD(guint get_double_click_distance() const, clutter_backend_get_double_click_distance, deprecated "Use Settings's double-click-distance property instead.")
+  _WRAP_METHOD(void set_double_click_distance(guint distance), clutter_backend_set_double_click_distance, deprecated "Use Settings's double-click-distance property instead.")
 
   _WRAP_METHOD(::Cairo::FontOptions get_font_options() const, clutter_backend_get_font_options)
   _WRAP_METHOD(void set_font_options(const ::Cairo::FontOptions& options), clutter_backend_set_font_options)
 
-
-
+  _WRAP_METHOD(Glib::ustring get_font_name() const, clutter_backend_get_font_name, deprecated "Use Settings's font-name property instead.")
+  _WRAP_METHOD(void set_font_name(const Glib::ustring& font_name), clutter_backend_set_font_name, deprecated "Use Settings's font-name property instead.")
 
   //Experimental API: clutter_backend_get_cogl_context
 

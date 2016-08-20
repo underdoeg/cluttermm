@@ -20,6 +20,10 @@
 _DEFS(cluttermm,clutter)
 _PINCLUDE(cluttermm/private/layout-manager_p.h)
 
+#m4 _PUSH(SECTION_CC_PRE_INCLUDES)
+#define CLUTTER_DISABLE_DEPRECATION_WARNINGS 1
+#m4 _POP()
+
 namespace Clutter
 {
 
@@ -43,15 +47,36 @@ public:
   _WRAP_METHOD(bool get_pack_start() const, clutter_box_layout_get_pack_start)
   _WRAP_METHOD(void set_spacing(guint spacing), clutter_box_layout_set_spacing)
   _WRAP_METHOD(guint get_spacing() const, clutter_box_layout_get_spacing)
-
+  _WRAP_METHOD(void set_vertical(bool vertical), clutter_box_layout_set_vertical, deprecated "Use set_orientation() instead.")
+  _WRAP_METHOD(bool get_vertical() const, clutter_box_layout_get_vertical, deprecated "Use get_orientation() instead.")
   _WRAP_METHOD(void set_homogeneous(bool homogeneous), clutter_box_layout_set_homogeneous)
   _WRAP_METHOD(bool get_homogeneous() const, clutter_box_layout_get_homogeneous)
 
   _WRAP_METHOD(void pack(const Glib::RefPtr<Actor>&, bool expand, bool x_fill, bool y_fill, BoxAlignment x_align, BoxAlignment y_align), clutter_box_layout_pack)
+
+  _WRAP_METHOD(void set_alignment(const Glib::RefPtr<Actor>& child, BoxAlignment x_align, BoxAlignment y_align), clutter_box_layout_set_alignment, deprecated "Use Actor's x-align and y-align properties instead.")
+  _WRAP_METHOD(void get_alignment(const Glib::RefPtr<Actor>& child, BoxAlignment &x_align, BoxAlignment &y_align) const, clutter_box_layout_get_alignment, deprecated "Use Actor's x-align and y-align properties instead.")
+  _WRAP_METHOD(void set_expand(const Glib::RefPtr<Actor>& child, bool expand), clutter_box_layout_set_expand, deprecated "Use Actor's x-expand and y-expand properties instead.")
+  _WRAP_METHOD(bool get_expand(const Glib::RefPtr<Actor>& child) const, clutter_box_layout_get_expand, deprecated "Use Actor's x-expand and y-expand properties instead.")
+  _WRAP_METHOD(void set_fill(const Glib::RefPtr<Actor>& child, bool x_fill, bool y_fill), clutter_box_layout_set_fill, deprecated "Use Actor's x-align and y-align properties instead.")
+  #m4 _CONVERSION(`bool&',`gboolean*',`(($2) &($3))')
+  _WRAP_METHOD(void get_fill(const Glib::RefPtr<Actor>& child, bool &x_fill, bool &y_fill) const, clutter_box_layout_get_fill, deprecated "Use Actor's x-align and y-align properties instead.")
+
+  _WRAP_METHOD(void set_use_animations(bool animate), clutter_box_layout_set_use_animations, deprecated "The layout manager will honour the easing state of the children when allocating them.")
+  _WRAP_METHOD(bool get_use_animations() const, clutter_box_layout_get_use_animations, deprecated "The layout manager will honour the easing state of the children when allocating them.")
+  _WRAP_METHOD(void set_easing_duration(guint msecs), clutter_box_layout_set_easing_duration, deprecated "The layout manager will honour the easing state of the children when allocating them.")
+  _WRAP_METHOD(guint get_easing_duration() const, clutter_box_layout_get_easing_duration, deprecated "The layout manager will honour the easing state of the children when allocating them.")
+  _WRAP_METHOD(void set_easing_mode(gulong mode), clutter_box_layout_set_easing_mode, deprecated "The layout manager will honour the easing state of the children when allocating them.")
+  _WRAP_METHOD(gulong get_easing_mode() const, clutter_box_layout_get_easing_mode, deprecated "The layout manager will honour the easing state of the children when allocating them.")
+
+  _WRAP_PROPERTY("easing-duration", guint, deprecated "The layout manager will honour the easing state of the children when allocating them.")
+  _WRAP_PROPERTY("easing-mode", unsigned long, deprecated "The layout manager will honour the easing state of the children when allocating them.")
   _WRAP_PROPERTY("homogeneous", bool)
   _WRAP_PROPERTY("orientation", Orientation)
   _WRAP_PROPERTY("pack-start", bool)
   _WRAP_PROPERTY("spacing", guint)
+  _WRAP_PROPERTY("use-animations", bool, deprecated "The layout manager will honour the easing state of the children when allocating them.")
+  _WRAP_PROPERTY("vertical", bool, deprecated "Use orientation instead.")
 };
 
 } // namespace Clutter

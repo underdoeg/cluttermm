@@ -49,8 +49,8 @@ protected:
    //TODO: Signals, properties, vfuncs
   _WRAP_VFUNC(void paint(EffectPaintFlags flags), paint)
   _WRAP_VFUNC(void pick(EffectPaintFlags flags), pick)
-
-
+  _WRAP_VFUNC(void pre_paint(EffectPaintFlags flags), pre_paint, deprecated)
+  _WRAP_VFUNC(void post_paint(EffectPaintFlags flags), post_paint, deprecated)
 
   _WRAP_VFUNC(bool get_paint_volume(PaintVolume volume), get_paint_volume)
 };

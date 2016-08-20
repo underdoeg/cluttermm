@@ -17,9 +17,55 @@
 
 #include <clutter/clutter.h>
 
+_DEPRECATE_IFDEF_START
+namespace
+{
+extern "C"
+{
+static void SignalProxy_Container_foreach_callback(ClutterActor *actor, gpointer user_data)
+{
+  Clutter::Container::SlotForEach *const
+    the_slot = static_cast<Clutter::Container::SlotForEach*>(user_data);
+
+#ifdef GLIBMM_EXCEPTIONS_ENABLED
+  try
+#endif
+  {
+    const Glib::RefPtr<Clutter::Actor> cpp_actor = Glib::wrap(actor, true /* take reference */);
+    (*the_slot)(cpp_actor);
+  }
+#ifdef GLIBMM_EXCEPTIONS_ENABLED
+  catch (...)
+  {
+    Glib::exception_handlers_invoke();
+  }
+#endif
+}
+} // extern "C"
+} // anonymous namespace
+_DEPRECATE_IFDEF_END
 
 namespace Clutter
 {
+
+
+_DEPRECATE_IFDEF_START
+void Container::raise_child(const Glib::RefPtr<Actor>& actor)
+{
+  clutter_container_raise_child(gobj(), Glib::unwrap(actor), 0);
+}
+
+void Container::lower_child(const Glib::RefPtr<Actor>& actor)
+{
+  clutter_container_lower_child(gobj(), Glib::unwrap(actor), 0);
+}
+
+void Container::foreach(const SlotForEach& slot)
+{
+  clutter_container_foreach(gobj(),
+      &SignalProxy_Container_foreach_callback, const_cast<SlotForEach*>(&slot));
+}
+_DEPRECATE_IFDEF_END
 
 void Container::get_child_property_value(const Glib::RefPtr<const Actor>& child,
                      const Glib::ustring& property_name, Glib::ValueBase& value) const
@@ -37,5 +83,37 @@ void Container::actor_removed(const Glib::RefPtr<Actor>& actor)
 {
   g_signal_emit_by_name(gobj(), "actor_removed", actor->gobj());
 }
+
+_DEPRECATE_IFDEF_START
+std::vector<Glib::RefPtr<Actor> > Container::get_children()
+{
+  GList* actorList = clutter_container_get_children(gobj());
+  const guint actorCount = g_list_length(actorList);
+  std::vector<Glib::RefPtr<Actor> > actorVec;
+  actorVec.reserve(actorCount);
+
+  for(GList* actorNode = actorList; actorNode->next; actorNode = actorList->next)
+  {
+    actorVec.push_back(Glib::wrap(static_cast<ClutterActor*>(actorNode->data), true));
+  }
+
+  return actorVec;
+}
+
+std::vector<Glib::RefPtr<const Actor> > Container::get_children() const
+{
+  GList* actorList = clutter_container_get_children(const_cast<ClutterContainer*>(gobj()));
+  const guint actorCount = g_list_length(actorList);
+  std::vector<Glib::RefPtr<const Actor> > actorVec;
+  actorVec.reserve(actorCount);
+
+  for(GList* actorNode = actorList; actorNode->next; actorNode = actorList->next)
+  {
+    actorVec.push_back(Glib::wrap(static_cast<ClutterActor*>(actorNode->data), true));
+  }
+
+  return actorVec;
+}
+_DEPRECATE_IFDEF_END
 
 } // namespace Clutter
