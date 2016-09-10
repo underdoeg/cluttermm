@@ -98,7 +98,7 @@ void Geometry::set_size(guint width, guint height)
 Rect::Rect(float x, float y, float width, float height)
 {
   gobject_ = clutter_rect_alloc();
-  clutter_rect_init(gobject_, x, y, width, height);;
+  clutter_rect_init(gobject_, x, y, width, height);
 }
 
 static gboolean cluttermm_rect_equals(const ClutterRect* a, const ClutterRect* b)

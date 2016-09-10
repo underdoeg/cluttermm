@@ -125,6 +125,7 @@
 #include <cluttermm/threads.h>
 #include <cluttermm/timeline.h>
 #include <cluttermm/transition.h>
+#include <cluttermm/transition-group.h>
 #include <cluttermm/types.h>
 
 #endif /* !CLUTTERMM_H_INCLUDED */
