@@ -89,9 +89,11 @@ void KeyFrameTransition::set_values(const std::vector<ValueType>& values)
   for(int i = 0; i != values.size(); i++)
   {
     Glib::Value<ValueType> val;
-    val.init( Glib::Value<ValueType>::value_type() );
+    val.init(Glib::Value<ValueType>::value_type());
 
 	val.set(values[i]);
+	valuearray[i] = G_VALUE_INIT;
+	g_value_init (&valuearray[i], Glib::Value<ValueType>::value_type());
 	g_value_copy(val.gobj(), &valuearray[i]);
   }
 
