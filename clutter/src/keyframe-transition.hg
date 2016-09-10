@@ -66,16 +66,18 @@ public:
   
 
   _WRAP_METHOD(guint get_n_key_frames() const, clutter_keyframe_transition_get_n_key_frames)
-
-  _WRAP_METHOD(void set_key_frame(guint index_, double key, AnimationMode mode, const Glib::ValueBase& value), clutter_keyframe_transition_set_key_frame)
+  
+  _WRAP_METHOD_DOCS_ONLY(clutter_keyframe_transition_set_key_frame)
+  template <typename ValueType>
+  void set_key_frame(guint index, double key, AnimationMode mode, ValueType value);
+  _IGNORE(clutter_keyframe_transition_set_key_frame)
+  
+  //_WRAP_METHOD(void set_key_frame(guint index_, double key, AnimationMode mode, const Glib::ValueBase& value), clutter_keyframe_transition_set_key_frame)
 
   //TODO: clutter_keyframe_transition_get_key_frame
 
   _WRAP_METHOD(void clear(), clutter_keyframe_transition_clear)
 
-
-  _WRAP_PROPERTY("max-row-height", float)
-  _WRAP_PROPERTY("snap-to-grid", bool)
 };
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -94,6 +96,14 @@ void KeyFrameTransition::set_values(const std::vector<ValueType>& values)
   }
 
   clutter_keyframe_transition_set_values(gobj(), values.size(), valuearray);
+}
+
+template <typename ValueType>
+void KeyFrameTransition::set_key_frame(guint index, double key, AnimationMode mode, ValueType value){
+	Glib::Value<ValueType> val;
+	val.init( Glib::Value<ValueType>::value_type() );
+	val.set(value); 
+	clutter_keyframe_transition_set_key_frame(gobj(), index, key, (ClutterAnimationMode)mode, val.gobj());
 }
 
 /* TODO:
