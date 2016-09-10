@@ -28,5 +28,10 @@ void KeyFrameTransition::set_modes(const std::vector<AnimationMode>& modes)
     reinterpret_cast<ClutterAnimationMode*>(const_cast<AnimationMode*>(Glib::ArrayHandler<AnimationMode>::vector_to_array(modes).data()) ));
 }
 
+void KeyFrameTransition::set_key_frames(const std::vector<double>& key_frames)
+{
+  clutter_keyframe_transition_set_key_frames(gobj(), key_frames.size(), key_frames.data());
+}
+
 
 } //namespace Clutter

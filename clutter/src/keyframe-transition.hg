@@ -44,11 +44,15 @@ public:
 
   _IGNORE(clutter_keyframe_transition_set)
 
-  _WRAP_METHOD(void set_key_frames(guint index, const double* key_points), clutter_keyframe_transition_set_key_frames)
+  _WRAP_METHOD_DOCS_ONLY(clutter_keyframe_transition_set_key_frames)
+  void set_key_frames(const std::vector<double>& key_frames);
+  _IGNORE(clutter_keyframe_transition_set_key_frames)
 
   _WRAP_METHOD_DOCS_ONLY(clutter_keyframe_transition_set_modes)
   void set_modes(const std::vector<AnimationMode>& modes);
   _IGNORE(clutter_keyframe_transition_set_modes)
+  
+  
 
 
   //Because the keyframe transition is only for one parameter of the object,
@@ -58,6 +62,8 @@ public:
   template <typename ValueType>
   void set_values(const std::vector<ValueType>& values);
   _IGNORE(clutter_keyframe_transition_set_values)
+  
+  
 
   _WRAP_METHOD(guint get_n_key_frames() const, clutter_keyframe_transition_get_n_key_frames)
 
@@ -76,18 +82,18 @@ public:
 template <typename ValueType>
 void KeyFrameTransition::set_values(const std::vector<ValueType>& values)
 {
-  double valuearray[values.size()];
+  GValue valuearray[values.size()];
 
   for(int i = 0; i != values.size(); i++)
   {
     Glib::Value<ValueType> val;
     val.init( Glib::Value<ValueType>::value_type() );
 
-    val.set(values.at(i));
-    valuearray[i] = val;
+	val.set(values[i]);
+	g_value_copy(val.gobj(), &valuearray[i]);
   }
 
-  clutter_keyframe_transition_set_values(gobj(), valuearray.size(), valuearray);
+  clutter_keyframe_transition_set_values(gobj(), values.size(), valuearray);
 }
 
 /* TODO:
