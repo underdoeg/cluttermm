@@ -41,6 +41,9 @@ public:
    * The property name must be an animatable property of Actor.
    */
   _WRAP_CREATE(const Glib::ustring& property_name)
+  
+  template<typename ValueType>
+  static Glib::RefPtr<PropertyTransition> create(const Glib::ustring& property_name, const ValueType& to);
 
   _WRAP_METHOD(void set_property_name(const Glib::ustring& property_name), clutter_property_transition_set_property_name)
   _WRAP_METHOD(Glib::ustring get_property_name() const, clutter_property_transition_get_property_name)
@@ -48,5 +51,12 @@ public:
 
   _WRAP_PROPERTY("property-name", Glib::ustring)
 };
+
+  template<typename ValueType>
+  Glib::RefPtr<PropertyTransition> PropertyTransition::create(const Glib::ustring& property_name, const ValueType& to){
+  	Glib::RefPtr<PropertyTransition> transition = PropertyTransition::create(property_name);
+  	transition->set_to(to);
+  	return transition;
+  }
 
 } // namespace Clutter
